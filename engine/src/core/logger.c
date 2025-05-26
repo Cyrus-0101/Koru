@@ -1,4 +1,5 @@
 #include "logger.h"
+#include "platform/platform.h"
 
 // TO-DO: TEMPORARY
 #include <stdio.h>   // for printf
@@ -45,13 +46,13 @@ void log_output(log_level level, const char* message, ...) {
     const char* level_strings[6] = {"[FATAL]: ", "[ERROR]: ", "[WARN]:  ", "[INFO]:  ", "[DEBUG]: ", "[TRACE]: "};
 
     // True if the log level is FATAL or ERROR
-    b8 is_error = level < 2;
+    b8 is_error = level < LOG_LEVEL_WARN;
 
     // RISKY Code since we are avoding memory allocation which is slow
     // It technically imposes a 32k character limit on a single log entry, this SHOULD NOT HAPPEN
-
+    const i32 msg_length = 32000;
     // Buffer for the formatted message. Large buffer to avoid malloc.
-    char out_message[32000];
+    char out_message[msg_length];
     memset(out_message, 0, sizeof(out_message));
 
     // Format original message.
@@ -70,12 +71,15 @@ void log_output(log_level level, const char* message, ...) {
     va_end(arg_ptr);
 
     // Final buffer with level prefix added
-    char out_message2[32000];
+    char out_message2[msg_length];
     sprintf(out_message2, "%s%s%s%s\n", level_colors[level], level_strings[level], out_message, level_reset);
 
-    // TODO: platform-specific output.
-    // Print to stdout (later write to a file or OS log)
-    printf("%s%s", out_message2, level_reset);
+    // Platform Specific Output
+    if (is_error) {
+        platform_console_write_error(out_message2, level);
+    } else {
+        platform_console_write(out_message2, level);
+    }
 }
 
 // Called when an assertion fails to log useful debugging info.
