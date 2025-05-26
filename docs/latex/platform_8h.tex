@@ -1,0 +1,346 @@
+\doxysection{engine/src/platform/platform.h File Reference}
+\hypertarget{platform_8h}{}\label{platform_8h}\index{engine/src/platform/platform.h@{engine/src/platform/platform.h}}
+{\ttfamily \#include "{}defines.\+h"{}}\newline
+Include dependency graph for platform.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{platform_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{platform_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Opaque state structure for the platform layer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \mbox{\hyperlink{platform_8h_a8c661bb1c0637f4277be66a5c2f18604}{platform\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Opaque state structure for the platform layer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup}} (\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state, const char \texorpdfstring{$\ast$}{*}application\+\_\+name, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} x, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} y, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} width, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} height)
+\begin{DoxyCompactList}\small\item\em Initializes the platform layer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\+\_\+shutdown}} (\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Shuts down the platform layer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages}} (\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Processes messages/events from the operating system. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\+\_\+allocate}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} aligned)
+\begin{DoxyCompactList}\small\item\em Allocates memory from the platform. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\+\_\+free}} (void \texorpdfstring{$\ast$}{*}block, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} aligned)
+\begin{DoxyCompactList}\small\item\em Frees a previously allocated block of memory. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}block, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Fills a block of memory with zeros. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{platform_8h_a15258bb22b902725b1fbf405463ed07d}{platform\+\_\+copy\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}dest, const void \texorpdfstring{$\ast$}{*}source, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Copies bytes from one memory block to another. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{platform_8h_aa65146de20a7fd23870d3809834021b7}{platform\+\_\+set\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}dest, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} value, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Fills a block of memory with a specific byte value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{platform_8h_ac352c68fed21ee19eff9a165d1648c4c}{platform\+\_\+console\+\_\+write}} (const char \texorpdfstring{$\ast$}{*}message, \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} colour)
+\begin{DoxyCompactList}\small\item\em Writes a message to the platform console with a given color. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\+\_\+console\+\_\+write\+\_\+error}} (const char \texorpdfstring{$\ast$}{*}message, \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} colour)
+\begin{DoxyCompactList}\small\item\em Writes an error message to the platform console with a color. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\+\_\+get\+\_\+absolute\+\_\+time}} ()
+\begin{DoxyCompactList}\small\item\em Gets the current time in seconds since some arbitrary fixed point in the past. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{platform_8h_ae21676dfd997b1c6dd9c06f69b5618e4}{platform\+\_\+sleep}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} ms)
+\begin{DoxyCompactList}\small\item\em Suspends the calling thread for at least the specified number of milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{platform_8h_a8c661bb1c0637f4277be66a5c2f18604}\label{platform_8h_a8c661bb1c0637f4277be66a5c2f18604} 
+\index{platform.h@{platform.h}!platform\_state@{platform\_state}}
+\index{platform\_state@{platform\_state}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_state}{platform\_state}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}}}
+
+
+
+Opaque state structure for the platform layer. 
+
+This struct holds internal platform-\/specific data that the implementation needs, such as window handles, device contexts, input state, etc.
+
+The actual contents are defined privately in platform\+\_\+\texorpdfstring{$\ast$}{*}.c files. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{platform_8h_a19df473ff145c8579c4c838d5bc67372}\label{platform_8h_a19df473ff145c8579c4c838d5bc67372} 
+\index{platform.h@{platform.h}!platform\_allocate@{platform\_allocate}}
+\index{platform\_allocate@{platform\_allocate}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_allocate()}{platform\_allocate()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} platform\+\_\+allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{aligned }\end{DoxyParamCaption})}
+
+
+
+Allocates memory from the platform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The number of bytes to allocate. \\
+\hline
+{\em aligned} & Whether the allocation should be aligned for performance (e.\+g., SIMD). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the allocated memory block. 
+\end{DoxyReturn}
+\Hypertarget{platform_8h_ac352c68fed21ee19eff9a165d1648c4c}\label{platform_8h_ac352c68fed21ee19eff9a165d1648c4c} 
+\index{platform.h@{platform.h}!platform\_console\_write@{platform\_console\_write}}
+\index{platform\_console\_write@{platform\_console\_write}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_console\_write()}{platform\_console\_write()}}
+{\footnotesize\ttfamily void platform\+\_\+console\+\_\+write (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{message,  }\item[{\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}}]{colour }\end{DoxyParamCaption})}
+
+
+
+Writes a message to the platform console with a given color. 
+
+Useful for logging and debugging output.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message to write. \\
+\hline
+{\em colour} & A numeric identifier for the color (e.\+g., red, green, yellow). \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by \mbox{\hyperlink{logger_8c_source_l00031}{log\+\_\+output()}}.
+
+\Hypertarget{platform_8h_adee3e77de1e3374a118e9ebc150c9800}\label{platform_8h_adee3e77de1e3374a118e9ebc150c9800} 
+\index{platform.h@{platform.h}!platform\_console\_write\_error@{platform\_console\_write\_error}}
+\index{platform\_console\_write\_error@{platform\_console\_write\_error}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_console\_write\_error()}{platform\_console\_write\_error()}}
+{\footnotesize\ttfamily void platform\+\_\+console\+\_\+write\+\_\+error (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{message,  }\item[{\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}}]{colour }\end{DoxyParamCaption})}
+
+
+
+Writes an error message to the platform console with a color. 
+
+Used specifically for error-\/level logs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The error message to write. \\
+\hline
+{\em colour} & A numeric identifier for the color. \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by \mbox{\hyperlink{logger_8c_source_l00031}{log\+\_\+output()}}.
+
+\Hypertarget{platform_8h_a15258bb22b902725b1fbf405463ed07d}\label{platform_8h_a15258bb22b902725b1fbf405463ed07d} 
+\index{platform.h@{platform.h}!platform\_copy\_memory@{platform\_copy\_memory}}
+\index{platform\_copy\_memory@{platform\_copy\_memory}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_copy\_memory()}{platform\_copy\_memory()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} platform\+\_\+copy\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{source,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Copies bytes from one memory block to another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & A pointer to the destination memory block. \\
+\hline
+{\em source} & A pointer to the source memory block. \\
+\hline
+{\em size} & The number of bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the destination memory block. 
+\end{DoxyReturn}
+\Hypertarget{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}\label{platform_8h_a0b638fcfa31e0704eb976a8662c095f2} 
+\index{platform.h@{platform.h}!platform\_free@{platform\_free}}
+\index{platform\_free@{platform\_free}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_free()}{platform\_free()}}
+{\footnotesize\ttfamily void platform\+\_\+free (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{block,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{aligned }\end{DoxyParamCaption})}
+
+
+
+Frees a previously allocated block of memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & A pointer to the memory block to free. \\
+\hline
+{\em aligned} & Whether the block was allocated with alignment. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{platform_8h_af38f532e572a9da41eaad4be29a58ada}\label{platform_8h_af38f532e572a9da41eaad4be29a58ada} 
+\index{platform.h@{platform.h}!platform\_get\_absolute\_time@{platform\_get\_absolute\_time}}
+\index{platform\_get\_absolute\_time@{platform\_get\_absolute\_time}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_get\_absolute\_time()}{platform\_get\_absolute\_time()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} platform\+\_\+get\+\_\+absolute\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current time in seconds since some arbitrary fixed point in the past. 
+
+Designed to be monotonic (never goes backward), suitable for measuring durations.
+
+\begin{DoxyReturn}{Returns}
+The current time in seconds. 
+\end{DoxyReturn}
+\Hypertarget{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}\label{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201} 
+\index{platform.h@{platform.h}!platform\_pump\_messages@{platform\_pump\_messages}}
+\index{platform\_pump\_messages@{platform\_pump\_messages}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_pump\_messages()}{platform\_pump\_messages()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} platform\+\_\+pump\+\_\+messages (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+Processes messages/events from the operating system. 
+
+Handles events like\+:
+\begin{DoxyItemize}
+\item Keyboard input
+\item Mouse movement and clicks
+\item Window resizing
+\item Close button click
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em plat\+\_\+state} & A pointer to the initialized \doxylink{structplatform__state}{platform\+\_\+state} struct. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the application should continue running; FALSE if quit was requested. 
+\end{DoxyReturn}
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00106}{application\+\_\+run()}}.
+
+\Hypertarget{platform_8h_aa65146de20a7fd23870d3809834021b7}\label{platform_8h_aa65146de20a7fd23870d3809834021b7} 
+\index{platform.h@{platform.h}!platform\_set\_memory@{platform\_set\_memory}}
+\index{platform\_set\_memory@{platform\_set\_memory}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_set\_memory()}{platform\_set\_memory()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} platform\+\_\+set\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{value,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Fills a block of memory with a specific byte value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & A pointer to the memory block. \\
+\hline
+{\em value} & The byte value to set. \\
+\hline
+{\em size} & The number of bytes to fill. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the filled memory block. 
+\end{DoxyReturn}
+\Hypertarget{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}\label{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd} 
+\index{platform.h@{platform.h}!platform\_shutdown@{platform\_shutdown}}
+\index{platform\_shutdown@{platform\_shutdown}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_shutdown()}{platform\_shutdown()}}
+{\footnotesize\ttfamily void platform\+\_\+shutdown (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+Shuts down the platform layer. 
+
+Cleans up\+:
+\begin{DoxyItemize}
+\item Window resources
+\item Input devices
+\item Any allocated memory or threads
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em plat\+\_\+state} & A pointer to the initialized \doxylink{structplatform__state}{platform\+\_\+state} struct. \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00106}{application\+\_\+run()}}.
+
+\Hypertarget{platform_8h_ae21676dfd997b1c6dd9c06f69b5618e4}\label{platform_8h_ae21676dfd997b1c6dd9c06f69b5618e4} 
+\index{platform.h@{platform.h}!platform\_sleep@{platform\_sleep}}
+\index{platform\_sleep@{platform\_sleep}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_sleep()}{platform\_sleep()}}
+{\footnotesize\ttfamily void platform\+\_\+sleep (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{ms }\end{DoxyParamCaption})}
+
+
+
+Suspends the calling thread for at least the specified number of milliseconds. 
+
+This is a blocking call and should only be used when giving unused CPU time back to the OS.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ms} & The number of milliseconds to sleep. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}\label{platform_8h_a1557f29064029f8b437d0fbcc587ebbd} 
+\index{platform.h@{platform.h}!platform\_startup@{platform\_startup}}
+\index{platform\_startup@{platform\_startup}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_startup()}{platform\_startup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} platform\+\_\+startup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{application\+\_\+name,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{x,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{y,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{height }\end{DoxyParamCaption})}
+
+
+
+Initializes the platform layer. 
+
+Sets up\+:
+\begin{DoxyItemize}
+\item Window creation
+\item Input devices
+\item Platform-\/specific memory and timing systems
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em plat\+\_\+state} & A pointer to an uninitialized \doxylink{structplatform__state}{platform\+\_\+state} struct. \\
+\hline
+{\em application\+\_\+name} & The name shown in the window title bar. \\
+\hline
+{\em x} & X position of the window on the screen. \\
+\hline
+{\em y} & Y position of the window on the screen. \\
+\hline
+{\em width} & Width of the window client area. \\
+\hline
+{\em height} & Height of the window client area. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if initialization was successful; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+create()}}.
+
+\Hypertarget{platform_8h_a59e03b207e95523b84692ea7f68e4654}\label{platform_8h_a59e03b207e95523b84692ea7f68e4654} 
+\index{platform.h@{platform.h}!platform\_zero\_memory@{platform\_zero\_memory}}
+\index{platform\_zero\_memory@{platform\_zero\_memory}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_zero\_memory()}{platform\_zero\_memory()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} platform\+\_\+zero\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{block,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Fills a block of memory with zeros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & A pointer to the memory block. \\
+\hline
+{\em size} & The number of bytes to zero out. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the zeroed memory block. 
+\end{DoxyReturn}

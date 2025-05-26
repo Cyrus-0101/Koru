@@ -1,0 +1,127 @@
+\doxysection{engine/src/core/asserts.h File Reference}
+\hypertarget{asserts_8h}{}\label{asserts_8h}\index{engine/src/core/asserts.h@{engine/src/core/asserts.h}}
+{\ttfamily \#include "{}defines.\+h"{}}\newline
+Include dependency graph for asserts.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{asserts_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{asserts_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{asserts_8h_a19ff22d0d0fb28ecb552a743447dcbde}{KASSERTIONS\+\_\+\+ENABLED}}
+\item 
+\#define \mbox{\hyperlink{asserts_8h_a13bf501f420bb63f3cf9b62b06b03574}{debug\+Break}}()~\+\_\+\+\_\+builtin\+\_\+trap()
+\item 
+\#define \mbox{\hyperlink{asserts_8h_a8f0725c87f662db8a0f3ca04379da56f}{KASSERT}}(expr)
+\item 
+\#define \mbox{\hyperlink{asserts_8h_a7b775fcadff2f4629c6d4f205a424693}{KASSERT\+\_\+\+MSG}}(expr,  message)
+\item 
+\#define \mbox{\hyperlink{asserts_8h_a2232df5df304b5b471c12b9c77563763}{KASSERT\+\_\+\+DEBUG}}(expr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{asserts_8h_a081a03d10de2e1eebf9bb889519687bc}{report\+\_\+assertion\+\_\+failure}} (const char \texorpdfstring{$\ast$}{*}expression, const char \texorpdfstring{$\ast$}{*}message, const char \texorpdfstring{$\ast$}{*}file, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} line)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{asserts_8h_a13bf501f420bb63f3cf9b62b06b03574}\label{asserts_8h_a13bf501f420bb63f3cf9b62b06b03574} 
+\index{asserts.h@{asserts.h}!debugBreak@{debugBreak}}
+\index{debugBreak@{debugBreak}!asserts.h@{asserts.h}}
+\doxysubsubsection{\texorpdfstring{debugBreak}{debugBreak}}
+{\footnotesize\ttfamily \#define debug\+Break(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+trap()}
+
+
+
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00020}{20}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+
+\Hypertarget{asserts_8h_a8f0725c87f662db8a0f3ca04379da56f}\label{asserts_8h_a8f0725c87f662db8a0f3ca04379da56f} 
+\index{asserts.h@{asserts.h}!KASSERT@{KASSERT}}
+\index{KASSERT@{KASSERT}!asserts.h@{asserts.h}}
+\doxysubsubsection{\texorpdfstring{KASSERT}{KASSERT}}
+{\footnotesize\ttfamily \#define KASSERT(\begin{DoxyParamCaption}\item[{}]{expr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (expr)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ report\_assertion\_failure(\#expr,\ \textcolor{stringliteral}{"{}"{}},\ \_\_FILE\_\_,\ \_\_LINE\_\_);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ debugBreak();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00027}{27}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+
+\Hypertarget{asserts_8h_a2232df5df304b5b471c12b9c77563763}\label{asserts_8h_a2232df5df304b5b471c12b9c77563763} 
+\index{asserts.h@{asserts.h}!KASSERT\_DEBUG@{KASSERT\_DEBUG}}
+\index{KASSERT\_DEBUG@{KASSERT\_DEBUG}!asserts.h@{asserts.h}}
+\doxysubsubsection{\texorpdfstring{KASSERT\_DEBUG}{KASSERT\_DEBUG}}
+{\footnotesize\ttfamily \#define KASSERT\+\_\+\+DEBUG(\begin{DoxyParamCaption}\item[{}]{expr }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00058}{58}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+
+\Hypertarget{asserts_8h_a7b775fcadff2f4629c6d4f205a424693}\label{asserts_8h_a7b775fcadff2f4629c6d4f205a424693} 
+\index{asserts.h@{asserts.h}!KASSERT\_MSG@{KASSERT\_MSG}}
+\index{KASSERT\_MSG@{KASSERT\_MSG}!asserts.h@{asserts.h}}
+\doxysubsubsection{\texorpdfstring{KASSERT\_MSG}{KASSERT\_MSG}}
+{\footnotesize\ttfamily \#define KASSERT\+\_\+\+MSG(\begin{DoxyParamCaption}\item[{}]{expr,  }\item[{}]{message }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (expr)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ report\_assertion\_failure(\#expr,\ message,\ \_\_FILE\_\_,\ \_\_LINE\_\_);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ debugBreak();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00037}{37}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+
+\Hypertarget{asserts_8h_a19ff22d0d0fb28ecb552a743447dcbde}\label{asserts_8h_a19ff22d0d0fb28ecb552a743447dcbde} 
+\index{asserts.h@{asserts.h}!KASSERTIONS\_ENABLED@{KASSERTIONS\_ENABLED}}
+\index{KASSERTIONS\_ENABLED@{KASSERTIONS\_ENABLED}!asserts.h@{asserts.h}}
+\doxysubsubsection{\texorpdfstring{KASSERTIONS\_ENABLED}{KASSERTIONS\_ENABLED}}
+{\footnotesize\ttfamily \#define KASSERTIONS\+\_\+\+ENABLED}
+
+
+
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00008}{8}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{asserts_8h_a081a03d10de2e1eebf9bb889519687bc}\label{asserts_8h_a081a03d10de2e1eebf9bb889519687bc} 
+\index{asserts.h@{asserts.h}!report\_assertion\_failure@{report\_assertion\_failure}}
+\index{report\_assertion\_failure@{report\_assertion\_failure}!asserts.h@{asserts.h}}
+\doxysubsubsection{\texorpdfstring{report\_assertion\_failure()}{report\_assertion\_failure()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void report\+\_\+assertion\+\_\+failure (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{expression,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{message,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{file,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{line }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{logger_8c_source_l00086}{86}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+
+
+
+References \mbox{\hyperlink{logger_8h_source_l00019}{LOG\+\_\+\+LEVEL\+\_\+\+FATAL}}, and \mbox{\hyperlink{logger_8c_source_l00031}{log\+\_\+output()}}.
+

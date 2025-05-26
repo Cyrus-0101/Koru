@@ -26,7 +26,7 @@ typedef enum log_level {
 
 // Initialize and Shutdown Logger
 // Creates a file to write logging messages to disk
-b8 intialize_logging();
+b8 initialize_logging();
 void shutdown_logging();
 
 // TO-DO: Log absolute file path within project

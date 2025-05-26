@@ -36,7 +36,7 @@ typedef struct platform_state {
  * @param height Height of the window client area.
  * @return TRUE if initialization was successful; FALSE otherwise.
  */
-KAPI b8 platform_startup(
+b8 platform_startup(
     platform_state* plat_state,
     const char* application_name,
     i32 x,
@@ -54,7 +54,7 @@ KAPI b8 platform_startup(
  *
  * @param plat_state A pointer to the initialized platform_state struct.
  */
-KAPI void platform_shutdown(platform_state* plat_state);
+void platform_shutdown(platform_state* plat_state);
 
 /**
  * @brief Processes messages/events from the operating system.
@@ -68,7 +68,7 @@ KAPI void platform_shutdown(platform_state* plat_state);
  * @param plat_state A pointer to the initialized platform_state struct.
  * @return TRUE if the application should continue running; FALSE if quit was requested.
  */
-KAPI b8 platform_pump_messages(platform_state* plat_state);
+b8 platform_pump_messages(platform_state* plat_state);
 
 /**
  * @brief Allocates memory from the platform.

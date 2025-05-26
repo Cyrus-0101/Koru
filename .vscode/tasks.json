@@ -64,6 +64,58 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "type": "shell",
+            "label": "Run Tests",
+            "windows": {
+                "command": "${workspaceFolder}/test/test.bat"
+            },
+            "linux": {
+                "command": "${workspaceFolder}/test/test.sh"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "CRITERION_OUTPUTS": "tap,json"
+                }
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Run Test Build",
+            "windows": {
+                "command": "${workspaceFolder}/test/tests"
+            },
+            "linux": {
+            "command": "${workspaceFolder}/test/tests"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "CRITERION_OUTPUTS": "tap,json"
+                }
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true
+            },
+            "problemMatcher": []
         }
     ],
     "version": "2.0.0"
