@@ -1,0 +1,72 @@
+\doxysection{asserts.\+h}
+\hypertarget{asserts_8h_source}{}\label{asserts_8h_source}\index{engine/src/core/asserts.h@{engine/src/core/asserts.h}}
+\mbox{\hyperlink{asserts_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00002}00002\ \textcolor{comment}{//\ Ensures\ the\ header\ is\ included\ only\ once\ (like\ \#ifndef\ guard)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defines_8h}{defines.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00005}00005\ \textcolor{comment}{//\ Brings\ in\ custom\ type\ definitions\ like\ i32,\ b8,\ KAPI,\ etc.}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00007}00007\ \textcolor{comment}{//\ Uncomment\ this\ to\ disable\ all\ assertions}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00008}\mbox{\hyperlink{asserts_8h_a19ff22d0d0fb28ecb552a743447dcbde}{00008}}\ \textcolor{preprocessor}{\#define\ KASSERTIONS\_ENABLED}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00010}00010\ \textcolor{preprocessor}{\#ifdef\ KASSERTIONS\_ENABLED}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00012}00012\ \textcolor{comment}{//\ Platform-\/specific\ debug\ break}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00014}00014\ \textcolor{comment}{//\ If\ using\ Microsoft\ compiler}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00015}00015\ \textcolor{preprocessor}{\#if\ \_MSC\_VER}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <intrin.h>}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00017}00017\ \textcolor{preprocessor}{\#define\ debugBreak()\ \_\_debugbreak()}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00018}00018\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00019}00019\ \textcolor{comment}{//\ For\ Clang/GCC}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00020}\mbox{\hyperlink{asserts_8h_a13bf501f420bb63f3cf9b62b06b03574}{00020}}\ \textcolor{preprocessor}{\#define\ debugBreak()\ \_\_builtin\_trap()}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00021}00021\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00023}00023\ \textcolor{comment}{//\ Declares\ an\ external\ function\ to\ log\ assertion\ failures}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00024}00024\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{asserts_8h_a081a03d10de2e1eebf9bb889519687bc}{report\_assertion\_failure}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ expression,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ file,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ line);}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00026}00026\ \textcolor{comment}{//\ Assert\ without\ message.\ Logs\ and\ breaks\ if\ condition\ fails}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00027}\mbox{\hyperlink{asserts_8h_a8f0725c87f662db8a0f3ca04379da56f}{00027}}\ \textcolor{preprocessor}{\#define\ KASSERT(expr)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00028}00028\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00029}00029\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if\ (expr)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00030}00030\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ else\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00031}00031\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ report\_assertion\_failure(\#expr,\ "{}"{},\ \_\_FILE\_\_,\ \_\_LINE\_\_);\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00032}00032\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ debugBreak();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00033}00033\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00034}00034\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00036}00036\ \textcolor{comment}{//\ Assert\ with\ custom\ message.\ Logs\ and\ breaks\ if\ condition\ fails}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00037}\mbox{\hyperlink{asserts_8h_a7b775fcadff2f4629c6d4f205a424693}{00037}}\ \textcolor{preprocessor}{\#define\ KASSERT\_MSG(expr,\ message)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00038}00038\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00039}00039\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if\ (expr)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00040}00040\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ else\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00041}00041\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ report\_assertion\_failure(\#expr,\ message,\ \_\_FILE\_\_,\ \_\_LINE\_\_);\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00042}00042\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ debugBreak();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00043}00043\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00044}00044\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00046}00046\ \textcolor{comment}{//\ Assert\ only\ in\ debug\ builds.\ Does\ nothing\ in\ release\ builds}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00047}00047\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00048}00048\ \textcolor{preprocessor}{\#define\ KASSERT\_DEBUG(expr)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00049}00049\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00050}00050\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if\ (expr)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00051}00051\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ else\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00052}00052\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ report\_assertion\_failure(\#expr,\ "{}"{},\ \_\_FILE\_\_,\ \_\_LINE\_\_);\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00053}00053\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ debugBreak();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00054}00054\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00055}00055\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00056}00056\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00057}00057\ \textcolor{comment}{//\ Disabled\ in\ release\ mode}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00058}\mbox{\hyperlink{asserts_8h_a2232df5df304b5b471c12b9c77563763}{00058}}\ \textcolor{preprocessor}{\#define\ KASSERT\_DEBUG(expr)}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00059}00059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00061}00061\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00062}00062\ \textcolor{comment}{//\ If\ KASSERTIONS\_ENABLED\ is\ not\ defined}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00063}00063\ \textcolor{preprocessor}{\#define\ KASSERT(expr)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Does\ nothing}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00064}00064\ \textcolor{preprocessor}{\#define\ KASSERT\_MSG(expr,\ message)\ \ }\textcolor{comment}{//\ Does\ nothing}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00065}00065\ \textcolor{preprocessor}{\#define\ KASSERT\_DEBUG(expr)\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Does\ nothing}}
+\DoxyCodeLine{\Hypertarget{asserts_8h_source_l00066}00066\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

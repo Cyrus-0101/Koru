@@ -1,0 +1,308 @@
+\doxysection{platform\+\_\+linux.\+c}
+\hypertarget{platform__linux_8c_source}{}\label{platform__linux_8c_source}\index{engine/src/platform/platform\_linux.c@{engine/src/platform/platform\_linux.c}}
+\mbox{\hyperlink{platform__linux_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00001}\mbox{\hyperlink{platform__linux_8c_a3024ccd4a9af5109d24e6c57565d74a1}{00001}}\ \textcolor{preprocessor}{\#define\ \_POSIX\_C\_SOURCE\ 199309L\ \ }\textcolor{comment}{//\ Enables\ clock\_gettime,\ CLOCK\_MONOTONIC}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{platform_8h}{platform.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00005}00005\ \textcolor{comment}{//\ Linux\ platform\ layer.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00006}00006\ \textcolor{comment}{//\ This\ entire\ block\ will\ only\ compile\ if\ targeting\ Linux\ (KPLATFORM\_LINUX\ is\ defined)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00007}00007\ \textcolor{preprocessor}{\#if\ KPLATFORM\_LINUX}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logger_8h}{core/logger.h}}"{}}\ \ \textcolor{comment}{//\ Custom\ logging\ system\ used\ in\ engine/application}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00011}00011\ \textcolor{comment}{//\ X\ Window\ System\ headers\ using\ XCB\ (X\ protocol\ C\ Binding)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <xcb/xcb.h>}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <X11/keysym.h>}\ \ \ \ \textcolor{comment}{//\ For\ key\ symbol\ definitions}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <X11/XKBlib.h>}\ \ \ \ \textcolor{comment}{//\ X\ Keyboard\ Extension\ library,\ needed\ for\ XAutoRepeatOff/On}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <X11/Xlib.h>}\ \ \ \ \ \ \textcolor{comment}{//\ Legacy\ X11\ library;\ required\ for\ XOpenDisplay}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <X11/Xlib-\/xcb.h>}\ \ \textcolor{comment}{//\ Interop\ between\ Xlib\ and\ XCB}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <sys/time.h>}\ \ \ \ \ \ \textcolor{comment}{//\ Time-\/related\ functions\ (e.g.,\ gettimeofday)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00019}00019\ \textcolor{comment}{//\ Conditional\ includes\ based\ on\ POSIX\ standard\ version}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00020}00020\ \textcolor{preprocessor}{\#if\ \_POSIX\_C\_SOURCE\ >=\ 199309L}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <time.h>}\ \ \textcolor{comment}{//\ nanosleep\ for\ precise\ sleep}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00022}00022\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <unistd.h>}\ \ \textcolor{comment}{//\ usleep\ (less\ precise\ but\ older\ alternative)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00024}00024\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00026}00026\ \textcolor{comment}{//\ Standard\ C\ libraries}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00027}00027\ \textcolor{preprocessor}{\#include\ <stdlib.h>}\ \ \textcolor{comment}{//\ malloc,\ free,\ etc.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00028}00028\ \textcolor{preprocessor}{\#include\ <stdio.h>}\ \ \ \textcolor{comment}{//\ printf}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00029}00029\ \textcolor{preprocessor}{\#include\ <string.h>}\ \ \textcolor{comment}{//\ memset,\ memcpy,\ etc.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00035}00035\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }internal\_state\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00036}00036\ \ \ \ \ Display*\ display;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Old-\/style\ X11\ display}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00037}00037\ \ \ \ \ xcb\_connection\_t*\ connection;\ \ \textcolor{comment}{//\ XCB\ connection\ to\ X\ server}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00038}00038\ \ \ \ \ xcb\_window\_t\ window;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ to\ our\ window}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00039}00039\ \ \ \ \ xcb\_screen\_t*\ screen;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Screen\ info}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00040}00040\ \ \ \ \ xcb\_atom\_t\ wm\_protocols;\ \ \ \ \ \ \ \textcolor{comment}{//\ Atom\ for\ WM\_PROTOCOLS}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00041}00041\ \ \ \ \ xcb\_atom\_t\ wm\_delete\_win;\ \ \ \ \ \ \textcolor{comment}{//\ Atom\ for\ WM\_DELETE\_WINDOW}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00042}00042\ \}\ internal\_state;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00053}00053\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\_startup}}(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00054}00054\ \ \ \ \ \mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00055}00055\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ application\_name,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00056}00056\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ x,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00057}00057\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ y,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00058}00058\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ width,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00059}00059\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ height)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00060}00060\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ internal\ state.\ Allocate\ memory\ for\ internal\_state\ using\ malloc}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00061}00061\ \ \ \ \ plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}}\ =\ malloc(\textcolor{keyword}{sizeof}(internal\_state));}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ Cast\ the\ void\ pointer\ to\ a\ typed\ pointer}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00064}00064\ \ \ \ \ internal\_state*\ state\ =\ (internal\_state*)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//\ Open\ a\ connection\ to\ the\ X11\ server}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00067}00067\ \ \ \ \ state-\/>display\ =\ XOpenDisplay(NULL);\ \ \textcolor{comment}{//\ NULL\ means\ default\ display}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ Disable\ keyboard\ auto-\/repeat\ globally\ (games\ usually\ want\ discrete\ key\ presses)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00070}00070\ \ \ \ \ XAutoRepeatOff(state-\/>display);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ modern\ XCB\ connection\ from\ the\ old\ Xlib\ Display}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00073}00073\ \ \ \ \ state-\/>connection\ =\ XGetXCBConnection(state-\/>display);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ there\ was\ any\ error\ connecting}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (xcb\_connection\_has\_error(state-\/>connection))\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Failed\ to\ connect\ to\ X\ server\ via\ XCB."{}});}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00079}00079\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00081}00081\ \ \ \ \ \textcolor{comment}{//\ Retrieve\ the\ setup\ data\ from\ the\ connection,\ akin\ to\ getting\ configuration}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00082}00082\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }xcb\_setup\_t*\ setup\ =\ xcb\_get\_setup(state-\/>connection);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ available\ screens\ (monitors)\ using\ an\ iterator}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00085}00085\ \ \ \ \ xcb\_screen\_iterator\_t\ it\ =\ xcb\_setup\_roots\_iterator(setup);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//\ We're\ choosing\ the\ first\ screen}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{int}\ screen\_p\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00090}00090\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ s\ =\ screen\_p;\ s\ >\ 0;\ s-\/-\/)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ xcb\_screen\_next(\&it);\ \ \textcolor{comment}{//\ Move\ iterator\ forward}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\ Assign\ the\ selected\ screen}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00095}00095\ \ \ \ \ state-\/>screen\ =\ it.data;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//\ Generate\ a\ unique\ XID\ for\ the\ window\ created}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00098}00098\ \ \ \ \ state-\/>window\ =\ xcb\_generate\_id(state-\/>connection);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00100}00100\ \ \ \ \ \textcolor{comment}{//\ Register\ event\ types.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00101}00101\ \ \ \ \ \textcolor{comment}{//\ XCB\_CW\_BACK\_PIXEL\ =\ filling\ then\ window\ bg\ with\ a\ single\ colour}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00102}00102\ \ \ \ \ \textcolor{comment}{//\ XCB\_CW\_EVENT\_MASK\ is\ required.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00103}00103\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ event\_mask\ =\ XCB\_CW\_BACK\_PIXEL\ |\ XCB\_CW\_EVENT\_MASK;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00105}00105\ \ \ \ \ \textcolor{comment}{//\ Listen\ for\ keyboard\ and\ mouse\ buttons\ events}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00106}00106\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ event\_values\ =\ XCB\_EVENT\_MASK\_BUTTON\_PRESS\ |\ XCB\_EVENT\_MASK\_BUTTON\_RELEASE\ |}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ XCB\_EVENT\_MASK\_KEY\_PRESS\ |\ XCB\_EVENT\_MASK\_KEY\_RELEASE\ |}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ XCB\_EVENT\_MASK\_EXPOSURE\ |\ XCB\_EVENT\_MASK\_POINTER\_MOTION\ |}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ XCB\_EVENT\_MASK\_STRUCTURE\_NOTIFY;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//\ Values\ to\ be\ sent\ over\ XCB\ (bg\ colour,\ events)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00112}00112\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ value\_list[]\ =\ \{state-\/>screen-\/>black\_pixel,\ event\_values\};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00117}00117\ \ \ \ \ xcb\_void\_cookie\_t\ cookie\ =\ xcb\_create\_window(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00118}00118\ \ \ \ \ \ \ \ \ state-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00119}00119\ \ \ \ \ \ \ \ \ XCB\_COPY\_FROM\_PARENT,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ same\ depth\ as\ parent}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00120}00120\ \ \ \ \ \ \ \ \ state-\/>window,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Parent\ window\ (root\ window\ of\ screen)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00121}00121\ \ \ \ \ \ \ \ \ state-\/>screen-\/>root,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ parent}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00122}00122\ \ \ \ \ \ \ \ \ x,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ x\ position}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00123}00123\ \ \ \ \ \ \ \ \ y,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ y\ position}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00124}00124\ \ \ \ \ \ \ \ \ width,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ width}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00125}00125\ \ \ \ \ \ \ \ \ height,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ height}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00126}00126\ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ border}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ XCB\_WINDOW\_CLASS\_INPUT\_OUTPUT,\ \ \textcolor{comment}{//\ Can\ both\ draw\ and\ receive\ input}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00128}00128\ \ \ \ \ \ \ \ \ state-\/>screen-\/>root\_visual,\ \ \ \ \ \textcolor{comment}{//\ Same\ color\ format\ as\ root\ window}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ event\_mask,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mask\ for\ attributes}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00130}00130\ \ \ \ \ \ \ \ \ value\_list);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Values\ for\ those\ attributes}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00132}00132\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ window\ title}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00133}00133\ \ \ \ \ xcb\_change\_property(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ state-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ XCB\_PROP\_MODE\_REPLACE,\ \ \textcolor{comment}{//\ Replace\ existing\ property}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ state-\/>window,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ XCB\_ATOM\_WM\_NAME,\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Property\ name\ (window\ title)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00138}00138\ \ \ \ \ \ \ \ \ XCB\_ATOM\_STRING,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Type\ of\ data}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00139}00139\ \ \ \ \ \ \ \ \ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Format:\ data\ should\ be\ viewed\ 8\ bits\ at\ a\ time}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ strlen(application\_name),\ \ \textcolor{comment}{//\ Length\ of\ string}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ application\_name);\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ actual\ title\ string}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00147}00147\ \ \ \ \ xcb\_intern\_atom\_cookie\_t\ wm\_delete\_cookie\ =\ xcb\_intern\_atom(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ state-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00149}00149\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00150}00150\ \ \ \ \ \ \ \ \ strlen(\textcolor{stringliteral}{"{}WM\_DELETE\_WINDOW"{}}),}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}WM\_DELETE\_WINDOW"{}});}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00152}00152\ \ \ \ \ xcb\_intern\_atom\_cookie\_t\ wm\_protocols\_cookie\ =\ xcb\_intern\_atom(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00153}00153\ \ \ \ \ \ \ \ \ state-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ strlen(\textcolor{stringliteral}{"{}WM\_PROTOCOLS"{}}),}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}WM\_PROTOCOLS"{}});}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00158}00158\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ replies}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00159}00159\ \ \ \ \ xcb\_intern\_atom\_reply\_t*\ wm\_delete\_reply\ =\ xcb\_intern\_atom\_reply(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ state-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ wm\_delete\_cookie,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00162}00162\ \ \ \ \ \ \ \ \ NULL);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00163}00163\ \ \ \ \ xcb\_intern\_atom\_reply\_t*\ wm\_protocols\_reply\ =\ xcb\_intern\_atom\_reply(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00164}00164\ \ \ \ \ \ \ \ \ state-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00165}00165\ \ \ \ \ \ \ \ \ wm\_protocols\_cookie,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00166}00166\ \ \ \ \ \ \ \ \ NULL);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00168}00168\ \ \ \ \ \textcolor{comment}{//\ Save\ atoms\ to\ internal\ state}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00169}00169\ \ \ \ \ state-\/>wm\_delete\_win\ =\ wm\_delete\_reply-\/>atom;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00170}00170\ \ \ \ \ state-\/>wm\_protocols\ =\ wm\_protocols\_reply-\/>atom;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00172}00172\ \ \ \ \ \textcolor{comment}{//\ Let\ the\ window\ manager\ know\ we\ support\ WM\_DELETE\_WINDOW\ protocol}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00173}00173\ \ \ \ \ xcb\_change\_property(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00174}00174\ \ \ \ \ \ \ \ \ state-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00175}00175\ \ \ \ \ \ \ \ \ XCB\_PROP\_MODE\_REPLACE,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00176}00176\ \ \ \ \ \ \ \ \ state-\/>window,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00177}00177\ \ \ \ \ \ \ \ \ wm\_protocols\_reply-\/>atom,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00178}00178\ \ \ \ \ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Format}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00179}00179\ \ \ \ \ \ \ \ \ 32,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32-\/bit\ values}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00180}00180\ \ \ \ \ \ \ \ \ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ One\ element}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00181}00181\ \ \ \ \ \ \ \ \ \&wm\_delete\_reply-\/>atom);\ \ \textcolor{comment}{//\ Pointer\ to\ atom}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00183}00183\ \ \ \ \ \textcolor{comment}{//\ Map\ the\ window\ to\ the\ screen,\ make\ the\ window\ visible}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00184}00184\ \ \ \ \ xcb\_map\_window(state-\/>connection,\ state-\/>window);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00186}00186\ \ \ \ \ \textcolor{comment}{//\ Send\ all\ previous\ commands\ to\ the\ X\ server}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00187}00187\ \ \ \ \ \textcolor{comment}{//\ Flush\ the\ stream}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00188}00188\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ stream\_result\ =\ xcb\_flush(state-\/>connection);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00189}00189\ \ \ \ \ \textcolor{keywordflow}{if}\ (stream\_result\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00190}00190\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}An\ error\ occurred\ when\ flusing\ the\ stream:\ \%d"{}},\ stream\_result);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00192}00192\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00194}00194\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00195}00195\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00200}00200\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\_shutdown}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00201}00201\ \ \ \ \ \textcolor{comment}{//\ Simply\ cold-\/cast\ to\ the\ known\ type.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00202}00202\ \ \ \ \ internal\_state*\ state\ =\ (internal\_state*)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00204}00204\ \ \ \ \ \textcolor{comment}{//\ //\ Turn\ key\ repeat\ back\ on\ since\ it\ was\ turned\ off\ globally,\ this\ is\ global\ for\ the\ OS...\ just...\ wow.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00205}00205\ \ \ \ \ XAutoRepeatOn(state-\/>display);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00207}00207\ \ \ \ \ \textcolor{comment}{//\ Destroy\ the\ window}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00208}00208\ \ \ \ \ xcb\_destroy\_window(state-\/>connection,\ state-\/>window);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00209}00209\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00215}00215\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\_pump\_messages}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00216}00216\ \ \ \ \ \textcolor{comment}{//\ Simply\ cold-\/cast\ to\ the\ known\ type.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00217}00217\ \ \ \ \ internal\_state*\ state\ =\ (internal\_state*)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00219}00219\ \ \ \ \ xcb\_generic\_event\_t*\ event;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00220}00220\ \ \ \ \ xcb\_client\_message\_event\_t*\ cm;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00222}00222\ \ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00224}00224\ \ \ \ \ \textcolor{comment}{//\ Poll\ for\ all\ pending\ events}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00225}00225\ \ \ \ \ \textcolor{keywordflow}{while}\ ((event\ =\ xcb\_poll\_for\_event(state-\/>connection)))\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ only\ one\ event\ per\ loop\ iteration}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!event)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00229}00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ Input\ events}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (event-\/>response\_type\ \&\ \string~0x80)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_KEY\_PRESS:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_KEY\_RELEASE:\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Key\ presses\ and\ releases}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_PRESS:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_RELEASE:\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Mouse\ button\ presses\ and\ releases\ handling}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_MOTION\_NOTIFY:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Mouse\ movement}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_CONFIGURE\_NOTIFY:\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Resizing}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_CLIENT\_MESSAGE:\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cm\ =\ (xcb\_client\_message\_event\_t*)event;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Window\ close}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ message\ is\ WM\_DELETE\_WINDOW,\ user\ wants\ to\ quit}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cm-\/>data.data32[0]\ ==\ state-\/>wm\_delete\_win)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ unknown\ events}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00264}00264\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00266}00266\ \ \ \ \ \ \ \ \ free(event);\ \ \textcolor{comment}{//\ Free\ the\ event\ after\ processing}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00267}00267\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00269}00269\ \ \ \ \ \textcolor{keywordflow}{return}\ !quit\_flagged;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00270}00270\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00276}00276\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\_allocate}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ aligned)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00277}00277\ \ \ \ \ \textcolor{keywordflow}{return}\ malloc(size);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00278}00278\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00280}00280\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\_free}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ aligned)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00281}00281\ \ \ \ \ free(block);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00282}00282\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00284}00284\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\_zero\_memory}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00285}00285\ \ \ \ \ \textcolor{keywordflow}{return}\ memset(block,\ 0,\ size);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00286}00286\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00288}00288\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a15258bb22b902725b1fbf405463ed07d}{platform\_copy\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ source,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00289}00289\ \ \ \ \ \textcolor{keywordflow}{return}\ memcpy(dest,\ source,\ size);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00290}00290\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00292}00292\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_aa65146de20a7fd23870d3809834021b7}{platform\_set\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ value,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00293}00293\ \ \ \ \ \textcolor{keywordflow}{return}\ memset(dest,\ value,\ size);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00294}00294\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00295}00295\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00299}00299\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_ac352c68fed21ee19eff9a165d1648c4c}{platform\_console\_write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00300}00300\ \ \ \ \ \textcolor{comment}{//\ FATAL,ERROR,WARN,INFO,DEBUG,TRACE}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00301}00301\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ colour\_strings[]\ =\ \{\textcolor{stringliteral}{"{}0;41"{}},\ \textcolor{stringliteral}{"{}1;31"{}},\ \textcolor{stringliteral}{"{}1;33"{}},\ \textcolor{stringliteral}{"{}1;32"{}},\ \textcolor{stringliteral}{"{}1;34"{}},\ \textcolor{stringliteral}{"{}1;30"{}}\};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00302}00302\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[\%sm\%s\(\backslash\)033[0m"{}},\ colour\_strings[colour],\ message);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00303}00303\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00304}00304\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00305}00305\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\_console\_write\_error}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00306}00306\ \ \ \ \ \textcolor{comment}{//\ FATAL,ERROR,WARN,INFO,DEBUG,TRACE}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00307}00307\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ colour\_strings[]\ =\ \{\textcolor{stringliteral}{"{}0;41"{}},\ \textcolor{stringliteral}{"{}1;31"{}},\ \textcolor{stringliteral}{"{}1;33"{}},\ \textcolor{stringliteral}{"{}1;32"{}},\ \textcolor{stringliteral}{"{}1;34"{}},\ \textcolor{stringliteral}{"{}1;30"{}}\};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00308}00308\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[\%sm\%s\(\backslash\)033[0m"{}},\ colour\_strings[colour],\ message);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00309}00309\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00314}00314\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\_get\_absolute\_time}}()\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00315}00315\ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ now;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00317}00317\ \ \ \ \ clock\_gettime(CLOCK\_MONOTONIC,\ \&now);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00319}00319\ \ \ \ \ \textcolor{keywordflow}{return}\ now.tv\_sec\ +\ now.tv\_nsec\ *\ 0.000000001;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00320}00320\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00326}00326\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_ae21676dfd997b1c6dd9c06f69b5618e4}{platform\_sleep}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ ms)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00327}00327\ \textcolor{preprocessor}{\#if\ \_POSIX\_C\_SOURCE\ >=\ 199309L}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00328}00328\ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ ts;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00329}00329\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00330}00330\ \ \ \ \ ts.tv\_sec\ =\ ms\ /\ 1000;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00331}00331\ \ \ \ \ ts.tv\_nsec\ =\ (ms\ \%\ 1000)\ *\ 1000\ *\ 1000;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00333}00333\ \ \ \ \ nanosleep(\&ts,\ 0);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00334}00334\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00335}00335\ \ \ \ \ \textcolor{keywordflow}{if}\ (ms\ >=\ 1000)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00336}00336\ \ \ \ \ \ \ \ \ sleep(ms\ /\ 1000);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00337}00337\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00339}00339\ \ \ \ \ usleep((ms\ \%\ 1000)\ *\ 1000);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00340}00340\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00341}00341\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00342}00342\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00343}00343\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,294 @@
+\chapter{Koru}
+\hypertarget{index}{}\label{index}\index{Koru@{Koru}}
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ A lightweight, multi-\/platform game engine built in C using the Vulkan graphics API.
+
+Koru is designed to be fast, portable, and easy to extend — providing a low-\/level foundation for game development across platforms including Windows, Linux, and soon consoles and mobile devices.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{🧠 Overview}{🧠 Overview}}\label{index_autotoc_md2}
+Koru is designed to be\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Portable}}\+: Supports Windows, Linux, and Mac (with plans for consoles and mobile platforms).
+\item {\bfseries{Modular}}\+: Built with a clean separation of concerns, allowing easy extension and customization.
+\item {\bfseries{Performance-\/\+Oriented}}\+: Optimized for speed and low-\/level control, leveraging Vulkan for high-\/performance rendering.
+\end{DoxyItemize}
+
+It serves as a foundation for creating games, tools, or applications that need direct access to hardware and APIs without the overhead of higher-\/level abstractions, fine-\/grained control over rendering, input, memory, and platform-\/specific functionality.
+
+All code is written in {\bfseries{C99}}, making it ideal for performance-\/critical applications while keeping dependencies minimal.\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{🖼 Architecture}{🖼 Architecture}}\label{index_autotoc_md3}
+The high-\/level architecture of Koru is divided into four main layers\+:\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{1. $<$strong$>$\+Platform Layer$<$/strong$>$}{1. <strong>Platform Layer</strong>}}\label{index_autotoc_md4}
+Handles OS-\/specific functionality\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Windowing}}\+: Creates and manages windows on Windows/\+Linux/\+Mac.
+\item {\bfseries{Input}}\+: Manages keyboard, mouse, and gamepad input.
+\item {\bfseries{File I/O}}\+: Provides cross-\/platform file system access.
+\item {\bfseries{Console Output}}\+: Handles logging and debugging output.
+\item {\bfseries{Memory Management}}\+: Allocates and frees memory efficiently.
+\item {\bfseries{Renderer API Extensions}}\+: Integrates with Vulkan for rendering.
+\end{DoxyItemize}\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{2. $<$strong$>$\+Core$<$/strong$>$}{2. <strong>Core</strong>}}\label{index_autotoc_md5}
+Provides fundamental utilities and services\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Logger}}\+: Logs messages for debugging and monitoring.
+\item {\bfseries{Assertions}}\+: Ensures correctness during development.
+\item {\bfseries{Data Structures}}\+: Efficient containers like dynamic arrays, linked lists, etc.
+\item {\bfseries{Memory Allocators}}\+: Custom allocators for optimized memory usage.
+\item {\bfseries{Math Library}}\+: Vector, matrix, and quaternion operations.
+\item {\bfseries{Parsers}}\+: Parses formats like XML, CSV, JSON, etc.
+\item {\bfseries{Engine Configuration}}\+: Loads and manages engine settings.
+\item {\bfseries{Profiling}}\+: Measures performance bottlenecks.
+\item {\bfseries{Async File I/O}}\+: Asynchronous file operations for non-\/blocking I/O.
+\item {\bfseries{Localization}}\+: Supports internationalization.
+\item {\bfseries{String Library}}\+: String manipulation utilities.
+\item {\bfseries{Random Number Generator (RNG)}}\+: Generates random numbers for simulations and AI.
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{3. $<$strong$>$\+Resource Management$<$/strong$>$}{3. <strong>Resource Management</strong>}}\label{index_autotoc_md6}
+Manages various assets\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Images}}\+: Texture loading and caching.
+\item {\bfseries{Materials}}\+: Shader and lighting configurations.
+\item {\bfseries{Meshes}}\+: 3D model loading and processing.
+\item {\bfseries{Animations}}\+: Skeletal animations and timeline systems.
+\item {\bfseries{World Maps}}\+: Terrain and level data management.
+\end{DoxyItemize}\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{4. $<$strong$>$\+Application Layer$<$/strong$>$}{4. <strong>Application Layer</strong>}}\label{index_autotoc_md7}
+Contains higher-\/level systems\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Renderer Front End}}\+: GUI, camera management, post-\/processing effects.
+\item {\bfseries{Renderer Back End}}\+: Scene graph, materials, shaders, meshes, textures.
+\item {\bfseries{Audio}}\+: 2D/3D audio playback, effects, and spatial audio.
+\item {\bfseries{Others}}\+: Animation/timelines, event system, ECS, state machines, collision/physics.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md9}{}\doxysection{\texorpdfstring{📋 Feature List}{📋 Feature List}}\label{index_autotoc_md9}
+Here’s a summary of the features to be implemented in v0.\+1\+:\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{Core Features}{Core Features}}\label{index_autotoc_md10}
+
+\begin{DoxyItemize}
+\item {\bfseries{Lightweight build system}}\+: Simple scripts for compiling on Windows and Linux.
+\item {\bfseries{Low-\/level utilities}}\+:
+\begin{DoxyItemize}
+\item Dynamic arrays
+\item String handling
+\item Memory allocators
+\item Profiling tools
+\item Assertions
+\item Logging
+\end{DoxyItemize}
+\item {\bfseries{Platform layer}}\+:
+\begin{DoxyItemize}
+\item Window creation and management
+\item Input handling (keyboard, mouse, gamepad)
+\item File I/O
+\item Console output
+\end{DoxyItemize}
+\item {\bfseries{Renderer/\+API Abstraction Layer}}\+: Uses Vulkan for cross-\/platform rendering.
+\item {\bfseries{Memory Management}}\+: Custom allocators for efficient memory use.
+\item {\bfseries{Scenegraph/\+ECS}}\+: Hierarchical scene management and entity-\/component-\/system architecture.
+\item {\bfseries{Profiling/\+Debugging utilities}}\+: Tools for measuring performance and identifying bottlenecks.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}"{}\+Scripting"{} support via hot reloading\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: Experimental support for scripting through hot-\/reloading mechanisms.
+\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{Planned Features}{Planned Features}}\label{index_autotoc_md11}
+
+\begin{DoxyItemize}
+\item Mobile and console support
+\item Full audio subsystem
+\item Physics and collision detection
+\item Advanced animation system
+\item Improved asset pipeline
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md13}{}\doxysection{\texorpdfstring{🖼 Visual Assets}{🖼 Visual Assets}}\label{index_autotoc_md13}
+Take a look at the included diagrams in the {\ttfamily assets/} folder\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\ttfamily Koru Engine Architecture.\+png}   &High-\/level overview of system layers and module interactions    \\\cline{1-2}
+{\ttfamily Koru Project Structure.\+png}   &File structure and organization of source modules    \\\cline{1-2}
+{\ttfamily Koru v0.\+1 Feature List.\+png}   &Summary of current capabilities and future goals   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md15}{}\doxysection{\texorpdfstring{📁 Project Structure}{📁 Project Structure}}\label{index_autotoc_md15}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.}
+\DoxyCodeLine{├──\ assets/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Diagrams\ showing\ architecture\ and\ feature\ list}
+\DoxyCodeLine{├──\ bin/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Compiled\ binaries\ (engine\ shared\ lib\ +\ testbed\ app)}
+\DoxyCodeLine{├──\ build-\/all.bat\ \ \ \ \ \ \ \ \#\ Build\ script\ for\ Windows\ (builds\ all\ modules)}
+\DoxyCodeLine{├──\ build-\/all.sh\ \ \ \ \ \ \ \ \ \#\ Build\ script\ for\ Linux\ (builds\ all\ modules)}
+\DoxyCodeLine{├──\ engine/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Core\ engine\ code\ and\ platform\ abstraction}
+\DoxyCodeLine{│\ \ \ ├──\ build.bat\ \ \ \ \ \ \ \ \#\ Windows\ build\ script\ for\ engine\ (.dll)}
+\DoxyCodeLine{│\ \ \ ├──\ build.sh\ \ \ \ \ \ \ \ \ \#\ Linux\ build\ script\ for\ engine\ (.so)}
+\DoxyCodeLine{│\ \ \ └──\ src/}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ core/\ \ \ \ \ \ \ \ \#\ Core\ utilities:\ logging,\ asserts,\ memory}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ defines.h\ \ \ \ \#\ Common\ definitions\ and\ macros}
+\DoxyCodeLine{│\ \ \ \ \ \ \ └──\ platform/\ \ \ \ \#\ Platform-\/specific\ code\ (Linux/Windows)}
+\DoxyCodeLine{├──\ LICENSE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ MIT\ License}
+\DoxyCodeLine{├──\ README.md\ \ \ \ \ \ \ \ \ \ \ \ \#\ This\ file}
+\DoxyCodeLine{└──\ testbed/\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Example\ application\ that\ uses\ the\ engine}
+\DoxyCodeLine{\ \ \ \ ├──\ build.bat\ \ \ \ \ \ \ \ \#\ Windows\ build\ script\ for\ testbed}
+\DoxyCodeLine{\ \ \ \ ├──\ build.sh\ \ \ \ \ \ \ \ \ \#\ Linux\ build\ script\ for\ testbed}
+\DoxyCodeLine{\ \ \ \ └──\ src/}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ └──\ main.c\ \ \ \ \ \ \ \#\ Entry\ point\ for\ testbed\ application}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md17}{}\doxysection{\texorpdfstring{⚙️ Build Scripts/\+Instructions}{⚙️ Build Scripts/Instructions}}\label{index_autotoc_md17}
+Check tasks.\+json for sequence\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endhead
+{\ttfamily engine/build.\+sh}   &Builds engine {\ttfamily .so} (shared lib) on Linux   &Uses Vulkan/\+XCB/\+X11    \\\cline{1-3}
+{\ttfamily engine/build.\+bat}   &Builds engine {\ttfamily .dll} on Windows   &Links with Vulkan SDK    \\\cline{1-3}
+{\ttfamily testbed/build.\+sh}   &Builds testbed app using engine {\ttfamily .so} on Linux   &Sets RPATH for easy loading    \\\cline{1-3}
+{\ttfamily testbed/build.\+bat}   &Builds testbed {\ttfamily .exe} using engine {\ttfamily .dll} on Windows   &Links {\ttfamily .lib} import library    \\\cline{1-3}
+{\ttfamily build-\/all.\+sh}   &Runs all Linux builds sequentially   &Checks for errors    \\\cline{1-3}
+{\ttfamily build-\/all.\+bat}   &Runs all Windows builds sequentially   &Same as above but for Windows   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{index_autotoc_md18}{}\doxysubsection{\texorpdfstring{Linux}{Linux}}\label{index_autotoc_md18}
+Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run your engine)
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Give\ execution\ permissions}
+\DoxyCodeLine{chmod\ +x\ build-\/all.sh}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ the\ build}
+\DoxyCodeLine{./build-\/all.sh}
+
+\end{DoxyCode}
+
+
+The output will be placed in {\ttfamily bin/}\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily libengine.\+so} – The engine shared library
+\item {\ttfamily testbed} – The testbed executable
+\end{DoxyItemize}\hypertarget{index_autotoc_md19}{}\doxysubsection{\texorpdfstring{Windows}{Windows}}\label{index_autotoc_md19}
+Ensure\+:
+
+
+\begin{DoxyItemize}
+\item Clang is available
+\item Vulkan SDK is installed and {\ttfamily VULKAN\+\_\+\+SDK} environment variable is set
+\item VS Code makes it easy to run the tasks in the .vscode/tasks.\+json file.
+\end{DoxyItemize}
+
+Then run\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{build-\/all.bat}
+
+\end{DoxyCode}
+
+
+Output files\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily bin\textbackslash{}engine.\+dll}
+\item {\ttfamily bin\textbackslash{}testbed.\+exe}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md21}{}\doxysection{\texorpdfstring{🔮 Roadmap}{🔮 Roadmap}}\label{index_autotoc_md21}
+Plans to expand Koru include\+:
+
+
+\begin{DoxyItemize}
+\item ✅ {\bfseries{Rendering Layer}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Vulkan renderer initialization
+\item \mbox{[} \mbox{]} Swapchain setup
+\item \mbox{[} \mbox{]} Command buffers, pipelines, shaders
+\end{DoxyItemize}
+\item ✅ {\bfseries{Input System}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Keyboard/mouse/gamepad support
+\item \mbox{[} \mbox{]} Input mapping and event system
+\end{DoxyItemize}
+\item ✅ {\bfseries{Asset Management}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Texture loader
+\item \mbox{[} \mbox{]} Mesh format and loader
+\item \mbox{[} \mbox{]} Material system
+\end{DoxyItemize}
+\item ✅ {\bfseries{Audio System}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Basic sound playback
+\item \mbox{[} \mbox{]} Cross-\/platform audio backend
+\end{DoxyItemize}
+\item ✅ {\bfseries{Multi-\/\+Platform Support}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Console (Play\+Station, Xbox, Switch)
+\item \mbox{[} \mbox{]} Mobile (Android/i\+OS)
+\end{DoxyItemize}
+\item ✅ {\bfseries{Editor Tools}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Simple scene editor
+\item \mbox{[} \mbox{]} Asset pipeline tools
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md23}{}\doxysection{\texorpdfstring{💡 Want to Help?}{💡 Want to Help?}}\label{index_autotoc_md23}
+Contributions are welcome! Whether you\textquotesingle{}re interested in\+:
+
+
+\begin{DoxyItemize}
+\item Writing documentation
+\item Implementing new features
+\item Fixing bugs
+\item Improving tooling or build scripts
+\end{DoxyItemize}
+
+Feel free to open an issue or PR!
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md25}{}\doxysection{\texorpdfstring{📄 License}{📄 License}}\label{index_autotoc_md25}
+This project is licensed under the MIT License – see the \mbox{[}LICENSE\mbox{]}(LICENSE) file for details.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\ 🚀\ Next\ Steps}
+\DoxyCodeLine{}
+\DoxyCodeLine{TO-\/DO:\ Add:}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/\ ✅\ A\ **Getting\ Started\ Guide**\ (`docs/getting-\/started.md`)}
+\DoxyCodeLine{-\/\ ✅\ A\ **Contribution\ Guide**\ (`CONTRIBUTING.md`)}
+\DoxyCodeLine{-\/\ ✅\ A\ **Code\ of\ Conduct**\ (`CODE\_OF\_CONDUCT.md`)}
+\DoxyCodeLine{-\/\ ✅\ GitHub\ Actions\ for\ CI\ builds\ (optional)}
+
+\end{DoxyCode}
+ 

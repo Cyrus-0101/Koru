@@ -1,0 +1,150 @@
+\doxysection{application\+\_\+state Struct Reference}
+\hypertarget{structapplication__state}{}\label{structapplication__state}\index{application\_state@{application\_state}}
+
+
+Internal state structure for the application.  
+
+
+
+
+Collaboration diagram for application\+\_\+state\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{structapplication__state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{structapplication__state_a7c10d54c29174a16313dfc1992ccabde}{is\+\_\+running}}
+\begin{DoxyCompactList}\small\item\em Indicates whether the application is currently running. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}{is\+\_\+suspended}}
+\begin{DoxyCompactList}\small\item\em Indicates whether the application is currently suspended. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \mbox{\hyperlink{structapplication__state_a14782a7e40b24efc8c814f786c6525ba}{platform}}
+\begin{DoxyCompactList}\small\item\em Opaque platform-\/specific state used for windowing, input, etc. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} \mbox{\hyperlink{structapplication__state_a5c49a4da818b7bae26b50df80c889279}{width}}
+\begin{DoxyCompactList}\small\item\em The width of the application window client area. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} \mbox{\hyperlink{structapplication__state_a4a01899027b7429dce0fa6290b927f9c}{height}}
+\begin{DoxyCompactList}\small\item\em The height of the application window client area. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} \mbox{\hyperlink{structapplication__state_a4fc952bc899881d85115730cf7da1c5a}{last\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Timestamp of the last processed frame for delta time calculation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Internal state structure for the application. 
+
+Tracks\+:
+\begin{DoxyItemize}
+\item Application lifecycle (running/suspended)
+\item Platform-\/specific data
+\item Window dimensions
+\item Timing information for frame updates 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00014}{14}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structapplication__state_a4a01899027b7429dce0fa6290b927f9c}\label{structapplication__state_a4a01899027b7429dce0fa6290b927f9c} 
+\index{application\_state@{application\_state}!height@{height}}
+\index{height@{height}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} application\+\_\+state\+::height}
+
+
+
+The height of the application window client area. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00038}{38}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+\Hypertarget{structapplication__state_a7c10d54c29174a16313dfc1992ccabde}\label{structapplication__state_a7c10d54c29174a16313dfc1992ccabde} 
+\index{application\_state@{application\_state}!is\_running@{is\_running}}
+\index{is\_running@{is\_running}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{is\_running}{is\_running}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} application\+\_\+state\+::is\+\_\+running}
+
+
+
+Indicates whether the application is currently running. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00018}{18}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00106}{application\+\_\+run()}}.
+
+\Hypertarget{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}\label{structapplication__state_a4e7125d95754ef0c0166479931eafcd1} 
+\index{application\_state@{application\_state}!is\_suspended@{is\_suspended}}
+\index{is\_suspended@{is\_suspended}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{is\_suspended}{is\_suspended}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} application\+\_\+state\+::is\+\_\+suspended}
+
+
+
+Indicates whether the application is currently suspended. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00023}{23}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+create()}}.
+
+\Hypertarget{structapplication__state_a4fc952bc899881d85115730cf7da1c5a}\label{structapplication__state_a4fc952bc899881d85115730cf7da1c5a} 
+\index{application\_state@{application\_state}!last\_time@{last\_time}}
+\index{last\_time@{last\_time}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{last\_time}{last\_time}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} application\+\_\+state\+::last\+\_\+time}
+
+
+
+Timestamp of the last processed frame for delta time calculation. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00043}{43}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+\Hypertarget{structapplication__state_a14782a7e40b24efc8c814f786c6525ba}\label{structapplication__state_a14782a7e40b24efc8c814f786c6525ba} 
+\index{application\_state@{application\_state}!platform@{platform}}
+\index{platform@{platform}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{platform}{platform}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} application\+\_\+state\+::platform}
+
+
+
+Opaque platform-\/specific state used for windowing, input, etc. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00028}{28}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00106}{application\+\_\+run()}}.
+
+\Hypertarget{structapplication__state_a5c49a4da818b7bae26b50df80c889279}\label{structapplication__state_a5c49a4da818b7bae26b50df80c889279} 
+\index{application\_state@{application\_state}!width@{width}}
+\index{width@{width}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} application\+\_\+state\+::width}
+
+
+
+The width of the application window client area. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00033}{33}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/core/\mbox{\hyperlink{application_8c}{application.\+c}}\end{DoxyCompactItemize}

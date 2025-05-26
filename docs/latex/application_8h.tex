@@ -1,0 +1,135 @@
+\doxysection{engine/src/core/application.h File Reference}
+\hypertarget{application_8h}{}\label{application_8h}\index{engine/src/core/application.h@{engine/src/core/application.h}}
+{\ttfamily \#include "{}defines.\+h"{}}\newline
+Include dependency graph for application.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{application_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{application_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structapplication__config}{application\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Configuration settings for initializing the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structapplication__config}{application\+\_\+config}} \mbox{\hyperlink{application_8h_a0d5601d102f2aa559126417368531828}{application\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Configuration settings for initializing the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8h_a294a49ad3ac120e98251e03578bb04b7}{application\+\_\+create}} (\mbox{\hyperlink{structapplication__config}{application\+\_\+config}} \texorpdfstring{$\ast$}{*}config)
+\begin{DoxyCompactList}\small\item\em Creates and initializes the application instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8h_a08c8575858e12aa5260a1cc0101df8bd}{application\+\_\+run}} ()
+\begin{DoxyCompactList}\small\item\em Starts the main application loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{application_8h_a0d5601d102f2aa559126417368531828}\label{application_8h_a0d5601d102f2aa559126417368531828} 
+\index{application.h@{application.h}!application\_config@{application\_config}}
+\index{application\_config@{application\_config}!application.h@{application.h}}
+\doxysubsubsection{\texorpdfstring{application\_config}{application\_config}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structapplication__config}{application\+\_\+config}} \mbox{\hyperlink{structapplication__config}{application\+\_\+config}}}
+
+
+
+Configuration settings for initializing the application. 
+
+This structure contains window-\/related configuration such as position, size, and application name. It is passed to \doxylink{application_8c_a07c635922a39f5663a8ceefcf1e50186}{application\+\_\+create()} during startup. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{application_8h_a294a49ad3ac120e98251e03578bb04b7}\label{application_8h_a294a49ad3ac120e98251e03578bb04b7} 
+\index{application.h@{application.h}!application\_create@{application\_create}}
+\index{application\_create@{application\_create}!application.h@{application.h}}
+\doxysubsubsection{\texorpdfstring{application\_create()}{application\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} application\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structapplication__config}{application\+\_\+config}} \texorpdfstring{$\ast$}{*}}]{config }\end{DoxyParamCaption})}
+
+
+
+Creates and initializes the application instance. 
+
+Sets up internal systems like memory, logging, input, and prepares the game loop. Must be called before \doxylink{application_8h_a08c8575858e12aa5260a1cc0101df8bd}{application\+\_\+run()}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & A pointer to an \doxylink{structapplication__config}{application\+\_\+config} struct containing setup parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if initialization was successful; FALSE otherwise.
+\end{DoxyReturn}
+Creates and initializes the application instance.
+
+This function must be called once before calling \doxylink{application_8h_a08c8575858e12aa5260a1cc0101df8bd}{application\+\_\+run()}. It sets up internal systems such as logging, initializes the platform layer, and prepares the main application loop.
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & A pointer to an \doxylink{structapplication__config}{application\+\_\+config} struct containing initialization settings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if initialization was successful; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00066}{66}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+References \mbox{\hyperlink{application_8c_source_l00054}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{logger_8c_source_l00016}{initialize\+\_\+logging()}}, \mbox{\hyperlink{application_8c_source_l00049}{initialized}}, \mbox{\hyperlink{application_8c_source_l00018}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00023}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00062}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00041}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00037}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00054}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00070}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{application_8h_source_l00039}{application\+\_\+config\+::name}}, \mbox{\hyperlink{application_8c_source_l00028}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup()}}, \mbox{\hyperlink{application_8h_source_l00034}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00019}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00024}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00029}{application\+\_\+config\+::start\+\_\+width}}, and \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00005}{main()}}.
+
+\Hypertarget{application_8h_a08c8575858e12aa5260a1cc0101df8bd}\label{application_8h_a08c8575858e12aa5260a1cc0101df8bd} 
+\index{application.h@{application.h}!application\_run@{application\_run}}
+\index{application\_run@{application\_run}!application.h@{application.h}}
+\doxysubsubsection{\texorpdfstring{application\_run()}{application\_run()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} application\+\_\+run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts the main application loop. 
+
+Begins running the game loop, which includes\+:
+\begin{DoxyItemize}
+\item Processing events
+\item Updating game logic
+\item Rendering frames
+\end{DoxyItemize}
+
+This function blocks until the application exits.
+
+\begin{DoxyReturn}{Returns}
+TRUE if the application exited cleanly; FALSE if an error occurred or early exit.
+\end{DoxyReturn}
+Enters a loop that continuously processes OS messages/events using \doxylink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages()}, and continues until the application signals it should exit.
+
+Once exited, it cleans up the platform layer and returns.
+
+\begin{DoxyReturn}{Returns}
+TRUE if the application exited cleanly; FALSE if an error occurred during shutdown. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00106}{106}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+References \mbox{\hyperlink{application_8c_source_l00054}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{application_8c_source_l00018}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00028}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages()}}, \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\+\_\+shutdown()}}, and \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00005}{main()}}.
+

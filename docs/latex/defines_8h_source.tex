@@ -1,0 +1,146 @@
+\doxysection{defines.\+h}
+\hypertarget{defines_8h_source}{}\label{defines_8h_source}\index{engine/src/defines.h@{engine/src/defines.h}}
+\mbox{\hyperlink{defines_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once\ \ }\textcolor{comment}{//\ Ensures\ this\ header\ is\ only\ included\ once\ per\ translation\ unit}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00003}00003\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00004}00004\ \textcolor{comment}{//\ TYPE\ DEFINITIONS}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00005}00005\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00007}00007\ \textcolor{comment}{//\ Unsigned\ integer\ types\ with\ guaranteed\ sizes}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00008}\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{00008}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 8-\/bit\ unsigned\ integer\ (1\ byte)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00009}\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{00009}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}};\ \ \ \ \ \ \textcolor{comment}{//\ 16-\/bit\ unsigned\ integer\ (2\ bytes)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00010}\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{00010}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32-\/bit\ unsigned\ integer\ (4\ bytes)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00011}\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{00011}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}};\ \ \textcolor{comment}{//\ 64-\/bit\ unsigned\ integer\ (8\ bytes)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00013}00013\ \textcolor{comment}{//\ Signed\ integer\ types\ with\ guaranteed\ sizes}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00014}\mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{00014}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 8-\/bit\ signed\ integer\ (1\ byte)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00015}\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{00015}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}};\ \ \ \ \ \ \textcolor{comment}{//\ 16-\/bit\ signed\ integer\ (2\ bytes)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00016}\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{00016}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32-\/bit\ signed\ integer\ (4\ bytes)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00017}\mbox{\hyperlink{defines_8h_ada59a0de67c44384c6faa924ca63c2aa}{00017}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{defines_8h_ada59a0de67c44384c6faa924ca63c2aa}{i64}};\ \ \textcolor{comment}{//\ 64-\/bit\ signed\ integer\ (8\ bytes)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00019}00019\ \textcolor{comment}{//\ Floating-\/point\ types}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00020}\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{00020}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}};\ \ \ \textcolor{comment}{//\ 32-\/bit\ floating\ point\ (4\ bytes)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00021}\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{00021}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}};\ \ \textcolor{comment}{//\ 64-\/bit\ floating\ point\ (8\ bytes)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00023}00023\ \textcolor{comment}{//\ Boolean\ types}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00024}\mbox{\hyperlink{defines_8h_ac6baccc379c73d4e641ef847dbb08fa2}{00024}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defines_8h_ac6baccc379c73d4e641ef847dbb08fa2}{b32}};\ \ \textcolor{comment}{//\ 32-\/bit\ boolean\ (can\ be\ TRUE/FALSE)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00025}\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{00025}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}};\ \ \textcolor{comment}{//\ 8-\/bit\ boolean\ (more\ memory-\/efficient\ than\ b32)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00027}00027\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00028}00028\ \textcolor{comment}{//\ STATIC\ ASSERTIONS}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00029}00029\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00031}00031\ \textcolor{comment}{//\ Define\ STATIC\_ASSERT\ based\ on\ compiler\ support}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00032}00032\ \textcolor{preprocessor}{\#if\ defined(\_\_clang\_\_)\ ||\ defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00033}00033\ \textcolor{preprocessor}{\#define\ STATIC\_ASSERT\ \_Static\_assert\ \ }\textcolor{comment}{//\ C11\ standard\ for\ static\ assertions}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00034}00034\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00035}\mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{00035}}\ \textcolor{preprocessor}{\#define\ STATIC\_ASSERT\ static\_assert\ \ }\textcolor{comment}{//\ Fallback\ for\ other\ compilers}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00036}00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00038}00038\ \textcolor{comment}{//\ Ensure\ that\ the\ size\ of\ each\ type\ matches\ expectations}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00039}00039\ \textcolor{comment}{//\ This\ helps\ avoid\ issues\ across\ different\ platforms\ and\ compilers}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00041}00041\ \textcolor{comment}{//\ Unsigned\ types}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00042}\mbox{\hyperlink{defines_8h_add18c34828e9ab4d2b752b7dab7c0b05}{00042}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}})\ ==\ 1,\ \textcolor{stringliteral}{"{}Expected\ u8\ to\ be\ 1\ byte."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00043}\mbox{\hyperlink{defines_8h_a3c844fbbc6ae946aaeb7668f741a1798}{00043}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}})\ ==\ 2,\ \textcolor{stringliteral}{"{}Expected\ u16\ to\ be\ 2\ bytes."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00044}\mbox{\hyperlink{defines_8h_a75d42d37e452c57b03d7e6fdef8163ba}{00044}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}})\ ==\ 4,\ \textcolor{stringliteral}{"{}Expected\ u32\ to\ be\ 4\ bytes."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00045}\mbox{\hyperlink{defines_8h_a8a4887eb6790973929488951816d597b}{00045}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}})\ ==\ 8,\ \textcolor{stringliteral}{"{}Expected\ u64\ to\ be\ 8\ bytes."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00047}00047\ \textcolor{comment}{//\ Signed\ types}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00048}\mbox{\hyperlink{defines_8h_a1a9cf909648dbd5e4232f6fee291a43e}{00048}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}})\ ==\ 1,\ \textcolor{stringliteral}{"{}Expected\ i8\ to\ be\ 1\ byte."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00049}\mbox{\hyperlink{defines_8h_af88c31fbd635f4423f15065c79ecf99f}{00049}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}})\ ==\ 2,\ \textcolor{stringliteral}{"{}Expected\ i16\ to\ be\ 2\ bytes."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00050}\mbox{\hyperlink{defines_8h_acbbd6ebcb78f866f341b5b7fe36fc812}{00050}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}})\ ==\ 4,\ \textcolor{stringliteral}{"{}Expected\ i32\ to\ be\ 4\ bytes."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00051}\mbox{\hyperlink{defines_8h_a8bc5c1b4d9570c272f874de2989f9b3e}{00051}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_ada59a0de67c44384c6faa924ca63c2aa}{i64}})\ ==\ 8,\ \textcolor{stringliteral}{"{}Expected\ i64\ to\ be\ 8\ bytes."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00053}00053\ \textcolor{comment}{//\ Floating\ point\ types}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00054}\mbox{\hyperlink{defines_8h_a9864ac51060117e5bfbb49a4a211c41b}{00054}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}})\ ==\ 4,\ \textcolor{stringliteral}{"{}Expected\ f32\ to\ be\ 4\ bytes."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00055}\mbox{\hyperlink{defines_8h_a1e6b73ddb58819ce321fc06954dd592f}{00055}}\ \mbox{\hyperlink{defines_8h_a24df254ec81fc13256ad54cfe955d229}{STATIC\_ASSERT}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}})\ ==\ 8,\ \textcolor{stringliteral}{"{}Expected\ f64\ to\ be\ 8\ bytes."{}});}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00057}00057\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00058}00058\ \textcolor{comment}{//\ BOOLEAN\ VALUES}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00059}00059\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00061}00061\ \textcolor{comment}{//\ Standard\ boolean\ values}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00062}\mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{00062}}\ \textcolor{preprocessor}{\#define\ TRUE\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00063}\mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{00063}}\ \textcolor{preprocessor}{\#define\ FALSE\ 0}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00065}00065\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00066}00066\ \textcolor{comment}{//\ PLATFORM\ DETECTION}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00067}00067\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00069}00069\ \textcolor{comment}{//\ Detects\ the\ current\ platform\ and\ defines\ corresponding\ macros:}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00070}00070\ \textcolor{comment}{//\ -\/\ KPLATFORM\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00071}00071\ \textcolor{comment}{//\ -\/\ KPLATFORM\_LINUX}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00072}00072\ \textcolor{comment}{//\ -\/\ KPLATFORM\_ANDROID}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00073}00073\ \textcolor{comment}{//\ -\/\ KPLATFORM\_UNIX}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00074}00074\ \textcolor{comment}{//\ -\/\ KPLATFORM\_POSIX}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00075}00075\ \textcolor{comment}{//\ -\/\ KPLATFORM\_APPLE\ /\ KPLATFORM\_IOS\ /\ KPLATFORM\_MAC}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00077}00077\ \textcolor{preprocessor}{\#if\ defined(WIN32)\ ||\ defined(\_WIN32)\ ||\ defined(\_\_WIN32\_\_)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00078}00078\ \textcolor{preprocessor}{\#define\ KPLATFORM\_WINDOWS\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00079}00079\ \textcolor{preprocessor}{\#ifndef\ \_WIN64}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00080}00080\ \textcolor{preprocessor}{\#error\ "{}64-\/bit\ is\ required\ on\ Windows!"{}}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00081}00081\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00083}00083\ \textcolor{preprocessor}{\#elif\ defined(\_\_linux\_\_)\ ||\ defined(\_\_gnu\_linux\_\_)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00084}00084\ \textcolor{preprocessor}{\#define\ KPLATFORM\_LINUX\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00085}00085\ \textcolor{preprocessor}{\#if\ defined(\_\_ANDROID\_\_)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00086}00086\ \textcolor{preprocessor}{\#define\ KPLATFORM\_ANDROID\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00087}00087\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00089}00089\ \textcolor{preprocessor}{\#elif\ defined(\_\_unix\_\_)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00090}00090\ \textcolor{preprocessor}{\#define\ KPLATFORM\_UNIX\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00092}00092\ \textcolor{preprocessor}{\#elif\ defined(\_POSIX\_VERSION)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00093}00093\ \textcolor{preprocessor}{\#define\ KPLATFORM\_POSIX\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00095}00095\ \textcolor{preprocessor}{\#elif\ \_\_APPLE\_\_}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00096}00096\ \textcolor{preprocessor}{\#define\ KPLATFORM\_APPLE\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00097}00097\ \textcolor{preprocessor}{\#include\ <TargetConditionals.h>}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00099}00099\ \textcolor{preprocessor}{\#if\ TARGET\_IPHONE\_SIMULATOR}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00100}00100\ \textcolor{preprocessor}{\#define\ KPLATFORM\_IOS\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00101}00101\ \textcolor{preprocessor}{\#define\ KPLATFORM\_IOS\_SIMULATOR\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00103}00103\ \textcolor{preprocessor}{\#elif\ TARGET\_OS\_IPHONE}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00104}00104\ \textcolor{preprocessor}{\#define\ KPLATFORM\_IOS\ 1}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00106}00106\ \textcolor{preprocessor}{\#elif\ TARGET\_OS\_MAC}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00107}00107\ \textcolor{comment}{//\ Other\ kinds\ of\ Mac\ OS}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00108}00108\ \textcolor{comment}{//\ No\ additional\ defines\ needed\ beyond\ KPLATFORM\_APPLE}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00110}00110\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00111}00111\ \textcolor{preprocessor}{\#error\ "{}Unknown\ Apple\ platform"{}}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00112}00112\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00114}00114\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00115}00115\ \textcolor{preprocessor}{\#error\ "{}Unknown\ platform!"{}}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00116}00116\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00118}00118\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00119}00119\ \textcolor{comment}{//\ DLL\ EXPORT/IMPORT}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00120}00120\ \textcolor{comment}{//\ =============}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00122}00122\ \textcolor{comment}{//\ Usage:}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00123}00123\ \textcolor{comment}{//\ -\/\ When\ building\ the\ engine\ as\ a\ DLL/shared\ library,\ define\ KEXPORT}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00124}00124\ \textcolor{comment}{//\ -\/\ When\ using\ the\ engine\ from\ an\ application,\ do\ not\ define\ KEXPORT}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00126}00126\ \textcolor{preprocessor}{\#ifdef\ KEXPORT}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00127}00127\ \textcolor{comment}{//\ Building\ the\ library\ –\ export\ symbols}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00128}00128\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00129}00129\ \textcolor{preprocessor}{\#define\ KAPI\ \_\_declspec(dllexport)\ \ }\textcolor{comment}{//\ Windows\ MSVC}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00130}00130\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00131}00131\ \textcolor{preprocessor}{\#define\ KAPI\ \_\_attribute\_\_((visibility("{}default"{})))\ \ }\textcolor{comment}{//\ GCC/Clang}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00132}00132\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00133}00133\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00134}00134\ \textcolor{comment}{//\ Using\ the\ library\ –\ import\ symbols}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00135}00135\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00136}00136\ \textcolor{preprocessor}{\#define\ KAPI\ \_\_declspec(dllimport)\ \ }\textcolor{comment}{//\ Windows\ MSVC}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00137}00137\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00138}\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{00138}}\ \textcolor{preprocessor}{\#define\ KAPI\ \ }\textcolor{comment}{//\ GCC/Clang\ doesn't\ need\ special\ import}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00139}00139\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00140}00140\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
