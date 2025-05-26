@@ -1,7 +1,7 @@
 // Windows platform layer.
 #if KPLATFORM_WINDOWS
 #include "platform/platform.h"
-#include "logger.h"
+#include "core/logger.h"
 
 #include <windows.h>
 #include <windowsx.h>  // param input extraction
