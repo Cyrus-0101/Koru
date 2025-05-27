@@ -79,6 +79,9 @@ $(function() {
   <div class="headertitle"><div class="title">game_types.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Game-related types and structures used across the engine.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="application_8h_source.html">core/application.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for game_types.h:</div>
@@ -87,10 +90,10 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="game__types_8h__incl.png" border="0" usemap="#aengine_2src_2game__types_8h" alt=""/></div>
 <map name="aengine_2src_2game__types_8h" id="aengine_2src_2game__types_8h">
-<area shape="rect" title=" " alt="" coords="5,5,191,31"/>
-<area shape="rect" href="application_8h.html" title=" " alt="" coords="29,79,167,104"/>
+<area shape="rect" title="Game&#45;related types and structures used across the engine." alt="" coords="5,5,191,31"/>
+<area shape="rect" href="application_8h.html" title="Public interface for the core application system." alt="" coords="29,79,167,104"/>
 <area shape="poly" title=" " alt="" coords="101,31,101,65,95,65,95,31"/>
-<area shape="rect" href="defines_8h.html" title=" " alt="" coords="57,152,139,177"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="57,152,139,177"/>
 <area shape="poly" title=" " alt="" coords="101,104,101,138,95,138,95,104"/>
 </map>
 </div>
@@ -101,17 +104,17 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="game__types_8h__dep__incl.png" border="0" usemap="#aengine_2src_2game__types_8hdep" alt=""/></div>
 <map name="aengine_2src_2game__types_8hdep" id="aengine_2src_2game__types_8hdep">
-<area shape="rect" title=" " alt="" coords="214,5,399,31"/>
-<area shape="rect" href="application_8c.html" title=" " alt="" coords="5,79,213,104"/>
+<area shape="rect" title="Game&#45;related types and structures used across the engine." alt="" coords="214,5,399,31"/>
+<area shape="rect" href="application_8c.html" title="Implementation of the core application lifecycle functions." alt="" coords="5,79,213,104"/>
 <area shape="poly" title=" " alt="" coords="263,38,143,81,141,76,261,33"/>
-<area shape="rect" href="entry_8h.html" title=" " alt="" coords="238,79,375,104"/>
+<area shape="rect" href="entry_8h.html" title="Main entry point interface for the engine." alt="" coords="238,79,375,104"/>
 <area shape="poly" title=" " alt="" coords="309,44,309,79,304,79,304,44"/>
-<area shape="rect" href="game_8h.html" title=" " alt="" coords="400,79,547,104"/>
+<area shape="rect" href="game_8h.html" title="Interface for the testbed game implementation." alt="" coords="400,79,547,104"/>
 <area shape="poly" title=" " alt="" coords="347,34,447,76,445,81,345,38"/>
-<area shape="rect" href="entry_8c.html" title=" " alt="" coords="236,152,377,177"/>
+<area shape="rect" href="entry_8c.html" title="Testbed application entry point implementation." alt="" coords="236,152,377,177"/>
 <area shape="poly" title=" " alt="" coords="309,118,309,152,304,152,304,118"/>
 <area shape="poly" title=" " alt="" coords="435,112,335,154,333,149,433,107"/>
-<area shape="rect" href="game_8c.html" title=" " alt="" coords="401,152,548,177"/>
+<area shape="rect" href="game_8c.html" title="Implementation of the testbed game logic." alt="" coords="401,152,548,177"/>
 <area shape="poly" title=" " alt="" coords="476,118,477,152,472,152,471,118"/>
 </map>
 </div>
@@ -130,7 +133,17 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:a6b088197c03368f264f33c989d4f271b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the basic game interface.  <br /></td></tr>
 <tr class="separator:a6b088197c03368f264f33c989d4f271b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Game-related types and structures used across the engine. </p>
+<p>This module defines:</p><ul>
+<li>The <code>game</code> struct, which represents a game instance</li>
+<li>Function pointer signatures for game lifecycle events (initialize, update, render, resize)</li>
+<li>Shared data structures between engine and game logic</li>
+</ul>
+<p>Usage: Used by both the engine and game implementations to maintain consistency in lifecycle management. </p>
+
+<p class="definition">Definition in file <a class="el" href="game__types_8h_source.html">game_types.h</a>.</p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a6b088197c03368f264f33c989d4f271b" name="a6b088197c03368f264f33c989d4f271b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6b088197c03368f264f33c989d4f271b">&#9670;&#160;</a></span>game</h2>
 
@@ -151,7 +164,7 @@ Typedefs</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 27 2025 20:50:09 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue May 27 2025 22:54:25 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

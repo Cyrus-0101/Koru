@@ -11,8 +11,7 @@ Represents the basic game interface.
 
 
 
-Collaboration diagram for game\+:
-\nopagebreak
+Collaboration diagram for game\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -41,7 +40,7 @@ Represents the basic game interface.
 
 This struct defines how the engine interacts with a specific game. It includes function pointers for lifecycle management and a pointer to game-\/specific state data. 
 
-Definition at line \mbox{\hyperlink{game__types_8h_source_l00012}{12}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00025}{25}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
 
 
 
@@ -58,11 +57,11 @@ Configuration used to create the application window.
 
 
 
-Definition at line \mbox{\hyperlink{game__types_8h_source_l00016}{16}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00029}{29}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}, and \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00083}{application\+\_\+create()}}, and \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
 
 \Hypertarget{structgame_a5466af7e15d158c9a30a2c733514bc13}\label{structgame_a5466af7e15d158c9a30a2c733514bc13} 
 \index{game@{game}!initialize@{initialize}}
@@ -76,11 +75,11 @@ Function pointer to the game\textquotesingle{}s initialization routine.
 
 Called once during startup after the platform layer is initialized. 
 
-Definition at line \mbox{\hyperlink{game__types_8h_source_l00023}{23}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00036}{36}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}, \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00083}{application\+\_\+create()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 
 \Hypertarget{structgame_a320793f814af5f889a43b7ab25d75b67}\label{structgame_a320793f814af5f889a43b7ab25d75b67} 
 \index{game@{game}!on\_resize@{on\_resize}}
@@ -94,11 +93,11 @@ Function pointer to handle window resizing.
 
 Optional. Can be NULL if not needed. 
 
-Definition at line \mbox{\hyperlink{game__types_8h_source_l00044}{44}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00057}{57}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}, \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00083}{application\+\_\+create()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 
 \Hypertarget{structgame_ac2c261fc48169dc53096929654c51bfe}\label{structgame_ac2c261fc48169dc53096929654c51bfe} 
 \index{game@{game}!render@{render}}
@@ -112,11 +111,11 @@ Function pointer to the game\textquotesingle{}s render routine.
 
 Called once per frame to draw the game. 
 
-Definition at line \mbox{\hyperlink{game__types_8h_source_l00037}{37}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00050}{50}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+Referenced by \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 
 \Hypertarget{structgame_aa77684f4c43b2aafcaa57421159f5d03}\label{structgame_aa77684f4c43b2aafcaa57421159f5d03} 
 \index{game@{game}!state@{state}}
@@ -130,11 +129,11 @@ Pointer to game-\/specific state data.
 
 Allocated and managed by the game implementation. 
 
-Definition at line \mbox{\hyperlink{game__types_8h_source_l00051}{51}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00064}{64}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+Referenced by \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
 
 \Hypertarget{structgame_afe7bfadc01e08def3e7cae0019151d1b}\label{structgame_afe7bfadc01e08def3e7cae0019151d1b} 
 \index{game@{game}!update@{update}}
@@ -148,11 +147,11 @@ Function pointer to the game\textquotesingle{}s update routine.
 
 Called once per frame to update game logic. 
 
-Definition at line \mbox{\hyperlink{game__types_8h_source_l00030}{30}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00043}{43}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+Referenced by \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 
 
 

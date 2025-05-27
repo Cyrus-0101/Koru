@@ -1,12 +1,16 @@
 \doxysection{engine/src/core/kmemory.c File Reference}
 \hypertarget{kmemory_8c}{}\label{kmemory_8c}\index{engine/src/core/kmemory.c@{engine/src/core/kmemory.c}}
+
+
+Implementation of the tagged memory allocation system.  
+
+
 {\ttfamily \#include "{}kmemory.\+h"{}}\newline
 {\ttfamily \#include "{}core/logger.\+h"{}}\newline
 {\ttfamily \#include "{}platform/platform.\+h"{}}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
-Include dependency graph for kmemory.\+c\+:
-\nopagebreak
+Include dependency graph for kmemory.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -46,6 +50,25 @@ static struct \mbox{\hyperlink{structmemory__stats}{memory\+\_\+stats}} \mbox{\h
 \begin{DoxyCompactList}\small\item\em Global instance of memory usage statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Implementation of the tagged memory allocation system. 
+
+This module implements a memory tracking system that allows allocations to be categorized using tags (e.\+g., MEMORY\+\_\+\+TAG\+\_\+\+RENDERER, MEMORY\+\_\+\+TAG\+\_\+\+GAME). It provides\+:
+\begin{DoxyItemize}
+\item Memory usage statistics per tag
+\item Allocation and deallocation wrappers with tracking
+\item Helper functions like {\ttfamily \doxylink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\+\_\+memory()}}, {\ttfamily \doxylink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\+\_\+memory()}}, and {\ttfamily \doxylink{kmemory_8c_a2a80291541bfd799993b25c748ebbe03}{kset\+\_\+memory()}}
+\item A utility function to generate formatted memory usage strings for debugging
+\end{DoxyItemize}
+
+The system wraps platform-\/specific memory functions ({\ttfamily platform\+\_\+allocate}, {\ttfamily platform\+\_\+free}) to ensure consistent behavior and logging.
+
+Usage\+: Replace raw memory operations with {\ttfamily \doxylink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate()}} / {\ttfamily \doxylink{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc}{kfree()}} to enable tracking. 
+
+Definition in file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
 \doxysubsection{Function Documentation}
 \Hypertarget{kmemory_8c_a952570f1b67855783413d2a0d4b0503a}\label{kmemory_8c_a952570f1b67855783413d2a0d4b0503a} 
 \index{kmemory.c@{kmemory.c}!get\_memory\_usage\_str@{get\_memory\_usage\_str}}
@@ -66,15 +89,15 @@ A heap-\/allocated string containing formatted memory usage info. Caller must fr
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00166}{166}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00184}{184}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-References \mbox{\hyperlink{kmemory_8h_source_l00064}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}, \mbox{\hyperlink{kmemory_8c_source_l00034}{memory\+\_\+tag\+\_\+strings}}, \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}, and \mbox{\hyperlink{kmemory_8c_source_l00026}{memory\+\_\+stats\+::tagged\+\_\+allocations}}.
+References \mbox{\hyperlink{kmemory_8h_source_l00077}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}, \mbox{\hyperlink{kmemory_8c_source_l00052}{memory\+\_\+tag\+\_\+strings}}, \mbox{\hyperlink{kmemory_8c_source_l00076}{stats}}, and \mbox{\hyperlink{kmemory_8c_source_l00044}{memory\+\_\+stats\+::tagged\+\_\+allocations}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00135}{application\+\_\+run()}}.
 
 \Hypertarget{kmemory_8c_a2bdce596545b593473158adc918b4e7f}\label{kmemory_8c_a2bdce596545b593473158adc918b4e7f} 
 \index{kmemory.c@{kmemory.c}!initialize\_memory@{initialize\_memory}}
@@ -90,15 +113,15 @@ Initializes the memory allocator subsystem.
 
 Resets all counters to zero. 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00065}{65}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00083}{83}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-References \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}.
+References \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8c_source_l00076}{stats}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+Referenced by \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 
 \Hypertarget{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}\label{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88} 
 \index{kmemory.c@{kmemory.c}!kallocate@{kallocate}}
@@ -126,15 +149,15 @@ A pointer to the allocated memory block.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00087}{87}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00105}{105}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00013}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\+\_\+allocate()}}, \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00026}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00021}{memory\+\_\+stats\+::total\+\_\+allocated}}.
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00026}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\+\_\+allocate()}}, \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00076}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00044}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00039}{memory\+\_\+stats\+::total\+\_\+allocated}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+Referenced by \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
 
 \Hypertarget{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}\label{kmemory_8c_a433c653469c55bd95b8b80b801bcc426} 
 \index{kmemory.c@{kmemory.c}!kcopy\_memory@{kcopy\_memory}}
@@ -162,7 +185,7 @@ Pointer to the destination memory block.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00142}{142}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00160}{160}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
@@ -191,11 +214,11 @@ Subtracts the deallocated size from internal statistics.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00111}{111}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00129}{129}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00013}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\+\_\+free()}}, \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00026}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00021}{memory\+\_\+stats\+::total\+\_\+allocated}}.
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00026}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\+\_\+free()}}, \mbox{\hyperlink{kmemory_8c_source_l00076}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00044}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00039}{memory\+\_\+stats\+::total\+\_\+allocated}}.
 
 \Hypertarget{kmemory_8c_a2a80291541bfd799993b25c748ebbe03}\label{kmemory_8c_a2a80291541bfd799993b25c748ebbe03} 
 \index{kmemory.c@{kmemory.c}!kset\_memory@{kset\_memory}}
@@ -223,7 +246,7 @@ Pointer to the filled memory block.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00154}{154}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00172}{172}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
@@ -251,7 +274,7 @@ Pointer to the zeroed memory block.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00130}{130}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00148}{148}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
@@ -271,11 +294,11 @@ Shuts down the memory allocator subsystem.
 
 Currently does nothing but can be extended to log final usage or detect leaks. 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00074}{74}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00092}{92}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+Referenced by \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 
 
 
@@ -314,11 +337,11 @@ Human-\/readable strings for each memory tag.
 
 Used when printing memory usage stats to provide meaningful labels. 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00034}{34}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00052}{52}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{kmemory_8c_source_l00166}{get\+\_\+memory\+\_\+usage\+\_\+str()}}.
+Referenced by \mbox{\hyperlink{kmemory_8c_source_l00184}{get\+\_\+memory\+\_\+usage\+\_\+str()}}.
 
 \Hypertarget{kmemory_8c_a6d7bbe4533e4ee2d20e5419af15ebed0}\label{kmemory_8c_a6d7bbe4533e4ee2d20e5419af15ebed0} 
 \index{kmemory.c@{kmemory.c}!stats@{stats}}
@@ -332,9 +355,9 @@ Global instance of memory usage statistics.
 
 Aggregates all memory allocations tracked by kallocate/kfree. 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00058}{58}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00076}{76}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{kmemory_8c_source_l00166}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{kmemory_8c_source_l00065}{initialize\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00087}{kallocate()}}, and \mbox{\hyperlink{kmemory_8c_source_l00111}{kfree()}}.
+Referenced by \mbox{\hyperlink{kmemory_8c_source_l00184}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{kmemory_8c_source_l00083}{initialize\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, and \mbox{\hyperlink{kmemory_8c_source_l00129}{kfree()}}.
 

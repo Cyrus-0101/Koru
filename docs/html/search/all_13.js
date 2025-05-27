@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['planned_20features_0',['Planned Features',['../index.html#autotoc_md11',1,'']]],
+  ['planned_20features_0',['Planned Features',['../index.html#autotoc_md13',1,'']]],
   ['platform_1',['platform',['../structapplication__state.html#a14782a7e40b24efc8c814f786c6525ba',1,'application_state']]],
-  ['platform_20layer_20strong_2',['1. &lt;strong&gt;Platform Layer&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]],
+  ['platform_20layer_20strong_2',['1. &lt;strong&gt;Platform Layer&lt;/strong&gt;',['../index.html#autotoc_md6',1,'']]],
   ['platform_2eh_3',['platform.h',['../platform_8h.html',1,'']]],
   ['platform_5fallocate_4',['platform_allocate',['../platform_8h.html#a19df473ff145c8579c4c838d5bc67372',1,'platform.h']]],
   ['platform_5fconsole_5fwrite_5',['platform_console_write',['../platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c',1,'platform.h']]],
@@ -19,5 +19,5 @@ var searchData=
   ['platform_5fstate_16',['platform_state',['../structplatform__state.html',1,'platform_state'],['../platform_8h.html#a8c661bb1c0637f4277be66a5c2f18604',1,'platform_state:&#160;platform.h']]],
   ['platform_5fwin32_2ec_17',['platform_win32.c',['../platform__win32_8c.html',1,'']]],
   ['platform_5fzero_5fmemory_18',['platform_zero_memory',['../platform_8h.html#a59e03b207e95523b84692ea7f68e4654',1,'platform.h']]],
-  ['project_20structure_19',['📁 Project Structure',['../index.html#autotoc_md15',1,'']]]
+  ['project_20structure_19',['📁 Project Structure',['../index.html#autotoc_md17',1,'']]]
 ];

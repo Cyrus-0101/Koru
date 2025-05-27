@@ -1,7 +1,7 @@
 var searchData=
 [
   ['main_0',['main',['../entry_8h.html#a840291bc02cba5474a4cb46a9b9566fe',1,'entry.h']]],
-  ['management_20strong_1',['3. &lt;strong&gt;Resource Management&lt;/strong&gt;',['../index.html#autotoc_md6',1,'']]],
+  ['management_20strong_1',['3. &lt;strong&gt;Resource Management&lt;/strong&gt;',['../index.html#autotoc_md8',1,'']]],
   ['memory_5fstats_2',['memory_stats',['../structmemory__stats.html',1,'']]],
   ['memory_5ftag_3',['memory_tag',['../kmemory_8h.html#a69e3e71ce5a50648353639008c9e02e0',1,'memory_tag:&#160;kmemory.h'],['../kmemory_8h.html#a37d016888ad6b70195335004614d4942',1,'memory_tag:&#160;kmemory.h']]],
   ['memory_5ftag_5fapplication_4',['MEMORY_TAG_APPLICATION',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942aeef2c46527926f73df4503d8d62eebb7',1,'kmemory.h']]],

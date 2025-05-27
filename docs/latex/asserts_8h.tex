@@ -1,5 +1,10 @@
 \doxysection{engine/src/core/asserts.h File Reference}
 \hypertarget{asserts_8h}{}\label{asserts_8h}\index{engine/src/core/asserts.h@{engine/src/core/asserts.h}}
+
+
+Custom assertion macros and debugging utilities for the Koru Engine.  
+
+
 {\ttfamily \#include "{}defines.\+h"{}}\newline
 Include dependency graph for asserts.\+h\+:\nopagebreak
 \begin{figure}[H]
@@ -14,18 +19,34 @@ Include dependency graph for asserts.\+h\+:\nopagebreak
 \#define \mbox{\hyperlink{asserts_8h_a19ff22d0d0fb28ecb552a743447dcbde}{KASSERTIONS\+\_\+\+ENABLED}}
 \item 
 \#define \mbox{\hyperlink{asserts_8h_a13bf501f420bb63f3cf9b62b06b03574}{debug\+Break}}()~\+\_\+\+\_\+builtin\+\_\+trap()
-\item 
+\begin{DoxyCompactList}\small\item\em Triggers a breakpoint on GCC/\+Clang platforms. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{asserts_8h_a8f0725c87f662db8a0f3ca04379da56f}{KASSERT}}(expr)
-\item 
+\begin{DoxyCompactList}\small\item\em Basic assertion macro that triggers a debug break if the condition is false. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{asserts_8h_a7b775fcadff2f4629c6d4f205a424693}{KASSERT\+\_\+\+MSG}}(expr,  message)
-\item 
+\begin{DoxyCompactList}\small\item\em Assertion macro with a custom message. \textbackslash{} \textbackslash{} If the condition evaluates to false, it logs the failure along with the provided message, \textbackslash{} then breaks into the debugger. \textbackslash{} \textbackslash{} Example\+: . \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{asserts_8h_a2232df5df304b5b471c12b9c77563763}{KASSERT\+\_\+\+DEBUG}}(expr)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Debug-\/only assertion. Enabled only in debug builds. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{asserts_8h_a081a03d10de2e1eebf9bb889519687bc}{report\+\_\+assertion\+\_\+failure}} (const char \texorpdfstring{$\ast$}{*}expression, const char \texorpdfstring{$\ast$}{*}message, const char \texorpdfstring{$\ast$}{*}file, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} line)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Logs an assertion failure message to the logging system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Custom assertion macros and debugging utilities for the Koru Engine. 
+
+This module provides\+:
+\begin{DoxyItemize}
+\item Compile-\/time and debug-\/time assertions
+\item Platform-\/agnostic debug break functionality
+\item Integration with the logging system to report failures
+\end{DoxyItemize}
+
+Assertions can be globally disabled by defining {\ttfamily KASSERTIONS\+\_\+\+ENABLED} before including this header. Debug-\/only assertions are automatically disabled in release builds. 
+
+Definition in file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+
 
 
 \doxysubsection{Macro Definition Documentation}
@@ -37,7 +58,11 @@ Include dependency graph for asserts.\+h\+:\nopagebreak
 
 
 
-Definition at line \mbox{\hyperlink{asserts_8h_source_l00020}{20}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+Triggers a breakpoint on GCC/\+Clang platforms. 
+
+
+
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00038}{38}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
 
 \Hypertarget{asserts_8h_a8f0725c87f662db8a0f3ca04379da56f}\label{asserts_8h_a8f0725c87f662db8a0f3ca04379da56f} 
 \index{asserts.h@{asserts.h}!KASSERT@{KASSERT}}
@@ -58,7 +83,18 @@ Definition at line \mbox{\hyperlink{asserts_8h_source_l00020}{20}} of file \mbox
 \end{DoxyCode}
 
 
-Definition at line \mbox{\hyperlink{asserts_8h_source_l00027}{27}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+Basic assertion macro that triggers a debug break if the condition is false. 
+
+If the condition evaluates to false, it logs the failure and breaks into the debugger.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{asserts_8h_a8f0725c87f662db8a0f3ca04379da56f}{KASSERT}}(ptr\ !=\ NULL);\ \ \textcolor{comment}{//\ Breaks\ if\ ptr\ is\ NULL}}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00064}{64}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
 
 \Hypertarget{asserts_8h_a2232df5df304b5b471c12b9c77563763}\label{asserts_8h_a2232df5df304b5b471c12b9c77563763} 
 \index{asserts.h@{asserts.h}!KASSERT\_DEBUG@{KASSERT\_DEBUG}}
@@ -68,7 +104,18 @@ Definition at line \mbox{\hyperlink{asserts_8h_source_l00027}{27}} of file \mbox
 
 
 
-Definition at line \mbox{\hyperlink{asserts_8h_source_l00058}{58}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+Debug-\/only assertion. Enabled only in debug builds. 
+
+This assertion does nothing in release mode.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{asserts_8h_a2232df5df304b5b471c12b9c77563763}{KASSERT\_DEBUG}}(index\ <\ array\_length);}
+
+\end{DoxyCode}
+ 
+
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00114}{114}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
 
 \Hypertarget{asserts_8h_a7b775fcadff2f4629c6d4f205a424693}\label{asserts_8h_a7b775fcadff2f4629c6d4f205a424693} 
 \index{asserts.h@{asserts.h}!KASSERT\_MSG@{KASSERT\_MSG}}
@@ -78,18 +125,28 @@ Definition at line \mbox{\hyperlink{asserts_8h_source_l00058}{58}} of file \mbox
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (expr)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ report\_assertion\_failure(\#expr,\ message,\ \_\_FILE\_\_,\ \_\_LINE\_\_);\ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ debugBreak();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (expr)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ report\_assertion\_failure(\#expr,\ message,\ \_\_FILE\_\_,\ \_\_LINE\_\_);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ debugBreak();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ \}}
 
 \end{DoxyCode}
 
 
-Definition at line \mbox{\hyperlink{asserts_8h_source_l00037}{37}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+Assertion macro with a custom message. \textbackslash{} \textbackslash{} If the condition evaluates to false, it logs the failure along with the provided message, \textbackslash{} then breaks into the debugger. \textbackslash{} \textbackslash{} Example\+: . 
+
+\textbackslash{} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \(\backslash\)}
+\DoxyCodeLine{KASSERT\_MSG(value\ >=\ 0\ \&\&\ value\ <=\ 1,\ \textcolor{stringliteral}{"{}Value\ must\ be\ normalized"{}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+
+\end{DoxyCode}
+ \textbackslash{} 
+
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00084}{84}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
 
 \Hypertarget{asserts_8h_a19ff22d0d0fb28ecb552a743447dcbde}\label{asserts_8h_a19ff22d0d0fb28ecb552a743447dcbde} 
 \index{asserts.h@{asserts.h}!KASSERTIONS\_ENABLED@{KASSERTIONS\_ENABLED}}
@@ -99,7 +156,7 @@ Definition at line \mbox{\hyperlink{asserts_8h_source_l00037}{37}} of file \mbox
 
 
 
-Definition at line \mbox{\hyperlink{asserts_8h_source_l00008}{8}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
+Definition at line \mbox{\hyperlink{asserts_8h_source_l00021}{21}} of file \mbox{\hyperlink{asserts_8h_source}{asserts.\+h}}.
 
 
 
@@ -112,9 +169,26 @@ Definition at line \mbox{\hyperlink{asserts_8h_source_l00008}{8}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{logger_8c_source_l00086}{86}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+Logs an assertion failure message to the logging system. 
+
+This function should be implemented in {\ttfamily \doxylink{logger_8c}{logger.\+c}} or another source file. It is called internally by the assertion macros when a condition fails.
+
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & The stringified failed condition (e.\+g., {\ttfamily "{}x != NULL"{}}). \\
+\hline
+{\em message} & Optional additional context about the assertion. \\
+\hline
+{\em file} & The source file where the assertion occurred. \\
+\hline
+{\em line} & The line number in the source file. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{logger_8c_source_l00099}{99}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
-References \mbox{\hyperlink{logger_8h_source_l00019}{LOG\+\_\+\+LEVEL\+\_\+\+FATAL}}, and \mbox{\hyperlink{logger_8c_source_l00031}{log\+\_\+output()}}.
+References \mbox{\hyperlink{logger_8h_source_l00064}{LOG\+\_\+\+LEVEL\+\_\+\+FATAL}}, and \mbox{\hyperlink{logger_8c_source_l00044}{log\+\_\+output()}}.
 

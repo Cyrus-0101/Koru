@@ -1,17 +1,20 @@
 \doxysection{testbed/src/game.h File Reference}
 \hypertarget{game_8h}{}\label{game_8h}\index{testbed/src/game.h@{testbed/src/game.h}}
+
+
+Interface for the testbed game implementation.  
+
+
 {\ttfamily \#include $<$defines.\+h$>$}\newline
 {\ttfamily \#include $<$game\+\_\+types.\+h$>$}\newline
-Include dependency graph for game.\+h\+:
-\nopagebreak
+Include dependency graph for game.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=230pt]{game_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -39,6 +42,23 @@ typedef struct \mbox{\hyperlink{structgame__state}{game\+\_\+state}} \mbox{\hype
 \begin{DoxyCompactList}\small\item\em Called every frame to render the game. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{game_8h_a5b4ce7177edb36b28a89471589432d17}{game\+\_\+on\+\_\+resize}} (\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} width, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} height)
 \begin{DoxyCompactList}\small\item\em Called when the window is resized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for the testbed game implementation. 
+
+Declares the game lifecycle functions expected by the engine\+:
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{game_8h_ab56d8511d5b55e40d88999e59fe8084e}{game\+\_\+initialize()}}
+\item {\ttfamily \doxylink{game_8h_a1a612ae5a139848e80e1f7ddec49fdcf}{game\+\_\+update()}}
+\item {\ttfamily \doxylink{game_8h_aaa5f574e90e6577a78fbe8f01902525b}{game\+\_\+render()}}
+\item {\ttfamily \doxylink{game_8h_a5b4ce7177edb36b28a89471589432d17}{game\+\_\+on\+\_\+resize()}}
+\end{DoxyItemize}
+
+Also defines the {\ttfamily \doxylink{structgame__state}{game\+\_\+state}} struct for storing per-\/frame data. 
+
+Definition in file \mbox{\hyperlink{game_8h_source}{game.\+h}}.
+
 
 
 \doxysubsection{Typedef Documentation}
@@ -94,15 +114,15 @@ TRUE if initialization succeeded; FALSE otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00016}{16}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00029}{29}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
-References \mbox{\hyperlink{logger_8h_source_l00062}{KDEBUG}}, and \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+References \mbox{\hyperlink{logger_8h_source_l00210}{KDEBUG}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+Referenced by \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
 
 \Hypertarget{game_8h_a5b4ce7177edb36b28a89471589432d17}\label{game_8h_a5b4ce7177edb36b28a89471589432d17} 
 \index{game.h@{game.h}!game\_on\_resize@{game\_on\_resize}}
@@ -145,11 +165,11 @@ Currently does nothing, but should be extended to\+:
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00065}{65}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00078}{78}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+Referenced by \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
 
 \Hypertarget{game_8h_aaa5f574e90e6577a78fbe8f01902525b}\label{game_8h_aaa5f574e90e6577a78fbe8f01902525b} 
 \index{game.h@{game.h}!game\_render@{game\_render}}
@@ -194,15 +214,15 @@ TRUE if rendering succeeded; FALSE on unrecoverable error.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00049}{49}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00062}{62}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+References \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+Referenced by \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
 
 \Hypertarget{game_8h_a1a612ae5a139848e80e1f7ddec49fdcf}\label{game_8h_a1a612ae5a139848e80e1f7ddec49fdcf} 
 \index{game.h@{game.h}!game\_update@{game\_update}}
@@ -247,13 +267,13 @@ TRUE if update succeeded; FALSE to request application exit.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00033}{33}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00046}{46}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+References \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+Referenced by \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
 
