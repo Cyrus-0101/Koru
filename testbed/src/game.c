@@ -14,7 +14,7 @@
  * @return TRUE if initialization succeeded; FALSE otherwise.
  */
 b8 game_initialize(game* game_inst) {
-    KDEBUG("DEBUG: game_initialize() called!");
+    KDEBUG("game_initialize() called!");
     return TRUE;
 }
 
