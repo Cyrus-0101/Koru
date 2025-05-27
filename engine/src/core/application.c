@@ -1,7 +1,8 @@
 #include "application.h"
 #include "game_types.h"
-#include "platform/platform.h"
 #include "core/logger.h"
+#include "core/kmemory.h"
+#include "platform/platform.h"
 
 /**
  * @brief Internal state structure for the application.
@@ -67,7 +68,7 @@ static application_state app_state;
  */
 b8 application_create(game* game_inst) {
     if (initialized) {
-        KERROR("Error: application_create called more than once");
+        KERROR("application_create() called more than once");
         return FALSE;
     }
 
@@ -95,7 +96,7 @@ b8 application_create(game* game_inst) {
 
     // Initialize Game
     if (!app_state.game_inst->initialize(app_state.game_inst)) {
-        KFATAL("ERROR: Game failed to initialize");
+        KFATAL("Game failed to initialize");
 
         return FALSE;
     } 
@@ -118,6 +119,9 @@ b8 application_create(game* game_inst) {
  * @return TRUE if the application exited cleanly; FALSE if an error occurred during shutdown.
  */
 b8 application_run() {
+    // Log memory info - Memory Leak
+    KINFO(get_memory_usage_str());
+
     while (app_state.is_running) {
         if (!platform_pump_messages(&app_state.platform)) {
             // If platform request to quit, stop running
