@@ -48,7 +48,7 @@ typedef struct application_config {
  * @param config A pointer to an application_config struct containing setup parameters.
  * @return TRUE if initialization was successful; FALSE otherwise.
  */
-KAPI b8 application_create(application_config* config);
+KAPI b8 application_create(struct game* game_inst);
 
 /**
  * @brief Starts the main application loop.
