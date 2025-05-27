@@ -1,0 +1,31 @@
+\doxysection{entry.\+c}
+\hypertarget{entry_8c_source}{}\label{entry_8c_source}\index{testbed/src/entry.c@{testbed/src/entry.c}}
+\mbox{\hyperlink{entry_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{game_8h}{game.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{entry_8h}{entry.h}}>}}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{kmemory_8h}{core/kmemory.h}}>}}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00018}\mbox{\hyperlink{entry_8h_ac1205073da2ce08a82ead459fc8b39cb}{00018}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{entry_8c_ac1205073da2ce08a82ead459fc8b39cb}{create\_game}}(\mbox{\hyperlink{structgame}{game}}*\ out\_game)\ \{}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//\ Application\ configuration.}}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00020}00020\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_a12c0bdd534b736ca685c7ef91b17c80d}{app\_config}}.\mbox{\hyperlink{structapplication__config_abdaa5a7e7c0115c3c6d84ebcd052279c}{start\_pos\_x}}\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00021}00021\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_a12c0bdd534b736ca685c7ef91b17c80d}{app\_config}}.\mbox{\hyperlink{structapplication__config_a40adc567d6986c0cb0e67ffd3ca95aa1}{start\_pos\_y}}\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00022}00022\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_a12c0bdd534b736ca685c7ef91b17c80d}{app\_config}}.\mbox{\hyperlink{structapplication__config_a0fc9a6f3ed272fd04205fba11bb6545a}{start\_width}}\ =\ 1280;}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00023}00023\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_a12c0bdd534b736ca685c7ef91b17c80d}{app\_config}}.\mbox{\hyperlink{structapplication__config_ac68f9a14ef59ea92736d708a91ee90d6}{start\_height}}\ =\ 720;}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00024}00024\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_a12c0bdd534b736ca685c7ef91b17c80d}{app\_config}}.\mbox{\hyperlink{structapplication__config_ae1d05e78a3093693075c040d9a703366}{name}}\ =\ \textcolor{stringliteral}{"{}Koru\ Engine\ Testbed"{}};}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ Assign\ function\ pointers}}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00027}00027\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_afe7bfadc01e08def3e7cae0019151d1b}{update}}\ =\ \mbox{\hyperlink{game_8c_a1a612ae5a139848e80e1f7ddec49fdcf}{game\_update}};}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00028}00028\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_ac2c261fc48169dc53096929654c51bfe}{render}}\ =\ \mbox{\hyperlink{game_8c_aaa5f574e90e6577a78fbe8f01902525b}{game\_render}};}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00029}00029\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_a5466af7e15d158c9a30a2c733514bc13}{initialize}}\ =\ \mbox{\hyperlink{game_8c_ab56d8511d5b55e40d88999e59fe8084e}{game\_initialize}};}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00030}00030\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_a320793f814af5f889a43b7ab25d75b67}{on\_resize}}\ =\ \mbox{\hyperlink{game_8c_a5b4ce7177edb36b28a89471589432d17}{game\_on\_resize}};}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ game\ state.}}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00033}00033\ \ \ \ \ out\_game-\/>\mbox{\hyperlink{structgame_aa77684f4c43b2aafcaa57421159f5d03}{state}}\ =\ \mbox{\hyperlink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structgame__state}{game\_state}}),\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae67646a8d6a644c889a4a51cbf835b26}{MEMORY\_TAG\_GAME}});}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{entry_8c_source_l00036}00036\ \}}
+
+\end{DoxyCode}

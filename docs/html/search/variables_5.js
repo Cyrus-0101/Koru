@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['platform_0',['platform',['../structapplication__state.html#a14782a7e40b24efc8c814f786c6525ba',1,'application_state']]]
+  ['last_5ftime_0',['last_time',['../structapplication__state.html#a4fc952bc899881d85115730cf7da1c5a',1,'application_state']]]
 ];

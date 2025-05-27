@@ -1,15 +1,8 @@
 var searchData=
 [
-  ['platform_5fallocate_0',['platform_allocate',['../platform_8h.html#a19df473ff145c8579c4c838d5bc67372',1,'platform.h']]],
-  ['platform_5fconsole_5fwrite_1',['platform_console_write',['../platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c',1,'platform.h']]],
-  ['platform_5fconsole_5fwrite_5ferror_2',['platform_console_write_error',['../platform_8h.html#adee3e77de1e3374a118e9ebc150c9800',1,'platform.h']]],
-  ['platform_5fcopy_5fmemory_3',['platform_copy_memory',['../platform_8h.html#a15258bb22b902725b1fbf405463ed07d',1,'platform.h']]],
-  ['platform_5ffree_4',['platform_free',['../platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2',1,'platform.h']]],
-  ['platform_5fget_5fabsolute_5ftime_5',['platform_get_absolute_time',['../platform_8h.html#af38f532e572a9da41eaad4be29a58ada',1,'platform.h']]],
-  ['platform_5fpump_5fmessages_6',['platform_pump_messages',['../platform_8h.html#af47d0fad6d6e686e1e0f668c95b1c201',1,'platform.h']]],
-  ['platform_5fset_5fmemory_7',['platform_set_memory',['../platform_8h.html#aa65146de20a7fd23870d3809834021b7',1,'platform.h']]],
-  ['platform_5fshutdown_8',['platform_shutdown',['../platform_8h.html#a7fe7553c63bc948e2ee04d15597d6ccd',1,'platform.h']]],
-  ['platform_5fsleep_9',['platform_sleep',['../platform_8h.html#ae21676dfd997b1c6dd9c06f69b5618e4',1,'platform.h']]],
-  ['platform_5fstartup_10',['platform_startup',['../platform_8h.html#a1557f29064029f8b437d0fbcc587ebbd',1,'platform.h']]],
-  ['platform_5fzero_5fmemory_11',['platform_zero_memory',['../platform_8h.html#a59e03b207e95523b84692ea7f68e4654',1,'platform.h']]]
+  ['kallocate_0',['kallocate',['../kmemory_8c.html#aaff7cb37687dfc7680be1a2101890d88',1,'kallocate(u64 size, memory_tag tag):&#160;kmemory.c'],['../kmemory_8h.html#a35f22575c2b4fcbda423b6108e352b15',1,'kallocate(u64 size, memory_tag tag):&#160;kmemory.c']]],
+  ['kcopy_5fmemory_1',['kcopy_memory',['../kmemory_8c.html#a433c653469c55bd95b8b80b801bcc426',1,'kcopy_memory(void *dest, const void *source, u64 size):&#160;kmemory.c'],['../kmemory_8h.html#ae88e143a36677919fee16bdf0f11bc79',1,'kcopy_memory(void *dest, const void *source, u64 size):&#160;kmemory.c']]],
+  ['kfree_2',['kfree',['../kmemory_8c.html#a49e85a536f69ab06ccc689d5701450dc',1,'kfree(void *block, u64 size, memory_tag tag):&#160;kmemory.c'],['../kmemory_8h.html#a6b55b65a2f2d473dac0d8ff4605a44fb',1,'kfree(void *block, u64 size, memory_tag tag):&#160;kmemory.c']]],
+  ['kset_5fmemory_3',['kset_memory',['../kmemory_8c.html#a2a80291541bfd799993b25c748ebbe03',1,'kset_memory(void *dest, i32 value, u64 size):&#160;kmemory.c'],['../kmemory_8h.html#a9b0af42158bf4d4a8db3d25d284b83f4',1,'kset_memory(void *dest, i32 value, u64 size):&#160;kmemory.c']]],
+  ['kzero_5fmemory_4',['kzero_memory',['../kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5',1,'kzero_memory(void *block, u64 size):&#160;kmemory.c'],['../kmemory_8h.html#af7a3a9859ec3104c490238242dae4ed6',1,'kzero_memory(void *block, u64 size):&#160;kmemory.c']]]
 ];

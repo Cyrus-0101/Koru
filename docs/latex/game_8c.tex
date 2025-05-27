@@ -1,0 +1,183 @@
+\doxysection{testbed/src/game.c File Reference}
+\hypertarget{game_8c}{}\label{game_8c}\index{testbed/src/game.c@{testbed/src/game.c}}
+{\ttfamily \#include "{}game.\+h"{}}\newline
+{\ttfamily \#include $<$core/logger.\+h$>$}\newline
+Include dependency graph for game.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{game_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{game_8c_ab56d8511d5b55e40d88999e59fe8084e}{game\+\_\+initialize}} (\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst)
+\begin{DoxyCompactList}\small\item\em Initializes the game instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{game_8c_a1a612ae5a139848e80e1f7ddec49fdcf}{game\+\_\+update}} (\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Updates the game state each frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{game_8c_aaa5f574e90e6577a78fbe8f01902525b}{game\+\_\+render}} (\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Renders the game each frame. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{game_8c_a5b4ce7177edb36b28a89471589432d17}{game\+\_\+on\+\_\+resize}} (\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} width, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} height)
+\begin{DoxyCompactList}\small\item\em Handles window resize events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{game_8c_ab56d8511d5b55e40d88999e59fe8084e}\label{game_8c_ab56d8511d5b55e40d88999e59fe8084e} 
+\index{game.c@{game.c}!game\_initialize@{game\_initialize}}
+\index{game\_initialize@{game\_initialize}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_initialize()}{game\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} game\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}}]{game\+\_\+inst }\end{DoxyParamCaption})}
+
+
+
+Initializes the game instance. 
+
+Called when the game instance is initialized.
+
+Currently just logs a debug message, but should be extended to initialize\+:
+\begin{DoxyItemize}
+\item Renderer
+\item Input system
+\item Game world
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+inst} & A pointer to the current game instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if initialization succeeded; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{game_8c_source_l00016}{16}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+
+
+
+References \mbox{\hyperlink{logger_8h_source_l00062}{KDEBUG}}, and \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+
+\Hypertarget{game_8c_a5b4ce7177edb36b28a89471589432d17}\label{game_8c_a5b4ce7177edb36b28a89471589432d17} 
+\index{game.c@{game.c}!game\_on\_resize@{game\_on\_resize}}
+\index{game\_on\_resize@{game\_on\_resize}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_on\_resize()}{game\_on\_resize()}}
+{\footnotesize\ttfamily void game\+\_\+on\+\_\+resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}}]{game\+\_\+inst,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{height }\end{DoxyParamCaption})}
+
+
+
+Handles window resize events. 
+
+Called when the window is resized.
+
+Currently does nothing, but should be extended to\+:
+\begin{DoxyItemize}
+\item Update viewport dimensions
+\item Recalculate aspect ratios
+\item Resize framebuffers or shadow maps
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+inst} & A pointer to the current game instance. \\
+\hline
+{\em width} & New width of the window client area. \\
+\hline
+{\em height} & New height of the window client area. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{game_8c_source_l00065}{65}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+
+\Hypertarget{game_8c_aaa5f574e90e6577a78fbe8f01902525b}\label{game_8c_aaa5f574e90e6577a78fbe8f01902525b} 
+\index{game.c@{game.c}!game\_render@{game\_render}}
+\index{game\_render@{game\_render}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_render()}{game\_render()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} game\+\_\+render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}}]{game\+\_\+inst,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{delta\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Renders the game each frame. 
+
+Called every frame to render the game.
+
+Currently a placeholder; this would normally handle\+:
+\begin{DoxyItemize}
+\item Drawing geometry
+\item Updating shaders
+\item Rendering UI
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+inst} & A pointer to the current game instance. \\
+\hline
+{\em delta\+\_\+time} & Time in seconds since the last frame. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if rendering succeeded; FALSE on unrecoverable error. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{game_8c_source_l00049}{49}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+
+\Hypertarget{game_8c_a1a612ae5a139848e80e1f7ddec49fdcf}\label{game_8c_a1a612ae5a139848e80e1f7ddec49fdcf} 
+\index{game.c@{game.c}!game\_update@{game\_update}}
+\index{game\_update@{game\_update}!game.c@{game.c}}
+\doxysubsubsection{\texorpdfstring{game\_update()}{game\_update()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} game\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}}]{game\+\_\+inst,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{delta\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Updates the game state each frame. 
+
+Called every frame to update game logic.
+
+Currently a placeholder; this would normally handle\+:
+\begin{DoxyItemize}
+\item Input processing
+\item Game logic updates
+\item Physics simulation
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em game\+\_\+inst} & A pointer to the current game instance. \\
+\hline
+{\em delta\+\_\+time} & Time in seconds since the last frame. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if update succeeded; FALSE to request application exit. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{game_8c_source_l00033}{33}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+

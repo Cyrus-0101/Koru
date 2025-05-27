@@ -1,13 +1,14 @@
 var searchData=
 [
-  ['i16_0',['i16',['../defines_8h.html#ac12585a6def54773148d7fb2c72a59c5',1,'defines.h']]],
-  ['i32_1',['i32',['../defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e',1,'defines.h']]],
-  ['i64_2',['i64',['../defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa',1,'defines.h']]],
-  ['i8_3',['i8',['../defines_8h.html#a2d0b2d48b0784ffa5f75c39f46562729',1,'defines.h']]],
-  ['initialize_5flogging_4',['initialize_logging',['../logger_8c.html#aae701ec9fd1cbb624f28156730027305',1,'initialize_logging():&#160;logger.c'],['../logger_8h.html#aae701ec9fd1cbb624f28156730027305',1,'initialize_logging():&#160;logger.c']]],
-  ['initialized_5',['initialized',['../application_8c.html#aca033d9c168f6eceec40a0e9a9354e79',1,'application.c']]],
-  ['instructions_6',['⚙️ Build Scripts/Instructions',['../index.html#autotoc_md17',1,'']]],
-  ['internal_5fstate_7',['internal_state',['../structplatform__state.html#ac902a69fe12cf6868862aad5a57b15d5',1,'platform_state']]],
-  ['is_5frunning_8',['is_running',['../structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde',1,'application_state']]],
-  ['is_5fsuspended_9',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]]
+  ['game_0',['game',['../structgame.html',1,'game'],['../game__types_8h.html#a6b088197c03368f264f33c989d4f271b',1,'game:&#160;game_types.h']]],
+  ['game_2ec_1',['game.c',['../game_8c.html',1,'']]],
+  ['game_2eh_2',['game.h',['../game_8h.html',1,'']]],
+  ['game_5finitialize_3',['game_initialize',['../game_8c.html#ab56d8511d5b55e40d88999e59fe8084e',1,'game_initialize(game *game_inst):&#160;game.c'],['../game_8h.html#ab56d8511d5b55e40d88999e59fe8084e',1,'game_initialize(game *game_inst):&#160;game.c']]],
+  ['game_5finst_4',['game_inst',['../structapplication__state.html#ae224fcec4853d590c4068314f75196c2',1,'application_state']]],
+  ['game_5fon_5fresize_5',['game_on_resize',['../game_8c.html#a5b4ce7177edb36b28a89471589432d17',1,'game_on_resize(game *game_inst, u32 width, u32 height):&#160;game.c'],['../game_8h.html#a5b4ce7177edb36b28a89471589432d17',1,'game_on_resize(game *game_inst, u32 width, u32 height):&#160;game.c']]],
+  ['game_5frender_6',['game_render',['../game_8c.html#aaa5f574e90e6577a78fbe8f01902525b',1,'game_render(game *game_inst, f32 delta_time):&#160;game.c'],['../game_8h.html#aaa5f574e90e6577a78fbe8f01902525b',1,'game_render(game *game_inst, f32 delta_time):&#160;game.c']]],
+  ['game_5fstate_7',['game_state',['../structgame__state.html',1,'game_state'],['../game_8h.html#ad5eb7fa5077146cd89323dc58e67621d',1,'game_state:&#160;game.h']]],
+  ['game_5ftypes_2eh_8',['game_types.h',['../game__types_8h.html',1,'']]],
+  ['game_5fupdate_9',['game_update',['../game_8c.html#a1a612ae5a139848e80e1f7ddec49fdcf',1,'game_update(game *game_inst, f32 delta_time):&#160;game.c'],['../game_8h.html#a1a612ae5a139848e80e1f7ddec49fdcf',1,'game_update(game *game_inst, f32 delta_time):&#160;game.c']]],
+  ['get_5fmemory_5fusage_5fstr_10',['get_memory_usage_str',['../kmemory_8c.html#a952570f1b67855783413d2a0d4b0503a',1,'get_memory_usage_str():&#160;kmemory.c'],['../kmemory_8h.html#afab51208fe57736ae8ff62918c8c3e69',1,'get_memory_usage_str():&#160;kmemory.c']]]
 ];

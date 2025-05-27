@@ -1,0 +1,81 @@
+\doxysection{kmemory.\+h}
+\hypertarget{kmemory_8h_source}{}\label{kmemory_8h_source}\index{engine/src/core/kmemory.h@{engine/src/core/kmemory.h}}
+\mbox{\hyperlink{kmemory_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defines_8h}{defines.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00011}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{00011}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\_tag}}\ \{}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00012}00012\ \ \ \ \ \textcolor{comment}{//\ For\ temporary\ use\ only.\ Should\ eventually\ be\ replaced\ with\ a\ proper\ tag.}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00013}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a81f0b69faa32aa334a658401d286752b}{00013}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a81f0b69faa32aa334a658401d286752b}{MEMORY\_TAG\_UNKNOWN}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00015}00015\ \ \ \ \ \textcolor{comment}{//\ Dynamic\ arrays\ (e.g.,\ array\_push)}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00016}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a1134e739edef60742877641f494d4525}{00016}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a1134e739edef60742877641f494d4525}{MEMORY\_TAG\_ARRAY}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00018}00018\ \ \ \ \ \textcolor{comment}{//\ Dynamic\ arrays\ that\ grow/shrink\ dynamically}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00019}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7abf6a78c081d5036466bd2b4264c69e}{00019}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7abf6a78c081d5036466bd2b4264c69e}{MEMORY\_TAG\_DARRAY}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ Dictionary/Hash\ Table\ allocations}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00022}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a4d71486f423a49db6e60b58b65f79340}{00022}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a4d71486f423a49db6e60b58b65f79340}{MEMORY\_TAG\_DICT}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ Ring\ queue\ structures}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00025}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a6aed8fe38d265080aaf69095c2a5c497}{00025}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a6aed8fe38d265080aaf69095c2a5c497}{MEMORY\_TAG\_RING\_QUEUE}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00027}00027\ \ \ \ \ \textcolor{comment}{//\ Binary\ search\ trees}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00028}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a6b6f409a865bf0decd2d570d6da91613}{00028}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a6b6f409a865bf0decd2d570d6da91613}{MEMORY\_TAG\_BST}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ String-\/related\ allocations}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00031}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9}{00031}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9}{MEMORY\_TAG\_STRING}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ Application-\/level\ state}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00034}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aeef2c46527926f73df4503d8d62eebb7}{00034}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aeef2c46527926f73df4503d8d62eebb7}{MEMORY\_TAG\_APPLICATION}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00036}00036\ \ \ \ \ \textcolor{comment}{//\ Job\ system\ allocations}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00037}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a9c030f90b7d843d4ac12636d429c6e49}{00037}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a9c030f90b7d843d4ac12636d429c6e49}{MEMORY\_TAG\_JOB}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ Texture\ data}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00040}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae8c3a3ec7ac89336ae047b58ac5593a1}{00040}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae8c3a3ec7ac89336ae047b58ac5593a1}{MEMORY\_TAG\_TEXTURE}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ Material\ instances}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00043}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a708ec6d6308253f6fac9b47f934c57f3}{00043}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a708ec6d6308253f6fac9b47f934c57f3}{MEMORY\_TAG\_MATERIAL\_INSTANCE}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ Renderer-\/specific\ allocations}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00046}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7b4c1e90432c602af81107af1c9cf1b8}{00046}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7b4c1e90432c602af81107af1c9cf1b8}{MEMORY\_TAG\_RENDERER}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ Game\ logic/state}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00049}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae67646a8d6a644c889a4a51cbf835b26}{00049}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae67646a8d6a644c889a4a51cbf835b26}{MEMORY\_TAG\_GAME}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00051}00051\ \ \ \ \ \textcolor{comment}{//\ Transform\ components}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00052}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ac92c941b0fd8366cc6f2acacdbe32c35}{00052}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ac92c941b0fd8366cc6f2acacdbe32c35}{MEMORY\_TAG\_TRANSFORM}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00054}00054\ \ \ \ \ \textcolor{comment}{//\ Entity\ objects}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00055}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae5a66503c5643a2ece53a5e61217b37a}{00055}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae5a66503c5643a2ece53a5e61217b37a}{MEMORY\_TAG\_ENTITY}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ Scene\ graph\ entity\ nodes}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00058}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ac5c23deddfa1ce60e0b73d1bf99af20e}{00058}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ac5c23deddfa1ce60e0b73d1bf99af20e}{MEMORY\_TAG\_ENTITY\_NODE}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00060}00060\ \ \ \ \ \textcolor{comment}{//\ Scene\ management}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00061}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a5abbd9631a24805c5770e2c81b72bac5}{00061}}\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a5abbd9631a24805c5770e2c81b72bac5}{MEMORY\_TAG\_SCENE}},}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ Must\ be\ last\ -\/-\/\ represents\ total\ number\ of\ tags}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00064}00064\ \ \ \ \ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ace51437c5832765c883cbae625e248b1}{MEMORY\_TAG\_MAX\_TAGS}}}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00065}\mbox{\hyperlink{kmemory_8h_a69e3e71ce5a50648353639008c9e02e0}{00065}}\ \}\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\_tag}};}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00072}00072\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kmemory_8h_acd4839b23d7754212dd84e626ab2f01d}{initialize\_memory}}();}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00079}00079\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kmemory_8h_adf99ff00dcf22ad42c38ee19fea0eb37}{shutdown\_memory}}();}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00088}00088\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{kmemory_8h_a35f22575c2b4fcbda423b6108e352b15}{kallocate}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\_tag}}\ tag);}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00097}00097\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kmemory_8h_a6b55b65a2f2d473dac0d8ff4605a44fb}{kfree}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\_tag}}\ tag);}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00106}00106\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{kmemory_8h_af7a3a9859ec3104c490238242dae4ed6}{kzero\_memory}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size);}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00116}00116\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{kmemory_8h_ae88e143a36677919fee16bdf0f11bc79}{kcopy\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ source,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size);}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00126}00126\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{kmemory_8h_a9b0af42158bf4d4a8db3d25d284b83f4}{kset\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ value,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size);}
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{kmemory_8h_source_l00136}00136\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{kmemory_8h_afab51208fe57736ae8ff62918c8c3e69}{get\_memory\_usage\_str}}();}
+
+\end{DoxyCode}

@@ -1,0 +1,340 @@
+\doxysection{engine/src/core/kmemory.c File Reference}
+\hypertarget{kmemory_8c}{}\label{kmemory_8c}\index{engine/src/core/kmemory.c@{engine/src/core/kmemory.c}}
+{\ttfamily \#include "{}kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}core/logger.\+h"{}}\newline
+{\ttfamily \#include "{}platform/platform.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for kmemory.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{kmemory_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmemory__stats}{memory\+\_\+stats}}
+\begin{DoxyCompactList}\small\item\em Tracks memory usage statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{kmemory_8c_a2bdce596545b593473158adc918b4e7f}{initialize\+\_\+memory}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the memory tracking system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kmemory_8c_ab2ac446da30e1b8a9f0d88566041c7ec}{shutdown\+\_\+memory}} ()
+\begin{DoxyCompactList}\small\item\em Shuts down the memory tracking system. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}} tag)
+\begin{DoxyCompactList}\small\item\em Allocates memory with a given size and tag. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc}{kfree}} (void \texorpdfstring{$\ast$}{*}block, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}} tag)
+\begin{DoxyCompactList}\small\item\em Frees a previously allocated memory block. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}block, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Fills the provided memory block with zeros. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}dest, const void \texorpdfstring{$\ast$}{*}source, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Copies data from one memory block to another. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8c_a2a80291541bfd799993b25c748ebbe03}{kset\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}dest, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} value, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Sets every byte in a memory block to a specific value. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8c_a952570f1b67855783413d2a0d4b0503a}{get\+\_\+memory\+\_\+usage\+\_\+str}} ()
+\begin{DoxyCompactList}\small\item\em Generates a formatted string showing current memory usage per tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8c_a228ea890e8922a7de688a37a1de46fd0}{memory\+\_\+tag\+\_\+strings}} \mbox{[}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ace51437c5832765c883cbae625e248b1}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Human-\/readable strings for each memory tag. \end{DoxyCompactList}\item 
+static struct \mbox{\hyperlink{structmemory__stats}{memory\+\_\+stats}} \mbox{\hyperlink{kmemory_8c_a6d7bbe4533e4ee2d20e5419af15ebed0}{stats}}
+\begin{DoxyCompactList}\small\item\em Global instance of memory usage statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{kmemory_8c_a952570f1b67855783413d2a0d4b0503a}\label{kmemory_8c_a952570f1b67855783413d2a0d4b0503a} 
+\index{kmemory.c@{kmemory.c}!get\_memory\_usage\_str@{get\_memory\_usage\_str}}
+\index{get\_memory\_usage\_str@{get\_memory\_usage\_str}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{get\_memory\_usage\_str()}{get\_memory\_usage\_str()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} get\+\_\+memory\+\_\+usage\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates a formatted string showing current memory usage per tag. 
+
+Gets a formatted string showing current memory usage per tag.
+
+Useful for logging and debugging. Automatically scales values to KB/\+MB/\+GB.
+
+\begin{DoxyReturn}{Returns}
+A heap-\/allocated string containing formatted memory usage info. Caller must free it using \doxylink{kmemory_8h_a6b55b65a2f2d473dac0d8ff4605a44fb}{kfree()}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00166}{166}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmemory_8h_source_l00064}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}, \mbox{\hyperlink{kmemory_8c_source_l00034}{memory\+\_\+tag\+\_\+strings}}, \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}, and \mbox{\hyperlink{kmemory_8c_source_l00026}{memory\+\_\+stats\+::tagged\+\_\+allocations}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+run()}}.
+
+\Hypertarget{kmemory_8c_a2bdce596545b593473158adc918b4e7f}\label{kmemory_8c_a2bdce596545b593473158adc918b4e7f} 
+\index{kmemory.c@{kmemory.c}!initialize\_memory@{initialize\_memory}}
+\index{initialize\_memory@{initialize\_memory}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{initialize\_memory()}{initialize\_memory()}}
+{\footnotesize\ttfamily void initialize\+\_\+memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the memory tracking system. 
+
+Initializes the memory allocator subsystem.
+
+Resets all counters to zero. 
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00065}{65}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+
+\Hypertarget{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}\label{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88} 
+\index{kmemory.c@{kmemory.c}!kallocate@{kallocate}}
+\index{kallocate@{kallocate}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{kallocate()}{kallocate()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} kallocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}}}]{tag }\end{DoxyParamCaption})}
+
+
+
+Allocates memory with a given size and tag. 
+
+Allocates memory with the given size and tag.
+
+Adds the allocation to internal statistics and returns a pointer to the block.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The number of bytes to allocate. \\
+\hline
+{\em tag} & A memory\+\_\+tag used to categorize this allocation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the allocated memory block. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00087}{87}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00013}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\+\_\+allocate()}}, \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00026}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00021}{memory\+\_\+stats\+::total\+\_\+allocated}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+
+\Hypertarget{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}\label{kmemory_8c_a433c653469c55bd95b8b80b801bcc426} 
+\index{kmemory.c@{kmemory.c}!kcopy\_memory@{kcopy\_memory}}
+\index{kcopy\_memory@{kcopy\_memory}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{kcopy\_memory()}{kcopy\_memory()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} kcopy\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{source,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Copies data from one memory block to another. 
+
+Copies memory from one location to another.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Destination memory block. \\
+\hline
+{\em source} & Source memory block. \\
+\hline
+{\em size} & Number of bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the destination memory block. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00142}{142}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_a15258bb22b902725b1fbf405463ed07d}{platform\+\_\+copy\+\_\+memory()}}.
+
+\Hypertarget{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc}\label{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc} 
+\index{kmemory.c@{kmemory.c}!kfree@{kfree}}
+\index{kfree@{kfree}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{kfree()}{kfree()}}
+{\footnotesize\ttfamily void kfree (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{block,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}}}]{tag }\end{DoxyParamCaption})}
+
+
+
+Frees a previously allocated memory block. 
+
+Subtracts the deallocated size from internal statistics.
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Pointer to the memory block to free. \\
+\hline
+{\em size} & Size of the block in bytes (must match original allocation). \\
+\hline
+{\em tag} & Tag used when originally allocating the block. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00111}{111}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00013}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\+\_\+free()}}, \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00026}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00021}{memory\+\_\+stats\+::total\+\_\+allocated}}.
+
+\Hypertarget{kmemory_8c_a2a80291541bfd799993b25c748ebbe03}\label{kmemory_8c_a2a80291541bfd799993b25c748ebbe03} 
+\index{kmemory.c@{kmemory.c}!kset\_memory@{kset\_memory}}
+\index{kset\_memory@{kset\_memory}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{kset\_memory()}{kset\_memory()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} kset\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{value,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Sets every byte in a memory block to a specific value. 
+
+Fills a memory block with a specific byte value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Destination memory block. \\
+\hline
+{\em value} & Byte value to fill the block with. \\
+\hline
+{\em size} & Number of bytes to fill. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the filled memory block. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00154}{154}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_aa65146de20a7fd23870d3809834021b7}{platform\+\_\+set\+\_\+memory()}}.
+
+\Hypertarget{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}\label{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5} 
+\index{kmemory.c@{kmemory.c}!kzero\_memory@{kzero\_memory}}
+\index{kzero\_memory@{kzero\_memory}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{kzero\_memory()}{kzero\_memory()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} kzero\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{block,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Fills the provided memory block with zeros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Pointer to the memory block. \\
+\hline
+{\em size} & Number of bytes to zero out. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the zeroed memory block. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00130}{130}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}.
+
+\Hypertarget{kmemory_8c_ab2ac446da30e1b8a9f0d88566041c7ec}\label{kmemory_8c_ab2ac446da30e1b8a9f0d88566041c7ec} 
+\index{kmemory.c@{kmemory.c}!shutdown\_memory@{shutdown\_memory}}
+\index{shutdown\_memory@{shutdown\_memory}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{shutdown\_memory()}{shutdown\_memory()}}
+{\footnotesize\ttfamily void shutdown\+\_\+memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shuts down the memory tracking system. 
+
+Shuts down the memory allocator subsystem.
+
+Currently does nothing but can be extended to log final usage or detect leaks. 
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00074}{74}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{kmemory_8c_a228ea890e8922a7de688a37a1de46fd0}\label{kmemory_8c_a228ea890e8922a7de688a37a1de46fd0} 
+\index{kmemory.c@{kmemory.c}!memory\_tag\_strings@{memory\_tag\_strings}}
+\index{memory\_tag\_strings@{memory\_tag\_strings}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{memory\_tag\_strings}{memory\_tag\_strings}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} memory\+\_\+tag\+\_\+strings\mbox{[}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ace51437c5832765c883cbae625e248b1}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}UNKNOWN\ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ARRAY\ \ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}DARRAY\ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}DICT\ \ \ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}RING\_QUEUE\ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}BST\ \ \ \ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}STRING\ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}APPLICATION"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}JOB\ \ \ \ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}TEXTURE\ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}MAT\_INST\ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}RENDERER\ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}GAME\ \ \ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}TRANSFORM\ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ENTITY\ \ \ \ \ "{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ENTITY\_NODE"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}SCENE\ \ \ \ \ \ "{}}\}}
+
+\end{DoxyCode}
+
+
+Human-\/readable strings for each memory tag. 
+
+Used when printing memory usage stats to provide meaningful labels. 
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00034}{34}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmemory_8c_source_l00166}{get\+\_\+memory\+\_\+usage\+\_\+str()}}.
+
+\Hypertarget{kmemory_8c_a6d7bbe4533e4ee2d20e5419af15ebed0}\label{kmemory_8c_a6d7bbe4533e4ee2d20e5419af15ebed0} 
+\index{kmemory.c@{kmemory.c}!stats@{stats}}
+\index{stats@{stats}!kmemory.c@{kmemory.c}}
+\doxysubsubsection{\texorpdfstring{stats}{stats}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structmemory__stats}{memory\+\_\+stats}} stats\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Global instance of memory usage statistics. 
+
+Aggregates all memory allocations tracked by kallocate/kfree. 
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00058}{58}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmemory_8c_source_l00166}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{kmemory_8c_source_l00065}{initialize\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00087}{kallocate()}}, and \mbox{\hyperlink{kmemory_8c_source_l00111}{kfree()}}.
+

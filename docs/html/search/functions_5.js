@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['report_5fassertion_5ffailure_0',['report_assertion_failure',['../asserts_8h.html#a081a03d10de2e1eebf9bb889519687bc',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c'],['../logger_8c.html#a89ca11b6142a42bebac099dfacf57f59',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c']]]
+  ['log_5foutput_0',['log_output',['../logger_8c.html#abdf99acf6ecc4a6fd2277e74ed3fd8c6',1,'log_output(log_level level, const char *message,...):&#160;logger.c'],['../logger_8h.html#a0c968c3f536c566594a9fd2d14dfedfc',1,'log_output(log_level level, const char *message,...):&#160;logger.c']]]
 ];

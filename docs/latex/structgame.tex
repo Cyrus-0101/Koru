@@ -1,0 +1,161 @@
+\doxysection{game Struct Reference}
+\hypertarget{structgame}{}\label{structgame}\index{game@{game}}
+
+
+Represents the basic game interface.  
+
+
+
+
+{\ttfamily \#include $<$game\+\_\+types.\+h$>$}
+
+
+
+Collaboration diagram for game\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{structgame__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structapplication__config}{application\+\_\+config}} \mbox{\hyperlink{structgame_a12c0bdd534b736ca685c7ef91b17c80d}{app\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Configuration used to create the application window. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgame_a5466af7e15d158c9a30a2c733514bc13}{initialize}} )(struct \mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst)
+\begin{DoxyCompactList}\small\item\em Function pointer to the game\textquotesingle{}s initialization routine. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgame_afe7bfadc01e08def3e7cae0019151d1b}{update}} )(struct \mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Function pointer to the game\textquotesingle{}s update routine. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgame_ac2c261fc48169dc53096929654c51bfe}{render}} )(struct \mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Function pointer to the game\textquotesingle{}s render routine. \end{DoxyCompactList}\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgame_a320793f814af5f889a43b7ab25d75b67}{on\+\_\+resize}} )(struct \mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} width, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} height)
+\begin{DoxyCompactList}\small\item\em Function pointer to handle window resizing. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgame_aa77684f4c43b2aafcaa57421159f5d03}{state}}
+\begin{DoxyCompactList}\small\item\em Pointer to game-\/specific state data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the basic game interface. 
+
+This struct defines how the engine interacts with a specific game. It includes function pointers for lifecycle management and a pointer to game-\/specific state data. 
+
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00012}{12}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structgame_a12c0bdd534b736ca685c7ef91b17c80d}\label{structgame_a12c0bdd534b736ca685c7ef91b17c80d} 
+\index{game@{game}!app\_config@{app\_config}}
+\index{app\_config@{app\_config}!game@{game}}
+\doxysubsubsection{\texorpdfstring{app\_config}{app\_config}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structapplication__config}{application\+\_\+config}} game\+::app\+\_\+config}
+
+
+
+Configuration used to create the application window. 
+
+
+
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00016}{16}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}, and \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+
+\Hypertarget{structgame_a5466af7e15d158c9a30a2c733514bc13}\label{structgame_a5466af7e15d158c9a30a2c733514bc13} 
+\index{game@{game}!initialize@{initialize}}
+\index{initialize@{initialize}!game@{game}}
+\doxysubsubsection{\texorpdfstring{initialize}{initialize}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}(\texorpdfstring{$\ast$}{*} game\+::initialize) (struct \mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst)}
+
+
+
+Function pointer to the game\textquotesingle{}s initialization routine. 
+
+Called once during startup after the platform layer is initialized. 
+
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00023}{23}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}, \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+
+\Hypertarget{structgame_a320793f814af5f889a43b7ab25d75b67}\label{structgame_a320793f814af5f889a43b7ab25d75b67} 
+\index{game@{game}!on\_resize@{on\_resize}}
+\index{on\_resize@{on\_resize}!game@{game}}
+\doxysubsubsection{\texorpdfstring{on\_resize}{on\_resize}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} game\+::on\+\_\+resize) (struct \mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} width, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} height)}
+
+
+
+Function pointer to handle window resizing. 
+
+Optional. Can be NULL if not needed. 
+
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00044}{44}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}, \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+
+\Hypertarget{structgame_ac2c261fc48169dc53096929654c51bfe}\label{structgame_ac2c261fc48169dc53096929654c51bfe} 
+\index{game@{game}!render@{render}}
+\index{render@{render}!game@{game}}
+\doxysubsubsection{\texorpdfstring{render}{render}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}(\texorpdfstring{$\ast$}{*} game\+::render) (struct \mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)}
+
+
+
+Function pointer to the game\textquotesingle{}s render routine. 
+
+Called once per frame to draw the game. 
+
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00037}{37}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+
+\Hypertarget{structgame_aa77684f4c43b2aafcaa57421159f5d03}\label{structgame_aa77684f4c43b2aafcaa57421159f5d03} 
+\index{game@{game}!state@{state}}
+\index{state@{state}!game@{game}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} game\+::state}
+
+
+
+Pointer to game-\/specific state data. 
+
+Allocated and managed by the game implementation. 
+
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00051}{51}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+
+\Hypertarget{structgame_afe7bfadc01e08def3e7cae0019151d1b}\label{structgame_afe7bfadc01e08def3e7cae0019151d1b} 
+\index{game@{game}!update@{update}}
+\index{update@{update}!game@{game}}
+\doxysubsubsection{\texorpdfstring{update}{update}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}(\texorpdfstring{$\ast$}{*} game\+::update) (struct \mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)}
+
+
+
+Function pointer to the game\textquotesingle{}s update routine. 
+
+Called once per frame to update game logic. 
+
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00030}{30}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/\mbox{\hyperlink{game__types_8h}{game\+\_\+types.\+h}}\end{DoxyCompactItemize}

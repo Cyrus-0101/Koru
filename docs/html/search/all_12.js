@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
-  ['report_5fassertion_5ffailure_1',['report_assertion_failure',['../asserts_8h.html#a081a03d10de2e1eebf9bb889519687bc',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c'],['../logger_8c.html#a89ca11b6142a42bebac099dfacf57f59',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c']]],
-  ['resource_20management_20strong_2',['3. &lt;strong&gt;Resource Management&lt;/strong&gt;',['../index.html#autotoc_md6',1,'']]],
-  ['roadmap_3',['🔮 Roadmap',['../index.html#autotoc_md21',1,'']]]
+  ['on_5fresize_0',['on_resize',['../structgame.html#a320793f814af5f889a43b7ab25d75b67',1,'game']]],
+  ['overview_1',['🧠 Overview',['../index.html#autotoc_md2',1,'']]]
 ];
