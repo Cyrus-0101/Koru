@@ -2,6 +2,22 @@
 
 #include "defines.h"  // Core definitions: types, asserts, platform detection, etc.
 
+/**
+ * @file application.h
+ * @brief Public interface for the core application system.
+ *
+ * This module provides the main entry point and lifecycle management for the engine.
+ * It handles:
+ * - Application configuration (window size, position, name)
+ * - Initialization of core systems (memory, logging, platform layer)
+ * - The main game loop
+ *
+ * Usage:
+ * - Define a `create_game()` function that populates a `game` struct
+ * - Call `application_create()` to initialize the engine
+ * - Call `application_run()` to start the game loop
+ */
+
 // Forward declaration of game struct
 struct game;
 
@@ -45,7 +61,7 @@ typedef struct application_config {
  * Sets up internal systems like memory, logging, input, and prepares the game loop.
  * Must be called before application_run().
  *
- * @param config A pointer to an application_config struct containing setup parameters.
+ * @param game_inst A pointer to the game instance containing setup parameters.
  * @return TRUE if initialization was successful; FALSE otherwise.
  */
 KAPI b8 application_create(struct game* game_inst);
