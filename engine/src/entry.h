@@ -51,7 +51,7 @@ int main(void) {
     }
 
     // Initialize the application with the provided game configuration
-    if (!application_create(&game_inst.app_config)) {
+    if (!application_create(&game_inst)) {
         KINFO("Application failed to create!.");
         return 1;
     }
