@@ -84,14 +84,20 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="structapplication__state__coll__graph.png" border="0" usemap="#aapplication__state_coll__map" alt="Collaboration graph"/></div>
 <map name="aapplication__state_coll__map" id="aapplication__state_coll__map">
-<area shape="rect" title="Internal state structure for the application." alt="" coords="5,93,140,119"/>
-<area shape="rect" href="structplatform__state.html" title="Opaque state structure for the platform layer." alt="" coords="13,5,132,31"/>
-<area shape="poly" title=" " alt="" coords="75,45,75,93,70,93,70,45"/>
+<area shape="rect" title="Internal state structure for the application." alt="" coords="65,181,200,207"/>
+<area shape="rect" href="structgame.html" title="Represents the basic game interface." alt="" coords="46,93,105,119"/>
+<area shape="poly" title=" " alt="" coords="76,132,83,156,94,169,108,179,105,183,90,173,78,159,71,133"/>
+<area shape="rect" href="structapplication__config.html" title="Configuration settings for initializing the application." alt="" coords="5,5,145,31"/>
+<area shape="poly" title=" " alt="" coords="78,45,78,93,73,93,73,45"/>
+<area shape="rect" href="structplatform__state.html" title="Opaque state structure for the platform layer." alt="" coords="129,93,248,119"/>
+<area shape="poly" title=" " alt="" coords="178,132,162,159,144,183,140,180,157,156,173,129"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
+<tr class="memitem:ae224fcec4853d590c4068314f75196c2" id="r_ae224fcec4853d590c4068314f75196c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structgame.html">game</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#ae224fcec4853d590c4068314f75196c2">game_inst</a></td></tr>
+<tr class="separator:ae224fcec4853d590c4068314f75196c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c10d54c29174a16313dfc1992ccabde" id="r_a7c10d54c29174a16313dfc1992ccabde"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde">is_running</a></td></tr>
 <tr class="memdesc:a7c10d54c29174a16313dfc1992ccabde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the application is currently running.  <br /></td></tr>
 <tr class="separator:a7c10d54c29174a16313dfc1992ccabde"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,8 +126,26 @@ Data Fields</h2></td></tr>
 <li>Timing information for frame updates </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00014">14</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00016">16</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a id="ae224fcec4853d590c4068314f75196c2" name="ae224fcec4853d590c4068314f75196c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae224fcec4853d590c4068314f75196c2">&#9670;&#160;</a></span>game_inst</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structgame.html">game</a>* application_state::game_inst</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00017">17</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00069">application_create()</a>.</p>
+
+</div>
+</div>
 <a id="a4a01899027b7429dce0fa6290b927f9c" name="a4a01899027b7429dce0fa6290b927f9c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4a01899027b7429dce0fa6290b927f9c">&#9670;&#160;</a></span>height</h2>
 
@@ -136,7 +160,9 @@ Data Fields</h2></td></tr>
 
 <p>The height of the application window client area. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00038">38</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00041">41</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00069">application_create()</a>.</p>
 
 </div>
 </div>
@@ -154,9 +180,9 @@ Data Fields</h2></td></tr>
 
 <p>Indicates whether the application is currently running. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00018">18</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00021">21</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00066">application_create()</a>, and <a class="el" href="application_8c_source.html#l00106">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00069">application_create()</a>, and <a class="el" href="application_8c_source.html#l00121">application_run()</a>.</p>
 
 </div>
 </div>
@@ -174,9 +200,9 @@ Data Fields</h2></td></tr>
 
 <p>Indicates whether the application is currently suspended. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00023">23</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00026">26</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00066">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00069">application_create()</a>.</p>
 
 </div>
 </div>
@@ -194,7 +220,7 @@ Data Fields</h2></td></tr>
 
 <p>Timestamp of the last processed frame for delta time calculation. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00043">43</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00046">46</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
 </div>
 </div>
@@ -212,9 +238,9 @@ Data Fields</h2></td></tr>
 
 <p>Opaque platform-specific state used for windowing, input, etc. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00028">28</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00031">31</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00066">application_create()</a>, and <a class="el" href="application_8c_source.html#l00106">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00069">application_create()</a>, and <a class="el" href="application_8c_source.html#l00121">application_run()</a>.</p>
 
 </div>
 </div>
@@ -232,7 +258,9 @@ Data Fields</h2></td></tr>
 
 <p>The width of the application window client area. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00033">33</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00036">36</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00069">application_create()</a>.</p>
 
 </div>
 </div>
@@ -242,7 +270,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 26 2025 20:50:05 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue May 27 2025 20:50:09 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

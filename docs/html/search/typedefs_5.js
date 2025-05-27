@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['platform_5fstate_0',['platform_state',['../platform_8h.html#a8c661bb1c0637f4277be66a5c2f18604',1,'platform.h']]]
+  ['log_5flevel_0',['log_level',['../logger_8h.html#a073554067a9aac1790a5744efd4c22c6',1,'logger.h']]]
 ];

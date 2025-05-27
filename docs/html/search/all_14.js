@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['terminal_5fsupports_5fcolor_0',['terminal_supports_color',['../logger_8c.html#acceded25efdbbd2bf2cbd1bd79a1d91a',1,'logger.c']]],
-  ['to_20help_1',['💡 Want to Help?',['../index.html#autotoc_md23',1,'']]],
-  ['true_2',['TRUE',['../defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d',1,'defines.h']]]
+  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
+  ['render_1',['render',['../structgame.html#ac2c261fc48169dc53096929654c51bfe',1,'game']]],
+  ['report_5fassertion_5ffailure_2',['report_assertion_failure',['../asserts_8h.html#a081a03d10de2e1eebf9bb889519687bc',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c'],['../logger_8c.html#a89ca11b6142a42bebac099dfacf57f59',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c']]],
+  ['resource_20management_20strong_3',['3. &lt;strong&gt;Resource Management&lt;/strong&gt;',['../index.html#autotoc_md6',1,'']]],
+  ['roadmap_4',['🔮 Roadmap',['../index.html#autotoc_md21',1,'']]]
 ];

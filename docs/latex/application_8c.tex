@@ -1,9 +1,12 @@
 \doxysection{engine/src/core/application.c File Reference}
 \hypertarget{application_8c}{}\label{application_8c}\index{engine/src/core/application.c@{engine/src/core/application.c}}
 {\ttfamily \#include "{}application.\+h"{}}\newline
-{\ttfamily \#include "{}platform/platform.\+h"{}}\newline
+{\ttfamily \#include "{}game\+\_\+types.\+h"{}}\newline
 {\ttfamily \#include "{}core/logger.\+h"{}}\newline
-Include dependency graph for application.\+c\+:\nopagebreak
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}platform/platform.\+h"{}}\newline
+Include dependency graph for application.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,7 +26,7 @@ typedef struct \mbox{\hyperlink{structapplication__state}{application\+\_\+state
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8c_a07c635922a39f5663a8ceefcf1e50186}{application\+\_\+create}} (\mbox{\hyperlink{structapplication__config}{application\+\_\+config}} \texorpdfstring{$\ast$}{*}config)
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8c_af0ccecbeef900f30b0b734eb020574ef}{application\+\_\+create}} (\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst)
 \begin{DoxyCompactList}\small\item\em Initializes the application with the provided configuration. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8c_a08c8575858e12aa5260a1cc0101df8bd}{application\+\_\+run}} ()
 \begin{DoxyCompactList}\small\item\em Starts the main application loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -56,11 +59,11 @@ Tracks\+:
 \end{DoxyItemize}
 
 \doxysubsection{Function Documentation}
-\Hypertarget{application_8c_a07c635922a39f5663a8ceefcf1e50186}\label{application_8c_a07c635922a39f5663a8ceefcf1e50186} 
+\Hypertarget{application_8c_af0ccecbeef900f30b0b734eb020574ef}\label{application_8c_af0ccecbeef900f30b0b734eb020574ef} 
 \index{application.c@{application.c}!application\_create@{application\_create}}
 \index{application\_create@{application\_create}!application.c@{application.c}}
 \doxysubsubsection{\texorpdfstring{application\_create()}{application\_create()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} application\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structapplication__config}{application\+\_\+config}} \texorpdfstring{$\ast$}{*}}]{config }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} application\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}}]{game\+\_\+inst }\end{DoxyParamCaption})}
 
 
 
@@ -80,15 +83,15 @@ TRUE if initialization was successful; FALSE otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00066}{66}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00069}{69}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{application_8c_source_l00054}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{logger_8c_source_l00016}{initialize\+\_\+logging()}}, \mbox{\hyperlink{application_8c_source_l00049}{initialized}}, \mbox{\hyperlink{application_8c_source_l00018}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00023}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00062}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00041}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00037}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00054}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00070}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{application_8h_source_l00039}{application\+\_\+config\+::name}}, \mbox{\hyperlink{application_8c_source_l00028}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup()}}, \mbox{\hyperlink{application_8h_source_l00034}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00019}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00024}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00029}{application\+\_\+config\+::start\+\_\+width}}, and \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+References \mbox{\hyperlink{game__types_8h_source_l00016}{game\+::app\+\_\+config}}, \mbox{\hyperlink{application_8c_source_l00057}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{application_8c_source_l00017}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{application_8c_source_l00041}{application\+\_\+state\+::height}}, \mbox{\hyperlink{game__types_8h_source_l00023}{game\+::initialize}}, \mbox{\hyperlink{logger_8c_source_l00016}{initialize\+\_\+logging()}}, \mbox{\hyperlink{application_8c_source_l00052}{initialized}}, \mbox{\hyperlink{application_8c_source_l00021}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00026}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00062}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00041}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00037}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00054}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00070}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{application_8h_source_l00039}{application\+\_\+config\+::name}}, \mbox{\hyperlink{game__types_8h_source_l00044}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{application_8c_source_l00031}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup()}}, \mbox{\hyperlink{application_8h_source_l00034}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00019}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00024}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00029}{application\+\_\+config\+::start\+\_\+width}}, \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}, and \mbox{\hyperlink{application_8c_source_l00036}{application\+\_\+state\+::width}}.
 
 
 
-Referenced by \mbox{\hyperlink{main_8c_source_l00005}{main()}}.
+Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
 
 \Hypertarget{application_8c_a08c8575858e12aa5260a1cc0101df8bd}\label{application_8c_a08c8575858e12aa5260a1cc0101df8bd} 
 \index{application.c@{application.c}!application\_run@{application\_run}}
@@ -109,15 +112,15 @@ TRUE if the application exited cleanly; FALSE if an error occurred during shutdo
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00106}{106}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00121}{121}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{application_8c_source_l00054}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{application_8c_source_l00018}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00028}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages()}}, \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\+\_\+shutdown()}}, and \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+References \mbox{\hyperlink{application_8c_source_l00057}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{kmemory_8c_source_l00166}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{application_8c_source_l00021}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{logger_8h_source_l00054}{KINFO}}, \mbox{\hyperlink{application_8c_source_l00031}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages()}}, \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\+\_\+shutdown()}}, and \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
 
 
 
-Referenced by \mbox{\hyperlink{main_8c_source_l00005}{main()}}.
+Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
 
 
 
@@ -134,11 +137,11 @@ Global instance of the application state.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00054}{54}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00057}{57}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00106}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+run()}}.
 
 \Hypertarget{application_8c_aca033d9c168f6eceec40a0e9a9354e79}\label{application_8c_aca033d9c168f6eceec40a0e9a9354e79} 
 \index{application.c@{application.c}!initialized@{initialized}}
@@ -152,9 +155,9 @@ Global flag indicating if the application has already been initialized.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00049}{49}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00052}{52}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}.
 

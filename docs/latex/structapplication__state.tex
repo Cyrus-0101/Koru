@@ -7,15 +7,18 @@ Internal state structure for the application.
 
 
 
-Collaboration diagram for application\+\_\+state\+:\nopagebreak
+Collaboration diagram for application\+\_\+state\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=181pt]{structapplication__state__coll__graph}
+\includegraphics[width=262pt]{structapplication__state__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Data Fields}
 \begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structapplication__state_ae224fcec4853d590c4068314f75196c2}{game\+\_\+inst}}
 \item 
 \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{structapplication__state_a7c10d54c29174a16313dfc1992ccabde}{is\+\_\+running}}
 \begin{DoxyCompactList}\small\item\em Indicates whether the application is currently running. \end{DoxyCompactList}\item 
@@ -42,11 +45,25 @@ Tracks\+:
 \item Timing information for frame updates 
 \end{DoxyItemize}
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00014}{14}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00016}{16}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
 \doxysubsection{Field Documentation}
+\Hypertarget{structapplication__state_ae224fcec4853d590c4068314f75196c2}\label{structapplication__state_ae224fcec4853d590c4068314f75196c2} 
+\index{application\_state@{application\_state}!game\_inst@{game\_inst}}
+\index{game\_inst@{game\_inst}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{game\_inst}{game\_inst}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgame}{game}}\texorpdfstring{$\ast$}{*} application\+\_\+state\+::game\+\_\+inst}
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00017}{17}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}.
+
 \Hypertarget{structapplication__state_a4a01899027b7429dce0fa6290b927f9c}\label{structapplication__state_a4a01899027b7429dce0fa6290b927f9c} 
 \index{application\_state@{application\_state}!height@{height}}
 \index{height@{height}!application\_state@{application\_state}}
@@ -59,7 +76,11 @@ The height of the application window client area.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00038}{38}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00041}{41}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}.
 
 \Hypertarget{structapplication__state_a7c10d54c29174a16313dfc1992ccabde}\label{structapplication__state_a7c10d54c29174a16313dfc1992ccabde} 
 \index{application\_state@{application\_state}!is\_running@{is\_running}}
@@ -73,11 +94,11 @@ Indicates whether the application is currently running.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00018}{18}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00021}{21}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00106}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}\label{structapplication__state_a4e7125d95754ef0c0166479931eafcd1} 
 \index{application\_state@{application\_state}!is\_suspended@{is\_suspended}}
@@ -91,11 +112,11 @@ Indicates whether the application is currently suspended.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00023}{23}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00026}{26}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}.
 
 \Hypertarget{structapplication__state_a4fc952bc899881d85115730cf7da1c5a}\label{structapplication__state_a4fc952bc899881d85115730cf7da1c5a} 
 \index{application\_state@{application\_state}!last\_time@{last\_time}}
@@ -109,7 +130,7 @@ Timestamp of the last processed frame for delta time calculation.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00043}{43}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00046}{46}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 \Hypertarget{structapplication__state_a14782a7e40b24efc8c814f786c6525ba}\label{structapplication__state_a14782a7e40b24efc8c814f786c6525ba} 
 \index{application\_state@{application\_state}!platform@{platform}}
@@ -123,11 +144,11 @@ Opaque platform-\/specific state used for windowing, input, etc.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00028}{28}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00031}{31}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00106}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a5c49a4da818b7bae26b50df80c889279}\label{structapplication__state_a5c49a4da818b7bae26b50df80c889279} 
 \index{application\_state@{application\_state}!width@{width}}
@@ -141,7 +162,11 @@ The width of the application window client area.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00033}{33}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00036}{36}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+create()}}.
 
 
 

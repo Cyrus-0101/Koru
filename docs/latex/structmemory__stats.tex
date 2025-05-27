@@ -1,0 +1,71 @@
+\doxysection{memory\+\_\+stats Struct Reference}
+\hypertarget{structmemory__stats}{}\label{structmemory__stats}\index{memory\_stats@{memory\_stats}}
+
+
+Tracks memory usage statistics.  
+
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structmemory__stats_ad0e7709d178700a389b85f6b677d2f5c}{total\+\_\+allocated}}
+\begin{DoxyCompactList}\small\item\em Total memory currently allocated in bytes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structmemory__stats_a9790428695ec487d59f0a3cad2b94227}{tagged\+\_\+allocations}} \mbox{[}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ace51437c5832765c883cbae625e248b1}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array tracking allocations per memory tag type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Tracks memory usage statistics. 
+
+Contains\+:
+\begin{DoxyItemize}
+\item Total allocated bytes
+\item Memory usage categorized by allocation tag 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00017}{17}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmemory__stats_a9790428695ec487d59f0a3cad2b94227}\label{structmemory__stats_a9790428695ec487d59f0a3cad2b94227} 
+\index{memory\_stats@{memory\_stats}!tagged\_allocations@{tagged\_allocations}}
+\index{tagged\_allocations@{tagged\_allocations}!memory\_stats@{memory\_stats}}
+\doxysubsubsection{\texorpdfstring{tagged\_allocations}{tagged\_allocations}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} memory\+\_\+stats\+::tagged\+\_\+allocations\mbox{[}\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ace51437c5832765c883cbae625e248b1}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}\mbox{]}}
+
+
+
+Array tracking allocations per memory tag type. 
+
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00026}{26}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmemory_8c_source_l00166}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{kmemory_8c_source_l00087}{kallocate()}}, and \mbox{\hyperlink{kmemory_8c_source_l00111}{kfree()}}.
+
+\Hypertarget{structmemory__stats_ad0e7709d178700a389b85f6b677d2f5c}\label{structmemory__stats_ad0e7709d178700a389b85f6b677d2f5c} 
+\index{memory\_stats@{memory\_stats}!total\_allocated@{total\_allocated}}
+\index{total\_allocated@{total\_allocated}!memory\_stats@{memory\_stats}}
+\doxysubsubsection{\texorpdfstring{total\_allocated}{total\_allocated}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} memory\+\_\+stats\+::total\+\_\+allocated}
+
+
+
+Total memory currently allocated in bytes. 
+
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00021}{21}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmemory_8c_source_l00087}{kallocate()}}, and \mbox{\hyperlink{kmemory_8c_source_l00111}{kfree()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/core/\mbox{\hyperlink{kmemory_8c}{kmemory.\+c}}\end{DoxyCompactItemize}

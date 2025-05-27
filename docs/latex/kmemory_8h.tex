@@ -1,0 +1,460 @@
+\doxysection{engine/src/core/kmemory.h File Reference}
+\hypertarget{kmemory_8h}{}\label{kmemory_8h}\index{engine/src/core/kmemory.h@{engine/src/core/kmemory.h}}
+{\ttfamily \#include "{}defines.\+h"{}}\newline
+Include dependency graph for kmemory.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{kmemory_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{kmemory_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}} \mbox{\hyperlink{kmemory_8h_a69e3e71ce5a50648353639008c9e02e0}{memory\+\_\+tag}}
+\begin{DoxyCompactList}\small\item\em Memory allocation tag types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}} \{ \newline
+\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a81f0b69faa32aa334a658401d286752b}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a1134e739edef60742877641f494d4525}{MEMORY\+\_\+\+TAG\+\_\+\+ARRAY}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7abf6a78c081d5036466bd2b4264c69e}{MEMORY\+\_\+\+TAG\+\_\+\+DARRAY}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a4d71486f423a49db6e60b58b65f79340}{MEMORY\+\_\+\+TAG\+\_\+\+DICT}}
+, \newline
+\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a6aed8fe38d265080aaf69095c2a5c497}{MEMORY\+\_\+\+TAG\+\_\+\+RING\+\_\+\+QUEUE}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a6b6f409a865bf0decd2d570d6da91613}{MEMORY\+\_\+\+TAG\+\_\+\+BST}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aeef2c46527926f73df4503d8d62eebb7}{MEMORY\+\_\+\+TAG\+\_\+\+APPLICATION}}
+, \newline
+\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a9c030f90b7d843d4ac12636d429c6e49}{MEMORY\+\_\+\+TAG\+\_\+\+JOB}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae8c3a3ec7ac89336ae047b58ac5593a1}{MEMORY\+\_\+\+TAG\+\_\+\+TEXTURE}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a708ec6d6308253f6fac9b47f934c57f3}{MEMORY\+\_\+\+TAG\+\_\+\+MATERIAL\+\_\+\+INSTANCE}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7b4c1e90432c602af81107af1c9cf1b8}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}
+, \newline
+\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae67646a8d6a644c889a4a51cbf835b26}{MEMORY\+\_\+\+TAG\+\_\+\+GAME}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ac92c941b0fd8366cc6f2acacdbe32c35}{MEMORY\+\_\+\+TAG\+\_\+\+TRANSFORM}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ae5a66503c5643a2ece53a5e61217b37a}{MEMORY\+\_\+\+TAG\+\_\+\+ENTITY}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ac5c23deddfa1ce60e0b73d1bf99af20e}{MEMORY\+\_\+\+TAG\+\_\+\+ENTITY\+\_\+\+NODE}}
+, \newline
+\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a5abbd9631a24805c5770e2c81b72bac5}{MEMORY\+\_\+\+TAG\+\_\+\+SCENE}}
+, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ace51437c5832765c883cbae625e248b1}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Memory allocation tag types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{kmemory_8h_acd4839b23d7754212dd84e626ab2f01d}{initialize\+\_\+memory}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the memory allocator subsystem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{kmemory_8h_adf99ff00dcf22ad42c38ee19fea0eb37}{shutdown\+\_\+memory}} ()
+\begin{DoxyCompactList}\small\item\em Shuts down the memory allocator subsystem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8h_a35f22575c2b4fcbda423b6108e352b15}{kallocate}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}} tag)
+\begin{DoxyCompactList}\small\item\em Allocates memory with the given size and tag. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{kmemory_8h_a6b55b65a2f2d473dac0d8ff4605a44fb}{kfree}} (void \texorpdfstring{$\ast$}{*}block, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}} tag)
+\begin{DoxyCompactList}\small\item\em Frees a previously allocated memory block. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8h_af7a3a9859ec3104c490238242dae4ed6}{kzero\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}block, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Fills the provided memory block with zeros. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8h_ae88e143a36677919fee16bdf0f11bc79}{kcopy\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}dest, const void \texorpdfstring{$\ast$}{*}source, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Copies memory from one location to another. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8h_a9b0af42158bf4d4a8db3d25d284b83f4}{kset\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}dest, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} value, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Fills a memory block with a specific byte value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8h_afab51208fe57736ae8ff62918c8c3e69}{get\+\_\+memory\+\_\+usage\+\_\+str}} ()
+\begin{DoxyCompactList}\small\item\em Gets a formatted string showing current memory usage per tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{kmemory_8h_a69e3e71ce5a50648353639008c9e02e0}\label{kmemory_8h_a69e3e71ce5a50648353639008c9e02e0} 
+\index{kmemory.h@{kmemory.h}!memory\_tag@{memory\_tag}}
+\index{memory\_tag@{memory\_tag}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{memory\_tag}{memory\_tag}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}} \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}}}
+
+
+
+Memory allocation tag types. 
+
+Used to categorize memory allocations for tracking, debugging, and profiling. Each tag should be used consistently for similar kinds of allocations. 
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942}\label{kmemory_8h_a37d016888ad6b70195335004614d4942} 
+\index{kmemory.h@{kmemory.h}!memory\_tag@{memory\_tag}}
+\index{memory\_tag@{memory\_tag}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{memory\_tag}{memory\_tag}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}}}
+
+
+
+Memory allocation tag types. 
+
+Used to categorize memory allocations for tracking, debugging, and profiling. Each tag should be used consistently for similar kinds of allocations. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_UNKNOWN@{MEMORY\_TAG\_UNKNOWN}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_UNKNOWN@{MEMORY\_TAG\_UNKNOWN}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a81f0b69faa32aa334a658401d286752b}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a81f0b69faa32aa334a658401d286752b} 
+MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_ARRAY@{MEMORY\_TAG\_ARRAY}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_ARRAY@{MEMORY\_TAG\_ARRAY}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a1134e739edef60742877641f494d4525}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a1134e739edef60742877641f494d4525} 
+MEMORY\+\_\+\+TAG\+\_\+\+ARRAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_DARRAY@{MEMORY\_TAG\_DARRAY}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_DARRAY@{MEMORY\_TAG\_DARRAY}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a7abf6a78c081d5036466bd2b4264c69e}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a7abf6a78c081d5036466bd2b4264c69e} 
+MEMORY\+\_\+\+TAG\+\_\+\+DARRAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_DICT@{MEMORY\_TAG\_DICT}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_DICT@{MEMORY\_TAG\_DICT}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a4d71486f423a49db6e60b58b65f79340}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a4d71486f423a49db6e60b58b65f79340} 
+MEMORY\+\_\+\+TAG\+\_\+\+DICT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_RING\_QUEUE@{MEMORY\_TAG\_RING\_QUEUE}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_RING\_QUEUE@{MEMORY\_TAG\_RING\_QUEUE}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a6aed8fe38d265080aaf69095c2a5c497}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a6aed8fe38d265080aaf69095c2a5c497} 
+MEMORY\+\_\+\+TAG\+\_\+\+RING\+\_\+\+QUEUE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_BST@{MEMORY\_TAG\_BST}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_BST@{MEMORY\_TAG\_BST}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a6b6f409a865bf0decd2d570d6da91613}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a6b6f409a865bf0decd2d570d6da91613} 
+MEMORY\+\_\+\+TAG\+\_\+\+BST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_STRING@{MEMORY\_TAG\_STRING}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_STRING@{MEMORY\_TAG\_STRING}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9}\label{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9} 
+MEMORY\+\_\+\+TAG\+\_\+\+STRING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_APPLICATION@{MEMORY\_TAG\_APPLICATION}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_APPLICATION@{MEMORY\_TAG\_APPLICATION}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942aeef2c46527926f73df4503d8d62eebb7}\label{kmemory_8h_a37d016888ad6b70195335004614d4942aeef2c46527926f73df4503d8d62eebb7} 
+MEMORY\+\_\+\+TAG\+\_\+\+APPLICATION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_JOB@{MEMORY\_TAG\_JOB}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_JOB@{MEMORY\_TAG\_JOB}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a9c030f90b7d843d4ac12636d429c6e49}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a9c030f90b7d843d4ac12636d429c6e49} 
+MEMORY\+\_\+\+TAG\+\_\+\+JOB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_TEXTURE@{MEMORY\_TAG\_TEXTURE}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_TEXTURE@{MEMORY\_TAG\_TEXTURE}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942ae8c3a3ec7ac89336ae047b58ac5593a1}\label{kmemory_8h_a37d016888ad6b70195335004614d4942ae8c3a3ec7ac89336ae047b58ac5593a1} 
+MEMORY\+\_\+\+TAG\+\_\+\+TEXTURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_MATERIAL\_INSTANCE@{MEMORY\_TAG\_MATERIAL\_INSTANCE}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_MATERIAL\_INSTANCE@{MEMORY\_TAG\_MATERIAL\_INSTANCE}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a708ec6d6308253f6fac9b47f934c57f3}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a708ec6d6308253f6fac9b47f934c57f3} 
+MEMORY\+\_\+\+TAG\+\_\+\+MATERIAL\+\_\+\+INSTANCE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_RENDERER@{MEMORY\_TAG\_RENDERER}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_RENDERER@{MEMORY\_TAG\_RENDERER}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a7b4c1e90432c602af81107af1c9cf1b8}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a7b4c1e90432c602af81107af1c9cf1b8} 
+MEMORY\+\_\+\+TAG\+\_\+\+RENDERER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_GAME@{MEMORY\_TAG\_GAME}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_GAME@{MEMORY\_TAG\_GAME}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942ae67646a8d6a644c889a4a51cbf835b26}\label{kmemory_8h_a37d016888ad6b70195335004614d4942ae67646a8d6a644c889a4a51cbf835b26} 
+MEMORY\+\_\+\+TAG\+\_\+\+GAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_TRANSFORM@{MEMORY\_TAG\_TRANSFORM}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_TRANSFORM@{MEMORY\_TAG\_TRANSFORM}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942ac92c941b0fd8366cc6f2acacdbe32c35}\label{kmemory_8h_a37d016888ad6b70195335004614d4942ac92c941b0fd8366cc6f2acacdbe32c35} 
+MEMORY\+\_\+\+TAG\+\_\+\+TRANSFORM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_ENTITY@{MEMORY\_TAG\_ENTITY}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_ENTITY@{MEMORY\_TAG\_ENTITY}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942ae5a66503c5643a2ece53a5e61217b37a}\label{kmemory_8h_a37d016888ad6b70195335004614d4942ae5a66503c5643a2ece53a5e61217b37a} 
+MEMORY\+\_\+\+TAG\+\_\+\+ENTITY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_ENTITY\_NODE@{MEMORY\_TAG\_ENTITY\_NODE}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_ENTITY\_NODE@{MEMORY\_TAG\_ENTITY\_NODE}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942ac5c23deddfa1ce60e0b73d1bf99af20e}\label{kmemory_8h_a37d016888ad6b70195335004614d4942ac5c23deddfa1ce60e0b73d1bf99af20e} 
+MEMORY\+\_\+\+TAG\+\_\+\+ENTITY\+\_\+\+NODE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_SCENE@{MEMORY\_TAG\_SCENE}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_SCENE@{MEMORY\_TAG\_SCENE}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942a5abbd9631a24805c5770e2c81b72bac5}\label{kmemory_8h_a37d016888ad6b70195335004614d4942a5abbd9631a24805c5770e2c81b72bac5} 
+MEMORY\+\_\+\+TAG\+\_\+\+SCENE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MEMORY\_TAG\_MAX\_TAGS@{MEMORY\_TAG\_MAX\_TAGS}!kmemory.h@{kmemory.h}}\index{kmemory.h@{kmemory.h}!MEMORY\_TAG\_MAX\_TAGS@{MEMORY\_TAG\_MAX\_TAGS}}}\Hypertarget{kmemory_8h_a37d016888ad6b70195335004614d4942ace51437c5832765c883cbae625e248b1}\label{kmemory_8h_a37d016888ad6b70195335004614d4942ace51437c5832765c883cbae625e248b1} 
+MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8h_source_l00011}{11}} of file \mbox{\hyperlink{kmemory_8h_source}{kmemory.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{kmemory_8h_afab51208fe57736ae8ff62918c8c3e69}\label{kmemory_8h_afab51208fe57736ae8ff62918c8c3e69} 
+\index{kmemory.h@{kmemory.h}!get\_memory\_usage\_str@{get\_memory\_usage\_str}}
+\index{get\_memory\_usage\_str@{get\_memory\_usage\_str}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{get\_memory\_usage\_str()}{get\_memory\_usage\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} char \texorpdfstring{$\ast$}{*} get\+\_\+memory\+\_\+usage\+\_\+str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets a formatted string showing current memory usage per tag. 
+
+Useful for logging and debugging.
+
+\begin{DoxyReturn}{Returns}
+A heap-\/allocated string containing formatted memory usage info. Caller must free it using \doxylink{kmemory_8h_a6b55b65a2f2d473dac0d8ff4605a44fb}{kfree()}.
+\end{DoxyReturn}
+Gets a formatted string showing current memory usage per tag.
+
+Useful for logging and debugging. Automatically scales values to KB/\+MB/\+GB.
+
+\begin{DoxyReturn}{Returns}
+A heap-\/allocated string containing formatted memory usage info. Caller must free it using \doxylink{kmemory_8h_a6b55b65a2f2d473dac0d8ff4605a44fb}{kfree()}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00166}{166}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmemory_8h_source_l00064}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}, \mbox{\hyperlink{kmemory_8c_source_l00034}{memory\+\_\+tag\+\_\+strings}}, \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}, and \mbox{\hyperlink{kmemory_8c_source_l00026}{memory\+\_\+stats\+::tagged\+\_\+allocations}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+run()}}.
+
+\Hypertarget{kmemory_8h_acd4839b23d7754212dd84e626ab2f01d}\label{kmemory_8h_acd4839b23d7754212dd84e626ab2f01d} 
+\index{kmemory.h@{kmemory.h}!initialize\_memory@{initialize\_memory}}
+\index{initialize\_memory@{initialize\_memory}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{initialize\_memory()}{initialize\_memory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void initialize\+\_\+memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the memory allocator subsystem. 
+
+Sets internal counters to zero and prepares for tracking allocations.
+
+Initializes the memory allocator subsystem.
+
+Resets all counters to zero. 
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00065}{65}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+
+\Hypertarget{kmemory_8h_a35f22575c2b4fcbda423b6108e352b15}\label{kmemory_8h_a35f22575c2b4fcbda423b6108e352b15} 
+\index{kmemory.h@{kmemory.h}!kallocate@{kallocate}}
+\index{kallocate@{kallocate}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{kallocate()}{kallocate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} kallocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}}}]{tag }\end{DoxyParamCaption})}
+
+
+
+Allocates memory with the given size and tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The number of bytes to allocate. \\
+\hline
+{\em tag} & A memory\+\_\+tag to classify this allocation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the allocated memory block.
+\end{DoxyReturn}
+Allocates memory with the given size and tag.
+
+Adds the allocation to internal statistics and returns a pointer to the block.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The number of bytes to allocate. \\
+\hline
+{\em tag} & A memory\+\_\+tag used to categorize this allocation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the allocated memory block. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00087}{87}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00013}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\+\_\+allocate()}}, \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00026}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00021}{memory\+\_\+stats\+::total\+\_\+allocated}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8c_source_l00018}{create\+\_\+game()}}.
+
+\Hypertarget{kmemory_8h_ae88e143a36677919fee16bdf0f11bc79}\label{kmemory_8h_ae88e143a36677919fee16bdf0f11bc79} 
+\index{kmemory.h@{kmemory.h}!kcopy\_memory@{kcopy\_memory}}
+\index{kcopy\_memory@{kcopy\_memory}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{kcopy\_memory()}{kcopy\_memory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} kcopy\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{source,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Copies memory from one location to another. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Destination memory block. \\
+\hline
+{\em source} & Source memory block. \\
+\hline
+{\em size} & Number of bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the destination memory block.
+\end{DoxyReturn}
+Copies memory from one location to another.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Destination memory block. \\
+\hline
+{\em source} & Source memory block. \\
+\hline
+{\em size} & Number of bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the destination memory block. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00142}{142}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_a15258bb22b902725b1fbf405463ed07d}{platform\+\_\+copy\+\_\+memory()}}.
+
+\Hypertarget{kmemory_8h_a6b55b65a2f2d473dac0d8ff4605a44fb}\label{kmemory_8h_a6b55b65a2f2d473dac0d8ff4605a44fb} 
+\index{kmemory.h@{kmemory.h}!kfree@{kfree}}
+\index{kfree@{kfree}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{kfree()}{kfree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void kfree (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{block,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}}}]{tag }\end{DoxyParamCaption})}
+
+
+
+Frees a previously allocated memory block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Pointer to the memory block to free. \\
+\hline
+{\em size} & Size of the memory block in bytes. \\
+\hline
+{\em tag} & Tag used when originally allocating the block.\\
+\hline
+\end{DoxyParams}
+Subtracts the deallocated size from internal statistics.
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Pointer to the memory block to free. \\
+\hline
+{\em size} & Size of the block in bytes (must match original allocation). \\
+\hline
+{\em tag} & Tag used when originally allocating the block. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00111}{111}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00013}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\+\_\+free()}}, \mbox{\hyperlink{kmemory_8c_source_l00058}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00026}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00021}{memory\+\_\+stats\+::total\+\_\+allocated}}.
+
+\Hypertarget{kmemory_8h_a9b0af42158bf4d4a8db3d25d284b83f4}\label{kmemory_8h_a9b0af42158bf4d4a8db3d25d284b83f4} 
+\index{kmemory.h@{kmemory.h}!kset\_memory@{kset\_memory}}
+\index{kset\_memory@{kset\_memory}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{kset\_memory()}{kset\_memory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} kset\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{value,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Fills a memory block with a specific byte value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Destination memory block. \\
+\hline
+{\em value} & Byte value to fill with. \\
+\hline
+{\em size} & Number of bytes to fill. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the filled memory block.
+\end{DoxyReturn}
+Fills a memory block with a specific byte value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Destination memory block. \\
+\hline
+{\em value} & Byte value to fill the block with. \\
+\hline
+{\em size} & Number of bytes to fill. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the filled memory block. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00154}{154}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_aa65146de20a7fd23870d3809834021b7}{platform\+\_\+set\+\_\+memory()}}.
+
+\Hypertarget{kmemory_8h_af7a3a9859ec3104c490238242dae4ed6}\label{kmemory_8h_af7a3a9859ec3104c490238242dae4ed6} 
+\index{kmemory.h@{kmemory.h}!kzero\_memory@{kzero\_memory}}
+\index{kzero\_memory@{kzero\_memory}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{kzero\_memory()}{kzero\_memory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} kzero\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{block,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Fills the provided memory block with zeros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & Pointer to the memory block. \\
+\hline
+{\em size} & Number of bytes to zero out. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the zeroed memory block. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00130}{130}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}.
+
+\Hypertarget{kmemory_8h_adf99ff00dcf22ad42c38ee19fea0eb37}\label{kmemory_8h_adf99ff00dcf22ad42c38ee19fea0eb37} 
+\index{kmemory.h@{kmemory.h}!shutdown\_memory@{shutdown\_memory}}
+\index{shutdown\_memory@{shutdown\_memory}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{shutdown\_memory()}{shutdown\_memory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void shutdown\+\_\+memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shuts down the memory allocator subsystem. 
+
+Currently does nothing but may be extended to log final stats or validate leaks.
+
+Shuts down the memory allocator subsystem.
+
+Currently does nothing but can be extended to log final usage or detect leaks. 
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00074}{74}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+
