@@ -1,10 +1,14 @@
 \doxysection{testbed/src/entry.c File Reference}
 \hypertarget{entry_8c}{}\label{entry_8c}\index{testbed/src/entry.c@{testbed/src/entry.c}}
+
+
+Testbed application entry point implementation.  
+
+
 {\ttfamily \#include "{}game.\+h"{}}\newline
 {\ttfamily \#include $<$entry.\+h$>$}\newline
 {\ttfamily \#include $<$core/kmemory.\+h$>$}\newline
-Include dependency graph for entry.\+c\+:
-\nopagebreak
+Include dependency graph for entry.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +19,23 @@ Include dependency graph for entry.\+c\+:
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{entry_8c_ac1205073da2ce08a82ead459fc8b39cb}{create\+\_\+game}} (\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}out\+\_\+game)
-\begin{DoxyCompactList}\small\item\em Creates and configures the game instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Externally-\/defined function to create and configure a game instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Testbed application entry point implementation. 
+
+This file implements the required {\ttfamily \doxylink{entry_8c_ac1205073da2ce08a82ead459fc8b39cb}{create\+\_\+game()}} function used by the engine. It sets up the game configuration and allocates the game state.
+
+Responsibilities\+:
+\begin{DoxyItemize}
+\item Configure window settings
+\item Assign game lifecycle function pointers
+\item Allocate game-\/specific memory 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{entry_8c_source}{entry.\+c}}.
+
 
 
 \doxysubsection{Function Documentation}
@@ -27,20 +47,18 @@ Include dependency graph for entry.\+c\+:
 
 
 
-Creates and configures the game instance. 
+Externally-\/defined function to create and configure a game instance. 
 
-Externally-\/defined function to create and configure a game instance.
-
-Sets up\+:
+This function must be implemented by the client application (e.\+g., testbed). It sets up\+:
 \begin{DoxyItemize}
-\item Window configuration (position, size, title)
-\item Function pointers for update, render, initialize, and resize
-\item Game-\/specific internal state allocation
+\item Window configuration
+\item Game-\/specific function pointers (initialize/update/render/etc.)
+\item Game state memory allocation
 \end{DoxyItemize}
 
 
 \begin{DoxyParams}{Parameters}
-{\em out\+\_\+game} & A pointer to an uninitialized game struct. \\
+{\em out\+\_\+game} & A pointer to an uninitialized game struct that will be populated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -48,13 +66,13 @@ TRUE if the game was successfully created; FALSE otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{entry_8c_source_l00018}{18}} of file \mbox{\hyperlink{entry_8c_source}{entry.\+c}}.
+Definition at line \mbox{\hyperlink{entry_8c_source_l00020}{20}} of file \mbox{\hyperlink{entry_8c_source}{entry.\+c}}.
 
 
 
-References \mbox{\hyperlink{game__types_8h_source_l00016}{game\+::app\+\_\+config}}, \mbox{\hyperlink{game_8c_source_l00016}{game\+\_\+initialize()}}, \mbox{\hyperlink{game_8c_source_l00065}{game\+\_\+on\+\_\+resize()}}, \mbox{\hyperlink{game_8c_source_l00049}{game\+\_\+render()}}, \mbox{\hyperlink{game_8c_source_l00033}{game\+\_\+update()}}, \mbox{\hyperlink{game__types_8h_source_l00023}{game\+::initialize}}, \mbox{\hyperlink{kmemory_8c_source_l00087}{kallocate()}}, \mbox{\hyperlink{kmemory_8h_source_l00049}{MEMORY\+\_\+\+TAG\+\_\+\+GAME}}, \mbox{\hyperlink{application_8h_source_l00039}{application\+\_\+config\+::name}}, \mbox{\hyperlink{game__types_8h_source_l00044}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{game__types_8h_source_l00037}{game\+::render}}, \mbox{\hyperlink{application_8h_source_l00034}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00019}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00024}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00029}{application\+\_\+config\+::start\+\_\+width}}, \mbox{\hyperlink{game__types_8h_source_l00051}{game\+::state}}, \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}, and \mbox{\hyperlink{game__types_8h_source_l00030}{game\+::update}}.
+References \mbox{\hyperlink{game__types_8h_source_l00029}{game\+::app\+\_\+config}}, \mbox{\hyperlink{game_8c_source_l00029}{game\+\_\+initialize()}}, \mbox{\hyperlink{game_8c_source_l00078}{game\+\_\+on\+\_\+resize()}}, \mbox{\hyperlink{game_8c_source_l00062}{game\+\_\+render()}}, \mbox{\hyperlink{game_8c_source_l00046}{game\+\_\+update()}}, \mbox{\hyperlink{game__types_8h_source_l00036}{game\+::initialize}}, \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+GAME}}, \mbox{\hyperlink{application_8h_source_l00055}{application\+\_\+config\+::name}}, \mbox{\hyperlink{game__types_8h_source_l00057}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{game__types_8h_source_l00050}{game\+::render}}, \mbox{\hyperlink{application_8h_source_l00050}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00035}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00040}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00045}{application\+\_\+config\+::start\+\_\+width}}, \mbox{\hyperlink{game__types_8h_source_l00064}{game\+::state}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, and \mbox{\hyperlink{game__types_8h_source_l00043}{game\+::update}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+Referenced by \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 

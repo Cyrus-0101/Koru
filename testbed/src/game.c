@@ -3,6 +3,19 @@
 #include <core/logger.h>
 
 /**
+ * @file game.c
+ * @brief Implementation of the testbed game logic.
+ *
+ * Contains placeholder implementations for the core game functions:
+ * - Initialization (`game_initialize`)
+ * - Frame update (`game_update`)
+ * - Rendering (`game_render`)
+ * - Resize handling (`game_on_resize`)
+ *
+ * Can be extended to add real gameplay features.
+ */
+
+/**
  * @brief Initializes the game instance.
  *
  * Currently just logs a debug message, but should be extended to initialize:

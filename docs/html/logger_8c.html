@@ -79,6 +79,9 @@ $(function() {
   <div class="headertitle"><div class="title">logger.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of the logging system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="platform_8h_source.html">platform/platform.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
@@ -91,10 +94,10 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="logger_8c__incl.png" border="0" usemap="#aengine_2src_2core_2logger_8c" alt=""/></div>
 <map name="aengine_2src_2core_2logger_8c" id="aengine_2src_2core_2logger_8c">
-<area shape="rect" title=" " alt="" coords="225,5,401,31"/>
-<area shape="rect" href="logger_8h.html" title=" " alt="" coords="5,79,80,104"/>
+<area shape="rect" title="Implementation of the logging system." alt="" coords="225,5,401,31"/>
+<area shape="rect" href="logger_8h.html" title="Public interface for the Koru Engine logging system." alt="" coords="5,79,80,104"/>
 <area shape="poly" title=" " alt="" coords="271,33,94,79,93,74,269,28"/>
-<area shape="rect" href="platform_8h.html" title=" " alt="" coords="105,79,255,104"/>
+<area shape="rect" href="platform_8h.html" title="Platform abstraction layer interface." alt="" coords="105,79,255,104"/>
 <area shape="poly" title=" " alt="" coords="293,33,215,74,213,70,291,28"/>
 <area shape="rect" title=" " alt="" coords="280,79,347,104"/>
 <area shape="poly" title=" " alt="" coords="316,31,316,65,311,65,311,31"/>
@@ -102,7 +105,7 @@ $(function() {
 <area shape="poly" title=" " alt="" coords="330,29,382,68,379,72,327,33"/>
 <area shape="rect" title=" " alt="" coords="467,79,541,104"/>
 <area shape="poly" title=" " alt="" coords="345,28,461,71,459,76,343,33"/>
-<area shape="rect" href="defines_8h.html" title=" " alt="" coords="70,152,151,177"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="70,152,151,177"/>
 <area shape="poly" title=" " alt="" coords="56,102,92,140,88,144,52,106"/>
 <area shape="poly" title=" " alt="" coords="170,106,133,144,129,140,167,102"/>
 </map>
@@ -113,12 +116,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aae701ec9fd1cbb624f28156730027305" id="r_aae701ec9fd1cbb624f28156730027305"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#aae701ec9fd1cbb624f28156730027305">initialize_logging</a> ()</td></tr>
+<tr class="memdesc:aae701ec9fd1cbb624f28156730027305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the logging system.  <br /></td></tr>
 <tr class="separator:aae701ec9fd1cbb624f28156730027305"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a811866002a3bf25ead26b47687cfccdf" id="r_a811866002a3bf25ead26b47687cfccdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#a811866002a3bf25ead26b47687cfccdf">shutdown_logging</a> ()</td></tr>
+<tr class="memdesc:a811866002a3bf25ead26b47687cfccdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the logging system.  <br /></td></tr>
 <tr class="separator:a811866002a3bf25ead26b47687cfccdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdf99acf6ecc4a6fd2277e74ed3fd8c6" id="r_abdf99acf6ecc4a6fd2277e74ed3fd8c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#abdf99acf6ecc4a6fd2277e74ed3fd8c6">log_output</a> (<a class="el" href="logger_8h.html#ac91d55174d383848b976a34de843748e">log_level</a> level, const char *message,...)</td></tr>
+<tr class="memdesc:abdf99acf6ecc4a6fd2277e74ed3fd8c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a formatted message at the specified log level.  <br /></td></tr>
 <tr class="separator:abdf99acf6ecc4a6fd2277e74ed3fd8c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89ca11b6142a42bebac099dfacf57f59" id="r_a89ca11b6142a42bebac099dfacf57f59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#a89ca11b6142a42bebac099dfacf57f59">report_assertion_failure</a> (const char *expression, const char *message, const char *file, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> line)</td></tr>
+<tr class="memdesc:a89ca11b6142a42bebac099dfacf57f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an assertion failure message to the logging system.  <br /></td></tr>
 <tr class="separator:a89ca11b6142a42bebac099dfacf57f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -126,7 +133,18 @@ Variables</h2></td></tr>
 <tr class="memitem:acceded25efdbbd2bf2cbd1bd79a1d91a" id="r_acceded25efdbbd2bf2cbd1bd79a1d91a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#acceded25efdbbd2bf2cbd1bd79a1d91a">terminal_supports_color</a> = <a class="el" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a></td></tr>
 <tr class="separator:acceded25efdbbd2bf2cbd1bd79a1d91a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of the logging system. </p>
+<p>Implements the logging functionality with color-coded terminal output, message formatting, and integration with platform-specific console writes.</p>
+<p>Features:</p><ul>
+<li>Level-based filtering</li>
+<li>ANSI escape codes for color output</li>
+<li>Platform abstraction for console output</li>
+<li>Assertion failure handler </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="aae701ec9fd1cbb624f28156730027305" name="aae701ec9fd1cbb624f28156730027305"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aae701ec9fd1cbb624f28156730027305">&#9670;&#160;</a></span>initialize_logging()</h2>
 
@@ -142,11 +160,19 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00016">16</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p>Initializes the logging system. </p>
+<p>Currently just returns TRUE. In future versions, this may include:</p><ul>
+<li>Opening a log file</li>
+<li>Initializing mutexes for thread safety</li>
+<li>Detecting terminal capabilities</li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if initialization succeeded; FALSE otherwise. </dd></dl>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00062">TRUE</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00029">29</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00069">application_create()</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00083">application_create()</a>.</p>
 
 </div>
 </div>
@@ -182,11 +208,26 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00031">31</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p>Logs a formatted message at the specified log level. </p>
+<p>Supports standard formatting like <code>printf()</code> and includes:</p><ul>
+<li>Level prefixing (e.g., "[INFO]: ")</li>
+<li>Color coding based on severity (if supported by terminal)</li>
+<li>Platform-specific output routing</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>The severity level of the message (e.g., LOG_LEVEL_DEBUG). </td></tr>
+    <tr><td class="paramname">message</td><td>A format string similar to <code>printf()</code>. </td></tr>
+    <tr><td class="paramname">...</td><td>Arguments used to replace format specifiers in the message. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="logger_8h_source.html#l00021">LOG_LEVEL_WARN</a>, <a class="el" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write()</a>, and <a class="el" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00044">44</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00086">report_assertion_failure()</a>.</p>
+<p class="reference">References <a class="el" href="logger_8h_source.html#l00078">LOG_LEVEL_WARN</a>, <a class="el" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write()</a>, and <a class="el" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00099">report_assertion_failure()</a>.</p>
 
 </div>
 </div>
@@ -228,9 +269,21 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00086">86</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p>Logs an assertion failure message to the logging system. </p>
+<p>This function should be implemented in <code><a class="el" href="logger_8c.html" title="Implementation of the logging system.">logger.c</a></code> or another source file. It is called internally by the assertion macros when a condition fails.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">expression</td><td>The stringified failed condition (e.g., <code>"x != NULL"</code>). </td></tr>
+    <tr><td class="paramname">message</td><td>Optional additional context about the assertion. </td></tr>
+    <tr><td class="paramname">file</td><td>The source file where the assertion occurred. </td></tr>
+    <tr><td class="paramname">line</td><td>The line number in the source file. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="logger_8h_source.html#l00019">LOG_LEVEL_FATAL</a>, and <a class="el" href="logger_8c_source.html#l00031">log_output()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00099">99</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+
+<p class="reference">References <a class="el" href="logger_8h_source.html#l00064">LOG_LEVEL_FATAL</a>, and <a class="el" href="logger_8c_source.html#l00044">log_output()</a>.</p>
 
 </div>
 </div>
@@ -249,7 +302,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00023">23</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p>Shuts down the logging system. </p>
+<p>Currently just returns. In future versions, this may include:</p><ul>
+<li>Flushing buffered logs</li>
+<li>Closing log files</li>
+<li>Releasing logging resources </li>
+</ul>
+
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00036">36</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
 </div>
 </div>
@@ -274,14 +334,14 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00012">12</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00025">25</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 27 2025 20:50:09 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue May 27 2025 22:54:25 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -80,6 +80,9 @@ $(function() {
   <div class="headertitle"><div class="title">kmemory.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of the tagged memory allocation system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="kmemory_8h_source.html">kmemory.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="logger_8h_source.html">core/logger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="platform_8h_source.html">platform/platform.h</a>&quot;</code><br />
@@ -92,18 +95,18 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="kmemory_8c__incl.png" border="0" usemap="#aengine_2src_2core_2kmemory_8c" alt=""/></div>
 <map name="aengine_2src_2core_2kmemory_8c" id="aengine_2src_2core_2kmemory_8c">
-<area shape="rect" title=" " alt="" coords="233,5,430,31"/>
-<area shape="rect" href="kmemory_8h.html" title=" " alt="" coords="5,79,100,104"/>
+<area shape="rect" title="Implementation of the tagged memory allocation system." alt="" coords="233,5,430,31"/>
+<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="5,79,100,104"/>
 <area shape="poly" title=" " alt="" coords="287,33,112,78,110,73,286,28"/>
-<area shape="rect" href="logger_8h.html" title=" " alt="" coords="125,79,231,104"/>
+<area shape="rect" href="logger_8h.html" title="Public interface for the Koru Engine logging system." alt="" coords="125,79,231,104"/>
 <area shape="poly" title=" " alt="" coords="308,33,216,75,214,70,306,28"/>
-<area shape="rect" href="platform_8h.html" title=" " alt="" coords="256,79,407,104"/>
+<area shape="rect" href="platform_8h.html" title="Platform abstraction layer interface." alt="" coords="256,79,407,104"/>
 <area shape="poly" title=" " alt="" coords="334,31,334,65,329,65,329,31"/>
 <area shape="rect" title=" " alt="" coords="431,79,501,104"/>
 <area shape="poly" title=" " alt="" coords="354,28,433,70,431,74,352,33"/>
 <area shape="rect" title=" " alt="" coords="526,79,593,104"/>
 <area shape="poly" title=" " alt="" coords="369,28,513,73,512,78,367,33"/>
-<area shape="rect" href="defines_8h.html" title=" " alt="" coords="137,152,219,177"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="137,152,219,177"/>
 <area shape="poly" title=" " alt="" coords="74,102,147,143,144,147,71,106"/>
 <area shape="poly" title=" " alt="" coords="181,104,181,138,175,138,175,104"/>
 <area shape="poly" title=" " alt="" coords="308,106,216,149,214,144,306,102"/>
@@ -154,7 +157,19 @@ Variables</h2></td></tr>
 <tr class="memdesc:a6d7bbe4533e4ee2d20e5419af15ebed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global instance of memory usage statistics.  <br /></td></tr>
 <tr class="separator:a6d7bbe4533e4ee2d20e5419af15ebed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of the tagged memory allocation system. </p>
+<p>This module implements a memory tracking system that allows allocations to be categorized using tags (e.g., MEMORY_TAG_RENDERER, MEMORY_TAG_GAME). It provides:</p><ul>
+<li>Memory usage statistics per tag</li>
+<li>Allocation and deallocation wrappers with tracking</li>
+<li>Helper functions like <code><a class="el" href="kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5" title="Fills the provided memory block with zeros.">kzero_memory()</a></code>, <code><a class="el" href="kmemory_8c.html#a433c653469c55bd95b8b80b801bcc426" title="Copies data from one memory block to another.">kcopy_memory()</a></code>, and <code><a class="el" href="kmemory_8c.html#a2a80291541bfd799993b25c748ebbe03" title="Sets every byte in a memory block to a specific value.">kset_memory()</a></code></li>
+<li>A utility function to generate formatted memory usage strings for debugging</li>
+</ul>
+<p>The system wraps platform-specific memory functions (<code>platform_allocate</code>, <code>platform_free</code>) to ensure consistent behavior and logging.</p>
+<p>Usage: Replace raw memory operations with <code><a class="el" href="kmemory_8c.html#aaff7cb37687dfc7680be1a2101890d88" title="Allocates memory with a given size and tag.">kallocate()</a></code> / <code><a class="el" href="kmemory_8c.html#a49e85a536f69ab06ccc689d5701450dc" title="Frees a previously allocated memory block.">kfree()</a></code> to enable tracking. </p>
+
+<p class="definition">Definition in file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a952570f1b67855783413d2a0d4b0503a" name="a952570f1b67855783413d2a0d4b0503a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a952570f1b67855783413d2a0d4b0503a">&#9670;&#160;</a></span>get_memory_usage_str()</h2>
 
@@ -175,11 +190,11 @@ Variables</h2></td></tr>
 <p>Useful for logging and debugging. Automatically scales values to KB/MB/GB.</p>
 <dl class="section return"><dt>Returns</dt><dd>A heap-allocated string containing formatted memory usage info. Caller must free it using <a class="el" href="kmemory_8h.html#a6b55b65a2f2d473dac0d8ff4605a44fb" title="Frees a previously allocated memory block.">kfree()</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00166">166</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00184">184</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">References <a class="el" href="kmemory_8h_source.html#l00064">MEMORY_TAG_MAX_TAGS</a>, <a class="el" href="kmemory_8c_source.html#l00034">memory_tag_strings</a>, <a class="el" href="kmemory_8c_source.html#l00058">stats</a>, and <a class="el" href="kmemory_8c_source.html#l00026">memory_stats::tagged_allocations</a>.</p>
+<p class="reference">References <a class="el" href="kmemory_8h_source.html#l00077">MEMORY_TAG_MAX_TAGS</a>, <a class="el" href="kmemory_8c_source.html#l00052">memory_tag_strings</a>, <a class="el" href="kmemory_8c_source.html#l00076">stats</a>, and <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00135">application_run()</a>.</p>
 
 </div>
 </div>
@@ -202,11 +217,11 @@ Variables</h2></td></tr>
 <p>Initializes the memory allocator subsystem.</p>
 <p>Resets all counters to zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00065">65</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00083">83</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">References <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>, and <a class="el" href="kmemory_8c_source.html#l00058">stats</a>.</p>
+<p class="reference">References <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>, and <a class="el" href="kmemory_8c_source.html#l00076">stats</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00038">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00051">main()</a>.</p>
 
 </div>
 </div>
@@ -248,11 +263,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the allocated memory block. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00087">87</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00105">105</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00063">FALSE</a>, <a class="el" href="logger_8h_source.html#l00046">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00013">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate()</a>, <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00058">stats</a>, <a class="el" href="kmemory_8c_source.html#l00026">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00021">memory_stats::total_allocated</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00026">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate()</a>, <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00076">stats</a>, <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00039">memory_stats::total_allocated</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="entry_8c_source.html#l00018">create_game()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="entry_8c_source.html#l00020">create_game()</a>.</p>
 
 </div>
 </div>
@@ -300,7 +315,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the destination memory block. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00142">142</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00160">160</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
 <p class="reference">References <a class="el" href="platform_8h.html#a15258bb22b902725b1fbf405463ed07d">platform_copy_memory()</a>.</p>
 
@@ -349,9 +364,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00111">111</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00129">129</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00063">FALSE</a>, <a class="el" href="logger_8h_source.html#l00046">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00013">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free()</a>, <a class="el" href="kmemory_8c_source.html#l00058">stats</a>, <a class="el" href="kmemory_8c_source.html#l00026">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00021">memory_stats::total_allocated</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00026">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free()</a>, <a class="el" href="kmemory_8c_source.html#l00076">stats</a>, <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00039">memory_stats::total_allocated</a>.</p>
 
 </div>
 </div>
@@ -399,7 +414,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the filled memory block. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00154">154</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00172">172</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
 <p class="reference">References <a class="el" href="platform_8h.html#aa65146de20a7fd23870d3809834021b7">platform_set_memory()</a>.</p>
 
@@ -441,7 +456,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the zeroed memory block. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00130">130</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00148">148</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
 <p class="reference">References <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>.</p>
 
@@ -466,9 +481,9 @@ Variables</h2></td></tr>
 <p>Shuts down the memory allocator subsystem.</p>
 <p>Currently does nothing but can be extended to log final usage or detect leaks. </p>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00074">74</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00092">92</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00038">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00051">main()</a>.</p>
 
 </div>
 </div>
@@ -514,9 +529,9 @@ Variables</h2></td></tr>
 <p>Human-readable strings for each memory tag. </p>
 <p>Used when printing memory usage stats to provide meaningful labels. </p>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00034">34</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00052">52</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00166">get_memory_usage_str()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00184">get_memory_usage_str()</a>.</p>
 
 </div>
 </div>
@@ -543,16 +558,16 @@ Variables</h2></td></tr>
 <p>Global instance of memory usage statistics. </p>
 <p>Aggregates all memory allocations tracked by kallocate/kfree. </p>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00058">58</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00076">76</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00166">get_memory_usage_str()</a>, <a class="el" href="kmemory_8c_source.html#l00065">initialize_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00087">kallocate()</a>, and <a class="el" href="kmemory_8c_source.html#l00111">kfree()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00184">get_memory_usage_str()</a>, <a class="el" href="kmemory_8c_source.html#l00083">initialize_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00105">kallocate()</a>, and <a class="el" href="kmemory_8c_source.html#l00129">kfree()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 27 2025 20:50:09 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue May 27 2025 22:54:25 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

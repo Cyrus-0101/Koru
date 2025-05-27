@@ -78,6 +78,9 @@ $(function() {
   <div class="headertitle"><div class="title">entry.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Testbed application entry point implementation.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="game_8h_source.html">game.h</a>&quot;</code><br />
 <code>#include &lt;<a class="el" href="entry_8h_source.html">entry.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="kmemory_8h_source.html">core/kmemory.h</a>&gt;</code><br />
@@ -88,24 +91,24 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="entry_8c__incl.png" border="0" usemap="#atestbed_2src_2entry_8c" alt=""/></div>
 <map name="atestbed_2src_2entry_8c" id="atestbed_2src_2entry_8c">
-<area shape="rect" title=" " alt="" coords="137,5,278,31"/>
-<area shape="rect" href="game_8h.html" title=" " alt="" coords="58,79,128,104"/>
+<area shape="rect" title="Testbed application entry point implementation." alt="" coords="137,5,278,31"/>
+<area shape="rect" href="game_8h.html" title="Interface for the testbed game implementation." alt="" coords="58,79,128,104"/>
 <area shape="poly" title=" " alt="" coords="191,33,125,74,122,69,188,28"/>
-<area shape="rect" href="entry_8h.html" title=" " alt="" coords="174,79,241,104"/>
+<area shape="rect" href="entry_8h.html" title="Main entry point interface for the engine." alt="" coords="174,79,241,104"/>
 <area shape="poly" title=" " alt="" coords="210,31,210,65,205,65,205,31"/>
-<area shape="rect" href="kmemory_8h.html" title=" " alt="" coords="276,152,403,177"/>
+<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="276,152,403,177"/>
 <area shape="poly" title=" " alt="" coords="221,29,322,140,318,143,217,33"/>
-<area shape="rect" href="defines_8h.html" title=" " alt="" coords="135,299,216,324"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="135,299,216,324"/>
 <area shape="poly" title=" " alt="" coords="74,106,47,126,26,153,14,180,9,203,11,225,23,249,43,270,68,285,95,295,122,302,121,307,94,301,66,290,40,274,19,252,6,226,3,202,9,178,22,151,44,122,70,102"/>
-<area shape="rect" href="game__types_8h.html" title=" " alt="" coords="36,152,150,177"/>
+<area shape="rect" href="game__types_8h.html" title="Game&#45;related types and structures used across the engine." alt="" coords="36,152,150,177"/>
 <area shape="poly" title=" " alt="" coords="96,104,96,138,90,138,90,104"/>
-<area shape="rect" href="application_8h.html" title=" " alt="" coords="33,225,172,251"/>
+<area shape="rect" href="application_8h.html" title="Public interface for the core application system." alt="" coords="33,225,172,251"/>
 <area shape="poly" title=" " alt="" coords="97,177,102,211,97,212,92,178"/>
 <area shape="poly" title=" " alt="" coords="116,249,156,287,152,291,113,253"/>
 <area shape="poly" title=" " alt="" coords="191,106,125,147,122,142,188,102"/>
 <area shape="poly" title=" " alt="" coords="205,105,189,139,165,179,129,218,125,214,160,176,184,137,201,103"/>
 <area shape="poly" title=" " alt="" coords="230,102,308,143,305,148,228,106"/>
-<area shape="rect" href="logger_8h.html" title=" " alt="" coords="196,225,302,251"/>
+<area shape="rect" href="logger_8h.html" title="Public interface for the Koru Engine logging system." alt="" coords="196,225,302,251"/>
 <area shape="poly" title=" " alt="" coords="214,104,245,211,240,213,209,105"/>
 <area shape="poly" title=" " alt="" coords="342,178,336,214,328,234,317,252,298,269,276,283,231,301,229,296,273,278,294,265,312,249,324,232,331,213,337,177"/>
 <area shape="poly" title=" " alt="" coords="239,253,200,291,196,287,235,249"/>
@@ -117,10 +120,20 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac1205073da2ce08a82ead459fc8b39cb" id="r_ac1205073da2ce08a82ead459fc8b39cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="entry_8c.html#ac1205073da2ce08a82ead459fc8b39cb">create_game</a> (<a class="el" href="structgame.html">game</a> *out_game)</td></tr>
-<tr class="memdesc:ac1205073da2ce08a82ead459fc8b39cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and configures the game instance.  <br /></td></tr>
+<tr class="memdesc:ac1205073da2ce08a82ead459fc8b39cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Externally-defined function to create and configure a game instance.  <br /></td></tr>
 <tr class="separator:ac1205073da2ce08a82ead459fc8b39cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Testbed application entry point implementation. </p>
+<p>This file implements the required <code><a class="el" href="entry_8c.html#ac1205073da2ce08a82ead459fc8b39cb" title="Externally-defined function to create and configure a game instance.">create_game()</a></code> function used by the engine. It sets up the game configuration and allocates the game state.</p>
+<p>Responsibilities:</p><ul>
+<li>Configure window settings</li>
+<li>Assign game lifecycle function pointers</li>
+<li>Allocate game-specific memory </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="entry_8c_source.html">entry.c</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="ac1205073da2ce08a82ead459fc8b39cb" name="ac1205073da2ce08a82ead459fc8b39cb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1205073da2ce08a82ead459fc8b39cb">&#9670;&#160;</a></span>create_game()</h2>
 
@@ -137,33 +150,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates and configures the game instance. </p>
-<p>Externally-defined function to create and configure a game instance.</p>
-<p>Sets up:</p><ul>
-<li>Window configuration (position, size, title)</li>
-<li>Function pointers for update, render, initialize, and resize</li>
-<li>Game-specific internal state allocation</li>
+<p>Externally-defined function to create and configure a game instance. </p>
+<p>This function must be implemented by the client application (e.g., testbed). It sets up:</p><ul>
+<li>Window configuration</li>
+<li>Game-specific function pointers (initialize/update/render/etc.)</li>
+<li>Game state memory allocation</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">out_game</td><td>A pointer to an uninitialized game struct. </td></tr>
+    <tr><td class="paramname">out_game</td><td>A pointer to an uninitialized game struct that will be populated. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the game was successfully created; FALSE otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="entry_8c_source.html#l00018">18</a> of file <a class="el" href="entry_8c_source.html">entry.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="entry_8c_source.html#l00020">20</a> of file <a class="el" href="entry_8c_source.html">entry.c</a>.</p>
 
-<p class="reference">References <a class="el" href="game__types_8h_source.html#l00016">game::app_config</a>, <a class="el" href="game_8c_source.html#l00016">game_initialize()</a>, <a class="el" href="game_8c_source.html#l00065">game_on_resize()</a>, <a class="el" href="game_8c_source.html#l00049">game_render()</a>, <a class="el" href="game_8c_source.html#l00033">game_update()</a>, <a class="el" href="game__types_8h_source.html#l00023">game::initialize</a>, <a class="el" href="kmemory_8c_source.html#l00087">kallocate()</a>, <a class="el" href="kmemory_8h_source.html#l00049">MEMORY_TAG_GAME</a>, <a class="el" href="application_8h_source.html#l00039">application_config::name</a>, <a class="el" href="game__types_8h_source.html#l00044">game::on_resize</a>, <a class="el" href="game__types_8h_source.html#l00037">game::render</a>, <a class="el" href="application_8h_source.html#l00034">application_config::start_height</a>, <a class="el" href="application_8h_source.html#l00019">application_config::start_pos_x</a>, <a class="el" href="application_8h_source.html#l00024">application_config::start_pos_y</a>, <a class="el" href="application_8h_source.html#l00029">application_config::start_width</a>, <a class="el" href="game__types_8h_source.html#l00051">game::state</a>, <a class="el" href="defines_8h_source.html#l00062">TRUE</a>, and <a class="el" href="game__types_8h_source.html#l00030">game::update</a>.</p>
+<p class="reference">References <a class="el" href="game__types_8h_source.html#l00029">game::app_config</a>, <a class="el" href="game_8c_source.html#l00029">game_initialize()</a>, <a class="el" href="game_8c_source.html#l00078">game_on_resize()</a>, <a class="el" href="game_8c_source.html#l00062">game_render()</a>, <a class="el" href="game_8c_source.html#l00046">game_update()</a>, <a class="el" href="game__types_8h_source.html#l00036">game::initialize</a>, <a class="el" href="kmemory_8c_source.html#l00105">kallocate()</a>, <a class="el" href="kmemory_8h_source.html#l00062">MEMORY_TAG_GAME</a>, <a class="el" href="application_8h_source.html#l00055">application_config::name</a>, <a class="el" href="game__types_8h_source.html#l00057">game::on_resize</a>, <a class="el" href="game__types_8h_source.html#l00050">game::render</a>, <a class="el" href="application_8h_source.html#l00050">application_config::start_height</a>, <a class="el" href="application_8h_source.html#l00035">application_config::start_pos_x</a>, <a class="el" href="application_8h_source.html#l00040">application_config::start_pos_y</a>, <a class="el" href="application_8h_source.html#l00045">application_config::start_width</a>, <a class="el" href="game__types_8h_source.html#l00064">game::state</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="game__types_8h_source.html#l00043">game::update</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00038">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00051">main()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 27 2025 20:50:09 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue May 27 2025 22:54:25 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

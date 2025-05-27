@@ -75,7 +75,7 @@ $(function() {
 <div class="textblock"><p><a class="anchor" id="md_README"></a> A lightweight, multi-platform game engine built in C using the Vulkan graphics API.</p>
 <p>Koru is designed to be fast, portable, and easy to extend — providing a low-level foundation for game development across platforms including Windows, Linux, and soon consoles and mobile devices.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 🧠 Overview</h1>
 <p>Koru is designed to be:</p>
 <ul>
@@ -85,10 +85,10 @@ $(function() {
 </ul>
 <p>It serves as a foundation for creating games, tools, or applications that need direct access to hardware and APIs without the overhead of higher-level abstractions, fine-grained control over rendering, input, memory, and platform-specific functionality.</p>
 <p>All code is written in <b>C99</b>, making it ideal for performance-critical applications while keeping dependencies minimal.</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md5"></a>
 🖼 Architecture</h1>
 <p>The high-level architecture of Koru is divided into four main layers:</p>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 1. &lt;strong&gt;Platform Layer&lt;/strong&gt;</h2>
 <p>Handles OS-specific functionality:</p>
 <ul>
@@ -99,7 +99,7 @@ $(function() {
 <li><b>Memory Management</b>: Allocates and frees memory efficiently.</li>
 <li><b>Renderer API Extensions</b>: Integrates with Vulkan for rendering.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 2. &lt;strong&gt;Core&lt;/strong&gt;</h2>
 <p>Provides fundamental utilities and services:</p>
 <ul>
@@ -116,7 +116,7 @@ $(function() {
 <li><b>String Library</b>: String manipulation utilities.</li>
 <li><b>Random Number Generator (RNG)</b>: Generates random numbers for simulations and AI.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 3. &lt;strong&gt;Resource Management&lt;/strong&gt;</h2>
 <p>Manages various assets:</p>
 <ul>
@@ -126,7 +126,7 @@ $(function() {
 <li><b>Animations</b>: Skeletal animations and timeline systems.</li>
 <li><b>World Maps</b>: Terrain and level data management.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 4. &lt;strong&gt;Application Layer&lt;/strong&gt;</h2>
 <p>Contains higher-level systems:</p>
 <ul>
@@ -136,10 +136,10 @@ $(function() {
 <li><b>Others</b>: Animation/timelines, event system, ECS, state machines, collision/physics.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 📋 Feature List</h1>
 <p>Here’s a summary of the features to be implemented in v0.1:</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 Core Features</h2>
 <ul>
 <li><b>Lightweight build system</b>: Simple scripts for compiling on Windows and Linux.</li>
@@ -165,7 +165,7 @@ Core Features</h2>
 <li><b>Profiling/Debugging utilities</b>: Tools for measuring performance and identifying bottlenecks.</li>
 <li>**"Scripting" support via hot reloading**: Experimental support for scripting through hot-reloading mechanisms.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Planned Features</h2>
 <ul>
 <li>Mobile and console support</li>
@@ -175,7 +175,7 @@ Planned Features</h2>
 <li>Improved asset pipeline</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md13"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 🖼 Visual Assets</h1>
 <p>Take a look at the included diagrams in the <code>assets/</code> folder:</p>
 <table class="markdownTable">
@@ -189,7 +189,7 @@ Planned Features</h2>
 <td class="markdownTableBodyNone"><code>Koru v0.1 Feature List.png</code>   </td><td class="markdownTableBodyNone">Summary of current capabilities and future goals   </td></tr>
 </table>
 <hr  />
-<h1><a class="anchor" id="autotoc_md15"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 📁 Project Structure</h1>
 <div class="fragment"><div class="line">.</div>
 <div class="line">├── assets/              # Diagrams showing architecture and feature list</div>
@@ -211,7 +211,7 @@ Planned Features</h2>
 <div class="line">    └── src/</div>
 <div class="line">        └── main.c       # Entry point for testbed application</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md19"></a>
 ⚙️ Build Scripts/Instructions</h1>
 <p>Check tasks.json for sequence:</p>
 <table class="markdownTable">
@@ -230,7 +230,7 @@ Planned Features</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>build-all.bat</code>   </td><td class="markdownTableBodyNone">Runs all Windows builds sequentially   </td><td class="markdownTableBodyNone">Same as above but for Windows   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 Linux</h2>
 <p>Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run your engine)</p>
 <div class="fragment"><div class="line"># Give execution permissions</div>
@@ -243,7 +243,7 @@ Linux</h2>
 <li><code>libengine.so</code> – The engine shared library</li>
 <li><code>testbed</code> – The testbed executable</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 Windows</h2>
 <p>Ensure:</p>
 <ul>
@@ -259,7 +259,7 @@ Windows</h2>
 <li><code>bin\testbed.exe</code></li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md23"></a>
 🔮 Roadmap</h1>
 <p>Plans to expand Koru include:</p>
 <ul>
@@ -297,7 +297,7 @@ Windows</h2>
 </li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md23"></a>
+<h1><a class="anchor" id="autotoc_md25"></a>
 💡 Want to Help?</h1>
 <p>Contributions are welcome! Whether you're interested in:</p>
 <ul>
@@ -308,7 +308,7 @@ Windows</h2>
 </ul>
 <p>Feel free to open an issue or PR!</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md25"></a>
+<h1><a class="anchor" id="autotoc_md27"></a>
 📄 License</h1>
 <p>This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.</p>
 <div class="fragment"><div class="line">## 🚀 Next Steps</div>
@@ -323,7 +323,7 @@ Windows</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 27 2025 20:50:09 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue May 27 2025 22:54:25 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

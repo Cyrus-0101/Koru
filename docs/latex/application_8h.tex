@@ -1,5 +1,10 @@
 \doxysection{engine/src/core/application.h File Reference}
 \hypertarget{application_8h}{}\label{application_8h}\index{engine/src/core/application.h@{engine/src/core/application.h}}
+
+
+Public interface for the core application system.  
+
+
 {\ttfamily \#include "{}defines.\+h"{}}\newline
 Include dependency graph for application.\+h\+:\nopagebreak
 \begin{figure}[H]
@@ -8,8 +13,7 @@ Include dependency graph for application.\+h\+:\nopagebreak
 \includegraphics[width=237pt]{application_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -33,6 +37,27 @@ typedef struct \mbox{\hyperlink{structapplication__config}{application\+\_\+conf
 \begin{DoxyCompactList}\small\item\em Creates and initializes the application instance. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8h_a08c8575858e12aa5260a1cc0101df8bd}{application\+\_\+run}} ()
 \begin{DoxyCompactList}\small\item\em Starts the main application loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Public interface for the core application system. 
+
+This module provides the main entry point and lifecycle management for the engine. It handles\+:
+\begin{DoxyItemize}
+\item Application configuration (window size, position, name)
+\item Initialization of core systems (memory, logging, platform layer)
+\item The main game loop
+\end{DoxyItemize}
+
+Usage\+:
+\begin{DoxyItemize}
+\item Define a {\ttfamily \doxylink{entry_8h_ac1205073da2ce08a82ead459fc8b39cb}{create\+\_\+game()}} function that populates a {\ttfamily game} struct
+\item Call {\ttfamily \doxylink{application_8h_aa05477b1f7e65b39439a7bacf89418d8}{application\+\_\+create()}} to initialize the engine
+\item Call {\ttfamily \doxylink{application_8h_a08c8575858e12aa5260a1cc0101df8bd}{application\+\_\+run()}} to start the game loop 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{application_8h_source}{application.\+h}}.
+
 
 
 \doxysubsection{Typedef Documentation}
@@ -63,7 +88,7 @@ Sets up internal systems like memory, logging, input, and prepares the game loop
 
 
 \begin{DoxyParams}{Parameters}
-{\em config} & A pointer to an \doxylink{structapplication__config}{application\+\_\+config} struct containing setup parameters. \\
+{\em game\+\_\+inst} & A pointer to the game instance containing setup parameters. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -83,15 +108,15 @@ TRUE if initialization was successful; FALSE otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00069}{69}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00083}{83}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{game__types_8h_source_l00016}{game\+::app\+\_\+config}}, \mbox{\hyperlink{application_8c_source_l00057}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{application_8c_source_l00017}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{application_8c_source_l00041}{application\+\_\+state\+::height}}, \mbox{\hyperlink{game__types_8h_source_l00023}{game\+::initialize}}, \mbox{\hyperlink{logger_8c_source_l00016}{initialize\+\_\+logging()}}, \mbox{\hyperlink{application_8c_source_l00052}{initialized}}, \mbox{\hyperlink{application_8c_source_l00021}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00026}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00062}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00041}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00037}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00054}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00070}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00046}{KWARN}}, \mbox{\hyperlink{application_8h_source_l00039}{application\+\_\+config\+::name}}, \mbox{\hyperlink{game__types_8h_source_l00044}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{application_8c_source_l00031}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup()}}, \mbox{\hyperlink{application_8h_source_l00034}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00019}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00024}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00029}{application\+\_\+config\+::start\+\_\+width}}, \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}, and \mbox{\hyperlink{application_8c_source_l00036}{application\+\_\+state\+::width}}.
+References \mbox{\hyperlink{game__types_8h_source_l00029}{game\+::app\+\_\+config}}, \mbox{\hyperlink{application_8c_source_l00071}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{application_8c_source_l00031}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{application_8c_source_l00055}{application\+\_\+state\+::height}}, \mbox{\hyperlink{game__types_8h_source_l00036}{game\+::initialize}}, \mbox{\hyperlink{logger_8c_source_l00029}{initialize\+\_\+logging()}}, \mbox{\hyperlink{application_8c_source_l00066}{initialized}}, \mbox{\hyperlink{application_8c_source_l00035}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00040}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00210}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00227}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}, \mbox{\hyperlink{application_8h_source_l00055}{application\+\_\+config\+::name}}, \mbox{\hyperlink{game__types_8h_source_l00057}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{application_8c_source_l00045}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup()}}, \mbox{\hyperlink{application_8h_source_l00050}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00035}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00040}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00045}{application\+\_\+config\+::start\+\_\+width}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, and \mbox{\hyperlink{application_8c_source_l00050}{application\+\_\+state\+::width}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+Referenced by \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 
 \Hypertarget{application_8h_a08c8575858e12aa5260a1cc0101df8bd}\label{application_8h_a08c8575858e12aa5260a1cc0101df8bd} 
 \index{application.h@{application.h}!application\_run@{application\_run}}
@@ -124,13 +149,13 @@ TRUE if the application exited cleanly; FALSE if an error occurred during shutdo
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00121}{121}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00135}{135}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{application_8c_source_l00057}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00063}{FALSE}}, \mbox{\hyperlink{kmemory_8c_source_l00166}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{application_8c_source_l00021}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{logger_8h_source_l00054}{KINFO}}, \mbox{\hyperlink{application_8c_source_l00031}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages()}}, \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\+\_\+shutdown()}}, and \mbox{\hyperlink{defines_8h_source_l00062}{TRUE}}.
+References \mbox{\hyperlink{application_8c_source_l00071}{app\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{kmemory_8c_source_l00184}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{application_8c_source_l00035}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{application_8c_source_l00045}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages()}}, \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\+\_\+shutdown()}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8h_source_l00038}{main()}}.
+Referenced by \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 

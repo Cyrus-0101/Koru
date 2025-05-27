@@ -80,6 +80,9 @@ $(function() {
   <div class="headertitle"><div class="title">platform.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Platform abstraction layer interface.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="defines_8h_source.html">defines.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for platform.h:</div>
@@ -88,8 +91,8 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="platform_8h__incl.png" border="0" usemap="#aengine_2src_2platform_2platform_8h" alt=""/></div>
 <map name="aengine_2src_2platform_2platform_8h" id="aengine_2src_2platform_2platform_8h">
-<area shape="rect" title=" " alt="" coords="5,5,155,45"/>
-<area shape="rect" href="defines_8h.html" title=" " alt="" coords="39,93,121,119"/>
+<area shape="rect" title="Platform abstraction layer interface." alt="" coords="5,5,155,45"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="39,93,121,119"/>
 <area shape="poly" title=" " alt="" coords="83,46,83,79,77,79,77,46"/>
 </map>
 </div>
@@ -100,14 +103,14 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="platform_8h__dep__incl.png" border="0" usemap="#aengine_2src_2platform_2platform_8hdep" alt=""/></div>
 <map name="aengine_2src_2platform_2platform_8hdep" id="aengine_2src_2platform_2platform_8hdep">
-<area shape="rect" title=" " alt="" coords="367,5,516,45"/>
-<area shape="rect" href="application_8c.html" title=" " alt="" coords="5,101,213,126"/>
+<area shape="rect" title="Platform abstraction layer interface." alt="" coords="367,5,516,45"/>
+<area shape="rect" href="application_8c.html" title="Implementation of the core application lifecycle functions." alt="" coords="5,101,213,126"/>
 <area shape="poly" title=" " alt="" coords="356,51,154,103,153,98,355,46"/>
-<area shape="rect" href="kmemory_8c.html" title=" " alt="" coords="237,101,435,126"/>
+<area shape="rect" href="kmemory_8c.html" title="Implementation of the tagged memory allocation system." alt="" coords="237,101,435,126"/>
 <area shape="poly" title=" " alt="" coords="409,56,352,102,349,98,406,52"/>
-<area shape="rect" href="logger_8c.html" title=" " alt="" coords="459,101,635,126"/>
+<area shape="rect" href="logger_8c.html" title="Implementation of the logging system." alt="" coords="459,101,635,126"/>
 <area shape="poly" title=" " alt="" coords="477,52,534,98,530,102,474,56"/>
-<area shape="rect" href="platform__linux_8c.html" title=" " alt="" coords="659,93,808,133"/>
+<area shape="rect" href="platform__linux_8c.html" title="Linux&#45;specific implementation of the platform abstraction layer." alt="" coords="659,93,808,133"/>
 <area shape="poly" title=" " alt="" coords="519,47,670,91,669,96,518,52"/>
 </map>
 </div>
@@ -165,7 +168,18 @@ Functions</h2></td></tr>
 <tr class="memdesc:ae21676dfd997b1c6dd9c06f69b5618e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Suspends the calling thread for at least the specified number of milliseconds.  <br /></td></tr>
 <tr class="separator:ae21676dfd997b1c6dd9c06f69b5618e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Platform abstraction layer interface. </p>
+<p>Defines the cross-platform API for:</p><ul>
+<li>Window creation and management</li>
+<li>Input handling (keyboard, mouse)</li>
+<li>Time and sleep functions</li>
+<li>Memory allocation and manipulation</li>
+</ul>
+<p>Implemented separately for each OS (e.g., Win32, Linux). </p>
+
+<p class="definition">Definition in file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a8c661bb1c0637f4277be66a5c2f18604" name="a8c661bb1c0637f4277be66a5c2f18604"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8c661bb1c0637f4277be66a5c2f18604">&#9670;&#160;</a></span>platform_state</h2>
 
@@ -221,7 +235,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the allocated memory block. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00087">kallocate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00105">kallocate()</a>.</p>
 
 </div>
 </div>
@@ -261,7 +275,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00031">log_output()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00044">log_output()</a>.</p>
 
 </div>
 </div>
@@ -301,7 +315,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00031">log_output()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00044">log_output()</a>.</p>
 
 </div>
 </div>
@@ -348,7 +362,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the destination memory block. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00142">kcopy_memory()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00160">kcopy_memory()</a>.</p>
 
 </div>
 </div>
@@ -387,7 +401,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00111">kfree()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00129">kfree()</a>.</p>
 
 </div>
 </div>
@@ -443,7 +457,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the application should continue running; FALSE if quit was requested. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00135">application_run()</a>.</p>
 
 </div>
 </div>
@@ -490,7 +504,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the filled memory block. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00154">kset_memory()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00172">kset_memory()</a>.</p>
 
 </div>
 </div>
@@ -523,7 +537,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00135">application_run()</a>.</p>
 
 </div>
 </div>
@@ -623,7 +637,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if initialization was successful; FALSE otherwise. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00069">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00083">application_create()</a>.</p>
 
 </div>
 </div>
@@ -663,14 +677,14 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the zeroed memory block. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00065">initialize_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00087">kallocate()</a>, and <a class="el" href="kmemory_8c_source.html#l00130">kzero_memory()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00083">initialize_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00105">kallocate()</a>, and <a class="el" href="kmemory_8c_source.html#l00148">kzero_memory()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 27 2025 20:50:09 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue May 27 2025 22:54:25 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

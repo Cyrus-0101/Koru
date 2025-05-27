@@ -3,64 +3,77 @@
 #include "defines.h"
 
 /**
+ * @file kmemory.h
+ * @brief Memory allocation system with tagging and tracking.
+ *
+ * This module introduces a tagged memory allocator that helps track:
+ * - Where memory is being used (e.g., textures, entities, renderer, etc.)
+ * - Total allocations per tag
+ * - Potential leaks or misuses
+ *
+ * Usage:
+ * Replace raw `malloc()`/`free()` calls with `kallocate()`/`kfree()`.
+ */
+
+/**
  * @brief Memory allocation tag types.
  *
  * Used to categorize memory allocations for tracking, debugging, and profiling.
  * Each tag should be used consistently for similar kinds of allocations.
  */
 typedef enum memory_tag {
-    // For temporary use only. Should eventually be replaced with a proper tag.
+    /** For temporary use only. Should eventually be replaced with a proper tag. */
     MEMORY_TAG_UNKNOWN,
 
-    // Dynamic arrays (e.g., array_push)
+    /** Dynamic arrays (e.g., array_push) */
     MEMORY_TAG_ARRAY,
 
-    // Dynamic arrays that grow/shrink dynamically
+    /** Dynamic arrays that grow/shrink dynamically */
     MEMORY_TAG_DARRAY,
 
-    // Dictionary/Hash Table allocations
+    /** Dictionary/Hash Table allocations */
     MEMORY_TAG_DICT,
 
-    // Ring queue structures
+    /** Ring queue structures */
     MEMORY_TAG_RING_QUEUE,
 
-    // Binary search trees
+    /** Binary search trees */
     MEMORY_TAG_BST,
 
-    // String-related allocations
+    /** String-related allocations */
     MEMORY_TAG_STRING,
 
-    // Application-level state
+    /** Application-level state */
     MEMORY_TAG_APPLICATION,
 
-    // Job system allocations
+    /** Job system allocations */
     MEMORY_TAG_JOB,
 
-    // Texture data
+    /** Texture data */
     MEMORY_TAG_TEXTURE,
 
-    // Material instances
+    /** Material instances */
     MEMORY_TAG_MATERIAL_INSTANCE,
 
-    // Renderer-specific allocations
+    /** Renderer-specific allocations */
     MEMORY_TAG_RENDERER,
 
-    // Game logic/state
+    /** Game logic/state */
     MEMORY_TAG_GAME,
 
-    // Transform components
+    /** Transform components */
     MEMORY_TAG_TRANSFORM,
 
-    // Entity objects
+    /** Entity objects */
     MEMORY_TAG_ENTITY,
 
-    // Scene graph entity nodes
+    /** Scene graph entity nodes */
     MEMORY_TAG_ENTITY_NODE,
 
-    // Scene management
+    /** Scene management */
     MEMORY_TAG_SCENE,
 
-    // Must be last -- represents total number of tags
+    /** Must be last -- represents total number of tags */
     MEMORY_TAG_MAX_TAGS
 } memory_tag;
 

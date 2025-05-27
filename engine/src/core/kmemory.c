@@ -8,6 +8,24 @@
 #include <stdio.h>
 
 /**
+ * @file kmemory.c
+ * @brief Implementation of the tagged memory allocation system.
+ *
+ * This module implements a memory tracking system that allows allocations to be categorized using tags
+ * (e.g., MEMORY_TAG_RENDERER, MEMORY_TAG_GAME). It provides:
+ * - Memory usage statistics per tag
+ * - Allocation and deallocation wrappers with tracking
+ * - Helper functions like `kzero_memory()`, `kcopy_memory()`, and `kset_memory()`
+ * - A utility function to generate formatted memory usage strings for debugging
+ *
+ * The system wraps platform-specific memory functions (`platform_allocate`, `platform_free`)
+ * to ensure consistent behavior and logging.
+ *
+ * Usage:
+ * Replace raw memory operations with `kallocate()` / `kfree()` to enable tracking.
+ */
+
+/**
  * @brief Tracks memory usage statistics.
  *
  * Contains:
@@ -194,9 +212,9 @@ char* get_memory_usage_str() {
         i32 length = snprintf(buffer + offset, 8000, "  %s: %.2f%s\n", memory_tag_strings[i], amount, unit);
         offset += length;
     }
-    
+
     // char* out_string = _strdup(buffer); // Windows Compatible
-    char* out_string = strdup(buffer); // Note: May need platform_strdup if _strdup isn't available
-    
+    char* out_string = strdup(buffer);  // Note: May need platform_strdup if _strdup isn't available
+
     return out_string;
 }

@@ -1,5 +1,10 @@
 \doxysection{engine/src/platform/platform\+\_\+linux.c File Reference}
 \hypertarget{platform__linux_8c}{}\label{platform__linux_8c}\index{engine/src/platform/platform\_linux.c@{engine/src/platform/platform\_linux.c}}
+
+
+Linux-\/specific implementation of the platform abstraction layer.  
+
+
 {\ttfamily \#include "{}platform.\+h"{}}\newline
 Include dependency graph for platform\+\_\+linux.\+c\+:\nopagebreak
 \begin{figure}[H]
@@ -13,6 +18,21 @@ Include dependency graph for platform\+\_\+linux.\+c\+:\nopagebreak
 \item 
 \#define \mbox{\hyperlink{platform__linux_8c_a3024ccd4a9af5109d24e6c57565d74a1}{\+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE}}~199309L
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Linux-\/specific implementation of the platform abstraction layer. 
+
+Implements all platform-\/dependent functionality for Linux-\/based systems including\+:
+\begin{DoxyItemize}
+\item Window creation and event handling
+\item Input device polling
+\item Memory allocation and manipulation
+\item Timing and sleep functions 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{platform__linux_8c_source}{platform\+\_\+linux.\+c}}.
+
 
 
 \doxysubsection{Macro Definition Documentation}

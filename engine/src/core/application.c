@@ -5,6 +5,20 @@
 #include "platform/platform.h"
 
 /**
+ * @file application.c
+ * @brief Implementation of the core application lifecycle functions.
+ *
+ * This module implements the functions defined in `application.h`.
+ * It initializes the platform layer, starts the game loop,
+ * and manages clean shutdown procedures.
+ *
+ * Responsibilities:
+ * - Initialize subsystems like memory and logging
+ * - Start and run the game loop
+ * - Gracefully shut down the engine
+ */
+
+/**
  * @brief Internal state structure for the application.
  *
  * Tracks:
@@ -99,7 +113,7 @@ b8 application_create(game* game_inst) {
         KFATAL("Game failed to initialize");
 
         return FALSE;
-    } 
+    }
 
     app_state.game_inst->on_resize(app_state.game_inst, app_state.width, app_state.height);
 

@@ -79,6 +79,9 @@ $(function() {
   <div class="headertitle"><div class="title">asserts.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Custom assertion macros and debugging utilities for the Koru Engine.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="defines_8h_source.html">defines.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for asserts.h:</div>
@@ -87,8 +90,8 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="asserts_8h__incl.png" border="0" usemap="#aengine_2src_2core_2asserts_8h" alt=""/></div>
 <map name="aengine_2src_2core_2asserts_8h" id="aengine_2src_2core_2asserts_8h">
-<area shape="rect" title=" " alt="" coords="5,5,189,31"/>
-<area shape="rect" href="defines_8h.html" title=" " alt="" coords="57,79,138,104"/>
+<area shape="rect" title="Custom assertion macros and debugging utilities for the Koru Engine." alt="" coords="5,5,189,31"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="57,79,138,104"/>
 <area shape="poly" title=" " alt="" coords="100,31,100,65,95,65,95,31"/>
 </map>
 </div>
@@ -100,20 +103,35 @@ Macros</h2></td></tr>
 <tr class="memitem:a19ff22d0d0fb28ecb552a743447dcbde" id="r_a19ff22d0d0fb28ecb552a743447dcbde"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asserts_8h.html#a19ff22d0d0fb28ecb552a743447dcbde">KASSERTIONS_ENABLED</a></td></tr>
 <tr class="separator:a19ff22d0d0fb28ecb552a743447dcbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13bf501f420bb63f3cf9b62b06b03574" id="r_a13bf501f420bb63f3cf9b62b06b03574"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asserts_8h.html#a13bf501f420bb63f3cf9b62b06b03574">debugBreak</a>()&#160;&#160;&#160;__builtin_trap()</td></tr>
+<tr class="memdesc:a13bf501f420bb63f3cf9b62b06b03574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers a breakpoint on GCC/Clang platforms.  <br /></td></tr>
 <tr class="separator:a13bf501f420bb63f3cf9b62b06b03574"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f0725c87f662db8a0f3ca04379da56f" id="r_a8f0725c87f662db8a0f3ca04379da56f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asserts_8h.html#a8f0725c87f662db8a0f3ca04379da56f">KASSERT</a>(expr)</td></tr>
+<tr class="memdesc:a8f0725c87f662db8a0f3ca04379da56f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic assertion macro that triggers a debug break if the condition is false.  <br /></td></tr>
 <tr class="separator:a8f0725c87f662db8a0f3ca04379da56f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b775fcadff2f4629c6d4f205a424693" id="r_a7b775fcadff2f4629c6d4f205a424693"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asserts_8h.html#a7b775fcadff2f4629c6d4f205a424693">KASSERT_MSG</a>(expr,  message)</td></tr>
+<tr class="memdesc:a7b775fcadff2f4629c6d4f205a424693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assertion macro with a custom message. \ \ If the condition evaluates to false, it logs the failure along with the provided message, \ then breaks into the debugger. \ \ Example: .  <br /></td></tr>
 <tr class="separator:a7b775fcadff2f4629c6d4f205a424693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2232df5df304b5b471c12b9c77563763" id="r_a2232df5df304b5b471c12b9c77563763"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asserts_8h.html#a2232df5df304b5b471c12b9c77563763">KASSERT_DEBUG</a>(expr)</td></tr>
+<tr class="memdesc:a2232df5df304b5b471c12b9c77563763"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug-only assertion. Enabled only in debug builds.  <br /></td></tr>
 <tr class="separator:a2232df5df304b5b471c12b9c77563763"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a081a03d10de2e1eebf9bb889519687bc" id="r_a081a03d10de2e1eebf9bb889519687bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="asserts_8h.html#a081a03d10de2e1eebf9bb889519687bc">report_assertion_failure</a> (const char *expression, const char *message, const char *file, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> line)</td></tr>
+<tr class="memdesc:a081a03d10de2e1eebf9bb889519687bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an assertion failure message to the logging system.  <br /></td></tr>
 <tr class="separator:a081a03d10de2e1eebf9bb889519687bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Custom assertion macros and debugging utilities for the Koru Engine. </p>
+<p>This module provides:</p><ul>
+<li>Compile-time and debug-time assertions</li>
+<li>Platform-agnostic debug break functionality</li>
+<li>Integration with the logging system to report failures</li>
+</ul>
+<p>Assertions can be globally disabled by defining <code>KASSERTIONS_ENABLED</code> before including this header. Debug-only assertions are automatically disabled in release builds. </p>
+
+<p class="definition">Definition in file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a13bf501f420bb63f3cf9b62b06b03574" name="a13bf501f420bb63f3cf9b62b06b03574"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a13bf501f420bb63f3cf9b62b06b03574">&#9670;&#160;</a></span>debugBreak</h2>
 
@@ -129,7 +147,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00020">20</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
+<p>Triggers a breakpoint on GCC/Clang platforms. </p>
+
+<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00038">38</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
 
 </div>
 </div>
@@ -156,7 +176,12 @@ Functions</h2></td></tr>
 <div class="line">        }                                                            \</div>
 <div class="line">    }</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00027">27</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
+<p>Basic assertion macro that triggers a debug break if the condition is false. </p>
+<p>If the condition evaluates to false, it logs the failure and breaks into the debugger.</p>
+<p>Example: </p><div class="fragment"><div class="line"><a class="code hl_define" href="asserts_8h.html#a8f0725c87f662db8a0f3ca04379da56f">KASSERT</a>(ptr != NULL);  <span class="comment">// Breaks if ptr is NULL</span></div>
+<div class="ttc" id="aasserts_8h_html_a8f0725c87f662db8a0f3ca04379da56f"><div class="ttname"><a href="asserts_8h.html#a8f0725c87f662db8a0f3ca04379da56f">KASSERT</a></div><div class="ttdeci">#define KASSERT(expr)</div><div class="ttdoc">Basic assertion macro that triggers a debug break if the condition is false.</div><div class="ttdef"><b>Definition</b> <a href="asserts_8h_source.html#l00064">asserts.h:64</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00064">64</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
 
 </div>
 </div>
@@ -176,7 +201,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00058">58</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
+<p>Debug-only assertion. Enabled only in debug builds. </p>
+<p>This assertion does nothing in release mode.</p>
+<p>Example: </p><div class="fragment"><div class="line"><a class="code hl_define" href="asserts_8h.html#a2232df5df304b5b471c12b9c77563763">KASSERT_DEBUG</a>(index &lt; array_length);</div>
+<div class="ttc" id="aasserts_8h_html_a2232df5df304b5b471c12b9c77563763"><div class="ttname"><a href="asserts_8h.html#a2232df5df304b5b471c12b9c77563763">KASSERT_DEBUG</a></div><div class="ttdeci">#define KASSERT_DEBUG(expr)</div><div class="ttdoc">Debug-only assertion. Enabled only in debug builds.</div><div class="ttdef"><b>Definition</b> <a href="asserts_8h_source.html#l00114">asserts.h:114</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00114">114</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
 
 </div>
 </div>
@@ -205,15 +235,20 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    {                                                                     \</div>
-<div class="line">        if (expr) {                                                       \</div>
-<div class="line">        } <span class="keywordflow">else</span> {                                                          \</div>
-<div class="line">            report_assertion_failure(#expr, message, __FILE__, __LINE__); \</div>
-<div class="line">            debugBreak();                                                 \</div>
-<div class="line">        }                                                                 \</div>
+<b>Value:</b><div class="fragment"><div class="line">    {                                                                                        \</div>
+<div class="line">        if (expr) {                                                                          \</div>
+<div class="line">        } <span class="keywordflow">else</span> {                                                                             \</div>
+<div class="line">            report_assertion_failure(#expr, message, __FILE__, __LINE__);                    \</div>
+<div class="line">            debugBreak();                                                                    \</div>
+<div class="line">        }                                                                                    \</div>
 <div class="line">    }</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00037">37</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
+<p>Assertion macro with a custom message. \ \ If the condition evaluates to false, it logs the failure along with the provided message, \ then breaks into the debugger. \ \ Example: . </p>
+<p>\ </p><div class="fragment"><div class="line"> \</div>
+<div class="line">KASSERT_MSG(value &gt;= 0 &amp;&amp; value &lt;= 1, <span class="stringliteral">&quot;Value must be normalized&quot;</span>);                        \</div>
+</div><!-- fragment --><p> \ </p>
+
+<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00084">84</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
 
 </div>
 </div>
@@ -229,7 +264,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00008">8</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="asserts_8h_source.html#l00021">21</a> of file <a class="el" href="asserts_8h_source.html">asserts.h</a>.</p>
 
 </div>
 </div>
@@ -272,16 +307,28 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00086">86</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p>Logs an assertion failure message to the logging system. </p>
+<p>This function should be implemented in <code><a class="el" href="logger_8c.html" title="Implementation of the logging system.">logger.c</a></code> or another source file. It is called internally by the assertion macros when a condition fails.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">expression</td><td>The stringified failed condition (e.g., <code>"x != NULL"</code>). </td></tr>
+    <tr><td class="paramname">message</td><td>Optional additional context about the assertion. </td></tr>
+    <tr><td class="paramname">file</td><td>The source file where the assertion occurred. </td></tr>
+    <tr><td class="paramname">line</td><td>The line number in the source file. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="logger_8h_source.html#l00019">LOG_LEVEL_FATAL</a>, and <a class="el" href="logger_8c_source.html#l00031">log_output()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00099">99</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+
+<p class="reference">References <a class="el" href="logger_8h_source.html#l00064">LOG_LEVEL_FATAL</a>, and <a class="el" href="logger_8c_source.html#l00044">log_output()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 27 2025 20:50:09 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue May 27 2025 22:54:25 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
