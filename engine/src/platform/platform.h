@@ -3,6 +3,19 @@
 #include "defines.h"  // Core definitions: types, asserts, platform detection, etc.
 
 /**
+ * @file platform.h
+ * @brief Platform abstraction layer interface.
+ *
+ * Defines the cross-platform API for:
+ * - Window creation and management
+ * - Input handling (keyboard, mouse)
+ * - Time and sleep functions
+ * - Memory allocation and manipulation
+ *
+ * Implemented separately for each OS (e.g., Win32, Linux).
+ */
+
+/**
  * @brief Opaque state structure for the platform layer.
  *
  * This struct holds internal platform-specific data that the implementation needs,

@@ -4,6 +4,19 @@
 #include <game_types.h>
 
 /**
+ * @file game.h
+ * @brief Interface for the testbed game implementation.
+ *
+ * Declares the game lifecycle functions expected by the engine:
+ * - `game_initialize()`
+ * - `game_update()`
+ * - `game_render()`
+ * - `game_on_resize()`
+ *
+ * Also defines the `game_state` struct for storing per-frame data.
+ */
+
+/**
  * @brief Internal game state structure.
  *
  * This struct holds data that persists across frames.

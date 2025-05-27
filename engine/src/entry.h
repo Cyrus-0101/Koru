@@ -6,6 +6,19 @@
 #include "game_types.h"
 
 /**
+ * @file entry.h
+ * @brief Main entry point interface for the engine.
+ *
+ * This file defines the externally-defined `create_game()` function that must be implemented by client applications.
+ * It also contains the `main()` function declaration which initializes and runs the game loop.
+ *
+ * Responsibilities:
+ * - Define the entry point contract
+ * - Ensure proper initialization order
+ * - Integrate memory and logging systems at startup
+ */
+
+/**
  * @brief Externally-defined function to create and configure a game instance.
  *
  * This function must be implemented by the client application (e.g., testbed).

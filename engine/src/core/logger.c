@@ -7,6 +7,19 @@
 #include <stdarg.h>  // for variable argument lists (va_list)
 // #include <unistd.h>  // for isatty() - seeing if terminal supports colour
 
+/**
+ * @file logger.c
+ * @brief Implementation of the logging system.
+ *
+ * Implements the logging functionality with color-coded terminal output,
+ * message formatting, and integration with platform-specific console writes.
+ *
+ * Features:
+ * - Level-based filtering
+ * - ANSI escape codes for color output
+ * - Platform abstraction for console output
+ * - Assertion failure handler
+ */
 
 // Terminal supports colour FALSE by default
 static b8 terminal_supports_color = FALSE;
@@ -40,7 +53,7 @@ void log_output(log_level level, const char* message, ...) {
     };
 
     // Resets the terminal color
-    const char* level_reset = "\033[0m"; 
+    const char* level_reset = "\033[0m";
 
     // Level prefixes to show log severity
     const char* level_strings[6] = {"[FATAL]: ", "[ERROR]: ", "[WARN]:  ", "[INFO]:  ", "[DEBUG]: ", "[TRACE]: "};

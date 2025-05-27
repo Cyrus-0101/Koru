@@ -5,16 +5,18 @@
 #include <core/kmemory.h>
 
 /**
- * @brief Creates and configures the game instance.
+ * @file entry.c
+ * @brief Testbed application entry point implementation.
  *
- * Sets up:
- * - Window configuration (position, size, title)
- * - Function pointers for update, render, initialize, and resize
- * - Game-specific internal state allocation
+ * This file implements the required `create_game()` function used by the engine.
+ * It sets up the game configuration and allocates the game state.
  *
- * @param out_game A pointer to an uninitialized game struct.
- * @return TRUE if the game was successfully created; FALSE otherwise.
+ * Responsibilities:
+ * - Configure window settings
+ * - Assign game lifecycle function pointers
+ * - Allocate game-specific memory
  */
+
 b8 create_game(game* out_game) {
     // Application configuration.
     out_game->app_config.start_pos_x = 100;

@@ -3,6 +3,19 @@
 #include "core/application.h"
 
 /**
+ * @file game_types.h
+ * @brief Game-related types and structures used across the engine.
+ *
+ * This module defines:
+ * - The `game` struct, which represents a game instance
+ * - Function pointer signatures for game lifecycle events (initialize, update, render, resize)
+ * - Shared data structures between engine and game logic
+ *
+ * Usage:
+ * Used by both the engine and game implementations to maintain consistency in lifecycle management.
+ */
+
+/**
  * @brief Represents the basic game interface.
  *
  * This struct defines how the engine interacts with a specific game.

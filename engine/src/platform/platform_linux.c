@@ -2,7 +2,19 @@
 
 #include "platform.h"
 
+/**
+ * @file platform_linux.c
+ * @brief Linux-specific implementation of the platform abstraction layer.
+ *
+ * Implements all platform-dependent functionality for Linux-based systems including:
+ * - Window creation and event handling
+ * - Input device polling
+ * - Memory allocation and manipulation
+ * - Timing and sleep functions
+ */
+
 // Linux platform layer.
+
 // This entire block will only compile if targeting Linux (KPLATFORM_LINUX is defined)
 #if KPLATFORM_LINUX
 

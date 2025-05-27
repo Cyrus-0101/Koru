@@ -1,4 +1,14 @@
-// Windows platform layer.
+/**
+ * @file platform_win32.c
+ * @brief Windows-specific implementation of the platform abstraction layer.
+ *
+ * Implements all platform-dependent functionality for Windows including:
+ * - Window creation and message handling
+ * - Input device polling (keyboard, mouse)
+ * - Memory allocation and manipulation
+ * - High-resolution timing and sleep functions
+ */
+
 #if KPLATFORM_WINDOWS
 #include "platform/platform.h"
 #include "core/logger.h"
