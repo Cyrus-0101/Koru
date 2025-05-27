@@ -2,8 +2,7 @@
 
 #include <entry.h>
 
-// TODO: Remove this
-#include <platform/platform.h>
+#include <core/kmemory.h>
 
 /**
  * @brief Creates and configures the game instance.
@@ -31,7 +30,7 @@ b8 create_game(game* out_game) {
     out_game->on_resize = game_on_resize;
 
     // Create the game state.
-    out_game->state = platform_allocate(sizeof(game_state), FALSE);
+    out_game->state = kallocate(sizeof(game_state), MEMORY_TAG_GAME);
 
     return TRUE;
 }
