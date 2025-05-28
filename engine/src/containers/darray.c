@@ -156,7 +156,7 @@ void* _darray_insert_at(void* array, u64 index, void* value_ptr) {
     u64 length = darray_length(array);
     u64 stride = darray_stride(array);
 
-    if (index > length) {
+    if (index >= length) {
         KERROR("Index outside the bounds of this array! Length: %lu, index: %lu", length, index);
         return array;
     }
