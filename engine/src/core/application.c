@@ -148,6 +148,23 @@ b8 application_run() {
             app_state.is_running = FALSE;
             break;
         }
+
+        if (!app_state.is_suspended) {
+            if (!app_state.game_inst->update(app_state.game_inst, (f32)0)) {
+                KFATAL("Game update failed. Shutting down!");
+                app_state.is_running = FALSE;
+
+                break;
+            }
+
+            // Call game render routine
+            if (!app_state.game_inst->render(app_state.game_inst, (f32)0)) {
+                KFATAL("Game render failed. Shutting down!");
+                app_state.is_running = FALSE;
+
+                break;
+            }
+        }
     }
 
     // Ensure running state is cleared
