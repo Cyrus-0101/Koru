@@ -1,5 +1,6 @@
 #include "application.h"
 #include "game_types.h"
+#include "core/event.h"
 #include "core/logger.h"
 #include "core/kmemory.h"
 #include "platform/platform.h"
@@ -103,6 +104,11 @@ b8 application_create(game* game_inst) {
     app_state.is_running = TRUE;
     app_state.is_suspended = FALSE;
 
+    if (!event_initialize()) {
+        KERROR("Event system failed initialization. Application cannot continue.");
+        return FALSE;
+    }
+
     // Start platform layer
     if (!platform_startup(&app_state.platform, game_inst->app_config.name, game_inst->app_config.start_pos_x, game_inst->app_config.start_pos_y, game_inst->app_config.start_width, game_inst->app_config.start_height)) {
         return FALSE;
@@ -146,6 +152,8 @@ b8 application_run() {
 
     // Ensure running state is cleared
     app_state.is_running = FALSE;
+
+    event_shutdown();
 
     // Clean up platform resources
     platform_shutdown(&app_state.platform);
