@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['last_5ftime_0',['last_time',['../structapplication__state.html#a4fc952bc899881d85115730cf7da1c5a',1,'application_state']]]
+  ['game_5finst_0',['game_inst',['../structapplication__state.html#ae224fcec4853d590c4068314f75196c2',1,'application_state']]]
 ];

@@ -34,11 +34,11 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00040}00040\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ height)\ \{}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ Allocate\ and\ set\ internal\ state}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00042}00042\ \ \ \ \ plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}}\ =\ malloc(\textcolor{keyword}{sizeof}(internal\_state));}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00043}00043\ \ \ \ \ internal\_state\ *state\ =\ (internal\_state\ *)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00044}00044\ \ \ \ \ state-\/>h\_instance\ =\ GetModuleHandleA(0);}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00043}00043\ \ \ \ \ internal\_state\ *\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}\ =\ (internal\_state\ *)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>h\_instance\ =\ GetModuleHandleA(0);}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00045}00045\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ Load\ default\ icon}}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00047}00047\ \ \ \ \ HICON\ icon\ =\ LoadIcon(state-\/>h\_instance,\ IDI\_APPLICATION);}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00047}00047\ \ \ \ \ HICON\ icon\ =\ LoadIcon(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>h\_instance,\ IDI\_APPLICATION);}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00048}00048\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ Setup\ and\ register\ window\ class.}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00050}00050\ \ \ \ \ WNDCLASSA\ wc;}
@@ -47,7 +47,7 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00053}00053\ \ \ \ \ wc.lpfnWndProc\ =\ win32\_process\_message;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00054}00054\ \ \ \ \ wc.cbClsExtra\ =\ 0;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00055}00055\ \ \ \ \ wc.cbWndExtra\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00056}00056\ \ \ \ \ wc.hInstance\ =\ state-\/>h\_instance;}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00056}00056\ \ \ \ \ wc.hInstance\ =\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>h\_instance;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00057}00057\ \ \ \ \ wc.hIcon\ =\ icon;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00058}00058\ \ \ \ \ wc.hCursor\ =\ LoadCursor(NULL,\ IDC\_ARROW);\ \ \textcolor{comment}{//\ NULL;\ //\ Manage\ the\ cursor\ manually}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00059}00059\ \ \ \ \ wc.hbrBackground\ =\ NULL;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transparent}}
@@ -89,7 +89,7 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00095}00095\ \ \ \ \ HWND\ handle\ =\ CreateWindowExA(}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ window\_ex\_style,\ \textcolor{stringliteral}{"{}koru\_window\_class"{}},\ application\_name,}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00097}00097\ \ \ \ \ \ \ \ \ window\_style,\ window\_x,\ window\_y,\ window\_width,\ window\_height,}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00098}00098\ \ \ \ \ \ \ \ \ 0,\ 0,\ state-\/>h\_instance,\ 0);}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00098}00098\ \ \ \ \ \ \ \ \ 0,\ 0,\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>h\_instance,\ 0);}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00099}00099\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (handle\ ==\ 0)\ \{}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00101}00101\ \ \ \ \ \ \ \ \ MessageBoxA(NULL,\ \textcolor{stringliteral}{"{}Window\ creation\ failed!"{}},\ \textcolor{stringliteral}{"{}Error!"{}},\ MB\_ICONEXCLAMATION\ |\ MB\_OK);}
@@ -97,7 +97,7 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00103}00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Window\ creation\ failed!"{}});}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00105}00105\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00106}00106\ \ \ \ \ \ \ \ \ state-\/>hwnd\ =\ handle;}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00106}00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>hwnd\ =\ handle;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00107}00107\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00108}00108\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00109}00109\ \ \ \ \ \textcolor{comment}{//\ Show\ window\ (with\ input\ focus)}}
@@ -105,7 +105,7 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00111}00111\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ show\_window\_command\_flags\ =\ should\_activate\ ?\ SW\_SHOW\ :\ SW\_SHOWNOACTIVATE;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00112}00112\ \ \ \ \ \textcolor{comment}{//\ If\ initially\ minimized,\ use\ SW\_MINIMIZE\ :\ SW\_SHOWMINNOACTIVE;}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00113}00113\ \ \ \ \ \textcolor{comment}{//\ If\ initially\ maximized,\ use\ SW\_SHOWMAXIMIZED\ :\ SW\_MAXIMIZE}}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00114}00114\ \ \ \ \ ShowWindow(state-\/>hwnd,\ show\_window\_command\_flags);}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00114}00114\ \ \ \ \ ShowWindow(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>hwnd,\ show\_window\_command\_flags);}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00115}00115\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00116}00116\ \ \ \ \ \textcolor{comment}{//\ Setup\ high-\/performance\ timer}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00117}00117\ \ \ \ \ LARGE\_INTEGER\ frequency;}
@@ -119,12 +119,12 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00125}00125\ \textcolor{comment}{//\ Destroys\ the\ window\ and\ frees\ internal\ resources}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00126}00126\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\_shutdown}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}\ *plat\_state)\ \{}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00127}00127\ \ \ \ \ \textcolor{comment}{//\ Simply\ cold-\/cast\ to\ the\ known\ type.}}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00128}00128\ \ \ \ \ internal\_state\ *state\ =\ (internal\_state\ *)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00128}00128\ \ \ \ \ internal\_state\ *\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}\ =\ (internal\_state\ *)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00129}00129\ }
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00130}00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (state-\/>hwnd)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00131}00131\ \ \ \ \ \ \ \ \ DestroyWindow(state-\/>hwnd);}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00130}00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>hwnd)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00131}00131\ \ \ \ \ \ \ \ \ DestroyWindow(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>hwnd);}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00132}00132\ }
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ state-\/>hwnd\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>hwnd\ =\ 0;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00134}00134\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00135}00135\ \}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00136}00136\ }

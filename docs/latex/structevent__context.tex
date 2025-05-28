@@ -1,0 +1,174 @@
+\doxysection{event\+\_\+context Struct Reference}
+\hypertarget{structevent__context}{}\label{structevent__context}\index{event\_context@{event\_context}}
+
+
+Context structure used to pass event-\/specific data.  
+
+
+
+
+{\ttfamily \#include $<$event.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{defines_8h_ada59a0de67c44384c6faa924ca63c2aa}{i64}} \mbox{\hyperlink{structevent__context_a31a4610e1961d5333e6e0be776da62be}{i64}} \mbox{[}2\mbox{]}\\
+\>\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structevent__context_a6634590c95e7f62f4fbe9ac60c2f9638}{u64}} \mbox{[}2\mbox{]}\\
+\>\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} \mbox{\hyperlink{structevent__context_a967488791fa28881df35fb981841d96e}{f64}} \mbox{[}2\mbox{]}\\
+\>\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{structevent__context_a6e226e5e8fff23cda36d2c3a09f59c2e}{i32}} \mbox{[}4\mbox{]}\\
+\>\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structevent__context_addde65663cfb4b72a9538fab806c2475}{u32}} \mbox{[}4\mbox{]}\\
+\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{structevent__context_aecc1d2cac72d7cf178b96163232840cb}{f32}} \mbox{[}4\mbox{]}\\
+\>\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} \mbox{\hyperlink{structevent__context_a70758089e3b68639ffb63ace3516f695}{i16}} \mbox{[}8\mbox{]}\\
+\>\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} \mbox{\hyperlink{structevent__context_ade4e8f9d8d9433d902f7070c91a393ef}{u16}} \mbox{[}8\mbox{]}\\
+\>\mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}} \mbox{\hyperlink{structevent__context_a56f10070bb73660cfec58b51ec157414}{i8}} \mbox{[}16\mbox{]}\\
+\>\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} \mbox{\hyperlink{structevent__context_a3f2a89438b1f24e0010d973277f301a3}{u8}} \mbox{[}16\mbox{]}\\
+\>char \mbox{\hyperlink{structevent__context_a8deecc49bdb0f49ac7618cc85a87113c}{c}} \mbox{[}16\mbox{]}\\
+\} \mbox{\hyperlink{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}{data}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em Union of primitive data types for passing event information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Context structure used to pass event-\/specific data. 
+
+This structure contains a union of various primitive types, allowing event handlers to interpret data flexibly based on the event code. Total size is guaranteed to be 128 bytes. 
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00026}{26}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structevent__context_a8deecc49bdb0f49ac7618cc85a87113c}\label{structevent__context_a8deecc49bdb0f49ac7618cc85a87113c} 
+\index{event\_context@{event\_context}!c@{c}}
+\index{c@{c}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily char event\+\_\+context\+::c\mbox{[}16\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00064}{64}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}\label{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3} 
+\index{event\_context@{event\_context}!data@{data}}
+\index{data@{data}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily union  \{ ... \}  event\+\_\+context\+::data}
+
+
+
+Union of primitive data types for passing event information. 
+
+Use fields appropriately based on the event code. For example\+:
+\begin{DoxyItemize}
+\item Use {\ttfamily .u16\mbox{[}0\mbox{]}} for key/button codes
+\item Use {\ttfamily .u16\mbox{[}0\mbox{]}} and {\ttfamily .u16\mbox{[}1\mbox{]}} for mouse coordinates
+\item Use {\ttfamily .u8\mbox{[}0\mbox{]}} for mouse wheel delta
+\item Use {\ttfamily .f32\mbox{[}4\mbox{]}} for vector-\/like data 
+\end{DoxyItemize}\Hypertarget{structevent__context_aecc1d2cac72d7cf178b96163232840cb}\label{structevent__context_aecc1d2cac72d7cf178b96163232840cb} 
+\index{event\_context@{event\_context}!f32@{f32}}
+\index{f32@{f32}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{f32}{f32}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} event\+\_\+context\+::f32\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00050}{50}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_a967488791fa28881df35fb981841d96e}\label{structevent__context_a967488791fa28881df35fb981841d96e} 
+\index{event\_context@{event\_context}!f64@{f64}}
+\index{f64@{f64}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{f64}{f64}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} event\+\_\+context\+::f64\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00043}{43}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_a70758089e3b68639ffb63ace3516f695}\label{structevent__context_a70758089e3b68639ffb63ace3516f695} 
+\index{event\_context@{event\_context}!i16@{i16}}
+\index{i16@{i16}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{i16}{i16}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} event\+\_\+context\+::i16\mbox{[}8\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00054}{54}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_a6e226e5e8fff23cda36d2c3a09f59c2e}\label{structevent__context_a6e226e5e8fff23cda36d2c3a09f59c2e} 
+\index{event\_context@{event\_context}!i32@{i32}}
+\index{i32@{i32}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{i32}{i32}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} event\+\_\+context\+::i32\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00046}{46}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_a31a4610e1961d5333e6e0be776da62be}\label{structevent__context_a31a4610e1961d5333e6e0be776da62be} 
+\index{event\_context@{event\_context}!i64@{i64}}
+\index{i64@{i64}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{i64}{i64}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ada59a0de67c44384c6faa924ca63c2aa}{i64}} event\+\_\+context\+::i64\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00039}{39}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_a56f10070bb73660cfec58b51ec157414}\label{structevent__context_a56f10070bb73660cfec58b51ec157414} 
+\index{event\_context@{event\_context}!i8@{i8}}
+\index{i8@{i8}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{i8}{i8}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}} event\+\_\+context\+::i8\mbox{[}16\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00059}{59}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_ade4e8f9d8d9433d902f7070c91a393ef}\label{structevent__context_ade4e8f9d8d9433d902f7070c91a393ef} 
+\index{event\_context@{event\_context}!u16@{u16}}
+\index{u16@{u16}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{u16}{u16}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} event\+\_\+context\+::u16\mbox{[}8\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00056}{56}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_addde65663cfb4b72a9538fab806c2475}\label{structevent__context_addde65663cfb4b72a9538fab806c2475} 
+\index{event\_context@{event\_context}!u32@{u32}}
+\index{u32@{u32}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{u32}{u32}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} event\+\_\+context\+::u32\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00048}{48}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_a6634590c95e7f62f4fbe9ac60c2f9638}\label{structevent__context_a6634590c95e7f62f4fbe9ac60c2f9638} 
+\index{event\_context@{event\_context}!u64@{u64}}
+\index{u64@{u64}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{u64}{u64}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} event\+\_\+context\+::u64\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00041}{41}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{structevent__context_a3f2a89438b1f24e0010d973277f301a3}\label{structevent__context_a3f2a89438b1f24e0010d973277f301a3} 
+\index{event\_context@{event\_context}!u8@{u8}}
+\index{u8@{u8}!event\_context@{event\_context}}
+\doxysubsubsection{\texorpdfstring{u8}{u8}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} event\+\_\+context\+::u8\mbox{[}16\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00061}{61}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/core/\mbox{\hyperlink{event_8h}{event.\+h}}\end{DoxyCompactItemize}

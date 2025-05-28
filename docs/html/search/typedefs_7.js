@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['platform_5fstate_0',['platform_state',['../platform_8h.html#a8c661bb1c0637f4277be66a5c2f18604',1,'platform.h']]]
+  ['memory_5ftag_0',['memory_tag',['../kmemory_8h.html#a69e3e71ce5a50648353639008c9e02e0',1,'kmemory.h']]]
 ];

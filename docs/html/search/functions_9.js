@@ -1,6 +1,15 @@
 var searchData=
 [
-  ['shutdown_5flogging_0',['shutdown_logging',['../logger_8c.html#a811866002a3bf25ead26b47687cfccdf',1,'shutdown_logging():&#160;logger.c'],['../logger_8h.html#a811866002a3bf25ead26b47687cfccdf',1,'shutdown_logging():&#160;logger.c']]],
-  ['shutdown_5fmemory_1',['shutdown_memory',['../kmemory_8c.html#ab2ac446da30e1b8a9f0d88566041c7ec',1,'shutdown_memory():&#160;kmemory.c'],['../kmemory_8h.html#adf99ff00dcf22ad42c38ee19fea0eb37',1,'shutdown_memory():&#160;kmemory.c']]],
-  ['static_5fassert_2',['static_assert',['../defines_8h.html#add18c34828e9ab4d2b752b7dab7c0b05',1,'STATIC_ASSERT(sizeof(u8)==1, &quot;Expected u8 to be 1 byte.&quot;):&#160;defines.h'],['../defines_8h.html#a3c844fbbc6ae946aaeb7668f741a1798',1,'STATIC_ASSERT(sizeof(u16)==2, &quot;Expected u16 to be 2 bytes.&quot;):&#160;defines.h'],['../defines_8h.html#a75d42d37e452c57b03d7e6fdef8163ba',1,'STATIC_ASSERT(sizeof(u32)==4, &quot;Expected u32 to be 4 bytes.&quot;):&#160;defines.h'],['../defines_8h.html#a8a4887eb6790973929488951816d597b',1,'STATIC_ASSERT(sizeof(u64)==8, &quot;Expected u64 to be 8 bytes.&quot;):&#160;defines.h'],['../defines_8h.html#a1a9cf909648dbd5e4232f6fee291a43e',1,'STATIC_ASSERT(sizeof(i8)==1, &quot;Expected i8 to be 1 byte.&quot;):&#160;defines.h'],['../defines_8h.html#af88c31fbd635f4423f15065c79ecf99f',1,'STATIC_ASSERT(sizeof(i16)==2, &quot;Expected i16 to be 2 bytes.&quot;):&#160;defines.h'],['../defines_8h.html#acbbd6ebcb78f866f341b5b7fe36fc812',1,'STATIC_ASSERT(sizeof(i32)==4, &quot;Expected i32 to be 4 bytes.&quot;):&#160;defines.h'],['../defines_8h.html#a8bc5c1b4d9570c272f874de2989f9b3e',1,'STATIC_ASSERT(sizeof(i64)==8, &quot;Expected i64 to be 8 bytes.&quot;):&#160;defines.h'],['../defines_8h.html#a9864ac51060117e5bfbb49a4a211c41b',1,'STATIC_ASSERT(sizeof(f32)==4, &quot;Expected f32 to be 4 bytes.&quot;):&#160;defines.h'],['../defines_8h.html#a1e6b73ddb58819ce321fc06954dd592f',1,'STATIC_ASSERT(sizeof(f64)==8, &quot;Expected f64 to be 8 bytes.&quot;):&#160;defines.h']]]
+  ['platform_5fallocate_0',['platform_allocate',['../platform_8h.html#a19df473ff145c8579c4c838d5bc67372',1,'platform.h']]],
+  ['platform_5fconsole_5fwrite_1',['platform_console_write',['../platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c',1,'platform.h']]],
+  ['platform_5fconsole_5fwrite_5ferror_2',['platform_console_write_error',['../platform_8h.html#adee3e77de1e3374a118e9ebc150c9800',1,'platform.h']]],
+  ['platform_5fcopy_5fmemory_3',['platform_copy_memory',['../platform_8h.html#a15258bb22b902725b1fbf405463ed07d',1,'platform.h']]],
+  ['platform_5ffree_4',['platform_free',['../platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2',1,'platform.h']]],
+  ['platform_5fget_5fabsolute_5ftime_5',['platform_get_absolute_time',['../platform_8h.html#af38f532e572a9da41eaad4be29a58ada',1,'platform.h']]],
+  ['platform_5fpump_5fmessages_6',['platform_pump_messages',['../platform_8h.html#af47d0fad6d6e686e1e0f668c95b1c201',1,'platform.h']]],
+  ['platform_5fset_5fmemory_7',['platform_set_memory',['../platform_8h.html#aa65146de20a7fd23870d3809834021b7',1,'platform.h']]],
+  ['platform_5fshutdown_8',['platform_shutdown',['../platform_8h.html#a7fe7553c63bc948e2ee04d15597d6ccd',1,'platform.h']]],
+  ['platform_5fsleep_9',['platform_sleep',['../platform_8h.html#ae21676dfd997b1c6dd9c06f69b5618e4',1,'platform.h']]],
+  ['platform_5fstartup_10',['platform_startup',['../platform_8h.html#a1557f29064029f8b437d0fbcc587ebbd',1,'platform.h']]],
+  ['platform_5fzero_5fmemory_11',['platform_zero_memory',['../platform_8h.html#a59e03b207e95523b84692ea7f68e4654',1,'platform.h']]]
 ];

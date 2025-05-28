@@ -103,16 +103,20 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="kmemory_8h__dep__incl.png" border="0" usemap="#aengine_2src_2core_2kmemory_8hdep" alt=""/></div>
 <map name="aengine_2src_2core_2kmemory_8hdep" id="aengine_2src_2core_2kmemory_8hdep">
-<area shape="rect" title="Memory allocation system with tagging and tracking." alt="" coords="333,5,531,31"/>
-<area shape="rect" href="application_8c.html" title="Implementation of the core application lifecycle functions." alt="" coords="5,79,213,104"/>
-<area shape="poly" title=" " alt="" coords="368,36,162,81,161,76,366,31"/>
-<area shape="rect" href="kmemory_8c.html" title="Implementation of the tagged memory allocation system." alt="" coords="237,79,435,104"/>
-<area shape="poly" title=" " alt="" coords="407,41,353,81,350,76,404,37"/>
-<area shape="rect" href="entry_8h.html" title="Main entry point interface for the engine." alt="" coords="459,79,597,104"/>
-<area shape="poly" title=" " alt="" coords="460,37,514,76,511,81,457,41"/>
-<area shape="rect" href="entry_8c.html" title="Testbed application entry point implementation." alt="" coords="511,152,652,177"/>
-<area shape="poly" title=" " alt="" coords="545,32,582,49,612,77,618,97,614,118,593,153,589,151,609,116,613,97,607,80,579,54,543,37"/>
-<area shape="poly" title=" " alt="" coords="547,113,575,150,571,153,543,117"/>
+<area shape="rect" title="Memory allocation system with tagging and tracking." alt="" coords="515,5,713,31"/>
+<area shape="rect" href="darray_8c.html" title="Implementation of a dynamic array container." alt="" coords="5,79,167,119"/>
+<area shape="poly" title=" " alt="" coords="505,35,351,55,180,81,167,83,166,78,179,76,350,50,505,30"/>
+<area shape="rect" href="application_8c.html" title="Implementation of the core application lifecycle functions." alt="" coords="191,86,399,111"/>
+<area shape="poly" title=" " alt="" coords="555,36,342,89,341,83,554,31"/>
+<area shape="rect" href="event_8c.html" title="Implementation of a generic event system for inter&#45;component communication." alt="" coords="423,86,597,111"/>
+<area shape="poly" title=" " alt="" coords="590,41,527,88,524,84,586,37"/>
+<area shape="rect" href="kmemory_8c.html" title="Implementation of the tagged memory allocation system." alt="" coords="621,86,818,111"/>
+<area shape="poly" title=" " alt="" coords="642,37,705,84,702,88,639,41"/>
+<area shape="rect" href="entry_8h.html" title="Main entry point interface for the engine." alt="" coords="843,86,980,111"/>
+<area shape="poly" title=" " alt="" coords="671,32,869,83,867,89,670,37"/>
+<area shape="rect" href="entry_8c.html" title="Testbed application entry point implementation." alt="" coords="894,167,1035,192"/>
+<area shape="poly" title=" " alt="" coords="728,19,806,24,885,34,952,51,977,63,995,77,1001,88,1004,100,1000,125,989,149,976,168,972,165,984,146,995,124,998,100,996,90,991,80,974,67,950,56,884,40,806,29,727,24"/>
+<area shape="poly" title=" " alt="" coords="929,121,959,165,955,168,925,124"/>
 </map>
 </div>
 </div>
@@ -294,7 +298,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="kmemory_8h_source.html#l00077">MEMORY_TAG_MAX_TAGS</a>, <a class="el" href="kmemory_8c_source.html#l00052">memory_tag_strings</a>, <a class="el" href="kmemory_8c_source.html#l00076">stats</a>, and <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00135">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00141">application_run()</a>.</p>
 
 </div>
 </div>
@@ -376,7 +380,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00026">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate()</a>, <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00076">stats</a>, <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00039">memory_stats::total_allocated</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="entry_8c_source.html#l00020">create_game()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="darray_8c_source.html#l00024">_darray_create()</a>, and <a class="el" href="entry_8c_source.html#l00020">create_game()</a>.</p>
 
 </div>
 </div>
@@ -437,6 +441,8 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="platform_8h.html#a15258bb22b902725b1fbf405463ed07d">platform_copy_memory()</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="darray_8c_source.html#l00155">_darray_insert_at()</a>, <a class="el" href="darray_8c_source.html#l00112">_darray_pop()</a>, <a class="el" href="darray_8c_source.html#l00127">_darray_pop_at()</a>, <a class="el" href="darray_8c_source.html#l00090">_darray_push()</a>, and <a class="el" href="darray_8c_source.html#l00069">_darray_resize()</a>.</p>
+
 </div>
 </div>
 <a id="a6b55b65a2f2d473dac0d8ff4605a44fb" name="a6b55b65a2f2d473dac0d8ff4605a44fb"></a>
@@ -493,6 +499,8 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00129">129</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
 <p class="reference">References <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00026">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free()</a>, <a class="el" href="kmemory_8c_source.html#l00076">stats</a>, <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00039">memory_stats::total_allocated</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="darray_8c_source.html#l00044">_darray_destroy()</a>.</p>
 
 </div>
 </div>
@@ -553,6 +561,8 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="platform_8h.html#aa65146de20a7fd23870d3809834021b7">platform_set_memory()</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="darray_8c_source.html#l00024">_darray_create()</a>.</p>
+
 </div>
 </div>
 <a id="af7a3a9859ec3104c490238242dae4ed6" name="af7a3a9859ec3104c490238242dae4ed6"></a>
@@ -595,6 +605,8 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="event_8c_source.html#l00076">event_initialize()</a>.</p>
+
 </div>
 </div>
 <a id="adf99ff00dcf22ad42c38ee19fea0eb37" name="adf99ff00dcf22ad42c38ee19fea0eb37"></a>
@@ -626,7 +638,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 27 2025 22:54:25 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed May 28 2025 12:55:53 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

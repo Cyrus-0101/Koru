@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['render_0',['render',['../structgame.html#ac2c261fc48169dc53096929654c51bfe',1,'game']]]
+  ['name_0',['name',['../structapplication__config.html#ae1d05e78a3093693075c040d9a703366',1,'application_config']]]
 ];

@@ -1,0 +1,375 @@
+\doxysection{engine/src/core/event.h File Reference}
+\hypertarget{event_8h}{}\label{event_8h}\index{engine/src/core/event.h@{engine/src/core/event.h}}
+
+
+Event system for inter-\/component communication.  
+
+
+{\ttfamily \#include "{}defines.\+h"{}}\newline
+Include dependency graph for event.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{event_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{event_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structevent__context}{event\+\_\+context}}
+\begin{DoxyCompactList}\small\item\em Context structure used to pass event-\/specific data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structevent__context}{event\+\_\+context}} \mbox{\hyperlink{event_8h_a6f265c5acd97e3c89ad3a77b5eda27ec}{event\+\_\+context}}
+\begin{DoxyCompactList}\small\item\em Context structure used to pass event-\/specific data. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}}) (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, void \texorpdfstring{$\ast$}{*}listener\+\_\+inst, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} data)
+\begin{DoxyCompactList}\small\item\em Event handler callback function type. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226}{system\+\_\+event\+\_\+code}} \mbox{\hyperlink{event_8h_aeb3aa7dc1a87db9aae0a5f0b3df676b9}{system\+\_\+event\+\_\+code}}
+\begin{DoxyCompactList}\small\item\em Built-\/in system event codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226}{system\+\_\+event\+\_\+code}} \{ \newline
+\mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}} = 0x01
+, \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}} = 0x02
+, \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}} = 0x03
+, \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a013204a5d0b77a55a4701ac7161d1e97}{EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+PRESSED}} = 0x04
+, \newline
+\mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a85f06d8f0da4cdadb792e2e2f18979d2}{EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+RELEASED}} = 0x05
+, \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a681a38e19124eb42a25ab1551fa2a878}{EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+MOVED}} = 0x06
+, \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a923e40874ed01a63929ab78f31f1637d}{EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+WHEEL}} = 0x07
+, \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656}{EVENT\+\_\+\+CODE\+\_\+\+RESIZED}} = 0x08
+, \newline
+\mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb}{MAX\+\_\+\+EVENT\+\_\+\+CODE}} = 0x\+FF
+ \}
+\begin{DoxyCompactList}\small\item\em Built-\/in system event codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8h_aaaec3136b95f3d089d55ebfe440c2a4f}{event\+\_\+initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the event system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{event_8h_a4747584f93c48ffe1a1fa895c3746c7c}{event\+\_\+shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Shuts down the event system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8h_a8ef51b7c38c54169c57b45bb8e55047a}{event\+\_\+register}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
+\begin{DoxyCompactList}\small\item\em Registers a listener for a specific event code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8h_ae6b9afa0e8bc3c94752e7b2c0b9c17f8}{event\+\_\+unregister}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
+\begin{DoxyCompactList}\small\item\em Unregisters a listener for a specific event code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8h_a4174710cacb6cab063e91e0f0f02d63f}{event\+\_\+fire}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} context)
+\begin{DoxyCompactList}\small\item\em Fires an event to all registered listeners for the given code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Event system for inter-\/component communication. 
+
+This module provides a generic event system that allows components to\+:
+\begin{DoxyItemize}
+\item Register listeners for specific event codes
+\item Fire events with optional context data
+\item Unregister listeners when no longer needed
+\end{DoxyItemize}
+
+Events are identified by a 16-\/bit code, and can carry up to 128 bytes of arbitrary data via the {\ttfamily \doxylink{structevent__context}{event\+\_\+context}} union. System-\/defined event codes use values up to {\ttfamily 0x\+FF}; applications should define their own codes starting from {\ttfamily 0x100} or higher. 
+
+Definition in file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{event_8h_a6f265c5acd97e3c89ad3a77b5eda27ec}\label{event_8h_a6f265c5acd97e3c89ad3a77b5eda27ec} 
+\index{event.h@{event.h}!event\_context@{event\_context}}
+\index{event\_context@{event\_context}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{event\_context}{event\_context}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structevent__context}{event\+\_\+context}} \mbox{\hyperlink{structevent__context}{event\+\_\+context}}}
+
+
+
+Context structure used to pass event-\/specific data. 
+
+This structure contains a union of various primitive types, allowing event handlers to interpret data flexibly based on the event code. Total size is guaranteed to be 128 bytes. \Hypertarget{event_8h_ac694dc305b9660134b170d9560b0563a}\label{event_8h_ac694dc305b9660134b170d9560b0563a} 
+\index{event.h@{event.h}!PFN\_on\_event@{PFN\_on\_event}}
+\index{PFN\_on\_event@{PFN\_on\_event}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{PFN\_on\_event}{PFN\_on\_event}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}(\texorpdfstring{$\ast$}{*} PFN\+\_\+on\+\_\+event) (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, void \texorpdfstring{$\ast$}{*}listener\+\_\+inst, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} data)}
+
+
+
+Event handler callback function type. 
+
+Called when an event matching the registered code is fired.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code. \\
+\hline
+{\em sender} & A pointer to the object that triggered the event. \\
+\hline
+{\em listener\+\_\+inst} & A pointer to the listener instance (optional). \\
+\hline
+{\em data} & The event context containing additional data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the event was handled; FALSE to allow further propagation. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00079}{79}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+\Hypertarget{event_8h_aeb3aa7dc1a87db9aae0a5f0b3df676b9}\label{event_8h_aeb3aa7dc1a87db9aae0a5f0b3df676b9} 
+\index{event.h@{event.h}!system\_event\_code@{system\_event\_code}}
+\index{system\_event\_code@{system\_event\_code}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{system\_event\_code}{system\_event\_code}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226}{system\+\_\+event\+\_\+code}} \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226}{system\+\_\+event\+\_\+code}}}
+
+
+
+Built-\/in system event codes. 
+
+These are reserved for internal engine use. Applications should use custom codes above {\ttfamily MAX\+\_\+\+EVENT\+\_\+\+CODE}. 
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226}\label{event_8h_a6779f338629229430f8974f2f86d7226} 
+\index{event.h@{event.h}!system\_event\_code@{system\_event\_code}}
+\index{system\_event\_code@{system\_event\_code}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{system\_event\_code}{system\_event\_code}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226}{system\+\_\+event\+\_\+code}}}
+
+
+
+Built-\/in system event codes. 
+
+These are reserved for internal engine use. Applications should use custom codes above {\ttfamily MAX\+\_\+\+EVENT\+\_\+\+CODE}. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_APPLICATION\_QUIT@{EVENT\_CODE\_APPLICATION\_QUIT}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_APPLICATION\_QUIT@{EVENT\_CODE\_APPLICATION\_QUIT}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677}\label{event_8h_a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677} 
+EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT&Application lifecycle. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_KEY\_PRESSED@{EVENT\_CODE\_KEY\_PRESSED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_KEY\_PRESSED@{EVENT\_CODE\_KEY\_PRESSED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1}\label{event_8h_a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1} 
+EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED&Fired when a keyboard key is pressed. Usage\+: 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ context.data.u16[0];}
+
+\end{DoxyCode}
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_KEY\_RELEASED@{EVENT\_CODE\_KEY\_RELEASED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_KEY\_RELEASED@{EVENT\_CODE\_KEY\_RELEASED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f}\label{event_8h_a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f} 
+EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED&Fired when a keyboard key is released. Usage\+: 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ context.data.u16[0];}
+
+\end{DoxyCode}
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_BUTTON\_PRESSED@{EVENT\_CODE\_BUTTON\_PRESSED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_BUTTON\_PRESSED@{EVENT\_CODE\_BUTTON\_PRESSED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a013204a5d0b77a55a4701ac7161d1e97}\label{event_8h_a6779f338629229430f8974f2f86d7226a013204a5d0b77a55a4701ac7161d1e97} 
+EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+PRESSED&Fired when a mouse button is pressed. Usage\+: 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ button\ =\ context.data.u16[0];}
+
+\end{DoxyCode}
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_BUTTON\_RELEASED@{EVENT\_CODE\_BUTTON\_RELEASED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_BUTTON\_RELEASED@{EVENT\_CODE\_BUTTON\_RELEASED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a85f06d8f0da4cdadb792e2e2f18979d2}\label{event_8h_a6779f338629229430f8974f2f86d7226a85f06d8f0da4cdadb792e2e2f18979d2} 
+EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+RELEASED&Fired when a mouse button is released. Usage\+: 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ button\ =\ context.data.u16[0];}
+
+\end{DoxyCode}
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_MOUSE\_MOVED@{EVENT\_CODE\_MOUSE\_MOVED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_MOUSE\_MOVED@{EVENT\_CODE\_MOUSE\_MOVED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a681a38e19124eb42a25ab1551fa2a878}\label{event_8h_a6779f338629229430f8974f2f86d7226a681a38e19124eb42a25ab1551fa2a878} 
+EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+MOVED&Fired when the mouse is moved. Usage\+: 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ x\ =\ context.data.u16[0];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ y\ =\ context.data.u16[1];}
+
+\end{DoxyCode}
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_MOUSE\_WHEEL@{EVENT\_CODE\_MOUSE\_WHEEL}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_MOUSE\_WHEEL@{EVENT\_CODE\_MOUSE\_WHEEL}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a923e40874ed01a63929ab78f31f1637d}\label{event_8h_a6779f338629229430f8974f2f86d7226a923e40874ed01a63929ab78f31f1637d} 
+EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+WHEEL&Fired when the mouse wheel is scrolled. Usage\+: 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ z\_delta\ =\ context.data.u8[0];}
+
+\end{DoxyCode}
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_RESIZED@{EVENT\_CODE\_RESIZED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_RESIZED@{EVENT\_CODE\_RESIZED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656}\label{event_8h_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656} 
+EVENT\+\_\+\+CODE\+\_\+\+RESIZED&Fired when the window is resized or resolution changes. Usage\+: 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ width\ =\ context.data.u16[0];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ height\ =\ context.data.u16[1];}
+
+\end{DoxyCode}
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX\_EVENT\_CODE@{MAX\_EVENT\_CODE}!event.h@{event.h}}\index{event.h@{event.h}!MAX\_EVENT\_CODE@{MAX\_EVENT\_CODE}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb}\label{event_8h_a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb} 
+MAX\+\_\+\+EVENT\+\_\+\+CODE&Maximum valid system event code. Reserved for internal use — applications should define custom codes beyond this. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{event_8h_source_l00143}{143}} of file \mbox{\hyperlink{event_8h_source}{event.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{event_8h_a4174710cacb6cab063e91e0f0f02d63f}\label{event_8h_a4174710cacb6cab063e91e0f0f02d63f} 
+\index{event.h@{event.h}!event\_fire@{event\_fire}}
+\index{event\_fire@{event\_fire}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{event\_fire()}{event\_fire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+fire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{sender,  }\item[{\mbox{\hyperlink{structevent__context}{event\+\_\+context}}}]{context }\end{DoxyParamCaption})}
+
+
+
+Fires an event to all registered listeners for the given code. 
+
+If any handler returns TRUE, the event is considered handled and will not be passed to remaining listeners.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code to fire. \\
+\hline
+{\em sender} & A pointer to the object that triggered the event. Can be NULL. \\
+\hline
+{\em context} & The event context containing additional data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if handled by at least one listener; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00156}{156}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{event_8h_aaaec3136b95f3d089d55ebfe440c2a4f}\label{event_8h_aaaec3136b95f3d089d55ebfe440c2a4f} 
+\index{event.h@{event.h}!event\_initialize@{event\_initialize}}
+\index{event\_initialize@{event\_initialize}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{event\_initialize()}{event\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the event system. 
+
+Must be called before any other event functions are used. Sets up internal structures for managing event listeners.
+
+\begin{DoxyReturn}{Returns}
+TRUE if initialization succeeded; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00076}{76}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00084}{application\+\_\+create()}}.
+
+\Hypertarget{event_8h_a8ef51b7c38c54169c57b45bb8e55047a}\label{event_8h_a8ef51b7c38c54169c57b45bb8e55047a} 
+\index{event.h@{event.h}!event\_register@{event\_register}}
+\index{event\_register@{event\_register}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{event\_register()}{event\_register()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener,  }\item[{\mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}}}]{on\+\_\+event }\end{DoxyParamCaption})}
+
+
+
+Registers a listener for a specific event code. 
+
+Prevents duplicate registrations of the same listener/callback pair. Multiple different callbacks for the same code are allowed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code to listen for. \\
+\hline
+{\em listener} & A pointer to a listener instance. Can be NULL. \\
+\hline
+{\em on\+\_\+event} & The callback function to invoke when the event fires. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if successfully registered; FALSE if already registered or invalid parameters. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00100}{100}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{event_8h_a4747584f93c48ffe1a1fa895c3746c7c}\label{event_8h_a4747584f93c48ffe1a1fa895c3746c7c} 
+\index{event.h@{event.h}!event\_shutdown@{event\_shutdown}}
+\index{event\_shutdown@{event\_shutdown}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{event\_shutdown()}{event\_shutdown()}}
+{\footnotesize\ttfamily void event\+\_\+shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shuts down the event system. 
+
+Cleans up internal state, removes all registered listeners, and prepares for safe termination. 
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00088}{88}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00050}{MAX\+\_\+\+MESSAGE\+\_\+\+CODES}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, and \mbox{\hyperlink{event_8c_source_l00074}{state}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00141}{application\+\_\+run()}}.
+
+\Hypertarget{event_8h_ae6b9afa0e8bc3c94752e7b2c0b9c17f8}\label{event_8h_ae6b9afa0e8bc3c94752e7b2c0b9c17f8} 
+\index{event.h@{event.h}!event\_unregister@{event\_unregister}}
+\index{event\_unregister@{event\_unregister}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{event\_unregister()}{event\_unregister()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+unregister (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener,  }\item[{\mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}}}]{on\+\_\+event }\end{DoxyParamCaption})}
+
+
+
+Unregisters a listener for a specific event code. 
+
+If no matching registration exists, this function returns FALSE.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code to stop listening for. \\
+\hline
+{\em listener} & A pointer to a listener instance. Can be NULL. \\
+\hline
+{\em on\+\_\+event} & The callback function to unregister. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if successfully unregistered; FALSE if not found. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00129}{129}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00223}{darray\+\_\+pop\+\_\+at}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+

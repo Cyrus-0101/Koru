@@ -1,0 +1,315 @@
+\doxysection{engine/src/core/event.c File Reference}
+\hypertarget{event_8c}{}\label{event_8c}\index{engine/src/core/event.c@{engine/src/core/event.c}}
+
+
+Implementation of a generic event system for inter-\/component communication.  
+
+
+{\ttfamily \#include "{}core/event.\+h"{}}\newline
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}containers/darray.\+h"{}}\newline
+Include dependency graph for event.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{event_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structregistered__event}{registered\+\_\+event}}
+\begin{DoxyCompactList}\small\item\em Internal structure representing a registered event listener. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structevent__code__entry}{event\+\_\+code\+\_\+entry}}
+\begin{DoxyCompactList}\small\item\em Entry for an event code, containing all registered listeners. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structevent__system__state}{event\+\_\+system\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Global state for the event system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{event_8c_a59db8f883e31171b78490d26c0251f64}{MAX\+\_\+\+MESSAGE\+\_\+\+CODES}}~16384
+\begin{DoxyCompactList}\small\item\em Maximum number of unique event codes supported. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structregistered__event}{registered\+\_\+event}} \mbox{\hyperlink{event_8c_aa8b5e9c994ed612f290eb5e1f03624a9}{registered\+\_\+event}}
+\begin{DoxyCompactList}\small\item\em Internal structure representing a registered event listener. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structevent__code__entry}{event\+\_\+code\+\_\+entry}} \mbox{\hyperlink{event_8c_a41448e3cfa7669aec19192551ab82ec8}{event\+\_\+code\+\_\+entry}}
+\begin{DoxyCompactList}\small\item\em Entry for an event code, containing all registered listeners. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structevent__system__state}{event\+\_\+system\+\_\+state}} \mbox{\hyperlink{event_8c_a137cc0eeba0b3a0e3e2a2bfa2ece4691}{event\+\_\+system\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Global state for the event system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_aaaec3136b95f3d089d55ebfe440c2a4f}{event\+\_\+initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the event system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{event_8c_a4747584f93c48ffe1a1fa895c3746c7c}{event\+\_\+shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Shuts down the event system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_ae0709e6ce288dc76ad2889c194572f1f}{event\+\_\+register}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
+\begin{DoxyCompactList}\small\item\em Registers a listener for a specific event code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_a59fc6e1b34ce65e68076a1e3ba004380}{event\+\_\+unregister}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
+\begin{DoxyCompactList}\small\item\em Unregisters a listener for a specific event code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\+\_\+fire}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} context)
+\begin{DoxyCompactList}\small\item\em Fires an event to all registered listeners for the given code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_aaf91097086deb8321aa029e833198c3d}{is\+\_\+initialized}} = \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}}
+\begin{DoxyCompactList}\small\item\em Internal state tracking whether the system has been initialized. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structevent__system__state}{event\+\_\+system\+\_\+state}} \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}
+\begin{DoxyCompactList}\small\item\em Static global instance of the event system state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of a generic event system for inter-\/component communication. 
+
+This module implements a centralized event system that allows components to\+:
+\begin{DoxyItemize}
+\item Register listeners for specific event codes
+\item Fire events with optional context data
+\item Unregister listeners when no longer needed
+\end{DoxyItemize}
+
+Internally, it uses dynamic arrays ({\ttfamily darray}) to manage event callbacks per code, and ensures that duplicate registrations are not allowed.
+
+Usage\+: Use the public API functions in {\ttfamily \doxylink{event_8h}{event.\+h}} to interact with this system. Never access internal structures directly. 
+
+Definition in file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{event_8c_a59db8f883e31171b78490d26c0251f64}\label{event_8c_a59db8f883e31171b78490d26c0251f64} 
+\index{event.c@{event.c}!MAX\_MESSAGE\_CODES@{MAX\_MESSAGE\_CODES}}
+\index{MAX\_MESSAGE\_CODES@{MAX\_MESSAGE\_CODES}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_MESSAGE\_CODES}{MAX\_MESSAGE\_CODES}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+MESSAGE\+\_\+\+CODES~16384}
+
+
+
+Maximum number of unique event codes supported. 
+
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00050}{50}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{event_8c_a41448e3cfa7669aec19192551ab82ec8}\label{event_8c_a41448e3cfa7669aec19192551ab82ec8} 
+\index{event.c@{event.c}!event\_code\_entry@{event\_code\_entry}}
+\index{event\_code\_entry@{event\_code\_entry}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{event\_code\_entry}{event\_code\_entry}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structevent__code__entry}{event\+\_\+code\+\_\+entry}} \mbox{\hyperlink{structevent__code__entry}{event\+\_\+code\+\_\+entry}}}
+
+
+
+Entry for an event code, containing all registered listeners. 
+
+Each event code maps to an array of registered events. \Hypertarget{event_8c_a137cc0eeba0b3a0e3e2a2bfa2ece4691}\label{event_8c_a137cc0eeba0b3a0e3e2a2bfa2ece4691} 
+\index{event.c@{event.c}!event\_system\_state@{event\_system\_state}}
+\index{event\_system\_state@{event\_system\_state}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{event\_system\_state}{event\_system\_state}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structevent__system__state}{event\+\_\+system\+\_\+state}} \mbox{\hyperlink{structevent__system__state}{event\+\_\+system\+\_\+state}}}
+
+
+
+Global state for the event system. 
+
+Maintains a lookup table mapping event codes to their listeners. \Hypertarget{event_8c_aa8b5e9c994ed612f290eb5e1f03624a9}\label{event_8c_aa8b5e9c994ed612f290eb5e1f03624a9} 
+\index{event.c@{event.c}!registered\_event@{registered\_event}}
+\index{registered\_event@{registered\_event}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{registered\_event}{registered\_event}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structregistered__event}{registered\+\_\+event}} \mbox{\hyperlink{structregistered__event}{registered\+\_\+event}}}
+
+
+
+Internal structure representing a registered event listener. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{event_8c_a1c350143596c6f99cfd34595b4959ef8}\label{event_8c_a1c350143596c6f99cfd34595b4959ef8} 
+\index{event.c@{event.c}!event\_fire@{event\_fire}}
+\index{event\_fire@{event\_fire}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{event\_fire()}{event\_fire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+fire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{sender,  }\item[{\mbox{\hyperlink{structevent__context}{event\+\_\+context}}}]{context }\end{DoxyParamCaption})}
+
+
+
+Fires an event to all registered listeners for the given code. 
+
+If any handler returns TRUE, the event is considered handled and will not be passed to remaining listeners.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code to fire. \\
+\hline
+{\em sender} & A pointer to the object that triggered the event. Can be NULL. \\
+\hline
+{\em context} & The event context containing additional data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if handled by at least one listener; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00156}{156}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{event_8c_aaaec3136b95f3d089d55ebfe440c2a4f}\label{event_8c_aaaec3136b95f3d089d55ebfe440c2a4f} 
+\index{event.c@{event.c}!event\_initialize@{event\_initialize}}
+\index{event\_initialize@{event\_initialize}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{event\_initialize()}{event\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the event system. 
+
+Must be called before any other event functions are used. Sets up internal structures for managing event listeners.
+
+\begin{DoxyReturn}{Returns}
+TRUE if initialization succeeded; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00076}{76}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00084}{application\+\_\+create()}}.
+
+\Hypertarget{event_8c_ae0709e6ce288dc76ad2889c194572f1f}\label{event_8c_ae0709e6ce288dc76ad2889c194572f1f} 
+\index{event.c@{event.c}!event\_register@{event\_register}}
+\index{event\_register@{event\_register}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{event\_register()}{event\_register()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener,  }\item[{\mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}}}]{on\+\_\+event }\end{DoxyParamCaption})}
+
+
+
+Registers a listener for a specific event code. 
+
+Prevents duplicate registrations of the same listener/callback pair. Multiple different callbacks for the same code are allowed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code to listen for. \\
+\hline
+{\em listener} & A pointer to a listener instance. Can be NULL. \\
+\hline
+{\em on\+\_\+event} & The callback function to invoke when the event fires. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if successfully registered; FALSE if already registered or invalid parameters. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00100}{100}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{event_8c_a4747584f93c48ffe1a1fa895c3746c7c}\label{event_8c_a4747584f93c48ffe1a1fa895c3746c7c} 
+\index{event.c@{event.c}!event\_shutdown@{event\_shutdown}}
+\index{event\_shutdown@{event\_shutdown}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{event\_shutdown()}{event\_shutdown()}}
+{\footnotesize\ttfamily void event\+\_\+shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shuts down the event system. 
+
+Cleans up internal state, removes all registered listeners, and prepares for safe termination. 
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00088}{88}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00050}{MAX\+\_\+\+MESSAGE\+\_\+\+CODES}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, and \mbox{\hyperlink{event_8c_source_l00074}{state}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00141}{application\+\_\+run()}}.
+
+\Hypertarget{event_8c_a59fc6e1b34ce65e68076a1e3ba004380}\label{event_8c_a59fc6e1b34ce65e68076a1e3ba004380} 
+\index{event.c@{event.c}!event\_unregister@{event\_unregister}}
+\index{event\_unregister@{event\_unregister}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{event\_unregister()}{event\_unregister()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+unregister (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener,  }\item[{\mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}}}]{on\+\_\+event }\end{DoxyParamCaption})}
+
+
+
+Unregisters a listener for a specific event code. 
+
+If no matching registration exists, this function returns FALSE.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code to stop listening for. \\
+\hline
+{\em listener} & A pointer to a listener instance. Can be NULL. \\
+\hline
+{\em on\+\_\+event} & The callback function to unregister. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if successfully unregistered; FALSE if not found. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00129}{129}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00223}{darray\+\_\+pop\+\_\+at}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{event_8c_aaf91097086deb8321aa029e833198c3d}\label{event_8c_aaf91097086deb8321aa029e833198c3d} 
+\index{event.c@{event.c}!is\_initialized@{is\_initialized}}
+\index{is\_initialized@{is\_initialized}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{is\_initialized}{is\_initialized}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} is\+\_\+initialized = \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Internal state tracking whether the system has been initialized. 
+
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00069}{69}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{event_8c_source_l00156}{event\+\_\+fire()}}, \mbox{\hyperlink{event_8c_source_l00076}{event\+\_\+initialize()}}, \mbox{\hyperlink{event_8c_source_l00100}{event\+\_\+register()}}, \mbox{\hyperlink{event_8c_source_l00088}{event\+\_\+shutdown()}}, and \mbox{\hyperlink{event_8c_source_l00129}{event\+\_\+unregister()}}.
+
+\Hypertarget{event_8c_acfc52e8e20887a09d8db0da0067c76e5}\label{event_8c_acfc52e8e20887a09d8db0da0067c76e5} 
+\index{event.c@{event.c}!state@{state}}
+\index{state@{state}!event.c@{event.c}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structevent__system__state}{event\+\_\+system\+\_\+state}} state\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Static global instance of the event system state. 
+
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00074}{74}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{event_8c_source_l00156}{event\+\_\+fire()}}, \mbox{\hyperlink{event_8c_source_l00076}{event\+\_\+initialize()}}, \mbox{\hyperlink{event_8c_source_l00100}{event\+\_\+register()}}, \mbox{\hyperlink{event_8c_source_l00088}{event\+\_\+shutdown()}}, and \mbox{\hyperlink{event_8c_source_l00129}{event\+\_\+unregister()}}.
+
