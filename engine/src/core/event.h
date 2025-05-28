@@ -141,7 +141,7 @@ KAPI b8 event_fire(u16 code, void* sender, event_context context);
  * Applications should use custom codes above `MAX_EVENT_CODE`.
  */
 typedef enum system_event_code {
-    ///< Application lifecycle
+    ///< Shuts the application down on the next frame
     EVENT_CODE_APPLICATION_QUIT = 0x01,
 
     // Keyboard events
