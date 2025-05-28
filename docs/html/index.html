@@ -72,23 +72,29 @@ $(function() {
   <div class="headertitle"><div class="title">Koru </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> A lightweight, multi-platform game engine built in C using the Vulkan graphics API.</p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> <a href="https://github.com/Cyrus-0101/Koru/actions"><img src="https://github.com/Cyrus-0101/Koru/workflows/CI/badge.svg" alt="Build Status" style="pointer-events: none;" class="inline"/></a></p>
+<blockquote class="doxtable">
+<p>&zwj;<em>A lightweight, multi-platform game engine built in C using the Vulkan graphics API.</em> </p>
+</blockquote>
 <p>Koru is designed to be fast, portable, and easy to extend — providing a low-level foundation for game development across platforms including Windows, Linux, and soon consoles and mobile devices.</p>
 <hr  />
 <h1><a class="anchor" id="autotoc_md4"></a>
-🧠 Overview</h1>
-<p>Koru is designed to be:</p>
+🧠 What Is Koru?</h1>
+<p>Koru is a <b>C99-based game engine</b> focused on performance, portability, and modularity. It's ideal for developers who want fine-grained control over rendering, input, memory, and platform-specific functionality without the overhead of high-level abstractions.</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+🚀 Features:</h2>
 <ul>
-<li><b>Portable</b>: Supports Windows, Linux, and Mac (with plans for consoles and mobile platforms).</li>
-<li><b>Modular</b>: Built with a clean separation of concerns, allowing easy extension and customization.</li>
-<li><b>Performance-Oriented</b>: Optimized for speed and low-level control, leveraging Vulkan for high-performance rendering.</li>
+<li>Written entirely in <b>C99</b> – minimal dependencies</li>
+<li><b>Vulkan-based renderer</b> for high-performance graphics</li>
+<li>Cross-platform: <b>Windows, Linux, Mac</b> (with future plans for consoles and mobile)</li>
+<li>Modular architecture for <b>easy extension</b></li>
+<li>Custom <b>memory allocators</b>, <b>logging</b>, <b>assertions</b>, and <b>data structures</b> etc</li>
 </ul>
-<p>It serves as a foundation for creating games, tools, or applications that need direct access to hardware and APIs without the overhead of higher-level abstractions, fine-grained control over rendering, input, memory, and platform-specific functionality.</p>
-<p>All code is written in <b>C99</b>, making it ideal for performance-critical applications while keeping dependencies minimal.</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<hr  />
+<h1><a class="anchor" id="autotoc_md7"></a>
 🖼 Architecture</h1>
 <p>The high-level architecture of Koru is divided into four main layers:</p>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 1. &lt;strong&gt;Platform Layer&lt;/strong&gt;</h2>
 <p>Handles OS-specific functionality:</p>
 <ul>
@@ -99,7 +105,7 @@ $(function() {
 <li><b>Memory Management</b>: Allocates and frees memory efficiently.</li>
 <li><b>Renderer API Extensions</b>: Integrates with Vulkan for rendering.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 2. &lt;strong&gt;Core&lt;/strong&gt;</h2>
 <p>Provides fundamental utilities and services:</p>
 <ul>
@@ -116,7 +122,7 @@ $(function() {
 <li><b>String Library</b>: String manipulation utilities.</li>
 <li><b>Random Number Generator (RNG)</b>: Generates random numbers for simulations and AI.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 3. &lt;strong&gt;Resource Management&lt;/strong&gt;</h2>
 <p>Manages various assets:</p>
 <ul>
@@ -126,7 +132,7 @@ $(function() {
 <li><b>Animations</b>: Skeletal animations and timeline systems.</li>
 <li><b>World Maps</b>: Terrain and level data management.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 4. &lt;strong&gt;Application Layer&lt;/strong&gt;</h2>
 <p>Contains higher-level systems:</p>
 <ul>
@@ -136,10 +142,10 @@ $(function() {
 <li><b>Others</b>: Animation/timelines, event system, ECS, state machines, collision/physics.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md11"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 📋 Feature List</h1>
 <p>Here’s a summary of the features to be implemented in v0.1:</p>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Core Features</h2>
 <ul>
 <li><b>Lightweight build system</b>: Simple scripts for compiling on Windows and Linux.</li>
@@ -165,7 +171,7 @@ Core Features</h2>
 <li><b>Profiling/Debugging utilities</b>: Tools for measuring performance and identifying bottlenecks.</li>
 <li>**"Scripting" support via hot reloading**: Experimental support for scripting through hot-reloading mechanisms.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Planned Features</h2>
 <ul>
 <li>Mobile and console support</li>
@@ -175,43 +181,70 @@ Planned Features</h2>
 <li>Improved asset pipeline</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md15"></a>
-🖼 Visual Assets</h1>
-<p>Take a look at the included diagrams in the <code>assets/</code> folder:</p>
+<h1><a class="anchor" id="autotoc_md17"></a>
+🎨 Visuals</h1>
+<p>Check out the diagrams included in the <code>assets/</code> folder to understand how everything fits together:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">File   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<th class="markdownTableHeadNone">Diagram   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>Koru Engine Architecture.png</code>   </td><td class="markdownTableBodyNone">High-level overview of system layers and module interactions    </td></tr>
+<td class="markdownTableBodyNone"><img src="assets/Koru%20Engine%20Architecture.png" alt="Architecture" class="inline"/>   </td><td class="markdownTableBodyNone">High-level overview of system modules and interactions    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>Koru Project Structure.png</code>   </td><td class="markdownTableBodyNone">File structure and organization of source modules    </td></tr>
+<td class="markdownTableBodyNone"><img src="assets/Koru%20Project%20Structure.png" alt="Project Structure" class="inline"/>   </td><td class="markdownTableBodyNone">File structure and module organization    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>Koru v0.1 Feature List.png</code>   </td><td class="markdownTableBodyNone">Summary of current capabilities and future goals   </td></tr>
+<td class="markdownTableBodyNone"><img src="assets/Koru%20v0.1%20Feature%20List.png" alt="Feature List v0.1" class="inline"/>   </td><td class="markdownTableBodyNone">Summary of current capabilities and roadmap   </td></tr>
 </table>
 <hr  />
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md19"></a>
 📁 Project Structure</h1>
 <div class="fragment"><div class="line">.</div>
-<div class="line">├── assets/              # Diagrams showing architecture and feature list</div>
-<div class="line">├── bin/                 # Compiled binaries (engine shared lib + testbed app)</div>
-<div class="line">├── build-all.bat        # Build script for Windows (builds all modules)</div>
-<div class="line">├── build-all.sh         # Build script for Linux (builds all modules)</div>
-<div class="line">├── engine/              # Core engine code and platform abstraction</div>
-<div class="line">│   ├── build.bat        # Windows build script for engine (.dll)</div>
-<div class="line">│   ├── build.sh         # Linux build script for engine (.so)</div>
-<div class="line">│   └── src/</div>
-<div class="line">│       ├── core/        # Core utilities: logging, asserts, memory</div>
-<div class="line">│       ├── defines.h    # Common definitions and macros</div>
-<div class="line">│       └── platform/    # Platform-specific code (Linux/Windows)</div>
-<div class="line">├── LICENSE              # MIT License</div>
-<div class="line">├── README.md            # This file</div>
-<div class="line">└── testbed/             # Example application that uses the engine</div>
-<div class="line">    ├── build.bat        # Windows build script for testbed</div>
-<div class="line">    ├── build.sh         # Linux build script for testbed</div>
-<div class="line">    └── src/</div>
-<div class="line">        └── main.c       # Entry point for testbed application</div>
+<div class="line">├── assets</div>
+<div class="line">│   ├── Koru Engine Architecture.png        # High-level system architecture diagram</div>
+<div class="line">│   ├── Koru Project Structure.png          # Visual representation of file organization</div>
+<div class="line">│   └── Koru v0.1 Feature List.png          # Summary of current features and roadmap</div>
+<div class="line">├── bin</div>
+<div class="line">│   ├── libengine.so                        # Compiled engine shared library (Linux)</div>
+<div class="line">│   └── testbed                             # Testbed application binary (Linux)</div>
+<div class="line">├── build-all.bat                           # Windows: Runs all builds sequentially</div>
+<div class="line">├── build-all.sh                            # Linux: Runs all builds sequentially</div>
+<div class="line">├── Doxyfile                                # Configuration for generating API documentation with Doxygen</div>
+<div class="line">├── engine</div>
+<div class="line">│   ├── build.bat                           # Windows: Builds engine DLL</div>
+<div class="line">│   ├── build.sh                            # Linux: Builds engine shared object (.so)</div>
+<div class="line">│   └── src</div>
+<div class="line">│       ├── containers</div>
+<div class="line">│       │   ├── darray.c                    # Implementation of dynamic array container</div>
+<div class="line">│       │   └── darray.h                    # Public interface for dynamic arrays</div>
+<div class="line">│       ├── core</div>
+<div class="line">│       │   ├── application.c               # Application lifecycle implementation (init/run/shutdown)</div>
+<div class="line">│       │   ├── application.h               # Public interface for the application system</div>
+<div class="line">│       │   ├── asserts.h                   # Custom assertion macros and debugging utilities</div>
+<div class="line">│       │   ├── event.c                     # Event system implementation (register/unregister/fire)</div>
+<div class="line">│       │   ├── event.h                     # Public interface for event handling system</div>
+<div class="line">│       │   ├── kmemory.c                   # Memory allocation system with tagging support</div>
+<div class="line">│       │   ├── kmemory.h                   # Interface for tagged memory management</div>
+<div class="line">│       │   ├── logger.c                    # Logging system with color-coded output</div>
+<div class="line">│       │   └── logger.h                   # Public interface for logging module</div>
+<div class="line">│       ├── defines.h                       # Common type definitions, macros, and platform detection</div>
+<div class="line">│       ├── entry.h                         # Entry point interface; declares create_game()</div>
+<div class="line">│       ├── game_types.h                    # Game-related types used across engine and game logic</div>
+<div class="line">│       └── platform</div>
+<div class="line">│           ├── platform.h                 # Platform abstraction layer interface</div>
+<div class="line">│           ├── platform_linux.c           # Linux-specific implementation of platform functions</div>
+<div class="line">│           └── platform_win32.c           # Windows-specific implementation of platform functions</div>
+<div class="line">├── LICENSE                                 # MIT License file</div>
+<div class="line">├── README.md                               # This file - main project overview and guide</div>
+<div class="line">├── test</div>
+<div class="line">│   └── platform                           # Unit tests for platform module</div>
+<div class="line">├── testbed</div>
+<div class="line">    ├── build.bat                           # Windows: Builds testbed application</div>
+<div class="line">    ├── build.sh                            # Linux: Builds testbed application</div>
+<div class="line">    └── src</div>
+<div class="line">        ├── entry.c                         # Entry point for testbed app; implements create_game()</div>
+<div class="line">        ├── game.c                          # Testbed game logic (initialize/update/render stubs)</div>
+<div class="line">        └── game.h                          # Interface for testbed game implementation</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md21"></a>
 ⚙️ Build Scripts/Instructions</h1>
 <p>Check tasks.json for sequence:</p>
 <table class="markdownTable">
@@ -230,7 +263,7 @@ Planned Features</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>build-all.bat</code>   </td><td class="markdownTableBodyNone">Runs all Windows builds sequentially   </td><td class="markdownTableBodyNone">Same as above but for Windows   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 Linux</h2>
 <p>Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run your engine)</p>
 <div class="fragment"><div class="line"># Give execution permissions</div>
@@ -243,7 +276,7 @@ Linux</h2>
 <li><code>libengine.so</code> – The engine shared library</li>
 <li><code>testbed</code> – The testbed executable</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 Windows</h2>
 <p>Ensure:</p>
 <ul>
@@ -259,7 +292,7 @@ Windows</h2>
 <li><code>bin\testbed.exe</code></li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md23"></a>
+<h1><a class="anchor" id="autotoc_md25"></a>
 🔮 Roadmap</h1>
 <p>Plans to expand Koru include:</p>
 <ul>
@@ -297,7 +330,7 @@ Windows</h2>
 </li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md25"></a>
+<h1><a class="anchor" id="autotoc_md27"></a>
 💡 Want to Help?</h1>
 <p>Contributions are welcome! Whether you're interested in:</p>
 <ul>
@@ -308,7 +341,7 @@ Windows</h2>
 </ul>
 <p>Feel free to open an issue or PR!</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md27"></a>
+<h1><a class="anchor" id="autotoc_md29"></a>
 📄 License</h1>
 <p>This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.</p>
 <div class="fragment"><div class="line">## 🚀 Next Steps</div>
@@ -323,7 +356,7 @@ Windows</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed May 28 2025 12:55:53 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Wed May 28 2025 13:19:12 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

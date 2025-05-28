@@ -1,7 +1,7 @@
 var searchData=
 [
   ['main_0',['main',['../entry_8h.html#a840291bc02cba5474a4cb46a9b9566fe',1,'entry.h']]],
-  ['management_20strong_1',['3. &lt;strong&gt;Resource Management&lt;/strong&gt;',['../index.html#autotoc_md8',1,'']]],
+  ['management_20strong_1',['3. &lt;strong&gt;Resource Management&lt;/strong&gt;',['../index.html#autotoc_md10',1,'']]],
   ['max_5fevent_5fcode_2',['MAX_EVENT_CODE',['../event_8h.html#a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb',1,'event.h']]],
   ['max_5fmessage_5fcodes_3',['MAX_MESSAGE_CODES',['../event_8c.html#a59db8f883e31171b78490d26c0251f64',1,'event.c']]],
   ['memory_5fstats_4',['memory_stats',['../structmemory__stats.html',1,'']]],

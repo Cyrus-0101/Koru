@@ -1,10 +1,10 @@
 var searchData=
 [
   ['last_5ftime_0',['last_time',['../structapplication__state.html#a4fc952bc899881d85115730cf7da1c5a',1,'application_state']]],
-  ['layer_20strong_1',['layer strong',['../index.html#autotoc_md6',1,'1. &lt;strong&gt;Platform Layer&lt;/strong&gt;'],['../index.html#autotoc_md9',1,'4. &lt;strong&gt;Application Layer&lt;/strong&gt;']]],
-  ['license_2',['📄 License',['../index.html#autotoc_md27',1,'']]],
-  ['linux_3',['Linux',['../index.html#autotoc_md20',1,'']]],
-  ['list_4',['📋 Feature List',['../index.html#autotoc_md11',1,'']]],
+  ['layer_20strong_1',['layer strong',['../index.html#autotoc_md8',1,'1. &lt;strong&gt;Platform Layer&lt;/strong&gt;'],['../index.html#autotoc_md11',1,'4. &lt;strong&gt;Application Layer&lt;/strong&gt;']]],
+  ['license_2',['📄 License',['../index.html#autotoc_md29',1,'']]],
+  ['linux_3',['Linux',['../index.html#autotoc_md22',1,'']]],
+  ['list_4',['📋 Feature List',['../index.html#autotoc_md13',1,'']]],
   ['listener_5',['listener',['../structregistered__event.html#a8baaf13de842035b82f17465e592fe19',1,'registered_event']]],
   ['log_5fdebug_5fenabled_6',['LOG_DEBUG_ENABLED',['../logger_8h.html#aebce09616e526858093c3252925bffe2',1,'logger.h']]],
   ['log_5finfo_5fenabled_7',['LOG_INFO_ENABLED',['../logger_8h.html#a4690d76db76927ae412ba4860e008b16',1,'logger.h']]],

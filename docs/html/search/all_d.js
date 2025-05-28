@@ -9,9 +9,10 @@ var searchData=
   ['initialize_5flogging_6',['initialize_logging',['../logger_8c.html#aae701ec9fd1cbb624f28156730027305',1,'initialize_logging():&#160;logger.c'],['../logger_8h.html#aae701ec9fd1cbb624f28156730027305',1,'initialize_logging():&#160;logger.c']]],
   ['initialize_5fmemory_7',['initialize_memory',['../kmemory_8c.html#a2bdce596545b593473158adc918b4e7f',1,'initialize_memory():&#160;kmemory.c'],['../kmemory_8h.html#acd4839b23d7754212dd84e626ab2f01d',1,'initialize_memory():&#160;kmemory.c']]],
   ['initialized_8',['initialized',['../application_8c.html#aca033d9c168f6eceec40a0e9a9354e79',1,'application.c']]],
-  ['instructions_9',['⚙️ Build Scripts/Instructions',['../index.html#autotoc_md19',1,'']]],
+  ['instructions_9',['⚙️ Build Scripts/Instructions',['../index.html#autotoc_md21',1,'']]],
   ['internal_5fstate_10',['internal_state',['../structplatform__state.html#ac902a69fe12cf6868862aad5a57b15d5',1,'platform_state']]],
-  ['is_5finitialized_11',['is_initialized',['../event_8c.html#aaf91097086deb8321aa029e833198c3d',1,'event.c']]],
-  ['is_5frunning_12',['is_running',['../structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde',1,'application_state']]],
-  ['is_5fsuspended_13',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]]
+  ['is_20koru_11',['🧠 What Is Koru?',['../index.html#autotoc_md4',1,'']]],
+  ['is_5finitialized_12',['is_initialized',['../event_8c.html#aaf91097086deb8321aa029e833198c3d',1,'event.c']]],
+  ['is_5frunning_13',['is_running',['../structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde',1,'application_state']]],
+  ['is_5fsuspended_14',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]]
 ];
