@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['platform_0',['platform',['../structapplication__state.html#a14782a7e40b24efc8c814f786c6525ba',1,'application_state']]]
+  ['memory_5ftag_5fstrings_0',['memory_tag_strings',['../kmemory_8c.html#a228ea890e8922a7de688a37a1de46fd0',1,'kmemory.c']]]
 ];

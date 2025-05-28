@@ -1,0 +1,174 @@
+\doxysection{darray.\+c}
+\hypertarget{darray_8c_source}{}\label{darray_8c_source}\index{engine/src/containers/darray.c@{engine/src/containers/darray.c}}
+\mbox{\hyperlink{darray_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{darray_8h}{containers/darray.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{kmemory_8h}{core/kmemory.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logger_8h}{core/logger.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00024}\mbox{\hyperlink{darray_8c_afeedbfc73b73afde4c0bf2a889305108}{00024}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8c_afeedbfc73b73afde4c0bf2a889305108}{\_darray\_create}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ length,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ stride)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ Header\ stores\ metadata:\ capacity,\ length,\ stride}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ header\_size\ =\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c}{DARRAY\_FIELD\_LENGTH}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}});}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00027}00027\ \ \ \ \ \textcolor{comment}{//\ Total\ space\ needed\ for\ all\ elements}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ array\_size\ =\ length\ *\ stride;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Allocate\ total\ size:\ header\ +\ elements}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ new\_array\ =\ \mbox{\hyperlink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate}}(header\_size\ +\ array\_size,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7abf6a78c081d5036466bd2b4264c69e}{MEMORY\_TAG\_DARRAY}});}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00031}00031\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ Zero\ out\ the\ entire\ allocation}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a2a80291541bfd799993b25c748ebbe03}{kset\_memory}}(new\_array,\ 0,\ header\_size\ +\ array\_size);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Set\ initial\ metadata\ values}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00036}00036\ \ \ \ \ new\_array[\mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55baf47ac19f1dce8bc23a8db7789abdb3aa}{DARRAY\_CAPACITY}}]\ =\ length;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00037}00037\ \ \ \ \ new\_array[\mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9}{DARRAY\_LENGTH}}]\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00038}00038\ \ \ \ \ new\_array[\mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba22984e01177b1eb2695a4850727db127}{DARRAY\_STRIDE}}]\ =\ stride;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00040}00040\ \ \ \ \ \textcolor{comment}{//\ Return\ pointer\ to\ the\ start\ of\ the\ elements\ section\ (after\ metadata)}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{void}*)(new\_array\ +\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c}{DARRAY\_FIELD\_LENGTH}});}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00044}\mbox{\hyperlink{darray_8c_a2fe5e3c2494168523cb08a62a1cef3f0}{00044}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{darray_8c_a2fe5e3c2494168523cb08a62a1cef3f0}{\_darray\_destroy}}(\textcolor{keywordtype}{void}*\ array)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ Get\ pointer\ to\ the\ start\ of\ the\ header}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00046}00046\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ header\ =\ (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*)array\ -\/\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c}{DARRAY\_FIELD\_LENGTH}};}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00047}00047\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ Calculate\ total\ size\ to\ free}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ header\_size\ =\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c}{DARRAY\_FIELD\_LENGTH}}\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}});}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ total\_size\ =\ header\_size\ +\ header[\mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55baf47ac19f1dce8bc23a8db7789abdb3aa}{DARRAY\_CAPACITY}}]\ *\ header[\mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba22984e01177b1eb2695a4850727db127}{DARRAY\_STRIDE}}];}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00051}00051\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//\ Free\ memory}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc}{kfree}}(header,\ total\_size,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7abf6a78c081d5036466bd2b4264c69e}{MEMORY\_TAG\_DARRAY}});}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00056}\mbox{\hyperlink{darray_8c_a3458495487a9f5e51f624d66a5f16c4d}{00056}}\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ \mbox{\hyperlink{darray_8c_a3458495487a9f5e51f624d66a5f16c4d}{\_darray\_field\_get}}(\textcolor{keywordtype}{void}*\ array,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ field)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ Access\ header\ just\ before\ the\ array\ data}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00058}00058\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ header\ =\ (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*)array\ -\/\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c}{DARRAY\_FIELD\_LENGTH}};}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00059}00059\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{return}\ header[field];}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00063}\mbox{\hyperlink{darray_8c_a9a04e308cbc0cb796826f971f77af0b5}{00063}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{darray_8c_a9a04e308cbc0cb796826f971f77af0b5}{\_darray\_field\_set}}(\textcolor{keywordtype}{void}*\ array,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ field,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ value)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//\ Access\ header\ just\ before\ the\ array\ data}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00065}00065\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ header\ =\ (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*)array\ -\/\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c}{DARRAY\_FIELD\_LENGTH}};}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00066}00066\ \ \ \ \ header[field]\ =\ value;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00067}00067\ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00069}\mbox{\hyperlink{darray_8c_a32f03c35518f90b8cc0ba0f4127d6bd7}{00069}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8c_a32f03c35518f90b8cc0ba0f4127d6bd7}{\_darray\_resize}}(\textcolor{keywordtype}{void}*\ array)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00070}00070\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ length\ =\ \mbox{\hyperlink{darray_8h_aa556263c163ffb9f29b40b29b7b25165}{darray\_length}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00071}00071\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ stride\ =\ \mbox{\hyperlink{darray_8h_a93bfa9b817a0adc18e500581ffef8440}{darray\_stride}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ new\ array\ with\ double\ the\ capacity}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00074}00074\ \ \ \ \ \textcolor{keywordtype}{void}*\ temp\ =\ \mbox{\hyperlink{darray_8c_afeedbfc73b73afde4c0bf2a889305108}{\_darray\_create}}(}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{darray_8h_a95fc981d9c4e984fd55bb36a324617cc}{DARRAY\_RESIZE\_FACTOR}}\ *\ \mbox{\hyperlink{darray_8h_ad9786b6f89a8a05d0edae80981539d7c}{darray\_capacity}}(array)),}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ stride);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00078}00078\ \ \ \ \ \textcolor{comment}{//\ Copy\ existing\ elements\ into\ the\ new\ array}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00079}00079\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\_memory}}(temp,\ array,\ length\ *\ stride);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00081}00081\ \ \ \ \ \textcolor{comment}{//\ Update\ length;\ capacity\ is\ automatically\ doubled}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00082}00082\ \ \ \ \ \mbox{\hyperlink{darray_8c_a9a04e308cbc0cb796826f971f77af0b5}{\_darray\_field\_set}}(temp,\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9}{DARRAY\_LENGTH}},\ length);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//\ Destroy\ old\ array}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00085}00085\ \ \ \ \ \mbox{\hyperlink{darray_8c_a2fe5e3c2494168523cb08a62a1cef3f0}{\_darray\_destroy}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{return}\ temp;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00088}00088\ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00090}\mbox{\hyperlink{darray_8c_ad0d43d106169b005a03bd36f0ac6a740}{00090}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8c_ad0d43d106169b005a03bd36f0ac6a740}{\_darray\_push}}(\textcolor{keywordtype}{void}*\ array,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ value\_ptr)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00091}00091\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ length\ =\ \mbox{\hyperlink{darray_8h_aa556263c163ffb9f29b40b29b7b25165}{darray\_length}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00092}00092\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ stride\ =\ \mbox{\hyperlink{darray_8h_a93bfa9b817a0adc18e500581ffef8440}{darray\_stride}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\ Resize\ if\ full}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ >=\ \mbox{\hyperlink{darray_8h_ad9786b6f89a8a05d0edae80981539d7c}{darray\_capacity}}(array))\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ array\ =\ \mbox{\hyperlink{darray_8c_a32f03c35518f90b8cc0ba0f4127d6bd7}{\_darray\_resize}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00099}00099\ \ \ \ \ \textcolor{comment}{//\ Compute\ destination\ address}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00100}00100\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ addr\ =\ (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}})array;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00101}00101\ \ \ \ \ addr\ +=\ (length\ *\ stride);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00103}00103\ \ \ \ \ \textcolor{comment}{//\ Copy\ the\ value\ into\ the\ array}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00104}00104\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\_memory}}((\textcolor{keywordtype}{void}*)addr,\ value\_ptr,\ stride);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ Update\ array\ length}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00107}00107\ \ \ \ \ \mbox{\hyperlink{darray_8c_a9a04e308cbc0cb796826f971f77af0b5}{\_darray\_field\_set}}(array,\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9}{DARRAY\_LENGTH}},\ length\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{return}\ array;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00110}00110\ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00112}\mbox{\hyperlink{darray_8c_a3a7dbd27efedf1cd383a5c8cb5740998}{00112}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{darray_8c_a3a7dbd27efedf1cd383a5c8cb5740998}{\_darray\_pop}}(\textcolor{keywordtype}{void}*\ array,\ \textcolor{keywordtype}{void}*\ dest)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00113}00113\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ length\ =\ \mbox{\hyperlink{darray_8h_aa556263c163ffb9f29b40b29b7b25165}{darray\_length}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00114}00114\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ stride\ =\ \mbox{\hyperlink{darray_8h_a93bfa9b817a0adc18e500581ffef8440}{darray\_stride}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00116}00116\ \ \ \ \ \textcolor{comment}{//\ Compute\ source\ address}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00117}00117\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ addr\ =\ (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}})array;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00118}00118\ \ \ \ \ addr\ +=\ ((length\ -\/\ 1)\ *\ stride);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00120}00120\ \ \ \ \ \textcolor{comment}{//\ Copy\ the\ last\ element\ to\ the\ destination}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00121}00121\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\_memory}}(dest,\ (\textcolor{keywordtype}{void}*)addr,\ stride);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00123}00123\ \ \ \ \ \textcolor{comment}{//\ Reduce\ the\ length}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00124}00124\ \ \ \ \ \mbox{\hyperlink{darray_8c_a9a04e308cbc0cb796826f971f77af0b5}{\_darray\_field\_set}}(array,\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9}{DARRAY\_LENGTH}},\ length\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00125}00125\ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00127}\mbox{\hyperlink{darray_8c_ac54164054897a40203bab67d2d3a9250}{00127}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8c_ac54164054897a40203bab67d2d3a9250}{\_darray\_pop\_at}}(\textcolor{keywordtype}{void}*\ array,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ index,\ \textcolor{keywordtype}{void}*\ dest)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00128}00128\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ length\ =\ \mbox{\hyperlink{darray_8h_aa556263c163ffb9f29b40b29b7b25165}{darray\_length}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00129}00129\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ stride\ =\ \mbox{\hyperlink{darray_8h_a93bfa9b817a0adc18e500581ffef8440}{darray\_stride}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ length)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Index\ outside\ the\ bounds\ of\ this\ array!\ Length:\ \%lu,\ index:\ \%lu"{}},\ length,\ index);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00134}00134\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00136}00136\ \ \ \ \ \textcolor{comment}{//\ Compute\ address\ of\ the\ element\ to\ remove}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00137}00137\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ addr\ =\ (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}})array;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00138}00138\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\_memory}}(dest,\ (\textcolor{keywordtype}{void}*)(addr\ +\ (index\ *\ stride)),\ stride);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00140}00140\ \ \ \ \ \textcolor{comment}{//\ Shift\ remaining\ elements\ forward\ if\ not\ removing\ the\ last\ item}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ !=\ length\ -\/\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00142}00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\_memory}}(}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}*)(addr\ +\ (index\ *\ stride)),}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}*)(addr\ +\ ((index\ +\ 1)\ *\ stride)),}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ stride\ *\ (length\ -\/\ index));}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00146}00146\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00148}00148\ \ \ \ \ \textcolor{comment}{//\ Update\ array\ length}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00149}00149\ \ \ \ \ \mbox{\hyperlink{darray_8c_a9a04e308cbc0cb796826f971f77af0b5}{\_darray\_field\_set}}(array,\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9}{DARRAY\_LENGTH}},\ length\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00151}00151\ \ \ \ \ \textcolor{keywordflow}{return}\ array;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00152}00152\ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00155}\mbox{\hyperlink{darray_8c_abfb21e49debe3371395864fa7f3d0b6e}{00155}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8c_abfb21e49debe3371395864fa7f3d0b6e}{\_darray\_insert\_at}}(\textcolor{keywordtype}{void}*\ array,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ index,\ \textcolor{keywordtype}{void}*\ value\_ptr)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00156}00156\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ length\ =\ \mbox{\hyperlink{darray_8h_aa556263c163ffb9f29b40b29b7b25165}{darray\_length}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00157}00157\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ stride\ =\ \mbox{\hyperlink{darray_8h_a93bfa9b817a0adc18e500581ffef8440}{darray\_stride}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >\ length)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Index\ outside\ the\ bounds\ of\ this\ array!\ Length:\ \%lu,\ index:\ \%lu"{}},\ length,\ index);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ array;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00162}00162\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00164}00164\ \ \ \ \ \textcolor{comment}{//\ Resize\ if\ full}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00165}00165\ \ \ \ \ \textcolor{keywordflow}{if}\ (length\ >=\ \mbox{\hyperlink{darray_8h_ad9786b6f89a8a05d0edae80981539d7c}{darray\_capacity}}(array))\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00166}00166\ \ \ \ \ \ \ \ \ array\ =\ \mbox{\hyperlink{darray_8c_a32f03c35518f90b8cc0ba0f4127d6bd7}{\_darray\_resize}}(array);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00167}00167\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00169}00169\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ addr\ =\ (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}})array;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00171}00171\ \ \ \ \ \textcolor{comment}{//\ Make\ room\ for\ the\ new\ element\ if\ not\ inserting\ at\ the\ end}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00172}00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ length)\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00173}00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\_memory}}(}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}*)(addr\ +\ ((index\ +\ 1)\ *\ stride)),}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}*)(addr\ +\ (index\ *\ stride)),}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ stride\ *\ (length\ -\/\ index));}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00177}00177\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00179}00179\ \ \ \ \ \textcolor{comment}{//\ Insert\ the\ new\ element}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00180}00180\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\_memory}}((\textcolor{keywordtype}{void}*)(addr\ +\ (index\ *\ stride)),\ value\_ptr,\ stride);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00182}00182\ \ \ \ \ \textcolor{comment}{//\ Update\ array\ length}}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00183}00183\ \ \ \ \ \mbox{\hyperlink{darray_8c_a9a04e308cbc0cb796826f971f77af0b5}{\_darray\_field\_set}}(array,\ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9}{DARRAY\_LENGTH}},\ length\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00185}00185\ \ \ \ \ \textcolor{keywordflow}{return}\ array;}
+\DoxyCodeLine{\Hypertarget{darray_8c_source_l00186}00186\ \}}
+
+\end{DoxyCode}

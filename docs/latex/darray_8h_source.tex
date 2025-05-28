@@ -1,0 +1,79 @@
+\doxysection{darray.\+h}
+\hypertarget{darray_8h_source}{}\label{darray_8h_source}\index{engine/src/containers/darray.h@{engine/src/containers/darray.h}}
+\mbox{\hyperlink{darray_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defines_8h}{defines.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00031}00031\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00032}\mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55baf47ac19f1dce8bc23a8db7789abdb3aa}{00032}}\ \ \ \ \ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55baf47ac19f1dce8bc23a8db7789abdb3aa}{DARRAY\_CAPACITY}},\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00033}\mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9}{00033}}\ \ \ \ \ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9}{DARRAY\_LENGTH}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00034}\mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba22984e01177b1eb2695a4850727db127}{00034}}\ \ \ \ \ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55ba22984e01177b1eb2695a4850727db127}{DARRAY\_STRIDE}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00035}00035\ \ \ \ \ \mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c}{DARRAY\_FIELD\_LENGTH}}\ \ \ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00036}\mbox{\hyperlink{darray_8h_a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c}{00036}}\ \};}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00047}00047\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8h_a2a31fc1b919b7043ab60c5a5dfd799f2}{\_darray\_create}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ length,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ stride);}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00056}00056\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{darray_8h_a6b17a4fb11bc83a4441ad6061513b3b6}{\_darray\_destroy}}(\textcolor{keywordtype}{void}*\ array);}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00067}00067\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ \mbox{\hyperlink{darray_8h_a0c567bc6af05cb5a437059a54e575217}{\_darray\_field\_get}}(\textcolor{keywordtype}{void}*\ array,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ field);}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00078}00078\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{darray_8h_a922890e0149ea34cbf209d48dca46648}{\_darray\_field\_set}}(\textcolor{keywordtype}{void}*\ array,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ field,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ value);}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00088}00088\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8h_abfacc09053f33a2dc045a2d6902c86b4}{\_darray\_resize}}(\textcolor{keywordtype}{void}*\ array);}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00101}00101\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8h_a39a4f08504e1fbf09955063acd1a25cc}{\_darray\_push}}(\textcolor{keywordtype}{void}*\ array,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ value\_ptr);}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00111}00111\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{darray_8h_abab8c9be480d4034ee3024010bf2a3e8}{\_darray\_pop}}(\textcolor{keywordtype}{void}*\ array,\ \textcolor{keywordtype}{void}*\ dest);}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00122}00122\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8h_adfea4ba2d8630ce80abc78813f3ed39a}{\_darray\_pop\_at}}(\textcolor{keywordtype}{void}*\ array,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ index,\ \textcolor{keywordtype}{void}*\ dest);}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00134}00134\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{darray_8h_ac0e818c822ca83511597a141efcf5bdb}{\_darray\_insert\_at}}(\textcolor{keywordtype}{void}*\ array,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ index,\ \textcolor{keywordtype}{void}*\ value\_ptr);}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00136}00136\ \textcolor{comment}{//\ Default\ configuration}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00137}\mbox{\hyperlink{darray_8h_a9480f1a372af84bc03f4a55659188202}{00137}}\ \textcolor{preprocessor}{\#define\ DARRAY\_DEFAULT\_CAPACITY\ 1\ \ }}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00138}\mbox{\hyperlink{darray_8h_a95fc981d9c4e984fd55bb36a324617cc}{00138}}\ \textcolor{preprocessor}{\#define\ DARRAY\_RESIZE\_FACTOR\ 2\ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00148}\mbox{\hyperlink{darray_8h_ab9d093e09b642e0d480a7ae82bad3af5}{00148}}\ \textcolor{preprocessor}{\#define\ darray\_create(type)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00149}00149\ \textcolor{preprocessor}{\ \ \ \ \_darray\_create(DARRAY\_DEFAULT\_CAPACITY,\ sizeof(type))}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00159}\mbox{\hyperlink{darray_8h_a0805205fc6e4a577824396a03d82e951}{00159}}\ \textcolor{preprocessor}{\#define\ darray\_reserve(type,\ capacity)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00160}00160\ \textcolor{preprocessor}{\ \ \ \ \_darray\_create(capacity,\ sizeof(type))}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00170}\mbox{\hyperlink{darray_8h_a276aa834ed16f81d63f16c13dfdbe67d}{00170}}\ \textcolor{preprocessor}{\#define\ darray\_destroy(array)\ \_darray\_destroy(array)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00182}\mbox{\hyperlink{darray_8h_a7ad89931e6589fa09b83ea99de2b32e6}{00182}}\ \textcolor{preprocessor}{\#define\ darray\_push(array,\ value)\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00183}00183\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00184}00184\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ typeof(value)\ temp\ =\ value;\ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00185}00185\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ array\ =\ \_darray\_push(array,\ \&temp);\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00186}00186\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00197}\mbox{\hyperlink{darray_8h_a2b16ee33713a454fce146cc964d118c4}{00197}}\ \textcolor{preprocessor}{\#define\ darray\_pop(array,\ value\_ptr)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00198}00198\ \textcolor{preprocessor}{\ \ \ \ \_darray\_pop(array,\ value\_ptr)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00208}\mbox{\hyperlink{darray_8h_a95581a1912c392d51125909802a239db}{00208}}\ \textcolor{preprocessor}{\#define\ darray\_insert\_at(array,\ index,\ value)\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00209}00209\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00210}00210\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ typeof(value)\ temp\ =\ value;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00211}00211\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ array\ =\ \_darray\_insert\_at(array,\ index,\ \&temp);\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00212}00212\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00223}\mbox{\hyperlink{darray_8h_a12977de60ecb8fec22dad4713e45ca27}{00223}}\ \textcolor{preprocessor}{\#define\ darray\_pop\_at(array,\ index,\ value\_ptr)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00224}00224\ \textcolor{preprocessor}{\ \ \ \ \_darray\_pop\_at(array,\ index,\ value\_ptr)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00236}\mbox{\hyperlink{darray_8h_ad027b54bb5ad4414cb9a739e84e7670f}{00236}}\ \textcolor{preprocessor}{\#define\ darray\_clear(array)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00237}00237\ \textcolor{preprocessor}{\ \ \ \ \_darray\_field\_set(array,\ DARRAY\_LENGTH,\ 0)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00247}\mbox{\hyperlink{darray_8h_ad9786b6f89a8a05d0edae80981539d7c}{00247}}\ \textcolor{preprocessor}{\#define\ darray\_capacity(array)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00248}00248\ \textcolor{preprocessor}{\ \ \ \ \_darray\_field\_get(array,\ DARRAY\_CAPACITY)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00258}\mbox{\hyperlink{darray_8h_aa556263c163ffb9f29b40b29b7b25165}{00258}}\ \textcolor{preprocessor}{\#define\ darray\_length(array)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00259}00259\ \textcolor{preprocessor}{\ \ \ \ \_darray\_field\_get(array,\ DARRAY\_LENGTH)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00269}\mbox{\hyperlink{darray_8h_a93bfa9b817a0adc18e500581ffef8440}{00269}}\ \textcolor{preprocessor}{\#define\ darray\_stride(array)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00270}00270\ \textcolor{preprocessor}{\ \ \ \ \_darray\_field\_get(array,\ DARRAY\_STRIDE)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00282}\mbox{\hyperlink{darray_8h_a5b702a1dc9d84a50dec3f965fbe4cc65}{00282}}\ \textcolor{preprocessor}{\#define\ darray\_length\_set(array,\ value)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{darray_8h_source_l00283}00283\ \textcolor{preprocessor}{\ \ \ \ \_darray\_field\_set(array,\ DARRAY\_LENGTH,\ value)}}
+
+\end{DoxyCode}

@@ -1,0 +1,342 @@
+\doxysection{engine/src/containers/darray.c File Reference}
+\hypertarget{darray_8c}{}\label{darray_8c}\index{engine/src/containers/darray.c@{engine/src/containers/darray.c}}
+
+
+Implementation of a dynamic array container.  
+
+
+{\ttfamily \#include "{}containers/darray.\+h"{}}\newline
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}core/logger.\+h"{}}\newline
+Include dependency graph for darray.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{darray_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{darray_8c_afeedbfc73b73afde4c0bf2a889305108}{\+\_\+darray\+\_\+create}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} length, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} stride)
+\begin{DoxyCompactList}\small\item\em Creates a new dynamic array with a given initial capacity and element size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{darray_8c_a2fe5e3c2494168523cb08a62a1cef3f0}{\+\_\+darray\+\_\+destroy}} (void \texorpdfstring{$\ast$}{*}array)
+\begin{DoxyCompactList}\small\item\em Destroys a dynamic array and frees its memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{darray_8c_a3458495487a9f5e51f624d66a5f16c4d}{\+\_\+darray\+\_\+field\+\_\+get}} (void \texorpdfstring{$\ast$}{*}array, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} field)
+\begin{DoxyCompactList}\small\item\em Gets the value of a metadata field from the dynamic array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{darray_8c_a9a04e308cbc0cb796826f971f77af0b5}{\+\_\+darray\+\_\+field\+\_\+set}} (void \texorpdfstring{$\ast$}{*}array, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} field, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} value)
+\begin{DoxyCompactList}\small\item\em Sets the value of a metadata field in the dynamic array. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{darray_8c_a32f03c35518f90b8cc0ba0f4127d6bd7}{\+\_\+darray\+\_\+resize}} (void \texorpdfstring{$\ast$}{*}array)
+\begin{DoxyCompactList}\small\item\em Resizes the dynamic array when it runs out of space. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{darray_8c_ad0d43d106169b005a03bd36f0ac6a740}{\+\_\+darray\+\_\+push}} (void \texorpdfstring{$\ast$}{*}array, const void \texorpdfstring{$\ast$}{*}value\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Pushes an element onto the end of the array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{darray_8c_a3a7dbd27efedf1cd383a5c8cb5740998}{\+\_\+darray\+\_\+pop}} (void \texorpdfstring{$\ast$}{*}array, void \texorpdfstring{$\ast$}{*}dest)
+\begin{DoxyCompactList}\small\item\em Removes the last element from the array and stores it in {\ttfamily dest}. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{darray_8c_ac54164054897a40203bab67d2d3a9250}{\+\_\+darray\+\_\+pop\+\_\+at}} (void \texorpdfstring{$\ast$}{*}array, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} index, void \texorpdfstring{$\ast$}{*}dest)
+\begin{DoxyCompactList}\small\item\em Removes the element at the specified index and copies it to {\ttfamily dest}. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{darray_8c_abfb21e49debe3371395864fa7f3d0b6e}{\+\_\+darray\+\_\+insert\+\_\+at}} (void \texorpdfstring{$\ast$}{*}array, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} index, void \texorpdfstring{$\ast$}{*}value\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Inserts an element at the specified index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of a dynamic array container. 
+
+This module implements a generic dynamic array (darray) system that supports\+:
+\begin{DoxyItemize}
+\item Dynamic resizing based on usage
+\item Insertion and removal at arbitrary indices
+\item Type-\/safe macro wrappers for use in C code
+\item Memory tracking via MEMORY\+\_\+\+TAG\+\_\+\+DARRAY
+\end{DoxyItemize}
+
+The internal layout consists of\+:
+\begin{DoxyItemize}
+\item A header block containing metadata\+: capacity, length, stride
+\item A contiguous block of elements stored after the header
+\end{DoxyItemize}
+
+Usage\+: This file should not be used directly. Instead, use the macro helpers defined in {\ttfamily \doxylink{darray_8h}{darray.\+h}}. 
+
+Definition in file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{darray_8c_afeedbfc73b73afde4c0bf2a889305108}\label{darray_8c_afeedbfc73b73afde4c0bf2a889305108} 
+\index{darray.c@{darray.c}!\_darray\_create@{\_darray\_create}}
+\index{\_darray\_create@{\_darray\_create}!darray.c@{darray.c}}
+\doxysubsubsection{\texorpdfstring{\_darray\_create()}{\_darray\_create()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} \+\_\+darray\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{length,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{stride }\end{DoxyParamCaption})}
+
+
+
+Creates a new dynamic array with a given initial capacity and element size. 
+
+Internal function. Should not be called directly — use {\ttfamily \doxylink{darray_8h_ab9d093e09b642e0d480a7ae82bad3af5}{darray\+\_\+create(type)}} instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & Initial capacity of the array. \\
+\hline
+{\em stride} & Size of each element in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created dynamic array. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{darray_8c_source_l00024}{24}} of file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8h_source_l00032}{DARRAY\+\_\+\+CAPACITY}}, \mbox{\hyperlink{darray_8h_source_l00035}{DARRAY\+\_\+\+FIELD\+\_\+\+LENGTH}}, \mbox{\hyperlink{darray_8h_source_l00033}{DARRAY\+\_\+\+LENGTH}}, \mbox{\hyperlink{darray_8h_source_l00034}{DARRAY\+\_\+\+STRIDE}}, \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, \mbox{\hyperlink{kmemory_8c_source_l00172}{kset\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8h_source_l00032}{MEMORY\+\_\+\+TAG\+\_\+\+DARRAY}}.
+
+
+
+Referenced by \mbox{\hyperlink{darray_8c_source_l00069}{\+\_\+darray\+\_\+resize()}}.
+
+\Hypertarget{darray_8c_a2fe5e3c2494168523cb08a62a1cef3f0}\label{darray_8c_a2fe5e3c2494168523cb08a62a1cef3f0} 
+\index{darray.c@{darray.c}!\_darray\_destroy@{\_darray\_destroy}}
+\index{\_darray\_destroy@{\_darray\_destroy}!darray.c@{darray.c}}
+\doxysubsubsection{\texorpdfstring{\_darray\_destroy()}{\_darray\_destroy()}}
+{\footnotesize\ttfamily void \+\_\+darray\+\_\+destroy (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array }\end{DoxyParamCaption})}
+
+
+
+Destroys a dynamic array and frees its memory. 
+
+Internal function. Should not be called directly — use {\ttfamily \doxylink{darray_8h_a276aa834ed16f81d63f16c13dfdbe67d}{darray\+\_\+destroy(array)}} instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Pointer to the dynamic array to destroy. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{darray_8c_source_l00044}{44}} of file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8h_source_l00032}{DARRAY\+\_\+\+CAPACITY}}, \mbox{\hyperlink{darray_8h_source_l00035}{DARRAY\+\_\+\+FIELD\+\_\+\+LENGTH}}, \mbox{\hyperlink{darray_8h_source_l00034}{DARRAY\+\_\+\+STRIDE}}, \mbox{\hyperlink{kmemory_8c_source_l00129}{kfree()}}, and \mbox{\hyperlink{kmemory_8h_source_l00032}{MEMORY\+\_\+\+TAG\+\_\+\+DARRAY}}.
+
+
+
+Referenced by \mbox{\hyperlink{darray_8c_source_l00069}{\+\_\+darray\+\_\+resize()}}.
+
+\Hypertarget{darray_8c_a3458495487a9f5e51f624d66a5f16c4d}\label{darray_8c_a3458495487a9f5e51f624d66a5f16c4d} 
+\index{darray.c@{darray.c}!\_darray\_field\_get@{\_darray\_field\_get}}
+\index{\_darray\_field\_get@{\_darray\_field\_get}!darray.c@{darray.c}}
+\doxysubsubsection{\texorpdfstring{\_darray\_field\_get()}{\_darray\_field\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \+\_\+darray\+\_\+field\+\_\+get (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{field }\end{DoxyParamCaption})}
+
+
+
+Gets the value of a metadata field from the dynamic array. 
+
+Internal function. Used by macros like {\ttfamily \doxylink{darray_8h_ad9786b6f89a8a05d0edae80981539d7c}{darray\+\_\+capacity()}} and {\ttfamily \doxylink{darray_8h_aa556263c163ffb9f29b40b29b7b25165}{darray\+\_\+length()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Pointer to the dynamic array. \\
+\hline
+{\em field} & Index of the field to retrieve (e.\+g., DARRAY\+\_\+\+CAPACITY). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the requested field. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{darray_8c_source_l00056}{56}} of file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8h_source_l00035}{DARRAY\+\_\+\+FIELD\+\_\+\+LENGTH}}.
+
+\Hypertarget{darray_8c_a9a04e308cbc0cb796826f971f77af0b5}\label{darray_8c_a9a04e308cbc0cb796826f971f77af0b5} 
+\index{darray.c@{darray.c}!\_darray\_field\_set@{\_darray\_field\_set}}
+\index{\_darray\_field\_set@{\_darray\_field\_set}!darray.c@{darray.c}}
+\doxysubsubsection{\texorpdfstring{\_darray\_field\_set()}{\_darray\_field\_set()}}
+{\footnotesize\ttfamily void \+\_\+darray\+\_\+field\+\_\+set (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{field,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets the value of a metadata field in the dynamic array. 
+
+Internal function. Used by macros like {\ttfamily \doxylink{darray_8h_ad027b54bb5ad4414cb9a739e84e7670f}{darray\+\_\+clear()}} and {\ttfamily \doxylink{darray_8h_a5b702a1dc9d84a50dec3f965fbe4cc65}{darray\+\_\+length\+\_\+set()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Pointer to the dynamic array. \\
+\hline
+{\em field} & Index of the field to set. \\
+\hline
+{\em value} & New value for the field. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{darray_8c_source_l00063}{63}} of file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8h_source_l00035}{DARRAY\+\_\+\+FIELD\+\_\+\+LENGTH}}.
+
+
+
+Referenced by \mbox{\hyperlink{darray_8c_source_l00155}{\+\_\+darray\+\_\+insert\+\_\+at()}}, \mbox{\hyperlink{darray_8c_source_l00112}{\+\_\+darray\+\_\+pop()}}, \mbox{\hyperlink{darray_8c_source_l00127}{\+\_\+darray\+\_\+pop\+\_\+at()}}, \mbox{\hyperlink{darray_8c_source_l00090}{\+\_\+darray\+\_\+push()}}, and \mbox{\hyperlink{darray_8c_source_l00069}{\+\_\+darray\+\_\+resize()}}.
+
+\Hypertarget{darray_8c_abfb21e49debe3371395864fa7f3d0b6e}\label{darray_8c_abfb21e49debe3371395864fa7f3d0b6e} 
+\index{darray.c@{darray.c}!\_darray\_insert\_at@{\_darray\_insert\_at}}
+\index{\_darray\_insert\_at@{\_darray\_insert\_at}!darray.c@{darray.c}}
+\doxysubsubsection{\texorpdfstring{\_darray\_insert\_at()}{\_darray\_insert\_at()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} \+\_\+darray\+\_\+insert\+\_\+at (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{index,  }\item[{void \texorpdfstring{$\ast$}{*}}]{value\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Inserts an element at the specified index. 
+
+Internal function. Use {\ttfamily \doxylink{darray_8h_a95581a1912c392d51125909802a239db}{darray\+\_\+insert\+\_\+at(array, index, value)}} instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Pointer to the dynamic array. \\
+\hline
+{\em index} & Index where the element should be inserted. \\
+\hline
+{\em value\+\_\+ptr} & Pointer to the value to insert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the modified array (possibly reallocated). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{darray_8c_source_l00155}{155}} of file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8c_source_l00063}{\+\_\+darray\+\_\+field\+\_\+set()}}, \mbox{\hyperlink{darray_8c_source_l00069}{\+\_\+darray\+\_\+resize()}}, \mbox{\hyperlink{darray_8h_source_l00247}{darray\+\_\+capacity}}, \mbox{\hyperlink{darray_8h_source_l00033}{DARRAY\+\_\+\+LENGTH}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00269}{darray\+\_\+stride}}, \mbox{\hyperlink{kmemory_8c_source_l00160}{kcopy\+\_\+memory()}}, and \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}.
+
+\Hypertarget{darray_8c_a3a7dbd27efedf1cd383a5c8cb5740998}\label{darray_8c_a3a7dbd27efedf1cd383a5c8cb5740998} 
+\index{darray.c@{darray.c}!\_darray\_pop@{\_darray\_pop}}
+\index{\_darray\_pop@{\_darray\_pop}!darray.c@{darray.c}}
+\doxysubsubsection{\texorpdfstring{\_darray\_pop()}{\_darray\_pop()}}
+{\footnotesize\ttfamily void \+\_\+darray\+\_\+pop (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array,  }\item[{void \texorpdfstring{$\ast$}{*}}]{dest }\end{DoxyParamCaption})}
+
+
+
+Removes the last element from the array and stores it in {\ttfamily dest}. 
+
+Internal function. Use {\ttfamily darray\+\_\+pop(array, \&dest)} instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Pointer to the dynamic array. \\
+\hline
+{\em dest} & Pointer to where the popped element should be copied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{darray_8c_source_l00112}{112}} of file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8c_source_l00063}{\+\_\+darray\+\_\+field\+\_\+set()}}, \mbox{\hyperlink{darray_8h_source_l00033}{DARRAY\+\_\+\+LENGTH}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00269}{darray\+\_\+stride}}, and \mbox{\hyperlink{kmemory_8c_source_l00160}{kcopy\+\_\+memory()}}.
+
+\Hypertarget{darray_8c_ac54164054897a40203bab67d2d3a9250}\label{darray_8c_ac54164054897a40203bab67d2d3a9250} 
+\index{darray.c@{darray.c}!\_darray\_pop\_at@{\_darray\_pop\_at}}
+\index{\_darray\_pop\_at@{\_darray\_pop\_at}!darray.c@{darray.c}}
+\doxysubsubsection{\texorpdfstring{\_darray\_pop\_at()}{\_darray\_pop\_at()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} \+\_\+darray\+\_\+pop\+\_\+at (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{index,  }\item[{void \texorpdfstring{$\ast$}{*}}]{dest }\end{DoxyParamCaption})}
+
+
+
+Removes the element at the specified index and copies it to {\ttfamily dest}. 
+
+Internal function. Use {\ttfamily darray\+\_\+pop\+\_\+at(array, index, \&dest)} instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Pointer to the dynamic array. \\
+\hline
+{\em index} & Index of the element to remove. \\
+\hline
+{\em dest} & Pointer to where the removed element should be copied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{darray_8c_source_l00127}{127}} of file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8c_source_l00063}{\+\_\+darray\+\_\+field\+\_\+set()}}, \mbox{\hyperlink{darray_8h_source_l00033}{DARRAY\+\_\+\+LENGTH}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00269}{darray\+\_\+stride}}, \mbox{\hyperlink{kmemory_8c_source_l00160}{kcopy\+\_\+memory()}}, and \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}.
+
+\Hypertarget{darray_8c_ad0d43d106169b005a03bd36f0ac6a740}\label{darray_8c_ad0d43d106169b005a03bd36f0ac6a740} 
+\index{darray.c@{darray.c}!\_darray\_push@{\_darray\_push}}
+\index{\_darray\_push@{\_darray\_push}!darray.c@{darray.c}}
+\doxysubsubsection{\texorpdfstring{\_darray\_push()}{\_darray\_push()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} \+\_\+darray\+\_\+push (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{value\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Pushes an element onto the end of the array. 
+
+If the array is full, it will be resized internally.
+
+Internal function. Use {\ttfamily \doxylink{darray_8h_a7ad89931e6589fa09b83ea99de2b32e6}{darray\+\_\+push(array, value)}} instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Pointer to the dynamic array. \\
+\hline
+{\em value\+\_\+ptr} & Pointer to the value to insert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the array (possibly reallocated). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{darray_8c_source_l00090}{90}} of file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8c_source_l00063}{\+\_\+darray\+\_\+field\+\_\+set()}}, \mbox{\hyperlink{darray_8c_source_l00069}{\+\_\+darray\+\_\+resize()}}, \mbox{\hyperlink{darray_8h_source_l00247}{darray\+\_\+capacity}}, \mbox{\hyperlink{darray_8h_source_l00033}{DARRAY\+\_\+\+LENGTH}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00269}{darray\+\_\+stride}}, and \mbox{\hyperlink{kmemory_8c_source_l00160}{kcopy\+\_\+memory()}}.
+
+\Hypertarget{darray_8c_a32f03c35518f90b8cc0ba0f4127d6bd7}\label{darray_8c_a32f03c35518f90b8cc0ba0f4127d6bd7} 
+\index{darray.c@{darray.c}!\_darray\_resize@{\_darray\_resize}}
+\index{\_darray\_resize@{\_darray\_resize}!darray.c@{darray.c}}
+\doxysubsubsection{\texorpdfstring{\_darray\_resize()}{\_darray\_resize()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} \+\_\+darray\+\_\+resize (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{array }\end{DoxyParamCaption})}
+
+
+
+Resizes the dynamic array when it runs out of space. 
+
+Doubles the capacity if needed. Internal function used by {\ttfamily \doxylink{darray_8h_a7ad89931e6589fa09b83ea99de2b32e6}{darray\+\_\+push()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Pointer to the dynamic array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the resized array (may be different from input). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{darray_8c_source_l00069}{69}} of file \mbox{\hyperlink{darray_8c_source}{darray.\+c}}.
+
+
+
+References \mbox{\hyperlink{darray_8c_source_l00024}{\+\_\+darray\+\_\+create()}}, \mbox{\hyperlink{darray_8c_source_l00044}{\+\_\+darray\+\_\+destroy()}}, \mbox{\hyperlink{darray_8c_source_l00063}{\+\_\+darray\+\_\+field\+\_\+set()}}, \mbox{\hyperlink{darray_8h_source_l00247}{darray\+\_\+capacity}}, \mbox{\hyperlink{darray_8h_source_l00033}{DARRAY\+\_\+\+LENGTH}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00138}{DARRAY\+\_\+\+RESIZE\+\_\+\+FACTOR}}, \mbox{\hyperlink{darray_8h_source_l00269}{darray\+\_\+stride}}, and \mbox{\hyperlink{kmemory_8c_source_l00160}{kcopy\+\_\+memory()}}.
+
+
+
+Referenced by \mbox{\hyperlink{darray_8c_source_l00155}{\+\_\+darray\+\_\+insert\+\_\+at()}}, and \mbox{\hyperlink{darray_8c_source_l00090}{\+\_\+darray\+\_\+push()}}.
+

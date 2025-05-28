@@ -1,22 +1,25 @@
-# Koru
+# Koru 
 
-A lightweight, multi-platform game engine built in C using the Vulkan graphics API.
+[![Build Status](https://github.com/Cyrus-0101/Koru/workflows/CI/badge.svg )](https://github.com/Cyrus-0101/Koru/actions )
+
+> *A lightweight, multi-platform game engine built in C using the Vulkan graphics API.*
 
 Koru is designed to be fast, portable, and easy to extend — providing a low-level foundation for game development across platforms including Windows, Linux, and soon consoles and mobile devices.
 
 ---
 
-## 🧠 Overview
+## 🧠 What Is Koru?
 
-Koru is designed to be:
+Koru is a **C99-based game engine** focused on performance, portability, and modularity. It's ideal for developers who want fine-grained control over rendering, input, memory, and platform-specific functionality without the overhead of high-level abstractions.
 
-- **Portable**: Supports Windows, Linux, and Mac (with plans for consoles and mobile platforms).
-- **Modular**: Built with a clean separation of concerns, allowing easy extension and customization.
-- **Performance-Oriented**: Optimized for speed and low-level control, leveraging Vulkan for high-performance rendering.
+### 🚀 Features:
+- Written entirely in **C99** – minimal dependencies
+- **Vulkan-based renderer** for high-performance graphics
+- Cross-platform: **Windows, Linux, Mac** (with future plans for consoles and mobile)
+- Modular architecture for **easy extension**
+- Custom **memory allocators**, **logging**, **assertions**, and **data structures** etc
 
-It serves as a foundation for creating games, tools, or applications that need direct access to hardware and APIs without the overhead of higher-level abstractions, fine-grained control over rendering, input, memory, and platform-specific functionality.
-
-All code is written in **C99**, making it ideal for performance-critical applications while keeping dependencies minimal.
+---
 
 ## 🖼 Architecture
 
@@ -106,15 +109,15 @@ Here’s a summary of the features to be implemented in v0.1:
 
 ---
 
-## 🖼 Visual Assets
+## 🎨 Visuals
 
-Take a look at the included diagrams in the `assets/` folder:
+Check out the diagrams included in the `assets/` folder to understand how everything fits together:
 
-| File                           | Description                                                  |
-| ------------------------------ | ------------------------------------------------------------ |
-| `Koru Engine Architecture.png` | High-level overview of system layers and module interactions |
-| `Koru Project Structure.png`   | File structure and organization of source modules            |
-| `Koru v0.1 Feature List.png`   | Summary of current capabilities and future goals             |
+| Diagram | Description |
+|--------|-------------|
+| ![Architecture](assets/Koru%20Engine%20Architecture.png) | High-level overview of system modules and interactions |
+| ![Project Structure](assets/Koru%20Project%20Structure.png) | File structure and module organization |
+| ![Feature List v0.1](assets/Koru%20v0.1%20Feature%20List.png) | Summary of current capabilities and roadmap |
 
 ---
 
@@ -122,24 +125,51 @@ Take a look at the included diagrams in the `assets/` folder:
 
 ```
 .
-├── assets/              # Diagrams showing architecture and feature list
-├── bin/                 # Compiled binaries (engine shared lib + testbed app)
-├── build-all.bat        # Build script for Windows (builds all modules)
-├── build-all.sh         # Build script for Linux (builds all modules)
-├── engine/              # Core engine code and platform abstraction
-│   ├── build.bat        # Windows build script for engine (.dll)
-│   ├── build.sh         # Linux build script for engine (.so)
-│   └── src/
-│       ├── core/        # Core utilities: logging, asserts, memory
-│       ├── defines.h    # Common definitions and macros
-│       └── platform/    # Platform-specific code (Linux/Windows)
-├── LICENSE              # MIT License
-├── README.md            # This file
-└── testbed/             # Example application that uses the engine
-    ├── build.bat        # Windows build script for testbed
-    ├── build.sh         # Linux build script for testbed
-    └── src/
-        └── main.c       # Entry point for testbed application
+├── assets
+│   ├── Koru Engine Architecture.png        # High-level system architecture diagram
+│   ├── Koru Project Structure.png          # Visual representation of file organization
+│   └── Koru v0.1 Feature List.png          # Summary of current features and roadmap
+├── bin
+│   ├── libengine.so                        # Compiled engine shared library (Linux)
+│   └── testbed                             # Testbed application binary (Linux)
+├── build-all.bat                           # Windows: Runs all builds sequentially
+├── build-all.sh                            # Linux: Runs all builds sequentially
+├── Doxyfile                                # Configuration for generating API documentation with Doxygen
+├── engine
+│   ├── build.bat                           # Windows: Builds engine DLL
+│   ├── build.sh                            # Linux: Builds engine shared object (.so)
+│   └── src
+│       ├── containers
+│       │   ├── darray.c                    # Implementation of dynamic array container
+│       │   └── darray.h                    # Public interface for dynamic arrays
+│       ├── core
+│       │   ├── application.c               # Application lifecycle implementation (init/run/shutdown)
+│       │   ├── application.h               # Public interface for the application system
+│       │   ├── asserts.h                   # Custom assertion macros and debugging utilities
+│       │   ├── event.c                     # Event system implementation (register/unregister/fire)
+│       │   ├── event.h                     # Public interface for event handling system
+│       │   ├── kmemory.c                   # Memory allocation system with tagging support
+│       │   ├── kmemory.h                   # Interface for tagged memory management
+│       │   ├── logger.c                    # Logging system with color-coded output
+│       │   └── logger.h                   # Public interface for logging module
+│       ├── defines.h                       # Common type definitions, macros, and platform detection
+│       ├── entry.h                         # Entry point interface; declares create_game()
+│       ├── game_types.h                    # Game-related types used across engine and game logic
+│       └── platform
+│           ├── platform.h                 # Platform abstraction layer interface
+│           ├── platform_linux.c           # Linux-specific implementation of platform functions
+│           └── platform_win32.c           # Windows-specific implementation of platform functions
+├── LICENSE                                 # MIT License file
+├── README.md                               # This file - main project overview and guide
+├── test
+│   └── platform                           # Unit tests for platform module
+├── testbed
+    ├── build.bat                           # Windows: Builds testbed application
+    ├── build.sh                            # Linux: Builds testbed application
+    └── src
+        ├── entry.c                         # Entry point for testbed app; implements create_game()
+        ├── game.c                          # Testbed game logic (initialize/update/render stubs)
+        └── game.h                          # Interface for testbed game implementation
 ```
 
 ---

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['visual_20assets_0',['🖼 Visual Assets',['../index.html#autotoc_md15',1,'']]]
+  ['visuals_0',['🎨 Visuals',['../index.html#autotoc_md17',1,'']]]
 ];

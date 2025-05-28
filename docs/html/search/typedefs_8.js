@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['u16_0',['u16',['../defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054',1,'defines.h']]],
-  ['u32_1',['u32',['../defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049',1,'defines.h']]],
-  ['u64_2',['u64',['../defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357',1,'defines.h']]],
-  ['u8_3',['u8',['../defines_8h.html#aed742c436da53c1080638ce6ef7d13de',1,'defines.h']]]
+  ['pfn_5fon_5fevent_0',['PFN_on_event',['../event_8h.html#ac694dc305b9660134b170d9560b0563a',1,'event.h']]],
+  ['platform_5fstate_1',['platform_state',['../platform_8h.html#a8c661bb1c0637f4277be66a5c2f18604',1,'platform.h']]]
 ];

@@ -14,7 +14,7 @@ var searchData=
   ['kinfo_11',['KINFO',['../logger_8h.html#aaa79d2f465f4712163343e3d3052a200',1,'logger.h']]],
   ['kmemory_2ec_12',['kmemory.c',['../kmemory_8c.html',1,'']]],
   ['kmemory_2eh_13',['kmemory.h',['../kmemory_8h.html',1,'']]],
-  ['koru_14',['Koru',['../index.html',1,'']]],
+  ['koru_14',['koru',['../index.html#autotoc_md4',1,'🧠 What Is Koru?'],['../index.html',1,'Koru']]],
   ['kset_5fmemory_15',['kset_memory',['../kmemory_8c.html#a2a80291541bfd799993b25c748ebbe03',1,'kset_memory(void *dest, i32 value, u64 size):&#160;kmemory.c'],['../kmemory_8h.html#a9b0af42158bf4d4a8db3d25d284b83f4',1,'kset_memory(void *dest, i32 value, u64 size):&#160;kmemory.c']]],
   ['ktrace_16',['KTRACE',['../logger_8h.html#a1871a1767ecd70d973893d36176a697f',1,'logger.h']]],
   ['kwarn_17',['KWARN',['../logger_8h.html#a3e40140ad218fd4ef727b1a9009a1bea',1,'logger.h']]],
