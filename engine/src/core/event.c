@@ -110,7 +110,8 @@ b8 event_register(u16 code, void* listener, PFN_on_event on_event) {
     // Check for duplicates
     u64 registered_count = darray_length(state.registered[code].events);
     for (u64 i = 0; i < registered_count; ++i) {
-        if (state.registered[code].events[i].listener == listener) {
+        if (state.registered[code].events[i].listener == listener &&
+            state.registered[code].events[i].callback == on_event) {
             // Duplicate registration found — skip
             return FALSE;
         }
