@@ -5,7 +5,7 @@ var searchData=
   ['max_5fevent_5fcode_2',['MAX_EVENT_CODE',['../event_8h.html#a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb',1,'event.h']]],
   ['max_5fmessage_5fcodes_3',['MAX_MESSAGE_CODES',['../event_8c.html#a59db8f883e31171b78490d26c0251f64',1,'event.c']]],
   ['memory_5fstats_4',['memory_stats',['../structmemory__stats.html',1,'']]],
-  ['memory_5ftag_5',['memory_tag',['../kmemory_8h.html#a69e3e71ce5a50648353639008c9e02e0',1,'memory_tag:&#160;kmemory.h'],['../kmemory_8h.html#a37d016888ad6b70195335004614d4942',1,'memory_tag:&#160;kmemory.h']]],
+  ['memory_5ftag_5',['memory_tag',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942',1,'memory_tag:&#160;kmemory.h'],['../kmemory_8h.html#a69e3e71ce5a50648353639008c9e02e0',1,'memory_tag:&#160;kmemory.h']]],
   ['memory_5ftag_5fapplication_6',['MEMORY_TAG_APPLICATION',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942aeef2c46527926f73df4503d8d62eebb7',1,'kmemory.h']]],
   ['memory_5ftag_5farray_7',['MEMORY_TAG_ARRAY',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942a1134e739edef60742877641f494d4525',1,'kmemory.h']]],
   ['memory_5ftag_5fbst_8',['MEMORY_TAG_BST',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942a6b6f409a865bf0decd2d570d6da91613',1,'kmemory.h']]],
@@ -24,5 +24,8 @@ var searchData=
   ['memory_5ftag_5fstrings_21',['memory_tag_strings',['../kmemory_8c.html#a228ea890e8922a7de688a37a1de46fd0',1,'kmemory.c']]],
   ['memory_5ftag_5ftexture_22',['MEMORY_TAG_TEXTURE',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942ae8c3a3ec7ac89336ae047b58ac5593a1',1,'kmemory.h']]],
   ['memory_5ftag_5ftransform_23',['MEMORY_TAG_TRANSFORM',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942ac92c941b0fd8366cc6f2acacdbe32c35',1,'kmemory.h']]],
-  ['memory_5ftag_5funknown_24',['MEMORY_TAG_UNKNOWN',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942a81f0b69faa32aa334a658401d286752b',1,'kmemory.h']]]
+  ['memory_5ftag_5funknown_24',['MEMORY_TAG_UNKNOWN',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942a81f0b69faa32aa334a658401d286752b',1,'kmemory.h']]],
+  ['mouse_5fcurrent_25',['mouse_current',['../structinput__state.html#a981b689844ce575f89cd9c64d8b8cecc',1,'input_state']]],
+  ['mouse_5fprevious_26',['mouse_previous',['../structinput__state.html#aae8aa2300a19eb877b54f3b9fc570de5',1,'input_state']]],
+  ['mouse_5fstate_27',['mouse_state',['../input_8c.html#a1b858b011b548e2f09a64c9785ce2850',1,'mouse_state:&#160;input.c'],['../structmouse__state.html',1,'mouse_state']]]
 ];

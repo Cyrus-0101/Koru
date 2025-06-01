@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['platform_5fstate_0',['platform_state',['../structplatform__state.html',1,'']]]
+  ['keyboard_5fstate_0',['keyboard_state',['../structkeyboard__state.html',1,'']]]
 ];

@@ -290,100 +290,112 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            <span class="keywordflow">case</span> XCB_KEY_PRESS:</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            <span class="keywordflow">case</span> XCB_KEY_RELEASE: {</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                <span class="comment">// TODO: Key presses and releases</span></div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            <span class="keywordflow">case</span> XCB_BUTTON_PRESS:</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>            <span class="keywordflow">case</span> XCB_BUTTON_RELEASE: {</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                <span class="comment">// TODO: Mouse button presses and releases handling</span></div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>            } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>            <span class="keywordflow">case</span> XCB_MOTION_NOTIFY:</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                <span class="comment">// TODO: Mouse movement</span></div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            <span class="keywordflow">case</span> XCB_CONFIGURE_NOTIFY: {</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>                <span class="comment">// TODO: Resizing</span></div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>            } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            <span class="keywordflow">case</span> XCB_CLIENT_MESSAGE: {</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                cm = (xcb_client_message_event_t*)event;</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                <span class="comment">// Window close</span></div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                <span class="comment">// If the message is WM_DELETE_WINDOW, user wants to quit</span></div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                <span class="keywordflow">if</span> (cm-&gt;data.data32[0] == <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;wm_delete_win) {</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                    quit_flagged = <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                }</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>            } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>                <span class="comment">// Ignore unknown events</span></div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        }</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                <span class="comment">// Key press event - xcb_key_press_event_t / xcb_key_release_event_t are similar</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                xcb_key_press_event_t*kb_event = (xcb_key_press_event_t *)event;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                <a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> pressed = <span class="keyword">event</span>-&gt;response_type == XCB_KEY_PRESS;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                xcb_keycode_t code = kb_event-&gt;detail;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                KeySym key_sym = XkbKeycodeToKeysym(</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                    <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;display,</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                    (KeyCode)code,  <span class="comment">// event.xkey.keycode</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                    0,</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                    code &amp; ShiftMask ? 1 : 0</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                );</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            } <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            <span class="keywordflow">case</span> XCB_BUTTON_PRESS:</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            <span class="keywordflow">case</span> XCB_BUTTON_RELEASE: {</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                <span class="comment">// TODO: Mouse button presses and releases handling</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            } <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>            <span class="keywordflow">case</span> XCB_MOTION_NOTIFY:</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                <span class="comment">// TODO: Mouse movement</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>            <span class="keywordflow">case</span> XCB_CONFIGURE_NOTIFY: {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>                <span class="comment">// TODO: Resizing</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            } <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            <span class="keywordflow">case</span> XCB_CLIENT_MESSAGE: {</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                cm = (xcb_client_message_event_t*)event;</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        free(event);  <span class="comment">// Free the event after processing</span></div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    }</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordflow">return</span> !quit_flagged;</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>}</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="keywordtype">void</span>* <a class="code hl_function" href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate</a>(<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> aligned) {</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keywordflow">return</span> malloc(size);</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>}</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free</a>(<span class="keywordtype">void</span>* block, <a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> aligned) {</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    free(block);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                <span class="comment">// Window close</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                <span class="comment">// If the message is WM_DELETE_WINDOW, user wants to quit</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>                <span class="keywordflow">if</span> (cm-&gt;data.data32[0] == <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;wm_delete_win) {</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                    quit_flagged = <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                }</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>            } <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                <span class="comment">// Ignore unknown events</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        }</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        free(event);  <span class="comment">// Free the event after processing</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    }</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keywordflow">return</span> !quit_flagged;</div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>}</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="keywordtype">void</span>* <a class="code hl_function" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory</a>(<span class="keywordtype">void</span>* block, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keywordflow">return</span> memset(block, 0, size);</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>}</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keywordtype">void</span>* <a class="code hl_function" href="platform_8h.html#a15258bb22b902725b1fbf405463ed07d">platform_copy_memory</a>(<span class="keywordtype">void</span>* dest, <span class="keyword">const</span> <span class="keywordtype">void</span>* source, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keywordflow">return</span> memcpy(dest, source, size);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keywordtype">void</span>* <a class="code hl_function" href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate</a>(<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> aligned) {</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keywordflow">return</span> malloc(size);</div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>}</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="keywordtype">void</span>* <a class="code hl_function" href="platform_8h.html#aa65146de20a7fd23870d3809834021b7">platform_set_memory</a>(<span class="keywordtype">void</span>* dest, <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> value, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="keywordflow">return</span> memset(dest, value, size);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free</a>(<span class="keywordtype">void</span>* block, <a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> aligned) {</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    free(block);</div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>}</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message, <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> colour) {</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="comment">// FATAL,ERROR,WARN,INFO,DEBUG,TRACE</span></div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="keyword">const</span> <span class="keywordtype">char</span>* colour_strings[] = {<span class="stringliteral">&quot;0;41&quot;</span>, <span class="stringliteral">&quot;1;31&quot;</span>, <span class="stringliteral">&quot;1;33&quot;</span>, <span class="stringliteral">&quot;1;32&quot;</span>, <span class="stringliteral">&quot;1;34&quot;</span>, <span class="stringliteral">&quot;1;30&quot;</span>};</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    printf(<span class="stringliteral">&quot;\033[%sm%s\033[0m&quot;</span>, colour_strings[colour], message);</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>}</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message, <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> colour) {</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="comment">// FATAL,ERROR,WARN,INFO,DEBUG,TRACE</span></div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keyword">const</span> <span class="keywordtype">char</span>* colour_strings[] = {<span class="stringliteral">&quot;0;41&quot;</span>, <span class="stringliteral">&quot;1;31&quot;</span>, <span class="stringliteral">&quot;1;33&quot;</span>, <span class="stringliteral">&quot;1;32&quot;</span>, <span class="stringliteral">&quot;1;34&quot;</span>, <span class="stringliteral">&quot;1;30&quot;</span>};</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    printf(<span class="stringliteral">&quot;\033[%sm%s\033[0m&quot;</span>, colour_strings[colour], message);</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>}</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> <a class="code hl_function" href="platform_8h.html#af38f532e572a9da41eaad4be29a58ada">platform_get_absolute_time</a>() {</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keyword">struct </span>timespec now;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="keywordtype">void</span>* <a class="code hl_function" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory</a>(<span class="keywordtype">void</span>* block, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="keywordflow">return</span> memset(block, 0, size);</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>}</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="keywordtype">void</span>* <a class="code hl_function" href="platform_8h.html#a15258bb22b902725b1fbf405463ed07d">platform_copy_memory</a>(<span class="keywordtype">void</span>* dest, <span class="keyword">const</span> <span class="keywordtype">void</span>* source, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="keywordflow">return</span> memcpy(dest, source, size);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>}</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="keywordtype">void</span>* <a class="code hl_function" href="platform_8h.html#aa65146de20a7fd23870d3809834021b7">platform_set_memory</a>(<span class="keywordtype">void</span>* dest, <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> value, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keywordflow">return</span> memset(dest, value, size);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>}</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message, <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> colour) {</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="comment">// FATAL,ERROR,WARN,INFO,DEBUG,TRACE</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keyword">const</span> <span class="keywordtype">char</span>* colour_strings[] = {<span class="stringliteral">&quot;0;41&quot;</span>, <span class="stringliteral">&quot;1;31&quot;</span>, <span class="stringliteral">&quot;1;33&quot;</span>, <span class="stringliteral">&quot;1;32&quot;</span>, <span class="stringliteral">&quot;1;34&quot;</span>, <span class="stringliteral">&quot;1;30&quot;</span>};</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    printf(<span class="stringliteral">&quot;\033[%sm%s\033[0m&quot;</span>, colour_strings[colour], message);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>}</div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    clock_gettime(CLOCK_MONOTONIC, &amp;now);</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keywordflow">return</span> now.tv_sec + now.tv_nsec * 0.000000001;</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>}</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#ae21676dfd997b1c6dd9c06f69b5618e4">platform_sleep</a>(<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> ms) {</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="preprocessor">#if _POSIX_C_SOURCE &gt;= 199309L</span></div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="keyword">struct </span>timespec ts;</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    ts.tv_sec = ms / 1000;</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    ts.tv_nsec = (ms % 1000) * 1000 * 1000;</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    nanosleep(&amp;ts, 0);</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    <span class="keywordflow">if</span> (ms &gt;= 1000) {</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        sleep(ms / 1000);</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    }</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    usleep((ms % 1000) * 1000);</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>}</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* message, <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> colour) {</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="comment">// FATAL,ERROR,WARN,INFO,DEBUG,TRACE</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keyword">const</span> <span class="keywordtype">char</span>* colour_strings[] = {<span class="stringliteral">&quot;0;41&quot;</span>, <span class="stringliteral">&quot;1;31&quot;</span>, <span class="stringliteral">&quot;1;33&quot;</span>, <span class="stringliteral">&quot;1;32&quot;</span>, <span class="stringliteral">&quot;1;34&quot;</span>, <span class="stringliteral">&quot;1;30&quot;</span>};</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    printf(<span class="stringliteral">&quot;\033[%sm%s\033[0m&quot;</span>, colour_strings[colour], message);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>}</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> <a class="code hl_function" href="platform_8h.html#af38f532e572a9da41eaad4be29a58ada">platform_get_absolute_time</a>() {</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <span class="keyword">struct </span>timespec now;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    clock_gettime(CLOCK_MONOTONIC, &amp;now);</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    <span class="keywordflow">return</span> now.tv_sec + now.tv_nsec * 0.000000001;</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>}</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#ae21676dfd997b1c6dd9c06f69b5618e4">platform_sleep</a>(<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> ms) {</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="preprocessor">#if _POSIX_C_SOURCE &gt;= 199309L</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <span class="keyword">struct </span>timespec ts;</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    ts.tv_sec = ms / 1000;</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    ts.tv_nsec = (ms % 1000) * 1000 * 1000;</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    nanosleep(&amp;ts, 0);</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="keywordflow">if</span> (ms &gt;= 1000) {</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>        sleep(ms / 1000);</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    }</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    usleep((ms % 1000) * 1000);</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>}</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="adefines_8h_html_a10e94b422ef0c20dcdec20d31a1f5049"><div class="ttname"><a href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a></div><div class="ttdeci">unsigned int u32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00023">defines.h:23</a></div></div>
 <div class="ttc" id="adefines_8h_html_a7415f24c35cb3e16a79f143c5527fdfa"><div class="ttname"><a href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a></div><div class="ttdeci">char b8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00055">defines.h:55</a></div></div>
 <div class="ttc" id="adefines_8h_html_a94dab5770726ccbef8c7d026cfbdf8e5"><div class="ttname"><a href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a></div><div class="ttdeci">double f64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00048">defines.h:48</a></div></div>
@@ -413,7 +425,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed May 28 2025 19:35:36 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 1 2025 12:54:06 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -1,0 +1,639 @@
+\doxysection{engine/src/core/input.c File Reference}
+\hypertarget{input_8c}{}\label{input_8c}\index{engine/src/core/input.c@{engine/src/core/input.c}}
+
+
+Implementation of the input system for keyboard and mouse events.  
+
+
+{\ttfamily \#include "{}core/input.\+h"{}}\newline
+{\ttfamily \#include "{}core/event.\+h"{}}\newline
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}core/logger.\+h"{}}\newline
+Include dependency graph for input.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{input_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structkeyboard__state}{keyboard\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Internal structure representing the current keyboard state. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmouse__state}{mouse\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Internal structure representing the current mouse state. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structinput__state}{input\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Global input state combining keyboard and mouse data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structkeyboard__state}{keyboard\+\_\+state}} \mbox{\hyperlink{input_8c_a3eda7f0cade2331516e6a139c62b81c3}{keyboard\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Internal structure representing the current keyboard state. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structmouse__state}{mouse\+\_\+state}} \mbox{\hyperlink{input_8c_a1b858b011b548e2f09a64c9785ce2850}{mouse\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Internal structure representing the current mouse state. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structinput__state}{input\+\_\+state}} \mbox{\hyperlink{input_8c_a762f039269f41faf9e93b6b7c2737a4d}{input\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Global input state combining keyboard and mouse data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{input_8c_af638af2714fc9aa2110414c9d2905cd8}{input\+\_\+initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the input system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input_8c_acd09dfdf0b5697ef47aea599e686e280}{input\+\_\+shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Shuts down the input system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input_8c_a85450297ce513c03fe70c80cdba41609}{input\+\_\+update}} (\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} delta\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Updates input state from the previous to current frame. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input_8c_aa50febeebd057f91a70704851a9b6300}{input\+\_\+process\+\_\+key}} (\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}} key, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} pressed)
+\begin{DoxyCompactList}\small\item\em Processes a key press or release event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input_8c_a4b149b586e2e5e770ddd9ed63f4f5dd2}{input\+\_\+process\+\_\+button}} (\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}} button, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} pressed)
+\begin{DoxyCompactList}\small\item\em Processes a mouse button press or release. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input_8c_a5d56afad3d78c1e177fa44cef3e7d19d}{input\+\_\+process\+\_\+mouse\+\_\+move}} (\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} x, \mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} y)
+\begin{DoxyCompactList}\small\item\em Processes mouse movement and updates internal state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input_8c_af9d0e1b4ff7fce1972ba93c810bfbabc}{input\+\_\+process\+\_\+mouse\+\_\+wheel}} (\mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}} z\+\_\+delta)
+\begin{DoxyCompactList}\small\item\em Processes mouse wheel scroll input. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{input_8c_a2786406f8447b54a640a8f120eac9351}{input\+\_\+is\+\_\+key\+\_\+down}} (\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}} key)
+\begin{DoxyCompactList}\small\item\em Checks if a key is currently pressed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{input_8c_a92eefcb4964e523bece8b5cddf5290ee}{input\+\_\+is\+\_\+key\+\_\+up}} (\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}} key)
+\begin{DoxyCompactList}\small\item\em Checks if a key is currently released. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{input_8c_a3c29709b57504ff36940b91dcdabc532}{input\+\_\+was\+\_\+key\+\_\+down}} (\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}} key)
+\begin{DoxyCompactList}\small\item\em Checks if a key was pressed during the previous frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{input_8c_a1e131fe78ff97cd84e9a8e578ad0355e}{input\+\_\+was\+\_\+key\+\_\+up}} (\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}} key)
+\begin{DoxyCompactList}\small\item\em Checks if a key was released during the previous frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{input_8c_aab753e5fc7ebaa656f894e43f7fa3a35}{input\+\_\+is\+\_\+button\+\_\+down}} (\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}} button)
+\begin{DoxyCompactList}\small\item\em Checks if a mouse button is currently pressed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{input_8c_a73c9280368df8512e8b1dbf7645bf107}{input\+\_\+is\+\_\+button\+\_\+up}} (\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}} button)
+\begin{DoxyCompactList}\small\item\em Checks if a mouse button is currently released. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{input_8c_a93b7eaaa50b483591371bbcc1e3243b6}{input\+\_\+was\+\_\+button\+\_\+down}} (\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}} button)
+\begin{DoxyCompactList}\small\item\em Checks if a mouse button was pressed during the previous frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{input_8c_a3da84f3106936536e91c6707313600de}{input\+\_\+was\+\_\+button\+\_\+up}} (\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}} button)
+\begin{DoxyCompactList}\small\item\em Checks if a mouse button was released during the previous frame. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input_8c_a1e19103585247155502b24483b586afe}{input\+\_\+get\+\_\+mouse\+\_\+position}} (\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}x, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}y)
+\begin{DoxyCompactList}\small\item\em Gets the current mouse position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input_8c_a9537eb7f3de426fff349c160f65fafef}{input\+\_\+get\+\_\+previous\+\_\+mouse\+\_\+position}} (\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}x, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}y)
+\begin{DoxyCompactList}\small\item\em Gets the mouse position from the previous frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{input_8c_aca033d9c168f6eceec40a0e9a9354e79}{initialized}} = \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}}
+\item 
+static \mbox{\hyperlink{structinput__state}{input\+\_\+state}} \mbox{\hyperlink{input_8c_a3a5226dfa7ff1110dc16120adfdec6f6}{state}} = \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the input system for keyboard and mouse events. 
+
+This module implements a state-\/based input system that tracks\+:
+\begin{DoxyItemize}
+\item Current and previous keyboard states
+\item Current and previous mouse states
+\item Button presses, movement, and wheel scroll
+\end{DoxyItemize}
+
+Input updates are handled once per frame in {\ttfamily \doxylink{input_8c_a85450297ce513c03fe70c80cdba41609}{input\+\_\+update()}}, which copies current state to previous for delta detection.
+
+Usage\+: Use the public interface defined in {\ttfamily \doxylink{input_8h}{input.\+h}} to interact with this system. 
+
+Definition in file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{input_8c_a762f039269f41faf9e93b6b7c2737a4d}\label{input_8c_a762f039269f41faf9e93b6b7c2737a4d} 
+\index{input.c@{input.c}!input\_state@{input\_state}}
+\index{input\_state@{input\_state}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_state}{input\_state}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structinput__state}{input\+\_\+state}} \mbox{\hyperlink{structinput__state}{input\+\_\+state}}}
+
+
+
+Global input state combining keyboard and mouse data. 
+
+\Hypertarget{input_8c_a3eda7f0cade2331516e6a139c62b81c3}\label{input_8c_a3eda7f0cade2331516e6a139c62b81c3} 
+\index{input.c@{input.c}!keyboard\_state@{keyboard\_state}}
+\index{keyboard\_state@{keyboard\_state}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{keyboard\_state}{keyboard\_state}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structkeyboard__state}{keyboard\+\_\+state}} \mbox{\hyperlink{structkeyboard__state}{keyboard\+\_\+state}}}
+
+
+
+Internal structure representing the current keyboard state. 
+
+\Hypertarget{input_8c_a1b858b011b548e2f09a64c9785ce2850}\label{input_8c_a1b858b011b548e2f09a64c9785ce2850} 
+\index{input.c@{input.c}!mouse\_state@{mouse\_state}}
+\index{mouse\_state@{mouse\_state}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{mouse\_state}{mouse\_state}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structmouse__state}{mouse\+\_\+state}} \mbox{\hyperlink{structmouse__state}{mouse\+\_\+state}}}
+
+
+
+Internal structure representing the current mouse state. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{input_8c_a1e19103585247155502b24483b586afe}\label{input_8c_a1e19103585247155502b24483b586afe} 
+\index{input.c@{input.c}!input\_get\_mouse\_position@{input\_get\_mouse\_position}}
+\index{input\_get\_mouse\_position@{input\_get\_mouse\_position}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_get\_mouse\_position()}{input\_get\_mouse\_position()}}
+{\footnotesize\ttfamily void input\+\_\+get\+\_\+mouse\+\_\+position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}}]{x,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}}]{y }\end{DoxyParamCaption})}
+
+
+
+Gets the current mouse position. 
+
+Gets the current mouse position relative to the window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Pointer to store the current X position. \\
+\hline
+{\em y} & Pointer to store the current Y position. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00323}{323}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00071}{input\+\_\+state\+::mouse\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, \mbox{\hyperlink{input_8c_source_l00041}{mouse\+\_\+state\+::x}}, and \mbox{\hyperlink{input_8c_source_l00046}{mouse\+\_\+state\+::y}}.
+
+\Hypertarget{input_8c_a9537eb7f3de426fff349c160f65fafef}\label{input_8c_a9537eb7f3de426fff349c160f65fafef} 
+\index{input.c@{input.c}!input\_get\_previous\_mouse\_position@{input\_get\_previous\_mouse\_position}}
+\index{input\_get\_previous\_mouse\_position@{input\_get\_previous\_mouse\_position}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_get\_previous\_mouse\_position()}{input\_get\_previous\_mouse\_position()}}
+{\footnotesize\ttfamily void input\+\_\+get\+\_\+previous\+\_\+mouse\+\_\+position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}}]{x,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}}]{y }\end{DoxyParamCaption})}
+
+
+
+Gets the mouse position from the previous frame. 
+
+Useful for computing deltas like cursor speed or drag distance.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Pointer to store the previous X position. \\
+\hline
+{\em y} & Pointer to store the previous Y position. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00342}{342}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00076}{input\+\_\+state\+::mouse\+\_\+previous}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, \mbox{\hyperlink{input_8c_source_l00041}{mouse\+\_\+state\+::x}}, and \mbox{\hyperlink{input_8c_source_l00046}{mouse\+\_\+state\+::y}}.
+
+\Hypertarget{input_8c_af638af2714fc9aa2110414c9d2905cd8}\label{input_8c_af638af2714fc9aa2110414c9d2905cd8} 
+\index{input.c@{input.c}!input\_initialize@{input\_initialize}}
+\index{input\_initialize@{input\_initialize}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_initialize()}{input\_initialize()}}
+{\footnotesize\ttfamily void input\+\_\+initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the input system. 
+
+Sets internal state to zeroed memory and marks the system as initialized. 
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00088}{88}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+create()}}.
+
+\Hypertarget{input_8c_aab753e5fc7ebaa656f894e43f7fa3a35}\label{input_8c_aab753e5fc7ebaa656f894e43f7fa3a35} 
+\index{input.c@{input.c}!input\_is\_button\_down@{input\_is\_button\_down}}
+\index{input\_is\_button\_down@{input\_is\_button\_down}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_is\_button\_down()}{input\_is\_button\_down()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} input\+\_\+is\+\_\+button\+\_\+down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}}}]{button }\end{DoxyParamCaption})}
+
+
+
+Checks if a mouse button is currently pressed. 
+
+Checks if the given mouse button is currently pressed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The mouse button to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the button is currently down; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00267}{267}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{input_8c_source_l00051}{mouse\+\_\+state\+::buttons}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00071}{input\+\_\+state\+::mouse\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{input_8c_a73c9280368df8512e8b1dbf7645bf107}\label{input_8c_a73c9280368df8512e8b1dbf7645bf107} 
+\index{input.c@{input.c}!input\_is\_button\_up@{input\_is\_button\_up}}
+\index{input\_is\_button\_up@{input\_is\_button\_up}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_is\_button\_up()}{input\_is\_button\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} input\+\_\+is\+\_\+button\+\_\+up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}}}]{button }\end{DoxyParamCaption})}
+
+
+
+Checks if a mouse button is currently released. 
+
+Checks if the given mouse button is currently released.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The mouse button to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the button is currently up; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00280}{280}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{input_8c_source_l00051}{mouse\+\_\+state\+::buttons}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00071}{input\+\_\+state\+::mouse\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{input_8c_a2786406f8447b54a640a8f120eac9351}\label{input_8c_a2786406f8447b54a640a8f120eac9351} 
+\index{input.c@{input.c}!input\_is\_key\_down@{input\_is\_key\_down}}
+\index{input\_is\_key\_down@{input\_is\_key\_down}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_is\_key\_down()}{input\_is\_key\_down()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} input\+\_\+is\+\_\+key\+\_\+down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}}]{key }\end{DoxyParamCaption})}
+
+
+
+Checks if a key is currently pressed. 
+
+Checks if the given key is currently pressed down.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the key is currently down; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00211}{211}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00061}{input\+\_\+state\+::keyboard\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00031}{keyboard\+\_\+state\+::keys}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{input_8c_a92eefcb4964e523bece8b5cddf5290ee}\label{input_8c_a92eefcb4964e523bece8b5cddf5290ee} 
+\index{input.c@{input.c}!input\_is\_key\_up@{input\_is\_key\_up}}
+\index{input\_is\_key\_up@{input\_is\_key\_up}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_is\_key\_up()}{input\_is\_key\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} input\+\_\+is\+\_\+key\+\_\+up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}}]{key }\end{DoxyParamCaption})}
+
+
+
+Checks if a key is currently released. 
+
+Checks if the given key is currently released.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the key is currently up; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00224}{224}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00061}{input\+\_\+state\+::keyboard\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00031}{keyboard\+\_\+state\+::keys}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{input_8c_a4b149b586e2e5e770ddd9ed63f4f5dd2}\label{input_8c_a4b149b586e2e5e770ddd9ed63f4f5dd2} 
+\index{input.c@{input.c}!input\_process\_button@{input\_process\_button}}
+\index{input\_process\_button@{input\_process\_button}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_process\_button()}{input\_process\_button()}}
+{\footnotesize\ttfamily void input\+\_\+process\+\_\+button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}}}]{button,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{pressed }\end{DoxyParamCaption})}
+
+
+
+Processes a mouse button press or release. 
+
+Processes a mouse button press or release from the platform layer.
+
+Fires an appropriate event ({\ttfamily EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+PRESSED} or {\ttfamily EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+RELEASED}) only if the button state has changed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The mouse button being processed. \\
+\hline
+{\em pressed} & TRUE if the button is now pressed; FALSE if released. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00152}{152}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{input_8c_source_l00051}{mouse\+\_\+state\+::buttons}}, \mbox{\hyperlink{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}{event\+\_\+context\+::data}}, \mbox{\hyperlink{event_8h_source_l00177}{EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00187}{EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8c_source_l00156}{event\+\_\+fire()}}, \mbox{\hyperlink{input_8c_source_l00071}{input\+\_\+state\+::mouse\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{event_8h_source_l00056}{event\+\_\+context\+::u16}}.
+
+\Hypertarget{input_8c_aa50febeebd057f91a70704851a9b6300}\label{input_8c_aa50febeebd057f91a70704851a9b6300} 
+\index{input.c@{input.c}!input\_process\_key@{input\_process\_key}}
+\index{input\_process\_key@{input\_process\_key}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_process\_key()}{input\_process\_key()}}
+{\footnotesize\ttfamily void input\+\_\+process\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}}]{key,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{pressed }\end{DoxyParamCaption})}
+
+
+
+Processes a key press or release event. 
+
+Processes a key press or release from the platform layer.
+
+Fires an appropriate event ({\ttfamily EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED} or {\ttfamily EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}) only if the key state has changed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key being processed. \\
+\hline
+{\em pressed} & TRUE if the key is now pressed; FALSE if released. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00130}{130}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}{event\+\_\+context\+::data}}, \mbox{\hyperlink{event_8h_source_l00156}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00166}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8c_source_l00156}{event\+\_\+fire()}}, \mbox{\hyperlink{input_8c_source_l00061}{input\+\_\+state\+::keyboard\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00031}{keyboard\+\_\+state\+::keys}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{event_8h_source_l00056}{event\+\_\+context\+::u16}}.
+
+\Hypertarget{input_8c_a5d56afad3d78c1e177fa44cef3e7d19d}\label{input_8c_a5d56afad3d78c1e177fa44cef3e7d19d} 
+\index{input.c@{input.c}!input\_process\_mouse\_move@{input\_process\_mouse\_move}}
+\index{input\_process\_mouse\_move@{input\_process\_mouse\_move}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_process\_mouse\_move()}{input\_process\_mouse\_move()}}
+{\footnotesize\ttfamily void input\+\_\+process\+\_\+mouse\+\_\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}}}]{x,  }\item[{\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}}}]{y }\end{DoxyParamCaption})}
+
+
+
+Processes mouse movement and updates internal state. 
+
+Processes mouse movement from the platform layer.
+
+Fires {\ttfamily EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+MOVED} if the position has changed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & New X coordinate of the mouse. \\
+\hline
+{\em y} & New Y coordinate of the mouse. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00173}{173}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}{event\+\_\+context\+::data}}, \mbox{\hyperlink{event_8h_source_l00199}{EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+MOVED}}, \mbox{\hyperlink{event_8c_source_l00156}{event\+\_\+fire()}}, \mbox{\hyperlink{logger_8h_source_l00210}{KDEBUG}}, \mbox{\hyperlink{input_8c_source_l00071}{input\+\_\+state\+::mouse\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, \mbox{\hyperlink{event_8h_source_l00056}{event\+\_\+context\+::u16}}, \mbox{\hyperlink{input_8c_source_l00041}{mouse\+\_\+state\+::x}}, and \mbox{\hyperlink{input_8c_source_l00046}{mouse\+\_\+state\+::y}}.
+
+\Hypertarget{input_8c_af9d0e1b4ff7fce1972ba93c810bfbabc}\label{input_8c_af9d0e1b4ff7fce1972ba93c810bfbabc} 
+\index{input.c@{input.c}!input\_process\_mouse\_wheel@{input\_process\_mouse\_wheel}}
+\index{input\_process\_mouse\_wheel@{input\_process\_mouse\_wheel}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_process\_mouse\_wheel()}{input\_process\_mouse\_wheel()}}
+{\footnotesize\ttfamily void input\+\_\+process\+\_\+mouse\+\_\+wheel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}}}]{z\+\_\+delta }\end{DoxyParamCaption})}
+
+
+
+Processes mouse wheel scroll input. 
+
+Fires {\ttfamily EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+WHEEL} with the scroll amount.
+
+
+\begin{DoxyParams}{Parameters}
+{\em z\+\_\+delta} & Delta value indicating scroll direction and magnitude. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00198}{198}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}{event\+\_\+context\+::data}}, \mbox{\hyperlink{event_8h_source_l00209}{EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+WHEEL}}, \mbox{\hyperlink{event_8c_source_l00156}{event\+\_\+fire()}}, and \mbox{\hyperlink{event_8h_source_l00061}{event\+\_\+context\+::u8}}.
+
+\Hypertarget{input_8c_acd09dfdf0b5697ef47aea599e686e280}\label{input_8c_acd09dfdf0b5697ef47aea599e686e280} 
+\index{input.c@{input.c}!input\_shutdown@{input\_shutdown}}
+\index{input\_shutdown@{input\_shutdown}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_shutdown()}{input\_shutdown()}}
+{\footnotesize\ttfamily void input\+\_\+shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shuts down the input system. 
+
+Currently just sets the initialized flag to FALSE. Can be extended to clean up resources. 
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00099}{99}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, and \mbox{\hyperlink{input_8c_source_l00080}{initialized}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00170}{application\+\_\+run()}}.
+
+\Hypertarget{input_8c_a85450297ce513c03fe70c80cdba41609}\label{input_8c_a85450297ce513c03fe70c80cdba41609} 
+\index{input.c@{input.c}!input\_update@{input\_update}}
+\index{input\_update@{input\_update}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_update()}{input\_update()}}
+{\footnotesize\ttfamily void input\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}}]{delta\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Updates input state from the previous to current frame. 
+
+Updates the input system state.
+
+Copies current keyboard/mouse states into previous states to support delta checks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+\_\+time} & Time since the last update (unused here but follows pattern). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00111}{111}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{kmemory_8c_source_l00160}{kcopy\+\_\+memory()}}, \mbox{\hyperlink{input_8c_source_l00061}{input\+\_\+state\+::keyboard\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00066}{input\+\_\+state\+::keyboard\+\_\+previous}}, \mbox{\hyperlink{input_8c_source_l00071}{input\+\_\+state\+::mouse\+\_\+current}}, \mbox{\hyperlink{input_8c_source_l00076}{input\+\_\+state\+::mouse\+\_\+previous}}, and \mbox{\hyperlink{input_8c_source_l00081}{state}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00170}{application\+\_\+run()}}.
+
+\Hypertarget{input_8c_a93b7eaaa50b483591371bbcc1e3243b6}\label{input_8c_a93b7eaaa50b483591371bbcc1e3243b6} 
+\index{input.c@{input.c}!input\_was\_button\_down@{input\_was\_button\_down}}
+\index{input\_was\_button\_down@{input\_was\_button\_down}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_was\_button\_down()}{input\_was\_button\_down()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} input\+\_\+was\+\_\+button\+\_\+down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}}}]{button }\end{DoxyParamCaption})}
+
+
+
+Checks if a mouse button was pressed during the previous frame. 
+
+Checks if the given mouse button was pressed in the previous frame.
+
+Useful for detecting single-\/frame clicks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The mouse button to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the button was pressed last frame; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00295}{295}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{input_8c_source_l00051}{mouse\+\_\+state\+::buttons}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00076}{input\+\_\+state\+::mouse\+\_\+previous}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{input_8c_a3da84f3106936536e91c6707313600de}\label{input_8c_a3da84f3106936536e91c6707313600de} 
+\index{input.c@{input.c}!input\_was\_button\_up@{input\_was\_button\_up}}
+\index{input\_was\_button\_up@{input\_was\_button\_up}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_was\_button\_up()}{input\_was\_button\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} input\+\_\+was\+\_\+button\+\_\+up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}}}]{button }\end{DoxyParamCaption})}
+
+
+
+Checks if a mouse button was released during the previous frame. 
+
+Checks if the given mouse button was released in the previous frame.
+
+Useful for detecting single-\/frame button releases.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The mouse button to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the button was released last frame; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00310}{310}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{input_8c_source_l00051}{mouse\+\_\+state\+::buttons}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00076}{input\+\_\+state\+::mouse\+\_\+previous}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{input_8c_a3c29709b57504ff36940b91dcdabc532}\label{input_8c_a3c29709b57504ff36940b91dcdabc532} 
+\index{input.c@{input.c}!input\_was\_key\_down@{input\_was\_key\_down}}
+\index{input\_was\_key\_down@{input\_was\_key\_down}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_was\_key\_down()}{input\_was\_key\_down()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} input\+\_\+was\+\_\+key\+\_\+down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}}]{key }\end{DoxyParamCaption})}
+
+
+
+Checks if a key was pressed during the previous frame. 
+
+Checks if the given key was pressed during the previous frame.
+
+Useful for detecting single-\/frame input actions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the key was pressed last frame; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00239}{239}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00066}{input\+\_\+state\+::keyboard\+\_\+previous}}, \mbox{\hyperlink{input_8c_source_l00031}{keyboard\+\_\+state\+::keys}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+\Hypertarget{input_8c_a1e131fe78ff97cd84e9a8e578ad0355e}\label{input_8c_a1e131fe78ff97cd84e9a8e578ad0355e} 
+\index{input.c@{input.c}!input\_was\_key\_up@{input\_was\_key\_up}}
+\index{input\_was\_key\_up@{input\_was\_key\_up}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{input\_was\_key\_up()}{input\_was\_key\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} input\+\_\+was\+\_\+key\+\_\+up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}}]{key }\end{DoxyParamCaption})}
+
+
+
+Checks if a key was released during the previous frame. 
+
+Checks if the given key was released during the previous frame.
+
+Useful for detecting single-\/frame input releases.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the key was released last frame; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00254}{254}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{input_8c_source_l00080}{initialized}}, \mbox{\hyperlink{input_8c_source_l00066}{input\+\_\+state\+::keyboard\+\_\+previous}}, \mbox{\hyperlink{input_8c_source_l00031}{keyboard\+\_\+state\+::keys}}, \mbox{\hyperlink{input_8c_source_l00081}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{input_8c_aca033d9c168f6eceec40a0e9a9354e79}\label{input_8c_aca033d9c168f6eceec40a0e9a9354e79} 
+\index{input.c@{input.c}!initialized@{initialized}}
+\index{initialized@{initialized}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{initialized}{initialized}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} initialized = \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00080}{80}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{input_8c_source_l00323}{input\+\_\+get\+\_\+mouse\+\_\+position()}}, \mbox{\hyperlink{input_8c_source_l00342}{input\+\_\+get\+\_\+previous\+\_\+mouse\+\_\+position()}}, \mbox{\hyperlink{input_8c_source_l00088}{input\+\_\+initialize()}}, \mbox{\hyperlink{input_8c_source_l00267}{input\+\_\+is\+\_\+button\+\_\+down()}}, \mbox{\hyperlink{input_8c_source_l00280}{input\+\_\+is\+\_\+button\+\_\+up()}}, \mbox{\hyperlink{input_8c_source_l00211}{input\+\_\+is\+\_\+key\+\_\+down()}}, \mbox{\hyperlink{input_8c_source_l00224}{input\+\_\+is\+\_\+key\+\_\+up()}}, \mbox{\hyperlink{input_8c_source_l00099}{input\+\_\+shutdown()}}, \mbox{\hyperlink{input_8c_source_l00111}{input\+\_\+update()}}, \mbox{\hyperlink{input_8c_source_l00295}{input\+\_\+was\+\_\+button\+\_\+down()}}, \mbox{\hyperlink{input_8c_source_l00310}{input\+\_\+was\+\_\+button\+\_\+up()}}, \mbox{\hyperlink{input_8c_source_l00239}{input\+\_\+was\+\_\+key\+\_\+down()}}, and \mbox{\hyperlink{input_8c_source_l00254}{input\+\_\+was\+\_\+key\+\_\+up()}}.
+
+\Hypertarget{input_8c_a3a5226dfa7ff1110dc16120adfdec6f6}\label{input_8c_a3a5226dfa7ff1110dc16120adfdec6f6} 
+\index{input.c@{input.c}!state@{state}}
+\index{state@{state}!input.c@{input.c}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structinput__state}{input\+\_\+state}} state = \{\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{input_8c_source_l00081}{81}} of file \mbox{\hyperlink{input_8c_source}{input.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{input_8c_source_l00323}{input\+\_\+get\+\_\+mouse\+\_\+position()}}, \mbox{\hyperlink{input_8c_source_l00342}{input\+\_\+get\+\_\+previous\+\_\+mouse\+\_\+position()}}, \mbox{\hyperlink{input_8c_source_l00088}{input\+\_\+initialize()}}, \mbox{\hyperlink{input_8c_source_l00267}{input\+\_\+is\+\_\+button\+\_\+down()}}, \mbox{\hyperlink{input_8c_source_l00280}{input\+\_\+is\+\_\+button\+\_\+up()}}, \mbox{\hyperlink{input_8c_source_l00211}{input\+\_\+is\+\_\+key\+\_\+down()}}, \mbox{\hyperlink{input_8c_source_l00224}{input\+\_\+is\+\_\+key\+\_\+up()}}, \mbox{\hyperlink{input_8c_source_l00152}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00130}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00173}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, \mbox{\hyperlink{input_8c_source_l00111}{input\+\_\+update()}}, \mbox{\hyperlink{input_8c_source_l00295}{input\+\_\+was\+\_\+button\+\_\+down()}}, \mbox{\hyperlink{input_8c_source_l00310}{input\+\_\+was\+\_\+button\+\_\+up()}}, \mbox{\hyperlink{input_8c_source_l00239}{input\+\_\+was\+\_\+key\+\_\+down()}}, and \mbox{\hyperlink{input_8c_source_l00254}{input\+\_\+was\+\_\+key\+\_\+up()}}.
+

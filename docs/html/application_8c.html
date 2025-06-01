@@ -90,6 +90,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="logger_8h_source.html">core/logger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="kmemory_8h_source.html">core/kmemory.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="platform_8h_source.html">platform/platform.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="input_8h_source.html">core/input.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for application.c:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -97,26 +98,29 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="application_8c__incl.png" border="0" usemap="#aengine_2src_2core_2application_8c" alt=""/></div>
 <map name="aengine_2src_2core_2application_8c" id="aengine_2src_2core_2application_8c">
-<area shape="rect" title="Implementation of the core application lifecycle functions." alt="" coords="140,5,348,31"/>
+<area shape="rect" title="Implementation of the core application lifecycle functions." alt="" coords="195,5,403,31"/>
 <area shape="rect" href="application_8h.html" title="Public interface for the core application system." alt="" coords="5,152,112,177"/>
-<area shape="poly" title=" " alt="" coords="141,31,94,49,74,62,57,80,50,93,48,108,52,138,47,139,43,108,45,92,52,77,70,58,91,44,139,26"/>
-<area shape="rect" href="game__types_8h.html" title="Game&#45;related types and structures used across the engine." alt="" coords="67,79,181,104"/>
-<area shape="poly" title=" " alt="" coords="226,33,157,74,154,69,223,28"/>
+<area shape="poly" title=" " alt="" coords="195,29,137,47,110,62,86,81,76,93,69,108,62,139,57,138,64,106,72,91,82,77,107,57,135,42,194,24"/>
+<area shape="rect" href="game__types_8h.html" title="Game&#45;related types and structures used across the engine." alt="" coords="96,79,211,104"/>
+<area shape="poly" title=" " alt="" coords="276,33,190,75,188,70,274,28"/>
 <area shape="rect" href="event_8h.html" title="Event system for inter&#45;component communication." alt="" coords="137,152,239,177"/>
-<area shape="poly" title=" " alt="" coords="242,32,200,140,195,138,237,30"/>
+<area shape="poly" title=" " alt="" coords="292,33,207,142,203,139,287,29"/>
 <area shape="rect" href="logger_8h.html" title="Public interface for the Koru Engine logging system." alt="" coords="264,152,371,177"/>
-<area shape="poly" title=" " alt="" coords="252,30,308,138,303,141,248,32"/>
-<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="307,79,434,104"/>
-<area shape="poly" title=" " alt="" coords="266,28,339,69,337,74,263,33"/>
-<area shape="rect" href="platform_8h.html" title="Platform abstraction layer interface." alt="" coords="458,79,609,104"/>
-<area shape="poly" title=" " alt="" coords="291,28,474,73,473,78,290,33"/>
-<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="277,225,358,251"/>
-<area shape="poly" title=" " alt="" coords="101,175,264,219,263,224,100,180"/>
-<area shape="poly" title=" " alt="" coords="115,106,80,144,77,140,111,103"/>
-<area shape="poly" title=" " alt="" coords="210,175,285,216,283,221,208,180"/>
-<area shape="poly" title=" " alt="" coords="320,178,320,212,315,212,315,178"/>
-<area shape="poly" title=" " alt="" coords="379,103,389,137,390,158,385,178,370,201,350,219,347,215,366,198,380,176,385,158,383,138,374,105"/>
-<area shape="poly" title=" " alt="" coords="518,106,347,220,344,215,515,102"/>
+<area shape="poly" title=" " alt="" coords="303,31,317,138,311,139,298,31"/>
+<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="395,152,522,177"/>
+<area shape="poly" title=" " alt="" coords="310,29,338,63,376,102,430,142,427,147,373,106,334,67,306,33"/>
+<area shape="rect" href="platform_8h.html" title="Platform abstraction layer interface." alt="" coords="387,79,538,104"/>
+<area shape="poly" title=" " alt="" coords="326,28,425,71,422,76,324,33"/>
+<area shape="rect" href="input_8h.html" title="Input system interface for handling keyboard and mouse events." alt="" coords="563,79,661,104"/>
+<area shape="poly" title=" " alt="" coords="350,28,550,73,548,78,348,33"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="347,225,429,251"/>
+<area shape="poly" title=" " alt="" coords="112,175,334,222,333,228,111,180"/>
+<area shape="poly" title=" " alt="" coords="140,106,87,146,84,141,137,102"/>
+<area shape="poly" title=" " alt="" coords="221,175,343,218,341,223,219,180"/>
+<area shape="poly" title=" " alt="" coords="331,176,369,214,365,218,327,180"/>
+<area shape="poly" title=" " alt="" coords="449,180,411,218,407,214,445,176"/>
+<area shape="poly" title=" " alt="" coords="486,102,508,116,528,134,540,156,540,167,536,179,517,199,493,214,443,232,441,227,491,210,513,195,531,176,535,166,535,157,524,138,505,120,483,106"/>
+<area shape="poly" title=" " alt="" coords="609,106,590,142,575,162,556,179,529,197,500,211,443,229,441,224,498,206,527,192,553,175,571,158,585,139,605,103"/>
 </map>
 </div>
 </div>
@@ -136,6 +140,12 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a464af30d5e798df5a25d3c211d5c120f" id="r_a464af30d5e798df5a25d3c211d5c120f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8c.html#a464af30d5e798df5a25d3c211d5c120f">application_on_event</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, void *listener_inst, <a class="el" href="structevent__context.html">event_context</a> context)</td></tr>
+<tr class="memdesc:a464af30d5e798df5a25d3c211d5c120f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global event handler for application-level events.  <br /></td></tr>
+<tr class="separator:a464af30d5e798df5a25d3c211d5c120f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a193a750e12452924346788eb62a3a327" id="r_a193a750e12452924346788eb62a3a327"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8c.html#a193a750e12452924346788eb62a3a327">application_on_key</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, void *listener_inst, <a class="el" href="structevent__context.html">event_context</a> context)</td></tr>
+<tr class="memdesc:a193a750e12452924346788eb62a3a327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles keyboard input at the application level.  <br /></td></tr>
+<tr class="separator:a193a750e12452924346788eb62a3a327"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0ccecbeef900f30b0b734eb020574ef" id="r_af0ccecbeef900f30b0b734eb020574ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8c.html#af0ccecbeef900f30b0b734eb020574ef">application_create</a> (<a class="el" href="structgame.html">game</a> *game_inst)</td></tr>
 <tr class="memdesc:af0ccecbeef900f30b0b734eb020574ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the application with the provided configuration.  <br /></td></tr>
 <tr class="separator:af0ccecbeef900f30b0b734eb020574ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,11 +223,133 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if initialization was successful; FALSE otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00084">84</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00117">117</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">References <a class="el" href="game__types_8h_source.html#l00029">game::app_config</a>, <a class="el" href="application_8c_source.html#l00072">app_state</a>, <a class="el" href="event_8c_source.html#l00076">event_initialize()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00032">application_state::game_inst</a>, <a class="el" href="application_8c_source.html#l00056">application_state::height</a>, <a class="el" href="game__types_8h_source.html#l00036">game::initialize</a>, <a class="el" href="logger_8c_source.html#l00029">initialize_logging()</a>, <a class="el" href="application_8c_source.html#l00067">initialized</a>, <a class="el" href="application_8c_source.html#l00036">application_state::is_running</a>, <a class="el" href="application_8c_source.html#l00041">application_state::is_suspended</a>, <a class="el" href="logger_8h_source.html#l00210">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00162">KERROR</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="logger_8h_source.html#l00227">KTRACE</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="application_8h_source.html#l00055">application_config::name</a>, <a class="el" href="game__types_8h_source.html#l00057">game::on_resize</a>, <a class="el" href="application_8c_source.html#l00046">application_state::platform</a>, <a class="el" href="platform_8h.html#a1557f29064029f8b437d0fbcc587ebbd">platform_startup()</a>, <a class="el" href="application_8h_source.html#l00050">application_config::start_height</a>, <a class="el" href="application_8h_source.html#l00035">application_config::start_pos_x</a>, <a class="el" href="application_8h_source.html#l00040">application_config::start_pos_y</a>, <a class="el" href="application_8h_source.html#l00045">application_config::start_width</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="application_8c_source.html#l00051">application_state::width</a>.</p>
+<p class="reference">References <a class="el" href="game__types_8h_source.html#l00029">game::app_config</a>, <a class="el" href="application_8c_source.html#l00073">app_state</a>, <a class="el" href="application_8c_source.html#l00222">application_on_event()</a>, <a class="el" href="application_8c_source.html#l00234">application_on_key()</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00076">event_initialize()</a>, <a class="el" href="event_8c_source.html#l00100">event_register()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00033">application_state::game_inst</a>, <a class="el" href="application_8c_source.html#l00057">application_state::height</a>, <a class="el" href="game__types_8h_source.html#l00036">game::initialize</a>, <a class="el" href="logger_8c_source.html#l00029">initialize_logging()</a>, <a class="el" href="application_8c_source.html#l00068">initialized</a>, <a class="el" href="input_8c_source.html#l00088">input_initialize()</a>, <a class="el" href="application_8c_source.html#l00037">application_state::is_running</a>, <a class="el" href="application_8c_source.html#l00042">application_state::is_suspended</a>, <a class="el" href="logger_8h_source.html#l00210">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00162">KERROR</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="logger_8h_source.html#l00227">KTRACE</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="application_8h_source.html#l00055">application_config::name</a>, <a class="el" href="game__types_8h_source.html#l00057">game::on_resize</a>, <a class="el" href="application_8c_source.html#l00047">application_state::platform</a>, <a class="el" href="platform_8h.html#a1557f29064029f8b437d0fbcc587ebbd">platform_startup()</a>, <a class="el" href="application_8h_source.html#l00050">application_config::start_height</a>, <a class="el" href="application_8h_source.html#l00035">application_config::start_pos_x</a>, <a class="el" href="application_8h_source.html#l00040">application_config::start_pos_y</a>, <a class="el" href="application_8h_source.html#l00045">application_config::start_width</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="application_8c_source.html#l00052">application_state::width</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00051">main()</a>.</p>
+
+</div>
+</div>
+<a id="a464af30d5e798df5a25d3c211d5c120f" name="a464af30d5e798df5a25d3c211d5c120f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a464af30d5e798df5a25d3c211d5c120f">&#9670;&#160;</a></span>application_on_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> application_on_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>listener_inst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structevent__context.html">event_context</a>&#160;</td>
+          <td class="paramname"><em>context</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Global event handler for application-level events. </p>
+<p>This function listens for high-level system events like:</p><ul>
+<li>Application quit request (<code>EVENT_CODE_APPLICATION_QUIT</code>)</li>
+</ul>
+<p>When such an event is received, it updates internal state to gracefully exit.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>The event code that was fired. </td></tr>
+    <tr><td class="paramname">sender</td><td>A pointer to the object that sent the event (can be NULL). </td></tr>
+    <tr><td class="paramname">listener_inst</td><td>A pointer to the listener instance (unused here). </td></tr>
+    <tr><td class="paramname">context</td><td>Event-specific data (unused here). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the event was handled; FALSE otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00222">222</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">References <a class="el" href="application_8c_source.html#l00073">app_state</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00037">application_state::is_running</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00117">application_create()</a>, and <a class="el" href="application_8c_source.html#l00170">application_run()</a>.</p>
+
+</div>
+</div>
+<a id="a193a750e12452924346788eb62a3a327" name="a193a750e12452924346788eb62a3a327"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a193a750e12452924346788eb62a3a327">&#9670;&#160;</a></span>application_on_key()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> application_on_key </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>listener_inst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structevent__context.html">event_context</a>&#160;</td>
+          <td class="paramname"><em>context</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles keyboard input at the application level. </p>
+<p>Responds to <code>EVENT_CODE_KEY_PRESSED</code> and <code>EVENT_CODE_KEY_RELEASED</code> events.</p>
+<p>Special keys like Escape can trigger application-wide actions, while others are logged for debugging purposes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>The event code (e.g., key pressed/released). </td></tr>
+    <tr><td class="paramname">sender</td><td>A pointer to the object that triggered the event (unused here). </td></tr>
+    <tr><td class="paramname">listener_inst</td><td>A pointer to the listener instance (unused here). </td></tr>
+    <tr><td class="paramname">context</td><td>Event-specific data containing key information. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the event was handled; FALSE otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00234">234</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">References <a class="el" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00156">event_fire()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00210">KDEBUG</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="event_8h_source.html#l00056">event_context::u16</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00117">application_create()</a>, and <a class="el" href="application_8c_source.html#l00170">application_run()</a>.</p>
 
 </div>
 </div>
@@ -237,13 +369,17 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Starts the main application loop. </p>
-<p>Enters a loop that continuously processes OS messages/events using <a class="el" href="platform_8h.html#af47d0fad6d6e686e1e0f668c95b1c201" title="Processes messages/events from the operating system.">platform_pump_messages()</a>, and continues until the application signals it should exit.</p>
-<p>Once exited, it cleans up the platform layer and returns.</p>
-<dl class="section return"><dt>Returns</dt><dd>TRUE if the application exited cleanly; FALSE if an error occurred during shutdown. </dd></dl>
+<p>Begins running the game loop, which includes:</p><ul>
+<li>Processing events</li>
+<li>Updating game logic</li>
+<li>Rendering frames</li>
+</ul>
+<p>This function blocks until the application exits.</p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if the application exited cleanly; FALSE if an error occurred or early exit. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00141">141</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00170">170</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">References <a class="el" href="application_8c_source.html#l00072">app_state</a>, <a class="el" href="event_8c_source.html#l00088">event_shutdown()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="kmemory_8c_source.html#l00184">get_memory_usage_str()</a>, <a class="el" href="application_8c_source.html#l00036">application_state::is_running</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="application_8c_source.html#l00046">application_state::platform</a>, <a class="el" href="platform_8h.html#af47d0fad6d6e686e1e0f668c95b1c201">platform_pump_messages()</a>, <a class="el" href="platform_8h.html#a7fe7553c63bc948e2ee04d15597d6ccd">platform_shutdown()</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
+<p class="reference">References <a class="el" href="application_8c_source.html#l00073">app_state</a>, <a class="el" href="application_8c_source.html#l00222">application_on_event()</a>, <a class="el" href="application_8c_source.html#l00234">application_on_key()</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00088">event_shutdown()</a>, <a class="el" href="event_8c_source.html#l00129">event_unregister()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00033">application_state::game_inst</a>, <a class="el" href="kmemory_8c_source.html#l00184">get_memory_usage_str()</a>, <a class="el" href="input_8c_source.html#l00099">input_shutdown()</a>, <a class="el" href="input_8c_source.html#l00111">input_update()</a>, <a class="el" href="application_8c_source.html#l00037">application_state::is_running</a>, <a class="el" href="application_8c_source.html#l00042">application_state::is_suspended</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="application_8c_source.html#l00047">application_state::platform</a>, <a class="el" href="platform_8h.html#af47d0fad6d6e686e1e0f668c95b1c201">platform_pump_messages()</a>, <a class="el" href="platform_8h.html#a7fe7553c63bc948e2ee04d15597d6ccd">platform_shutdown()</a>, <a class="el" href="game__types_8h_source.html#l00050">game::render</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="game__types_8h_source.html#l00043">game::update</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00051">main()</a>.</p>
 
@@ -272,9 +408,9 @@ Variables</h2></td></tr>
 
 <p>Global instance of the application state. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00072">72</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00073">73</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00084">application_create()</a>, and <a class="el" href="application_8c_source.html#l00141">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00117">application_create()</a>, <a class="el" href="application_8c_source.html#l00222">application_on_event()</a>, and <a class="el" href="application_8c_source.html#l00170">application_run()</a>.</p>
 
 </div>
 </div>
@@ -300,16 +436,16 @@ Variables</h2></td></tr>
 
 <p>Global flag indicating if the application has already been initialized. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00067">67</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00068">68</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00084">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00117">application_create()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed May 28 2025 19:35:36 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 1 2025 12:54:06 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

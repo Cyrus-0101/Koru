@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🧠_20what_20is_20koru_0',['🧠 What Is Koru?',['../index.html#autotoc_md4',1,'']]]
+  ['🖼_20architecture_0',['🖼 Architecture',['../index.html#autotoc_md7',1,'']]]
 ];
