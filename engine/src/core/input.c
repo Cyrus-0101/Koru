@@ -173,6 +173,9 @@ void input_process_button(buttons button, b8 pressed) {
 void input_process_mouse_move(i16 x, i16 y) {
     // Only update if position actually changed
     if (state.mouse_current.x != x || state.mouse_current.y != y) {
+        // DEBUG INFO
+        KDEBUG("Mouse pos: %i, %i!", x, y);
+
         // Update internal state
         state.mouse_current.x = x;
         state.mouse_current.y = y;
