@@ -4,7 +4,7 @@
 
 /**
  * @file logger.h
- * @brief Public interface for the Koru Engine logging system.
+ * @brief Public interface for the logging system.
  *
  * This module provides a flexible logging system with support for:
  * - Multiple severity levels (FATAL, ERROR, WARN, INFO, DEBUG, TRACE)

@@ -4,7 +4,7 @@
 
 /**
  * @file kstring.h
- * @brief Lightweight string utility library for the Koru Engine.
+ * @brief Lightweight string utility library.
  *
  * This module provides basic string operations that are:
  * - Safe(r) than raw C string functions
