@@ -4,6 +4,7 @@
 #include "core/logger.h"
 #include "core/kmemory.h"
 #include "platform/platform.h"
+#include "core/input.h"
 
 /**
  * @file application.c
@@ -91,6 +92,7 @@ b8 application_create(game* game_inst) {
 
     // Initialize Subsystem
     initialize_logging();
+    input_initialize();
 
     // TO-DO: Remove this
     KFATAL("A test message: %f", 3.14f);
@@ -111,7 +113,7 @@ b8 application_create(game* game_inst) {
 
     // Start platform layer
     if (!platform_startup(&app_state.platform, game_inst->app_config.name, game_inst->app_config.start_pos_x, game_inst->app_config.start_pos_y, game_inst->app_config.start_width, game_inst->app_config.start_height)) {
-        return FALSE;
+        return TRUE;
     }
 
     // Initialize Game
@@ -164,6 +166,12 @@ b8 application_run() {
 
                 break;
             }
+
+            // NOTE: Input update/state copying should always be handled
+            // after any input should be recorded; I.E. before this line.
+            // As a safety, input is the last thing to be updated before
+            // this frame ends.
+            input_update(0);
         }
     }
 
@@ -171,6 +179,7 @@ b8 application_run() {
     app_state.is_running = FALSE;
 
     event_shutdown();
+    input_shutdown();
 
     // Clean up platform resources
     platform_shutdown(&app_state.platform);
