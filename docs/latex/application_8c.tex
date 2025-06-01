@@ -11,7 +11,9 @@ Implementation of the core application lifecycle functions.
 {\ttfamily \#include "{}core/logger.\+h"{}}\newline
 {\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
 {\ttfamily \#include "{}platform/platform.\+h"{}}\newline
-Include dependency graph for application.\+c\+:\nopagebreak
+{\ttfamily \#include "{}core/input.\+h"{}}\newline
+Include dependency graph for application.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,6 +33,10 @@ typedef struct \mbox{\hyperlink{structapplication__state}{application\+\_\+state
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8c_a464af30d5e798df5a25d3c211d5c120f}{application\+\_\+on\+\_\+event}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, void \texorpdfstring{$\ast$}{*}listener\+\_\+inst, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} context)
+\begin{DoxyCompactList}\small\item\em Global event handler for application-\/level events. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8c_a193a750e12452924346788eb62a3a327}{application\+\_\+on\+\_\+key}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, void \texorpdfstring{$\ast$}{*}listener\+\_\+inst, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} context)
+\begin{DoxyCompactList}\small\item\em Handles keyboard input at the application level. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8c_af0ccecbeef900f30b0b734eb020574ef}{application\+\_\+create}} (\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst)
 \begin{DoxyCompactList}\small\item\em Initializes the application with the provided configuration. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{application_8c_a08c8575858e12aa5260a1cc0101df8bd}{application\+\_\+run}} ()
@@ -104,15 +110,98 @@ TRUE if initialization was successful; FALSE otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00084}{84}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00117}{117}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{game__types_8h_source_l00029}{game\+::app\+\_\+config}}, \mbox{\hyperlink{application_8c_source_l00072}{app\+\_\+state}}, \mbox{\hyperlink{event_8c_source_l00076}{event\+\_\+initialize()}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{application_8c_source_l00032}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{application_8c_source_l00056}{application\+\_\+state\+::height}}, \mbox{\hyperlink{game__types_8h_source_l00036}{game\+::initialize}}, \mbox{\hyperlink{logger_8c_source_l00029}{initialize\+\_\+logging()}}, \mbox{\hyperlink{application_8c_source_l00067}{initialized}}, \mbox{\hyperlink{application_8c_source_l00036}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00041}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00210}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00227}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}, \mbox{\hyperlink{application_8h_source_l00055}{application\+\_\+config\+::name}}, \mbox{\hyperlink{game__types_8h_source_l00057}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{application_8c_source_l00046}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup()}}, \mbox{\hyperlink{application_8h_source_l00050}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00035}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00040}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00045}{application\+\_\+config\+::start\+\_\+width}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, and \mbox{\hyperlink{application_8c_source_l00051}{application\+\_\+state\+::width}}.
+References \mbox{\hyperlink{game__types_8h_source_l00029}{game\+::app\+\_\+config}}, \mbox{\hyperlink{application_8c_source_l00073}{app\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00222}{application\+\_\+on\+\_\+event()}}, \mbox{\hyperlink{application_8c_source_l00234}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{event_8h_source_l00145}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{event_8h_source_l00156}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00166}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8c_source_l00076}{event\+\_\+initialize()}}, \mbox{\hyperlink{event_8c_source_l00100}{event\+\_\+register()}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{application_8c_source_l00033}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{application_8c_source_l00057}{application\+\_\+state\+::height}}, \mbox{\hyperlink{game__types_8h_source_l00036}{game\+::initialize}}, \mbox{\hyperlink{logger_8c_source_l00029}{initialize\+\_\+logging()}}, \mbox{\hyperlink{application_8c_source_l00068}{initialized}}, \mbox{\hyperlink{input_8c_source_l00088}{input\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00037}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00042}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00210}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00227}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}, \mbox{\hyperlink{application_8h_source_l00055}{application\+\_\+config\+::name}}, \mbox{\hyperlink{game__types_8h_source_l00057}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{application_8c_source_l00047}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup()}}, \mbox{\hyperlink{application_8h_source_l00050}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00035}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00040}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00045}{application\+\_\+config\+::start\+\_\+width}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, and \mbox{\hyperlink{application_8c_source_l00052}{application\+\_\+state\+::width}}.
 
 
 
 Referenced by \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
+
+\Hypertarget{application_8c_a464af30d5e798df5a25d3c211d5c120f}\label{application_8c_a464af30d5e798df5a25d3c211d5c120f} 
+\index{application.c@{application.c}!application\_on\_event@{application\_on\_event}}
+\index{application\_on\_event@{application\_on\_event}!application.c@{application.c}}
+\doxysubsubsection{\texorpdfstring{application\_on\_event()}{application\_on\_event()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} application\+\_\+on\+\_\+event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{sender,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener\+\_\+inst,  }\item[{\mbox{\hyperlink{structevent__context}{event\+\_\+context}}}]{context }\end{DoxyParamCaption})}
+
+
+
+Global event handler for application-\/level events. 
+
+This function listens for high-\/level system events like\+:
+\begin{DoxyItemize}
+\item Application quit request ({\ttfamily EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT})
+\end{DoxyItemize}
+
+When such an event is received, it updates internal state to gracefully exit.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code that was fired. \\
+\hline
+{\em sender} & A pointer to the object that sent the event (can be NULL). \\
+\hline
+{\em listener\+\_\+inst} & A pointer to the listener instance (unused here). \\
+\hline
+{\em context} & Event-\/specific data (unused here). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the event was handled; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00222}{222}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+References \mbox{\hyperlink{application_8c_source_l00073}{app\+\_\+state}}, \mbox{\hyperlink{event_8h_source_l00145}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{application_8c_source_l00037}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00170}{application\+\_\+run()}}.
+
+\Hypertarget{application_8c_a193a750e12452924346788eb62a3a327}\label{application_8c_a193a750e12452924346788eb62a3a327} 
+\index{application.c@{application.c}!application\_on\_key@{application\_on\_key}}
+\index{application\_on\_key@{application\_on\_key}!application.c@{application.c}}
+\doxysubsubsection{\texorpdfstring{application\_on\_key()}{application\_on\_key()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} application\+\_\+on\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{sender,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener\+\_\+inst,  }\item[{\mbox{\hyperlink{structevent__context}{event\+\_\+context}}}]{context }\end{DoxyParamCaption})}
+
+
+
+Handles keyboard input at the application level. 
+
+Responds to {\ttfamily EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED} and {\ttfamily EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED} events.
+
+Special keys like Escape can trigger application-\/wide actions, while others are logged for debugging purposes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code (e.\+g., key pressed/released). \\
+\hline
+{\em sender} & A pointer to the object that triggered the event (unused here). \\
+\hline
+{\em listener\+\_\+inst} & A pointer to the listener instance (unused here). \\
+\hline
+{\em context} & Event-\/specific data containing key information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the event was handled; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00234}{234}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+References \mbox{\hyperlink{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}{event\+\_\+context\+::data}}, \mbox{\hyperlink{event_8h_source_l00145}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{event_8h_source_l00156}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00166}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8c_source_l00156}{event\+\_\+fire()}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00210}{KDEBUG}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, and \mbox{\hyperlink{event_8h_source_l00056}{event\+\_\+context\+::u16}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00170}{application\+\_\+run()}}.
 
 \Hypertarget{application_8c_a08c8575858e12aa5260a1cc0101df8bd}\label{application_8c_a08c8575858e12aa5260a1cc0101df8bd} 
 \index{application.c@{application.c}!application\_run@{application\_run}}
@@ -124,20 +213,25 @@ Referenced by \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
 
 Starts the main application loop. 
 
-Enters a loop that continuously processes OS messages/events using \doxylink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages()}, and continues until the application signals it should exit.
+Begins running the game loop, which includes\+:
+\begin{DoxyItemize}
+\item Processing events
+\item Updating game logic
+\item Rendering frames
+\end{DoxyItemize}
 
-Once exited, it cleans up the platform layer and returns.
+This function blocks until the application exits.
 
 \begin{DoxyReturn}{Returns}
-TRUE if the application exited cleanly; FALSE if an error occurred during shutdown. 
+TRUE if the application exited cleanly; FALSE if an error occurred or early exit. 
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00141}{141}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00170}{170}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{application_8c_source_l00072}{app\+\_\+state}}, \mbox{\hyperlink{event_8c_source_l00088}{event\+\_\+shutdown()}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{kmemory_8c_source_l00184}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{application_8c_source_l00036}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{application_8c_source_l00046}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages()}}, \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\+\_\+shutdown()}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+References \mbox{\hyperlink{application_8c_source_l00073}{app\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00222}{application\+\_\+on\+\_\+event()}}, \mbox{\hyperlink{application_8c_source_l00234}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{event_8h_source_l00145}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{event_8h_source_l00156}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00166}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8c_source_l00088}{event\+\_\+shutdown()}}, \mbox{\hyperlink{event_8c_source_l00129}{event\+\_\+unregister()}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{application_8c_source_l00033}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{kmemory_8c_source_l00184}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{input_8c_source_l00099}{input\+\_\+shutdown()}}, \mbox{\hyperlink{input_8c_source_l00111}{input\+\_\+update()}}, \mbox{\hyperlink{application_8c_source_l00037}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00042}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{application_8c_source_l00047}{application\+\_\+state\+::platform}}, \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages()}}, \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\+\_\+shutdown()}}, \mbox{\hyperlink{game__types_8h_source_l00050}{game\+::render}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, and \mbox{\hyperlink{game__types_8h_source_l00043}{game\+::update}}.
 
 
 
@@ -158,11 +252,11 @@ Global instance of the application state.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00072}{72}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00073}{73}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00084}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00141}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00222}{application\+\_\+on\+\_\+event()}}, and \mbox{\hyperlink{application_8c_source_l00170}{application\+\_\+run()}}.
 
 \Hypertarget{application_8c_aca033d9c168f6eceec40a0e9a9354e79}\label{application_8c_aca033d9c168f6eceec40a0e9a9354e79} 
 \index{application.c@{application.c}!initialized@{initialized}}
@@ -176,9 +270,9 @@ Global flag indicating if the application has already been initialized.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00067}{67}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00068}{68}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00084}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+create()}}.
 

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['registered_5fevent_0',['registered_event',['../event_8c.html#aa8b5e9c994ed612f290eb5e1f03624a9',1,'event.c']]]
+  ['pfn_5fon_5fevent_0',['PFN_on_event',['../event_8h.html#ac694dc305b9660134b170d9560b0563a',1,'event.h']]],
+  ['platform_5fstate_1',['platform_state',['../platform_8h.html#a8c661bb1c0637f4277be66a5c2f18604',1,'platform.h']]]
 ];

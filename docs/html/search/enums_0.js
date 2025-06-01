@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['log_5flevel_0',['log_level',['../logger_8h.html#ac91d55174d383848b976a34de843748e',1,'logger.h']]]
+  ['buttons_0',['buttons',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836',1,'input.h']]]
 ];

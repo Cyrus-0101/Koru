@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['system_5fevent_5fcode_0',['system_event_code',['../event_8h.html#a6779f338629229430f8974f2f86d7226',1,'event.h']]]
+  ['log_5flevel_0',['log_level',['../logger_8h.html#ac91d55174d383848b976a34de843748e',1,'logger.h']]]
 ];

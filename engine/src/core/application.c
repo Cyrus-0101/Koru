@@ -4,6 +4,7 @@
 #include "core/logger.h"
 #include "core/kmemory.h"
 #include "platform/platform.h"
+#include "core/input.h"
 
 /**
  * @file application.c
@@ -72,6 +73,38 @@ static b8 initialized = FALSE;
 static application_state app_state;
 
 /**
+ * @brief Global event handler for application-level events.
+ *
+ * This function listens for high-level system events like:
+ * - Application quit request (`EVENT_CODE_APPLICATION_QUIT`)
+ *
+ * When such an event is received, it updates internal state to gracefully exit.
+ *
+ * @param code The event code that was fired.
+ * @param sender A pointer to the object that sent the event (can be NULL).
+ * @param listener_inst A pointer to the listener instance (unused here).
+ * @param context Event-specific data (unused here).
+ * @return TRUE if the event was handled; FALSE otherwise.
+ */
+b8 application_on_event(u16 code, void* sender, void* listener_inst, event_context context);
+
+/**
+ * @brief Handles keyboard input at the application level.
+ *
+ * Responds to `EVENT_CODE_KEY_PRESSED` and `EVENT_CODE_KEY_RELEASED` events.
+ *
+ * Special keys like Escape can trigger application-wide actions,
+ * while others are logged for debugging purposes.
+ *
+ * @param code The event code (e.g., key pressed/released).
+ * @param sender A pointer to the object that triggered the event (unused here).
+ * @param listener_inst A pointer to the listener instance (unused here).
+ * @param context Event-specific data containing key information.
+ * @return TRUE if the event was handled; FALSE otherwise.
+ */
+b8 application_on_key(u16 code, void* sender, void* listener_inst, event_context context);
+
+/**
  * @brief Initializes the application with the provided configuration.
  *
  * This function must be called once before calling application_run().
@@ -91,6 +124,7 @@ b8 application_create(game* game_inst) {
 
     // Initialize Subsystem
     initialize_logging();
+    input_initialize();
 
     // TO-DO: Remove this
     KFATAL("A test message: %f", 3.14f);
@@ -109,9 +143,14 @@ b8 application_create(game* game_inst) {
         return FALSE;
     }
 
+    // Register for Key press events
+    event_register(EVENT_CODE_APPLICATION_QUIT, 0, application_on_event);
+    event_register(EVENT_CODE_KEY_PRESSED, 0, application_on_key);
+    event_register(EVENT_CODE_KEY_RELEASED, 0, application_on_key);
+
     // Start platform layer
     if (!platform_startup(&app_state.platform, game_inst->app_config.name, game_inst->app_config.start_pos_x, game_inst->app_config.start_pos_y, game_inst->app_config.start_width, game_inst->app_config.start_height)) {
-        return FALSE;
+        return TRUE;
     }
 
     // Initialize Game
@@ -128,16 +167,6 @@ b8 application_create(game* game_inst) {
     return TRUE;
 }
 
-/**
- * @brief Starts the main application loop.
- *
- * Enters a loop that continuously processes OS messages/events using platform_pump_messages(),
- * and continues until the application signals it should exit.
- *
- * Once exited, it cleans up the platform layer and returns.
- *
- * @return TRUE if the application exited cleanly; FALSE if an error occurred during shutdown.
- */
 b8 application_run() {
     // Log memory info - Memory Leak
     KINFO(get_memory_usage_str());
@@ -164,16 +193,68 @@ b8 application_run() {
 
                 break;
             }
+
+            // NOTE: Input update/state copying should always be handled
+            // after any input should be recorded; I.E. before this line.
+            // As a safety, input is the last thing to be updated before
+            // this frame ends.
+            input_update(0);
         }
     }
 
     // Ensure running state is cleared
     app_state.is_running = FALSE;
 
+    // Shutdown event system.   
+    event_unregister(EVENT_CODE_APPLICATION_QUIT, 0, application_on_event);
+    event_unregister(EVENT_CODE_KEY_PRESSED, 0, application_on_key);
+    event_unregister(EVENT_CODE_KEY_RELEASED, 0, application_on_key);
+
     event_shutdown();
+    input_shutdown();
 
     // Clean up platform resources
     platform_shutdown(&app_state.platform);
 
     return TRUE;
+}
+
+b8 application_on_event(u16 code, void* sender, void* listener_inst, event_context context) {
+    switch (code) {
+        case EVENT_CODE_APPLICATION_QUIT: {
+            KINFO("EVENT_CODE_APPLICATION_QUIT received, shutting down.\n");
+            app_state.is_running = FALSE;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+b8 application_on_key(u16 code, void* sender, void* listener_inst, event_context context) {
+    if (code == EVENT_CODE_KEY_PRESSED) {
+        u16 key_code = context.data.u16[0];
+        if (key_code == KEY_ESCAPE) {
+            // NOTE: Technically firing an event to itself, but there may be other listeners.
+            event_context data = {};
+            event_fire(EVENT_CODE_APPLICATION_QUIT, 0, data);
+
+            // Block anything else from processing this.
+            return TRUE;
+        } else if (key_code == KEY_A) {
+            // Example on checking for a key
+            KDEBUG("Explicit - A key pressed!");
+        } else {
+            KDEBUG("'%c' key pressed in window.", key_code);
+        }
+    } else if (code == EVENT_CODE_KEY_RELEASED) {
+        u16 key_code = context.data.u16[0];
+        if (key_code == KEY_B) {
+            // Example on checking for a key
+            KDEBUG("Explicit - B key released!");
+        } else {
+            KDEBUG("'%c' key released in window.", key_code);
+        }
+    }
+    return FALSE;
 }

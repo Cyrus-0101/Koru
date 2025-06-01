@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['event_5fcode_5fapplication_5fquit_0',['EVENT_CODE_APPLICATION_QUIT',['../event_8h.html#a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677',1,'event.h']]],
-  ['event_5fcode_5fbutton_5fpressed_1',['EVENT_CODE_BUTTON_PRESSED',['../event_8h.html#a6779f338629229430f8974f2f86d7226a013204a5d0b77a55a4701ac7161d1e97',1,'event.h']]],
-  ['event_5fcode_5fbutton_5freleased_2',['EVENT_CODE_BUTTON_RELEASED',['../event_8h.html#a6779f338629229430f8974f2f86d7226a85f06d8f0da4cdadb792e2e2f18979d2',1,'event.h']]],
-  ['event_5fcode_5fkey_5fpressed_3',['EVENT_CODE_KEY_PRESSED',['../event_8h.html#a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1',1,'event.h']]],
-  ['event_5fcode_5fkey_5freleased_4',['EVENT_CODE_KEY_RELEASED',['../event_8h.html#a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f',1,'event.h']]],
-  ['event_5fcode_5fmouse_5fmoved_5',['EVENT_CODE_MOUSE_MOVED',['../event_8h.html#a6779f338629229430f8974f2f86d7226a681a38e19124eb42a25ab1551fa2a878',1,'event.h']]],
-  ['event_5fcode_5fmouse_5fwheel_6',['EVENT_CODE_MOUSE_WHEEL',['../event_8h.html#a6779f338629229430f8974f2f86d7226a923e40874ed01a63929ab78f31f1637d',1,'event.h']]],
-  ['event_5fcode_5fresized_7',['EVENT_CODE_RESIZED',['../event_8h.html#a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656',1,'event.h']]]
+  ['darray_5fcapacity_0',['DARRAY_CAPACITY',['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55baf47ac19f1dce8bc23a8db7789abdb3aa',1,'darray.h']]],
+  ['darray_5ffield_5flength_1',['DARRAY_FIELD_LENGTH',['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c',1,'darray.h']]],
+  ['darray_5flength_2',['DARRAY_LENGTH',['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9',1,'darray.h']]],
+  ['darray_5fstride_3',['DARRAY_STRIDE',['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba22984e01177b1eb2695a4850727db127',1,'darray.h']]],
+  ['define_5fkey_4',['DEFINE_KEY',['../input_8h.html#a3121b5e20cccb8e49edcbd3e9ac77712a1bc581eb932153853ea4b6fadf91cff8',1,'input.h']]]
 ];

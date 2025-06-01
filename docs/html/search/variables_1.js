@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['c_0',['c',['../structevent__context.html#a8deecc49bdb0f49ac7618cc85a87113c',1,'event_context']]],
-  ['callback_1',['callback',['../structregistered__event.html#a8c5c6d20f242113ccbb9f0fee23438d2',1,'registered_event']]]
+  ['buttons_0',['buttons',['../structmouse__state.html#a865695ad1100e332feb41e9fa6fd1dbc',1,'mouse_state']]]
 ];
