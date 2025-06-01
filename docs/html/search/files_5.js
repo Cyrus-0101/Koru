@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['kmemory_2ec_0',['kmemory.c',['../kmemory_8c.html',1,'']]],
-  ['kmemory_2eh_1',['kmemory.h',['../kmemory_8h.html',1,'']]]
+  ['input_2ec_0',['input.c',['../input_8c.html',1,'']]],
+  ['input_2eh_1',['input.h',['../input_8h.html',1,'']]]
 ];

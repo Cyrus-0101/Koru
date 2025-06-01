@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['game_2ec_0',['game.c',['../game_8c.html',1,'']]],
-  ['game_2eh_1',['game.h',['../game_8h.html',1,'']]],
-  ['game_5ftypes_2eh_2',['game_types.h',['../game__types_8h.html',1,'']]]
+  ['entry_2ec_0',['entry.c',['../entry_8c.html',1,'']]],
+  ['entry_2eh_1',['entry.h',['../entry_8h.html',1,'']]],
+  ['event_2ec_2',['event.c',['../event_8c.html',1,'']]],
+  ['event_2eh_3',['event.h',['../event_8h.html',1,'']]]
 ];

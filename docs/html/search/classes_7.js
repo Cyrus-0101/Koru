@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['registered_5fevent_0',['registered_event',['../structregistered__event.html',1,'']]]
+  ['platform_5fstate_0',['platform_state',['../structplatform__state.html',1,'']]]
 ];

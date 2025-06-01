@@ -6,7 +6,7 @@ var searchData=
   ['kassert_5fdebug_3',['KASSERT_DEBUG',['../asserts_8h.html#a2232df5df304b5b471c12b9c77563763',1,'asserts.h']]],
   ['kassert_5fmsg_4',['KASSERT_MSG',['../asserts_8h.html#a7b775fcadff2f4629c6d4f205a424693',1,'asserts.h']]],
   ['kassertions_5fenabled_5',['KASSERTIONS_ENABLED',['../asserts_8h.html#a19ff22d0d0fb28ecb552a743447dcbde',1,'asserts.h']]],
-  ['kcopy_5fmemory_6',['kcopy_memory',['../kmemory_8c.html#a433c653469c55bd95b8b80b801bcc426',1,'kcopy_memory(void *dest, const void *source, u64 size):&#160;kmemory.c'],['../kmemory_8h.html#ae88e143a36677919fee16bdf0f11bc79',1,'kcopy_memory(void *dest, const void *source, u64 size):&#160;kmemory.c']]],
+  ['kcopy_5fmemory_6',['kcopy_memory',['../kmemory_8h.html#ae88e143a36677919fee16bdf0f11bc79',1,'kcopy_memory(void *dest, const void *source, u64 size):&#160;kmemory.c'],['../kmemory_8c.html#a433c653469c55bd95b8b80b801bcc426',1,'kcopy_memory(void *dest, const void *source, u64 size):&#160;kmemory.c']]],
   ['kdebug_7',['KDEBUG',['../logger_8h.html#a23768ad708f2a648844bd09e15e52d1c',1,'logger.h']]],
   ['kerror_8',['KERROR',['../logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132',1,'logger.h']]],
   ['keyboard_5fcurrent_9',['keyboard_current',['../structinput__state.html#aaf5beff9b11f869026b8bcc37e7b68ab',1,'input_state']]],
@@ -21,7 +21,9 @@ var searchData=
   ['kmemory_2eh_18',['kmemory.h',['../kmemory_8h.html',1,'']]],
   ['koru_19',['koru',['../index.html#autotoc_md4',1,'🧠 What Is Koru?'],['../index.html',1,'Koru']]],
   ['kset_5fmemory_20',['kset_memory',['../kmemory_8c.html#a2a80291541bfd799993b25c748ebbe03',1,'kset_memory(void *dest, i32 value, u64 size):&#160;kmemory.c'],['../kmemory_8h.html#a9b0af42158bf4d4a8db3d25d284b83f4',1,'kset_memory(void *dest, i32 value, u64 size):&#160;kmemory.c']]],
-  ['ktrace_21',['KTRACE',['../logger_8h.html#a1871a1767ecd70d973893d36176a697f',1,'logger.h']]],
-  ['kwarn_22',['KWARN',['../logger_8h.html#a3e40140ad218fd4ef727b1a9009a1bea',1,'logger.h']]],
-  ['kzero_5fmemory_23',['kzero_memory',['../kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5',1,'kzero_memory(void *block, u64 size):&#160;kmemory.c'],['../kmemory_8h.html#af7a3a9859ec3104c490238242dae4ed6',1,'kzero_memory(void *block, u64 size):&#160;kmemory.c']]]
+  ['kstring_2ec_21',['kstring.c',['../kstring_8c.html',1,'']]],
+  ['kstring_2eh_22',['kstring.h',['../kstring_8h.html',1,'']]],
+  ['ktrace_23',['KTRACE',['../logger_8h.html#a1871a1767ecd70d973893d36176a697f',1,'logger.h']]],
+  ['kwarn_24',['KWARN',['../logger_8h.html#a3e40140ad218fd4ef727b1a9009a1bea',1,'logger.h']]],
+  ['kzero_5fmemory_25',['kzero_memory',['../kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5',1,'kzero_memory(void *block, u64 size):&#160;kmemory.c'],['../kmemory_8h.html#af7a3a9859ec3104c490238242dae4ed6',1,'kzero_memory(void *block, u64 size):&#160;kmemory.c']]]
 ];

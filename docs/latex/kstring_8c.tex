@@ -1,0 +1,100 @@
+\doxysection{engine/src/core/kstring.c File Reference}
+\hypertarget{kstring_8c}{}\label{kstring_8c}\index{engine/src/core/kstring.c@{engine/src/core/kstring.c}}
+
+
+Implementation of lightweight string utility functions.  
+
+
+{\ttfamily \#include "{}core/kstring.\+h"{}}\newline
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for kstring.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=347pt]{kstring_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9}{string\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Returns the length of the given null-\/terminated string. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8c_ae4d2c3111ca8e06cce31d32a7928f320}{string\+\_\+duplicate}} (const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Duplicates the given null-\/terminated string into a new heap-\/allocated copy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of lightweight string utility functions. 
+
+Implements core string functionality used internally by the engine. Currently wraps standard C library functions but integrates with the engine’s custom memory system.
+
+Usage\+: These functions are primarily used by engine systems that need to\+:
+\begin{DoxyItemize}
+\item Copy strings safely
+\item Duplicate strings with engine-\/aware memory allocation
+\item Interact with memory tracking via MEMORY\+\_\+\+TAG\+\_\+\+STRING 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{kstring_8c_ae4d2c3111ca8e06cce31d32a7928f320}\label{kstring_8c_ae4d2c3111ca8e06cce31d32a7928f320} 
+\index{kstring.c@{kstring.c}!string\_duplicate@{string\_duplicate}}
+\index{string\_duplicate@{string\_duplicate}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_duplicate()}{string\_duplicate()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} string\+\_\+duplicate (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+
+
+
+Duplicates the given null-\/terminated string into a new heap-\/allocated copy. 
+
+Uses {\ttfamily \doxylink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate()}} so the duplicated string can be tracked by the engine\textquotesingle{}s memory system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & A pointer to a null-\/terminated string to duplicate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly allocated copy of the input string. Caller must free using {\ttfamily \doxylink{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc}{kfree()}} or {\ttfamily string\+\_\+free()}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00024}{24}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, \mbox{\hyperlink{kmemory_8c_source_l00160}{kcopy\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00044}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{kstring_8c_source_l00020}{string\+\_\+length()}}.
+
+\Hypertarget{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9}\label{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9} 
+\index{kstring.c@{kstring.c}!string\_length@{string\_length}}
+\index{string\_length@{string\_length}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_length()}{string\_length()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} string\+\_\+length (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+
+
+
+Returns the length of the given null-\/terminated string. 
+
+Wraps {\ttfamily strlen()} to provide a consistent interface within the engine.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & A pointer to a null-\/terminated string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of characters in the string (excluding the null terminator). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00020}{20}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kstring_8c_source_l00024}{string\+\_\+duplicate()}}.
+

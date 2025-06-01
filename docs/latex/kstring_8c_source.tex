@@ -1,0 +1,24 @@
+\doxysection{kstring.\+c}
+\hypertarget{kstring_8c_source}{}\label{kstring_8c_source}\index{engine/src/core/kstring.c@{engine/src/core/kstring.c}}
+\mbox{\hyperlink{kstring_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{kstring_8h}{core/kstring.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{kmemory_8h}{core/kmemory.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00020}\mbox{\hyperlink{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9}{00020}}\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ \mbox{\hyperlink{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9}{string\_length}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str)\ \{}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00021}00021\ \ \ \ \ \textcolor{keywordflow}{return}\ strlen(str);}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00022}00022\ \}}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00024}\mbox{\hyperlink{kstring_8c_ae4d2c3111ca8e06cce31d32a7928f320}{00024}}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{kstring_8c_ae4d2c3111ca8e06cce31d32a7928f320}{string\_duplicate}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str)\ \{}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00025}00025\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ length\ =\ \mbox{\hyperlink{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9}{string\_length}}(str);}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00026}00026\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00027}00027\ \ \ \ \ \textcolor{keywordtype}{char}*\ copy\ =\ \mbox{\hyperlink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate}}(length\ +\ 1,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9}{MEMORY\_TAG\_STRING}});}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a433c653469c55bd95b8b80b801bcc426}{kcopy\_memory}}(copy,\ str,\ length\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00030}00030\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{return}\ copy;}
+\DoxyCodeLine{\Hypertarget{kstring_8c_source_l00032}00032\ \}}
+
+\end{DoxyCode}

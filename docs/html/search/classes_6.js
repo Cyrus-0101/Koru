@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['platform_5fstate_0',['platform_state',['../structplatform__state.html',1,'']]]
+  ['memory_5fstats_0',['memory_stats',['../structmemory__stats.html',1,'']]],
+  ['mouse_5fstate_1',['mouse_state',['../structmouse__state.html',1,'']]]
 ];

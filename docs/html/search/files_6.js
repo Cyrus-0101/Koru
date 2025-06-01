@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['logger_2ec_0',['logger.c',['../logger_8c.html',1,'']]],
-  ['logger_2eh_1',['logger.h',['../logger_8h.html',1,'']]]
+  ['kmemory_2ec_0',['kmemory.c',['../kmemory_8c.html',1,'']]],
+  ['kmemory_2eh_1',['kmemory.h',['../kmemory_8h.html',1,'']]],
+  ['kstring_2ec_2',['kstring.c',['../kstring_8c.html',1,'']]],
+  ['kstring_2eh_3',['kstring.h',['../kstring_8h.html',1,'']]]
 ];
