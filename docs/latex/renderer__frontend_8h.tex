@@ -1,0 +1,182 @@
+\doxysection{engine/src/renderer/renderer\+\_\+frontend.h File Reference}
+\hypertarget{renderer__frontend_8h}{}\label{renderer__frontend_8h}\index{engine/src/renderer/renderer\_frontend.h@{engine/src/renderer/renderer\_frontend.h}}
+
+
+Frontend interface for the rendering system.  
+
+
+{\ttfamily \#include "{}renderer\+\_\+types.\+inl"{}}\newline
+Include dependency graph for renderer\+\_\+frontend.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{renderer__frontend_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{renderer__frontend_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{renderer__frontend_8h_a22086f105bc3ec5fdad7381f76b5efb5}{renderer\+\_\+initialize}} (const char \texorpdfstring{$\ast$}{*}application\+\_\+name, struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Initializes the rendering system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{renderer__frontend_8h_a52882bf7ed3f35fe0593d1715edaa0b8}{renderer\+\_\+shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Shuts down the rendering system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00}{renderer\+\_\+on\+\_\+resized}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} width, \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} height)
+\begin{DoxyCompactList}\small\item\em Handles window resize events. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{renderer__frontend_8h_aa1a64974ce989cb8a822d5910e45eeec}{renderer\+\_\+draw\+\_\+frame}} (render\+\_\+packet \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Renders a single frame using the provided packet data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Frontend interface for the rendering system. 
+
+This module provides the main entry points for initializing, shutting down, and driving the rendering system. It abstracts away the specific backend (e.\+g., Vulkan, Open\+GL) and offers a simple API to be used by the core engine.
+
+The frontend works with render packets and handles frame updates, resizing, and drawing operations. 
+
+Definition in file \mbox{\hyperlink{renderer__frontend_8h_source}{renderer\+\_\+frontend.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{renderer__frontend_8h_aa1a64974ce989cb8a822d5910e45eeec}\label{renderer__frontend_8h_aa1a64974ce989cb8a822d5910e45eeec} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_draw\_frame@{renderer\_draw\_frame}}
+\index{renderer\_draw\_frame@{renderer\_draw\_frame}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_draw\_frame()}{renderer\_draw\_frame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} renderer\+\_\+draw\+\_\+frame (\begin{DoxyParamCaption}\item[{render\+\_\+packet \texorpdfstring{$\ast$}{*}}]{packet }\end{DoxyParamCaption})}
+
+
+
+Renders a single frame using the provided packet data. 
+
+Begins the frame, submits draw commands, and ends the frame. Called once per frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & A pointer to the render packet containing frame-\/specific data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the frame was drawn successfully; otherwise FALSE.
+\end{DoxyReturn}
+Renders a single frame using the provided packet data.
+
+Begins the frame, executes draw commands (not yet implemented here), and ends the frame. Called once per frame by the engine.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & A pointer to the render packet containing frame-\/specific data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the frame was drawn successfully; otherwise FALSE. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00109}{109}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00094}{renderer\+\_\+end\+\_\+frame()}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00181}{application\+\_\+run()}}.
+
+\Hypertarget{renderer__frontend_8h_a22086f105bc3ec5fdad7381f76b5efb5}\label{renderer__frontend_8h_a22086f105bc3ec5fdad7381f76b5efb5} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_initialize@{renderer\_initialize}}
+\index{renderer\_initialize@{renderer\_initialize}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_initialize()}{renderer\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} renderer\+\_\+initialize (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{application\+\_\+name,  }\item[{struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+Initializes the rendering system. 
+
+Sets up the appropriate rendering backend (e.\+g., Vulkan), creates necessary context, device, swapchain, etc. based on application requirements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em application\+\_\+name} & Name of the application using the renderer. \\
+\hline
+{\em plat\+\_\+state} & A pointer to the platform-\/specific state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if initialization was successful; otherwise FALSE.
+\end{DoxyReturn}
+Creates the appropriate rendering backend (currently hardcoded to Vulkan), and calls its initialize function to prepare for rendering.
+
+
+\begin{DoxyParams}{Parameters}
+{\em application\+\_\+name} & Name of the application using the renderer. \\
+\hline
+{\em plat\+\_\+state} & A pointer to the platform-\/specific state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if initialization was successful; otherwise FALSE. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{37}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}, \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+create()}}.
+
+\Hypertarget{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00}\label{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_on\_resized@{renderer\_on\_resized}}
+\index{renderer\_on\_resized@{renderer\_on\_resized}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_on\_resized()}{renderer\_on\_resized()}}
+{\footnotesize\ttfamily void renderer\+\_\+on\+\_\+resized (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{height }\end{DoxyParamCaption})}
+
+
+
+Handles window resize events. 
+
+Notifies the renderer that the window dimensions have changed and triggers any necessary internal updates such as recreating the swapchain or adjusting viewport/scissor settings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & New width of the window. \\
+\hline
+{\em height} & New height of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{renderer__frontend_8h_a52882bf7ed3f35fe0593d1715edaa0b8}\label{renderer__frontend_8h_a52882bf7ed3f35fe0593d1715edaa0b8} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_shutdown@{renderer\_shutdown}}
+\index{renderer\_shutdown@{renderer\_shutdown}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_shutdown()}{renderer\_shutdown()}}
+{\footnotesize\ttfamily void renderer\+\_\+shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Shuts down the rendering system. 
+
+Cleans up all resources allocated during initialization, including devices, command pools, buffers, and synchronization primitives.
+
+Calls the backend\textquotesingle{}s shutdown routine and frees allocated resources. 
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00064}{64}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, \mbox{\hyperlink{kmemory_8c_source_l00129}{kfree()}}, and \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00181}{application\+\_\+run()}}.
+

@@ -1,4 +1,11 @@
 var searchData=
 [
-  ['visuals_0',['🎨 Visuals',['../index.html#autotoc_md17',1,'']]]
+  ['visuals_0',['🎨 Visuals',['../index.html#autotoc_md17',1,'']]],
+  ['vulkan_5fbackend_2ec_1',['vulkan_backend.c',['../vulkan__backend_8c.html',1,'']]],
+  ['vulkan_5fbackend_2eh_2',['vulkan_backend.h',['../vulkan__backend_8h.html',1,'']]],
+  ['vulkan_5frenderer_5fbackend_5fbegin_5fframe_3',['vulkan_renderer_backend_begin_frame',['../vulkan__backend_8c.html#af88b430f0e8f76ff7224c6d65ff7ce14',1,'vulkan_renderer_backend_begin_frame(renderer_backend *backend, f32 delta_time):&#160;vulkan_backend.c'],['../vulkan__backend_8h.html#af88b430f0e8f76ff7224c6d65ff7ce14',1,'vulkan_renderer_backend_begin_frame(renderer_backend *backend, f32 delta_time):&#160;vulkan_backend.c']]],
+  ['vulkan_5frenderer_5fbackend_5fend_5fframe_4',['vulkan_renderer_backend_end_frame',['../vulkan__backend_8c.html#aa4147f264f03182a1ae88ce189d6810d',1,'vulkan_renderer_backend_end_frame(renderer_backend *backend, f32 delta_time):&#160;vulkan_backend.c'],['../vulkan__backend_8h.html#aa4147f264f03182a1ae88ce189d6810d',1,'vulkan_renderer_backend_end_frame(renderer_backend *backend, f32 delta_time):&#160;vulkan_backend.c']]],
+  ['vulkan_5frenderer_5fbackend_5finitialize_5',['vulkan_renderer_backend_initialize',['../vulkan__backend_8c.html#a0b90ec94f78aae6814140d684323d8d2',1,'vulkan_renderer_backend_initialize(renderer_backend *backend, const char *application_name, struct platform_state *plat_state):&#160;vulkan_backend.c'],['../vulkan__backend_8h.html#a0b90ec94f78aae6814140d684323d8d2',1,'vulkan_renderer_backend_initialize(renderer_backend *backend, const char *application_name, struct platform_state *plat_state):&#160;vulkan_backend.c']]],
+  ['vulkan_5frenderer_5fbackend_5fon_5fresized_6',['vulkan_renderer_backend_on_resized',['../vulkan__backend_8c.html#a8eae56297e3b34f9dd52a04c24fd9730',1,'vulkan_renderer_backend_on_resized(renderer_backend *backend, u16 width, u16 height):&#160;vulkan_backend.c'],['../vulkan__backend_8h.html#a8eae56297e3b34f9dd52a04c24fd9730',1,'vulkan_renderer_backend_on_resized(renderer_backend *backend, u16 width, u16 height):&#160;vulkan_backend.c']]],
+  ['vulkan_5frenderer_5fbackend_5fshutdown_7',['vulkan_renderer_backend_shutdown',['../vulkan__backend_8c.html#aaf5c03bd71d214149e0e3e97b0d0fbca',1,'vulkan_renderer_backend_shutdown(renderer_backend *backend):&#160;vulkan_backend.c'],['../vulkan__backend_8h.html#aaf5c03bd71d214149e0e3e97b0d0fbca',1,'vulkan_renderer_backend_shutdown(renderer_backend *backend):&#160;vulkan_backend.c']]]
 ];

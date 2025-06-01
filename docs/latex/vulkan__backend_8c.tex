@@ -1,0 +1,231 @@
+\doxysection{engine/src/vulkan/vulkan\+\_\+backend.c File Reference}
+\hypertarget{vulkan__backend_8c}{}\label{vulkan__backend_8c}\index{engine/src/vulkan/vulkan\_backend.c@{engine/src/vulkan/vulkan\_backend.c}}
+
+
+Implementation of the Vulkan renderer backend.  
+
+
+{\ttfamily \#include "{}core/logger.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan\+\_\+backend.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan\+\_\+types.\+inl"{}}\newline
+Include dependency graph for vulkan\+\_\+backend.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vulkan__backend_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__backend_8c_a0b90ec94f78aae6814140d684323d8d2}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize}} (renderer\+\_\+backend \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}}, const char \texorpdfstring{$\ast$}{*}application\+\_\+name, struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Initializes the Vulkan renderer backend. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__backend_8c_aaf5c03bd71d214149e0e3e97b0d0fbca}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown}} (renderer\+\_\+backend \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}})
+\begin{DoxyCompactList}\small\item\em Shuts down the Vulkan renderer backend. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__backend_8c_a8eae56297e3b34f9dd52a04c24fd9730}{vulkan\+\_\+renderer\+\_\+backend\+\_\+on\+\_\+resized}} (renderer\+\_\+backend \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}}, \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} width, \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} height)
+\begin{DoxyCompactList}\small\item\em Handles a window resize event for the Vulkan backend. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__backend_8c_af88b430f0e8f76ff7224c6d65ff7ce14}{vulkan\+\_\+renderer\+\_\+backend\+\_\+begin\+\_\+frame}} (renderer\+\_\+backend \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}}, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Begins a new rendering frame in the Vulkan backend. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__backend_8c_aa4147f264f03182a1ae88ce189d6810d}{vulkan\+\_\+renderer\+\_\+backend\+\_\+end\+\_\+frame}} (renderer\+\_\+backend \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}}, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Ends the current rendering frame in the Vulkan backend. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static vulkan\+\_\+context \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the Vulkan renderer backend. 
+
+This file provides concrete implementations of the renderer backend functions using the Vulkan graphics API. Currently, it creates a Vulkan instance and sets up basic placeholder logic for frame handling and resizing. 
+
+Definition in file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__backend_8c_af88b430f0e8f76ff7224c6d65ff7ce14}\label{vulkan__backend_8c_af88b430f0e8f76ff7224c6d65ff7ce14} 
+\index{vulkan\_backend.c@{vulkan\_backend.c}!vulkan\_renderer\_backend\_begin\_frame@{vulkan\_renderer\_backend\_begin\_frame}}
+\index{vulkan\_renderer\_backend\_begin\_frame@{vulkan\_renderer\_backend\_begin\_frame}!vulkan\_backend.c@{vulkan\_backend.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderer\_backend\_begin\_frame()}{vulkan\_renderer\_backend\_begin\_frame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+renderer\+\_\+backend\+\_\+begin\+\_\+frame (\begin{DoxyParamCaption}\item[{renderer\+\_\+backend \texorpdfstring{$\ast$}{*}}]{backend,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{delta\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Begins a new rendering frame in the Vulkan backend. 
+
+Sets up command buffers, render passes, etc.
+
+
+\begin{DoxyParams}{Parameters}
+{\em backend} & A pointer to the renderer backend structure. \\
+\hline
+{\em delta\+\_\+time} & Time in seconds since the last frame. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if successful; otherwise FALSE. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00066}{66}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}.
+
+\Hypertarget{vulkan__backend_8c_aa4147f264f03182a1ae88ce189d6810d}\label{vulkan__backend_8c_aa4147f264f03182a1ae88ce189d6810d} 
+\index{vulkan\_backend.c@{vulkan\_backend.c}!vulkan\_renderer\_backend\_end\_frame@{vulkan\_renderer\_backend\_end\_frame}}
+\index{vulkan\_renderer\_backend\_end\_frame@{vulkan\_renderer\_backend\_end\_frame}!vulkan\_backend.c@{vulkan\_backend.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderer\_backend\_end\_frame()}{vulkan\_renderer\_backend\_end\_frame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+renderer\+\_\+backend\+\_\+end\+\_\+frame (\begin{DoxyParamCaption}\item[{renderer\+\_\+backend \texorpdfstring{$\ast$}{*}}]{backend,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{delta\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Ends the current rendering frame in the Vulkan backend. 
+
+Submits command buffers, presents the image to the screen, and cleans up per-\/frame resources.
+
+
+\begin{DoxyParams}{Parameters}
+{\em backend} & A pointer to the renderer backend structure. \\
+\hline
+{\em delta\+\_\+time} & Time in seconds since the last frame. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if successful; otherwise FALSE. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00071}{71}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}.
+
+\Hypertarget{vulkan__backend_8c_a0b90ec94f78aae6814140d684323d8d2}\label{vulkan__backend_8c_a0b90ec94f78aae6814140d684323d8d2} 
+\index{vulkan\_backend.c@{vulkan\_backend.c}!vulkan\_renderer\_backend\_initialize@{vulkan\_renderer\_backend\_initialize}}
+\index{vulkan\_renderer\_backend\_initialize@{vulkan\_renderer\_backend\_initialize}!vulkan\_backend.c@{vulkan\_backend.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderer\_backend\_initialize()}{vulkan\_renderer\_backend\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize (\begin{DoxyParamCaption}\item[{renderer\+\_\+backend \texorpdfstring{$\ast$}{*}}]{backend,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{application\+\_\+name,  }\item[{struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+Initializes the Vulkan renderer backend. 
+
+Creates the Vulkan instance and prepares internal resources needed for rendering.
+
+
+\begin{DoxyParams}{Parameters}
+{\em backend} & A pointer to the renderer backend structure. \\
+\hline
+{\em application\+\_\+name} & Name of the application using the renderer. \\
+\hline
+{\em plat\+\_\+state} & A pointer to the platform-\/specific state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if successful; otherwise FALSE. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00017}{17}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00015}{context}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}.
+
+\Hypertarget{vulkan__backend_8c_a8eae56297e3b34f9dd52a04c24fd9730}\label{vulkan__backend_8c_a8eae56297e3b34f9dd52a04c24fd9730} 
+\index{vulkan\_backend.c@{vulkan\_backend.c}!vulkan\_renderer\_backend\_on\_resized@{vulkan\_renderer\_backend\_on\_resized}}
+\index{vulkan\_renderer\_backend\_on\_resized@{vulkan\_renderer\_backend\_on\_resized}!vulkan\_backend.c@{vulkan\_backend.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderer\_backend\_on\_resized()}{vulkan\_renderer\_backend\_on\_resized()}}
+{\footnotesize\ttfamily void vulkan\+\_\+renderer\+\_\+backend\+\_\+on\+\_\+resized (\begin{DoxyParamCaption}\item[{renderer\+\_\+backend \texorpdfstring{$\ast$}{*}}]{backend,  }\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{height }\end{DoxyParamCaption})}
+
+
+
+Handles a window resize event for the Vulkan backend. 
+
+May involve recreating the swapchain or adjusting viewport settings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em backend} & A pointer to the renderer backend structure. \\
+\hline
+{\em width} & New width of the window. \\
+\hline
+{\em height} & New height of the window. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00061}{61}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{logger_8h_source_l00227}{KTRACE}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}.
+
+\Hypertarget{vulkan__backend_8c_aaf5c03bd71d214149e0e3e97b0d0fbca}\label{vulkan__backend_8c_aaf5c03bd71d214149e0e3e97b0d0fbca} 
+\index{vulkan\_backend.c@{vulkan\_backend.c}!vulkan\_renderer\_backend\_shutdown@{vulkan\_renderer\_backend\_shutdown}}
+\index{vulkan\_renderer\_backend\_shutdown@{vulkan\_renderer\_backend\_shutdown}!vulkan\_backend.c@{vulkan\_backend.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderer\_backend\_shutdown()}{vulkan\_renderer\_backend\_shutdown()}}
+{\footnotesize\ttfamily void vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown (\begin{DoxyParamCaption}\item[{renderer\+\_\+backend \texorpdfstring{$\ast$}{*}}]{backend }\end{DoxyParamCaption})}
+
+
+
+Shuts down the Vulkan renderer backend. 
+
+Cleans up all resources allocated during initialization.
+
+
+\begin{DoxyParams}{Parameters}
+{\em backend} & A pointer to the renderer backend structure. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00048}{48}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00015}{context}}, and \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}\label{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9} 
+\index{vulkan\_backend.c@{vulkan\_backend.c}!context@{context}}
+\index{context@{context}!vulkan\_backend.c@{vulkan\_backend.c}}
+\doxysubsubsection{\texorpdfstring{context}{context}}
+{\footnotesize\ttfamily vulkan\+\_\+context context\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00015}{15}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00300}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{event_8c_source_l00156}{event\+\_\+fire()}}, \mbox{\hyperlink{input_8c_source_l00152}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00130}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00173}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, \mbox{\hyperlink{input_8c_source_l00198}{input\+\_\+process\+\_\+mouse\+\_\+wheel()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00017}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00048}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown()}}.
+

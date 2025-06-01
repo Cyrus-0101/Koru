@@ -80,6 +80,9 @@ $(function() {
   <div class="headertitle"><div class="title">clock.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Provides a simple clock utility for timing operations.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="defines_8h_source.html">defines.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for clock.h:</div>
@@ -88,9 +91,23 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="clock_8h__incl.png" border="0" usemap="#aengine_2src_2core_2clock_8h" alt=""/></div>
 <map name="aengine_2src_2core_2clock_8h" id="aengine_2src_2core_2clock_8h">
-<area shape="rect" title=" " alt="" coords="5,5,176,31"/>
+<area shape="rect" title="Provides a simple clock utility for timing operations." alt="" coords="5,5,176,31"/>
 <area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="50,79,131,104"/>
 <area shape="poly" title=" " alt="" coords="93,31,93,65,88,65,88,31"/>
+</map>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> This graph shows which files directly or indirectly include this file:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="clock_8h__dep__incl.png" border="0" usemap="#aengine_2src_2core_2clock_8hdep" alt=""/></div>
+<map name="aengine_2src_2core_2clock_8hdep" id="aengine_2src_2core_2clock_8hdep">
+<area shape="rect" title="Provides a simple clock utility for timing operations." alt="" coords="131,5,301,31"/>
+<area shape="rect" href="application_8c.html" title="Implementation of the core application lifecycle functions." alt="" coords="5,79,213,104"/>
+<area shape="poly" title=" " alt="" coords="189,40,128,81,125,76,186,36"/>
+<area shape="rect" href="clock_8c.html" title="Implementation of the clock utility." alt="" coords="237,79,408,104"/>
+<area shape="poly" title=" " alt="" coords="246,36,307,76,304,81,243,40"/>
 </map>
 </div>
 </div>
@@ -99,6 +116,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structclock.html">clock</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a simple clock that tracks elapsed time.  <a href="structclock.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -109,13 +127,21 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4abbdac65212baafffa5d8332a519a16" id="r_a4abbdac65212baafffa5d8332a519a16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8h.html#a4abbdac65212baafffa5d8332a519a16">clock_update</a> (<a class="el" href="structclock.html">clock</a> *<a class="el" href="structclock.html">clock</a>)</td></tr>
+<tr class="memdesc:a4abbdac65212baafffa5d8332a519a16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the clock's elapsed time based on current time.  <br /></td></tr>
 <tr class="separator:a4abbdac65212baafffa5d8332a519a16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a824107240a85b26523e51012294accbd" id="r_a824107240a85b26523e51012294accbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8h.html#a824107240a85b26523e51012294accbd">clock_start</a> (<a class="el" href="structclock.html">clock</a> *<a class="el" href="structclock.html">clock</a>)</td></tr>
+<tr class="memdesc:a824107240a85b26523e51012294accbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts or restarts the clock.  <br /></td></tr>
 <tr class="separator:a824107240a85b26523e51012294accbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae285a2a67b6015de5ee7a3d07a0c1710" id="r_ae285a2a67b6015de5ee7a3d07a0c1710"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clock_8h.html#ae285a2a67b6015de5ee7a3d07a0c1710">clock_stop</a> (<a class="el" href="structclock.html">clock</a> *<a class="el" href="structclock.html">clock</a>)</td></tr>
+<tr class="memdesc:ae285a2a67b6015de5ee7a3d07a0c1710"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the clock without resetting its elapsed time.  <br /></td></tr>
 <tr class="separator:ae285a2a67b6015de5ee7a3d07a0c1710"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Provides a simple clock utility for timing operations. </p>
+<p>This module allows measuring elapsed time between start and stop events. It integrates with the platform abstraction layer to retrieve high-resolution time. </p>
+
+<p class="definition">Definition in file <a class="el" href="clock_8h_source.html">clock.h</a>.</p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a553be64964bd011756bdb9e7e2a08c5e" name="a553be64964bd011756bdb9e7e2a08c5e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a553be64964bd011756bdb9e7e2a08c5e">&#9670;&#160;</a></span>clock</h2>
 
@@ -147,6 +173,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Starts or restarts the clock. </p>
+<p>Resets the elapsed time to zero and records the current time as the start time.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clock</td><td>A pointer to the clock instance to start. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00019">19</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+
+<p class="reference">References <a class="el" href="clock_8h_source.html#l00028">clock::elapsed</a>, <a class="el" href="platform_8h.html#af38f532e572a9da41eaad4be29a58ada">platform_get_absolute_time()</a>, and <a class="el" href="clock_8h_source.html#l00023">clock::start_time</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00181">application_run()</a>.</p>
+
 </div>
 </div>
 <a id="ae285a2a67b6015de5ee7a3d07a0c1710" name="ae285a2a67b6015de5ee7a3d07a0c1710"></a>
@@ -164,6 +205,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Stops the clock without resetting its elapsed time. </p>
+<p>Sets the start_time to 0, effectively halting further updates to elapsed time.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clock</td><td>A pointer to the clock instance to stop. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00024">24</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+
+<p class="reference">References <a class="el" href="clock_8h_source.html#l00023">clock::start_time</a>.</p>
 
 </div>
 </div>
@@ -183,12 +237,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates the clock's elapsed time based on current time. </p>
+<p>This function should be called before querying the elapsed time. If the clock is not running (start_time == 0), this function has no effect.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clock</td><td>A pointer to the clock instance to update. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="clock_8c_source.html#l00013">13</a> of file <a class="el" href="clock_8c_source.html">clock.c</a>.</p>
+
+<p class="reference">References <a class="el" href="clock_8h_source.html#l00028">clock::elapsed</a>, <a class="el" href="platform_8h.html#af38f532e572a9da41eaad4be29a58ada">platform_get_absolute_time()</a>, and <a class="el" href="clock_8h_source.html#l00023">clock::start_time</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00181">application_run()</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 1 2025 17:08:39 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 1 2025 20:10:33 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

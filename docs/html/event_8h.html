@@ -169,7 +169,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ae6b9afa0e8bc3c94752e7b2c0b9c17f8" id="r_ae6b9afa0e8bc3c94752e7b2c0b9c17f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ae6b9afa0e8bc3c94752e7b2c0b9c17f8">event_unregister</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *listener, <a class="el" href="event_8h.html#ac694dc305b9660134b170d9560b0563a">PFN_on_event</a> on_event)</td></tr>
 <tr class="memdesc:ae6b9afa0e8bc3c94752e7b2c0b9c17f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters a listener for a specific event code.  <br /></td></tr>
 <tr class="separator:ae6b9afa0e8bc3c94752e7b2c0b9c17f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4174710cacb6cab063e91e0f0f02d63f" id="r_a4174710cacb6cab063e91e0f0f02d63f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a4174710cacb6cab063e91e0f0f02d63f">event_fire</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, <a class="el" href="structevent__context.html">event_context</a> context)</td></tr>
+<tr class="memitem:a4174710cacb6cab063e91e0f0f02d63f" id="r_a4174710cacb6cab063e91e0f0f02d63f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a4174710cacb6cab063e91e0f0f02d63f">event_fire</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, <a class="el" href="structevent__context.html">event_context</a> <a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>)</td></tr>
 <tr class="memdesc:a4174710cacb6cab063e91e0f0f02d63f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fires an event to all registered listeners for the given code.  <br /></td></tr>
 <tr class="separator:a4174710cacb6cab063e91e0f0f02d63f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -266,29 +266,30 @@ Functions</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677" name="a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677"></a>EVENT_CODE_APPLICATION_QUIT&#160;</td><td class="fielddoc"><p>Shuts the application down on the next frame. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1" name="a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1"></a>EVENT_CODE_KEY_PRESSED&#160;</td><td class="fielddoc"><p>Fired when a keyboard key is pressed. </p>
-<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> key_code = context.data.u16[0];</div>
+<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> key_code = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[0];</div>
 <div class="ttc" id="adefines_8h_html_a9e6c91d77e24643b888dbd1a1a590054"><div class="ttname"><a href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a></div><div class="ttdeci">unsigned short u16</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00020">defines.h:20</a></div></div>
+<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00015">vulkan_backend.c:15</a></div></div>
 </div><!-- fragment --> </td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f" name="a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f"></a>EVENT_CODE_KEY_RELEASED&#160;</td><td class="fielddoc"><p>Fired when a keyboard key is released. </p>
-<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> key_code = context.data.u16[0];</div>
+<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> key_code = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[0];</div>
 </div><!-- fragment --> </td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226a013204a5d0b77a55a4701ac7161d1e97" name="a6779f338629229430f8974f2f86d7226a013204a5d0b77a55a4701ac7161d1e97"></a>EVENT_CODE_BUTTON_PRESSED&#160;</td><td class="fielddoc"><p>Fired when a mouse button is pressed. </p>
-<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> button = context.data.u16[0];</div>
+<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> button = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[0];</div>
 </div><!-- fragment --> </td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226a85f06d8f0da4cdadb792e2e2f18979d2" name="a6779f338629229430f8974f2f86d7226a85f06d8f0da4cdadb792e2e2f18979d2"></a>EVENT_CODE_BUTTON_RELEASED&#160;</td><td class="fielddoc"><p>Fired when a mouse button is released. </p>
-<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> button = context.data.u16[0];</div>
+<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> button = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[0];</div>
 </div><!-- fragment --> </td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226a681a38e19124eb42a25ab1551fa2a878" name="a6779f338629229430f8974f2f86d7226a681a38e19124eb42a25ab1551fa2a878"></a>EVENT_CODE_MOUSE_MOVED&#160;</td><td class="fielddoc"><p>Fired when the mouse is moved. </p>
-<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> x = context.data.u16[0];</div>
-<div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> y = context.data.u16[1];</div>
+<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> x = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[0];</div>
+<div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> y = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[1];</div>
 </div><!-- fragment --> </td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226a923e40874ed01a63929ab78f31f1637d" name="a6779f338629229430f8974f2f86d7226a923e40874ed01a63929ab78f31f1637d"></a>EVENT_CODE_MOUSE_WHEEL&#160;</td><td class="fielddoc"><p>Fired when the mouse wheel is scrolled. </p>
-<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> z_delta = context.data.u8[0];</div>
+<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> z_delta = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u8[0];</div>
 <div class="ttc" id="adefines_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00017">defines.h:17</a></div></div>
 </div><!-- fragment --> </td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656" name="a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656"></a>EVENT_CODE_RESIZED&#160;</td><td class="fielddoc"><p>Fired when the window is resized or resolution changes. </p>
-<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> width = context.data.u16[0];</div>
-<div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> height = context.data.u16[1];</div>
+<p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> width = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[0];</div>
+<div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> height = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[1];</div>
 </div><!-- fragment --> </td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb" name="a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb"></a>MAX_EVENT_CODE&#160;</td><td class="fielddoc"><p>Maximum valid system event code. </p>
 <p>Reserved for internal use — applications should define custom codes beyond this. </p>
@@ -346,9 +347,9 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="event_8c_source.html#l00156">156</a> of file <a class="el" href="event_8c_source.html">event.c</a>.</p>
 
-<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
+<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="vulkan__backend_8c_source.html#l00015">context</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00234">application_on_key()</a>, <a class="el" href="input_8c_source.html#l00152">input_process_button()</a>, <a class="el" href="input_8c_source.html#l00130">input_process_key()</a>, <a class="el" href="input_8c_source.html#l00173">input_process_mouse_move()</a>, and <a class="el" href="input_8c_source.html#l00198">input_process_mouse_wheel()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00300">application_on_key()</a>, <a class="el" href="input_8c_source.html#l00152">input_process_button()</a>, <a class="el" href="input_8c_source.html#l00130">input_process_key()</a>, <a class="el" href="input_8c_source.html#l00173">input_process_mouse_move()</a>, and <a class="el" href="input_8c_source.html#l00198">input_process_mouse_wheel()</a>.</p>
 
 </div>
 </div>
@@ -375,7 +376,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="kmemory_8c_source.html#l00148">kzero_memory()</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00117">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_create()</a>.</p>
 
 </div>
 </div>
@@ -427,7 +428,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="darray_8h_source.html#l00148">darray_create</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00182">darray_push</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00117">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_create()</a>.</p>
 
 </div>
 </div>
@@ -453,7 +454,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="darray_8h_source.html#l00170">darray_destroy</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00050">MAX_MESSAGE_CODES</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, and <a class="el" href="event_8c_source.html#l00074">state</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00170">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00181">application_run()</a>.</p>
 
 </div>
 </div>
@@ -505,14 +506,14 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00223">darray_pop_at</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00170">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00181">application_run()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 1 2025 17:08:39 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 1 2025 20:10:33 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
