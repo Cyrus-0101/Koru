@@ -245,6 +245,18 @@ b8 platform_pump_messages(platform_state* plat_state) {
             case XCB_KEY_PRESS:
             case XCB_KEY_RELEASE: {
                 // TODO: Key presses and releases
+                // Key press event - xcb_key_press_event_t / xcb_key_release_event_t are similar
+                xcb_key_press_event_t*kb_event = (xcb_key_press_event_t *)event;
+                b8 pressed = event->response_type == XCB_KEY_PRESS;
+
+                xcb_keycode_t code = kb_event->detail;
+
+                KeySym key_sym = XkbKeycodeToKeysym(
+                    state->display,
+                    (KeyCode)code,  // event.xkey.keycode
+                    0,
+                    code & ShiftMask ? 1 : 0
+                );
             } break;
 
             case XCB_BUTTON_PRESS:
