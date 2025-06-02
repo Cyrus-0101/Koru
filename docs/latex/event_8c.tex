@@ -49,7 +49,7 @@ void \mbox{\hyperlink{event_8c_a4747584f93c48ffe1a1fa895c3746c7c}{event\+\_\+shu
 \begin{DoxyCompactList}\small\item\em Registers a listener for a specific event code. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_a59fc6e1b34ce65e68076a1e3ba004380}{event\+\_\+unregister}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
 \begin{DoxyCompactList}\small\item\em Unregisters a listener for a specific event code. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\+\_\+fire}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} context)
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\+\_\+fire}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
 \begin{DoxyCompactList}\small\item\em Fires an event to all registered listeners for the given code. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -159,11 +159,11 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00156}{156}} of file \mbox{
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00015}{context}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00234}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00152}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00130}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00173}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, and \mbox{\hyperlink{input_8c_source_l00198}{input\+\_\+process\+\_\+mouse\+\_\+wheel()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00292}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00152}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00130}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00173}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, and \mbox{\hyperlink{input_8c_source_l00198}{input\+\_\+process\+\_\+mouse\+\_\+wheel()}}.
 
 \Hypertarget{event_8c_aaaec3136b95f3d089d55ebfe440c2a4f}\label{event_8c_aaaec3136b95f3d089d55ebfe440c2a4f} 
 \index{event.c@{event.c}!event\_initialize@{event\_initialize}}
@@ -190,7 +190,7 @@ References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+create()}}.
 
 \Hypertarget{event_8c_ae0709e6ce288dc76ad2889c194572f1f}\label{event_8c_ae0709e6ce288dc76ad2889c194572f1f} 
 \index{event.c@{event.c}!event\_register@{event\_register}}
@@ -226,7 +226,7 @@ References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::cal
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+create()}}.
 
 \Hypertarget{event_8c_a4747584f93c48ffe1a1fa895c3746c7c}\label{event_8c_a4747584f93c48ffe1a1fa895c3746c7c} 
 \index{event.c@{event.c}!event\_shutdown@{event\_shutdown}}
@@ -248,7 +248,7 @@ References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbo
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00170}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00173}{application\+\_\+run()}}.
 
 \Hypertarget{event_8c_a59fc6e1b34ce65e68076a1e3ba004380}\label{event_8c_a59fc6e1b34ce65e68076a1e3ba004380} 
 \index{event.c@{event.c}!event\_unregister@{event\_unregister}}
@@ -284,7 +284,7 @@ References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::cal
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00170}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00173}{application\+\_\+run()}}.
 
 
 

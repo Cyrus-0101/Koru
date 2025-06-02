@@ -6,7 +6,7 @@
 
 /**
  * @file asserts.h
- * @brief Custom assertion macros and debugging utilities for the Koru Engine.
+ * @brief Custom assertion macros and debugging utilities.
  *
  * This module provides:
  * - Compile-time and debug-time assertions

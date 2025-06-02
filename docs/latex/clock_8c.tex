@@ -1,0 +1,120 @@
+\doxysection{engine/src/core/clock.c File Reference}
+\hypertarget{clock_8c}{}\label{clock_8c}\index{engine/src/core/clock.c@{engine/src/core/clock.c}}
+
+
+Implementation of the clock utility.  
+
+
+{\ttfamily \#include "{}clock.\+h"{}}\newline
+{\ttfamily \#include "{}platform/platform.\+h"{}}\newline
+Include dependency graph for clock.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{clock_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{clock_8c_a4abbdac65212baafffa5d8332a519a16}{clock\+\_\+update}} (\mbox{\hyperlink{structclock}{clock}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structclock}{clock}})
+\begin{DoxyCompactList}\small\item\em Updates the clock\textquotesingle{}s elapsed time based on current time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{clock_8c_a824107240a85b26523e51012294accbd}{clock\+\_\+start}} (\mbox{\hyperlink{structclock}{clock}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structclock}{clock}})
+\begin{DoxyCompactList}\small\item\em Starts or restarts the clock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{clock_8c_ae285a2a67b6015de5ee7a3d07a0c1710}{clock\+\_\+stop}} (\mbox{\hyperlink{structclock}{clock}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structclock}{clock}})
+\begin{DoxyCompactList}\small\item\em Stops the clock without resetting its elapsed time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the clock utility. 
+
+This file contains the internal logic for updating, starting, and stopping clocks, using the platform abstraction to get accurate time values. 
+
+Definition in file \mbox{\hyperlink{clock_8c_source}{clock.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{clock_8c_a824107240a85b26523e51012294accbd}\label{clock_8c_a824107240a85b26523e51012294accbd} 
+\index{clock.c@{clock.c}!clock\_start@{clock\_start}}
+\index{clock\_start@{clock\_start}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{clock\_start()}{clock\_start()}}
+{\footnotesize\ttfamily void clock\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structclock}{clock}} \texorpdfstring{$\ast$}{*}}]{clock }\end{DoxyParamCaption})}
+
+
+
+Starts or restarts the clock. 
+
+Resets the elapsed time to zero and records the current time as the start time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clock} & A pointer to the clock instance to start. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{clock_8c_source_l00019}{19}} of file \mbox{\hyperlink{clock_8c_source}{clock.\+c}}.
+
+
+
+References \mbox{\hyperlink{clock_8h_source_l00028}{clock\+::elapsed}}, \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\+\_\+get\+\_\+absolute\+\_\+time()}}, and \mbox{\hyperlink{clock_8h_source_l00023}{clock\+::start\+\_\+time}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00173}{application\+\_\+run()}}.
+
+\Hypertarget{clock_8c_ae285a2a67b6015de5ee7a3d07a0c1710}\label{clock_8c_ae285a2a67b6015de5ee7a3d07a0c1710} 
+\index{clock.c@{clock.c}!clock\_stop@{clock\_stop}}
+\index{clock\_stop@{clock\_stop}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{clock\_stop()}{clock\_stop()}}
+{\footnotesize\ttfamily void clock\+\_\+stop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structclock}{clock}} \texorpdfstring{$\ast$}{*}}]{clock }\end{DoxyParamCaption})}
+
+
+
+Stops the clock without resetting its elapsed time. 
+
+Sets the start\+\_\+time to 0, effectively halting further updates to elapsed time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clock} & A pointer to the clock instance to stop. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{clock_8c_source_l00024}{24}} of file \mbox{\hyperlink{clock_8c_source}{clock.\+c}}.
+
+
+
+References \mbox{\hyperlink{clock_8h_source_l00023}{clock\+::start\+\_\+time}}.
+
+\Hypertarget{clock_8c_a4abbdac65212baafffa5d8332a519a16}\label{clock_8c_a4abbdac65212baafffa5d8332a519a16} 
+\index{clock.c@{clock.c}!clock\_update@{clock\_update}}
+\index{clock\_update@{clock\_update}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{clock\_update()}{clock\_update()}}
+{\footnotesize\ttfamily void clock\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structclock}{clock}} \texorpdfstring{$\ast$}{*}}]{clock }\end{DoxyParamCaption})}
+
+
+
+Updates the clock\textquotesingle{}s elapsed time based on current time. 
+
+This function should be called before querying the elapsed time. If the clock is not running (start\+\_\+time == 0), this function has no effect.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clock} & A pointer to the clock instance to update. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{clock_8c_source_l00013}{13}} of file \mbox{\hyperlink{clock_8c_source}{clock.\+c}}.
+
+
+
+References \mbox{\hyperlink{clock_8h_source_l00028}{clock\+::elapsed}}, \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\+\_\+get\+\_\+absolute\+\_\+time()}}, and \mbox{\hyperlink{clock_8h_source_l00023}{clock\+::start\+\_\+time}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00173}{application\+\_\+run()}}.
+

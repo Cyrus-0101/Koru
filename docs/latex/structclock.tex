@@ -2,21 +2,26 @@
 \hypertarget{structclock}{}\label{structclock}\index{clock@{clock}}
 
 
+Represents a simple clock that tracks elapsed time.  
+
+
+
+
 {\ttfamily \#include $<$clock.\+h$>$}
 
 \doxysubsubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} \mbox{\hyperlink{structclock_a139887730e22bc3797ec70e49a6b9e6d}{start\+\_\+time}}
-\item 
+\begin{DoxyCompactList}\small\item\em The absolute time when the clock was started. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} \mbox{\hyperlink{structclock_a0ebb32a24769f97d0e05b8e9559bbd8f}{elapsed}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The total time elapsed since the clock was started. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
+Represents a simple clock that tracks elapsed time. 
 
-
-Definition at line \mbox{\hyperlink{clock_8h_source_l00005}{5}} of file \mbox{\hyperlink{clock_8h_source}{clock.\+h}}.
+Definition at line \mbox{\hyperlink{clock_8h_source_l00017}{17}} of file \mbox{\hyperlink{clock_8h_source}{clock.\+h}}.
 
 
 
@@ -29,7 +34,15 @@ Definition at line \mbox{\hyperlink{clock_8h_source_l00005}{5}} of file \mbox{\h
 
 
 
-Definition at line \mbox{\hyperlink{clock_8h_source_l00008}{8}} of file \mbox{\hyperlink{clock_8h_source}{clock.\+h}}.
+The total time elapsed since the clock was started. 
+
+
+
+Definition at line \mbox{\hyperlink{clock_8h_source_l00028}{28}} of file \mbox{\hyperlink{clock_8h_source}{clock.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00173}{application\+\_\+run()}}, \mbox{\hyperlink{clock_8c_source_l00019}{clock\+\_\+start()}}, and \mbox{\hyperlink{clock_8c_source_l00013}{clock\+\_\+update()}}.
 
 \Hypertarget{structclock_a139887730e22bc3797ec70e49a6b9e6d}\label{structclock_a139887730e22bc3797ec70e49a6b9e6d} 
 \index{clock@{clock}!start\_time@{start\_time}}
@@ -39,7 +52,15 @@ Definition at line \mbox{\hyperlink{clock_8h_source_l00008}{8}} of file \mbox{\h
 
 
 
-Definition at line \mbox{\hyperlink{clock_8h_source_l00007}{7}} of file \mbox{\hyperlink{clock_8h_source}{clock.\+h}}.
+The absolute time when the clock was started. 
+
+A value of 0 indicates the clock is not running. 
+
+Definition at line \mbox{\hyperlink{clock_8h_source_l00023}{23}} of file \mbox{\hyperlink{clock_8h_source}{clock.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{clock_8c_source_l00019}{clock\+\_\+start()}}, \mbox{\hyperlink{clock_8c_source_l00024}{clock\+\_\+stop()}}, and \mbox{\hyperlink{clock_8c_source_l00013}{clock\+\_\+update()}}.
 
 
 

@@ -1,0 +1,71 @@
+\doxysection{vulkan\+\_\+backend.\+c}
+\hypertarget{vulkan__backend_8c_source}{}\label{vulkan__backend_8c_source}\index{engine/src/renderer/vulkan/vulkan\_backend.c@{engine/src/renderer/vulkan/vulkan\_backend.c}}
+\mbox{\hyperlink{vulkan__backend_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logger_8h}{core/logger.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vulkan__backend_8h}{vulkan\_backend.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}vulkan\_types.inl"{}}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00014}00014\ \textcolor{comment}{//\ Static\ global\ context\ for\ the\ Vulkan\ renderer}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00015}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{00015}}\ \textcolor{keyword}{static}\ vulkan\_context\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}};}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00017}\mbox{\hyperlink{vulkan__backend_8c_a0b90ec94f78aae6814140d684323d8d2}{00017}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{vulkan__backend_8c_a0b90ec94f78aae6814140d684323d8d2}{vulkan\_renderer\_backend\_initialize}}(renderer\_backend*\ \mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ application\_name,\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00018}00018\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Implement\ support\ for\ custom\ allocators}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.allocator\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ Application\ info\ for\ the\ Vulkan\ instance}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00022}00022\ \ \ \ \ VkApplicationInfo\ app\_info\ =\ \{VK\_STRUCTURE\_TYPE\_APPLICATION\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00023}00023\ \ \ \ \ app\_info.apiVersion\ =\ VK\_MAKE\_API\_VERSION(0,\ 1,\ 4,\ 0);;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00024}00024\ \ \ \ \ app\_info.pApplicationName\ =\ application\_name;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00025}00025\ \ \ \ \ app\_info.applicationVersion\ =\ VK\_MAKE\_VERSION(1,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00026}00026\ \ \ \ \ app\_info.pEngineName\ =\ \textcolor{stringliteral}{"{}Koru\ Engine"{}};}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00027}00027\ \ \ \ \ app\_info.engineVersion\ =\ VK\_MAKE\_VERSION(1,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Instance\ creation\ info}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00030}00030\ \ \ \ \ VkInstanceCreateInfo\ create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_INSTANCE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00031}00031\ \ \ \ \ create\_info.pApplicationInfo\ =\ \&app\_info;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00032}00032\ \ \ \ \ create\_info.enabledExtensionCount\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00033}00033\ \ \ \ \ create\_info.ppEnabledExtensionNames\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00034}00034\ \ \ \ \ create\_info.enabledLayerCount\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00035}00035\ \ \ \ \ create\_info.ppEnabledLayerNames\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00037}00037\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ Vulkan\ instance}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00038}00038\ \ \ \ \ VkResult\ result\ =\ vkCreateInstance(\&create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.allocator,\ \&\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.instance);}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00040}00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}vkCreateInstance\ failed\ with\ result:\ \%u"{}},\ result);}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00042}00042\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}Vulkan\ renderer\ initialized\ successfully."{}});}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00046}00046\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00048}\mbox{\hyperlink{vulkan__backend_8c_aaf5c03bd71d214149e0e3e97b0d0fbca}{00048}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8c_aaf5c03bd71d214149e0e3e97b0d0fbca}{vulkan\_renderer\_backend\_shutdown}}(renderer\_backend*\ \mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}})\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ Destroy\ the\ Vulkan\ instance\ if\ it\ was\ created}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.instance)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00051}00051\ \ \ \ \ \ \ \ \ vkDestroyInstance(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.instance,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.allocator);}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.instance\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ Clear\ the\ allocator}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00056}00056\ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.allocator\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00058}00058\ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}Vulkan\ renderer\ shut\ down\ successfully."{}});}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00059}00059\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00061}\mbox{\hyperlink{vulkan__backend_8c_a8eae56297e3b34f9dd52a04c24fd9730}{00061}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8c_a8eae56297e3b34f9dd52a04c24fd9730}{vulkan\_renderer\_backend\_on\_resized}}(renderer\_backend*\ \mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}},\ \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ width,\ \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ height)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00062}00062\ \ \ \ \ \textcolor{comment}{//\ Placeholder\ —\ actual\ implementation\ will\ recreate\ swapchain\ or\ update\ viewport}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00063}00063\ \ \ \ \ \mbox{\hyperlink{logger_8h_a1871a1767ecd70d973893d36176a697f}{KTRACE}}(\textcolor{stringliteral}{"{}Vulkan\ backend\ resized\ to\ \%ux\%u."{}},\ width,\ height);}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00066}\mbox{\hyperlink{vulkan__backend_8c_af88b430f0e8f76ff7224c6d65ff7ce14}{00066}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{vulkan__backend_8c_af88b430f0e8f76ff7224c6d65ff7ce14}{vulkan\_renderer\_backend\_begin\_frame}}(renderer\_backend*\ \mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}},\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ delta\_time)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ Placeholder\ —\ actual\ implementation\ will\ begin\ frame\ operations}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00069}00069\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00071}\mbox{\hyperlink{vulkan__backend_8c_aa4147f264f03182a1ae88ce189d6810d}{00071}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{vulkan__backend_8c_aa4147f264f03182a1ae88ce189d6810d}{vulkan\_renderer\_backend\_end\_frame}}(renderer\_backend*\ \mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}},\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ delta\_time)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ Placeholder\ —\ actual\ implementation\ will\ end\ frame\ and\ present\ image}}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00074}00074\ \}}
+
+\end{DoxyCode}

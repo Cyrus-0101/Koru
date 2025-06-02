@@ -1,0 +1,97 @@
+\doxysection{engine/src/renderer/renderer\+\_\+backend.c File Reference}
+\hypertarget{renderer__backend_8c}{}\label{renderer__backend_8c}\index{engine/src/renderer/renderer\_backend.c@{engine/src/renderer/renderer\_backend.c}}
+
+
+Implementation of renderer backend creation and destruction logic.  
+
+
+{\ttfamily \#include "{}core/logger.\+h"{}}\newline
+{\ttfamily \#include "{}renderer\+\_\+backend.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan/vulkan\+\_\+backend.\+h"{}}\newline
+Include dependency graph for renderer\+\_\+backend.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{renderer__backend_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{renderer__backend_8c_a52ef657259e1bf4396b221727cd5ba4f}{renderer\+\_\+backend\+\_\+create}} (renderer\+\_\+backend\+\_\+type type, struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state, renderer\+\_\+backend \texorpdfstring{$\ast$}{*}out\+\_\+renderer\+\_\+backend)
+\begin{DoxyCompactList}\small\item\em Creates and initializes a renderer backend of the specified type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{renderer__backend_8c_a7f2f8f1b99fcf0c37b9edbb0be96b9a5}{renderer\+\_\+backend\+\_\+destroy}} (renderer\+\_\+backend \texorpdfstring{$\ast$}{*}renderer\+\_\+backend)
+\begin{DoxyCompactList}\small\item\em Destroys a renderer backend by clearing all function pointers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of renderer backend creation and destruction logic. 
+
+This file defines the functions used to instantiate and destroy specific rendering backends, such as Vulkan. It maps function pointers in the renderer\+\_\+backend structure to the appropriate implementation functions for the selected backend type. 
+
+Definition in file \mbox{\hyperlink{renderer__backend_8c_source}{renderer\+\_\+backend.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{renderer__backend_8c_a52ef657259e1bf4396b221727cd5ba4f}\label{renderer__backend_8c_a52ef657259e1bf4396b221727cd5ba4f} 
+\index{renderer\_backend.c@{renderer\_backend.c}!renderer\_backend\_create@{renderer\_backend\_create}}
+\index{renderer\_backend\_create@{renderer\_backend\_create}!renderer\_backend.c@{renderer\_backend.c}}
+\doxysubsubsection{\texorpdfstring{renderer\_backend\_create()}{renderer\_backend\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} renderer\+\_\+backend\+\_\+create (\begin{DoxyParamCaption}\item[{renderer\+\_\+backend\+\_\+type}]{type,  }\item[{struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state,  }\item[{renderer\+\_\+backend \texorpdfstring{$\ast$}{*}}]{out\+\_\+renderer\+\_\+backend }\end{DoxyParamCaption})}
+
+
+
+Creates and initializes a renderer backend of the specified type. 
+
+Creates a rendering backend of the specified type.
+
+This function sets up the function table for the given backend type and initializes its state. Currently only supports Vulkan, but can be extended to support Open\+GL, DirectX, etc.
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of renderer backend to create. \\
+\hline
+{\em plat\+\_\+state} & A pointer to the platform-\/specific state. \\
+\hline
+{\em out\+\_\+renderer\+\_\+backend} & A pointer to a renderer\+\_\+backend structure to populate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the backend was successfully created; otherwise FALSE. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{renderer__backend_8c_source_l00025}{25}} of file \mbox{\hyperlink{renderer__backend_8c_source}{renderer\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00066}{vulkan\+\_\+renderer\+\_\+backend\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00071}{vulkan\+\_\+renderer\+\_\+backend\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00017}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00061}{vulkan\+\_\+renderer\+\_\+backend\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00048}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown()}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+initialize()}}.
+
+\Hypertarget{renderer__backend_8c_a7f2f8f1b99fcf0c37b9edbb0be96b9a5}\label{renderer__backend_8c_a7f2f8f1b99fcf0c37b9edbb0be96b9a5} 
+\index{renderer\_backend.c@{renderer\_backend.c}!renderer\_backend\_destroy@{renderer\_backend\_destroy}}
+\index{renderer\_backend\_destroy@{renderer\_backend\_destroy}!renderer\_backend.c@{renderer\_backend.c}}
+\doxysubsubsection{\texorpdfstring{renderer\_backend\_destroy()}{renderer\_backend\_destroy()}}
+{\footnotesize\ttfamily void renderer\+\_\+backend\+\_\+destroy (\begin{DoxyParamCaption}\item[{renderer\+\_\+backend \texorpdfstring{$\ast$}{*}}]{renderer\+\_\+backend }\end{DoxyParamCaption})}
+
+
+
+Destroys a renderer backend by clearing all function pointers. 
+
+Destroys a previously created rendering backend.
+
+This does not free memory or clean up internal resources — it simply resets the function pointers to NULL. Any backend-\/specific cleanup should be done before calling this function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer\+\_\+backend} & A pointer to the renderer backend instance to destroy. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{renderer__backend_8c_source_l00054}{54}} of file \mbox{\hyperlink{renderer__backend_8c_source}{renderer\+\_\+backend.\+c}}.
+

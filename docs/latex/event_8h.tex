@@ -13,8 +13,7 @@ Include dependency graph for event.\+h\+:\nopagebreak
 \includegraphics[width=211pt]{event_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -63,7 +62,7 @@ void \mbox{\hyperlink{event_8h_a4747584f93c48ffe1a1fa895c3746c7c}{event\+\_\+shu
 \begin{DoxyCompactList}\small\item\em Registers a listener for a specific event code. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8h_ae6b9afa0e8bc3c94752e7b2c0b9c17f8}{event\+\_\+unregister}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
 \begin{DoxyCompactList}\small\item\em Unregisters a listener for a specific event code. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8h_a4174710cacb6cab063e91e0f0f02d63f}{event\+\_\+fire}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} context)
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8h_a4174710cacb6cab063e91e0f0f02d63f}{event\+\_\+fire}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
 \begin{DoxyCompactList}\small\item\em Fires an event to all registered listeners for the given code. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -155,7 +154,7 @@ EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT&Shuts the application down on t
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_KEY\_PRESSED@{EVENT\_CODE\_KEY\_PRESSED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_KEY\_PRESSED@{EVENT\_CODE\_KEY\_PRESSED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1}\label{event_8h_a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1} 
 EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED&Fired when a keyboard key is pressed. Usage\+: 
 \begin{DoxyCode}{1}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ context.data.u16[0];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
 
 \end{DoxyCode}
  \\
@@ -164,7 +163,7 @@ EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED&Fired when a keyboard key is pressed
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_KEY\_RELEASED@{EVENT\_CODE\_KEY\_RELEASED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_KEY\_RELEASED@{EVENT\_CODE\_KEY\_RELEASED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f}\label{event_8h_a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f} 
 EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED&Fired when a keyboard key is released. Usage\+: 
 \begin{DoxyCode}{1}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ context.data.u16[0];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
 
 \end{DoxyCode}
  \\
@@ -173,7 +172,7 @@ EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED&Fired when a keyboard key is releas
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_BUTTON\_PRESSED@{EVENT\_CODE\_BUTTON\_PRESSED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_BUTTON\_PRESSED@{EVENT\_CODE\_BUTTON\_PRESSED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a013204a5d0b77a55a4701ac7161d1e97}\label{event_8h_a6779f338629229430f8974f2f86d7226a013204a5d0b77a55a4701ac7161d1e97} 
 EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+PRESSED&Fired when a mouse button is pressed. Usage\+: 
 \begin{DoxyCode}{1}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ button\ =\ context.data.u16[0];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ button\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
 
 \end{DoxyCode}
  \\
@@ -182,7 +181,7 @@ EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+PRESSED&Fired when a mouse button is pres
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_BUTTON\_RELEASED@{EVENT\_CODE\_BUTTON\_RELEASED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_BUTTON\_RELEASED@{EVENT\_CODE\_BUTTON\_RELEASED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a85f06d8f0da4cdadb792e2e2f18979d2}\label{event_8h_a6779f338629229430f8974f2f86d7226a85f06d8f0da4cdadb792e2e2f18979d2} 
 EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+RELEASED&Fired when a mouse button is released. Usage\+: 
 \begin{DoxyCode}{1}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ button\ =\ context.data.u16[0];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ button\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
 
 \end{DoxyCode}
  \\
@@ -191,8 +190,8 @@ EVENT\+\_\+\+CODE\+\_\+\+BUTTON\+\_\+\+RELEASED&Fired when a mouse button is rel
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_MOUSE\_MOVED@{EVENT\_CODE\_MOUSE\_MOVED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_MOUSE\_MOVED@{EVENT\_CODE\_MOUSE\_MOVED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a681a38e19124eb42a25ab1551fa2a878}\label{event_8h_a6779f338629229430f8974f2f86d7226a681a38e19124eb42a25ab1551fa2a878} 
 EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+MOVED&Fired when the mouse is moved. Usage\+: 
 \begin{DoxyCode}{1}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ x\ =\ context.data.u16[0];}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ y\ =\ context.data.u16[1];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ x\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ y\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[1];}
 
 \end{DoxyCode}
  \\
@@ -201,7 +200,7 @@ EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+MOVED&Fired when the mouse is moved. Usage
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_MOUSE\_WHEEL@{EVENT\_CODE\_MOUSE\_WHEEL}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_MOUSE\_WHEEL@{EVENT\_CODE\_MOUSE\_WHEEL}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a923e40874ed01a63929ab78f31f1637d}\label{event_8h_a6779f338629229430f8974f2f86d7226a923e40874ed01a63929ab78f31f1637d} 
 EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+WHEEL&Fired when the mouse wheel is scrolled. Usage\+: 
 \begin{DoxyCode}{1}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ z\_delta\ =\ context.data.u8[0];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ z\_delta\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u8[0];}
 
 \end{DoxyCode}
  \\
@@ -210,8 +209,8 @@ EVENT\+\_\+\+CODE\+\_\+\+MOUSE\+\_\+\+WHEEL&Fired when the mouse wheel is scroll
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_CODE\_RESIZED@{EVENT\_CODE\_RESIZED}!event.h@{event.h}}\index{event.h@{event.h}!EVENT\_CODE\_RESIZED@{EVENT\_CODE\_RESIZED}}}\Hypertarget{event_8h_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656}\label{event_8h_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656} 
 EVENT\+\_\+\+CODE\+\_\+\+RESIZED&Fired when the window is resized or resolution changes. Usage\+: 
 \begin{DoxyCode}{1}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ width\ =\ context.data.u16[0];}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ height\ =\ context.data.u16[1];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ width\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ height\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[1];}
 
 \end{DoxyCode}
  \\
@@ -259,11 +258,11 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00156}{156}} of file \mbox{
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00015}{context}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00234}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00152}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00130}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00173}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, and \mbox{\hyperlink{input_8c_source_l00198}{input\+\_\+process\+\_\+mouse\+\_\+wheel()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00292}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00152}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00130}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00173}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, and \mbox{\hyperlink{input_8c_source_l00198}{input\+\_\+process\+\_\+mouse\+\_\+wheel()}}.
 
 \Hypertarget{event_8h_aaaec3136b95f3d089d55ebfe440c2a4f}\label{event_8h_aaaec3136b95f3d089d55ebfe440c2a4f} 
 \index{event.h@{event.h}!event\_initialize@{event\_initialize}}
@@ -290,7 +289,7 @@ References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+create()}}.
 
 \Hypertarget{event_8h_a8ef51b7c38c54169c57b45bb8e55047a}\label{event_8h_a8ef51b7c38c54169c57b45bb8e55047a} 
 \index{event.h@{event.h}!event\_register@{event\_register}}
@@ -326,7 +325,7 @@ References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::cal
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+create()}}.
 
 \Hypertarget{event_8h_a4747584f93c48ffe1a1fa895c3746c7c}\label{event_8h_a4747584f93c48ffe1a1fa895c3746c7c} 
 \index{event.h@{event.h}!event\_shutdown@{event\_shutdown}}
@@ -348,7 +347,7 @@ References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbo
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00170}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00173}{application\+\_\+run()}}.
 
 \Hypertarget{event_8h_ae6b9afa0e8bc3c94752e7b2c0b9c17f8}\label{event_8h_ae6b9afa0e8bc3c94752e7b2c0b9c17f8} 
 \index{event.h@{event.h}!event\_unregister@{event\_unregister}}
@@ -384,5 +383,5 @@ References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::cal
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00170}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00173}{application\+\_\+run()}}.
 
