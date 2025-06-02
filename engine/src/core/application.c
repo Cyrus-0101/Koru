@@ -219,7 +219,7 @@ b8 application_run() {
                 break;
             }
 
-            // TODO: refactor packet creationAdd commentMore actions
+            // TODO: refactor packet creation
             render_packet packet;
 
             packet.delta_time = delta;
