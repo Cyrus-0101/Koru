@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Koru Game Engine: engine/src/vulkan/vulkan_backend.c Source File</title>
+<title>Koru Game Engine: engine/src/renderer/vulkan/vulkan_backend.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -74,7 +74,7 @@ $(document).ready(function() { init_codefold(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_123e4fe1c6258eecefc77835de7419fe.html">vulkan</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_3d9126aa00c041bc0b8f859d1965a0f4.html">src</a></li><li class="navelem"><a class="el" href="dir_daa77a1efed8aa5cc485ba7eb0be90a0.html">renderer</a></li><li class="navelem"><a class="el" href="dir_292ca3bc3fd0e7bae984f8f5e33cab9c.html">vulkan</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -95,7 +95,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// Application info for the Vulkan instance</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    VkApplicationInfo app_info = {VK_STRUCTURE_TYPE_APPLICATION_INFO};</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    app_info.apiVersion = VK_API_VERSION_1_2;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    app_info.apiVersion = VK_MAKE_API_VERSION(0, 1, 4, 0);;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    app_info.pApplicationName = application_name;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    app_info.applicationVersion = VK_MAKE_VERSION(1, 0, 0);</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    app_info.pEngineName = <span class="stringliteral">&quot;Koru Engine&quot;</span>;</div>
@@ -177,7 +177,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 1 2025 20:10:33 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Jun 2 2025 17:25:22 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

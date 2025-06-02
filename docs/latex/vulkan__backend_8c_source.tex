@@ -1,5 +1,5 @@
 \doxysection{vulkan\+\_\+backend.\+c}
-\hypertarget{vulkan__backend_8c_source}{}\label{vulkan__backend_8c_source}\index{engine/src/vulkan/vulkan\_backend.c@{engine/src/vulkan/vulkan\_backend.c}}
+\hypertarget{vulkan__backend_8c_source}{}\label{vulkan__backend_8c_source}\index{engine/src/renderer/vulkan/vulkan\_backend.c@{engine/src/renderer/vulkan/vulkan\_backend.c}}
 \mbox{\hyperlink{vulkan__backend_8c}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logger_8h}{core/logger.h}}"{}}}
@@ -15,7 +15,7 @@
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00020}00020\ }
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ Application\ info\ for\ the\ Vulkan\ instance}}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00022}00022\ \ \ \ \ VkApplicationInfo\ app\_info\ =\ \{VK\_STRUCTURE\_TYPE\_APPLICATION\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00023}00023\ \ \ \ \ app\_info.apiVersion\ =\ VK\_API\_VERSION\_1\_2;}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00023}00023\ \ \ \ \ app\_info.apiVersion\ =\ VK\_MAKE\_API\_VERSION(0,\ 1,\ 4,\ 0);;}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00024}00024\ \ \ \ \ app\_info.pApplicationName\ =\ application\_name;}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00025}00025\ \ \ \ \ app\_info.applicationVersion\ =\ VK\_MAKE\_VERSION(1,\ 0,\ 0);}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8c_source_l00026}00026\ \ \ \ \ app\_info.pEngineName\ =\ \textcolor{stringliteral}{"{}Koru\ Engine"{}};}
