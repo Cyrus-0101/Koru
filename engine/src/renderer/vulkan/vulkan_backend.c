@@ -20,11 +20,11 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
 
     // Application info for the Vulkan instance
     VkApplicationInfo app_info = {VK_STRUCTURE_TYPE_APPLICATION_INFO};
-    app_info.apiVersion = VK_MAKE_API_VERSION(0, 1, 4, 0);;
+    app_info.apiVersion = VK_MAKE_API_VERSION(0, 1, 4, 0);
     app_info.pApplicationName = application_name;
-    app_info.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
+    app_info.applicationVersion = VK_MAKE_API_VERSION(0, 0, 0, 1);
     app_info.pEngineName = "Koru Engine";
-    app_info.engineVersion = VK_MAKE_VERSION(1, 0, 0);
+    app_info.engineVersion = VK_MAKE_API_VERSION(0, 0, 0, 1);
 
     // Instance creation info
     VkInstanceCreateInfo create_info = {VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO};
