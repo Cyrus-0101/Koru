@@ -194,7 +194,7 @@ b8 application_run() {
         }
 
         if (!app_state.is_suspended) {
-            // Update clock and get delta time.Add commentMore actions
+            // Update clock and get delta time.
             clock_update(&app_state.clock);
 
             f64 current_time = app_state.clock.elapsed;
@@ -254,7 +254,7 @@ b8 application_run() {
             // this frame ends.
             input_update(delta);
 
-            // Update last timeAdd commentMore actions
+            // Update last time
             app_state.last_time = current_time;
         }
     }
