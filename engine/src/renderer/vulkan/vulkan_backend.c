@@ -3,6 +3,7 @@
 #include "core/kstring.h"
 #include "platform/platform.h"
 #include "vulkan_backend.h"
+#include "vulkan_device.h"
 #include "vulkan_types.inl"
 #include "vulkan_platform.h"
 
@@ -138,22 +139,54 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
     KDEBUG("Vulkan debugger created.");
 #endif
 
+    // Surface
+    KDEBUG("Creating Vulkan surface...");
+
+    if (!platform_create_vulkan_surface(plat_state, &context)) {
+        KERROR("Failed to create platform surface!");
+        return FALSE;
+    }
+
+    KDEBUG("Vulkan surface created.");
+
+    // Device creation
+    if (!vulkan_device_create(&context)) {
+        KERROR("Failed to create device!");
+        return FALSE;
+    }
+
     KINFO("Vulkan renderer initialized successfully.");
     return TRUE;
 }
 
 void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
     KDEBUG("Destroying Vulkan debugger...");
-
     if (context.debug_messenger) {
         PFN_vkDestroyDebugUtilsMessengerEXT func =
             (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(context.instance, "vkDestroyDebugUtilsMessengerEXT");
 
-        func(context.instance, context.debug_messenger, context.allocator);
+        if (func) {
+            func(context.instance, context.debug_messenger, context.allocator);
+        }
+    }
+
+    KDEBUG("Destroying Vulkan surface...");
+    if (context.surface) {
+        vkDestroySurfaceKHR(context.instance, context.surface, context.allocator);
+        context.surface = 0;
+    }
+
+    KDEBUG("Destroying logical device...");
+    if (context.device.logical_device) {
+        vkDestroyDevice(context.device.logical_device, context.allocator);
+        context.device.logical_device = 0;
     }
 
     KDEBUG("Destroying Vulkan instance...");
-    vkDestroyInstance(context.instance, context.allocator);
+    if (context.instance) {
+        vkDestroyInstance(context.instance, context.allocator);
+        context.instance = 0;
+    }
 }
 
 void vulkan_renderer_backend_on_resized(renderer_backend* backend, u16 width, u16 height) {
