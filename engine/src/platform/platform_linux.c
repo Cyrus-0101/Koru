@@ -42,6 +42,10 @@
 #include <stdio.h>   // printf
 #include <string.h>  // memset, memcpy, etc.
 
+#define VK_USE_PLATFORM_XCB_KHR  // For surface creation
+#include <vulkan/vulkan.h>
+#include "renderer/vulkan/vulkan_types.inl"
+
 /**
  * @struct internal_state
  * @brief Platform-specific state for Linux/XCB-based windowing system.
@@ -93,6 +97,8 @@ typedef struct internal_state {
      * Used to detect when the user clicks the close button.
      */
     xcb_atom_t wm_delete_win;
+
+    VkSurfaceKHR surface;
 } internal_state;
 
 /**
@@ -495,6 +501,29 @@ void platform_sleep(u64 ms) {
 #endif
 }
 
+// Surface creation for VulkanAdd commentMore actions
+b8 platform_create_vulkan_surface(platform_state *plat_state, vulkan_context *context) {
+    // Simply cold-cast to the known type.
+    internal_state *state = (internal_state *)plat_state->internal_state;
+
+    VkXcbSurfaceCreateInfoKHR create_info = {VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR};
+    create_info.connection = state->connection;
+    create_info.window = state->window;
+
+    VkResult result = vkCreateXcbSurfaceKHR(
+        context->instance,
+        &create_info,
+        context->allocator,
+        &state->surface);
+    if (result != VK_SUCCESS) {
+        KFATAL("Vulkan surface creation failed.");
+        return FALSE;
+    }
+
+    context->surface = state->surface;
+    return TRUE;
+}
+
 /**
  * @brief Appends platform-specific Vulkan extension names to the provided array.
  *
@@ -503,7 +532,7 @@ void platform_sleep(u64 ms) {
  *
  * @param names_darray A pointer to a dynamic array of `const char*` where extension names will be appended.
  */
-void platform_get_required_extension_names(const char ***names_darray) {
+void platform_get_required_extension_names(const char*** names_darray) {
     darray_push(*names_darray, &"VK_KHR_xcb_surface");  // VK_KHR_xlib_surface?
 }
 
