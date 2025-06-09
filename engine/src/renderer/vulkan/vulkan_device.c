@@ -15,26 +15,117 @@
  * - Create a logical device with necessary queues
  */
 
-//  Forward declarations
+///>  Forward declarations
+/**
+ * @struct vulkan_physical_device_requirements
+ * @brief Describes required features of a physical device.
+ *
+ * Used during device selection to filter out unsuitable GPUs.
+ */
 typedef struct vulkan_physical_device_requirements {
+    /**
+     * @brief Device must support graphics queues.
+     */
     b8 graphics;
+
+    /**
+     * @brief Device must support present queues.
+     */
     b8 present;
+
+    /**
+     * @brief Device must support compute queues.
+     */
     b8 compute;
+
+    /**
+     * @brief Device must support transfer queues.
+     */
     b8 transfer;
-    // darray
+
+    /**
+     * @brief Required device extensions (e.g., VK_KHR_SWAPCHAIN_EXTENSION_NAME).
+     */
     const char** device_extension_names;
+
+    /**
+     * @brief Must support sampler anisotropy.
+     */
     b8 sampler_anisotropy;
+
+    /**
+     * @brief Must be a discrete GPU (if enabled).
+     */
     b8 discrete_gpu;
 } vulkan_physical_device_requirements;
 
+/**
+ * @struct vulkan_physical_device_queue_family_info
+ * @brief Stores indices of queue families for a physical device.
+ *
+ * Used to record which queue families support:
+ * - Graphics
+ * - Presentation
+ * - Compute
+ * - Transfer operations
+ */
 typedef struct vulkan_physical_device_queue_family_info {
+    /**
+     * @brief Index of the queue family that supports graphics operations.
+     */
     u32 graphics_family_index;
+
+    /**
+     * @brief Index of the queue family that supports presentation to the window.
+     */
     u32 present_family_index;
+
+    /**
+     * @brief Index of the queue family that supports compute operations.
+     */
     u32 compute_family_index;
+
+    /**
+     * @brief Index of the queue family that supports transfer operations.
+     */
     u32 transfer_family_index;
 } vulkan_physical_device_queue_family_info;
 
+/**
+ * @brief Selects the most suitable physical device from the list of available devices.
+ *
+ * Iterates through all available physical devices and checks whether each meets the requirements.
+ * If a suitable device is found, it is stored in the context.
+ *
+ * Requirements include:
+ * - Support for graphics, presentation, and transfer queues
+ * - Required extensions (like VK_KHR_swapchain)
+ * - Optional features like anisotropic filtering
+ * - Optional preference for discrete GPU
+ *
+ * @param context A pointer to the Vulkan context where device info will be stored.
+ * @return TRUE if a suitable device was found and selected; FALSE otherwise.
+ */
 b8 select_physical_device(vulkan_context* context);
+
+/**
+ * @brief Checks whether the given physical device meets all specified requirements.
+ *
+ * Evaluates:
+ * - Queue family support (graphics, present, compute, transfer)
+ * - Surface/swapchain capabilities
+ * - Required extensions
+ * - Feature support (like samplerAnisotropy)
+ *
+ * @param device The physical device to evaluate.
+ * @param surface The surface to test for presentation support.
+ * @param properties Device properties (name, type, driver version).
+ * @param features Device features (supports what?).
+ * @param requirements Required features and capabilities.
+ * @param out_queue_family_info Output structure for queue family indices.
+ * @param out_swapchain_support Output structure for swapchain support data.
+ * @return TRUE if device meets all requirements; FALSE otherwise.
+ */
 b8 physical_device_meets_requirements(
     VkPhysicalDevice device,
     VkSurfaceKHR surface,
@@ -68,15 +159,19 @@ b8 vulkan_device_create(vulkan_context* context) {
     if (!present_shares_graphics_queue) {
         index_count++;
     }
+
     if (!transfer_shares_graphics_queue) {
         index_count++;
     }
+
     u32 indices[index_count];
     u8 index = 0;
     indices[index++] = context->device.graphics_queue_index;
+
     if (!present_shares_graphics_queue) {
         indices[index++] = context->device.present_queue_index;
     }
+    
     if (!transfer_shares_graphics_queue) {
         indices[index++] = context->device.transfer_queue_index;
     }
@@ -234,21 +329,31 @@ void vulkan_device_query_swapchain_support(
     }
 }
 
-/**
- * @brief Selects the most suitable physical device from the list of available devices.
- *
- * Iterates through all available physical devices and checks whether each meets the requirements.
- * If a suitable device is found, it is stored in the context.
- *
- * Requirements include:
- * - Support for graphics, presentation, and transfer queues
- * - Required extensions (like VK_KHR_swapchain)
- * - Optional features like anisotropic filtering
- * - Optional preference for discrete GPU
- *
- * @param context A pointer to the Vulkan context where device info will be stored.
- * @return TRUE if a suitable device was found and selected; FALSE otherwise.
- */
+b8 vulkan_device_detect_depth_format(vulkan_device* device) {
+    // Format candidates
+    const u64 candidate_count = 3;
+    VkFormat candidates[3] = {
+        VK_FORMAT_D32_SFLOAT,
+        VK_FORMAT_D32_SFLOAT_S8_UINT,
+        VK_FORMAT_D24_UNORM_S8_UINT};
+
+    u32 flags = VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT;
+    for (u64 i = 0; i < candidate_count; ++i) {
+        VkFormatProperties properties;
+        vkGetPhysicalDeviceFormatProperties(device->physical_device, candidates[i], &properties);
+
+        if ((properties.linearTilingFeatures & flags) == flags) {
+            device->depth_format = candidates[i];
+            return TRUE;
+        } else if ((properties.optimalTilingFeatures & flags) == flags) {
+            device->depth_format = candidates[i];
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 b8 select_physical_device(vulkan_context* context) {
     u32 physical_device_count = 0;
     VK_CHECK(vkEnumeratePhysicalDevices(context->instance, &physical_device_count, 0));
