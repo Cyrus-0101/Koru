@@ -197,7 +197,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        }</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="application_8c.html#a07966d6dab79f2c8568f69a986ae8e68">app_state</a>.<a class="code hl_variable" href="structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1">is_suspended</a>) {</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            <span class="comment">// Update clock and get delta time.Add commentMore actions</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            <span class="comment">// Update clock and get delta time.</span></div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <a class="code hl_function" href="clock_8c.html#a4abbdac65212baafffa5d8332a519a16">clock_update</a>(&amp;<a class="code hl_variable" href="application_8c.html#a07966d6dab79f2c8568f69a986ae8e68">app_state</a>.<a class="code hl_variable" href="structapplication__state.html#aa930dcc46dfc1ad594320c1a313a26a2">clock</a>);</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            <a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> current_time = <a class="code hl_variable" href="application_8c.html#a07966d6dab79f2c8568f69a986ae8e68">app_state</a>.<a class="code hl_variable" href="structapplication__state.html#aa930dcc46dfc1ad594320c1a313a26a2">clock</a>.<a class="code hl_variable" href="structclock.html#a0ebb32a24769f97d0e05b8e9559bbd8f">elapsed</a>;</div>
@@ -222,7 +222,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            }</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>            <span class="comment">// TODO: refactor packet creationAdd commentMore actions</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>            <span class="comment">// TODO: refactor packet creation</span></div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>            render_packet packet;</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>            packet.delta_time = delta;</div>
@@ -257,7 +257,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>            <span class="comment">// this frame ends.</span></div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>            <a class="code hl_function" href="input_8c.html#a85450297ce513c03fe70c80cdba41609">input_update</a>(delta);</div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            <span class="comment">// Update last timeAdd commentMore actions</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            <span class="comment">// Update last time</span></div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>            <a class="code hl_variable" href="application_8c.html#a07966d6dab79f2c8568f69a986ae8e68">app_state</a>.<a class="code hl_variable" href="structapplication__state.html#a4fc952bc899881d85115730cf7da1c5a">last_time</a> = current_time;</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        }</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    }</div>
@@ -399,11 +399,11 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="astructgame_html_ac2c261fc48169dc53096929654c51bfe"><div class="ttname"><a href="structgame.html#ac2c261fc48169dc53096929654c51bfe">game::render</a></div><div class="ttdeci">b8(* render)(struct game *game_inst, f32 delta_time)</div><div class="ttdoc">Function pointer to the game's render routine.</div><div class="ttdef"><b>Definition</b> <a href="game__types_8h_source.html#l00050">game_types.h:50</a></div></div>
 <div class="ttc" id="astructgame_html_afe7bfadc01e08def3e7cae0019151d1b"><div class="ttname"><a href="structgame.html#afe7bfadc01e08def3e7cae0019151d1b">game::update</a></div><div class="ttdeci">b8(* update)(struct game *game_inst, f32 delta_time)</div><div class="ttdoc">Function pointer to the game's update routine.</div><div class="ttdef"><b>Definition</b> <a href="game__types_8h_source.html#l00043">game_types.h:43</a></div></div>
 <div class="ttc" id="astructplatform__state_html"><div class="ttname"><a href="structplatform__state.html">platform_state</a></div><div class="ttdoc">Opaque state structure for the platform layer.</div><div class="ttdef"><b>Definition</b> <a href="platform_8h_source.html#l00026">platform.h:26</a></div></div>
-<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00015">vulkan_backend.c:15</a></div></div>
+<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00020">vulkan_backend.c:20</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 2 2025 17:25:22 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 8 2025 17:39:37 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

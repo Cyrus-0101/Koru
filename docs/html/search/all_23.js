@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🖼_20architecture_0',['🖼 Architecture',['../index.html#autotoc_md7',1,'']]]
+  ['–_20rendering_20system_20vulkan_0',['🎮 Koru Engine – Rendering System (Vulkan)',['../index.html#autotoc_md31',1,'']]]
 ];

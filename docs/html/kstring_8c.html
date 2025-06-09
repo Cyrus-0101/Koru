@@ -114,6 +114,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae4d2c3111ca8e06cce31d32a7928f320" id="r_ae4d2c3111ca8e06cce31d32a7928f320"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#ae4d2c3111ca8e06cce31d32a7928f320">string_duplicate</a> (const char *str)</td></tr>
 <tr class="memdesc:ae4d2c3111ca8e06cce31d32a7928f320"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicates the given null-terminated string into a new heap-allocated copy.  <br /></td></tr>
 <tr class="separator:ae4d2c3111ca8e06cce31d32a7928f320"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4088fb073177638c470fee72f8f2180a" id="r_a4088fb073177638c470fee72f8f2180a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a4088fb073177638c470fee72f8f2180a">strings_equal</a> (const char *str0, const char *str1)</td></tr>
+<tr class="memdesc:a4088fb073177638c470fee72f8f2180a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two null-terminated strings for equality (case-sensitive).  <br /></td></tr>
+<tr class="separator:a4088fb073177638c470fee72f8f2180a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of lightweight string utility functions. </p>
@@ -190,10 +193,53 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a4088fb073177638c470fee72f8f2180a" name="a4088fb073177638c470fee72f8f2180a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4088fb073177638c470fee72f8f2180a">&#9670;&#160;</a></span>strings_equal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> strings_equal </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares two null-terminated strings for equality (case-sensitive). </p>
+<p>This function performs a character-by-character comparison of two strings.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str0</td><td>First string to compare. </td></tr>
+    <tr><td class="paramname">str1</td><td>Second string to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if both strings are identical; FALSE otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00034">34</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__device_8c_source.html#l00471">physical_device_meets_requirements()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00028">vulkan_renderer_backend_initialize()</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 2 2025 17:25:22 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 8 2025 17:39:37 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

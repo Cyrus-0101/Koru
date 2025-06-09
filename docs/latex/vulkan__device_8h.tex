@@ -1,0 +1,177 @@
+\doxysection{engine/src/renderer/vulkan/vulkan\+\_\+device.h File Reference}
+\hypertarget{vulkan__device_8h}{}\label{vulkan__device_8h}\index{engine/src/renderer/vulkan/vulkan\_device.h@{engine/src/renderer/vulkan/vulkan\_device.h}}
+
+
+Vulkan device management interface.  
+
+
+{\ttfamily \#include "{}vulkan\+\_\+types.\+inl"{}}\newline
+Include dependency graph for vulkan\+\_\+device.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{vulkan__device_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vulkan__device_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__device_8h_abb07eb6d710c4e98364b57e42e4af4ac}{vulkan\+\_\+device\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
+\begin{DoxyCompactList}\small\item\em Creates and selects a suitable physical/logical Vulkan device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__device_8h_acb801f308c78e06ab4b730a49c07e37f}{vulkan\+\_\+device\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
+\begin{DoxyCompactList}\small\item\em Destroys the logical device and cleans up associated resources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__device_8h_ac4eb42eebcc937d35197f1b899668021}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support}} (Vk\+Physical\+Device physical\+\_\+device, Vk\+Surface\+KHR surface, vulkan\+\_\+swapchain\+\_\+support\+\_\+info \texorpdfstring{$\ast$}{*}out\+\_\+support\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Queries swapchain support details for a given physical device and surface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__device_8h_a4af4291b3e9e0fc739c88bde97d74693}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format}} (vulkan\+\_\+device \texorpdfstring{$\ast$}{*}device)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Vulkan device management interface. 
+
+This module provides functions to\+:
+\begin{DoxyItemize}
+\item Query available physical devices
+\item Select and create a logical device
+\item Query swapchain support on a given device and surface
+\end{DoxyItemize}
+
+These functions abstract away platform-\/specific device selection logic, making it easier to integrate with higher-\/level rendering systems. 
+
+Definition in file \mbox{\hyperlink{vulkan__device_8h_source}{vulkan\+\_\+device.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__device_8h_abb07eb6d710c4e98364b57e42e4af4ac}\label{vulkan__device_8h_abb07eb6d710c4e98364b57e42e4af4ac} 
+\index{vulkan\_device.h@{vulkan\_device.h}!vulkan\_device\_create@{vulkan\_device\_create}}
+\index{vulkan\_device\_create@{vulkan\_device\_create}!vulkan\_device.h@{vulkan\_device.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_device\_create()}{vulkan\_device\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+device\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})}
+
+
+
+Creates and selects a suitable physical/logical Vulkan device. 
+
+Queries all available physical devices, selects one based on feature and queue support, creates a logical device, and initializes queues (graphics, present, compute, transfer).
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the Vulkan context. Must be valid and initialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if a suitable device was found and successfully created; FALSE otherwise.
+\end{DoxyReturn}
+Queries available physical devices, selects one based on feature and queue support, creates a logical device, and initializes queues (graphics, present, compute, transfer).
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the Vulkan context. Must be valid and initialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if a suitable device was found and successfully created; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00147}{147}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{vulkan__device_8c_source_l00357}{select\+\_\+physical\+\_\+device()}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+
+\Hypertarget{vulkan__device_8h_acb801f308c78e06ab4b730a49c07e37f}\label{vulkan__device_8h_acb801f308c78e06ab4b730a49c07e37f} 
+\index{vulkan\_device.h@{vulkan\_device.h}!vulkan\_device\_destroy@{vulkan\_device\_destroy}}
+\index{vulkan\_device\_destroy@{vulkan\_device\_destroy}!vulkan\_device.h@{vulkan\_device.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_device\_destroy()}{vulkan\_device\_destroy()}}
+{\footnotesize\ttfamily void vulkan\+\_\+device\+\_\+destroy (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})}
+
+
+
+Destroys the logical device and cleans up associated resources. 
+
+Shuts down the logical device and any internal structures like queues. Should be called before shutting down the instance.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the Vulkan context containing the device to destroy. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00242}{242}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, \mbox{\hyperlink{kmemory_8c_source_l00129}{kfree()}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
+
+\Hypertarget{vulkan__device_8h_a4af4291b3e9e0fc739c88bde97d74693}\label{vulkan__device_8h_a4af4291b3e9e0fc739c88bde97d74693} 
+\index{vulkan\_device.h@{vulkan\_device.h}!vulkan\_device\_detect\_depth\_format@{vulkan\_device\_detect\_depth\_format}}
+\index{vulkan\_device\_detect\_depth\_format@{vulkan\_device\_detect\_depth\_format}!vulkan\_device.h@{vulkan\_device.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_device\_detect\_depth\_format()}{vulkan\_device\_detect\_depth\_format()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format (\begin{DoxyParamCaption}\item[{vulkan\+\_\+device \texorpdfstring{$\ast$}{*}}]{device }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00332}{332}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00186}{create()}}.
+
+\Hypertarget{vulkan__device_8h_ac4eb42eebcc937d35197f1b899668021}\label{vulkan__device_8h_ac4eb42eebcc937d35197f1b899668021} 
+\index{vulkan\_device.h@{vulkan\_device.h}!vulkan\_device\_query\_swapchain\_support@{vulkan\_device\_query\_swapchain\_support}}
+\index{vulkan\_device\_query\_swapchain\_support@{vulkan\_device\_query\_swapchain\_support}!vulkan\_device.h@{vulkan\_device.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_device\_query\_swapchain\_support()}{vulkan\_device\_query\_swapchain\_support()}}
+{\footnotesize\ttfamily void vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support (\begin{DoxyParamCaption}\item[{Vk\+Physical\+Device}]{physical\+\_\+device,  }\item[{Vk\+Surface\+KHR}]{surface,  }\item[{vulkan\+\_\+swapchain\+\_\+support\+\_\+info \texorpdfstring{$\ast$}{*}}]{out\+\_\+support\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Queries swapchain support details for a given physical device and surface. 
+
+Populates a {\ttfamily vulkan\+\_\+swapchain\+\_\+support\+\_\+info} struct with\+:
+\begin{DoxyItemize}
+\item Capabilities (min/max image counts, dimensions, etc.)
+\item Formats supported
+\item Present modes available
+\end{DoxyItemize}
+
+This information is used later when creating a swapchain.
+
+
+\begin{DoxyParams}{Parameters}
+{\em physical\+\_\+device} & The physical device to query. \\
+\hline
+{\em surface} & The surface to check compatibility with. \\
+\hline
+{\em out\+\_\+support\+\_\+info} & A pointer to a structure to fill with swapchain support info. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00286}{286}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, and \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00186}{create()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00471}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}.
+

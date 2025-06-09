@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['x_0',['x',['../structmouse__state.html#a75fee6855683a29759e07dddd8abe84d',1,'mouse_state']]]
+  ['query_20physical_20devices_0',['3. 🔍 Query Physical Devices',['../index.html#autotoc_md43',1,'']]],
+  ['query_20swapchain_20support_1',['6. 🔄 Query Swapchain Support',['../index.html#autotoc_md49',1,'']]],
+  ['queues_2',['5. ⏱ Get Queues',['../index.html#autotoc_md47',1,'']]]
 ];

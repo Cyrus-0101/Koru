@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['f32_0',['f32',['../structevent__context.html#aecc1d2cac72d7cf178b96163232840cb',1,'event_context::f32'],['../defines_8h.html#a5f6906312a689f27d70e9d086649d3fd',1,'f32:&#160;defines.h']]],
-  ['f64_1',['f64',['../structevent__context.html#a967488791fa28881df35fb981841d96e',1,'event_context::f64'],['../defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5',1,'f64:&#160;defines.h']]],
-  ['false_2',['FALSE',['../defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1',1,'defines.h']]],
-  ['feature_20list_3',['📋 Feature List',['../index.html#autotoc_md13',1,'']]],
-  ['features_4',['features',['../index.html#autotoc_md14',1,'Core Features'],['../index.html#autotoc_md15',1,'Planned Features']]],
-  ['features_3a_5',['🚀 Features:',['../index.html#autotoc_md5',1,'']]]
+  ['_5fdarray_5fcreate_0',['_darray_create',['../darray_8h.html#a2a31fc1b919b7043ab60c5a5dfd799f2',1,'_darray_create(u64 length, u64 stride):&#160;darray.c'],['../darray_8c.html#afeedbfc73b73afde4c0bf2a889305108',1,'_darray_create(u64 length, u64 stride):&#160;darray.c']]],
+  ['_5fdarray_5fdestroy_1',['_darray_destroy',['../darray_8c.html#a2fe5e3c2494168523cb08a62a1cef3f0',1,'_darray_destroy(void *array):&#160;darray.c'],['../darray_8h.html#a6b17a4fb11bc83a4441ad6061513b3b6',1,'_darray_destroy(void *array):&#160;darray.c']]],
+  ['_5fdarray_5ffield_5fget_2',['_darray_field_get',['../darray_8c.html#a3458495487a9f5e51f624d66a5f16c4d',1,'_darray_field_get(void *array, u64 field):&#160;darray.c'],['../darray_8h.html#a0c567bc6af05cb5a437059a54e575217',1,'_darray_field_get(void *array, u64 field):&#160;darray.c']]],
+  ['_5fdarray_5ffield_5fset_3',['_darray_field_set',['../darray_8c.html#a9a04e308cbc0cb796826f971f77af0b5',1,'_darray_field_set(void *array, u64 field, u64 value):&#160;darray.c'],['../darray_8h.html#a922890e0149ea34cbf209d48dca46648',1,'_darray_field_set(void *array, u64 field, u64 value):&#160;darray.c']]],
+  ['_5fdarray_5finsert_5fat_4',['_darray_insert_at',['../darray_8h.html#ac0e818c822ca83511597a141efcf5bdb',1,'_darray_insert_at(void *array, u64 index, void *value_ptr):&#160;darray.c'],['../darray_8c.html#abfb21e49debe3371395864fa7f3d0b6e',1,'_darray_insert_at(void *array, u64 index, void *value_ptr):&#160;darray.c']]],
+  ['_5fdarray_5fpop_5',['_darray_pop',['../darray_8c.html#a3a7dbd27efedf1cd383a5c8cb5740998',1,'_darray_pop(void *array, void *dest):&#160;darray.c'],['../darray_8h.html#abab8c9be480d4034ee3024010bf2a3e8',1,'_darray_pop(void *array, void *dest):&#160;darray.c']]],
+  ['_5fdarray_5fpop_5fat_6',['_darray_pop_at',['../darray_8c.html#ac54164054897a40203bab67d2d3a9250',1,'_darray_pop_at(void *array, u64 index, void *dest):&#160;darray.c'],['../darray_8h.html#adfea4ba2d8630ce80abc78813f3ed39a',1,'_darray_pop_at(void *array, u64 index, void *dest):&#160;darray.c']]],
+  ['_5fdarray_5fpush_7',['_darray_push',['../darray_8c.html#ad0d43d106169b005a03bd36f0ac6a740',1,'_darray_push(void *array, const void *value_ptr):&#160;darray.c'],['../darray_8h.html#a39a4f08504e1fbf09955063acd1a25cc',1,'_darray_push(void *array, const void *value_ptr):&#160;darray.c']]],
+  ['_5fdarray_5fresize_8',['_darray_resize',['../darray_8c.html#a32f03c35518f90b8cc0ba0f4127d6bd7',1,'_darray_resize(void *array):&#160;darray.c'],['../darray_8h.html#abfacc09053f33a2dc045a2d6902c86b4',1,'_darray_resize(void *array):&#160;darray.c']]],
+  ['_5fposix_5fc_5fsource_9',['_POSIX_C_SOURCE',['../platform__linux_8c.html#a3024ccd4a9af5109d24e6c57565d74a1',1,'platform_linux.c']]]
 ];

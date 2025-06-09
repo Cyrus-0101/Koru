@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_0',['x',['../structmouse__state.html#a75fee6855683a29759e07dddd8abe84d',1,'mouse_state']]]
+  ['width_0',['width',['../structapplication__state.html#a5c49a4da818b7bae26b50df80c889279',1,'application_state']]]
 ];

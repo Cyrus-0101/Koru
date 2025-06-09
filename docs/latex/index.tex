@@ -204,7 +204,7 @@ Check tasks.\+json for sequence\+:
 {\ttfamily build-\/all.\+bat}   &Runs all Windows builds sequentially   &Same as above but for Windows   \\\cline{1-3}
 \end{longtabu}
 \hypertarget{index_autotoc_md22}{}\doxysubsection{\texorpdfstring{Linux}{Linux}}\label{index_autotoc_md22}
-Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run your engine)
+Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run the engine)
 
 
 \begin{DoxyCode}{0}
@@ -320,4 +320,805 @@ This project is licensed under the MIT License – see the \mbox{[}LICENSE\mbox{
 \DoxyCodeLine{-\/\ ✅\ GitHub\ Actions\ for\ CI\ builds\ (optional)}
 
 \end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md31}{}\doxysection{\texorpdfstring{🎮 Koru Engine – Rendering System (\+Vulkan)}{🎮 Koru Engine – Rendering System (Vulkan)}}\label{index_autotoc_md31}
+\begin{quote}
+{\itshape A deep dive into how Koru sets up its Vulkan-\/based rendering system — from instance creation to frame submission.} \end{quote}
+Koru is a {\bfseries{low-\/level game engine}} written in C99 that uses the {\bfseries{Vulkan graphics API}} for rendering. This document explains the {\bfseries{entire rendering pipeline setup}} used in Koru, including\+:
+\begin{DoxyItemize}
+\item Instance creation
+\item Physical device selection
+\item Logical device creation
+\item Surface \& swapchain setup
+\item Render passes
+\item Framebuffers
+\item Command buffers
+\end{DoxyItemize}
+
+This guide assumes some basic knowledge of C and Vulkan concepts. If you\textquotesingle{}re new to Vulkan, this will help understand what’s happening behind the scenes as you run the testbed.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md33}{}\doxysubsection{\texorpdfstring{🧠 Why Use Vulkan?}{🧠 Why Use Vulkan?}}\label{index_autotoc_md33}
+Vulkan gives developers {\bfseries{explicit control over GPU operations}}. It allows fine-\/grained access to queues, memory, and rendering pipelines — which is great for performance, but comes at the cost of complexity.
+
+Koru abstracts much of that complexity using a {\bfseries{modular architecture}}, allowing you to build a rendering system step-\/by-\/step without needing to manage everything manually every time.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md35}{}\doxysubsection{\texorpdfstring{📦 High-\/\+Level Architecture (\+Render Layer)}{📦 High-Level Architecture (Render Layer)}}\label{index_autotoc_md35}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Application\ \ \ \ |}
+\DoxyCodeLine{|\ \ \ \ \ Logic\ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ (game.c)\ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Renderer\ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Frontend\ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (renderer\_frontend.h/c)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Platform\ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Abstraction\ \ \ \ |}
+\DoxyCodeLine{|\ (platform\_linux.c)|}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Vulkan\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Device\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_device.c/h)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Swapchain\ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Management\ \ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_swapchain.c/h)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Render\ Pass\ /\ \ |}
+\DoxyCodeLine{|\ \ \ Framebuffer\ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_renderpass.c/h)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Image\ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Management\ \ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_image.c/h)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Command\ Buffer\ |}
+\DoxyCodeLine{|\ \ \ Submission\ \ \ \ \ |}
+\DoxyCodeLine{|\ (renderer\_frontend.c)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+
+
+This shows how each module fits into the overall rendering flow.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md37}{}\doxysubsection{\texorpdfstring{🛠️ The Full Rendering Setup Process}{🛠️ The Full Rendering Setup Process}}\label{index_autotoc_md37}
+Let’s walk through {\bfseries{each stage of the rendering setup process}}, with real code examples from the engine.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md39}{}\doxysubsubsection{\texorpdfstring{1. 🧱 Create Vulkan Instance}{1. 🧱 Create Vulkan Instance}}\label{index_autotoc_md39}
+The first thing to do is creating a {\bfseries{Vk\+Instance}} — this connects the app to the Vulkan library.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ From\ vulkan\_renderer\_backend\_initialize()}}
+\DoxyCodeLine{VkApplicationInfo\ app\_info\ =\ \{VK\_STRUCTURE\_TYPE\_APPLICATION\_INFO\};}
+\DoxyCodeLine{app\_info.apiVersion\ =\ VK\_MAKE\_API\_VERSION(0,\ 1,\ 4,\ 0);}
+\DoxyCodeLine{app\_info.pApplicationName\ =\ application\_name;}
+\DoxyCodeLine{app\_info.applicationVersion\ =\ VK\_MAKE\_API\_VERSION(0,\ 0,\ 0,\ 1);}
+\DoxyCodeLine{app\_info.pEngineName\ =\ \textcolor{stringliteral}{"{}Koru\ Engine"{}};}
+\DoxyCodeLine{app\_info.engineVersion\ =\ VK\_MAKE\_API\_VERSION(0,\ 0,\ 0,\ 1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkInstanceCreateInfo\ create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_INSTANCE\_CREATE\_INFO\};}
+\DoxyCodeLine{create\_info.pApplicationInfo\ =\ \&app\_info;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ required\_extensions\ =\ \mbox{\hyperlink{darray_8h_ab9d093e09b642e0d480a7ae82bad3af5}{darray\_create}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{\mbox{\hyperlink{darray_8h_a7ad89931e6589fa09b83ea99de2b32e6}{darray\_push}}(required\_extensions,\ \&VK\_KHR\_SURFACE\_EXTENSION\_NAME);}
+\DoxyCodeLine{\mbox{\hyperlink{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}{platform\_get\_required\_extension\_names}}(\&required\_extensions);}
+\DoxyCodeLine{}
+\DoxyCodeLine{create\_info.enabledExtensionCount\ =\ \mbox{\hyperlink{darray_8h_aa556263c163ffb9f29b40b29b7b25165}{darray\_length}}(required\_extensions);}
+\DoxyCodeLine{create\_info.ppEnabledExtensionNames\ =\ required\_extensions;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Enable\ validation\ layers\ if\ \_DEBUG\ is\ defined}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#if\ defined(\_DEBUG)}}
+\DoxyCodeLine{\ \ \ \ create\_info.enabledLayerCount\ =\ required\_validation\_layer\_count;}
+\DoxyCodeLine{\ \ \ \ create\_info.ppEnabledLayerNames\ =\ required\_validation\_layer\_names;}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateInstance(\&create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.allocator,\ \&\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.instance));}
+
+\end{DoxyCode}
+
+
+✅ This creates the {\bfseries{main connection to Vulkan}}, enabling extensions and validation layers.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md41}{}\doxysubsubsection{\texorpdfstring{2. 🖥 Create Window Surface}{2. 🖥 Create Window Surface}}\label{index_autotoc_md41}
+Next, to create a {\bfseries{surface}} — this is what connects the window to the GPU.
+
+In Linux\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ platform\_linux.c}}
+\DoxyCodeLine{xcb\_intern\_atom\_reply\_t*\ wm\_delete\_reply\ =\ xcb\_intern\_atom\_reply(...);}
+\DoxyCodeLine{\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>wm\_delete\_win\ =\ wm\_delete\_reply-\/>atom;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Create\ surface}}
+\DoxyCodeLine{VkXcbSurfaceCreateInfoKHR\ surface\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_XCB\_SURFACE\_CREATE\_INFO\_KHR\};}
+\DoxyCodeLine{surface\_create\_info.connection\ =\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection;}
+\DoxyCodeLine{surface\_create\_info.window\ =\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>window;}
+\DoxyCodeLine{}
+\DoxyCodeLine{vkCreateXcbSurfaceKHR(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>instance,\ \&surface\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>surface);}
+
+\end{DoxyCode}
+
+
+In Windows\+: The engine uses {\ttfamily vk\+Create\+Win32\+Surface\+KHR()} instead.
+
+✅ A surface is essential because it defines where rendered frames go usually the screen or a window.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md43}{}\doxysubsubsection{\texorpdfstring{3. 🔍 Query Physical Devices}{3. 🔍 Query Physical Devices}}\label{index_autotoc_md43}
+Once an instance and a surface are ready, query available GPUs\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_device.c}}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ physical\_device\_count\ =\ 0;}
+\DoxyCodeLine{VK\_CHECK(vkEnumeratePhysicalDevices(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.physical\_device,\ \&physical\_device\_count,\ 0));}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkPhysicalDevice\ physical\_devices[physical\_device\_count];}
+\DoxyCodeLine{VK\_CHECK(vkEnumeratePhysicalDevices(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>instance,\ \&physical\_device\_count,\ physical\_devices));}
+
+\end{DoxyCode}
+
+
+Then select one that meets requirements\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ i\ =\ 0;\ i\ <\ physical\_device\_count;\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceProperties\ properties;}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceProperties(physical\_devices[i],\ \&properties);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceFeatures\ features;}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceFeatures(physical\_devices[i],\ \&features);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Check\ queue\ family\ support}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{structvulkan__physical__device__queue__family__info}{vulkan\_physical\_device\_queue\_family\_info}}\ queue\_info\ =\ \{\};}
+\DoxyCodeLine{\ \ \ \ vulkan\_swapchain\_support\_info\ swapchain\_support\ =\ \{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ result\ =\ \mbox{\hyperlink{vulkan__device_8c_aa53d88ed2ed351537ad6b3f6ff109f7c}{physical\_device\_meets\_requirements}}(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ physical\_devices[i],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>surface,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&properties,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&features,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&requirements,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&queue\_info,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&swapchain\_support);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+🔍 Requirements include\+:
+\begin{DoxyItemize}
+\item Graphics/\+Compute/\+Present/\+Transfer queues
+\item Extensions like {\ttfamily VK\+\_\+\+KHR\+\_\+\+SWAPCHAIN\+\_\+\+EXTENSION\+\_\+\+NAME}
+\item Features like {\ttfamily sampler\+Anisotropy}
+\item Prefer discrete GPU (optional)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md45}{}\doxysubsubsection{\texorpdfstring{4. 🔄 Create Logical Device}{4. 🔄 Create Logical Device}}\label{index_autotoc_md45}
+After selecting a suitable physical device, create a {\bfseries{logical device}} to interface with the GPU.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_device.c}}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ present\_shares\_graphics\_queue\ =\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index\ ==\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.present\_queue\_index);}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ transfer\_shares\_graphics\_queue\ =\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index\ ==\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.transfer\_queue\_index);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ index\_count\ =\ 1;}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (!present\_shares\_graphics\_queue)\ index\_count++;}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (!transfer\_shares\_graphics\_queue)\ index\_count++;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ indices[index\_count];}
+\DoxyCodeLine{indices[0]\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index;}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+
+
+Define the queues as needed\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkDeviceQueueCreateInfo\ queue\_create\_infos[index\_count];}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ i\ =\ 0;\ i\ <\ index\_count;\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ queue\_create\_infos[i].sType\ =\ VK\_STRUCTURE\_TYPE\_DEVICE\_QUEUE\_CREATE\_INFO;}
+\DoxyCodeLine{\ \ \ \ queue\_create\_infos[i].queueFamilyIndex\ =\ indices[i];}
+\DoxyCodeLine{\ \ \ \ queue\_create\_infos[i].queueCount\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ queue\_priority\ =\ 1.0f;}
+\DoxyCodeLine{\ \ \ \ queue\_create\_infos[i].pQueuePriorities\ =\ \&queue\_priority;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Finally, create the logical device\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkDeviceCreateInfo\ device\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_DEVICE\_CREATE\_INFO\};}
+\DoxyCodeLine{device\_create\_info.queueCreateInfoCount\ =\ index\_count;}
+\DoxyCodeLine{device\_create\_info.pQueueCreateInfos\ =\ queue\_create\_infos;}
+\DoxyCodeLine{device\_create\_info.pEnabledFeatures\ =\ \&device\_features;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateDevice(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.physical\_device,\ \&device\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device));}
+
+\end{DoxyCode}
+
+
+✅ This creates a way to submit commands to the GPU.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md47}{}\doxysubsubsection{\texorpdfstring{5. ⏱ Get Queues}{5. ⏱ Get Queues}}\label{index_autotoc_md47}
+Once the device is created, get handles to the actual queues\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vkGetDeviceQueue(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index,\ 0,\ \&\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue);}
+\DoxyCodeLine{vkGetDeviceQueue(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.present\_queue\_index,\ 0,\ \&\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.present\_queue);}
+
+\end{DoxyCode}
+
+
+These are used later to\+:
+\begin{DoxyItemize}
+\item Submit draw commands ({\ttfamily graphics\+\_\+queue})
+\item Present frames ({\ttfamily present\+\_\+queue})
+\item Copy data ({\ttfamily transfer\+\_\+queue})
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md49}{}\doxysubsubsection{\texorpdfstring{6. 🔄 Query Swapchain Support}{6. 🔄 Query Swapchain Support}}\label{index_autotoc_md49}
+Before creating a swapchain, check what formats and modes are supported\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_device.c}}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__device_8c_ac4eb42eebcc937d35197f1b899668021}{vulkan\_device\_query\_swapchain\_support}}(...)\ \{}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device,\ surface,\ \&out\_support-\/>capabilities);}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceSurfaceFormatsKHR(device,\ surface,\ \&out\_support-\/>format\_count,\ 0);}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceSurfacePresentModesKHR(device,\ surface,\ \&out\_support-\/>present\_mode\_count,\ 0);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+This helps choose the best image format and presentation mode.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md51}{}\doxysubsubsection{\texorpdfstring{7. 🔁 Create Swapchain}{7. 🔁 Create Swapchain}}\label{index_autotoc_md51}
+Now create the swapchain based on what the device supports\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_swapchain.c}}
+\DoxyCodeLine{VkSwapchainCreateInfoKHR\ create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_SWAPCHAIN\_CREATE\_INFO\_KHR\};}
+\DoxyCodeLine{create\_info.surface\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>surface;}
+\DoxyCodeLine{create\_info.minImageCount\ =\ image\_count;}
+\DoxyCodeLine{create\_info.imageFormat\ =\ swapchain-\/>image\_format.format;}
+\DoxyCodeLine{create\_info.imageExtent\ =\ swapchain\_extent;}
+\DoxyCodeLine{create\_info.imageUsage\ =\ VK\_IMAGE\_USAGE\_COLOR\_ATTACHMENT\_BIT;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index\ !=\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.present\_queue\_index)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ queueFamilyIndices[]\ =\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}})\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}})\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.present\_queue\_index\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ create\_info.imageSharingMode\ =\ VK\_SHARING\_MODE\_CONCURRENT;}
+\DoxyCodeLine{\ \ \ \ create\_info.queueFamilyIndexCount\ =\ 2;}
+\DoxyCodeLine{\ \ \ \ create\_info.pQueueFamilyIndices\ =\ queueFamilyIndices;}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ create\_info.imageSharingMode\ =\ VK\_SHARING\_MODE\_EXCLUSIVE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateSwapchainKHR(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&swapchain-\/>handle));}
+
+\end{DoxyCode}
+
+
+🔄 The swapchain acts like a rotating carousel of images\+:
+\begin{DoxyItemize}
+\item One is being drawn
+\item One is being displayed
+\item One is waiting to be used next
+\end{DoxyItemize}
+
+This avoids tearing and ensures smooth rendering.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md53}{}\doxysubsubsection{\texorpdfstring{8. 🖼 Create Image Views}{8. 🖼 Create Image Views}}\label{index_autotoc_md53}
+Each image in the swapchain needs a {\bfseries{view}} so the GPU can interpret it\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ i\ =\ 0;\ i\ <\ swapchain-\/>image\_count;\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ VkImageViewCreateInfo\ view\_info\ =\ \{VK\_STRUCTURE\_TYPE\_IMAGE\_VIEW\_CREATE\_INFO\};}
+\DoxyCodeLine{\ \ \ \ view\_info.image\ =\ swapchain-\/>images[i];}
+\DoxyCodeLine{\ \ \ \ view\_info.viewType\ =\ VK\_IMAGE\_VIEW\_TYPE\_2D;}
+\DoxyCodeLine{\ \ \ \ view\_info.format\ =\ swapchain-\/>image\_format.format;}
+\DoxyCodeLine{\ \ \ \ view\_info.subresourceRange.aspectMask\ =\ VK\_IMAGE\_ASPECT\_COLOR\_BIT;}
+\DoxyCodeLine{\ \ \ \ view\_info.subresourceRange.baseMipLevel\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ view\_info.subresourceRange.levelCount\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ view\_info.subresourceRange.baseArrayLayer\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ view\_info.layerCount\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ VK\_CHECK(vkCreateImageView(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&view\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&swapchain-\/>views[i]));}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+🖼 Each image view wraps a raw {\ttfamily Vk\+Image}, defining how it\textquotesingle{}s accessed (e.\+g., color attachment, depth buffer).
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md55}{}\doxysubsubsection{\texorpdfstring{9. 🧊 Detect Depth Format}{9. 🧊 Detect Depth Format}}\label{index_autotoc_md55}
+For depth testing, a compatible depth format is needed\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{vulkan__device_8c_a4af4291b3e9e0fc739c88bde97d74693}{vulkan\_device\_detect\_depth\_format}}(vulkan\_device*\ device)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ candidate\_count\ =\ 3;}
+\DoxyCodeLine{\ \ \ \ VkFormat\ candidates[candidate\_count]\ =\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VK\_FORMAT\_D32\_SFLOAT,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VK\_FORMAT\_D32\_SFLOAT\_S8\_UINT,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VK\_FORMAT\_D24\_UNORM\_S8\_UINT\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ i\ =\ 0;\ i\ <\ candidate\_count;\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VkFormatProperties\ props;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vkGetPhysicalDeviceFormatProperties(device-\/>physical\_device,\ candidates[i],\ \&props);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((props.optimalTilingFeatures\ \&\ VK\_FORMAT\_FEATURE\_DEPTH\_STENCIL\_ATTACHMENT\_BIT))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ device-\/>depth\_format\ =\ candidates[i];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}No\ supported\ depth\ format\ found."{}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+🧃 Once selected, create a depth/stencil image and its view.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md57}{}\doxysubsubsection{\texorpdfstring{10. 🎨 Create Render Pass}{10. 🎨 Create Render Pass}}\label{index_autotoc_md57}
+The render pass defines how rendering works — what attachments to use, how they behave, and what subpasses exist.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_renderpass.c}}
+\DoxyCodeLine{VkAttachmentDescription\ attachments[2]\ =\ \{\};}
+\DoxyCodeLine{attachments[0].format\ =\ swapchain-\/>image\_format.format;}
+\DoxyCodeLine{attachments[0].loadOp\ =\ VK\_ATTACHMENT\_LOAD\_OP\_CLEAR;}
+\DoxyCodeLine{attachments[0].storeOp\ =\ VK\_ATTACHMENT\_STORE\_OP\_STORE;}
+\DoxyCodeLine{attachments[0].stencilLoadOp\ =\ VK\_ATTACHMENT\_LOAD\_OP\_DONT\_CARE;}
+\DoxyCodeLine{attachments[0].initialLayout\ =\ VK\_IMAGE\_LAYOUT\_UNDEFINED;}
+\DoxyCodeLine{attachments[0].finalLayout\ =\ VK\_IMAGE\_LAYOUT\_PRESENT\_SRC\_KHR;}
+\DoxyCodeLine{}
+\DoxyCodeLine{attachments[1].format\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.depth\_format;}
+\DoxyCodeLine{attachments[1].loadOp\ =\ VK\_ATTACHMENT\_LOAD\_OP\_CLEAR;}
+\DoxyCodeLine{attachments[1].storeOp\ =\ VK\_ATTACHMENT\_STORE\_OP\_DONT\_CARE;}
+\DoxyCodeLine{attachments[1].initialLayout\ =\ VK\_IMAGE\_LAYOUT\_UNDEFINED;}
+\DoxyCodeLine{attachments[1].finalLayout\ =\ VK\_IMAGE\_LAYOUT\_DEPTH\_STENCIL\_ATTACHMENT\_OPTIMAL;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkSubpassDescription\ subpass\ =\ \{\};}
+\DoxyCodeLine{subpass.pipelineBindPoint\ =\ VK\_PIPELINE\_BIND\_POINT\_GRAPHICS;}
+\DoxyCodeLine{subpass.colorAttachmentCount\ =\ 1;}
+\DoxyCodeLine{subpass.pColorAttachments\ =\ \&color\_ref;}
+\DoxyCodeLine{subpass.pDepthStencilAttachment\ =\ \&depth\_stencil\_ref;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkRenderPassCreateInfo\ info\ =\ \{\};}
+\DoxyCodeLine{info.sType\ =\ VK\_STRUCTURE\_TYPE\_RENDER\_PASS\_CREATE\_INFO;}
+\DoxyCodeLine{info.attachmentCount\ =\ 2;}
+\DoxyCodeLine{info.pAttachments\ =\ attachments;}
+\DoxyCodeLine{info.subpassCount\ =\ 1;}
+\DoxyCodeLine{info.pSubpasses\ =\ \&subpass;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateRenderPass(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&renderpass-\/>handle));}
+
+\end{DoxyCode}
+
+
+🎨 The render pass is like a {\bfseries{blueprint}} — it tells the GPU\+:
+\begin{DoxyItemize}
+\item What kind of data it will write to
+\item How to handle clearing and storing it
+\item What layout transitions happen between steps
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md59}{}\doxysubsubsection{\texorpdfstring{11. 🖼 Create Framebuffers}{11. 🖼 Create Framebuffers}}\label{index_autotoc_md59}
+Framebuffers combine images and render passes\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkFramebufferCreateInfo\ fb\_info\ =\ \{VK\_STRUCTURE\_TYPE\_FRAMEBUFFER\_CREATE\_INFO\};}
+\DoxyCodeLine{fb\_info.renderPass\ =\ renderpass-\/>handle;}
+\DoxyCodeLine{fb\_info.attachmentCount\ =\ 2;}
+\DoxyCodeLine{fb\_info.pAttachments\ =\ attachments;}
+\DoxyCodeLine{fb\_info.width\ =\ width;}
+\DoxyCodeLine{fb\_info.height\ =\ height;}
+\DoxyCodeLine{fb\_info.layers\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateFramebuffer(device,\ \&fb\_info,\ 0,\ \&framebuffer));}
+
+\end{DoxyCode}
+
+
+🖼 Each framebuffer links\+:
+\begin{DoxyItemize}
+\item A color image from the swapchain
+\item A depth/stencil image
+\item The render pass that defines how to use them
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md61}{}\doxysubsubsection{\texorpdfstring{12. 🗂 Command Buffers and Submission}{12. 🗂 Command Buffers and Submission}}\label{index_autotoc_md61}
+Command buffers store drawing commands\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Begin\ command\ recording}}
+\DoxyCodeLine{VkCommandBufferBeginInfo\ begin\_info\ =\ \{VK\_STRUCTURE\_TYPE\_COMMAND\_BUFFER\_BEGIN\_INFO\};}
+\DoxyCodeLine{vkBeginCommandBuffer(command\_buffer,\ \&begin\_info);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Record\ draw\ commands\ here...}}
+\DoxyCodeLine{}
+\DoxyCodeLine{vkEndCommandBuffer(command\_buffer);}
+
+\end{DoxyCode}
+
+
+Then submit to the GPU\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkSubmitInfo\ submit\_info\ =\ \{VK\_STRUCTURE\_TYPE\_SUBMIT\_INFO\};}
+\DoxyCodeLine{submit\_info.waitSemaphoreCount\ =\ 1;}
+\DoxyCodeLine{submit\_info.pWaitSemaphores\ =\ \&image\_available\_semaphore;}
+\DoxyCodeLine{submit\_info.commandBufferCount\ =\ 1;}
+\DoxyCodeLine{submit\_info.pCommandBuffers\ =\ \&command\_buffer;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkQueueSubmit(graphics\_queue,\ 1,\ \&submit\_info,\ fence));}
+
+\end{DoxyCode}
+
+
+And finally present\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkPresentInfoKHR\ present\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PRESENT\_INFO\_KHR\};}
+\DoxyCodeLine{present\_info.swapchainCount\ =\ 1;}
+\DoxyCodeLine{present\_info.pSwapchains\ =\ \&swapchain-\/>handle;}
+\DoxyCodeLine{present\_info.pImageIndices\ =\ \&image\_index;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkResult\ result\ =\ vkQueuePresentKHR(present\_queue,\ \&present\_info);}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md63}{}\doxysubsection{\texorpdfstring{🧩 Diagram\+: Full Rendering Flow}{🧩 Diagram: Full Rendering Flow}}\label{index_autotoc_md63}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Application\ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Entry\ Point\ \ \ \ \ |}
+\DoxyCodeLine{|\ (application\_run())|}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Create\ Instance\ |}
+\DoxyCodeLine{|\ (vkCreateInstance)|}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Create\ Surface\ \ |}
+\DoxyCodeLine{|\ (vkCreateXcbSurfaceKHR)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Enumerate\ Physical|}
+\DoxyCodeLine{|\ Devices\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkEnumeratePhysicalDevices)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Select\ Suitable\ \ \ |}
+\DoxyCodeLine{|\ Physical\ Device\ \ \ |}
+\DoxyCodeLine{|\ (select\_physical\_device)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Logical\ \ \ \ |}
+\DoxyCodeLine{|\ Device\ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkCreateDevice)\ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Get\ Queue\ Handles\ |}
+\DoxyCodeLine{|\ (vkGetDeviceQueue)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Query\ Swapchain\ \ \ |}
+\DoxyCodeLine{|\ Support\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkGetPhysicalDeviceSurface*)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Swapchain\ \ |}
+\DoxyCodeLine{|\ (vkCreateSwapchainKHR)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Image\ Views|}
+\DoxyCodeLine{|\ (vkCreateImageView)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Detect\ Depth\ \ \ \ \ \ |}
+\DoxyCodeLine{|\ Format\ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_device\_detect\_depth\_format)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Depth\ Image|}
+\DoxyCodeLine{|\ (vulkan\_image\_create)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Render\ Pass|}
+\DoxyCodeLine{|\ (vkCreateRenderPass)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Framebuffer|}
+\DoxyCodeLine{|\ (vkCreateFramebuffer)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Begin\ Main\ Loop\ \ \ |}
+\DoxyCodeLine{|\ (vkAcquireNextImageKHR)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Begin\ Render\ Pass\ |}
+\DoxyCodeLine{|\ (vkCmdBeginRenderPass)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Record\ Draw\ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ Commands\ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ End\ Render\ Pass\ \ \ |}
+\DoxyCodeLine{|\ (vkCmdEndRenderPass)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Submit\ Command\ \ \ \ |}
+\DoxyCodeLine{|\ Buffer\ to\ GPU\ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkQueueSubmit)\ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Present\ Frame\ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkQueuePresentKHR)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+
+
+This is the full {\bfseries{rendering loop}} that happens every frame.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md65}{}\doxysubsection{\texorpdfstring{🧰 Key Structures Used}{🧰 Key Structures Used}}\label{index_autotoc_md65}
+\hypertarget{index_autotoc_md66}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+context$<$/tt$>$}{<tt>vulkan\_context</tt>}}\label{index_autotoc_md66}
+Tracks global Vulkan state\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_context\ \{}
+\DoxyCodeLine{\ \ \ \ VkInstance\ instance;}
+\DoxyCodeLine{\ \ \ \ VkSurfaceKHR\ surface;}
+\DoxyCodeLine{\ \ \ \ VkDebugUtilsMessengerEXT\ debug\_messenger;}
+\DoxyCodeLine{\ \ \ \ vulkan\_device\ device;}
+\DoxyCodeLine{\ \ \ \ vulkan\_swapchain\ swapchain;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ image\_index;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ current\_frame;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ recreating\_swapchain;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ (*find\_memory\_index)(...);}
+\DoxyCodeLine{\}\ vulkan\_context;}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md67}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+device$<$/tt$>$}{<tt>vulkan\_device</tt>}}\label{index_autotoc_md67}
+Holds physical/logical device and queue info\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_device\ \{}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDevice\ physical\_device;}
+\DoxyCodeLine{\ \ \ \ VkDevice\ logical\_device;}
+\DoxyCodeLine{\ \ \ \ vulkan\_swapchain\_support\_info\ swapchain\_support;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ graphics\_queue\_index;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ present\_queue\_index;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ transfer\_queue\_index;}
+\DoxyCodeLine{\ \ \ \ VkQueue\ graphics\_queue;}
+\DoxyCodeLine{\ \ \ \ VkQueue\ present\_queue;}
+\DoxyCodeLine{\ \ \ \ VkQueue\ transfer\_queue;}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceProperties\ properties;}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceFeatures\ features;}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceMemoryProperties\ memory;}
+\DoxyCodeLine{\ \ \ \ VkFormat\ depth\_format;}
+\DoxyCodeLine{\}\ vulkan\_device;}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md68}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+swapchain$<$/tt$>$}{<tt>vulkan\_swapchain</tt>}}\label{index_autotoc_md68}
+Manages images and depth buffer\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_swapchain\ \{}
+\DoxyCodeLine{\ \ \ \ VkSurfaceFormatKHR\ image\_format;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ max\_frames\_in\_flight;}
+\DoxyCodeLine{\ \ \ \ VkSwapchainKHR\ handle;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ image\_count;}
+\DoxyCodeLine{\ \ \ \ VkImage*\ images;}
+\DoxyCodeLine{\ \ \ \ VkImageView*\ views;}
+\DoxyCodeLine{\ \ \ \ vulkan\_image\ depth\_attachment;}
+\DoxyCodeLine{\}\ vulkan\_swapchain;}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md69}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+renderpass$<$/tt$>$}{<tt>vulkan\_renderpass</tt>}}\label{index_autotoc_md69}
+Defines clear values and viewport settings\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvulkan__renderpass}{vulkan\_renderpass}}\ \{}
+\DoxyCodeLine{\ \ \ \ VkRenderPass\ \mbox{\hyperlink{structvulkan__renderpass_ab086fa086505fa7a9e860e324dc68f5b}{handle}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structvulkan__renderpass_a7ff7a909a9153c8848a221c765eee954}{clear\_r}},\ \mbox{\hyperlink{structvulkan__renderpass_a750be7870553a59a1cebc6505354563d}{clear\_g}},\ \mbox{\hyperlink{structvulkan__renderpass_a68af16155e19b65a0e49aba4c2957bd3}{clear\_b}},\ \mbox{\hyperlink{structvulkan__renderpass_a5857772d148834b35954490412d014d7}{clear\_a}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structvulkan__renderpass_a524d8f3d1ede18a441d48c10c992dff8}{clear\_depth}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ \mbox{\hyperlink{structvulkan__renderpass_a7af6e1effbf495e5427e994678599f16}{clear\_stencil}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structvulkan__renderpass_a0f944cef3224e0ccd3b727ece2b79532}{viewport\_x}},\ \mbox{\hyperlink{structvulkan__renderpass_a7aefd6ec34d094b74969d71e5ec62c32}{viewport\_y}},\ \mbox{\hyperlink{structvulkan__renderpass_ac96d8cd4713a4b75fc05a6539def51bb}{viewport\_w}},\ \mbox{\hyperlink{structvulkan__renderpass_a548be04776e65db7b966e137fbb782f5}{viewport\_h}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structvulkan__renderpass_a4bc139bf2230ce48e49723ca64ca1038}{scissor\_x}},\ \mbox{\hyperlink{structvulkan__renderpass_a7d75a395ba3e2a919aad703dd67c2b69}{scissor\_y}},\ \mbox{\hyperlink{structvulkan__renderpass_a5761c21a25c7e812b39e8a9aaaa8284e}{scissor\_w}},\ \mbox{\hyperlink{structvulkan__renderpass_a6a9d8f69073843dd6cc51d14d9b71f41}{scissor\_h}};}
+\DoxyCodeLine{\}\ \mbox{\hyperlink{structvulkan__renderpass}{vulkan\_renderpass}};}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md71}{}\doxysubsection{\texorpdfstring{💡 Why All This Is Needed}{💡 Why All This Is Needed}}\label{index_autotoc_md71}
+Vulkan is explicit by design. Every operation must be described precisely. Here\textquotesingle{}s why each part matters\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Component   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Component   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endhead
+{\bfseries{Instance}}   &Connects app to Vulkan driver    \\\cline{1-2}
+{\bfseries{Surface}}   &Links window to GPU output    \\\cline{1-2}
+{\bfseries{Physical Device}}   &Represents the actual GPU    \\\cline{1-2}
+{\bfseries{Logical Device}}   &Interface to the GPU    \\\cline{1-2}
+{\bfseries{Queues}}   &Workers for graphics/present/transfer    \\\cline{1-2}
+{\bfseries{Swapchain}}   &Manages sequence of renderable images    \\\cline{1-2}
+{\bfseries{Images}}   &Raw GPU memory to draw into    \\\cline{1-2}
+{\bfseries{Image Views}}   &Define how to read/write those images    \\\cline{1-2}
+{\bfseries{Render Pass}}   &Defines rendering rules (clear/store ops, layout)    \\\cline{1-2}
+{\bfseries{Framebuffers}}   &Combine images into something you can draw into    \\\cline{1-2}
+{\bfseries{Command Buffers}}   &Store GPU commands to execute later   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md73}{}\doxysubsection{\texorpdfstring{🧱 Summary Table}{🧱 Summary Table}}\label{index_autotoc_md73}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Responsibility    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Responsibility    }\\\cline{1-2}
+\endhead
+{\ttfamily \doxylink{vulkan__backend_8c_a0b90ec94f78aae6814140d684323d8d2}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}   &Creates instance, surface, and starts device setup    \\\cline{1-2}
+{\ttfamily \doxylink{vulkan__device_8c_abb07eb6d710c4e98364b57e42e4af4ac}{vulkan\+\_\+device\+\_\+create()}}   &Selects physical device, creates logical device    \\\cline{1-2}
+{\ttfamily \doxylink{vulkan__device_8c_ac4eb42eebcc937d35197f1b899668021}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}   &Queries device capabilities for swapchain    \\\cline{1-2}
+{\ttfamily \doxylink{vulkan__swapchain_8c_a3385e045032018c37ee427c2caa82bfb}{vulkan\+\_\+swapchain\+\_\+create()}}   &Initializes the swapchain and image views    \\\cline{1-2}
+{\ttfamily \doxylink{vulkan__device_8c_a4af4291b3e9e0fc739c88bde97d74693}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format()}}   &Finds a usable depth format    \\\cline{1-2}
+{\ttfamily \doxylink{vulkan__renderpass_8h_a6cb37ba96525608948661a9a41a15506}{vulkan\+\_\+renderpass\+\_\+create()}}   &Sets up how we render    \\\cline{1-2}
+{\ttfamily vulkan\+\_\+command\+\_\+buffer\+\_\+begin()}   &Starts recording draw commands    \\\cline{1-2}
+{\ttfamily \doxylink{vulkan__swapchain_8c_a401617aff019b05a923dcda96f83c958}{vulkan\+\_\+swapchain\+\_\+present()}}   &Presents the final image to the screen   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md75}{}\doxysubsection{\texorpdfstring{🧪 Bonus\+: Sample Code for Acquiring an Image}{🧪 Bonus: Sample Code for Acquiring an Image}}\label{index_autotoc_md75}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{vulkan__swapchain_8c_a559f69815dfb6ccb3a6776516d9025b7}{vulkan\_swapchain\_acquire\_next\_image\_index}}(...)\ \{}
+\DoxyCodeLine{\ \ \ \ VkResult\ result\ =\ vkAcquireNextImageKHR(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ swapchain-\/>handle,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ timeout\_ns,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ image\_available\_semaphore,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fence,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ out\_image\_index);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ VK\_ERROR\_OUT\_OF\_DATE\_KHR)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__swapchain_8c_a37945527d25893e83ecde0d83f11b550}{vulkan\_swapchain\_recreate}}(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ width,\ height,\ swapchain);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ !=\ VK\_SUCCESS\ \&\&\ result\ !=\ VK\_SUBOPTIMAL\_KHR)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Failed\ to\ acquire\ swapchain\ image!"{}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+This function gets the next image from the swapchain — and triggers recreation if needed.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md77}{}\doxysubsection{\texorpdfstring{🚫 Common Errors and Fixes}{🚫 Common Errors and Fixes}}\label{index_autotoc_md77}
+\hypertarget{index_autotoc_md78}{}\doxysubsubsection{\texorpdfstring{❌ $<$tt$>$\+VK\+\_\+\+DEBUG\+\_\+\+UTILS\+\_\+\+MESSAGE\+\_\+\+SEVERITY\+\_\+\+WARNING\+\_\+\+EXT$<$/tt$>$\+: No cache file}{❌ <tt>VK\_DEBUG\_UTILS\_MESSAGE\_SEVERITY\_WARNING\_EXT</tt>: No cache file}}\label{index_autotoc_md78}
+Not critical — just means the shader cache doesn\textquotesingle{}t exist yet.
+
+\DoxyHorRuler{0}
  

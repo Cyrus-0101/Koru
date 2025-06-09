@@ -1,14 +1,22 @@
 var searchData=
 [
-  ['game_0',['game',['../structgame.html',1,'game'],['../game__types_8h.html#a6b088197c03368f264f33c989d4f271b',1,'game:&#160;game_types.h']]],
-  ['game_2ec_1',['game.c',['../game_8c.html',1,'']]],
-  ['game_2eh_2',['game.h',['../game_8h.html',1,'']]],
-  ['game_5finitialize_3',['game_initialize',['../game_8c.html#ab56d8511d5b55e40d88999e59fe8084e',1,'game_initialize(game *game_inst):&#160;game.c'],['../game_8h.html#ab56d8511d5b55e40d88999e59fe8084e',1,'game_initialize(game *game_inst):&#160;game.c']]],
-  ['game_5finst_4',['game_inst',['../structapplication__state.html#ae224fcec4853d590c4068314f75196c2',1,'application_state']]],
-  ['game_5fon_5fresize_5',['game_on_resize',['../game_8c.html#a5b4ce7177edb36b28a89471589432d17',1,'game_on_resize(game *game_inst, u32 width, u32 height):&#160;game.c'],['../game_8h.html#a5b4ce7177edb36b28a89471589432d17',1,'game_on_resize(game *game_inst, u32 width, u32 height):&#160;game.c']]],
-  ['game_5frender_6',['game_render',['../game_8c.html#aaa5f574e90e6577a78fbe8f01902525b',1,'game_render(game *game_inst, f32 delta_time):&#160;game.c'],['../game_8h.html#aaa5f574e90e6577a78fbe8f01902525b',1,'game_render(game *game_inst, f32 delta_time):&#160;game.c']]],
-  ['game_5fstate_7',['game_state',['../structgame__state.html',1,'game_state'],['../game_8h.html#ad5eb7fa5077146cd89323dc58e67621d',1,'game_state:&#160;game.h']]],
-  ['game_5ftypes_2eh_8',['game_types.h',['../game__types_8h.html',1,'']]],
-  ['game_5fupdate_9',['game_update',['../game_8c.html#a1a612ae5a139848e80e1f7ddec49fdcf',1,'game_update(game *game_inst, f32 delta_time):&#160;game.c'],['../game_8h.html#a1a612ae5a139848e80e1f7ddec49fdcf',1,'game_update(game *game_inst, f32 delta_time):&#160;game.c']]],
-  ['get_5fmemory_5fusage_5fstr_10',['get_memory_usage_str',['../kmemory_8c.html#a952570f1b67855783413d2a0d4b0503a',1,'get_memory_usage_str():&#160;kmemory.c'],['../kmemory_8h.html#afab51208fe57736ae8ff62918c8c3e69',1,'get_memory_usage_str():&#160;kmemory.c']]]
+  ['acquiring_20an_20image_0',['🧪 Bonus: Sample Code for Acquiring an Image',['../index.html#autotoc_md75',1,'']]],
+  ['all_20this_20is_20needed_1',['💡 Why All This Is Needed',['../index.html#autotoc_md71',1,'']]],
+  ['an_20image_2',['🧪 Bonus: Sample Code for Acquiring an Image',['../index.html#autotoc_md75',1,'']]],
+  ['and_20fixes_3',['🚫 Common Errors and Fixes',['../index.html#autotoc_md77',1,'']]],
+  ['and_20submission_4',['12. 🗂 Command Buffers and Submission',['../index.html#autotoc_md61',1,'']]],
+  ['app_5fconfig_5',['app_config',['../structgame.html#a12c0bdd534b736ca685c7ef91b17c80d',1,'game']]],
+  ['app_5fstate_6',['app_state',['../application_8c.html#a07966d6dab79f2c8568f69a986ae8e68',1,'application.c']]],
+  ['application_20layer_20strong_7',['4. &lt;strong&gt;Application Layer&lt;/strong&gt;',['../index.html#autotoc_md11',1,'']]],
+  ['application_2ec_8',['application.c',['../application_8c.html',1,'']]],
+  ['application_2eh_9',['application.h',['../application_8h.html',1,'']]],
+  ['application_5fconfig_10',['application_config',['../application_8h.html#a0d5601d102f2aa559126417368531828',1,'application_config:&#160;application.h'],['../structapplication__config.html',1,'application_config']]],
+  ['application_5fcreate_11',['application_create',['../application_8c.html#af0ccecbeef900f30b0b734eb020574ef',1,'application_create(game *game_inst):&#160;application.c'],['../application_8h.html#aa05477b1f7e65b39439a7bacf89418d8',1,'application_create(struct game *game_inst):&#160;application.c']]],
+  ['application_5fon_5fevent_12',['application_on_event',['../application_8c.html#a464af30d5e798df5a25d3c211d5c120f',1,'application.c']]],
+  ['application_5fon_5fkey_13',['application_on_key',['../application_8c.html#a193a750e12452924346788eb62a3a327',1,'application.c']]],
+  ['application_5frun_14',['application_run',['../application_8h.html#a08c8575858e12aa5260a1cc0101df8bd',1,'application_run():&#160;application.c'],['../application_8c.html#a08c8575858e12aa5260a1cc0101df8bd',1,'application_run():&#160;application.c']]],
+  ['application_5fstate_15',['application_state',['../application_8c.html#a25603a9a2e5d3bf9c73d2bd2c3428655',1,'application_state:&#160;application.c'],['../structapplication__state.html',1,'application_state']]],
+  ['architecture_16',['🖼 Architecture',['../index.html#autotoc_md7',1,'']]],
+  ['architecture_20render_20layer_17',['📦 High-Level Architecture (Render Layer)',['../index.html#autotoc_md35',1,'']]],
+  ['asserts_2eh_18',['asserts.h',['../asserts_8h.html',1,'']]]
 ];

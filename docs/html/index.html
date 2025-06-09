@@ -265,7 +265,7 @@ Planned Features</h2>
 </table>
 <h2><a class="anchor" id="autotoc_md22"></a>
 Linux</h2>
-<p>Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run your engine)</p>
+<p>Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run the engine)</p>
 <div class="fragment"><div class="line"># Give execution permissions</div>
 <div class="line">chmod +x build-all.sh</div>
 <div class="line"> </div>
@@ -352,11 +352,692 @@ Windows</h2>
 <div class="line">- ✅ A **Contribution Guide** (`CONTRIBUTING.md`)</div>
 <div class="line">- ✅ A **Code of Conduct** (`CODE_OF_CONDUCT.md`)</div>
 <div class="line">- ✅ GitHub Actions for CI builds (optional)</div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md31"></a>
+🎮 Koru Engine – Rendering System (Vulkan)</h1>
+<blockquote class="doxtable">
+<p>&zwj;<em>A deep dive into how Koru sets up its Vulkan-based rendering system — from instance creation to frame submission.</em> </p>
+</blockquote>
+<p>Koru is a <b>low-level game engine</b> written in C99 that uses the <b>Vulkan graphics API</b> for rendering. This document explains the <b>entire rendering pipeline setup</b> used in Koru, including:</p><ul>
+<li>Instance creation</li>
+<li>Physical device selection</li>
+<li>Logical device creation</li>
+<li>Surface &amp; swapchain setup</li>
+<li>Render passes</li>
+<li>Framebuffers</li>
+<li>Command buffers</li>
+</ul>
+<p>This guide assumes some basic knowledge of C and Vulkan concepts. If you're new to Vulkan, this will help understand what’s happening behind the scenes as you run the testbed.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md33"></a>
+🧠 Why Use Vulkan?</h2>
+<p>Vulkan gives developers <b>explicit control over GPU operations</b>. It allows fine-grained access to queues, memory, and rendering pipelines — which is great for performance, but comes at the cost of complexity.</p>
+<p>Koru abstracts much of that complexity using a <b>modular architecture</b>, allowing you to build a rendering system step-by-step without needing to manage everything manually every time.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md35"></a>
+📦 High-Level Architecture (Render Layer)</h2>
+<div class="fragment"><div class="line">+------------------+</div>
+<div class="line">|   Application    |</div>
+<div class="line">|     Logic        |</div>
+<div class="line">|  (game.c)        |</div>
+<div class="line">+------------------+</div>
+<div class="line">         |</div>
+<div class="line">         v</div>
+<div class="line">+------------------+</div>
+<div class="line">|   Renderer       |</div>
+<div class="line">|   Frontend       |</div>
+<div class="line">| (renderer_frontend.h/c) |</div>
+<div class="line">+------------------+</div>
+<div class="line">         |</div>
+<div class="line">         v</div>
+<div class="line">+------------------+</div>
+<div class="line">|   Platform       |</div>
+<div class="line">|   Abstraction    |</div>
+<div class="line">| (platform_linux.c)|</div>
+<div class="line">+------------------+</div>
+<div class="line">         |</div>
+<div class="line">         v</div>
+<div class="line">+------------------+</div>
+<div class="line">|   Vulkan         |</div>
+<div class="line">|   Device         |</div>
+<div class="line">| (vulkan_device.c/h) |</div>
+<div class="line">+------------------+</div>
+<div class="line">         |</div>
+<div class="line">         v</div>
+<div class="line">+------------------+</div>
+<div class="line">|   Swapchain      |</div>
+<div class="line">|   Management     |</div>
+<div class="line">| (vulkan_swapchain.c/h) |</div>
+<div class="line">+------------------+</div>
+<div class="line">         |</div>
+<div class="line">         v</div>
+<div class="line">+------------------+</div>
+<div class="line">|   Render Pass /  |</div>
+<div class="line">|   Framebuffer    |</div>
+<div class="line">| (vulkan_renderpass.c/h) |</div>
+<div class="line">+------------------+</div>
+<div class="line">         |</div>
+<div class="line">         v</div>
+<div class="line">+------------------+</div>
+<div class="line">|   Image          |</div>
+<div class="line">|   Management     |</div>
+<div class="line">| (vulkan_image.c/h) |</div>
+<div class="line">+------------------+</div>
+<div class="line">         |</div>
+<div class="line">         v</div>
+<div class="line">+------------------+</div>
+<div class="line">|   Command Buffer |</div>
+<div class="line">|   Submission     |</div>
+<div class="line">| (renderer_frontend.c) |</div>
+<div class="line">+------------------+</div>
+</div><!-- fragment --><p>This shows how each module fits into the overall rendering flow.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md37"></a>
+🛠️ The Full Rendering Setup Process</h2>
+<p>Let’s walk through <b>each stage of the rendering setup process</b>, with real code examples from the engine.</p>
+<hr  />
+<h3><a class="anchor" id="autotoc_md39"></a>
+1. 🧱 Create Vulkan Instance</h3>
+<p>The first thing to do is creating a <b>VkInstance</b> — this connects the app to the Vulkan library.</p>
+<div class="fragment"><div class="line"><span class="comment">// From vulkan_renderer_backend_initialize()</span></div>
+<div class="line">VkApplicationInfo app_info = {VK_STRUCTURE_TYPE_APPLICATION_INFO};</div>
+<div class="line">app_info.apiVersion = VK_MAKE_API_VERSION(0, 1, 4, 0);</div>
+<div class="line">app_info.pApplicationName = application_name;</div>
+<div class="line">app_info.applicationVersion = VK_MAKE_API_VERSION(0, 0, 0, 1);</div>
+<div class="line">app_info.pEngineName = <span class="stringliteral">&quot;Koru Engine&quot;</span>;</div>
+<div class="line">app_info.engineVersion = VK_MAKE_API_VERSION(0, 0, 0, 1);</div>
+<div class="line"> </div>
+<div class="line">VkInstanceCreateInfo create_info = {VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO};</div>
+<div class="line">create_info.pApplicationInfo = &amp;app_info;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span>** required_extensions = <a class="code hl_define" href="darray_8h.html#ab9d093e09b642e0d480a7ae82bad3af5">darray_create</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>*);</div>
+<div class="line"><a class="code hl_define" href="darray_8h.html#a7ad89931e6589fa09b83ea99de2b32e6">darray_push</a>(required_extensions, &amp;VK_KHR_SURFACE_EXTENSION_NAME);</div>
+<div class="line"><a class="code hl_function" href="vulkan__platform_8h.html#ac6f33d791e5445db00300cfd71d88702">platform_get_required_extension_names</a>(&amp;required_extensions);</div>
+<div class="line"> </div>
+<div class="line">create_info.enabledExtensionCount = <a class="code hl_define" href="darray_8h.html#aa556263c163ffb9f29b40b29b7b25165">darray_length</a>(required_extensions);</div>
+<div class="line">create_info.ppEnabledExtensionNames = required_extensions;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Enable validation layers if _DEBUG is defined</span></div>
+<div class="line"><span class="preprocessor">#if defined(_DEBUG)</span></div>
+<div class="line">    create_info.enabledLayerCount = required_validation_layer_count;</div>
+<div class="line">    create_info.ppEnabledLayerNames = required_validation_layer_names;</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"> </div>
+<div class="line">VK_CHECK(vkCreateInstance(&amp;create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.allocator, &amp;<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.instance));</div>
+<div class="ttc" id="adarray_8h_html_a7ad89931e6589fa09b83ea99de2b32e6"><div class="ttname"><a href="darray_8h.html#a7ad89931e6589fa09b83ea99de2b32e6">darray_push</a></div><div class="ttdeci">#define darray_push(array, value)</div><div class="ttdoc">Adds an element to the end of the array.</div><div class="ttdef"><b>Definition</b> <a href="darray_8h_source.html#l00182">darray.h:182</a></div></div>
+<div class="ttc" id="adarray_8h_html_aa556263c163ffb9f29b40b29b7b25165"><div class="ttname"><a href="darray_8h.html#aa556263c163ffb9f29b40b29b7b25165">darray_length</a></div><div class="ttdeci">#define darray_length(array)</div><div class="ttdoc">Gets the current length (number of elements) in the array.</div><div class="ttdef"><b>Definition</b> <a href="darray_8h_source.html#l00258">darray.h:258</a></div></div>
+<div class="ttc" id="adarray_8h_html_ab9d093e09b642e0d480a7ae82bad3af5"><div class="ttname"><a href="darray_8h.html#ab9d093e09b642e0d480a7ae82bad3af5">darray_create</a></div><div class="ttdeci">#define darray_create(type)</div><div class="ttdoc">Creates a dynamic array with default capacity for a specific type.</div><div class="ttdef"><b>Definition</b> <a href="darray_8h_source.html#l00148">darray.h:148</a></div></div>
+<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00020">vulkan_backend.c:20</a></div></div>
+<div class="ttc" id="avulkan__platform_8h_html_ac6f33d791e5445db00300cfd71d88702"><div class="ttname"><a href="vulkan__platform_8h.html#ac6f33d791e5445db00300cfd71d88702">platform_get_required_extension_names</a></div><div class="ttdeci">void platform_get_required_extension_names(const char ***names_darray)</div><div class="ttdoc">Appends the names of required Vulkan instance extensions for the current platform.</div></div>
+</div><!-- fragment --><p>✅ This creates the <b>main connection to Vulkan</b>, enabling extensions and validation layers.</p>
+<hr  />
+<h3><a class="anchor" id="autotoc_md41"></a>
+2. 🖥 Create Window Surface</h3>
+<p>Next, to create a <b>surface</b> — this is what connects the window to the GPU.</p>
+<p>In Linux:</p>
+<div class="fragment"><div class="line"><span class="comment">// platform_linux.c</span></div>
+<div class="line">xcb_intern_atom_reply_t* wm_delete_reply = xcb_intern_atom_reply(...);</div>
+<div class="line"><a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;wm_delete_win = wm_delete_reply-&gt;atom;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Create surface</span></div>
+<div class="line">VkXcbSurfaceCreateInfoKHR surface_create_info = {VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR};</div>
+<div class="line">surface_create_info.connection = <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;connection;</div>
+<div class="line">surface_create_info.window = <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;window;</div>
+<div class="line"> </div>
+<div class="line">vkCreateXcbSurfaceKHR(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;instance, &amp;surface_create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;surface);</div>
+<div class="ttc" id="aevent_8c_html_acfc52e8e20887a09d8db0da0067c76e5"><div class="ttname"><a href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a></div><div class="ttdeci">static event_system_state state</div><div class="ttdoc">Static global instance of the event system state.</div><div class="ttdef"><b>Definition</b> <a href="event_8c_source.html#l00074">event.c:74</a></div></div>
+</div><!-- fragment --><p>In Windows: The engine uses <code>vkCreateWin32SurfaceKHR()</code> instead.</p>
+<p>✅ A surface is essential because it defines where rendered frames go usually the screen or a window.</p>
+<hr  />
+<h3><a class="anchor" id="autotoc_md43"></a>
+3. 🔍 Query Physical Devices</h3>
+<p>Once an instance and a surface are ready, query available GPUs:</p>
+<div class="fragment"><div class="line"><span class="comment">// vulkan_device.c</span></div>
+<div class="line"><a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> physical_device_count = 0;</div>
+<div class="line">VK_CHECK(vkEnumeratePhysicalDevices(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.physical_device, &amp;physical_device_count, 0));</div>
+<div class="line"> </div>
+<div class="line">VkPhysicalDevice physical_devices[physical_device_count];</div>
+<div class="line">VK_CHECK(vkEnumeratePhysicalDevices(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;instance, &amp;physical_device_count, physical_devices));</div>
+<div class="ttc" id="adefines_8h_html_a10e94b422ef0c20dcdec20d31a1f5049"><div class="ttname"><a href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a></div><div class="ttdeci">unsigned int u32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00023">defines.h:23</a></div></div>
+</div><!-- fragment --><p>Then select one that meets requirements:</p>
+<div class="fragment"><div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> i = 0; i &lt; physical_device_count; ++i) {</div>
+<div class="line">    VkPhysicalDeviceProperties properties;</div>
+<div class="line">    vkGetPhysicalDeviceProperties(physical_devices[i], &amp;properties);</div>
+<div class="line"> </div>
+<div class="line">    VkPhysicalDeviceFeatures features;</div>
+<div class="line">    vkGetPhysicalDeviceFeatures(physical_devices[i], &amp;features);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Check queue family support</span></div>
+<div class="line">    <a class="code hl_struct" href="structvulkan__physical__device__queue__family__info.html">vulkan_physical_device_queue_family_info</a> queue_info = {};</div>
+<div class="line">    vulkan_swapchain_support_info swapchain_support = {};</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> result = <a class="code hl_function" href="vulkan__device_8c.html#aa53d88ed2ed351537ad6b3f6ff109f7c">physical_device_meets_requirements</a>(</div>
+<div class="line">        physical_devices[i],</div>
+<div class="line">        <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;surface,</div>
+<div class="line">        &amp;properties,</div>
+<div class="line">        &amp;features,</div>
+<div class="line">        &amp;requirements,</div>
+<div class="line">        &amp;queue_info,</div>
+<div class="line">        &amp;swapchain_support);</div>
+<div class="line">}</div>
+<div class="ttc" id="adefines_8h_html_a7415f24c35cb3e16a79f143c5527fdfa"><div class="ttname"><a href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a></div><div class="ttdeci">char b8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00055">defines.h:55</a></div></div>
+<div class="ttc" id="astructvulkan__physical__device__queue__family__info_html"><div class="ttname"><a href="structvulkan__physical__device__queue__family__info.html">vulkan_physical_device_queue_family_info</a></div><div class="ttdoc">Stores indices of queue families for a physical device.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00072">vulkan_device.c:72</a></div></div>
+<div class="ttc" id="avulkan__device_8c_html_aa53d88ed2ed351537ad6b3f6ff109f7c"><div class="ttname"><a href="vulkan__device_8c.html#aa53d88ed2ed351537ad6b3f6ff109f7c">physical_device_meets_requirements</a></div><div class="ttdeci">b8 physical_device_meets_requirements(VkPhysicalDevice device, VkSurfaceKHR surface, const VkPhysicalDeviceProperties *properties, const VkPhysicalDeviceFeatures *features, const vulkan_physical_device_requirements *requirements, vulkan_physical_device_queue_family_info *out_queue_family_info, vulkan_swapchain_support_info *out_swapchain_support)</div><div class="ttdoc">Checks whether the given physical device meets all specified requirements.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00471">vulkan_device.c:471</a></div></div>
+</div><!-- fragment --><p>🔍 Requirements include:</p><ul>
+<li>Graphics/Compute/Present/Transfer queues</li>
+<li>Extensions like <code>VK_KHR_SWAPCHAIN_EXTENSION_NAME</code></li>
+<li>Features like <code>samplerAnisotropy</code></li>
+<li>Prefer discrete GPU (optional)</li>
+</ul>
+<hr  />
+<h3><a class="anchor" id="autotoc_md45"></a>
+4. 🔄 Create Logical Device</h3>
+<p>After selecting a suitable physical device, create a <b>logical device</b> to interface with the GPU.</p>
+<div class="fragment"><div class="line"><span class="comment">// vulkan_device.c</span></div>
+<div class="line"><a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> present_shares_graphics_queue = (<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue_index == <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.present_queue_index);</div>
+<div class="line"><a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> transfer_shares_graphics_queue = (<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue_index == <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.transfer_queue_index);</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> index_count = 1;</div>
+<div class="line"><span class="keywordflow">if</span> (!present_shares_graphics_queue) index_count++;</div>
+<div class="line"><span class="keywordflow">if</span> (!transfer_shares_graphics_queue) index_count++;</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> indices[index_count];</div>
+<div class="line">indices[0] = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue_index;</div>
+<div class="line">...</div>
+</div><!-- fragment --><p>Define the queues as needed:</p>
+<div class="fragment"><div class="line">VkDeviceQueueCreateInfo queue_create_infos[index_count];</div>
+<div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> i = 0; i &lt; index_count; ++i) {</div>
+<div class="line">    queue_create_infos[i].sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;</div>
+<div class="line">    queue_create_infos[i].queueFamilyIndex = indices[i];</div>
+<div class="line">    queue_create_infos[i].queueCount = 1;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> queue_priority = 1.0f;</div>
+<div class="line">    queue_create_infos[i].pQueuePriorities = &amp;queue_priority;</div>
+<div class="line">}</div>
+<div class="ttc" id="adefines_8h_html_a5f6906312a689f27d70e9d086649d3fd"><div class="ttname"><a href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a></div><div class="ttdeci">float f32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00045">defines.h:45</a></div></div>
+</div><!-- fragment --><p>Finally, create the logical device:</p>
+<div class="fragment"><div class="line">VkDeviceCreateInfo device_create_info = {VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO};</div>
+<div class="line">device_create_info.queueCreateInfoCount = index_count;</div>
+<div class="line">device_create_info.pQueueCreateInfos = queue_create_infos;</div>
+<div class="line">device_create_info.pEnabledFeatures = &amp;device_features;</div>
+<div class="line"> </div>
+<div class="line">VK_CHECK(vkCreateDevice(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.physical_device, &amp;device_create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device));</div>
+</div><!-- fragment --><p>✅ This creates a way to submit commands to the GPU.</p>
+<hr  />
+<h3><a class="anchor" id="autotoc_md47"></a>
+5. ⏱ Get Queues</h3>
+<p>Once the device is created, get handles to the actual queues:</p>
+<div class="fragment"><div class="line">vkGetDeviceQueue(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue_index, 0, &amp;<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue);</div>
+<div class="line">vkGetDeviceQueue(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.present_queue_index, 0, &amp;<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.present_queue);</div>
+</div><!-- fragment --><p>These are used later to:</p><ul>
+<li>Submit draw commands (<code>graphics_queue</code>)</li>
+<li>Present frames (<code>present_queue</code>)</li>
+<li>Copy data (<code>transfer_queue</code>)</li>
+</ul>
+<hr  />
+<h3><a class="anchor" id="autotoc_md49"></a>
+6. 🔄 Query Swapchain Support</h3>
+<p>Before creating a swapchain, check what formats and modes are supported:</p>
+<div class="fragment"><div class="line"><span class="comment">// vulkan_device.c</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__device_8c.html#ac4eb42eebcc937d35197f1b899668021">vulkan_device_query_swapchain_support</a>(...) {</div>
+<div class="line">    vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &amp;out_support-&gt;capabilities);</div>
+<div class="line">    vkGetPhysicalDeviceSurfaceFormatsKHR(device, surface, &amp;out_support-&gt;format_count, 0);</div>
+<div class="line">    vkGetPhysicalDeviceSurfacePresentModesKHR(device, surface, &amp;out_support-&gt;present_mode_count, 0);</div>
+<div class="line">}</div>
+<div class="ttc" id="avulkan__device_8c_html_ac4eb42eebcc937d35197f1b899668021"><div class="ttname"><a href="vulkan__device_8c.html#ac4eb42eebcc937d35197f1b899668021">vulkan_device_query_swapchain_support</a></div><div class="ttdeci">void vulkan_device_query_swapchain_support(VkPhysicalDevice physical_device, VkSurfaceKHR surface, vulkan_swapchain_support_info *out_support_info)</div><div class="ttdoc">Queries swapchain support details for a given physical device and surface.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00286">vulkan_device.c:286</a></div></div>
+</div><!-- fragment --><p>This helps choose the best image format and presentation mode.</p>
+<hr  />
+<h3><a class="anchor" id="autotoc_md51"></a>
+7. 🔁 Create Swapchain</h3>
+<p>Now create the swapchain based on what the device supports:</p>
+<div class="fragment"><div class="line"><span class="comment">// vulkan_swapchain.c</span></div>
+<div class="line">VkSwapchainCreateInfoKHR create_info = {VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR};</div>
+<div class="line">create_info.surface = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;surface;</div>
+<div class="line">create_info.minImageCount = image_count;</div>
+<div class="line">create_info.imageFormat = swapchain-&gt;image_format.format;</div>
+<div class="line">create_info.imageExtent = swapchain_extent;</div>
+<div class="line">create_info.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue_index != <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.present_queue_index) {</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> queueFamilyIndices[] = {</div>
+<div class="line">        (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a>)<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue_index,</div>
+<div class="line">        (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a>)<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.present_queue_index};</div>
+<div class="line"> </div>
+<div class="line">    create_info.imageSharingMode = VK_SHARING_MODE_CONCURRENT;</div>
+<div class="line">    create_info.queueFamilyIndexCount = 2;</div>
+<div class="line">    create_info.pQueueFamilyIndices = queueFamilyIndices;</div>
+<div class="line">} <span class="keywordflow">else</span> {</div>
+<div class="line">    create_info.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">VK_CHECK(vkCreateSwapchainKHR(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;swapchain-&gt;handle));</div>
+</div><!-- fragment --><p>🔄 The swapchain acts like a rotating carousel of images:</p><ul>
+<li>One is being drawn</li>
+<li>One is being displayed</li>
+<li>One is waiting to be used next</li>
+</ul>
+<p>This avoids tearing and ensures smooth rendering.</p>
+<hr  />
+<h3><a class="anchor" id="autotoc_md53"></a>
+8. 🖼 Create Image Views</h3>
+<p>Each image in the swapchain needs a <b>view</b> so the GPU can interpret it:</p>
+<div class="fragment"><div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> i = 0; i &lt; swapchain-&gt;image_count; ++i) {</div>
+<div class="line">    VkImageViewCreateInfo view_info = {VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO};</div>
+<div class="line">    view_info.image = swapchain-&gt;images[i];</div>
+<div class="line">    view_info.viewType = VK_IMAGE_VIEW_TYPE_2D;</div>
+<div class="line">    view_info.format = swapchain-&gt;image_format.format;</div>
+<div class="line">    view_info.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;</div>
+<div class="line">    view_info.subresourceRange.baseMipLevel = 0;</div>
+<div class="line">    view_info.subresourceRange.levelCount = 1;</div>
+<div class="line">    view_info.subresourceRange.baseArrayLayer = 0;</div>
+<div class="line">    view_info.layerCount = 1;</div>
+<div class="line"> </div>
+<div class="line">    VK_CHECK(vkCreateImageView(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;view_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;swapchain-&gt;views[i]));</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>🖼 Each image view wraps a raw <code>VkImage</code>, defining how it's accessed (e.g., color attachment, depth buffer).</p>
+<hr  />
+<h3><a class="anchor" id="autotoc_md55"></a>
+9. 🧊 Detect Depth Format</h3>
+<p>For depth testing, a compatible depth format is needed:</p>
+<div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> <a class="code hl_function" href="vulkan__device_8c.html#a4af4291b3e9e0fc739c88bde97d74693">vulkan_device_detect_depth_format</a>(vulkan_device* device) {</div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> candidate_count = 3;</div>
+<div class="line">    VkFormat candidates[candidate_count] = {</div>
+<div class="line">        VK_FORMAT_D32_SFLOAT,</div>
+<div class="line">        VK_FORMAT_D32_SFLOAT_S8_UINT,</div>
+<div class="line">        VK_FORMAT_D24_UNORM_S8_UINT};</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">for</span> (<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> i = 0; i &lt; candidate_count; ++i) {</div>
+<div class="line">        VkFormatProperties props;</div>
+<div class="line">        vkGetPhysicalDeviceFormatProperties(device-&gt;physical_device, candidates[i], &amp;props);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">if</span> ((props.optimalTilingFeatures &amp; VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT)) {</div>
+<div class="line">            device-&gt;depth_format = candidates[i];</div>
+<div class="line">            <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;No supported depth format found.&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line">}</div>
+<div class="ttc" id="adefines_8h_html_aa8cecfc5c5c054d2875c03e77b7be15d"><div class="ttname"><a href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a></div><div class="ttdeci">#define TRUE</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00100">defines.h:100</a></div></div>
+<div class="ttc" id="adefines_8h_html_aa93f0eb578d23995850d61f7d61c55c1"><div class="ttname"><a href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a></div><div class="ttdeci">#define FALSE</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00102">defines.h:102</a></div></div>
+<div class="ttc" id="adefines_8h_html_ad758b7a5c3f18ed79d2fcd23d9f16357"><div class="ttname"><a href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a></div><div class="ttdeci">unsigned long long u64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00026">defines.h:26</a></div></div>
+<div class="ttc" id="alogger_8h_html_a473bb2cc3b3bf3c93084eeca6cb19132"><div class="ttname"><a href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a></div><div class="ttdeci">#define KERROR(message,...)</div><div class="ttdoc">Logs an error-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00162">logger.h:162</a></div></div>
+<div class="ttc" id="avulkan__device_8c_html_a4af4291b3e9e0fc739c88bde97d74693"><div class="ttname"><a href="vulkan__device_8c.html#a4af4291b3e9e0fc739c88bde97d74693">vulkan_device_detect_depth_format</a></div><div class="ttdeci">b8 vulkan_device_detect_depth_format(vulkan_device *device)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00332">vulkan_device.c:332</a></div></div>
+</div><!-- fragment --><p>🧃 Once selected, create a depth/stencil image and its view.</p>
+<hr  />
+<h3><a class="anchor" id="autotoc_md57"></a>
+10. 🎨 Create Render Pass</h3>
+<p>The render pass defines how rendering works — what attachments to use, how they behave, and what subpasses exist.</p>
+<div class="fragment"><div class="line"><span class="comment">// vulkan_renderpass.c</span></div>
+<div class="line">VkAttachmentDescription attachments[2] = {};</div>
+<div class="line">attachments[0].format = swapchain-&gt;image_format.format;</div>
+<div class="line">attachments[0].loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;</div>
+<div class="line">attachments[0].storeOp = VK_ATTACHMENT_STORE_OP_STORE;</div>
+<div class="line">attachments[0].stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;</div>
+<div class="line">attachments[0].initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;</div>
+<div class="line">attachments[0].finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;</div>
+<div class="line"> </div>
+<div class="line">attachments[1].format = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.depth_format;</div>
+<div class="line">attachments[1].loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;</div>
+<div class="line">attachments[1].storeOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;</div>
+<div class="line">attachments[1].initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;</div>
+<div class="line">attachments[1].finalLayout = VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;</div>
+<div class="line"> </div>
+<div class="line">VkSubpassDescription subpass = {};</div>
+<div class="line">subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;</div>
+<div class="line">subpass.colorAttachmentCount = 1;</div>
+<div class="line">subpass.pColorAttachments = &amp;color_ref;</div>
+<div class="line">subpass.pDepthStencilAttachment = &amp;depth_stencil_ref;</div>
+<div class="line"> </div>
+<div class="line">VkRenderPassCreateInfo info = {};</div>
+<div class="line">info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;</div>
+<div class="line">info.attachmentCount = 2;</div>
+<div class="line">info.pAttachments = attachments;</div>
+<div class="line">info.subpassCount = 1;</div>
+<div class="line">info.pSubpasses = &amp;subpass;</div>
+<div class="line"> </div>
+<div class="line">VK_CHECK(vkCreateRenderPass(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;renderpass-&gt;handle));</div>
+</div><!-- fragment --><p>🎨 The render pass is like a <b>blueprint</b> — it tells the GPU:</p><ul>
+<li>What kind of data it will write to</li>
+<li>How to handle clearing and storing it</li>
+<li>What layout transitions happen between steps</li>
+</ul>
+<hr  />
+<h3><a class="anchor" id="autotoc_md59"></a>
+11. 🖼 Create Framebuffers</h3>
+<p>Framebuffers combine images and render passes:</p>
+<div class="fragment"><div class="line">VkFramebufferCreateInfo fb_info = {VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO};</div>
+<div class="line">fb_info.renderPass = renderpass-&gt;handle;</div>
+<div class="line">fb_info.attachmentCount = 2;</div>
+<div class="line">fb_info.pAttachments = attachments;</div>
+<div class="line">fb_info.width = width;</div>
+<div class="line">fb_info.height = height;</div>
+<div class="line">fb_info.layers = 1;</div>
+<div class="line"> </div>
+<div class="line">VK_CHECK(vkCreateFramebuffer(device, &amp;fb_info, 0, &amp;framebuffer));</div>
+</div><!-- fragment --><p>🖼 Each framebuffer links:</p><ul>
+<li>A color image from the swapchain</li>
+<li>A depth/stencil image</li>
+<li>The render pass that defines how to use them</li>
+</ul>
+<hr  />
+<h3><a class="anchor" id="autotoc_md61"></a>
+12. 🗂 Command Buffers and Submission</h3>
+<p>Command buffers store drawing commands:</p>
+<div class="fragment"><div class="line"><span class="comment">// Begin command recording</span></div>
+<div class="line">VkCommandBufferBeginInfo begin_info = {VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO};</div>
+<div class="line">vkBeginCommandBuffer(command_buffer, &amp;begin_info);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Record draw commands here...</span></div>
+<div class="line"> </div>
+<div class="line">vkEndCommandBuffer(command_buffer);</div>
+</div><!-- fragment --><p>Then submit to the GPU:</p>
+<div class="fragment"><div class="line">VkSubmitInfo submit_info = {VK_STRUCTURE_TYPE_SUBMIT_INFO};</div>
+<div class="line">submit_info.waitSemaphoreCount = 1;</div>
+<div class="line">submit_info.pWaitSemaphores = &amp;image_available_semaphore;</div>
+<div class="line">submit_info.commandBufferCount = 1;</div>
+<div class="line">submit_info.pCommandBuffers = &amp;command_buffer;</div>
+<div class="line"> </div>
+<div class="line">VK_CHECK(vkQueueSubmit(graphics_queue, 1, &amp;submit_info, fence));</div>
+</div><!-- fragment --><p>And finally present:</p>
+<div class="fragment"><div class="line">VkPresentInfoKHR present_info = {VK_STRUCTURE_TYPE_PRESENT_INFO_KHR};</div>
+<div class="line">present_info.swapchainCount = 1;</div>
+<div class="line">present_info.pSwapchains = &amp;swapchain-&gt;handle;</div>
+<div class="line">present_info.pImageIndices = &amp;image_index;</div>
+<div class="line"> </div>
+<div class="line">VkResult result = vkQueuePresentKHR(present_queue, &amp;present_info);</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md63"></a>
+🧩 Diagram: Full Rendering Flow</h2>
+<div class="fragment"><div class="line">+-------------------+</div>
+<div class="line">|   Application     |</div>
+<div class="line">|   Entry Point     |</div>
+<div class="line">| (application_run())|</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">|   Create Instance |</div>
+<div class="line">| (vkCreateInstance)|</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">|   Create Surface  |</div>
+<div class="line">| (vkCreateXcbSurfaceKHR) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Enumerate Physical|</div>
+<div class="line">| Devices           |</div>
+<div class="line">| (vkEnumeratePhysicalDevices) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Select Suitable   |</div>
+<div class="line">| Physical Device   |</div>
+<div class="line">| (select_physical_device) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Create Logical    |</div>
+<div class="line">| Device            |</div>
+<div class="line">| (vkCreateDevice)  |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Get Queue Handles |</div>
+<div class="line">| (vkGetDeviceQueue) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Query Swapchain   |</div>
+<div class="line">| Support           |</div>
+<div class="line">| (vkGetPhysicalDeviceSurface*) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Create Swapchain  |</div>
+<div class="line">| (vkCreateSwapchainKHR) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Create Image Views|</div>
+<div class="line">| (vkCreateImageView) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Detect Depth      |</div>
+<div class="line">| Format            |</div>
+<div class="line">| (vulkan_device_detect_depth_format) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Create Depth Image|</div>
+<div class="line">| (vulkan_image_create) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Create Render Pass|</div>
+<div class="line">| (vkCreateRenderPass) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Create Framebuffer|</div>
+<div class="line">| (vkCreateFramebuffer) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Begin Main Loop   |</div>
+<div class="line">| (vkAcquireNextImageKHR) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Begin Render Pass |</div>
+<div class="line">| (vkCmdBeginRenderPass) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Record Draw       |</div>
+<div class="line">| Commands          |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| End Render Pass   |</div>
+<div class="line">| (vkCmdEndRenderPass) |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Submit Command    |</div>
+<div class="line">| Buffer to GPU     |</div>
+<div class="line">| (vkQueueSubmit)   |</div>
+<div class="line">+-------------------+</div>
+<div class="line">           |</div>
+<div class="line">           v</div>
+<div class="line">+-------------------+</div>
+<div class="line">| Present Frame     |</div>
+<div class="line">| (vkQueuePresentKHR) |</div>
+<div class="line">+-------------------+</div>
+</div><!-- fragment --><p>This is the full <b>rendering loop</b> that happens every frame.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md65"></a>
+🧰 Key Structures Used</h2>
+<h3><a class="anchor" id="autotoc_md66"></a>
+&lt;tt&gt;vulkan_context&lt;/tt&gt;</h3>
+<p>Tracks global Vulkan state: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>vulkan_context {</div>
+<div class="line">    VkInstance instance;</div>
+<div class="line">    VkSurfaceKHR surface;</div>
+<div class="line">    VkDebugUtilsMessengerEXT debug_messenger;</div>
+<div class="line">    vulkan_device device;</div>
+<div class="line">    vulkan_swapchain swapchain;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> image_index;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> current_frame;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> recreating_swapchain;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> (*find_memory_index)(...);</div>
+<div class="line">} vulkan_context;</div>
+<div class="ttc" id="adefines_8h_html_a9e3ad5f8e752f01d926ce122d5a5285e"><div class="ttname"><a href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a></div><div class="ttdeci">signed int i32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00037">defines.h:37</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md67"></a>
+&lt;tt&gt;vulkan_device&lt;/tt&gt;</h3>
+<p>Holds physical/logical device and queue info: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>vulkan_device {</div>
+<div class="line">    VkPhysicalDevice physical_device;</div>
+<div class="line">    VkDevice logical_device;</div>
+<div class="line">    vulkan_swapchain_support_info swapchain_support;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> graphics_queue_index;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> present_queue_index;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> transfer_queue_index;</div>
+<div class="line">    VkQueue graphics_queue;</div>
+<div class="line">    VkQueue present_queue;</div>
+<div class="line">    VkQueue transfer_queue;</div>
+<div class="line">    VkPhysicalDeviceProperties properties;</div>
+<div class="line">    VkPhysicalDeviceFeatures features;</div>
+<div class="line">    VkPhysicalDeviceMemoryProperties memory;</div>
+<div class="line">    VkFormat depth_format;</div>
+<div class="line">} vulkan_device;</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md68"></a>
+&lt;tt&gt;vulkan_swapchain&lt;/tt&gt;</h3>
+<p>Manages images and depth buffer: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>vulkan_swapchain {</div>
+<div class="line">    VkSurfaceFormatKHR image_format;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> max_frames_in_flight;</div>
+<div class="line">    VkSwapchainKHR handle;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> image_count;</div>
+<div class="line">    VkImage* images;</div>
+<div class="line">    VkImageView* views;</div>
+<div class="line">    vulkan_image depth_attachment;</div>
+<div class="line">} vulkan_swapchain;</div>
+<div class="ttc" id="adefines_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00017">defines.h:17</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md69"></a>
+&lt;tt&gt;vulkan_renderpass&lt;/tt&gt;</h3>
+<p>Defines clear values and viewport settings: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structvulkan__renderpass.html">vulkan_renderpass</a> {</div>
+<div class="line">    VkRenderPass <a class="code hl_variable" href="structvulkan__renderpass.html#ab086fa086505fa7a9e860e324dc68f5b">handle</a>;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="code hl_variable" href="structvulkan__renderpass.html#a7ff7a909a9153c8848a221c765eee954">clear_r</a>, <a class="code hl_variable" href="structvulkan__renderpass.html#a750be7870553a59a1cebc6505354563d">clear_g</a>, <a class="code hl_variable" href="structvulkan__renderpass.html#a68af16155e19b65a0e49aba4c2957bd3">clear_b</a>, <a class="code hl_variable" href="structvulkan__renderpass.html#a5857772d148834b35954490412d014d7">clear_a</a>;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="code hl_variable" href="structvulkan__renderpass.html#a524d8f3d1ede18a441d48c10c992dff8">clear_depth</a>;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> <a class="code hl_variable" href="structvulkan__renderpass.html#a7af6e1effbf495e5427e994678599f16">clear_stencil</a>;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="code hl_variable" href="structvulkan__renderpass.html#a0f944cef3224e0ccd3b727ece2b79532">viewport_x</a>, <a class="code hl_variable" href="structvulkan__renderpass.html#a7aefd6ec34d094b74969d71e5ec62c32">viewport_y</a>, <a class="code hl_variable" href="structvulkan__renderpass.html#ac96d8cd4713a4b75fc05a6539def51bb">viewport_w</a>, <a class="code hl_variable" href="structvulkan__renderpass.html#a548be04776e65db7b966e137fbb782f5">viewport_h</a>;</div>
+<div class="line">    <a class="code hl_typedef" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="code hl_variable" href="structvulkan__renderpass.html#a4bc139bf2230ce48e49723ca64ca1038">scissor_x</a>, <a class="code hl_variable" href="structvulkan__renderpass.html#a7d75a395ba3e2a919aad703dd67c2b69">scissor_y</a>, <a class="code hl_variable" href="structvulkan__renderpass.html#a5761c21a25c7e812b39e8a9aaaa8284e">scissor_w</a>, <a class="code hl_variable" href="structvulkan__renderpass.html#a6a9d8f69073843dd6cc51d14d9b71f41">scissor_h</a>;</div>
+<div class="line">} <a class="code hl_struct" href="structvulkan__renderpass.html">vulkan_renderpass</a>;</div>
+<div class="ttc" id="astructvulkan__renderpass_html"><div class="ttname"><a href="structvulkan__renderpass.html">vulkan_renderpass</a></div><div class="ttdoc">A structure that holds all necessary data for a Vulkan render pass.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00028">vulkan_renderpass.h:28</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a0f944cef3224e0ccd3b727ece2b79532"><div class="ttname"><a href="structvulkan__renderpass.html#a0f944cef3224e0ccd3b727ece2b79532">vulkan_renderpass::viewport_x</a></div><div class="ttdeci">f32 viewport_x</div><div class="ttdoc">Viewport dimensions for this render pass.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00052">vulkan_renderpass.h:52</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a4bc139bf2230ce48e49723ca64ca1038"><div class="ttname"><a href="structvulkan__renderpass.html#a4bc139bf2230ce48e49723ca64ca1038">vulkan_renderpass::scissor_x</a></div><div class="ttdeci">f32 scissor_x</div><div class="ttdoc">Scissor rectangle for rendering bounds.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00057">vulkan_renderpass.h:57</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a524d8f3d1ede18a441d48c10c992dff8"><div class="ttname"><a href="structvulkan__renderpass.html#a524d8f3d1ede18a441d48c10c992dff8">vulkan_renderpass::clear_depth</a></div><div class="ttdeci">f32 clear_depth</div><div class="ttdoc">Clear depth value used at the start of the pass.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00042">vulkan_renderpass.h:42</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a548be04776e65db7b966e137fbb782f5"><div class="ttname"><a href="structvulkan__renderpass.html#a548be04776e65db7b966e137fbb782f5">vulkan_renderpass::viewport_h</a></div><div class="ttdeci">f32 viewport_h</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00052">vulkan_renderpass.h:52</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a5761c21a25c7e812b39e8a9aaaa8284e"><div class="ttname"><a href="structvulkan__renderpass.html#a5761c21a25c7e812b39e8a9aaaa8284e">vulkan_renderpass::scissor_w</a></div><div class="ttdeci">f32 scissor_w</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00057">vulkan_renderpass.h:57</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a5857772d148834b35954490412d014d7"><div class="ttname"><a href="structvulkan__renderpass.html#a5857772d148834b35954490412d014d7">vulkan_renderpass::clear_a</a></div><div class="ttdeci">f32 clear_a</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00037">vulkan_renderpass.h:37</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a68af16155e19b65a0e49aba4c2957bd3"><div class="ttname"><a href="structvulkan__renderpass.html#a68af16155e19b65a0e49aba4c2957bd3">vulkan_renderpass::clear_b</a></div><div class="ttdeci">f32 clear_b</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00037">vulkan_renderpass.h:37</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a6a9d8f69073843dd6cc51d14d9b71f41"><div class="ttname"><a href="structvulkan__renderpass.html#a6a9d8f69073843dd6cc51d14d9b71f41">vulkan_renderpass::scissor_h</a></div><div class="ttdeci">f32 scissor_h</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00057">vulkan_renderpass.h:57</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a750be7870553a59a1cebc6505354563d"><div class="ttname"><a href="structvulkan__renderpass.html#a750be7870553a59a1cebc6505354563d">vulkan_renderpass::clear_g</a></div><div class="ttdeci">f32 clear_g</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00037">vulkan_renderpass.h:37</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a7aefd6ec34d094b74969d71e5ec62c32"><div class="ttname"><a href="structvulkan__renderpass.html#a7aefd6ec34d094b74969d71e5ec62c32">vulkan_renderpass::viewport_y</a></div><div class="ttdeci">f32 viewport_y</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00052">vulkan_renderpass.h:52</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a7af6e1effbf495e5427e994678599f16"><div class="ttname"><a href="structvulkan__renderpass.html#a7af6e1effbf495e5427e994678599f16">vulkan_renderpass::clear_stencil</a></div><div class="ttdeci">u32 clear_stencil</div><div class="ttdoc">Clear stencil value used at the start of the pass.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00047">vulkan_renderpass.h:47</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a7d75a395ba3e2a919aad703dd67c2b69"><div class="ttname"><a href="structvulkan__renderpass.html#a7d75a395ba3e2a919aad703dd67c2b69">vulkan_renderpass::scissor_y</a></div><div class="ttdeci">f32 scissor_y</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00057">vulkan_renderpass.h:57</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_a7ff7a909a9153c8848a221c765eee954"><div class="ttname"><a href="structvulkan__renderpass.html#a7ff7a909a9153c8848a221c765eee954">vulkan_renderpass::clear_r</a></div><div class="ttdeci">f32 clear_r</div><div class="ttdoc">Clear color values (RGBA) used at the start of the pass.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00037">vulkan_renderpass.h:37</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_ab086fa086505fa7a9e860e324dc68f5b"><div class="ttname"><a href="structvulkan__renderpass.html#ab086fa086505fa7a9e860e324dc68f5b">vulkan_renderpass::handle</a></div><div class="ttdeci">VkRenderPass handle</div><div class="ttdoc">Handle to the actual render pass object.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00032">vulkan_renderpass.h:32</a></div></div>
+<div class="ttc" id="astructvulkan__renderpass_html_ac96d8cd4713a4b75fc05a6539def51bb"><div class="ttname"><a href="structvulkan__renderpass.html#ac96d8cd4713a4b75fc05a6539def51bb">vulkan_renderpass::viewport_w</a></div><div class="ttdeci">f32 viewport_w</div><div class="ttdef"><b>Definition</b> <a href="vulkan__renderpass_8h_source.html#l00052">vulkan_renderpass.h:52</a></div></div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md71"></a>
+💡 Why All This Is Needed</h2>
+<p>Vulkan is explicit by design. Every operation must be described precisely. Here's why each part matters:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Component   </th><th class="markdownTableHeadNone">Purpose    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Instance</b>   </td><td class="markdownTableBodyNone">Connects app to Vulkan driver    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Surface</b>   </td><td class="markdownTableBodyNone">Links window to GPU output    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Physical Device</b>   </td><td class="markdownTableBodyNone">Represents the actual GPU    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Logical Device</b>   </td><td class="markdownTableBodyNone">Interface to the GPU    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Queues</b>   </td><td class="markdownTableBodyNone">Workers for graphics/present/transfer    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Swapchain</b>   </td><td class="markdownTableBodyNone">Manages sequence of renderable images    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Images</b>   </td><td class="markdownTableBodyNone">Raw GPU memory to draw into    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Image Views</b>   </td><td class="markdownTableBodyNone">Define how to read/write those images    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Render Pass</b>   </td><td class="markdownTableBodyNone">Defines rendering rules (clear/store ops, layout)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Framebuffers</b>   </td><td class="markdownTableBodyNone">Combine images into something you can draw into    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Command Buffers</b>   </td><td class="markdownTableBodyNone">Store GPU commands to execute later   </td></tr>
+</table>
+<hr  />
+<h2><a class="anchor" id="autotoc_md73"></a>
+🧱 Summary Table</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Module   </th><th class="markdownTableHeadNone">Responsibility    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="vulkan__backend_8c.html#a0b90ec94f78aae6814140d684323d8d2" title="Initializes the Vulkan renderer backend.">vulkan_renderer_backend_initialize()</a></code>   </td><td class="markdownTableBodyNone">Creates instance, surface, and starts device setup    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="vulkan__device_8c.html#abb07eb6d710c4e98364b57e42e4af4ac" title="Creates and selects a suitable physical/logical Vulkan device.">vulkan_device_create()</a></code>   </td><td class="markdownTableBodyNone">Selects physical device, creates logical device    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="vulkan__device_8c.html#ac4eb42eebcc937d35197f1b899668021" title="Queries swapchain support details for a given physical device and surface.">vulkan_device_query_swapchain_support()</a></code>   </td><td class="markdownTableBodyNone">Queries device capabilities for swapchain    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="vulkan__swapchain_8c.html#a3385e045032018c37ee427c2caa82bfb" title="Creates and initializes a Vulkan swapchain for rendering.">vulkan_swapchain_create()</a></code>   </td><td class="markdownTableBodyNone">Initializes the swapchain and image views    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="vulkan__device_8c.html#a4af4291b3e9e0fc739c88bde97d74693">vulkan_device_detect_depth_format()</a></code>   </td><td class="markdownTableBodyNone">Finds a usable depth format    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="vulkan__renderpass_8h.html#a6cb37ba96525608948661a9a41a15506" title="Creates a new render pass using the provided configuration.">vulkan_renderpass_create()</a></code>   </td><td class="markdownTableBodyNone">Sets up how we render    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>vulkan_command_buffer_begin()</code>   </td><td class="markdownTableBodyNone">Starts recording draw commands    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="vulkan__swapchain_8c.html#a401617aff019b05a923dcda96f83c958" title="Presents the rendered image at the given index to the screen.">vulkan_swapchain_present()</a></code>   </td><td class="markdownTableBodyNone">Presents the final image to the screen   </td></tr>
+</table>
+<hr  />
+<h2><a class="anchor" id="autotoc_md75"></a>
+🧪 Bonus: Sample Code for Acquiring an Image</h2>
+<div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> <a class="code hl_function" href="vulkan__swapchain_8c.html#a559f69815dfb6ccb3a6776516d9025b7">vulkan_swapchain_acquire_next_image_index</a>(...) {</div>
+<div class="line">    VkResult result = vkAcquireNextImageKHR(</div>
+<div class="line">        <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device,</div>
+<div class="line">        swapchain-&gt;handle,</div>
+<div class="line">        timeout_ns,</div>
+<div class="line">        image_available_semaphore,</div>
+<div class="line">        fence,</div>
+<div class="line">        out_image_index);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> (result == VK_ERROR_OUT_OF_DATE_KHR) {</div>
+<div class="line">        <a class="code hl_function" href="vulkan__swapchain_8c.html#a37945527d25893e83ecde0d83f11b550">vulkan_swapchain_recreate</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, width, height, swapchain);</div>
+<div class="line">        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result != VK_SUCCESS &amp;&amp; result != VK_SUBOPTIMAL_KHR) {</div>
+<div class="line">        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Failed to acquire swapchain image!&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line">}</div>
+<div class="ttc" id="alogger_8h_html_a8eb60bd7b3dfc5cadc7364b06ce7bd07"><div class="ttname"><a href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a></div><div class="ttdeci">#define KFATAL(message,...)</div><div class="ttdoc">Logs a fatal-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00149">logger.h:149</a></div></div>
+<div class="ttc" id="avulkan__swapchain_8c_html_a37945527d25893e83ecde0d83f11b550"><div class="ttname"><a href="vulkan__swapchain_8c.html#a37945527d25893e83ecde0d83f11b550">vulkan_swapchain_recreate</a></div><div class="ttdeci">void vulkan_swapchain_recreate(vulkan_context *context, u32 width, u32 height, vulkan_swapchain *swapchain)</div><div class="ttdoc">Recreates the swapchain after resize or resolution change.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__swapchain_8c_source.html#l00067">vulkan_swapchain.c:67</a></div></div>
+<div class="ttc" id="avulkan__swapchain_8c_html_a559f69815dfb6ccb3a6776516d9025b7"><div class="ttname"><a href="vulkan__swapchain_8c.html#a559f69815dfb6ccb3a6776516d9025b7">vulkan_swapchain_acquire_next_image_index</a></div><div class="ttdeci">b8 vulkan_swapchain_acquire_next_image_index(vulkan_context *context, vulkan_swapchain *swapchain, u64 timeout_ns, VkSemaphore image_available_semaphore, VkFence fence, u32 *out_image_index)</div><div class="ttdoc">Acquires the index of the next available image from the swapchain.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__swapchain_8c_source.html#l00105">vulkan_swapchain.c:105</a></div></div>
+</div><!-- fragment --><p>This function gets the next image from the swapchain — and triggers recreation if needed.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md77"></a>
+🚫 Common Errors and Fixes</h2>
+<h3><a class="anchor" id="autotoc_md78"></a>
+❌ &lt;tt&gt;VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT&lt;/tt&gt;: No cache file</h3>
+<p>Not critical — just means the shader cache doesn't exist yet.</p>
+<hr  />
+ </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 2 2025 17:25:22 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 8 2025 17:39:37 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

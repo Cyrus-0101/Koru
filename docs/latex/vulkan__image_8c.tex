@@ -1,0 +1,182 @@
+\doxysection{engine/src/renderer/vulkan/vulkan\+\_\+image.c File Reference}
+\hypertarget{vulkan__image_8c}{}\label{vulkan__image_8c}\index{engine/src/renderer/vulkan/vulkan\_image.c@{engine/src/renderer/vulkan/vulkan\_image.c}}
+
+
+Implementation of Vulkan image management utilities.  
+
+
+{\ttfamily \#include "{}vulkan\+\_\+image.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan\+\_\+device.\+h"{}}\newline
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}core/logger.\+h"{}}\newline
+Include dependency graph for vulkan\+\_\+image.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vulkan__image_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{vulkan__image_8c_ae8efa06d320d8156f69f0c8352f37340}{vulkan\+\_\+image\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Image\+Type image\+\_\+type, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} width, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} height, Vk\+Format format, Vk\+Image\+Tiling tiling, Vk\+Image\+Usage\+Flags usage, Vk\+Memory\+Property\+Flags memory\+\_\+flags, \mbox{\hyperlink{defines_8h_ac6baccc379c73d4e641ef847dbb08fa2}{b32}} create\+\_\+view, Vk\+Image\+Aspect\+Flags view\+\_\+aspect\+\_\+flags, vulkan\+\_\+image \texorpdfstring{$\ast$}{*}out\+\_\+image)
+\begin{DoxyCompactList}\small\item\em Creates and allocates a new Vulkan image with the specified properties. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}{vulkan\+\_\+image\+\_\+view\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Format format, vulkan\+\_\+image \texorpdfstring{$\ast$}{*}image, Vk\+Image\+Aspect\+Flags aspect\+\_\+flags)
+\begin{DoxyCompactList}\small\item\em Creates an image view for the given image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a}{vulkan\+\_\+image\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+image \texorpdfstring{$\ast$}{*}image)
+\begin{DoxyCompactList}\small\item\em Destroys a Vulkan image and its associated resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of Vulkan image management utilities. 
+
+This module provides functions to\+:
+\begin{DoxyItemize}
+\item Create and allocate Vk\+Image objects
+\item Generate Vk\+Image\+Views for use in render passes or shaders
+\item Destroy images and release associated resources
+\end{DoxyItemize}
+
+These utilities are used throughout the engine for\+:
+\begin{DoxyItemize}
+\item Swapchain image setup
+\item Depth/stencil buffers
+\item Texture loading and management 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__image_8c_ae8efa06d320d8156f69f0c8352f37340}\label{vulkan__image_8c_ae8efa06d320d8156f69f0c8352f37340} 
+\index{vulkan\_image.c@{vulkan\_image.c}!vulkan\_image\_create@{vulkan\_image\_create}}
+\index{vulkan\_image\_create@{vulkan\_image\_create}!vulkan\_image.c@{vulkan\_image.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_image\_create()}{vulkan\_image\_create()}}
+{\footnotesize\ttfamily void vulkan\+\_\+image\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{Vk\+Image\+Type}]{image\+\_\+type,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{height,  }\item[{Vk\+Format}]{format,  }\item[{Vk\+Image\+Tiling}]{tiling,  }\item[{Vk\+Image\+Usage\+Flags}]{usage,  }\item[{Vk\+Memory\+Property\+Flags}]{memory\+\_\+flags,  }\item[{\mbox{\hyperlink{defines_8h_ac6baccc379c73d4e641ef847dbb08fa2}{b32}}}]{create\+\_\+view,  }\item[{Vk\+Image\+Aspect\+Flags}]{view\+\_\+aspect\+\_\+flags,  }\item[{vulkan\+\_\+image \texorpdfstring{$\ast$}{*}}]{out\+\_\+image }\end{DoxyParamCaption})}
+
+
+
+Creates and allocates a new Vulkan image with the specified properties. 
+
+Creates and allocates a Vulkan image with specified properties.
+
+Handles\+:
+\begin{DoxyItemize}
+\item Image creation (vk\+Create\+Image)
+\item Memory allocation and binding
+\item Optional image view creation (via vulkan\+\_\+image\+\_\+view\+\_\+create)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em image\+\_\+type} & Type of image (1D, 2D, 3D). \\
+\hline
+{\em width} & Width of the image in pixels. \\
+\hline
+{\em height} & Height of the image in pixels. \\
+\hline
+{\em format} & Pixel format (e.\+g., VK\+\_\+\+FORMAT\+\_\+\+B8\+G8\+R8\+A8\+\_\+\+UNORM). \\
+\hline
+{\em tiling} & Tiling mode\+: VK\+\_\+\+IMAGE\+\_\+\+TILING\+\_\+\+LINEAR or VK\+\_\+\+IMAGE\+\_\+\+TILING\+\_\+\+OPTIMAL. \\
+\hline
+{\em usage} & Usage flags indicating how this image will be used. \\
+\hline
+{\em memory\+\_\+flags} & Flags for memory allocation (device/local, host visible, etc.). \\
+\hline
+{\em create\+\_\+view} & Whether to automatically generate an image view. \\
+\hline
+{\em view\+\_\+aspect\+\_\+flags} & Aspect flags for image view (color, depth, etc.). \\
+\hline
+{\em out\+\_\+image} & A pointer to a vulkan\+\_\+image struct to populate. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00042}{42}} of file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00114}{vulkan\+\_\+image\+\_\+view\+\_\+create()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00186}{create()}}.
+
+\Hypertarget{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a}\label{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a} 
+\index{vulkan\_image.c@{vulkan\_image.c}!vulkan\_image\_destroy@{vulkan\_image\_destroy}}
+\index{vulkan\_image\_destroy@{vulkan\_image\_destroy}!vulkan\_image.c@{vulkan\_image.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_image\_destroy()}{vulkan\_image\_destroy()}}
+{\footnotesize\ttfamily void vulkan\+\_\+image\+\_\+destroy (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+image \texorpdfstring{$\ast$}{*}}]{image }\end{DoxyParamCaption})}
+
+
+
+Destroys a Vulkan image and its associated resources. 
+
+Cleans up\+:
+\begin{DoxyItemize}
+\item The image view (if present)
+\item Allocated memory for the image
+\item The image handle itself
+\end{DoxyItemize}
+
+Must be called before destroying the logical device.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em image} & A pointer to the vulkan\+\_\+image to destroy. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00149}{149}} of file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00336}{destroy()}}.
+
+\Hypertarget{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}\label{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41} 
+\index{vulkan\_image.c@{vulkan\_image.c}!vulkan\_image\_view\_create@{vulkan\_image\_view\_create}}
+\index{vulkan\_image\_view\_create@{vulkan\_image\_view\_create}!vulkan\_image.c@{vulkan\_image.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_image\_view\_create()}{vulkan\_image\_view\_create()}}
+{\footnotesize\ttfamily void vulkan\+\_\+image\+\_\+view\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{Vk\+Format}]{format,  }\item[{vulkan\+\_\+image \texorpdfstring{$\ast$}{*}}]{image,  }\item[{Vk\+Image\+Aspect\+Flags}]{aspect\+\_\+flags }\end{DoxyParamCaption})}
+
+
+
+Creates an image view for the given image. 
+
+Creates an image view for a given image.
+
+Image views define how the image is accessed (e.\+g., as a color attachment, sampled image, depth buffer, etc.)
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em format} & Format of the image data. \\
+\hline
+{\em image} & A pointer to the vulkan\+\_\+image object to create a view for. \\
+\hline
+{\em aspect\+\_\+flags} & Describes which part of the image is accessible through the view. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00114}{114}} of file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__image_8c_source_l00042}{vulkan\+\_\+image\+\_\+create()}}.
+
