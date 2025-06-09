@@ -55,5 +55,13 @@ void vulkan_device_query_swapchain_support(
     VkSurfaceKHR surface,
     vulkan_swapchain_support_info* out_support_info);
 
-
+/**
+ * @brief Detects and selects a suitable depth/stencil format for the given device.
+ *
+ * Tries common depth formats (D32_FLOAT, D24_UNORM_S8_UINT, etc.)
+ * and checks if they are supported with optimal tiling.
+ *
+ * @param device A pointer to the vulkan_device object.
+ * @return TRUE if a valid depth format was found; FALSE otherwise.
+ */
 b8 vulkan_device_detect_depth_format(vulkan_device* device);
