@@ -168,7 +168,39 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
 }
 
 void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
-    KDEBUG("Destroying Vulkan debugger...");
+    KDEBUG("Destroying Vulkan Command Buffers...");
+    if (context.graphics_command_buffers) {
+        KDEBUG("They exist");
+        for (u32 i = 0; i < context.swapchain.image_count; ++i) {
+            if (context.graphics_command_buffers[i].handle) {
+                vulkan_command_buffer_free(
+                    &context,
+                    context.device.graphics_command_pool,
+                    &context.graphics_command_buffers[i]);
+                context.graphics_command_buffers[i].handle = 0;
+            }
+        }
+        darray_destroy(context.graphics_command_buffers);
+        context.graphics_command_buffers = 0;
+    }
+
+    KDEBUG("Destroying Vulkan Renderpass...");
+    vulkan_renderpass_destroy(&context, &context.main_renderpass);
+
+    KDEBUG("Destroying Vulkan Swapchain...");
+    vulkan_swapchain_destroy(&context, &context.swapchain);
+
+    KDEBUG("Destroying logical device...");
+    vulkan_device_destroy(&context);
+
+    KDEBUG("Destroying Vulkan Surface...");
+    if (context.surface) {
+        vkDestroySurfaceKHR(context.instance, context.surface, context.allocator);
+        context.surface = 0;
+    }
+
+#if defined(_DEBUG)
+    KDEBUG("Destroying Vulkan Debugger...");
     if (context.debug_messenger) {
         PFN_vkDestroyDebugUtilsMessengerEXT func =
             (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(context.instance, "vkDestroyDebugUtilsMessengerEXT");
@@ -177,18 +209,7 @@ void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
             func(context.instance, context.debug_messenger, context.allocator);
         }
     }
-
-    KDEBUG("Destroying Vulkan surface...");
-    if (context.surface) {
-        vkDestroySurfaceKHR(context.instance, context.surface, context.allocator);
-        context.surface = 0;
-    }
-
-    KDEBUG("Destroying logical device...");
-    if (context.device.logical_device) {
-        vkDestroyDevice(context.device.logical_device, context.allocator);
-        context.device.logical_device = 0;
-    }
+#endif
 
     KDEBUG("Destroying Vulkan instance...");
     if (context.instance) {
