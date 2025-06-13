@@ -982,7 +982,7 @@ Tracks global Vulkan state\+:
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ image\_index;}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ current\_frame;}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ recreating\_swapchain;}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ (*find\_memory\_index)(...);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ (*\mbox{\hyperlink{vulkan__backend_8c_aada43db2d3a25f12c6511695c5d74d0a}{find\_memory\_index}})(...);}
 \DoxyCodeLine{\}\ vulkan\_context;}
 
 \end{DoxyCode}
@@ -1023,14 +1023,14 @@ Manages images and depth buffer\+:
 \hypertarget{index_autotoc_md69}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+renderpass$<$/tt$>$}{<tt>vulkan\_renderpass</tt>}}\label{index_autotoc_md69}
 Defines clear values and viewport settings\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvulkan__renderpass}{vulkan\_renderpass}}\ \{}
-\DoxyCodeLine{\ \ \ \ VkRenderPass\ \mbox{\hyperlink{structvulkan__renderpass_ab086fa086505fa7a9e860e324dc68f5b}{handle}};}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structvulkan__renderpass_a7ff7a909a9153c8848a221c765eee954}{clear\_r}},\ \mbox{\hyperlink{structvulkan__renderpass_a750be7870553a59a1cebc6505354563d}{clear\_g}},\ \mbox{\hyperlink{structvulkan__renderpass_a68af16155e19b65a0e49aba4c2957bd3}{clear\_b}},\ \mbox{\hyperlink{structvulkan__renderpass_a5857772d148834b35954490412d014d7}{clear\_a}};}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structvulkan__renderpass_a524d8f3d1ede18a441d48c10c992dff8}{clear\_depth}};}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ \mbox{\hyperlink{structvulkan__renderpass_a7af6e1effbf495e5427e994678599f16}{clear\_stencil}};}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structvulkan__renderpass_a0f944cef3224e0ccd3b727ece2b79532}{viewport\_x}},\ \mbox{\hyperlink{structvulkan__renderpass_a7aefd6ec34d094b74969d71e5ec62c32}{viewport\_y}},\ \mbox{\hyperlink{structvulkan__renderpass_ac96d8cd4713a4b75fc05a6539def51bb}{viewport\_w}},\ \mbox{\hyperlink{structvulkan__renderpass_a548be04776e65db7b966e137fbb782f5}{viewport\_h}};}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structvulkan__renderpass_a4bc139bf2230ce48e49723ca64ca1038}{scissor\_x}},\ \mbox{\hyperlink{structvulkan__renderpass_a7d75a395ba3e2a919aad703dd67c2b69}{scissor\_y}},\ \mbox{\hyperlink{structvulkan__renderpass_a5761c21a25c7e812b39e8a9aaaa8284e}{scissor\_w}},\ \mbox{\hyperlink{structvulkan__renderpass_a6a9d8f69073843dd6cc51d14d9b71f41}{scissor\_h}};}
-\DoxyCodeLine{\}\ \mbox{\hyperlink{structvulkan__renderpass}{vulkan\_renderpass}};}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_renderpass\ \{}
+\DoxyCodeLine{\ \ \ \ VkRenderPass\ handle;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ clear\_r,\ clear\_g,\ clear\_b,\ clear\_a;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ clear\_depth;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ clear\_stencil;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ viewport\_x,\ viewport\_y,\ viewport\_w,\ viewport\_h;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ scissor\_x,\ scissor\_y,\ scissor\_w,\ scissor\_h;}
+\DoxyCodeLine{\}\ vulkan\_renderpass;}
 
 \end{DoxyCode}
 
@@ -1080,8 +1080,8 @@ Vulkan is explicit by design. Every operation must be described precisely. Here\
 {\ttfamily \doxylink{vulkan__device_8c_ac4eb42eebcc937d35197f1b899668021}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}   &Queries device capabilities for swapchain    \\\cline{1-2}
 {\ttfamily \doxylink{vulkan__swapchain_8c_a3385e045032018c37ee427c2caa82bfb}{vulkan\+\_\+swapchain\+\_\+create()}}   &Initializes the swapchain and image views    \\\cline{1-2}
 {\ttfamily \doxylink{vulkan__device_8c_a4af4291b3e9e0fc739c88bde97d74693}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format()}}   &Finds a usable depth format    \\\cline{1-2}
-{\ttfamily \doxylink{vulkan__renderpass_8h_a6cb37ba96525608948661a9a41a15506}{vulkan\+\_\+renderpass\+\_\+create()}}   &Sets up how we render    \\\cline{1-2}
-{\ttfamily vulkan\+\_\+command\+\_\+buffer\+\_\+begin()}   &Starts recording draw commands    \\\cline{1-2}
+{\ttfamily \doxylink{vulkan__renderpass_8c_a6cb37ba96525608948661a9a41a15506}{vulkan\+\_\+renderpass\+\_\+create()}}   &Sets up how we render    \\\cline{1-2}
+{\ttfamily \doxylink{vulkan__command__buffer_8c_a953bb97410e7ac3fb6bcb885111b076a}{vulkan\+\_\+command\+\_\+buffer\+\_\+begin()}}   &Starts recording draw commands    \\\cline{1-2}
 {\ttfamily \doxylink{vulkan__swapchain_8c_a401617aff019b05a923dcda96f83c958}{vulkan\+\_\+swapchain\+\_\+present()}}   &Presents the final image to the screen   \\\cline{1-2}
 \end{longtabu}
 

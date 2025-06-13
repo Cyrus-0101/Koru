@@ -108,7 +108,7 @@ $(function() {
 <area shape="poly" title=" " alt="" coords="375,56,330,95,326,91,372,52"/>
 <area shape="rect" href="vulkan__image_8c.html" title="Implementation of Vulkan image management utilities." alt="" coords="419,93,593,133"/>
 <area shape="poly" title=" " alt="" coords="440,52,486,91,482,95,437,56"/>
-<area shape="rect" href="vulkan__swapchain_8c.html" title=" " alt="" coords="618,93,821,133"/>
+<area shape="rect" href="vulkan__swapchain_8c.html" title="Implementation of Vulkan swapchain creation, recreation, and destruction." alt="" coords="618,93,821,133"/>
 <area shape="poly" title=" " alt="" coords="489,46,651,91,650,96,487,52"/>
 </map>
 </div>
@@ -127,6 +127,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ac4eb42eebcc937d35197f1b899668021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries swapchain support details for a given physical device and surface.  <br /></td></tr>
 <tr class="separator:ac4eb42eebcc937d35197f1b899668021"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4af4291b3e9e0fc739c88bde97d74693" id="r_a4af4291b3e9e0fc739c88bde97d74693"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__device_8h.html#a4af4291b3e9e0fc739c88bde97d74693">vulkan_device_detect_depth_format</a> (vulkan_device *device)</td></tr>
+<tr class="memdesc:a4af4291b3e9e0fc739c88bde97d74693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects and selects a suitable depth/stencil format for the given device.  <br /></td></tr>
 <tr class="separator:a4af4291b3e9e0fc739c88bde97d74693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -176,9 +177,9 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="vulkan__device_8c_source.html#l00147">147</a> of file <a class="el" href="vulkan__device_8c_source.html">vulkan_device.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00020">context</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="vulkan__device_8c_source.html#l00357">select_physical_device()</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00024">context</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="vulkan__device_8c_source.html#l00390">select_physical_device()</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00028">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00036">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -207,9 +208,11 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__device_8c_source.html#l00242">242</a> of file <a class="el" href="vulkan__device_8c_source.html">vulkan_device.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__device_8c_source.html#l00255">255</a> of file <a class="el" href="vulkan__device_8c_source.html">vulkan_device.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00020">context</a>, <a class="el" href="kmemory_8c_source.html#l00129">kfree()</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="kmemory_8c_source.html#l00148">kzero_memory()</a>, and <a class="el" href="kmemory_8h_source.html#l00059">MEMORY_TAG_RENDERER</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00024">context</a>, <a class="el" href="kmemory_8c_source.html#l00129">kfree()</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="kmemory_8c_source.html#l00148">kzero_memory()</a>, and <a class="el" href="kmemory_8h_source.html#l00059">MEMORY_TAG_RENDERER</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00194">vulkan_renderer_backend_shutdown()</a>.</p>
 
 </div>
 </div>
@@ -229,11 +232,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__device_8c_source.html#l00332">332</a> of file <a class="el" href="vulkan__device_8c_source.html">vulkan_device.c</a>.</p>
+<p>Detects and selects a suitable depth/stencil format for the given device. </p>
+<p>Tries common depth formats (D32_FLOAT, D24_UNORM_S8_UINT, etc.) and checks if they are supported with optimal tiling.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">device</td><td>A pointer to the vulkan_device object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if a valid depth format was found; FALSE otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="vulkan__device_8c_source.html#l00365">365</a> of file <a class="el" href="vulkan__device_8c_source.html">vulkan_device.c</a>.</p>
 
 <p class="reference">References <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00186">create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00199">create()</a>.</p>
 
 </div>
 </div>
@@ -285,18 +298,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__device_8c_source.html#l00286">286</a> of file <a class="el" href="vulkan__device_8c_source.html">vulkan_device.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__device_8c_source.html#l00319">319</a> of file <a class="el" href="vulkan__device_8c_source.html">vulkan_device.c</a>.</p>
 
 <p class="reference">References <a class="el" href="kmemory_8c_source.html#l00105">kallocate()</a>, and <a class="el" href="kmemory_8h_source.html#l00059">MEMORY_TAG_RENDERER</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00186">create()</a>, and <a class="el" href="vulkan__device_8c_source.html#l00471">physical_device_meets_requirements()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00199">create()</a>, and <a class="el" href="vulkan__device_8c_source.html#l00504">physical_device_meets_requirements()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 8 2025 17:39:37 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jun 13 2025 17:21:20 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

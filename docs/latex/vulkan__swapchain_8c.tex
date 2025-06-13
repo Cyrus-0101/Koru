@@ -1,11 +1,17 @@
 \doxysection{engine/src/renderer/vulkan/vulkan\+\_\+swapchain.c File Reference}
 \hypertarget{vulkan__swapchain_8c}{}\label{vulkan__swapchain_8c}\index{engine/src/renderer/vulkan/vulkan\_swapchain.c@{engine/src/renderer/vulkan/vulkan\_swapchain.c}}
-{\ttfamily \#include "{}vulkan\+\_\+swapchain.\+h"{}}\newline
-{\ttfamily \#include "{}core/logger.\+h"{}}\newline
+
+
+Implementation of Vulkan swapchain creation, recreation, and destruction.  
+
+
 {\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}core/logger.\+h"{}}\newline
 {\ttfamily \#include "{}vulkan\+\_\+device.\+h"{}}\newline
 {\ttfamily \#include "{}vulkan\+\_\+image.\+h"{}}\newline
-Include dependency graph for vulkan\+\_\+swapchain.\+c\+:\nopagebreak
+{\ttfamily \#include "{}vulkan\+\_\+swapchain.\+h"{}}\newline
+Include dependency graph for vulkan\+\_\+swapchain.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,6 +37,23 @@ void \mbox{\hyperlink{vulkan__swapchain_8c_a6f1b2b14ddf48b8eb0877e9d1192352f}{vu
 \begin{DoxyCompactList}\small\item\em Acquires the index of the next available image from the swapchain. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__swapchain_8c_a401617aff019b05a923dcda96f83c958}{vulkan\+\_\+swapchain\+\_\+present}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+swapchain \texorpdfstring{$\ast$}{*}swapchain, Vk\+Queue graphics\+\_\+queue, Vk\+Queue present\+\_\+queue, Vk\+Semaphore render\+\_\+complete\+\_\+semaphore, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} present\+\_\+image\+\_\+index)
 \begin{DoxyCompactList}\small\item\em Presents the rendered image at the given index to the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of Vulkan swapchain creation, recreation, and destruction. 
+
+This module handles\+:
+\begin{DoxyItemize}
+\item Swapchain creation using device and surface capabilities
+\item Recreation when window resizes or becomes outdated
+\item Proper cleanup of images and image views
+\item Integration with render pass and depth buffer systems
+\end{DoxyItemize}
+
+It works closely with {\ttfamily vulkan\+\_\+device}, {\ttfamily vulkan\+\_\+image}, and {\ttfamily vulkan\+\_\+renderpass} modules. 
+
+Definition in file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
+
 
 
 \doxysubsection{Function Documentation}
@@ -84,15 +107,15 @@ Performs the actual creation logic including\+:
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00186}{186}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00199}{199}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, \mbox{\hyperlink{defines_8h_source_l00183}{KCLAMP}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, \mbox{\hyperlink{vulkan__device_8c_source_l00332}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00286}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00042}{vulkan\+\_\+image\+\_\+create()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00024}{context}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, \mbox{\hyperlink{defines_8h_source_l00183}{KCLAMP}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, \mbox{\hyperlink{vulkan__device_8c_source_l00365}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00319}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00042}{vulkan\+\_\+image\+\_\+create()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00048}{vulkan\+\_\+swapchain\+\_\+create()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00067}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00061}{vulkan\+\_\+swapchain\+\_\+create()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00080}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
 
 \Hypertarget{vulkan__swapchain_8c_aa329dd100f2cdf51fd538278203d37b4}\label{vulkan__swapchain_8c_aa329dd100f2cdf51fd538278203d37b4} 
 \index{vulkan\_swapchain.c@{vulkan\_swapchain.c}!destroy@{destroy}}
@@ -126,15 +149,15 @@ Destroys the depth attachment, image views, and the swapchain handle.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00336}{336}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00349}{349}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00149}{vulkan\+\_\+image\+\_\+destroy()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00024}{context}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00149}{vulkan\+\_\+image\+\_\+destroy()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00085}{vulkan\+\_\+swapchain\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00067}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00098}{vulkan\+\_\+swapchain\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00080}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
 
 \Hypertarget{vulkan__swapchain_8c_a559f69815dfb6ccb3a6776516d9025b7}\label{vulkan__swapchain_8c_a559f69815dfb6ccb3a6776516d9025b7} 
 \index{vulkan\_swapchain.c@{vulkan\_swapchain.c}!vulkan\_swapchain\_acquire\_next\_image\_index@{vulkan\_swapchain\_acquire\_next\_image\_index}}
@@ -170,11 +193,11 @@ TRUE if successful; FALSE if the swapchain needs recreation.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00105}{105}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00118}{118}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00067}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00024}{context}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00080}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
 
 \Hypertarget{vulkan__swapchain_8c_a3385e045032018c37ee427c2caa82bfb}\label{vulkan__swapchain_8c_a3385e045032018c37ee427c2caa82bfb} 
 \index{vulkan\_swapchain.c@{vulkan\_swapchain.c}!vulkan\_swapchain\_create@{vulkan\_swapchain\_create}}
@@ -210,11 +233,15 @@ Sets up\+:
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00048}{48}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00061}{61}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00186}{create()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00024}{context}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00199}{create()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00036}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 
 \Hypertarget{vulkan__swapchain_8c_a6f1b2b14ddf48b8eb0877e9d1192352f}\label{vulkan__swapchain_8c_a6f1b2b14ddf48b8eb0877e9d1192352f} 
 \index{vulkan\_swapchain.c@{vulkan\_swapchain.c}!vulkan\_swapchain\_destroy@{vulkan\_swapchain\_destroy}}
@@ -239,11 +266,15 @@ Frees all image views and destroys the internal Vk\+Swapchain\+KHR object.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00085}{85}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00098}{98}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00336}{destroy()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00024}{context}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00349}{destroy()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00194}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown()}}.
 
 \Hypertarget{vulkan__swapchain_8c_a401617aff019b05a923dcda96f83c958}\label{vulkan__swapchain_8c_a401617aff019b05a923dcda96f83c958} 
 \index{vulkan\_swapchain.c@{vulkan\_swapchain.c}!vulkan\_swapchain\_present@{vulkan\_swapchain\_present}}
@@ -274,11 +305,11 @@ Submits the final frame to the presentation queue using the provided semaphore. 
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00146}{146}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00159}{159}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00067}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00024}{context}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00080}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
 
 \Hypertarget{vulkan__swapchain_8c_a37945527d25893e83ecde0d83f11b550}\label{vulkan__swapchain_8c_a37945527d25893e83ecde0d83f11b550} 
 \index{vulkan\_swapchain.c@{vulkan\_swapchain.c}!vulkan\_swapchain\_recreate@{vulkan\_swapchain\_recreate}}
@@ -307,13 +338,13 @@ Destroys the current swapchain and recreates it with updated dimensions.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00067}{67}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00080}{80}} of file \mbox{\hyperlink{vulkan__swapchain_8c_source}{vulkan\+\_\+swapchain.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00020}{context}}, \mbox{\hyperlink{vulkan__swapchain_8c_source_l00186}{create()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00336}{destroy()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00024}{context}}, \mbox{\hyperlink{vulkan__swapchain_8c_source_l00199}{create()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00349}{destroy()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00105}{vulkan\+\_\+swapchain\+\_\+acquire\+\_\+next\+\_\+image\+\_\+index()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00146}{vulkan\+\_\+swapchain\+\_\+present()}}.
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00118}{vulkan\+\_\+swapchain\+\_\+acquire\+\_\+next\+\_\+image\+\_\+index()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00159}{vulkan\+\_\+swapchain\+\_\+present()}}.
 

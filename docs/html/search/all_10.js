@@ -7,11 +7,12 @@ var searchData=
   ['features_4',['features',['../index.html#autotoc_md14',1,'Core Features'],['../index.html#autotoc_md15',1,'Planned Features']]],
   ['features_3a_5',['🚀 Features:',['../index.html#autotoc_md5',1,'']]],
   ['file_6',['❌ &lt;tt&gt;VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT&lt;/tt&gt;: No cache file',['../index.html#autotoc_md78',1,'']]],
-  ['fixes_7',['🚫 Common Errors and Fixes',['../index.html#autotoc_md77',1,'']]],
-  ['flow_8',['🧩 Diagram: Full Rendering Flow',['../index.html#autotoc_md63',1,'']]],
-  ['for_20acquiring_20an_20image_9',['🧪 Bonus: Sample Code for Acquiring an Image',['../index.html#autotoc_md75',1,'']]],
-  ['format_10',['9. 🧊 Detect Depth Format',['../index.html#autotoc_md55',1,'']]],
-  ['framebuffers_11',['11. 🖼 Create Framebuffers',['../index.html#autotoc_md59',1,'']]],
-  ['full_20rendering_20flow_12',['🧩 Diagram: Full Rendering Flow',['../index.html#autotoc_md63',1,'']]],
-  ['full_20rendering_20setup_20process_13',['🛠️ The Full Rendering Setup Process',['../index.html#autotoc_md37',1,'']]]
+  ['find_5fmemory_5findex_7',['find_memory_index',['../vulkan__backend_8c.html#aada43db2d3a25f12c6511695c5d74d0a',1,'vulkan_backend.c']]],
+  ['fixes_8',['🚫 Common Errors and Fixes',['../index.html#autotoc_md77',1,'']]],
+  ['flow_9',['🧩 Diagram: Full Rendering Flow',['../index.html#autotoc_md63',1,'']]],
+  ['for_20acquiring_20an_20image_10',['🧪 Bonus: Sample Code for Acquiring an Image',['../index.html#autotoc_md75',1,'']]],
+  ['format_11',['9. 🧊 Detect Depth Format',['../index.html#autotoc_md55',1,'']]],
+  ['framebuffers_12',['11. 🖼 Create Framebuffers',['../index.html#autotoc_md59',1,'']]],
+  ['full_20rendering_20flow_13',['🧩 Diagram: Full Rendering Flow',['../index.html#autotoc_md63',1,'']]],
+  ['full_20rendering_20setup_20process_14',['🛠️ The Full Rendering Setup Process',['../index.html#autotoc_md37',1,'']]]
 ];

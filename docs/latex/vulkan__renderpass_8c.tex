@@ -1,0 +1,201 @@
+\doxysection{engine/src/renderer/vulkan/vulkan\+\_\+renderpass.c File Reference}
+\hypertarget{vulkan__renderpass_8c}{}\label{vulkan__renderpass_8c}\index{engine/src/renderer/vulkan/vulkan\_renderpass.c@{engine/src/renderer/vulkan/vulkan\_renderpass.c}}
+
+
+Implementation of Vulkan render pass creation, begin, and end functions.  
+
+
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan\+\_\+renderpass.\+h"{}}\newline
+Include dependency graph for vulkan\+\_\+renderpass.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{vulkan__renderpass_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{vulkan__renderpass_8c_a6cb37ba96525608948661a9a41a15506}{vulkan\+\_\+renderpass\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}out\+\_\+renderpass, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} x, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} y, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} w, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} h, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} r, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} g, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} b, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} a, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} depth, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} stencil)
+\begin{DoxyCompactList}\small\item\em Creates a new render pass using the provided configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__renderpass_8c_a2656c53811b44888152b5a19f7ece679}{vulkan\+\_\+renderpass\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}renderpass)
+\begin{DoxyCompactList}\small\item\em Destroys a render pass and cleans up its resources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__renderpass_8c_ad41d3572b06fd3a6973d84b7362243e9}{vulkan\+\_\+renderpass\+\_\+begin}} (vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer, vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}renderpass, Vk\+Framebuffer frame\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Begins a render pass using the given command buffer and framebuffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__renderpass_8c_afc8178f17adfad94842efd1ec0f74d83}{vulkan\+\_\+renderpass\+\_\+end}} (vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer, vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}renderpass)
+\begin{DoxyCompactList}\small\item\em Ends the current render pass. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of Vulkan render pass creation, begin, and end functions. 
+
+This module provides utilities to\+:
+\begin{DoxyItemize}
+\item Create a render pass with color and depth attachments
+\item Begin rendering into a framebuffer
+\item End the render pass after drawing is complete
+\end{DoxyItemize}
+
+It works closely with\+:
+\begin{DoxyItemize}
+\item {\ttfamily vulkan\+\_\+swapchain}
+\item {\ttfamily vulkan\+\_\+framebuffer}
+\item {\ttfamily vulkan\+\_\+command\+\_\+buffer} 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{vulkan__renderpass_8c_source}{vulkan\+\_\+renderpass.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__renderpass_8c_ad41d3572b06fd3a6973d84b7362243e9}\label{vulkan__renderpass_8c_ad41d3572b06fd3a6973d84b7362243e9} 
+\index{vulkan\_renderpass.c@{vulkan\_renderpass.c}!vulkan\_renderpass\_begin@{vulkan\_renderpass\_begin}}
+\index{vulkan\_renderpass\_begin@{vulkan\_renderpass\_begin}!vulkan\_renderpass.c@{vulkan\_renderpass.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderpass\_begin()}{vulkan\_renderpass\_begin()}}
+{\footnotesize\ttfamily void vulkan\+\_\+renderpass\+\_\+begin (\begin{DoxyParamCaption}\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer,  }\item[{vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}}]{renderpass,  }\item[{Vk\+Framebuffer}]{frame\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Begins a render pass using the given command buffer and framebuffer. 
+
+Begins a render pass using the given command buffer.
+
+Records the beginning of the render pass into the command buffer. Sets up\+:
+\begin{DoxyItemize}
+\item Render area (viewport)
+\item Clear values (color, depth, stencil)
+\item Framebuffer binding
+\end{DoxyItemize}
+
+After this call, the command buffer is in {\ttfamily IN\+\_\+\+RENDER\+\_\+\+PASS} state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+\_\+buffer} & A pointer to the active command buffer. \\
+\hline
+{\em renderpass} & A pointer to the vulkan\+\_\+renderpass to begin. \\
+\hline
+{\em frame\+\_\+buffer} & The framebuffer to render into. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__renderpass_8c_source_l00180}{180}} of file \mbox{\hyperlink{vulkan__renderpass_8c_source}{vulkan\+\_\+renderpass.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}.
+
+\Hypertarget{vulkan__renderpass_8c_a6cb37ba96525608948661a9a41a15506}\label{vulkan__renderpass_8c_a6cb37ba96525608948661a9a41a15506} 
+\index{vulkan\_renderpass.c@{vulkan\_renderpass.c}!vulkan\_renderpass\_create@{vulkan\_renderpass\_create}}
+\index{vulkan\_renderpass\_create@{vulkan\_renderpass\_create}!vulkan\_renderpass.c@{vulkan\_renderpass.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderpass\_create()}{vulkan\_renderpass\_create()}}
+{\footnotesize\ttfamily void vulkan\+\_\+renderpass\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}}]{out\+\_\+renderpass,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{x,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{y,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{w,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{h,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{r,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{g,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{b,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{a,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{depth,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{stencil }\end{DoxyParamCaption})}
+
+
+
+Creates a new render pass using the provided configuration. 
+
+Sets up\+:
+\begin{DoxyItemize}
+\item One subpass (currently hard-\/coded)
+\item Two attachment descriptions\+: one for color, one for depth/stencil
+\item Load\+Op/\+Clear values
+\item Image layout transitions
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em out\+\_\+renderpass} & A pointer to the vulkan\+\_\+renderpass struct to populate. \\
+\hline
+{\em x} & X position of the viewport. \\
+\hline
+{\em y} & Y position of the viewport. \\
+\hline
+{\em w} & Width of the viewport. \\
+\hline
+{\em h} & Height of the viewport. \\
+\hline
+{\em r} & Red clear value (0–1). \\
+\hline
+{\em g} & Green clear value (0–1). \\
+\hline
+{\em b} & Blue clear value (0–1). \\
+\hline
+{\em a} & Alpha clear value (0–1). \\
+\hline
+{\em depth} & Depth clear value (0–1). \\
+\hline
+{\em stencil} & Stencil clear value. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__renderpass_8c_source_l00041}{41}} of file \mbox{\hyperlink{vulkan__renderpass_8c_source}{vulkan\+\_\+renderpass.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00024}{context}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00036}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+
+\Hypertarget{vulkan__renderpass_8c_a2656c53811b44888152b5a19f7ece679}\label{vulkan__renderpass_8c_a2656c53811b44888152b5a19f7ece679} 
+\index{vulkan\_renderpass.c@{vulkan\_renderpass.c}!vulkan\_renderpass\_destroy@{vulkan\_renderpass\_destroy}}
+\index{vulkan\_renderpass\_destroy@{vulkan\_renderpass\_destroy}!vulkan\_renderpass.c@{vulkan\_renderpass.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderpass\_destroy()}{vulkan\_renderpass\_destroy()}}
+{\footnotesize\ttfamily void vulkan\+\_\+renderpass\+\_\+destroy (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}}]{renderpass }\end{DoxyParamCaption})}
+
+
+
+Destroys a render pass and cleans up its resources. 
+
+Must be called before destroying the logical device.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em renderpass} & A pointer to the vulkan\+\_\+renderpass being destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__renderpass_8c_source_l00158}{158}} of file \mbox{\hyperlink{vulkan__renderpass_8c_source}{vulkan\+\_\+renderpass.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00024}{context}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00194}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown()}}.
+
+\Hypertarget{vulkan__renderpass_8c_afc8178f17adfad94842efd1ec0f74d83}\label{vulkan__renderpass_8c_afc8178f17adfad94842efd1ec0f74d83} 
+\index{vulkan\_renderpass.c@{vulkan\_renderpass.c}!vulkan\_renderpass\_end@{vulkan\_renderpass\_end}}
+\index{vulkan\_renderpass\_end@{vulkan\_renderpass\_end}!vulkan\_renderpass.c@{vulkan\_renderpass.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderpass\_end()}{vulkan\_renderpass\_end()}}
+{\footnotesize\ttfamily void vulkan\+\_\+renderpass\+\_\+end (\begin{DoxyParamCaption}\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer,  }\item[{vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}}]{renderpass }\end{DoxyParamCaption})}
+
+
+
+Ends the current render pass. 
+
+Records the end of the render pass into the command buffer. Updates the command buffer state back to RECORDING.
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+\_\+buffer} & A pointer to the active command buffer. \\
+\hline
+{\em renderpass} & A pointer to the vulkan\+\_\+renderpass being ended. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__renderpass_8c_source_l00225}{225}} of file \mbox{\hyperlink{vulkan__renderpass_8c_source}{vulkan\+\_\+renderpass.\+c}}.
+
