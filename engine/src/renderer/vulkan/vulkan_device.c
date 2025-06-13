@@ -171,7 +171,7 @@ b8 vulkan_device_create(vulkan_context* context) {
     if (!present_shares_graphics_queue) {
         indices[index++] = context->device.present_queue_index;
     }
-    
+
     if (!transfer_shares_graphics_queue) {
         indices[index++] = context->device.transfer_queue_index;
     }
@@ -240,12 +240,32 @@ b8 vulkan_device_create(vulkan_context* context) {
 }
 
 void vulkan_device_destroy(vulkan_context* context) {
-    // Unset queuesAdd commentMore actions
+    // Step 1: Destroy command pools
+    KINFO("Destroying command pools...");
+    if (context->device.graphics_command_pool) {
+        vkDestroyCommandPool(context->device.logical_device, context->device.graphics_command_pool, context->allocator);
+        context->device.graphics_command_pool = 0;
+    }
+
+    // If we add more command pools (e.g., compute, transfer), destroy them here
+    // if (context->device.compute_command_pool) {
+    //     vkDestroyCommandPool(context->device.logical_device, context->device.compute_command_pool, context->allocator);
+    //     context->device.compute_command_pool = 0;
+    // }
+
+    // Step 2: Unset queues
     context->device.graphics_queue = 0;
     context->device.present_queue = 0;
     context->device.transfer_queue = 0;
 
-    // Physical devices are not destroyed.
+    // Step 3: Destroy logical device
+    KINFO("Destroying logical device...");
+    if (context->device.logical_device) {
+        vkDestroyDevice(context->device.logical_device, context->allocator);
+        context->device.logical_device = 0;
+    }
+
+    // Step 4: Clean up physical device metadata
     KINFO("Releasing physical device resources...");
     context->device.physical_device = 0;
 
@@ -271,16 +291,16 @@ void vulkan_device_destroy(vulkan_context* context) {
         &context->device.swapchain_support.capabilities,
         sizeof(context->device.swapchain_support.capabilities));
 
+    // Step 5: Reset queue indices
     context->device.graphics_queue_index = -1;
     context->device.present_queue_index = -1;
     context->device.transfer_queue_index = -1;
 
-    // Destroy logical device
-    KINFO("Destroying logical device...");
-    if (context->device.logical_device) {
-        vkDestroyDevice(context->device.logical_device, context->allocator);
-        context->device.logical_device = 0;
-    }
+    // Optional: Reset other device fields
+    kzero_memory(&context->device.properties, sizeof(context->device.properties));
+    kzero_memory(&context->device.features, sizeof(context->device.features));
+    kzero_memory(&context->device.memory, sizeof(context->device.memory));
+    context->device.depth_format = VK_FORMAT_UNDEFINED;
 }
 
 void vulkan_device_query_swapchain_support(
