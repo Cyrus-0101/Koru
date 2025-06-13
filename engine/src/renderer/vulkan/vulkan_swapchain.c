@@ -1,8 +1,21 @@
-#include "vulkan_swapchain.h"
-#include "core/logger.h"
 #include "core/kmemory.h"
+#include "core/logger.h"
 #include "vulkan_device.h"
 #include "vulkan_image.h"
+#include "vulkan_swapchain.h"
+
+/**
+ * @file vulkan_swapchain.c
+ * @brief Implementation of Vulkan swapchain creation, recreation, and destruction.
+ *
+ * This module handles:
+ * - Swapchain creation using device and surface capabilities
+ * - Recreation when window resizes or becomes outdated
+ * - Proper cleanup of images and image views
+ * - Integration with render pass and depth buffer systems
+ *
+ * It works closely with `vulkan_device`, `vulkan_image`, and `vulkan_renderpass` modules.
+ */
 
 ///> Forward Declarations
 
@@ -165,7 +178,7 @@ void vulkan_swapchain_present(
         // Swapchain is out of date, suboptimal or a framebuffer resize has occurred. Trigger swapchain recreation.
         vulkan_swapchain_recreate(context, context->framebuffer_width, context->framebuffer_height, swapchain);
     } else if (result != VK_SUCCESS) {
-        KFATAL("Failed to present swap chain image!");
+        KFATAL("Failed to present swapchain image!");
     }
 }
 
@@ -247,7 +260,7 @@ void create(vulkan_context* context, u32 width, u32 height, vulkan_swapchain* sw
     swapchain_create_info.imageArrayLayers = 1;
     swapchain_create_info.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
-    // Setup image sharing mode
+    // Setup image sharing mode & the queue family indices
     if (context->device.graphics_queue_index != context->device.present_queue_index) {
         u32 queueFamilyIndices[] = {
             (u32)context->device.graphics_queue_index,
