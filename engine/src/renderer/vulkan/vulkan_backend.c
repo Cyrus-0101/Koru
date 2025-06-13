@@ -29,11 +29,45 @@ VKAPI_ATTR VkBool32 VKAPI_CALL vk_debug_callback(
     const VkDebugUtilsMessengerCallbackDataEXT* callback_data,
     void* user_data);
 
+/**
+ * @brief Finds a suitable memory type index that satisfies the given constraints.
+ *
+ * This function queries the physical device's memory properties and looks for a memory type that:
+ * - Is supported by the filter (`type_filter`)
+ * - Has all required property flags (`property_flags`)
+ *
+ * Used when allocating buffers and images to ensure they are placed in memory that is:
+ * - Device-local (fast GPU access)
+ * - Host-visible (can be accessed from CPU)
+ * - Coherent (CPU/GPU cache behavior is consistent)
+ *
+ * If no matching memory type is found, logs a warning and returns -1.
+ *
+ * @param type_filter A bitmask indicating valid memory types (from VkMemoryRequirements.memoryTypeBits).
+ * @param property_flags Required memory property flags (e.g., VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT).
+ * @return i32 The index of a suitable memory type, or -1 if none was found.
+ */
 i32 find_memory_index(u32 type_filter, u32 property_flags);
 
+/**
+ * @brief Creates and allocates command buffers for each frame-in-flight.
+ *
+ * Allocates one command buffer per swapchain image using the graphics command pool.
+ * These buffers are used during rendering to record draw commands and submit them to the GPU.
+ *
+ * This function also ensures:
+ * - All command buffers are zeroed before use
+ * - Command buffers are created only once
+ * - They are properly indexed and accessible globally via context
+ *
+ * @param backend A pointer to the renderer backend interface (unused here, but kept for consistency).
+ */
 void create_command_buffers(renderer_backend* backend);
 
 b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* application_name, struct platform_state* plat_state) {
+    // Function pointers
+    context.find_memory_index = find_memory_index;
+
     // TODO: Implement support for custom allocators
     context.allocator = 0;
 
@@ -50,13 +84,12 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
     VkInstanceCreateInfo create_info = {VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO};
     create_info.pApplicationInfo = &app_info;
 
+    // Obtain a list of required extensions
     const char** required_extensions = darray_create(const char*);
 
     darray_push(required_extensions, &VK_KHR_SURFACE_EXTENSION_NAME);  // Generic surface extension
 
     platform_get_required_extension_names(&required_extensions);  // Platform-specific extension(s)
-
-    VkResult result = vkCreateInstance(&create_info, context.allocator, &context.instance);
 
 #if defined(_DEBUG)
     darray_push(required_extensions, &VK_EXT_DEBUG_UTILS_EXTENSION_NAME);  // debug utilities
@@ -120,7 +153,7 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
     VK_CHECK(vkCreateInstance(&create_info, context.allocator, &context.instance));
     KINFO("Vulkan Instance created.");
 
-    // Debugger
+    // Debugger creation
 #if defined(_DEBUG)
     KDEBUG("Creating Vulkan debugger...");
 
@@ -147,7 +180,7 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
     KDEBUG("Vulkan debugger created.");
 #endif
 
-    // Surface
+    // Surface creation
     KDEBUG("Creating Vulkan surface...");
 
     if (!platform_create_vulkan_surface(plat_state, &context)) {
@@ -163,26 +196,48 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
         return FALSE;
     }
 
+    // Swapchain Creation
+    KDEBUG("Creating Vulkan Swapchain");
+    vulkan_swapchain_create(
+        &context,
+        context.framebuffer_width,
+        context.framebuffer_height,
+        &context.swapchain);
+
+    // Renderpass Creation
+    KDEBUG("Creating Vulkan Renderpass");
+    vulkan_renderpass_create(
+        &context,
+        &context.main_renderpass,
+        0, 0, context.framebuffer_width, context.framebuffer_height,
+        0.0f, 0.0f, 0.2f, 1.0f,
+        1.0f,
+        0);
+
+    // Command Buffer Creation
+    KDEBUG("Creating Vulkan Command Buffers");
+    create_command_buffers(backend);
+
     KINFO("Vulkan renderer initialized successfully.");
     return TRUE;
 }
 
 void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
     KDEBUG("Destroying Vulkan Command Buffers...");
-    if (context.graphics_command_buffers) {
-        KDEBUG("They exist");
-        for (u32 i = 0; i < context.swapchain.image_count; ++i) {
-            if (context.graphics_command_buffers[i].handle) {
-                vulkan_command_buffer_free(
-                    &context,
-                    context.device.graphics_command_pool,
-                    &context.graphics_command_buffers[i]);
-                context.graphics_command_buffers[i].handle = 0;
-            }
+
+    for (u32 i = 0; i < context.swapchain.image_count; ++i) {
+        if (context.graphics_command_buffers[i].handle) {
+            vulkan_command_buffer_free(
+                &context,
+                context.device.graphics_command_pool,
+                &context.graphics_command_buffers[i]);
+            context.graphics_command_buffers[i].handle = 0;
         }
-        darray_destroy(context.graphics_command_buffers);
-        context.graphics_command_buffers = 0;
     }
+
+    darray_destroy(context.graphics_command_buffers);
+
+    context.graphics_command_buffers = 0;
 
     KDEBUG("Destroying Vulkan Renderpass...");
     vulkan_renderpass_destroy(&context, &context.main_renderpass);
@@ -194,10 +249,8 @@ void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
     vulkan_device_destroy(&context);
 
     KDEBUG("Destroying Vulkan Surface...");
-    if (context.surface) {
-        vkDestroySurfaceKHR(context.instance, context.surface, context.allocator);
-        context.surface = 0;
-    }
+    vkDestroySurfaceKHR(context.instance, context.surface, context.allocator);
+    context.surface = 0;
 
 #if defined(_DEBUG)
     KDEBUG("Destroying Vulkan Debugger...");
@@ -212,10 +265,8 @@ void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
 #endif
 
     KDEBUG("Destroying Vulkan instance...");
-    if (context.instance) {
-        vkDestroyInstance(context.instance, context.allocator);
-        context.instance = 0;
-    }
+    vkDestroyInstance(context.instance, context.allocator);
+    context.instance = 0;
 }
 
 void vulkan_renderer_backend_on_resized(renderer_backend* backend, u16 width, u16 height) {
@@ -265,4 +316,45 @@ VKAPI_ATTR VkBool32 VKAPI_CALL vk_debug_callback(
             break;
     }
     return VK_FALSE;
+}
+
+i32 find_memory_index(u32 type_filter, u32 property_flags) {
+    VkPhysicalDeviceMemoryProperties memory_properties;
+    vkGetPhysicalDeviceMemoryProperties(context.device.physical_device, &memory_properties);
+
+    for (u32 i = 0; i < memory_properties.memoryTypeCount; ++i) {
+        // Check each memory type to see if its bit is set to 1.
+        if (type_filter & (1 << i) && (memory_properties.memoryTypes[i].propertyFlags & property_flags) == property_flags) {
+            return i;
+        }
+    }
+
+    KWARN("Unable to find suitable memory type!");
+    return -1;
+}
+
+void create_command_buffers(renderer_backend* backend) {
+    if (!context.graphics_command_buffers) {
+        context.graphics_command_buffers = darray_reserve(vulkan_command_buffer, context.swapchain.image_count);
+        for (u32 i = 0; i < context.swapchain.image_count; ++i) {
+            kzero_memory(&context.graphics_command_buffers[i], sizeof(vulkan_command_buffer));
+        }
+    }
+
+    for (u32 i = 0; i < context.swapchain.image_count; ++i) {
+        if (context.graphics_command_buffers[i].handle) {
+            vulkan_command_buffer_free(
+                &context,
+                context.device.graphics_command_pool,
+                &context.graphics_command_buffers[i]);
+        }
+        kzero_memory(&context.graphics_command_buffers[i], sizeof(vulkan_command_buffer));
+        vulkan_command_buffer_allocate(
+            &context,
+            context.device.graphics_command_pool,
+            TRUE,
+            &context.graphics_command_buffers[i]);
+    }
+
+    KDEBUG("Vulkan command buffers created.");
 }
