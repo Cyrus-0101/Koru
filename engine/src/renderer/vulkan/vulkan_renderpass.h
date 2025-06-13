@@ -17,47 +17,6 @@
  */
 
 /**
- * @struct vulkan_renderpass
- * @brief A structure that holds all necessary data for a Vulkan render pass.
- *
- * Stores:
- * - The VkRenderPass handle
- * - Clear values used at the start of the pass
- * - Viewport and scissor rectangles
- */
-typedef struct vulkan_renderpass {
-    /**
-     * @brief Handle to the actual render pass object.
-     */
-    VkRenderPass handle;
-
-    /**
-     * @brief Clear color values (RGBA) used at the start of the pass.
-     */
-    f32 clear_r, clear_g, clear_b, clear_a;
-
-    /**
-     * @brief Clear depth value used at the start of the pass.
-     */
-    f32 clear_depth;
-
-    /**
-     * @brief Clear stencil value used at the start of the pass.
-     */
-    u32 clear_stencil;
-
-    /**
-     * @brief Viewport dimensions for this render pass.
-     */
-    f32 viewport_x, viewport_y, viewport_w, viewport_h;
-
-    /**
-     * @brief Scissor rectangle for rendering bounds.
-     */
-    f32 scissor_x, scissor_y, scissor_w, scissor_h;
-} vulkan_renderpass;
-
-/**
  * @brief Creates a new render pass using the provided configuration.
  *
  * Sets up:
