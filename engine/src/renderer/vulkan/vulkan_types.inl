@@ -9,7 +9,7 @@
  * @brief Internal Vulkan-specific types used across the Koru engine.
  *
  * This file contains structures and typedefs specific to the Vulkan renderer implementation.
- * It should only be included in Vulkan-related source files.
+ * It should only be included in Vulkan-related source files (e.g., device, swapchain, renderpass).
  */
 
 /**
@@ -28,18 +28,18 @@
 
 /**
  * @struct vulkan_swapchain_support_info
- * @brief Stores information about a physical device's swapchain capabilities.
+ * @brief Stores information about a physical device’s swapchain capabilities.
  *
  * This structure holds:
- * - Surface capabilities (min/max image count, resolution, etc.)
- * - Supported pixel formats
- * - Available presentation modes
+ * - Surface capabilities (min/max image count, dimensions, transform flags)
+ * - Supported pixel formats (e.g., R8G8B8A8_UNORM)
+ * - Available presentation modes (e.g., FIFO, MAILBOX)
  *
  * Used when selecting a suitable physical device and creating the swapchain.
  */
 typedef struct vulkan_swapchain_support_info {
     /**
-     * @brief Surface capabilities such as min/max image count, dimensions, and usage flags.
+     * @brief Surface capabilities such as min/max image count, extent, and usage flags.
      */
     VkSurfaceCapabilitiesKHR capabilities;
 
@@ -49,12 +49,12 @@ typedef struct vulkan_swapchain_support_info {
     u32 format_count;
 
     /**
-     * @brief Array of supported surface formats (e.g., R8G8B8A8_UNORM).
+     * @brief Array of supported surface formats (e.g., B8G8R8A8_UNORM).
      */
     VkSurfaceFormatKHR* formats;
 
     /**
-     * @brief Number of available present modes (e.g., FIFO, MAILBOX).
+     * @brief Number of available present modes (e.g., MAILBOX_KHR).
      */
     u32 present_mode_count;
 
@@ -68,7 +68,13 @@ typedef struct vulkan_swapchain_support_info {
  * @struct vulkan_device
  * @brief Stores logical and physical device info along with queue data.
  *
- * Contains all necessary device-level state needed by the renderer.
+ * Contains all necessary device-level state needed by the renderer module.
+ * Includes:
+ * - Physical/logical device handles
+ * - Queue indices and actual queues
+ * - Device properties, features, memory info
+ * - Swapchain support info
+ * - Depth format
  */
 typedef struct vulkan_device {
     /**
@@ -89,17 +95,17 @@ typedef struct vulkan_device {
     vulkan_swapchain_support_info swapchain_support;
 
     /**
-     * @brief Queue family index for graphics operations.
+     * @brief Index of the graphics queue family.
      */
     i32 graphics_queue_index;
 
     /**
-     * @brief Queue family index for presentation to the window surface.
+     * @brief Index of the present queue family.
      */
     i32 present_queue_index;
 
     /**
-     * @brief Queue family index for transfer operations.
+     * @brief Index of the transfer queue family.
      */
     i32 transfer_queue_index;
 
@@ -117,6 +123,13 @@ typedef struct vulkan_device {
      * @brief Transfer queue handle for memory copy operations.
      */
     VkQueue transfer_queue;
+
+    /**
+     * @brief Command pool for graphics commands.
+     *
+     * Used to allocate command buffers that are submitted to the graphics queue.
+     */
+    VkCommandPool graphics_command_pool;
 
     /**
      * @brief Properties of the physical device (name, type, driver version, etc.).
@@ -144,6 +157,7 @@ typedef struct vulkan_device {
  * @brief Represents a single Vulkan image resource with view and memory binding.
  *
  * Used for color/depth attachments and texture resources.
+ * Tracks width/height for easier reference.
  */
 typedef struct vulkan_image {
     /**
@@ -173,10 +187,100 @@ typedef struct vulkan_image {
 } vulkan_image;
 
 /**
+ * @enum vulkan_render_pass_state
+ * @brief Tracks the current state of a render pass.
+ *
+ * Helps manage render pass lifecycle and ensures correct command recording flow.
+ */
+typedef enum vulkan_render_pass_state {
+    READY,         ///< Render pass is ready to begin
+    RECORDING,     ///< Recording has started but no subpass yet
+    IN_RENDER_PASS, ///< Currently inside a render pass
+    RECORDING_ENDED, ///< Recording completed, not yet submitted
+    SUBMITTED,      ///< Command buffer was submitted to the queue
+    NOT_ALLOCATED   ///< Command buffer not yet allocated
+} vulkan_render_pass_state;
+
+/**
+ * @struct vulkan_renderpass
+ * @brief Holds state for a single render pass.
+ *
+ * Includes:
+ * - Clear values (color, depth, stencil)
+ * - Viewport/scissor settings
+ * - Current render pass state
+ */
+typedef struct vulkan_renderpass {
+    /**
+     * @brief Handle to the actual render pass object.
+     */
+    VkRenderPass handle;
+
+    /**
+     * @brief X position of the viewport.
+     */
+    f32 x;
+
+    /**
+     * @brief Y position of the viewport.
+     */
+    f32 y;
+
+    /**
+     * @brief Width of the viewport.
+     */
+    f32 w;
+
+    /**
+     * @brief Height of the viewport.
+     */
+    f32 h;
+
+    /**
+     * @brief Red clear value (0–1).
+     */
+    f32 r;
+
+    /**
+     * @brief Green clear value (0–1).
+     */
+    f32 g;
+
+    /**
+     * @brief Blue clear value (0–1).
+     */
+    f32 b;
+
+    /**
+     * @brief Alpha clear value (0–1).
+     */
+    f32 a;
+
+    /**
+     * @brief Depth clear value (0–1).
+     */
+    f32 depth;
+
+    /**
+     * @brief Stencil clear value.
+     */
+    u32 stencil;
+
+    /**
+     * @brief Current state of the render pass (READY, RECORDING, etc.).
+     */
+    vulkan_render_pass_state state;
+} vulkan_renderpass;
+
+/**
  * @struct vulkan_swapchain
  * @brief Represents the application’s connection to the OS for rendering output.
  *
- * Holds the internal handle, image views, and depth attachment for rendering.
+ * Holds:
+ * - Swapchain handle
+ * - Image views for each frame
+ * - Depth/stencil attachment
+ * - Frame in-flight tracking
  */
 typedef struct vulkan_swapchain {
     /**
@@ -216,33 +320,122 @@ typedef struct vulkan_swapchain {
 } vulkan_swapchain;
 
 /**
+ * @enum vulkan_command_buffer_state
+ * @brief Represents the lifecycle state of a Vulkan command buffer.
+ *
+ * This enumeration defines all possible states a command buffer can be in,
+ * from creation to submission. It is used internally by the engine to:
+ * - Track valid transitions
+ * - Prevent invalid operations (e.g., recording after submission)
+ * - Help debug rendering issues
+ */
+typedef enum vulkan_command_buffer_state {
+    /**
+     * @brief Command buffer is ready for recording.
+     *
+     * Can transition to: RECORDING
+     */
+    COMMAND_BUFFER_STATE_READY,
+
+    /**
+     * @brief Command buffer is currently being recorded into.
+     *
+     * Can transition to: IN_RENDER_PASS, RECORDING_ENDED
+     */
+    COMMAND_BUFFER_STATE_RECORDING,
+
+    /**
+     * @brief Inside a render pass — commands like drawing are allowed.
+     *
+     * Can transition to: RECORDING_ENDED
+     */
+    COMMAND_BUFFER_STATE_IN_RENDER_PASS,
+
+    /**
+     * @brief Recording has finished but not yet submitted to the GPU.
+     *
+     * Can transition to: SUBMITTED
+     */
+    COMMAND_BUFFER_STATE_RECORDING_ENDED,
+
+    /**
+     * @brief Command buffer has been submitted to a queue and is pending execution.
+     *
+     * Cannot transition back until it is reset or re-allocated.
+     */
+    COMMAND_BUFFER_STATE_SUBMITTED,
+
+    /**
+     * @brief Command buffer has not been allocated yet.
+     *
+     * Initial state before allocation. Must transition to READY before use.
+     */
+    COMMAND_BUFFER_STATE_NOT_ALLOCATED
+} vulkan_command_buffer_state;
+
+/**
+ * @struct vulkan_command_buffer
+ * @brief Represents a single Vulkan command buffer and its current state.
+ *
+ * A command buffer stores recorded GPU commands (e.g., draws, transfers)
+ * and is submitted to a queue for execution.
+ *
+ * Used across frames with synchronization primitives to ensure correct rendering.
+ */
+typedef struct vulkan_command_buffer {
+    /**
+     * @brief Handle to the underlying VkCommandBuffer object.
+     *
+     * This is the actual Vulkan object used for command recording and submission.
+     */
+    VkCommandBuffer handle;
+
+    /**
+     * @brief Current state of this command buffer.
+     *
+     * Used to prevent invalid operations like double-recording or submitting an unrecorded buffer.
+     */
+    vulkan_command_buffer_state state;
+
+    // /**
+    //  * @brief Index of the frame this buffer belongs to (if using multiple frames-in-flight).
+    //  *
+    //  * Only relevant if part of a command pool that supports frame indexing.
+    //  * Helps track which frame's data this buffer contains.
+    //  */
+    // u32 frame_index;  // Only relevant if part of a pool
+} vulkan_command_buffer;
+
+/**
  * @struct vulkan_context
  * @brief Represents the global state of the Vulkan rendering context.
  *
- * This structure holds core Vulkan objects needed throughout the application's lifecycle.
+ * This structure holds all top-level Vulkan objects required for rendering.
  * It is intended to be initialized at startup and persisted for the lifetime of the renderer.
  */
 typedef struct vulkan_context {
     /**
-     * @brief The current width of the framebuffer.
+     * @brief The framebuffer's current width.
      */
     u32 framebuffer_width;
 
     /**
-     * @brief The current height of the framebuffer.
+     * @brief The framebuffer's current height.
      */
     u32 framebuffer_height;
+
     /**
      * @brief The VkInstance object that represents the connection between the application and the Vulkan library.
      *
      * This is the first object created when initializing Vulkan, and it manages per-application state.
-     * It must be destroyed before the application exits using `vkDestroyInstance()`.
+     * Must be destroyed before the application exits using `vkDestroyInstance()`.
      */
     VkInstance instance;
 
     /**
      * @brief Optional custom allocator for Vulkan memory allocations.
-     * If NULL, the default allocator is used.
+     *
+     * If NULL, the default system allocator is used.
      * Useful for tracking or debugging memory usage.
      */
     VkAllocationCallbacks* allocator;
@@ -275,6 +468,16 @@ typedef struct vulkan_context {
     vulkan_swapchain swapchain;
 
     /**
+     * @brief Main render pass used for rendering.
+     */
+    vulkan_renderpass main_renderpass;
+
+    /**
+     * @brief Array of command buffers for rendering (one per frame).
+     */
+    vulkan_command_buffer* graphics_command_buffers;
+
+    /**
      * @brief Index of the currently active image in the swapchain.
      */
     u32 image_index;
@@ -294,9 +497,9 @@ typedef struct vulkan_context {
     b8 recreating_swapchain;
 
     /**
-     * @brief Function pointer for finding suitable memory index based on requirements.
+     * @brief Function pointer for finding a compatible memory index based on requirements.
      *
-     * Used internally to find compatible memory types for buffer/image allocation.
+     * Used internally to find suitable memory types for buffer/image allocation.
      */
     i32 (*find_memory_index)(u32 type_filter, u32 property_flags);
 } vulkan_context;
