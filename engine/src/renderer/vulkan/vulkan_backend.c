@@ -1,11 +1,15 @@
 #include "containers/darray.h"
 #include "core/logger.h"
 #include "core/kstring.h"
+#include "core/kmemory.h"
 #include "platform/platform.h"
 #include "vulkan_backend.h"
+#include "vulkan_command_buffer.h"
 #include "vulkan_device.h"
-#include "vulkan_types.inl"
 #include "vulkan_platform.h"
+#include "vulkan_renderpass.h"
+#include "vulkan_swapchain.h"
+#include "vulkan_types.inl"
 
 /**
  * @file vulkan_backend.c
@@ -24,6 +28,10 @@ VKAPI_ATTR VkBool32 VKAPI_CALL vk_debug_callback(
     VkDebugUtilsMessageTypeFlagsEXT message_types,
     const VkDebugUtilsMessengerCallbackDataEXT* callback_data,
     void* user_data);
+
+i32 find_memory_index(u32 type_filter, u32 property_flags);
+
+void create_command_buffers(renderer_backend* backend);
 
 b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* application_name, struct platform_state* plat_state) {
     // TODO: Implement support for custom allocators
