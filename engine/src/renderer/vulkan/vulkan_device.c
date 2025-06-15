@@ -237,6 +237,7 @@ b8 vulkan_device_create(vulkan_context* context) {
     KINFO("Queues obtained.");
 
     // Create command pool for graphics queue.
+    KINFO("Creating command pools and buffers...");
     VkCommandPoolCreateInfo pool_create_info = {VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO};
     pool_create_info.queueFamilyIndex = context->device.graphics_queue_index;
     pool_create_info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
@@ -388,6 +389,7 @@ b8 vulkan_device_detect_depth_format(vulkan_device* device) {
 }
 
 b8 select_physical_device(vulkan_context* context) {
+    KINFO("Selecting physical device...");
     u32 physical_device_count = 0;
     VK_CHECK(vkEnumeratePhysicalDevices(context->instance, &physical_device_count, 0));
 
