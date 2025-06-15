@@ -10,13 +10,14 @@ var searchData=
   ['application_20layer_20strong_7',['4. &lt;strong&gt;Application Layer&lt;/strong&gt;',['../index.html#autotoc_md11',1,'']]],
   ['application_2ec_8',['application.c',['../application_8c.html',1,'']]],
   ['application_2eh_9',['application.h',['../application_8h.html',1,'']]],
-  ['application_5fconfig_10',['application_config',['../application_8h.html#a0d5601d102f2aa559126417368531828',1,'application_config:&#160;application.h'],['../structapplication__config.html',1,'application_config']]],
+  ['application_5fconfig_10',['application_config',['../structapplication__config.html',1,'application_config'],['../application_8h.html#a0d5601d102f2aa559126417368531828',1,'application_config:&#160;application.h']]],
   ['application_5fcreate_11',['application_create',['../application_8c.html#af0ccecbeef900f30b0b734eb020574ef',1,'application_create(game *game_inst):&#160;application.c'],['../application_8h.html#aa05477b1f7e65b39439a7bacf89418d8',1,'application_create(struct game *game_inst):&#160;application.c']]],
-  ['application_5fon_5fevent_12',['application_on_event',['../application_8c.html#a464af30d5e798df5a25d3c211d5c120f',1,'application.c']]],
-  ['application_5fon_5fkey_13',['application_on_key',['../application_8c.html#a193a750e12452924346788eb62a3a327',1,'application.c']]],
-  ['application_5frun_14',['application_run',['../application_8h.html#a08c8575858e12aa5260a1cc0101df8bd',1,'application_run():&#160;application.c'],['../application_8c.html#a08c8575858e12aa5260a1cc0101df8bd',1,'application_run():&#160;application.c']]],
-  ['application_5fstate_15',['application_state',['../application_8c.html#a25603a9a2e5d3bf9c73d2bd2c3428655',1,'application_state:&#160;application.c'],['../structapplication__state.html',1,'application_state']]],
-  ['architecture_16',['🖼 Architecture',['../index.html#autotoc_md7',1,'']]],
-  ['architecture_20render_20layer_17',['📦 High-Level Architecture (Render Layer)',['../index.html#autotoc_md35',1,'']]],
-  ['asserts_2eh_18',['asserts.h',['../asserts_8h.html',1,'']]]
+  ['application_5fget_5fframebuffer_5fsize_12',['application_get_framebuffer_size',['../application_8c.html#a8b27580c0175a587af977c52f49cb92f',1,'application_get_framebuffer_size(u32 *width, u32 *height):&#160;application.c'],['../application_8h.html#a8b27580c0175a587af977c52f49cb92f',1,'application_get_framebuffer_size(u32 *width, u32 *height):&#160;application.c']]],
+  ['application_5fon_5fevent_13',['application_on_event',['../application_8c.html#a464af30d5e798df5a25d3c211d5c120f',1,'application.c']]],
+  ['application_5fon_5fkey_14',['application_on_key',['../application_8c.html#a193a750e12452924346788eb62a3a327',1,'application.c']]],
+  ['application_5frun_15',['application_run',['../application_8h.html#a08c8575858e12aa5260a1cc0101df8bd',1,'application_run():&#160;application.c'],['../application_8c.html#a08c8575858e12aa5260a1cc0101df8bd',1,'application_run():&#160;application.c']]],
+  ['application_5fstate_16',['application_state',['../application_8c.html#a25603a9a2e5d3bf9c73d2bd2c3428655',1,'application_state:&#160;application.c'],['../structapplication__state.html',1,'application_state']]],
+  ['architecture_17',['🖼 Architecture',['../index.html#autotoc_md7',1,'']]],
+  ['architecture_20render_20layer_18',['📦 High-Level Architecture (Render Layer)',['../index.html#autotoc_md35',1,'']]],
+  ['asserts_2eh_19',['asserts.h',['../asserts_8h.html',1,'']]]
 ];

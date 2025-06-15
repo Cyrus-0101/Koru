@@ -1,0 +1,59 @@
+\doxysection{vulkan\+\_\+framebuffer.\+c}
+\hypertarget{vulkan__framebuffer_8c_source}{}\label{vulkan__framebuffer_8c_source}\index{engine/src/renderer/vulkan/vulkan\_framebuffer.c@{engine/src/renderer/vulkan/vulkan\_framebuffer.c}}
+\mbox{\hyperlink{vulkan__framebuffer_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{kmemory_8h}{core/kmemory.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vulkan__framebuffer_8h}{vulkan\_framebuffer.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00017}\mbox{\hyperlink{vulkan__framebuffer_8c_af32d3dc7e47a5b215d7908a41cb0b0b8}{00017}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__framebuffer_8c_af32d3dc7e47a5b215d7908a41cb0b0b8}{vulkan\_framebuffer\_create}}(}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00018}00018\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00019}00019\ \ \ \ \ vulkan\_renderpass*\ renderpass,}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ width,}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00021}00021\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ height,}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00022}00022\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ attachment\_count,}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00023}00023\ \ \ \ \ VkImageView*\ attachments,}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00024}00024\ \ \ \ \ vulkan\_framebuffer*\ out\_framebuffer)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ Take\ a\ copy\ of\ the\ attachments,\ renderpass\ and\ attachment\ count}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00026}00026\ \ \ \ \ out\_framebuffer-\/>attachments\ =\ \mbox{\hyperlink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate}}(\textcolor{keyword}{sizeof}(VkImageView)\ *\ attachment\_count,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7b4c1e90432c602af81107af1c9cf1b8}{MEMORY\_TAG\_RENDERER}});}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00027}00027\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ i\ =\ 0;\ i\ <\ attachment\_count;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00028}00028\ \ \ \ \ \ \ \ \ out\_framebuffer-\/>attachments[i]\ =\ attachments[i];}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ Store\ render\ pass\ reference}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00032}00032\ \ \ \ \ out\_framebuffer-\/>renderpass\ =\ renderpass;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00033}00033\ \ \ \ \ out\_framebuffer-\/>attachment\_count\ =\ attachment\_count;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Creation\ info}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00036}00036\ \ \ \ \ VkFramebufferCreateInfo\ framebuffer\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_FRAMEBUFFER\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00037}00037\ \ \ \ \ framebuffer\_create\_info.renderPass\ =\ renderpass-\/>handle;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00038}00038\ \ \ \ \ framebuffer\_create\_info.attachmentCount\ =\ attachment\_count;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00039}00039\ \ \ \ \ framebuffer\_create\_info.pAttachments\ =\ out\_framebuffer-\/>attachments;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00040}00040\ \ \ \ \ framebuffer\_create\_info.width\ =\ width;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00041}00041\ \ \ \ \ framebuffer\_create\_info.height\ =\ height;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00042}00042\ \ \ \ \ framebuffer\_create\_info.layers\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00044}00044\ \ \ \ \ VK\_CHECK(vkCreateFramebuffer(}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00046}00046\ \ \ \ \ \ \ \ \ \&framebuffer\_create\_info,}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00047}00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00048}00048\ \ \ \ \ \ \ \ \ \&out\_framebuffer-\/>handle));}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00051}\mbox{\hyperlink{vulkan__framebuffer_8c_aea0d3009ee4fb379695399f666332691}{00051}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__framebuffer_8c_aea0d3009ee4fb379695399f666332691}{vulkan\_framebuffer\_destroy}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_framebuffer*\ framebuffer)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//\ Destroy\ the\ underlying\ VkFramebuffer\ object}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00053}00053\ \ \ \ \ vkDestroyFramebuffer(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ framebuffer-\/>handle,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ Free\ attachments\ if\ allocated}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (framebuffer-\/>attachments)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc}{kfree}}(framebuffer-\/>attachments,\ \textcolor{keyword}{sizeof}(VkImageView)\ *\ framebuffer-\/>attachment\_count,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942a7b4c1e90432c602af81107af1c9cf1b8}{MEMORY\_TAG\_RENDERER}});}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ framebuffer-\/>attachments\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00061}00061\ \ \ \ \ \textcolor{comment}{//\ Reset\ other\ fields}}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00062}00062\ \ \ \ \ framebuffer-\/>handle\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00063}00063\ \ \ \ \ framebuffer-\/>attachment\_count\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00064}00064\ \ \ \ \ framebuffer-\/>renderpass\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__framebuffer_8c_source_l00065}00065\ \}}
+
+\end{DoxyCode}

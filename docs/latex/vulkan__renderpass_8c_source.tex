@@ -27,11 +27,11 @@
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00060}00060\ \ \ \ \ out\_renderpass-\/>depth\ =\ depth;}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00061}00061\ \ \ \ \ out\_renderpass-\/>stencil\ =\ stencil;}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00062}00062\ }
-\DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ Subpass\ setup}}
+\DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ Main\ Subpass\ setup}}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00064}00064\ \ \ \ \ VkSubpassDescription\ subpass\ =\ \{\};}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00065}00065\ \ \ \ \ subpass.pipelineBindPoint\ =\ VK\_PIPELINE\_BIND\_POINT\_GRAPHICS;}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00066}00066\ }
-\DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ Attachment\ Descriptions}}
+\DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ Attachment\ Descriptions.\ TODO:\ make\ this\ configurable.}}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00068}00068\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ attachment\_description\_count\ =\ 2;}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00069}00069\ \ \ \ \ VkAttachmentDescription\ attachment\_descriptions[attachment\_description\_count];}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00070}00070\ }
@@ -43,8 +43,8 @@
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00076}00076\ \ \ \ \ color\_attachment.storeOp\ =\ VK\_ATTACHMENT\_STORE\_OP\_STORE;}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00077}00077\ \ \ \ \ color\_attachment.stencilLoadOp\ =\ VK\_ATTACHMENT\_LOAD\_OP\_DONT\_CARE;}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00078}00078\ \ \ \ \ color\_attachment.stencilStoreOp\ =\ VK\_ATTACHMENT\_STORE\_OP\_DONT\_CARE;}
-\DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00079}00079\ \ \ \ \ color\_attachment.initialLayout\ =\ VK\_IMAGE\_LAYOUT\_UNDEFINED;}
-\DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00080}00080\ \ \ \ \ color\_attachment.finalLayout\ =\ VK\_IMAGE\_LAYOUT\_PRESENT\_SRC\_KHR;}
+\DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00079}00079\ \ \ \ \ color\_attachment.initialLayout\ =\ VK\_IMAGE\_LAYOUT\_UNDEFINED;\ \textcolor{comment}{//\ Do\ not\ expect\ any\ particular\ layout\ before\ render\ pass\ starts.}}
+\DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00080}00080\ \ \ \ \ color\_attachment.finalLayout\ =\ VK\_IMAGE\_LAYOUT\_PRESENT\_SRC\_KHR;\ \textcolor{comment}{//\ Transitioned\ to\ after\ the\ render\ pass}}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00081}00081\ \ \ \ \ color\_attachment.flags\ =\ 0;}
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00082}00082\ }
 \DoxyCodeLine{\Hypertarget{vulkan__renderpass_8c_source_l00083}00083\ \ \ \ \ attachment\_descriptions[0]\ =\ color\_attachment;}

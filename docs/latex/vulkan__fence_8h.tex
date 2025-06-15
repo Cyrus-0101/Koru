@@ -1,0 +1,186 @@
+\doxysection{engine/src/renderer/vulkan/vulkan\+\_\+fence.h File Reference}
+\hypertarget{vulkan__fence_8h}{}\label{vulkan__fence_8h}\index{engine/src/renderer/vulkan/vulkan\_fence.h@{engine/src/renderer/vulkan/vulkan\_fence.h}}
+
+
+Fence management utilities for the Koru Engine\textquotesingle{}s Vulkan renderer.  
+
+
+{\ttfamily \#include "{}vulkan\+\_\+types.\+inl"{}}\newline
+Include dependency graph for vulkan\+\_\+fence.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{vulkan__fence_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vulkan__fence_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{vulkan__fence_8h_afdf5af68250b20138ac89e34c1d913bd}{vulkan\+\_\+fence\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} create\+\_\+signaled, vulkan\+\_\+fence \texorpdfstring{$\ast$}{*}out\+\_\+fence)
+\begin{DoxyCompactList}\small\item\em Creates a new Vulkan fence. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__fence_8h_a6761bfc67ef7990942ab60315c2152bc}{vulkan\+\_\+fence\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+fence \texorpdfstring{$\ast$}{*}fence)
+\begin{DoxyCompactList}\small\item\em Destroys a Vulkan fence and releases its resources. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__fence_8h_a6b9eca5608aec3856d20de19fa9e3f55}{vulkan\+\_\+fence\+\_\+wait}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+fence \texorpdfstring{$\ast$}{*}fence, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} timeout\+\_\+ns)
+\begin{DoxyCompactList}\small\item\em Waits for the given fence to be signaled by the GPU. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__fence_8h_a7692eaefbda15ac834201d11d15ad664}{vulkan\+\_\+fence\+\_\+reset}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+fence \texorpdfstring{$\ast$}{*}fence)
+\begin{DoxyCompactList}\small\item\em Resets the fence so it can be reused. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Fence management utilities for the Koru Engine\textquotesingle{}s Vulkan renderer. 
+
+This module provides functions to\+:
+\begin{DoxyItemize}
+\item Create and destroy Vk\+Fence objects
+\item Wait for fences (CPU waits for GPU)
+\item Reset fences for reuse
+\end{DoxyItemize}
+
+Fences are used during rendering to ensure safe access to resources like\+:
+\begin{DoxyItemize}
+\item Command buffers
+\item Swapchain images
+\item Memory allocations 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{vulkan__fence_8h_source}{vulkan\+\_\+fence.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__fence_8h_afdf5af68250b20138ac89e34c1d913bd}\label{vulkan__fence_8h_afdf5af68250b20138ac89e34c1d913bd} 
+\index{vulkan\_fence.h@{vulkan\_fence.h}!vulkan\_fence\_create@{vulkan\_fence\_create}}
+\index{vulkan\_fence\_create@{vulkan\_fence\_create}!vulkan\_fence.h@{vulkan\_fence.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_fence\_create()}{vulkan\_fence\_create()}}
+{\footnotesize\ttfamily void vulkan\+\_\+fence\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{create\+\_\+signaled,  }\item[{vulkan\+\_\+fence \texorpdfstring{$\ast$}{*}}]{out\+\_\+fence }\end{DoxyParamCaption})}
+
+
+
+Creates a new Vulkan fence. 
+
+Fences are used to synchronize the CPU with GPU operations. A fence starts in either\+:
+\begin{DoxyItemize}
+\item Unsignaled state (default)
+\item Signaled state ({\ttfamily create\+\_\+signaled == TRUE})
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em create\+\_\+signaled} & If TRUE, the fence will be created in a signaled state. \\
+\hline
+{\em out\+\_\+fence} & A pointer to the vulkan\+\_\+fence struct to populate. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__fence_8c_source_l00014}{14}} of file \mbox{\hyperlink{vulkan__fence_8c_source}{vulkan\+\_\+fence.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00109}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+
+\Hypertarget{vulkan__fence_8h_a6761bfc67ef7990942ab60315c2152bc}\label{vulkan__fence_8h_a6761bfc67ef7990942ab60315c2152bc} 
+\index{vulkan\_fence.h@{vulkan\_fence.h}!vulkan\_fence\_destroy@{vulkan\_fence\_destroy}}
+\index{vulkan\_fence\_destroy@{vulkan\_fence\_destroy}!vulkan\_fence.h@{vulkan\_fence.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_fence\_destroy()}{vulkan\_fence\_destroy()}}
+{\footnotesize\ttfamily void vulkan\+\_\+fence\+\_\+destroy (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+fence \texorpdfstring{$\ast$}{*}}]{fence }\end{DoxyParamCaption})}
+
+
+
+Destroys a Vulkan fence and releases its resources. 
+
+Must be called before destroying the logical device.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em fence} & A pointer to the vulkan\+\_\+fence to destroy. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__fence_8c_source_l00033}{33}} of file \mbox{\hyperlink{vulkan__fence_8c_source}{vulkan\+\_\+fence.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}, and \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00305}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown()}}.
+
+\Hypertarget{vulkan__fence_8h_a7692eaefbda15ac834201d11d15ad664}\label{vulkan__fence_8h_a7692eaefbda15ac834201d11d15ad664} 
+\index{vulkan\_fence.h@{vulkan\_fence.h}!vulkan\_fence\_reset@{vulkan\_fence\_reset}}
+\index{vulkan\_fence\_reset@{vulkan\_fence\_reset}!vulkan\_fence.h@{vulkan\_fence.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_fence\_reset()}{vulkan\_fence\_reset()}}
+{\footnotesize\ttfamily void vulkan\+\_\+fence\+\_\+reset (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+fence \texorpdfstring{$\ast$}{*}}]{fence }\end{DoxyParamCaption})}
+
+
+
+Resets the fence so it can be reused. 
+
+Only resets the fence if it was previously signaled.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em fence} & A pointer to the vulkan\+\_\+fence to reset. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__fence_8c_source_l00080}{80}} of file \mbox{\hyperlink{vulkan__fence_8c_source}{vulkan\+\_\+fence.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}, and \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}.
+
+\Hypertarget{vulkan__fence_8h_a6b9eca5608aec3856d20de19fa9e3f55}\label{vulkan__fence_8h_a6b9eca5608aec3856d20de19fa9e3f55} 
+\index{vulkan\_fence.h@{vulkan\_fence.h}!vulkan\_fence\_wait@{vulkan\_fence\_wait}}
+\index{vulkan\_fence\_wait@{vulkan\_fence\_wait}!vulkan\_fence.h@{vulkan\_fence.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_fence\_wait()}{vulkan\_fence\_wait()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+fence\+\_\+wait (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+fence \texorpdfstring{$\ast$}{*}}]{fence,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{timeout\+\_\+ns }\end{DoxyParamCaption})}
+
+
+
+Waits for the given fence to be signaled by the GPU. 
+
+If the fence is already signaled, returns immediately. Otherwise, waits up to {\ttfamily timeout\+\_\+ns} nanoseconds for it to become signaled.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em fence} & A pointer to the vulkan\+\_\+fence to wait for. \\
+\hline
+{\em timeout\+\_\+ns} & Maximum time to wait in nanoseconds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the fence was signaled within the timeout; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__fence_8c_source_l00044}{44}} of file \mbox{\hyperlink{vulkan__fence_8c_source}{vulkan\+\_\+fence.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
