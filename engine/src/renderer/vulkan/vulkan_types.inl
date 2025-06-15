@@ -193,12 +193,12 @@ typedef struct vulkan_image {
  * Helps manage render pass lifecycle and ensures correct command recording flow.
  */
 typedef enum vulkan_render_pass_state {
-    READY,         ///< Render pass is ready to begin
-    RECORDING,     ///< Recording has started but no subpass yet
-    IN_RENDER_PASS, ///< Currently inside a render pass
-    RECORDING_ENDED, ///< Recording completed, not yet submitted
-    SUBMITTED,      ///< Command buffer was submitted to the queue
-    NOT_ALLOCATED   ///< Command buffer not yet allocated
+    READY,            ///< Render pass is ready to begin
+    RECORDING,        ///< Recording has started but no subpass yet
+    IN_RENDER_PASS,   ///< Currently inside a render pass
+    RECORDING_ENDED,  ///< Recording completed, not yet submitted
+    SUBMITTED,        ///< Command buffer was submitted to the queue
+    NOT_ALLOCATED     ///< Command buffer not yet allocated
 } vulkan_render_pass_state;
 
 /**
@@ -273,6 +273,54 @@ typedef struct vulkan_renderpass {
 } vulkan_renderpass;
 
 /**
+ * @struct vulkan_framebuffer
+ * @brief Represents a Vulkan framebuffer used for rendering.
+ *
+ * A framebuffer is an object that binds image views (color, depth, etc.)
+ * to a render pass, defining where rendering will occur.
+ *
+ * Framebuffers are created after:
+ * - The swapchain (provides images)
+ * - The render pass (defines attachment layout and usage)
+ *
+ * Must be recreated if the swapchain changes size or format.
+ */
+typedef struct vulkan_framebuffer {
+    /**
+     * @brief Handle to the actual VkFramebuffer object.
+     *
+     * Created using vkCreateFramebuffer and destroyed via vkDestroyFramebuffer.
+     */
+    VkFramebuffer handle;
+
+    /**
+     * @brief Number of attachments bound to this framebuffer.
+     *
+     * Typically includes:
+     * - One color attachment (from swapchain image view)
+     * - One depth/stencil attachment (if enabled)
+     */
+    u32 attachment_count;
+
+    /**
+     * @brief Array of image views used as attachments for this framebuffer.
+     *
+     * Usually includes:
+     * - Swapchain image view
+     * - Depth/stencil image view (optional)
+     */
+    VkImageView* attachments;
+
+    /**
+     * @brief Pointer to the render pass this framebuffer is associated with.
+     *
+     * This must match the render pass used during command recording.
+     * The render pass defines how many and what type of attachments are used.
+     */
+    vulkan_renderpass* renderpass;
+} vulkan_framebuffer;
+
+/**
  * @struct vulkan_swapchain
  * @brief Represents the application’s connection to the OS for rendering output.
  *
@@ -317,6 +365,9 @@ typedef struct vulkan_swapchain {
      * @brief Depth attachment image used for rendering.
      */
     vulkan_image depth_attachment;
+
+    // framebuffers used for on-screen rendering.
+    vulkan_framebuffer* framebuffers;
 } vulkan_swapchain;
 
 /**
@@ -407,6 +458,25 @@ typedef struct vulkan_command_buffer {
 } vulkan_command_buffer;
 
 /**
+ * @struct vulkan_fence
+ * @brief Represents a single Vulkan fence object.
+ *
+ * Tracks:
+ * - The underlying VkFence handle
+ * - Whether the fence is currently signaled
+ */
+typedef struct vulkan_fence {
+    /**
+     * @brief Handle to the actual VkFence object.
+     */
+    VkFence handle;
+
+    /**
+     * @brief Whether the fence is currently signaled or not.
+     */
+    b8 is_signaled;
+} vulkan_fence;
+/**
  * @struct vulkan_context
  * @brief Represents the global state of the Vulkan rendering context.
  *
@@ -476,6 +546,18 @@ typedef struct vulkan_context {
      * @brief Array of command buffers for rendering (one per frame).
      */
     vulkan_command_buffer* graphics_command_buffers;
+
+    // darrayAdd commentMore actions
+    VkSemaphore* image_available_semaphores;
+
+    // darray
+    VkSemaphore* queue_complete_semaphores;
+
+    u32 in_flight_fence_count;
+    vulkan_fence* in_flight_fences;
+
+    // Holds pointers to fences which exist and are owned elsewhere.
+    vulkan_fence** images_in_flight;
 
     /**
      * @brief Index of the currently active image in the swapchain.
