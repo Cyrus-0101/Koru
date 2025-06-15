@@ -1,7 +1,16 @@
-#include "vulkan_fence.h"
-
 #include "core/logger.h"
 
+#include "vulkan_fence.h"
+
+/**
+ * @file vulkan_fence.c
+ * @brief Implementation of Vulkan fence creation, waiting, and destruction.
+ *
+ * Fences are synchronization primitives that allow the CPU to wait for the GPU to finish tasks.
+ * They are central to managing multiple frames-in-flight safely.
+ */
+
+ 
 void vulkan_fence_create(
     vulkan_context* context,
     b8 create_signaled,
