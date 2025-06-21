@@ -494,6 +494,14 @@ typedef struct vulkan_context {
      */
     u32 framebuffer_height;
 
+    // Current generation of framebuffer size. If it does not match framebuffer_size_last_generation,
+    // a new one should be generated.
+    u64 framebuffer_size_generation;
+
+    // The generation of the framebuffer when it was last created. Set to framebuffer_size_generation
+    // when updated.
+    u64 framebuffer_size_last_generation;
+
     /**
      * @brief The VkInstance object that represents the connection between the application and the Vulkan library.
      *
@@ -547,7 +555,7 @@ typedef struct vulkan_context {
      */
     vulkan_command_buffer* graphics_command_buffers;
 
-    // darrayAdd commentMore actions
+    // darray
     VkSemaphore* image_available_semaphores;
 
     // darray
