@@ -98,7 +98,7 @@
                 "command": "${workspaceFolder}/test/tests"
             },
             "linux": {
-            "command": "${workspaceFolder}/test/tests"
+                "command": "${workspaceFolder}/test/tests"
             },
             "options": {
                 "cwd": "${workspaceFolder}",
@@ -116,7 +116,21 @@
                 "clear": true
             },
             "problemMatcher": []
-        }
+        },
+        {
+            "type": "shell",
+            "label": "Clean Everything",
+            "windows": {
+                "command": "${workspaceFolder}\\clean-all.bat",
+            },
+            "linux": {
+                "command": "${workspaceFolder}/clean-all.sh",
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build"
+        },
     ],
     "version": "2.0.0"
 }
