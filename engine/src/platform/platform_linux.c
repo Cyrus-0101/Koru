@@ -99,6 +99,8 @@ typedef struct internal_state {
     xcb_atom_t wm_delete_win;
 
     VkSurfaceKHR surface;
+
+    b8 is_visible;
 } internal_state;
 
 /**
@@ -266,6 +268,8 @@ b8 platform_startup(
         return FALSE;
     }
 
+    state->is_visible = TRUE;
+
     return TRUE;
 }
 
@@ -373,7 +377,27 @@ b8 platform_pump_messages(platform_state* plat_state) {
             } break;
 
             case XCB_CONFIGURE_NOTIFY: {
-                // TODO: Resizing
+                /*
+                 * Resizing - note that this is also triggered by moving the window, but should be
+                 * passed anyway since a change in the x/y could mean an upper-left resize.
+                 * The application layer can decide what to do with this.
+                 */
+                xcb_configure_notify_event_t* configure_event = (xcb_configure_notify_event_t*)event;
+
+                state->is_visible = (configure_event->width > 0 && configure_event->height > 0);
+
+                /*
+                 * Fire the event. The application layer should pick this up,
+                 * but not handle it as it shouldn't be visible to other parts
+                 * of the application.
+                 */
+                event_context context;
+
+                context.data.u16[0] = configure_event->width;
+                context.data.u16[1] = configure_event->height;
+                context.data.u16[2] = (u16)state->is_visible;  // Pass visibility flag
+
+                event_fire(EVENT_CODE_RESIZED, 0, context);
             } break;
 
             case XCB_CLIENT_MESSAGE: {
@@ -502,9 +526,9 @@ void platform_sleep(u64 ms) {
 }
 
 // Surface creation for VulkanAdd commentMore actions
-b8 platform_create_vulkan_surface(platform_state *plat_state, vulkan_context *context) {
+b8 platform_create_vulkan_surface(platform_state* plat_state, vulkan_context* context) {
     // Simply cold-cast to the known type.
-    internal_state *state = (internal_state *)plat_state->internal_state;
+    internal_state* state = (internal_state*)plat_state->internal_state;
 
     VkXcbSurfaceCreateInfoKHR create_info = {VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR};
     create_info.connection = state->connection;
