@@ -350,6 +350,8 @@ void create(vulkan_context* context, u32 width, u32 height, vulkan_swapchain* sw
  * @param swapchain A pointer to the vulkan_swapchain to destroy.
  */
 void destroy(vulkan_context* context, vulkan_swapchain* swapchain) {
+    vkDeviceWaitIdle(context->device.logical_device);
+
     vulkan_image_destroy(context, &swapchain->depth_attachment);
 
     // Destroy image views (images are owned by the swapchain and will be destroyed automatically)
