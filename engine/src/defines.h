@@ -212,6 +212,12 @@ STATIC_ASSERT(sizeof(f64) == 8, "Expected f64 to be 8 bytes.");
  * GCC or Clang: uses static inline by default.
  */
 #define KINLINE __forceinline
+/**
+ * Inlining directives.
+ * Used for performance-critical functions.
+ * Forces inlining of a function (MSVC: __forceinline).
+ * GCC or Clang: uses static inline by default.
+ */
 #define KNOINLINE __declspec(noinline)
 #else
 /**
@@ -221,5 +227,11 @@ STATIC_ASSERT(sizeof(f64) == 8, "Expected f64 to be 8 bytes.");
  * GCC or Clang: uses static inline by default.
  */
 #define KINLINE static inline
+/**
+ * Inlining directives.
+ * Used for performance-critical functions.
+ * Forces inlining of a function (MSVC: __forceinline).
+ * GCC or Clang: uses static inline by default.
+ */
 #define KNOINLINE
 #endif
