@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🔮_20roadmap_0',['🔮 Roadmap',['../index.html#autotoc_md25',1,'']]]
+  ['🔍_20query_20physical_20devices_0',['3. 🔍 Query Physical Devices',['../index.html#autotoc_md43',1,'']]]
 ];

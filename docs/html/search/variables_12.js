@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['u16_0',['u16',['../structevent__context.html#ade4e8f9d8d9433d902f7070c91a393ef',1,'event_context']]],
-  ['u32_1',['u32',['../structevent__context.html#addde65663cfb4b72a9538fab806c2475',1,'event_context']]],
-  ['u64_2',['u64',['../structevent__context.html#a6634590c95e7f62f4fbe9ac60c2f9638',1,'event_context']]],
-  ['u8_3',['u8',['../structevent__context.html#a3f2a89438b1f24e0010d973277f301a3',1,'event_context']]],
-  ['update_4',['update',['../structgame.html#afe7bfadc01e08def3e7cae0019151d1b',1,'game']]]
+  ['t_0',['t',['../unionvec2__u.html#a480b918bed0b2bd88f55c397ac98b06d',1,'vec2_u::t'],['../structvec3__u.html#a03ef21aa7c84fa44d0ad1591a948d2a4',1,'vec3_u::t'],['../unionvec4__u.html#a460b0af7f20b8eae0cff6c2321e133ae',1,'vec4_u::t']]],
+  ['tagged_5fallocations_1',['tagged_allocations',['../structmemory__stats.html#a9790428695ec487d59f0a3cad2b94227',1,'memory_stats']]],
+  ['terminal_5fsupports_5fcolor_2',['terminal_supports_color',['../logger_8c.html#acceded25efdbbd2bf2cbd1bd79a1d91a',1,'logger.c']]],
+  ['total_5fallocated_3',['total_allocated',['../structmemory__stats.html#ad0e7709d178700a389b85f6b677d2f5c',1,'memory_stats']]],
+  ['transfer_4',['transfer',['../structvulkan__physical__device__requirements.html#a9e9b7a70d589971a1596c953d43da2ae',1,'vulkan_physical_device_requirements']]],
+  ['transfer_5ffamily_5findex_5',['transfer_family_index',['../structvulkan__physical__device__queue__family__info.html#a28f1191238998f94992757a1168c40b9',1,'vulkan_physical_device_queue_family_info']]]
 ];

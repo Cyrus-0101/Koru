@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['🧩_20diagram_3a_20full_20rendering_20flow_0',['🧩 Diagram: Full Rendering Flow',['../index.html#autotoc_md63',1,'']]]
+  ['🧠_20what_20is_20koru_0',['🧠 What Is Koru?',['../index.html#autotoc_md4',1,'']]],
+  ['🧠_20why_20use_20vulkan_1',['🧠 Why Use Vulkan?',['../index.html#autotoc_md33',1,'']]]
 ];

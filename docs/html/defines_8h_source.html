@@ -199,6 +199,15 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="defines_8h.html#ac007fb317c156d98a91628a86b3c9c0e">  183</a></span><span class="preprocessor">#define KCLAMP(value, min, max) (value &lt;= min) ? min : (value &gt;= max) ? max \</span></div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">                                                                      : value;</span></div>
 </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment">// Inlining</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">#ifdef _MSC_VER</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#define KINLINE __forceinline</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">#define KNOINLINE __declspec(noinline)</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="defines_8h.html#ab4d0d8cdc3aafc511f63fecffd1806c9">  191</a></span><span class="preprocessor">#define KINLINE static inline</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="defines_8h.html#afc8c390e62fe367aaf65e4b3a8e9d64c">  192</a></span><span class="preprocessor">#define KNOINLINE</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="adefines_8h_html_a10e94b422ef0c20dcdec20d31a1f5049"><div class="ttname"><a href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a></div><div class="ttdeci">unsigned int u32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00023">defines.h:23</a></div></div>
 <div class="ttc" id="adefines_8h_html_a24df254ec81fc13256ad54cfe955d229"><div class="ttname"><a href="defines_8h.html#a24df254ec81fc13256ad54cfe955d229">STATIC_ASSERT</a></div><div class="ttdeci">#define STATIC_ASSERT</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00061">defines.h:61</a></div></div>
 <div class="ttc" id="adefines_8h_html_a2d0b2d48b0784ffa5f75c39f46562729"><div class="ttname"><a href="defines_8h.html#a2d0b2d48b0784ffa5f75c39f46562729">i8</a></div><div class="ttdeci">signed char i8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00031">defines.h:31</a></div></div>
@@ -215,7 +224,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 15 2025 18:44:06 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 22 2025 12:08:54 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🧪_20bonus_3a_20sample_20code_20for_20acquiring_20an_20image_0',['🧪 Bonus: Sample Code for Acquiring an Image',['../index.html#autotoc_md75',1,'']]]
+  ['🧩_20diagram_3a_20full_20rendering_20flow_0',['🧩 Diagram: Full Rendering Flow',['../index.html#autotoc_md63',1,'']]]
 ];

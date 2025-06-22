@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['system_5fevent_5fcode_0',['system_event_code',['../event_8h.html#aeb3aa7dc1a87db9aae0a5f0b3df676b9',1,'event.h']]]
+  ['registered_5fevent_0',['registered_event',['../event_8c.html#aa8b5e9c994ed612f290eb5e1f03624a9',1,'event.c']]]
 ];
