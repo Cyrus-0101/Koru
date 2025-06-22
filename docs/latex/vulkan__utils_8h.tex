@@ -1,0 +1,122 @@
+\doxysection{engine/src/renderer/vulkan/vulkan\+\_\+utils.h File Reference}
+\hypertarget{vulkan__utils_8h}{}\label{vulkan__utils_8h}\index{engine/src/renderer/vulkan/vulkan\_utils.h@{engine/src/renderer/vulkan/vulkan\_utils.h}}
+
+
+Utility functions for working with Vk\+Result values.  
+
+
+{\ttfamily \#include "{}vulkan\+\_\+types.\+inl"{}}\newline
+Include dependency graph for vulkan\+\_\+utils.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{vulkan__utils_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vulkan__utils_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{vulkan__utils_8h_a7c6284088860932a8a66b8153b4bc0a4}{vulkan\+\_\+result\+\_\+string}} (Vk\+Result result, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} get\+\_\+extended)
+\begin{DoxyCompactList}\small\item\em Converts a Vk\+Result into a human-\/readable string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__utils_8h_ad8a757bc800267c37b75303b1a8b0f63}{vulkan\+\_\+result\+\_\+is\+\_\+success}} (Vk\+Result result)
+\begin{DoxyCompactList}\small\item\em Checks whether a Vk\+Result represents a successful operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility functions for working with Vk\+Result values. 
+
+This module provides\+:
+\begin{DoxyItemize}
+\item Human-\/readable strings for Vk\+Result codes
+\item Helper function to check if a result is considered a success or failure
+\end{DoxyItemize}
+
+These are used throughout the engine to\+:
+\begin{DoxyItemize}
+\item Log errors during initialization
+\item Handle validation layer warnings
+\item Debug GPU operations like image creation, command submission, etc. 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{vulkan__utils_8h_source}{vulkan\+\_\+utils.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__utils_8h_ad8a757bc800267c37b75303b1a8b0f63}\label{vulkan__utils_8h_ad8a757bc800267c37b75303b1a8b0f63} 
+\index{vulkan\_utils.h@{vulkan\_utils.h}!vulkan\_result\_is\_success@{vulkan\_result\_is\_success}}
+\index{vulkan\_result\_is\_success@{vulkan\_result\_is\_success}!vulkan\_utils.h@{vulkan\_utils.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_result\_is\_success()}{vulkan\_result\_is\_success()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+result\+\_\+is\+\_\+success (\begin{DoxyParamCaption}\item[{Vk\+Result}]{result }\end{DoxyParamCaption})}
+
+
+
+Checks whether a Vk\+Result represents a successful operation. 
+
+Based on the Vulkan spec, some results are treated as "{}success"{} even if not VK\+\_\+\+SUCCESS, such as VK\+\_\+\+NOT\+\_\+\+READY or VK\+\_\+\+SUBOPTIMAL\+\_\+\+KHR.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & The Vk\+Result to evaluate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if the result indicates success (operation completed), FALSE otherwise (error occurred). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__utils_8c_source_l00098}{98}} of file \mbox{\hyperlink{vulkan__utils_8c_source}{vulkan\+\_\+utils.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, and \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00408}{vulkan\+\_\+renderer\+\_\+backend\+\_\+begin\+\_\+frame()}}.
+
+\Hypertarget{vulkan__utils_8h_a7c6284088860932a8a66b8153b4bc0a4}\label{vulkan__utils_8h_a7c6284088860932a8a66b8153b4bc0a4} 
+\index{vulkan\_utils.h@{vulkan\_utils.h}!vulkan\_result\_string@{vulkan\_result\_string}}
+\index{vulkan\_result\_string@{vulkan\_result\_string}!vulkan\_utils.h@{vulkan\_utils.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_result\_string()}{vulkan\_result\_string()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} vulkan\+\_\+result\+\_\+string (\begin{DoxyParamCaption}\item[{Vk\+Result}]{result,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{get\+\_\+extended }\end{DoxyParamCaption})}
+
+
+
+Converts a Vk\+Result into a human-\/readable string. 
+
+Returns either\+:
+\begin{DoxyItemize}
+\item A short code (e.\+g., "{}\+VK\+\_\+\+SUCCESS"{})
+\item Or an extended message (e.\+g., "{}\+Command successfully completed"{})
+\end{DoxyItemize}
+
+Useful for logging and debugging Vulkan API calls.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & The Vk\+Result value to convert. \\
+\hline
+{\em get\+\_\+extended} & TRUE to get a descriptive message; FALSE to get only the enum name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const char\texorpdfstring{$\ast$}{*} A static string representation of the result. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__utils_8c_source_l00015}{15}} of file \mbox{\hyperlink{vulkan__utils_8c_source}{vulkan\+\_\+utils.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00408}{vulkan\+\_\+renderer\+\_\+backend\+\_\+begin\+\_\+frame()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00499}{vulkan\+\_\+renderer\+\_\+backend\+\_\+end\+\_\+frame()}}.
+

@@ -27,6 +27,8 @@ void \mbox{\hyperlink{renderer__frontend_8c_a52882bf7ed3f35fe0593d1715edaa0b8}{r
 \begin{DoxyCompactList}\small\item\em Begins a new rendering frame. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{renderer__frontend_8c_af7b0d899f9d9ad513fdb67b6f811268a}{renderer\+\_\+end\+\_\+frame}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)
 \begin{DoxyCompactList}\small\item\em Ends the current rendering frame. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{renderer__frontend_8c_a344ab27f3e341fd7b45eb38eafea2e00}{renderer\+\_\+on\+\_\+resized}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} width, \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} height)
+\begin{DoxyCompactList}\small\item\em Handles window resize events. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{renderer__frontend_8c_aa1a64974ce989cb8a822d5910e45eeec}{renderer\+\_\+draw\+\_\+frame}} (render\+\_\+packet \texorpdfstring{$\ast$}{*}packet)
 \begin{DoxyCompactList}\small\item\em Performs the complete frame rendering process. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
@@ -76,7 +78,7 @@ References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}.
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00109}{renderer\+\_\+draw\+\_\+frame()}}.
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00117}{renderer\+\_\+draw\+\_\+frame()}}.
 
 \Hypertarget{renderer__frontend_8c_aa1a64974ce989cb8a822d5910e45eeec}\label{renderer__frontend_8c_aa1a64974ce989cb8a822d5910e45eeec} 
 \index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_draw\_frame@{renderer\_draw\_frame}}
@@ -102,7 +104,7 @@ TRUE if the frame was drawn successfully; otherwise FALSE.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00109}{109}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00117}{117}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
@@ -110,7 +112,7 @@ References \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00173}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}.
 
 \Hypertarget{renderer__frontend_8c_af7b0d899f9d9ad513fdb67b6f811268a}\label{renderer__frontend_8c_af7b0d899f9d9ad513fdb67b6f811268a} 
 \index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_end\_frame@{renderer\_end\_frame}}
@@ -142,7 +144,7 @@ References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}.
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00109}{renderer\+\_\+draw\+\_\+frame()}}.
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00117}{renderer\+\_\+draw\+\_\+frame()}}.
 
 \Hypertarget{renderer__frontend_8c_a22086f105bc3ec5fdad7381f76b5efb5}\label{renderer__frontend_8c_a22086f105bc3ec5fdad7381f76b5efb5} 
 \index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_initialize@{renderer\_initialize}}
@@ -176,7 +178,38 @@ References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, \mbo
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00121}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+create()}}.
+
+\Hypertarget{renderer__frontend_8c_a344ab27f3e341fd7b45eb38eafea2e00}\label{renderer__frontend_8c_a344ab27f3e341fd7b45eb38eafea2e00} 
+\index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_on\_resized@{renderer\_on\_resized}}
+\index{renderer\_on\_resized@{renderer\_on\_resized}!renderer\_frontend.c@{renderer\_frontend.c}}
+\doxysubsubsection{\texorpdfstring{renderer\_on\_resized()}{renderer\_on\_resized()}}
+{\footnotesize\ttfamily void renderer\+\_\+on\+\_\+resized (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{height }\end{DoxyParamCaption})}
+
+
+
+Handles window resize events. 
+
+Notifies the renderer that the window dimensions have changed and triggers any necessary internal updates such as recreating the swapchain or adjusting viewport/scissor settings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & New width of the window. \\
+\hline
+{\em height} & New height of the window. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00100}{100}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, and \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00346}{application\+\_\+on\+\_\+resized()}}.
 
 \Hypertarget{renderer__frontend_8c_a52882bf7ed3f35fe0593d1715edaa0b8}\label{renderer__frontend_8c_a52882bf7ed3f35fe0593d1715edaa0b8} 
 \index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_shutdown@{renderer\_shutdown}}
@@ -198,7 +231,7 @@ References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, \mbo
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00173}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}.
 
 
 
@@ -219,5 +252,5 @@ Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{25}} of
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00094}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+initialize()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00064}{renderer\+\_\+shutdown()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00109}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00659}{recreate\+\_\+swapchain()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00094}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+initialize()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00100}{renderer\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00064}{renderer\+\_\+shutdown()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00408}{vulkan\+\_\+renderer\+\_\+backend\+\_\+begin\+\_\+frame()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00112}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 

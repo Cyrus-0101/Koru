@@ -1,0 +1,124 @@
+\doxysection{engine/src/math/math\+\_\+types.h File Reference}
+\hypertarget{math__types_8h}{}\label{math__types_8h}\index{engine/src/math/math\_types.h@{engine/src/math/math\_types.h}}
+
+
+Core mathematical types used throughout the Koru engine.  
+
+
+{\ttfamily \#include "{}defines.\+h"{}}\newline
+Include dependency graph for math\+\_\+types.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{math__types_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{math__types_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionvec2__u}{vec2\+\_\+u}}
+\begin{DoxyCompactList}\small\item\em A 2-\/component vector union with multiple access patterns. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvec3__u}{vec3\+\_\+u}}
+\begin{DoxyCompactList}\small\item\em A 3-\/component vector union with multiple access patterns. \end{DoxyCompactList}\item 
+union \mbox{\hyperlink{unionvec4__u}{vec4\+\_\+u}}
+\begin{DoxyCompactList}\small\item\em A 4-\/component vector union with multiple access patterns. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef union \mbox{\hyperlink{unionvec2__u}{vec2\+\_\+u}} \mbox{\hyperlink{math__types_8h_a4403515b5f13a3b84dafb1667a1f9d88}{vec2}}
+\begin{DoxyCompactList}\small\item\em A 2-\/component vector union with multiple access patterns. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvec3__u}{vec3\+\_\+u}} \mbox{\hyperlink{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}{vec3}}
+\begin{DoxyCompactList}\small\item\em A 3-\/component vector union with multiple access patterns. \end{DoxyCompactList}\item 
+typedef union \mbox{\hyperlink{unionvec4__u}{vec4\+\_\+u}} \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}}
+\begin{DoxyCompactList}\small\item\em A 4-\/component vector union with multiple access patterns. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} \mbox{\hyperlink{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f}{quat}}
+\begin{DoxyCompactList}\small\item\em Quaternion type alias using vec4 storage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Core mathematical types used throughout the Koru engine. 
+
+This header defines fundamental vector and quaternion types with multiple access patterns (position, color, texture coordinates). The types are designed for both clarity and performance, with SIMD support where available. 
+
+Definition in file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f}\label{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f} 
+\index{math\_types.h@{math\_types.h}!quat@{quat}}
+\index{quat@{quat}!math\_types.h@{math\_types.h}}
+\doxysubsubsection{\texorpdfstring{quat}{quat}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} \mbox{\hyperlink{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f}{quat}}}
+
+
+
+Quaternion type alias using vec4 storage. 
+
+Quaternions are stored as\+:
+\begin{DoxyItemize}
+\item x,y,z\+: Vector components
+\item w\+: Scalar component Provides identical memory layout to vec4 for interoperability. 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00123}{123}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+\Hypertarget{math__types_8h_a4403515b5f13a3b84dafb1667a1f9d88}\label{math__types_8h_a4403515b5f13a3b84dafb1667a1f9d88} 
+\index{math\_types.h@{math\_types.h}!vec2@{vec2}}
+\index{vec2@{vec2}!math\_types.h@{math\_types.h}}
+\doxysubsubsection{\texorpdfstring{vec2}{vec2}}
+{\footnotesize\ttfamily typedef union \mbox{\hyperlink{unionvec2__u}{vec2\+\_\+u}} \mbox{\hyperlink{math__types_8h_a4403515b5f13a3b84dafb1667a1f9d88}{vec2}}}
+
+
+
+A 2-\/component vector union with multiple access patterns. 
+
+Provides access to components via\+:
+\begin{DoxyItemize}
+\item Position (x,y)
+\item Color (r,g)
+\item Texture coordinates (s,t) or (u,v)
+\item Raw array index 
+\end{DoxyItemize}\Hypertarget{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}\label{math__types_8h_a291ce5191b34b920d576c84fd970b9ef} 
+\index{math\_types.h@{math\_types.h}!vec3@{vec3}}
+\index{vec3@{vec3}!math\_types.h@{math\_types.h}}
+\doxysubsubsection{\texorpdfstring{vec3}{vec3}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvec3__u}{vec3\+\_\+u}} \mbox{\hyperlink{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}{vec3}}}
+
+
+
+A 3-\/component vector union with multiple access patterns. 
+
+Provides access to components via\+:
+\begin{DoxyItemize}
+\item Position (x,y,z)
+\item Color (r,g,b)
+\item Texture coordinates (s,t,p)
+\item Raw array index 
+\end{DoxyItemize}\Hypertarget{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}\label{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd} 
+\index{math\_types.h@{math\_types.h}!vec4@{vec4}}
+\index{vec4@{vec4}!math\_types.h@{math\_types.h}}
+\doxysubsubsection{\texorpdfstring{vec4}{vec4}}
+{\footnotesize\ttfamily typedef union \mbox{\hyperlink{unionvec4__u}{vec4\+\_\+u}} \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}}}
+
+
+
+A 4-\/component vector union with multiple access patterns. 
+
+Provides access to components via\+:
+\begin{DoxyItemize}
+\item Position (x,y,z,w)
+\item Color (r,g,b,a)
+\item Texture coordinates (s,t,p,q)
+\item Raw array index
+\item SIMD operations when enabled 
+\end{DoxyItemize}

@@ -155,6 +155,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a193a750e12452924346788eb62a3a327" id="r_a193a750e12452924346788eb62a3a327"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8c.html#a193a750e12452924346788eb62a3a327">application_on_key</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, void *listener_inst, <a class="el" href="structevent__context.html">event_context</a> <a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>)</td></tr>
 <tr class="memdesc:a193a750e12452924346788eb62a3a327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles keyboard input at the application level.  <br /></td></tr>
 <tr class="separator:a193a750e12452924346788eb62a3a327"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aadbf7eebc34521742f68cbcc97e4c6" id="r_a0aadbf7eebc34521742f68cbcc97e4c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8c.html#a0aadbf7eebc34521742f68cbcc97e4c6">application_on_resized</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, void *listener_inst, <a class="el" href="structevent__context.html">event_context</a> <a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>)</td></tr>
+<tr class="memdesc:a0aadbf7eebc34521742f68cbcc97e4c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles window resize events.  <br /></td></tr>
+<tr class="separator:a0aadbf7eebc34521742f68cbcc97e4c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0ccecbeef900f30b0b734eb020574ef" id="r_af0ccecbeef900f30b0b734eb020574ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="application_8c.html#af0ccecbeef900f30b0b734eb020574ef">application_create</a> (<a class="el" href="structgame.html">game</a> *game_inst)</td></tr>
 <tr class="memdesc:af0ccecbeef900f30b0b734eb020574ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the application with the provided configuration.  <br /></td></tr>
 <tr class="separator:af0ccecbeef900f30b0b734eb020574ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,9 +238,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if initialization was successful; FALSE otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00121">121</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00139">139</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">References <a class="el" href="game__types_8h_source.html#l00029">game::app_config</a>, <a class="el" href="application_8c_source.html#l00077">app_state</a>, <a class="el" href="application_8c_source.html#l00285">application_on_event()</a>, <a class="el" href="application_8c_source.html#l00297">application_on_key()</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00076">event_initialize()</a>, <a class="el" href="event_8c_source.html#l00100">event_register()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00035">application_state::game_inst</a>, <a class="el" href="application_8c_source.html#l00059">application_state::height</a>, <a class="el" href="game__types_8h_source.html#l00036">game::initialize</a>, <a class="el" href="logger_8c_source.html#l00029">initialize_logging()</a>, <a class="el" href="application_8c_source.html#l00072">initialized</a>, <a class="el" href="input_8c_source.html#l00088">input_initialize()</a>, <a class="el" href="application_8c_source.html#l00039">application_state::is_running</a>, <a class="el" href="application_8c_source.html#l00044">application_state::is_suspended</a>, <a class="el" href="logger_8h_source.html#l00162">KERROR</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="application_8h_source.html#l00055">application_config::name</a>, <a class="el" href="game__types_8h_source.html#l00057">game::on_resize</a>, <a class="el" href="application_8c_source.html#l00049">application_state::platform</a>, <a class="el" href="platform_8h.html#a1557f29064029f8b437d0fbcc587ebbd">platform_startup()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00037">renderer_initialize()</a>, <a class="el" href="application_8h_source.html#l00050">application_config::start_height</a>, <a class="el" href="application_8h_source.html#l00035">application_config::start_pos_x</a>, <a class="el" href="application_8h_source.html#l00040">application_config::start_pos_y</a>, <a class="el" href="application_8h_source.html#l00045">application_config::start_width</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="application_8c_source.html#l00054">application_state::width</a>.</p>
+<p class="reference">References <a class="el" href="game__types_8h_source.html#l00029">game::app_config</a>, <a class="el" href="application_8c_source.html#l00077">app_state</a>, <a class="el" href="application_8c_source.html#l00306">application_on_event()</a>, <a class="el" href="application_8c_source.html#l00318">application_on_key()</a>, <a class="el" href="application_8c_source.html#l00346">application_on_resized()</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8h_source.html#l00221">EVENT_CODE_RESIZED</a>, <a class="el" href="event_8c_source.html#l00076">event_initialize()</a>, <a class="el" href="event_8c_source.html#l00100">event_register()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00035">application_state::game_inst</a>, <a class="el" href="application_8c_source.html#l00059">application_state::height</a>, <a class="el" href="game__types_8h_source.html#l00036">game::initialize</a>, <a class="el" href="logger_8c_source.html#l00029">initialize_logging()</a>, <a class="el" href="application_8c_source.html#l00072">initialized</a>, <a class="el" href="input_8c_source.html#l00088">input_initialize()</a>, <a class="el" href="application_8c_source.html#l00039">application_state::is_running</a>, <a class="el" href="application_8c_source.html#l00044">application_state::is_suspended</a>, <a class="el" href="logger_8h_source.html#l00162">KERROR</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="application_8h_source.html#l00055">application_config::name</a>, <a class="el" href="game__types_8h_source.html#l00057">game::on_resize</a>, <a class="el" href="application_8c_source.html#l00049">application_state::platform</a>, <a class="el" href="platform_8h.html#a1557f29064029f8b437d0fbcc587ebbd">platform_startup()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00037">renderer_initialize()</a>, <a class="el" href="application_8h_source.html#l00050">application_config::start_height</a>, <a class="el" href="application_8h_source.html#l00035">application_config::start_pos_x</a>, <a class="el" href="application_8h_source.html#l00040">application_config::start_pos_y</a>, <a class="el" href="application_8h_source.html#l00045">application_config::start_width</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="application_8c_source.html#l00054">application_state::width</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00051">main()</a>.</p>
 
@@ -279,11 +282,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00280">280</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00301">301</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
 <p class="reference">References <a class="el" href="application_8c_source.html#l00077">app_state</a>, <a class="el" href="application_8c_source.html#l00059">application_state::height</a>, and <a class="el" href="application_8c_source.html#l00054">application_state::width</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00109">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00112">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -341,11 +344,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the event was handled; FALSE otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00285">285</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00306">306</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
 <p class="reference">References <a class="el" href="application_8c_source.html#l00077">app_state</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00039">application_state::is_running</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_create()</a>, and <a class="el" href="application_8c_source.html#l00173">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>, and <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
 
 </div>
 </div>
@@ -401,11 +404,71 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the event was handled; FALSE otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00297">297</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00318">318</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00027">context</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00156">event_fire()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00210">KDEBUG</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00156">event_fire()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00210">KDEBUG</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_create()</a>, and <a class="el" href="application_8c_source.html#l00173">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>, and <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
+
+</div>
+</div>
+<a id="a0aadbf7eebc34521742f68cbcc97e4c6" name="a0aadbf7eebc34521742f68cbcc97e4c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aadbf7eebc34521742f68cbcc97e4c6">&#9670;&#160;</a></span>application_on_resized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> application_on_resized </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>listener_inst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structevent__context.html">event_context</a>&#160;</td>
+          <td class="paramname"><em>context</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles window resize events. </p>
+<p>This function is registered as an event listener for 'EVENT_CODE_RESIZED' events. It updates internal state, suspends/resumes rendering, and forwards the resize event to the game and renderer modules.</p>
+<p>On Linux/X11, minimized windows report size 0x0 — this function detects that and suspends rendering until the window is restored.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>The event code (should be EVENT_CODE_RESIZED). </td></tr>
+    <tr><td class="paramname">sender</td><td>A pointer to the object that sent the event (unused here). </td></tr>
+    <tr><td class="paramname">listener_inst</td><td>A pointer to the listener instance (unused here). </td></tr>
+    <tr><td class="paramname">context</td><td>Event-specific data containing width and height. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if handled; FALSE otherwise (so other listeners can also receive the event). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00346">346</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">References <a class="el" href="application_8c_source.html#l00077">app_state</a>, <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="event_8h_source.html#l00221">EVENT_CODE_RESIZED</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00035">application_state::game_inst</a>, <a class="el" href="application_8c_source.html#l00059">application_state::height</a>, <a class="el" href="application_8c_source.html#l00044">application_state::is_suspended</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="game__types_8h_source.html#l00057">game::on_resize</a>, <a class="el" href="renderer__frontend_8c_source.html#l00100">renderer_on_resized()</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="application_8c_source.html#l00054">application_state::width</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>.</p>
 
 </div>
 </div>
@@ -433,9 +496,9 @@ Variables</h2></td></tr>
 <p>This function blocks until the application exits.</p>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the application exited cleanly; FALSE if an error occurred or early exit. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00173">173</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00192">192</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">References <a class="el" href="application_8c_source.html#l00077">app_state</a>, <a class="el" href="application_8c_source.html#l00285">application_on_event()</a>, <a class="el" href="application_8c_source.html#l00297">application_on_key()</a>, <a class="el" href="application_8c_source.html#l00061">application_state::clock</a>, <a class="el" href="clock_8c_source.html#l00019">clock_start()</a>, <a class="el" href="clock_8c_source.html#l00013">clock_update()</a>, <a class="el" href="clock_8h_source.html#l00028">clock::elapsed</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00088">event_shutdown()</a>, <a class="el" href="event_8c_source.html#l00129">event_unregister()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00035">application_state::game_inst</a>, <a class="el" href="kmemory_8c_source.html#l00184">get_memory_usage_str()</a>, <a class="el" href="input_8c_source.html#l00099">input_shutdown()</a>, <a class="el" href="input_8c_source.html#l00111">input_update()</a>, <a class="el" href="application_8c_source.html#l00039">application_state::is_running</a>, <a class="el" href="application_8c_source.html#l00044">application_state::is_suspended</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="application_8c_source.html#l00066">application_state::last_time</a>, <a class="el" href="application_8c_source.html#l00049">application_state::platform</a>, <a class="el" href="platform_8h.html#af38f532e572a9da41eaad4be29a58ada">platform_get_absolute_time()</a>, <a class="el" href="platform_8h.html#af47d0fad6d6e686e1e0f668c95b1c201">platform_pump_messages()</a>, <a class="el" href="platform_8h.html#a7fe7553c63bc948e2ee04d15597d6ccd">platform_shutdown()</a>, <a class="el" href="platform_8h.html#ae21676dfd997b1c6dd9c06f69b5618e4">platform_sleep()</a>, <a class="el" href="game__types_8h_source.html#l00050">game::render</a>, <a class="el" href="renderer__frontend_8c_source.html#l00109">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00064">renderer_shutdown()</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="game__types_8h_source.html#l00043">game::update</a>.</p>
+<p class="reference">References <a class="el" href="application_8c_source.html#l00077">app_state</a>, <a class="el" href="application_8c_source.html#l00306">application_on_event()</a>, <a class="el" href="application_8c_source.html#l00318">application_on_key()</a>, <a class="el" href="application_8c_source.html#l00061">application_state::clock</a>, <a class="el" href="clock_8c_source.html#l00019">clock_start()</a>, <a class="el" href="clock_8c_source.html#l00013">clock_update()</a>, <a class="el" href="clock_8h_source.html#l00028">clock::elapsed</a>, <a class="el" href="event_8h_source.html#l00145">EVENT_CODE_APPLICATION_QUIT</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00088">event_shutdown()</a>, <a class="el" href="event_8c_source.html#l00129">event_unregister()</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="application_8c_source.html#l00035">application_state::game_inst</a>, <a class="el" href="kmemory_8c_source.html#l00184">get_memory_usage_str()</a>, <a class="el" href="input_8c_source.html#l00099">input_shutdown()</a>, <a class="el" href="input_8c_source.html#l00111">input_update()</a>, <a class="el" href="application_8c_source.html#l00039">application_state::is_running</a>, <a class="el" href="application_8c_source.html#l00044">application_state::is_suspended</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="application_8c_source.html#l00066">application_state::last_time</a>, <a class="el" href="application_8c_source.html#l00049">application_state::platform</a>, <a class="el" href="platform_8h.html#af38f532e572a9da41eaad4be29a58ada">platform_get_absolute_time()</a>, <a class="el" href="platform_8h.html#af47d0fad6d6e686e1e0f668c95b1c201">platform_pump_messages()</a>, <a class="el" href="platform_8h.html#a7fe7553c63bc948e2ee04d15597d6ccd">platform_shutdown()</a>, <a class="el" href="platform_8h.html#ae21676dfd997b1c6dd9c06f69b5618e4">platform_sleep()</a>, <a class="el" href="game__types_8h_source.html#l00050">game::render</a>, <a class="el" href="renderer__frontend_8c_source.html#l00117">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00064">renderer_shutdown()</a>, <a class="el" href="defines_8h_source.html#l00100">TRUE</a>, and <a class="el" href="game__types_8h_source.html#l00043">game::update</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00051">main()</a>.</p>
 
@@ -466,7 +529,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00077">77</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_create()</a>, <a class="el" href="application_8c_source.html#l00280">application_get_framebuffer_size()</a>, <a class="el" href="application_8c_source.html#l00285">application_on_event()</a>, and <a class="el" href="application_8c_source.html#l00173">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>, <a class="el" href="application_8c_source.html#l00301">application_get_framebuffer_size()</a>, <a class="el" href="application_8c_source.html#l00306">application_on_event()</a>, <a class="el" href="application_8c_source.html#l00346">application_on_resized()</a>, and <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
 
 </div>
 </div>
@@ -494,14 +557,14 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00072">72</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 15 2025 18:44:06 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 22 2025 12:08:54 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

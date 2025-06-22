@@ -118,5 +118,14 @@
 \DoxyCodeLine{\Hypertarget{defines_8h_source_l00182}00182\ }
 \DoxyCodeLine{\Hypertarget{defines_8h_source_l00183}\mbox{\hyperlink{defines_8h_ac007fb317c156d98a91628a86b3c9c0e}{00183}}\ \textcolor{preprocessor}{\#define\ KCLAMP(value,\ min,\ max)\ (value\ <=\ min)\ ?\ min\ :\ (value\ >=\ max)\ ?\ max\ \(\backslash\)}}
 \DoxyCodeLine{\Hypertarget{defines_8h_source_l00184}00184\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ value;}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00186}00186\ \textcolor{comment}{//\ Inlining}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00187}00187\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00188}00188\ \textcolor{preprocessor}{\#define\ KINLINE\ \_\_forceinline}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00189}00189\ \textcolor{preprocessor}{\#define\ KNOINLINE\ \_\_declspec(noinline)}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00190}00190\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00191}\mbox{\hyperlink{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9}{00191}}\ \textcolor{preprocessor}{\#define\ KINLINE\ static\ inline}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00192}\mbox{\hyperlink{defines_8h_afc8c390e62fe367aaf65e4b3a8e9d64c}{00192}}\ \textcolor{preprocessor}{\#define\ KNOINLINE}}
+\DoxyCodeLine{\Hypertarget{defines_8h_source_l00193}00193\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

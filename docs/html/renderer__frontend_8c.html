@@ -127,6 +127,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af7b0d899f9d9ad513fdb67b6f811268a" id="r_af7b0d899f9d9ad513fdb67b6f811268a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#af7b0d899f9d9ad513fdb67b6f811268a">renderer_end_frame</a> (<a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> delta_time)</td></tr>
 <tr class="memdesc:af7b0d899f9d9ad513fdb67b6f811268a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends the current rendering frame.  <br /></td></tr>
 <tr class="separator:af7b0d899f9d9ad513fdb67b6f811268a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344ab27f3e341fd7b45eb38eafea2e00" id="r_a344ab27f3e341fd7b45eb38eafea2e00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#a344ab27f3e341fd7b45eb38eafea2e00">renderer_on_resized</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> width, <a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> height)</td></tr>
+<tr class="memdesc:a344ab27f3e341fd7b45eb38eafea2e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles window resize events.  <br /></td></tr>
+<tr class="separator:a344ab27f3e341fd7b45eb38eafea2e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1a64974ce989cb8a822d5910e45eeec" id="r_aa1a64974ce989cb8a822d5910e45eeec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#aa1a64974ce989cb8a822d5910e45eeec">renderer_draw_frame</a> (render_packet *packet)</td></tr>
 <tr class="memdesc:aa1a64974ce989cb8a822d5910e45eeec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the complete frame rendering process.  <br /></td></tr>
 <tr class="separator:aa1a64974ce989cb8a822d5910e45eeec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,7 +176,7 @@ Variables</h2></td></tr>
 
 <p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00025">backend</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00109">renderer_draw_frame()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00117">renderer_draw_frame()</a>.</p>
 
 </div>
 </div>
@@ -204,11 +207,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TRUE if the frame was drawn successfully; otherwise FALSE. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00109">109</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00117">117</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
 <p class="reference">References <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="logger_8h_source.html#l00162">KERROR</a>, <a class="el" href="renderer__frontend_8c_source.html#l00081">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00094">renderer_end_frame()</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00173">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
 
 </div>
 </div>
@@ -242,7 +245,7 @@ Variables</h2></td></tr>
 
 <p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00025">backend</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00109">renderer_draw_frame()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00117">renderer_draw_frame()</a>.</p>
 
 </div>
 </div>
@@ -287,7 +290,51 @@ Variables</h2></td></tr>
 
 <p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00025">backend</a>, <a class="el" href="defines_8h_source.html#l00102">FALSE</a>, <a class="el" href="kmemory_8c_source.html#l00105">kallocate()</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="kmemory_8h_source.html#l00059">MEMORY_TAG_RENDERER</a>, <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>, and <a class="el" href="defines_8h_source.html#l00100">TRUE</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00121">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>.</p>
+
+</div>
+</div>
+<a id="a344ab27f3e341fd7b45eb38eafea2e00" name="a344ab27f3e341fd7b45eb38eafea2e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a344ab27f3e341fd7b45eb38eafea2e00">&#9670;&#160;</a></span>renderer_on_resized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void renderer_on_resized </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles window resize events. </p>
+<p>Notifies the renderer that the window dimensions have changed and triggers any necessary internal updates such as recreating the swapchain or adjusting viewport/scissor settings.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>New width of the window. </td></tr>
+    <tr><td class="paramname">height</td><td>New height of the window. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00100">100</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00025">backend</a>, and <a class="el" href="logger_8h_source.html#l00176">KWARN</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00346">application_on_resized()</a>.</p>
 
 </div>
 </div>
@@ -313,7 +360,7 @@ Variables</h2></td></tr>
 
 <p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00025">backend</a>, <a class="el" href="kmemory_8c_source.html#l00129">kfree()</a>, and <a class="el" href="kmemory_8h_source.html#l00059">MEMORY_TAG_RENDERER</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00173">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
 
 </div>
 </div>
@@ -343,14 +390,14 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00025">25</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00081">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00094">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00037">renderer_initialize()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00064">renderer_shutdown()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00109">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00659">recreate_swapchain()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00081">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00094">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00037">renderer_initialize()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00100">renderer_on_resized()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00064">renderer_shutdown()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00408">vulkan_renderer_backend_begin_frame()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00112">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 15 2025 18:44:06 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Jun 22 2025 12:08:54 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

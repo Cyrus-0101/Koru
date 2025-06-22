@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🔁_20create_20swapchain_0',['7. 🔁 Create Swapchain',['../index.html#autotoc_md51',1,'']]]
+  ['📦_20high_20level_20architecture_20render_20layer_0',['📦 High-Level Architecture (Render Layer)',['../index.html#autotoc_md35',1,'']]]
 ];

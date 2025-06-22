@@ -30,13 +30,14 @@ var searchData=
   ['input_5fwas_5fbutton_5fdown_27',['input_was_button_down',['../input_8c.html#a93b7eaaa50b483591371bbcc1e3243b6',1,'input_was_button_down(buttons button):&#160;input.c'],['../input_8h.html#a6345fe3f4af808a3acfa8686b1fa6eef',1,'input_was_button_down(buttons button):&#160;input.c']]],
   ['input_5fwas_5fbutton_5fup_28',['input_was_button_up',['../input_8c.html#a3da84f3106936536e91c6707313600de',1,'input_was_button_up(buttons button):&#160;input.c'],['../input_8h.html#ac75809be9ce0e6ec52b368ce9ee7dfe5',1,'input_was_button_up(buttons button):&#160;input.c']]],
   ['input_5fwas_5fkey_5fdown_29',['input_was_key_down',['../input_8c.html#a3c29709b57504ff36940b91dcdabc532',1,'input_was_key_down(keys key):&#160;input.c'],['../input_8h.html#a0247347a29f6fbdc6bc523e0b81999f8',1,'input_was_key_down(keys key):&#160;input.c']]],
-  ['input_5fwas_5fkey_5fup_30',['input_was_key_up',['../input_8c.html#a1e131fe78ff97cd84e9a8e578ad0355e',1,'input_was_key_up(keys key):&#160;input.c'],['../input_8h.html#a15f2db5046f21794f16d24dcefd6cd61',1,'input_was_key_up(keys key):&#160;input.c']]],
+  ['input_5fwas_5fkey_5fup_30',['input_was_key_up',['../input_8h.html#a15f2db5046f21794f16d24dcefd6cd61',1,'input_was_key_up(keys key):&#160;input.c'],['../input_8c.html#a1e131fe78ff97cd84e9a8e578ad0355e',1,'input_was_key_up(keys key):&#160;input.c']]],
   ['instance_31',['1. 🧱 Create Vulkan Instance',['../index.html#autotoc_md39',1,'']]],
   ['instructions_32',['⚙️ Build Scripts/Instructions',['../index.html#autotoc_md21',1,'']]],
   ['internal_5fstate_33',['internal_state',['../structplatform__state.html#ac902a69fe12cf6868862aad5a57b15d5',1,'platform_state']]],
   ['is_20koru_34',['🧠 What Is Koru?',['../index.html#autotoc_md4',1,'']]],
   ['is_20needed_35',['💡 Why All This Is Needed',['../index.html#autotoc_md71',1,'']]],
   ['is_5finitialized_36',['is_initialized',['../event_8c.html#aaf91097086deb8321aa029e833198c3d',1,'event.c']]],
-  ['is_5frunning_37',['is_running',['../structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde',1,'application_state']]],
-  ['is_5fsuspended_38',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]]
+  ['is_5fpower_5fof_5f2_37',['is_power_of_2',['../kmath_8h.html#a728ffffd37e34f79e8d0e5669177c9e7',1,'kmath.h']]],
+  ['is_5frunning_38',['is_running',['../structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde',1,'application_state']]],
+  ['is_5fsuspended_39',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]]
 ];

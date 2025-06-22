@@ -1,0 +1,250 @@
+\doxysection{vec4\+\_\+u Union Reference}
+\hypertarget{unionvec4__u}{}\label{unionvec4__u}\index{vec4\_u@{vec4\_u}}
+
+
+A 4-\/component vector union with multiple access patterns.  
+
+
+
+
+{\ttfamily \#include $<$math\+\_\+types.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a7fb00ed02b81bd87ff8b8b0251026f7e}{elements}} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array access for direct component manipulation (16-\/byte aligned) \end{DoxyCompactList}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>union \{\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_ae30e88d049711ba68bdfe005e450559d}{x}}\\
+\>\>\>\>{\em First component (x position, red channel, s texture coord) }\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a2af837bd6477ce84909765a1c1589330}{r}}\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a915df9a2f0520e4601079e70f9d210fa}{s}}\\
+\>\>\} \\
+\>\>union \{\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_aac51c9b41f5d9e5c1b919c5976cb92ee}{y}}\\
+\>\>\>\>{\em Second component (y position, green channel, t texture coord) }\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a1357aa5045eab0c3a2d5703b9c418f91}{g}}\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a460b0af7f20b8eae0cff6c2321e133ae}{t}}\\
+\>\>\} \\
+\>\>union \{\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_af01b54572b186f50daed5b48a705c253}{z}}\\
+\>\>\>\>{\em Third component (z position, blue channel, p texture coord) }\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a188b547c6bbc01a37cb1478c283dc953}{b}}\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a96fa0b775c7607d7207c86562e08215f}{p}}\\
+\>\>\} \\
+\>\>union \{\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a4a77e50d25d2101a5a821ba20f56927b}{w}}\\
+\>\>\>\>{\em Fourth component (w position, alpha channel, q texture coord) }\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a1cdd7ac041888304efc9c84618594a97}{a}}\\
+\>\>\>\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionvec4__u_a7f09873b18a15aa76453bd7b3766e627}{q}}\\
+\>\>\} \\
+\>\} \\
+\}; \\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em Named component access. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A 4-\/component vector union with multiple access patterns. 
+
+Provides access to components via\+:
+\begin{DoxyItemize}
+\item Position (x,y,z,w)
+\item Color (r,g,b,a)
+\item Texture coordinates (s,t,p,q)
+\item Raw array index
+\item SIMD operations when enabled 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00082}{82}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{unionvec4__u_a7b9b129a2c30026bc1bb487a2c1a72d0}\label{unionvec4__u_a7b9b129a2c30026bc1bb487a2c1a72d0} 
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily union  \{ ... \}  \mbox{\hyperlink{unionvec4__u}{vec4\+\_\+u}}}
+
+
+
+Named component access. 
+
+\Hypertarget{unionvec4__u_a1cdd7ac041888304efc9c84618594a97}\label{unionvec4__u_a1cdd7ac041888304efc9c84618594a97} 
+\index{vec4\_u@{vec4\_u}!a@{a}}
+\index{a@{a}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::a}
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00109}{109}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+\Hypertarget{unionvec4__u_a188b547c6bbc01a37cb1478c283dc953}\label{unionvec4__u_a188b547c6bbc01a37cb1478c283dc953} 
+\index{vec4\_u@{vec4\_u}!b@{b}}
+\index{b@{b}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::b}
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00105}{105}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+\Hypertarget{unionvec4__u_a7fb00ed02b81bd87ff8b8b0251026f7e}\label{unionvec4__u_a7fb00ed02b81bd87ff8b8b0251026f7e} 
+\index{vec4\_u@{vec4\_u}!elements@{elements}}
+\index{elements@{elements}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{elements}{elements}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::elements\mbox{[}4\mbox{]}}
+
+
+
+Array access for direct component manipulation (16-\/byte aligned) 
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00089}{89}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l00694}{vec4\+\_\+add()}}, \mbox{\hyperlink{kmath_8h_source_l00739}{vec4\+\_\+div()}}, \mbox{\hyperlink{kmath_8h_source_l00724}{vec4\+\_\+mul()}}, and \mbox{\hyperlink{kmath_8h_source_l00709}{vec4\+\_\+sub()}}.
+
+\Hypertarget{unionvec4__u_a1357aa5045eab0c3a2d5703b9c418f91}\label{unionvec4__u_a1357aa5045eab0c3a2d5703b9c418f91} 
+\index{vec4\_u@{vec4\_u}!g@{g}}
+\index{g@{g}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::g}
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00101}{101}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+\Hypertarget{unionvec4__u_a96fa0b775c7607d7207c86562e08215f}\label{unionvec4__u_a96fa0b775c7607d7207c86562e08215f} 
+\index{vec4\_u@{vec4\_u}!p@{p}}
+\index{p@{p}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::p}
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00105}{105}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+\Hypertarget{unionvec4__u_a7f09873b18a15aa76453bd7b3766e627}\label{unionvec4__u_a7f09873b18a15aa76453bd7b3766e627} 
+\index{vec4\_u@{vec4\_u}!q@{q}}
+\index{q@{q}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::q}
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00109}{109}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+\Hypertarget{unionvec4__u_a2af837bd6477ce84909765a1c1589330}\label{unionvec4__u_a2af837bd6477ce84909765a1c1589330} 
+\index{vec4\_u@{vec4\_u}!r@{r}}
+\index{r@{r}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{r}{r}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::r}
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00097}{97}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+\Hypertarget{unionvec4__u_a915df9a2f0520e4601079e70f9d210fa}\label{unionvec4__u_a915df9a2f0520e4601079e70f9d210fa} 
+\index{vec4\_u@{vec4\_u}!s@{s}}
+\index{s@{s}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{s}{s}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::s}
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00097}{97}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+\Hypertarget{unionvec4__u_a460b0af7f20b8eae0cff6c2321e133ae}\label{unionvec4__u_a460b0af7f20b8eae0cff6c2321e133ae} 
+\index{vec4\_u@{vec4\_u}!t@{t}}
+\index{t@{t}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::t}
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00101}{101}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+\Hypertarget{unionvec4__u_a4a77e50d25d2101a5a821ba20f56927b}\label{unionvec4__u_a4a77e50d25d2101a5a821ba20f56927b} 
+\index{vec4\_u@{vec4\_u}!w@{w}}
+\index{w@{w}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::w}
+
+
+
+Fourth component (w position, alpha channel, q texture coord) 
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00109}{109}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l00824}{vec4\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00632}{vec4\+\_\+create()}}, \mbox{\hyperlink{kmath_8h_source_l00753}{vec4\+\_\+length\+\_\+squared()}}, and \mbox{\hyperlink{kmath_8h_source_l00772}{vec4\+\_\+normalize()}}.
+
+\Hypertarget{unionvec4__u_ae30e88d049711ba68bdfe005e450559d}\label{unionvec4__u_ae30e88d049711ba68bdfe005e450559d} 
+\index{vec4\_u@{vec4\_u}!x@{x}}
+\index{x@{x}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::x}
+
+
+
+First component (x position, red channel, s texture coord) 
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00097}{97}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l00364}{vec3\+\_\+from\+\_\+vec4()}}, \mbox{\hyperlink{kmath_8h_source_l00824}{vec4\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00632}{vec4\+\_\+create()}}, \mbox{\hyperlink{kmath_8h_source_l00753}{vec4\+\_\+length\+\_\+squared()}}, \mbox{\hyperlink{kmath_8h_source_l00772}{vec4\+\_\+normalize()}}, and \mbox{\hyperlink{kmath_8h_source_l00652}{vec4\+\_\+to\+\_\+vec3()}}.
+
+\Hypertarget{unionvec4__u_aac51c9b41f5d9e5c1b919c5976cb92ee}\label{unionvec4__u_aac51c9b41f5d9e5c1b919c5976cb92ee} 
+\index{vec4\_u@{vec4\_u}!y@{y}}
+\index{y@{y}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::y}
+
+
+
+Second component (y position, green channel, t texture coord) 
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00101}{101}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l00364}{vec3\+\_\+from\+\_\+vec4()}}, \mbox{\hyperlink{kmath_8h_source_l00824}{vec4\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00632}{vec4\+\_\+create()}}, \mbox{\hyperlink{kmath_8h_source_l00753}{vec4\+\_\+length\+\_\+squared()}}, \mbox{\hyperlink{kmath_8h_source_l00772}{vec4\+\_\+normalize()}}, and \mbox{\hyperlink{kmath_8h_source_l00652}{vec4\+\_\+to\+\_\+vec3()}}.
+
+\Hypertarget{unionvec4__u_af01b54572b186f50daed5b48a705c253}\label{unionvec4__u_af01b54572b186f50daed5b48a705c253} 
+\index{vec4\_u@{vec4\_u}!z@{z}}
+\index{z@{z}!vec4\_u@{vec4\_u}}
+\doxysubsubsection{\texorpdfstring{z}{z}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} vec4\+\_\+u\+::z}
+
+
+
+Third component (z position, blue channel, p texture coord) 
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00105}{105}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l00364}{vec3\+\_\+from\+\_\+vec4()}}, \mbox{\hyperlink{kmath_8h_source_l00824}{vec4\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00632}{vec4\+\_\+create()}}, \mbox{\hyperlink{kmath_8h_source_l00753}{vec4\+\_\+length\+\_\+squared()}}, \mbox{\hyperlink{kmath_8h_source_l00772}{vec4\+\_\+normalize()}}, and \mbox{\hyperlink{kmath_8h_source_l00652}{vec4\+\_\+to\+\_\+vec3()}}.
+
+
+
+The documentation for this union was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/math/\mbox{\hyperlink{math__types_8h}{math\+\_\+types.\+h}}\end{DoxyCompactItemize}
