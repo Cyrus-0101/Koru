@@ -162,6 +162,9 @@ STATIC_ASSERT(sizeof(f64) == 8, "Expected f64 to be 8 bytes.");
  * Usage:
  * - When building the engine as a DLL/shared library, define KEXPORT
  * - When using the engine from an application, do not define KEXPORT
+ *
+ * MSVC uses `__declspec(dllexport)`
+ * GCC or Clang uses `__attribute__((visibility("default")))`
  */
 
 #ifdef KEXPORT
@@ -172,7 +175,11 @@ STATIC_ASSERT(sizeof(f64) == 8, "Expected f64 to be 8 bytes.");
 #define KAPI __attribute__((visibility("default"))) /** GCC/Clang */
 #endif
 #else
-/** Using the library – import symbols */
+/**
+ * Using the library – import symbols
+ * MSVC uses `__declspec(dllimport)`
+ * GCC/Clang doesn't need special import
+ */
 #ifdef _MSC_VER
 #define KAPI __declspec(dllimport) /** Windows MSVC */
 #else
@@ -180,14 +187,35 @@ STATIC_ASSERT(sizeof(f64) == 8, "Expected f64 to be 8 bytes.");
 #endif
 #endif
 
+/**
+ * Clamps a value between min and max.
+ * Useful for input sanitization and safe bounds checking.
+ *
+ * @param value The value to clamp
+ * @param min The lower bound
+ * @param max The upper bound
+ * @return The clamped value
+ */
 #define KCLAMP(value, min, max) (value <= min) ? min : (value >= max) ? max \
                                                                       : value;
 
-// Inlining
+
 #ifdef _MSC_VER
+/**
+ * Inlining directives.
+ * Used for performance-critical functions.
+ * Forces inlining of a function (MSVC: __forceinline).
+ * GCC or Clang: uses static inline by default.
+ */
 #define KINLINE __forceinline
 #define KNOINLINE __declspec(noinline)
 #else
+/**
+ * Inlining directives.
+ * Used for performance-critical functions.
+ * Forces inlining of a function (MSVC: __forceinline).
+ * GCC or Clang: uses static inline by default.
+ */
 #define KINLINE static inline
 #define KNOINLINE
 #endif
