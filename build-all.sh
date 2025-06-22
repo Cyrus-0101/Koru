@@ -8,9 +8,10 @@ set -x
 echo "Building everything..."
 
 # Enter engine directory and source its build script
-pushd engine
-source build.sh
-popd
+# pushd engine
+# source build.sh
+# popd
+make -f Makefile.engine.linux.mak all
 
 # Check for failure
 ERRORLEVEL=$?
@@ -20,9 +21,10 @@ then
 fi
 
 # Enter testbed directory and source its build script
-pushd testbed
-source build.sh
-popd
+# pushd testbed
+# source build.sh
+# popd
+make -f Makefile.testbed.linux.mak all
 
 # Check again
 ERRORLEVEL=$?
