@@ -54,7 +54,11 @@ typedef int b32;
 /** 8-bit boolean (more memory-efficient than b32) */
 typedef char b8;
 
-/** Define STATIC_ASSERT based on compiler support */
+/**
+ * Define STATIC_ASSERT based on compiler support.
+ * Uses C11 standard `_Static_assert` if available,
+ * otherwise falls back to a custom `static_assert` macro.
+ */
 #if defined(__clang__) || defined(__GNUC__)
 #define STATIC_ASSERT _Static_assert /** C11 standard for static assertions */
 #else
