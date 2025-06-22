@@ -5,8 +5,7 @@
 Core definitions and platform-\/specific utilities.  
 
 
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -127,10 +126,12 @@ Detects the current platform and defines corresponding macros\+:
 Usage\+:
 \begin{DoxyItemize}
 \item When building the engine as a DLL/shared library, define KEXPORT
-\item When using the engine from an application, do not define KEXPORT Using the library – import symbols 
+\item When using the engine from an application, do not define KEXPORT
 \end{DoxyItemize}
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00179}{179}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+MSVC uses {\ttfamily \+\_\+\+\_\+declspec(dllexport)} GCC or Clang uses {\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+((visibility("{}default"{})))} Using the library – import symbols MSVC uses {\ttfamily \+\_\+\+\_\+declspec(dllimport)} GCC/\+Clang doesn\textquotesingle{}t need special import 
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00186}{186}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_ac007fb317c156d98a91628a86b3c9c0e}\label{defines_8h_ac007fb317c156d98a91628a86b3c9c0e} 
 \index{defines.h@{defines.h}!KCLAMP@{KCLAMP}}
@@ -144,9 +145,23 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00179}{179}} of file \mbo
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ value;}
 
 \end{DoxyCode}
+Clamps a value between min and max. Useful for input sanitization and safe bounds checking.
 
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00183}{183}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to clamp \\
+\hline
+{\em min} & The lower bound \\
+\hline
+{\em max} & The upper bound \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The clamped value 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00199}{199}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9}\label{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9} 
 \index{defines.h@{defines.h}!KINLINE@{KINLINE}}
@@ -154,9 +169,9 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00183}{183}} of file \mbo
 \doxysubsubsection{\texorpdfstring{KINLINE}{KINLINE}}
 {\footnotesize\ttfamily \#define KINLINE~static inline}
 
+Inlining directives. Used for performance-\/critical functions. Forces inlining of a function (MSVC\+: \+\_\+\+\_\+forceinline). GCC or Clang\+: uses static inline by default. 
 
-
-Definition at line \mbox{\hyperlink{defines_8h_source_l00191}{191}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+Definition at line \mbox{\hyperlink{defines_8h_source_l00219}{219}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_afc8c390e62fe367aaf65e4b3a8e9d64c}\label{defines_8h_afc8c390e62fe367aaf65e4b3a8e9d64c} 
 \index{defines.h@{defines.h}!KNOINLINE@{KNOINLINE}}
@@ -166,7 +181,7 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00191}{191}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00192}{192}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+Definition at line \mbox{\hyperlink{defines_8h_source_l00220}{220}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_a24df254ec81fc13256ad54cfe955d229}\label{defines_8h_a24df254ec81fc13256ad54cfe955d229} 
 \index{defines.h@{defines.h}!STATIC\_ASSERT@{STATIC\_ASSERT}}
