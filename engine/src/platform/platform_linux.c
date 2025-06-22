@@ -1,6 +1,7 @@
 #define _POSIX_C_SOURCE 199309L  // Enables clock_gettime, CLOCK_MONOTONIC
 
 #include "platform.h"
+#include "containers/darray.h"
 #include "core/input.h"
 #include "core/logger.h"  // Custom logging system used in engine/application
 #include "core/event.h"
@@ -41,30 +42,90 @@
 #include <stdio.h>   // printf
 #include <string.h>  // memset, memcpy, etc.
 
+#define VK_USE_PLATFORM_XCB_KHR  // For surface creation
+#include <vulkan/vulkan.h>
+#include "renderer/vulkan/vulkan_types.inl"
+
 /**
- * A struct groups related data together.
- * Holds all low-level info about our window and connection.
+ * @struct internal_state
+ * @brief Platform-specific state for Linux/XCB-based windowing system.
+ *
+ * Stores low-level handles and atoms needed to manage:
+ * - Window creation and destruction
+ * - Event handling (keyboard, mouse, window close)
+ * - Interaction with the X Window Manager
  */
 typedef struct internal_state {
-    Display* display;              // Old-style X11 display
-    xcb_connection_t* connection;  // XCB connection to X server
-    xcb_window_t window;           // Handle to our window
-    xcb_screen_t* screen;          // Screen info
-    xcb_atom_t wm_protocols;       // Atom for WM_PROTOCOLS
-    xcb_atom_t wm_delete_win;      // Atom for WM_DELETE_WINDOW
+    /**
+     * @brief Pointer to the X11 display connection.
+     *
+     * Used to interact with the X server using legacy Xlib functions.
+     */
+    Display* display;
+
+    /**
+     * @brief Connection to the X server using XCB (X protocol C Binding).
+     *
+     * Provides modern, asynchronous access to the X Window System.
+     */
+    xcb_connection_t* connection;
+
+    /**
+     * @brief Handle to the created application window.
+     *
+     * Used to send commands like map/unmap, resize, and destroy.
+     */
+    xcb_window_t window;
+
+    /**
+     * @brief Pointer to the current screen information.
+     *
+     * Contains resolution, color depth, and root window info.
+     */
+    xcb_screen_t* screen;
+
+    /**
+     * @brief Atom representing the WM_PROTOCOLS message type.
+     *
+     * Used to register supported window manager protocols.
+     */
+    xcb_atom_t wm_protocols;
+
+    /**
+     * @brief Atom representing the WM_DELETE_WINDOW protocol.
+     *
+     * Used to detect when the user clicks the close button.
+     */
+    xcb_atom_t wm_delete_win;
+
+    VkSurfaceKHR surface;
+
+    b8 is_visible;
 } internal_state;
 
-// Key translation
+/**
+ * @brief Translates an X11 keycode into a Koru engine key code.
+ *
+ * Converts raw X11/XCB key symbols into a unified key enum used by the engine.
+ *
+ * @param x_keycode The X11/XCB key symbol to translate.
+ * @return The corresponding `keys` enum value, or 0 if unknown.
+ */
 keys translate_keycode(u32 x_keycode);
 
 /**
- * Starts up the platform-specific parts (window creation, input setup, etc.)
+ * @brief Initializes the Linux platform layer and creates an XCB-based window.
  *
- * @param plat_state - Platform state structure that we initialize
- * @param application_name - Title of the window
- * @param x/y - Position of the window
- * @param width/height - Dimensions of the window
- * @return TRUE if successful
+ * Sets up the X11 display, creates a window, registers event handlers,
+ * and configures basic window properties like title and size.
+ *
+ * @param plat_state A pointer to the platform_state structure to initialize.
+ * @param application_name The title of the window.
+ * @param x The initial x position of the window.
+ * @param y The initial y position of the window.
+ * @param width The width of the client area.
+ * @param height The height of the client area.
+ * @return TRUE if successful; FALSE otherwise.
  */
 b8 platform_startup(
     platform_state* plat_state,
@@ -207,11 +268,18 @@ b8 platform_startup(
         return FALSE;
     }
 
+    state->is_visible = TRUE;
+
     return TRUE;
 }
 
 /**
- * Shuts down the platform layer, cleans up resources
+ * @brief Shuts down the platform layer and cleans up all allocated resources.
+ *
+ * Destroys the window, disconnects from the X server, and restores system settings
+ * such as keyboard auto-repeat.
+ *
+ * @param plat_state A pointer to the platform_state structure to shut down.
  */
 void platform_shutdown(platform_state* plat_state) {
     // Simply cold-cast to the known type.
@@ -225,8 +293,13 @@ void platform_shutdown(platform_state* plat_state) {
 }
 
 /**
- * Processes incoming events (keyboard, mouse, window close, etc.)
- * Returns TRUE if app should continue running
+ * @brief Processes all pending platform events (input, window close, etc.).
+ *
+ * Polls the XCB event queue and dispatches relevant events to the engine's
+ * input and event systems.
+ *
+ * @param plat_state A pointer to the platform_state structure.
+ * @return TRUE if the application should continue running; FALSE if quit is requested.
  */
 b8 platform_pump_messages(platform_state* plat_state) {
     // Simply cold-cast to the known type.
@@ -304,7 +377,27 @@ b8 platform_pump_messages(platform_state* plat_state) {
             } break;
 
             case XCB_CONFIGURE_NOTIFY: {
-                // TODO: Resizing
+                /*
+                 * Resizing - note that this is also triggered by moving the window, but should be
+                 * passed anyway since a change in the x/y could mean an upper-left resize.
+                 * The application layer can decide what to do with this.
+                 */
+                xcb_configure_notify_event_t* configure_event = (xcb_configure_notify_event_t*)event;
+
+                state->is_visible = (configure_event->width > 0 && configure_event->height > 0);
+
+                /*
+                 * Fire the event. The application layer should pick this up,
+                 * but not handle it as it shouldn't be visible to other parts
+                 * of the application.
+                 */
+                event_context context;
+
+                context.data.u16[0] = configure_event->width;
+                context.data.u16[1] = configure_event->height;
+                context.data.u16[2] = (u16)state->is_visible;  // Pass visibility flag
+
+                event_fire(EVENT_CODE_RESIZED, 0, context);
             } break;
 
             case XCB_CLIENT_MESSAGE: {
@@ -329,32 +422,72 @@ b8 platform_pump_messages(platform_state* plat_state) {
 }
 
 /**
- * Memory Allocation wrappers
- * These mimic JavaScript's dynamic memory behavior
+ * @brief Allocates memory using standard malloc.
+ *
+ * This is a simple wrapper around malloc for use in early initialization before
+ * the custom memory system is available.
+ *
+ * @param size The number of bytes to allocate.
+ * @param aligned Ignored here; included for interface compatibility.
+ * @return A pointer to the newly allocated block of memory.
  */
 void* platform_allocate(u64 size, b8 aligned) {
     return malloc(size);
 }
 
+/**
+ * @brief Frees a previously allocated block of memory.
+ *
+ * Wrapper around free() to match allocation interface.
+ *
+ * @param block A pointer to the memory block to free.
+ * @param aligned Ignored here; included for interface compatibility.
+ */
 void platform_free(void* block, b8 aligned) {
     free(block);
 }
 
+/**
+ * @brief Fills a block of memory with zeros.
+ *
+ * Equivalent to memset(..., 0, ...).
+ *
+ * @param block A pointer to the memory block.
+ * @param size The number of bytes to zero.
+ * @return A pointer to the zeroed memory block.
+ */
 void* platform_zero_memory(void* block, u64 size) {
     return memset(block, 0, size);
 }
 
+/**
+ * @brief Copies data from one memory block to another.
+ *
+ * Equivalent to memcpy().
+ *
+ * @param dest A pointer to the destination memory block.
+ * @param source A pointer to the source memory block.
+ * @param size The number of bytes to copy.
+ * @return A pointer to the destination memory block.
+ */
 void* platform_copy_memory(void* dest, const void* source, u64 size) {
     return memcpy(dest, source, size);
 }
 
+/**
+ * @brief Fills a block of memory with a specific byte value.
+ *
+ * Equivalent to memset().
+ *
+ * @param dest A pointer to the memory block.
+ * @param value The byte value to set.
+ * @param size The number of bytes to fill.
+ * @return A pointer to the modified memory block.
+ */
 void* platform_set_memory(void* dest, i32 value, u64 size) {
     return memset(dest, value, size);
 }
 
-/**
- * Console output with colors (like console.log with styles)
- */
 void platform_console_write(const char* message, u8 colour) {
     // FATAL,ERROR,WARN,INFO,DEBUG,TRACE
     const char* colour_strings[] = {"0;41", "1;31", "1;33", "1;32", "1;34", "1;30"};
@@ -367,9 +500,6 @@ void platform_console_write_error(const char* message, u8 colour) {
     printf("\033[%sm%s\033[0m", colour_strings[colour], message);
 }
 
-/**
- * Gets current time in seconds
- */
 f64 platform_get_absolute_time() {
     struct timespec now;
 
@@ -378,10 +508,6 @@ f64 platform_get_absolute_time() {
     return now.tv_sec + now.tv_nsec * 0.000000001;
 }
 
-/**
- * Sleeps for a number of milliseconds
- * Uses either nanosleep or usleep depending on system capabilities
- */
 void platform_sleep(u64 ms) {
 #if _POSIX_C_SOURCE >= 199309L
     struct timespec ts;
@@ -397,6 +523,41 @@ void platform_sleep(u64 ms) {
 
     usleep((ms % 1000) * 1000);
 #endif
+}
+
+// Surface creation for VulkanAdd commentMore actions
+b8 platform_create_vulkan_surface(platform_state* plat_state, vulkan_context* context) {
+    // Simply cold-cast to the known type.
+    internal_state* state = (internal_state*)plat_state->internal_state;
+
+    VkXcbSurfaceCreateInfoKHR create_info = {VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR};
+    create_info.connection = state->connection;
+    create_info.window = state->window;
+
+    VkResult result = vkCreateXcbSurfaceKHR(
+        context->instance,
+        &create_info,
+        context->allocator,
+        &state->surface);
+    if (result != VK_SUCCESS) {
+        KFATAL("Vulkan surface creation failed.");
+        return FALSE;
+    }
+
+    context->surface = state->surface;
+    return TRUE;
+}
+
+/**
+ * @brief Appends platform-specific Vulkan extension names to the provided array.
+ *
+ * Adds the required surface extensions needed for creating a Vulkan instance
+ * that can render to an XCB-based window.
+ *
+ * @param names_darray A pointer to a dynamic array of `const char*` where extension names will be appended.
+ */
+void platform_get_required_extension_names(const char*** names_darray) {
+    darray_push(*names_darray, &"VK_KHR_xcb_surface");  // VK_KHR_xlib_surface?
 }
 
 keys translate_keycode(u32 x_keycode) {

@@ -21,7 +21,9 @@ Include dependency graph for kstring.\+c\+:\nopagebreak
 \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9}{string\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}str)
 \begin{DoxyCompactList}\small\item\em Returns the length of the given null-\/terminated string. \end{DoxyCompactList}\item 
 char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8c_ae4d2c3111ca8e06cce31d32a7928f320}{string\+\_\+duplicate}} (const char \texorpdfstring{$\ast$}{*}str)
-\begin{DoxyCompactList}\small\item\em Duplicates the given null-\/terminated string into a new heap-\/allocated copy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Duplicates the given null-\/terminated string into a new heap-\/allocated copy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{kstring_8c_a4088fb073177638c470fee72f8f2180a}{strings\+\_\+equal}} (const char \texorpdfstring{$\ast$}{*}str0, const char \texorpdfstring{$\ast$}{*}str1)
+\begin{DoxyCompactList}\small\item\em Compares two null-\/terminated strings for equality (case-\/sensitive). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -96,4 +98,34 @@ Definition at line \mbox{\hyperlink{kstring_8c_source_l00020}{20}} of file \mbox
 
 
 Referenced by \mbox{\hyperlink{kstring_8c_source_l00024}{string\+\_\+duplicate()}}.
+
+\Hypertarget{kstring_8c_a4088fb073177638c470fee72f8f2180a}\label{kstring_8c_a4088fb073177638c470fee72f8f2180a} 
+\index{kstring.c@{kstring.c}!strings\_equal@{strings\_equal}}
+\index{strings\_equal@{strings\_equal}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{strings\_equal()}{strings\_equal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} strings\+\_\+equal (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str0,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{str1 }\end{DoxyParamCaption})}
+
+
+
+Compares two null-\/terminated strings for equality (case-\/sensitive). 
+
+This function performs a character-\/by-\/character comparison of two strings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str0} & First string to compare. \\
+\hline
+{\em str1} & Second string to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if both strings are identical; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00034}{34}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00109}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 

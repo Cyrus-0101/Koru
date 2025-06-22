@@ -34,3 +34,14 @@ KAPI u64 string_length(const char* str);
  * @return A newly allocated copy of the input string. Caller must free using `kfree()` or `string_free()`.
  */
 KAPI char* string_duplicate(const char* str);
+
+/**
+ * @brief Compares two null-terminated strings for equality (case-sensitive).
+ *
+ * This function performs a character-by-character comparison of two strings.
+ *
+ * @param str0 First string to compare.
+ * @param str1 Second string to compare.
+ * @return TRUE if both strings are identical; FALSE otherwise.
+ */
+KAPI b8 strings_equal(const char* str0, const char* str1);

@@ -1,0 +1,173 @@
+\doxysection{vulkan\+\_\+physical\+\_\+device\+\_\+requirements Struct Reference}
+\hypertarget{structvulkan__physical__device__requirements}{}\label{structvulkan__physical__device__requirements}\index{vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}}
+
+
+\begin{quote}
+ Forward declarations \end{quote}
+ 
+
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{structvulkan__physical__device__requirements_a0d60ecb3ea4f8cf40a7f31781785b867}{graphics}}
+\begin{DoxyCompactList}\small\item\em Device must support graphics queues. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{structvulkan__physical__device__requirements_a823c487af548bdd104834099356111fd}{present}}
+\begin{DoxyCompactList}\small\item\em Device must support present queues. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{structvulkan__physical__device__requirements_a1e19bc98bfb1e4e23d881a43f2a977d6}{compute}}
+\begin{DoxyCompactList}\small\item\em Device must support compute queues. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{structvulkan__physical__device__requirements_a9e9b7a70d589971a1596c953d43da2ae}{transfer}}
+\begin{DoxyCompactList}\small\item\em Device must support transfer queues. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structvulkan__physical__device__requirements_a8fd02bdca69952af910a69708aedf702}{device\+\_\+extension\+\_\+names}}
+\begin{DoxyCompactList}\small\item\em Required device extensions (e.\+g., VK\+\_\+\+KHR\+\_\+\+SWAPCHAIN\+\_\+\+EXTENSION\+\_\+\+NAME). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{structvulkan__physical__device__requirements_afbd2891e580f96fc355eb1d62167a5cf}{sampler\+\_\+anisotropy}}
+\begin{DoxyCompactList}\small\item\em Must support sampler anisotropy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{structvulkan__physical__device__requirements_a2a6ed14c466b3fa9f8d2f9e9fd61d61c}{discrete\+\_\+gpu}}
+\begin{DoxyCompactList}\small\item\em Must be a discrete GPU (if enabled). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{quote}
+ Forward declarations \end{quote}
+
+
+Describes required features of a physical device.
+
+Used during device selection to filter out unsuitable GPUs. 
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00025}{25}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structvulkan__physical__device__requirements_a1e19bc98bfb1e4e23d881a43f2a977d6}\label{structvulkan__physical__device__requirements_a1e19bc98bfb1e4e23d881a43f2a977d6} 
+\index{vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}!compute@{compute}}
+\index{compute@{compute}!vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}}
+\doxysubsubsection{\texorpdfstring{compute}{compute}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::compute}
+
+
+
+Device must support compute queues. 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00039}{39}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+\Hypertarget{structvulkan__physical__device__requirements_a8fd02bdca69952af910a69708aedf702}\label{structvulkan__physical__device__requirements_a8fd02bdca69952af910a69708aedf702} 
+\index{vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}!device\_extension\_names@{device\_extension\_names}}
+\index{device\_extension\_names@{device\_extension\_names}!vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}}
+\doxysubsubsection{\texorpdfstring{device\_extension\_names}{device\_extension\_names}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::device\+\_\+extension\+\_\+names}
+
+
+
+Required device extensions (e.\+g., VK\+\_\+\+KHR\+\_\+\+SWAPCHAIN\+\_\+\+EXTENSION\+\_\+\+NAME). 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00049}{49}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+\Hypertarget{structvulkan__physical__device__requirements_a2a6ed14c466b3fa9f8d2f9e9fd61d61c}\label{structvulkan__physical__device__requirements_a2a6ed14c466b3fa9f8d2f9e9fd61d61c} 
+\index{vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}!discrete\_gpu@{discrete\_gpu}}
+\index{discrete\_gpu@{discrete\_gpu}!vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}}
+\doxysubsubsection{\texorpdfstring{discrete\_gpu}{discrete\_gpu}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::discrete\+\_\+gpu}
+
+
+
+Must be a discrete GPU (if enabled). 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00059}{59}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+\Hypertarget{structvulkan__physical__device__requirements_a0d60ecb3ea4f8cf40a7f31781785b867}\label{structvulkan__physical__device__requirements_a0d60ecb3ea4f8cf40a7f31781785b867} 
+\index{vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}!graphics@{graphics}}
+\index{graphics@{graphics}!vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}}
+\doxysubsubsection{\texorpdfstring{graphics}{graphics}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::graphics}
+
+
+
+Device must support graphics queues. 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00029}{29}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+\Hypertarget{structvulkan__physical__device__requirements_a823c487af548bdd104834099356111fd}\label{structvulkan__physical__device__requirements_a823c487af548bdd104834099356111fd} 
+\index{vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}!present@{present}}
+\index{present@{present}!vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}}
+\doxysubsubsection{\texorpdfstring{present}{present}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::present}
+
+
+
+Device must support present queues. 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00034}{34}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+\Hypertarget{structvulkan__physical__device__requirements_afbd2891e580f96fc355eb1d62167a5cf}\label{structvulkan__physical__device__requirements_afbd2891e580f96fc355eb1d62167a5cf} 
+\index{vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}!sampler\_anisotropy@{sampler\_anisotropy}}
+\index{sampler\_anisotropy@{sampler\_anisotropy}!vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}}
+\doxysubsubsection{\texorpdfstring{sampler\_anisotropy}{sampler\_anisotropy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::sampler\+\_\+anisotropy}
+
+
+
+Must support sampler anisotropy. 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00054}{54}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+\Hypertarget{structvulkan__physical__device__requirements_a9e9b7a70d589971a1596c953d43da2ae}\label{structvulkan__physical__device__requirements_a9e9b7a70d589971a1596c953d43da2ae} 
+\index{vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}!transfer@{transfer}}
+\index{transfer@{transfer}!vulkan\_physical\_device\_requirements@{vulkan\_physical\_device\_requirements}}
+\doxysubsubsection{\texorpdfstring{transfer}{transfer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::transfer}
+
+
+
+Device must support transfer queues. 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00044}{44}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/renderer/vulkan/\mbox{\hyperlink{vulkan__device_8c}{vulkan\+\_\+device.\+c}}\end{DoxyCompactItemize}

@@ -13,10 +13,15 @@
 #include "platform/platform.h"
 #include "core/logger.h"
 #include "core/input.h"
-
+#include "containers/darray.h"
+#include "core/event.h"
 #include <windows.h>
 #include <windowsx.h>  // param input extraction
 #include <stdlib.h>
+
+#include <vulkan/vulkan.h>  // For surface creation
+#include <vulkan/vulkan_win32.h>
+#include "renderer/vulkan/vulkan_types.inl"
 
 // Internal struct used only on Windows to track handles.
 typedef struct internal_state {
@@ -204,25 +209,60 @@ void platform_sleep(u64 ms) {
     Sleep(ms);
 }
 
+void platform_get_required_extension_names(const char ***names_darray) {
+    darray_push(*names_darray, &"VK_KHR_win32_surface");
+}
+
+// Surface creation for Vulkan
+b8 platform_create_vulkan_surface(platform_state *plat_state, vulkan_context *context) {
+    // Simply cold-cast to the known type.
+    internal_state *state = (internal_state *)plat_state->internal_state;
+
+    VkWin32SurfaceCreateInfoKHR create_info = {VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR};
+    create_info.hinstance = state->h_instance;
+    create_info.hwnd = state->hwnd;
+
+    VkResult result = vkCreateWin32SurfaceKHR(context->instance, &create_info, context->allocator, &state->surface);
+    if (result != VK_SUCCESS) {
+        KFATAL("Vulkan surface creation failed.");
+        return FALSE;
+    }
+
+    context->surface = state->surface;
+
+    return TRUE;
+}
+
 LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARAM l_param) {
     switch (msg) {
         case WM_ERASEBKGND:
             // Notify the OS that erasing will be handled by the application to prevent flicker.
             return 1;
         case WM_CLOSE:
-            // TODO: Fire an event for the application to quit.
-            return 0;
+            event_context data = {};
+            event_fire(EVENT_CODE_APPLICATION_QUIT, 0, data);
+            return TRUE;
         case WM_DESTROY:
             PostQuitMessage(0);
             return 0;
         case WM_SIZE: {
             // Get the updated size.
-            // RECT r;
-            // GetClientRect(hwnd, &r);
-            // u32 width = r.right - r.left;
-            // u32 height = r.bottom - r.top;
+            RECT r;
+            GetClientRect(hwnd, &r);
+            u32 width = r.right - r.left;
+            u32 height = r.bottom - r.top;
 
-            // TODO: Fire an event for window resize.
+            /*
+             * Fire the event. The application layer should pick this up,
+             * but not handle it as it shouldn't be visible to other parts
+             * of the application.
+             */
+            event_context context;
+
+            context.data.u16[0] = (u16)width;
+            context.data.u16[1] = (u16)height;
+            
+            event_fire(EVENT_CODE_RESIZED, 0, context);
         } break;
         case WM_KEYDOWN:
         case WM_SYSKEYDOWN:
@@ -231,7 +271,7 @@ LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARA
             // Key pressed/released
             b8 pressed = (msg == WM_KEYDOWN || msg == WM_SYSKEYDOWN);
             keys key = (u16)w_param;
-            
+
             // Pass to the input subsystem for processing
             input_process_key(key, pressed)
 
@@ -240,7 +280,7 @@ LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARA
             // Mouse move
             i32 x_position = GET_X_LPARAM(l_param);
             i32 y_position = GET_Y_LPARAM(l_param);
-           
+
             // Pass to the input subsystem for processing
             input_process_mouse_move(x_position, y_position);
         } break;
@@ -260,11 +300,11 @@ LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARA
         case WM_MBUTTONUP:
         case WM_RBUTTONUP: {
             b8 pressed = msg == WM_LBUTTONDOWN || msg == WM_RBUTTONDOWN || msg == WM_MBUTTONDOWN;
-            
+
             // Not necessary but ynk
             buttons mouse_button = BUTTON_MAX_BUTTONS;
 
-            switch (msg) {Add commentMore actions
+            switch (msg) {
                 case WM_LBUTTONDOWN:
                 case WM_LBUTTONUP:
                     mouse_button = BUTTON_LEFT;

@@ -1,0 +1,287 @@
+\doxysection{engine/src/renderer/vulkan/vulkan\+\_\+command\+\_\+buffer.h File Reference}
+\hypertarget{vulkan__command__buffer_8h}{}\label{vulkan__command__buffer_8h}\index{engine/src/renderer/vulkan/vulkan\_command\_buffer.h@{engine/src/renderer/vulkan/vulkan\_command\_buffer.h}}
+
+
+Vulkan command buffer management interface for the Koru Engine.  
+
+
+{\ttfamily \#include "{}vulkan\+\_\+types.\+inl"{}}\newline
+Include dependency graph for vulkan\+\_\+command\+\_\+buffer.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{vulkan__command__buffer_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vulkan__command__buffer_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{vulkan__command__buffer_8h_a61986175d7533eb6defeab68bd795795}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Command\+Pool pool, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} is\+\_\+primary, vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}out\+\_\+command\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Allocates a new command buffer from the given command pool. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__command__buffer_8h_afd9ae4003a9b698f447b74d43944bb93}{vulkan\+\_\+command\+\_\+buffer\+\_\+free}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Command\+Pool pool, vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Frees the command buffer back to the pool. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__command__buffer_8h_a953bb97410e7ac3fb6bcb885111b076a}{vulkan\+\_\+command\+\_\+buffer\+\_\+begin}} (vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} is\+\_\+single\+\_\+use, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} is\+\_\+renderpass\+\_\+continue, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} is\+\_\+simultaneous\+\_\+use)
+\begin{DoxyCompactList}\small\item\em Begins recording commands into the command buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__command__buffer_8h_aedec1e6180808de057ff8ef5b802a5dd}{vulkan\+\_\+command\+\_\+buffer\+\_\+end}} (vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Ends the recording phase of a command buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__command__buffer_8h_a9b48258e5cd826ab0019e7ecfb49f8b8}{vulkan\+\_\+command\+\_\+buffer\+\_\+update\+\_\+submitted}} (vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Updates the state of the command buffer to SUBMITTED. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__command__buffer_8h_a5a8ef2aed8ec624bc28be0419c84cb3c}{vulkan\+\_\+command\+\_\+buffer\+\_\+reset}} (vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Resets the command buffer state to READY. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__command__buffer_8h_a9e829f593db51d6e99e6030a68e07976}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate\+\_\+and\+\_\+begin\+\_\+single\+\_\+use}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Command\+Pool pool, vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}out\+\_\+command\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Allocates and begins recording a single-\/use command buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__command__buffer_8h_aa8a73bb91861b477161430027abfdb54}{vulkan\+\_\+command\+\_\+buffer\+\_\+end\+\_\+single\+\_\+use}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Command\+Pool pool, vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer, Vk\+Queue queue)
+\begin{DoxyCompactList}\small\item\em Ends and submits a single-\/use command buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Vulkan command buffer management interface for the Koru Engine. 
+
+This module provides functions to\+:
+\begin{DoxyItemize}
+\item Allocate and free command buffers from a pool
+\item Begin and end command recording
+\item Submit buffers to the GPU
+\item Manage state transitions during the command buffer lifecycle
+\end{DoxyItemize}
+
+Command buffers store GPU commands like drawing, memory transfers, and render pass operations. They must be allocated from a command pool, recorded into, and submitted to a queue for execution. 
+
+Definition in file \mbox{\hyperlink{vulkan__command__buffer_8h_source}{vulkan\+\_\+command\+\_\+buffer.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__command__buffer_8h_a61986175d7533eb6defeab68bd795795}\label{vulkan__command__buffer_8h_a61986175d7533eb6defeab68bd795795} 
+\index{vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}!vulkan\_command\_buffer\_allocate@{vulkan\_command\_buffer\_allocate}}
+\index{vulkan\_command\_buffer\_allocate@{vulkan\_command\_buffer\_allocate}!vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_command\_buffer\_allocate()}{vulkan\_command\_buffer\_allocate()}}
+{\footnotesize\ttfamily void vulkan\+\_\+command\+\_\+buffer\+\_\+allocate (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{Vk\+Command\+Pool}]{pool,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{is\+\_\+primary,  }\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{out\+\_\+command\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Allocates a new command buffer from the given command pool. 
+
+Initializes the command buffer and sets its state to READY.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em pool} & The command pool to allocate from. \\
+\hline
+{\em is\+\_\+primary} & TRUE if primary command buffer, FALSE for secondary. \\
+\hline
+{\em out\+\_\+command\+\_\+buffer} & A pointer to a vulkan\+\_\+command\+\_\+buffer to populate. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00018}{18}} of file \mbox{\hyperlink{vulkan__command__buffer_8c_source}{vulkan\+\_\+command\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}, and \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00450}{create\+\_\+command\+\_\+buffers()}}, and \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00089}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate\+\_\+and\+\_\+begin\+\_\+single\+\_\+use()}}.
+
+\Hypertarget{vulkan__command__buffer_8h_a9e829f593db51d6e99e6030a68e07976}\label{vulkan__command__buffer_8h_a9e829f593db51d6e99e6030a68e07976} 
+\index{vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}!vulkan\_command\_buffer\_allocate\_and\_begin\_single\_use@{vulkan\_command\_buffer\_allocate\_and\_begin\_single\_use}}
+\index{vulkan\_command\_buffer\_allocate\_and\_begin\_single\_use@{vulkan\_command\_buffer\_allocate\_and\_begin\_single\_use}!vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_command\_buffer\_allocate\_and\_begin\_single\_use()}{vulkan\_command\_buffer\_allocate\_and\_begin\_single\_use()}}
+{\footnotesize\ttfamily void vulkan\+\_\+command\+\_\+buffer\+\_\+allocate\+\_\+and\+\_\+begin\+\_\+single\+\_\+use (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{Vk\+Command\+Pool}]{pool,  }\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{out\+\_\+command\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Allocates and begins recording a single-\/use command buffer. 
+
+Combines allocate and begin steps for convenience. Typically used for quick GPU tasks like texture uploads.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em pool} & The command pool to allocate from. \\
+\hline
+{\em out\+\_\+command\+\_\+buffer} & A pointer to the vulkan\+\_\+command\+\_\+buffer to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00089}{89}} of file \mbox{\hyperlink{vulkan__command__buffer_8c_source}{vulkan\+\_\+command\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}, \mbox{\hyperlink{defines_8h_source_l00102}{FALSE}}, \mbox{\hyperlink{defines_8h_source_l00100}{TRUE}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00018}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate()}}, and \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00054}{vulkan\+\_\+command\+\_\+buffer\+\_\+begin()}}.
+
+\Hypertarget{vulkan__command__buffer_8h_a953bb97410e7ac3fb6bcb885111b076a}\label{vulkan__command__buffer_8h_a953bb97410e7ac3fb6bcb885111b076a} 
+\index{vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}!vulkan\_command\_buffer\_begin@{vulkan\_command\_buffer\_begin}}
+\index{vulkan\_command\_buffer\_begin@{vulkan\_command\_buffer\_begin}!vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_command\_buffer\_begin()}{vulkan\_command\_buffer\_begin()}}
+{\footnotesize\ttfamily void vulkan\+\_\+command\+\_\+buffer\+\_\+begin (\begin{DoxyParamCaption}\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{is\+\_\+single\+\_\+use,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{is\+\_\+renderpass\+\_\+continue,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{is\+\_\+simultaneous\+\_\+use }\end{DoxyParamCaption})}
+
+
+
+Begins recording commands into the command buffer. 
+
+Sets up flags like one-\/time use or simultaneous access.
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+\_\+buffer} & A pointer to the command buffer being recorded. \\
+\hline
+{\em is\+\_\+single\+\_\+use} & TRUE if this buffer will only be used once. \\
+\hline
+{\em is\+\_\+renderpass\+\_\+continue} & TRUE if this is a secondary buffer continuing a render pass. \\
+\hline
+{\em is\+\_\+simultaneous\+\_\+use} & TRUE if the buffer can be re-\/recorded while in flight. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00054}{54}} of file \mbox{\hyperlink{vulkan__command__buffer_8c_source}{vulkan\+\_\+command\+\_\+buffer.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00089}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate\+\_\+and\+\_\+begin\+\_\+single\+\_\+use()}}.
+
+\Hypertarget{vulkan__command__buffer_8h_aedec1e6180808de057ff8ef5b802a5dd}\label{vulkan__command__buffer_8h_aedec1e6180808de057ff8ef5b802a5dd} 
+\index{vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}!vulkan\_command\_buffer\_end@{vulkan\_command\_buffer\_end}}
+\index{vulkan\_command\_buffer\_end@{vulkan\_command\_buffer\_end}!vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_command\_buffer\_end()}{vulkan\_command\_buffer\_end()}}
+{\footnotesize\ttfamily void vulkan\+\_\+command\+\_\+buffer\+\_\+end (\begin{DoxyParamCaption}\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Ends the recording phase of a command buffer. 
+
+After calling this, the command buffer is ready for submission.
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+\_\+buffer} & A pointer to the command buffer being ended. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00076}{76}} of file \mbox{\hyperlink{vulkan__command__buffer_8c_source}{vulkan\+\_\+command\+\_\+buffer.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00097}{vulkan\+\_\+command\+\_\+buffer\+\_\+end\+\_\+single\+\_\+use()}}.
+
+\Hypertarget{vulkan__command__buffer_8h_aa8a73bb91861b477161430027abfdb54}\label{vulkan__command__buffer_8h_aa8a73bb91861b477161430027abfdb54} 
+\index{vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}!vulkan\_command\_buffer\_end\_single\_use@{vulkan\_command\_buffer\_end\_single\_use}}
+\index{vulkan\_command\_buffer\_end\_single\_use@{vulkan\_command\_buffer\_end\_single\_use}!vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_command\_buffer\_end\_single\_use()}{vulkan\_command\_buffer\_end\_single\_use()}}
+{\footnotesize\ttfamily void vulkan\+\_\+command\+\_\+buffer\+\_\+end\+\_\+single\+\_\+use (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{Vk\+Command\+Pool}]{pool,  }\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer,  }\item[{Vk\+Queue}]{queue }\end{DoxyParamCaption})}
+
+
+
+Ends and submits a single-\/use command buffer. 
+
+Submits the buffer to the provided queue and waits for completion. Then frees the buffer back to the pool.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em pool} & The command pool that owns the buffer. \\
+\hline
+{\em command\+\_\+buffer} & A pointer to the command buffer to submit. \\
+\hline
+{\em queue} & The queue to submit the buffer to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00097}{97}} of file \mbox{\hyperlink{vulkan__command__buffer_8c_source}{vulkan\+\_\+command\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00076}{vulkan\+\_\+command\+\_\+buffer\+\_\+end()}}, and \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00040}{vulkan\+\_\+command\+\_\+buffer\+\_\+free()}}.
+
+\Hypertarget{vulkan__command__buffer_8h_afd9ae4003a9b698f447b74d43944bb93}\label{vulkan__command__buffer_8h_afd9ae4003a9b698f447b74d43944bb93} 
+\index{vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}!vulkan\_command\_buffer\_free@{vulkan\_command\_buffer\_free}}
+\index{vulkan\_command\_buffer\_free@{vulkan\_command\_buffer\_free}!vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_command\_buffer\_free()}{vulkan\_command\_buffer\_free()}}
+{\footnotesize\ttfamily void vulkan\+\_\+command\+\_\+buffer\+\_\+free (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{Vk\+Command\+Pool}]{pool,  }\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Frees the command buffer back to the pool. 
+
+Must be called before destroying the pool or logical device.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em pool} & The command pool that owns the buffer. \\
+\hline
+{\em command\+\_\+buffer} & A pointer to the vulkan\+\_\+command\+\_\+buffer to free. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00040}{40}} of file \mbox{\hyperlink{vulkan__command__buffer_8c_source}{vulkan\+\_\+command\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00450}{create\+\_\+command\+\_\+buffers()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00097}{vulkan\+\_\+command\+\_\+buffer\+\_\+end\+\_\+single\+\_\+use()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00305}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown()}}.
+
+\Hypertarget{vulkan__command__buffer_8h_a5a8ef2aed8ec624bc28be0419c84cb3c}\label{vulkan__command__buffer_8h_a5a8ef2aed8ec624bc28be0419c84cb3c} 
+\index{vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}!vulkan\_command\_buffer\_reset@{vulkan\_command\_buffer\_reset}}
+\index{vulkan\_command\_buffer\_reset@{vulkan\_command\_buffer\_reset}!vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_command\_buffer\_reset()}{vulkan\_command\_buffer\_reset()}}
+{\footnotesize\ttfamily void vulkan\+\_\+command\+\_\+buffer\+\_\+reset (\begin{DoxyParamCaption}\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Resets the command buffer state to READY. 
+
+Allows reuse of the command buffer after it has been submitted.
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+\_\+buffer} & A pointer to the command buffer to reset. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00085}{85}} of file \mbox{\hyperlink{vulkan__command__buffer_8c_source}{vulkan\+\_\+command\+\_\+buffer.\+c}}.
+
+\Hypertarget{vulkan__command__buffer_8h_a9b48258e5cd826ab0019e7ecfb49f8b8}\label{vulkan__command__buffer_8h_a9b48258e5cd826ab0019e7ecfb49f8b8} 
+\index{vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}!vulkan\_command\_buffer\_update\_submitted@{vulkan\_command\_buffer\_update\_submitted}}
+\index{vulkan\_command\_buffer\_update\_submitted@{vulkan\_command\_buffer\_update\_submitted}!vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_command\_buffer\_update\_submitted()}{vulkan\_command\_buffer\_update\_submitted()}}
+{\footnotesize\ttfamily void vulkan\+\_\+command\+\_\+buffer\+\_\+update\+\_\+submitted (\begin{DoxyParamCaption}\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Updates the state of the command buffer to SUBMITTED. 
+
+Called after submitting the buffer to a queue.
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+\_\+buffer} & A pointer to the command buffer to mark as submitted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00081}{81}} of file \mbox{\hyperlink{vulkan__command__buffer_8c_source}{vulkan\+\_\+command\+\_\+buffer.\+c}}.
+

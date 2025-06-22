@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🧠_20what_20is_20koru_0',['🧠 What Is Koru?',['../index.html#autotoc_md4',1,'']]]
+  ['⚙️_20build_20scripts_20instructions_0',['⚙️ Build Scripts/Instructions',['../index.html#autotoc_md21',1,'']]]
 ];

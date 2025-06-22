@@ -1,0 +1,115 @@
+\doxysection{engine/src/renderer/vulkan/vulkan\+\_\+framebuffer.c File Reference}
+\hypertarget{vulkan__framebuffer_8c}{}\label{vulkan__framebuffer_8c}\index{engine/src/renderer/vulkan/vulkan\_framebuffer.c@{engine/src/renderer/vulkan/vulkan\_framebuffer.c}}
+
+
+Implementation of Vulkan framebuffer creation and destruction.  
+
+
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan\+\_\+framebuffer.\+h"{}}\newline
+Include dependency graph for vulkan\+\_\+framebuffer.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{vulkan__framebuffer_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{vulkan__framebuffer_8c_af32d3dc7e47a5b215d7908a41cb0b0b8}{vulkan\+\_\+framebuffer\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}renderpass, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} width, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} height, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} attachment\+\_\+count, Vk\+Image\+View \texorpdfstring{$\ast$}{*}attachments, vulkan\+\_\+framebuffer \texorpdfstring{$\ast$}{*}out\+\_\+framebuffer)
+\begin{DoxyCompactList}\small\item\em Creates a new Vulkan framebuffer using the provided attachments and render pass. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__framebuffer_8c_aea0d3009ee4fb379695399f666332691}{vulkan\+\_\+framebuffer\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+framebuffer \texorpdfstring{$\ast$}{*}framebuffer)
+\begin{DoxyCompactList}\small\item\em Destroys a Vulkan framebuffer and releases its resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of Vulkan framebuffer creation and destruction. 
+
+This module implements all functionality related to\+:
+\begin{DoxyItemize}
+\item Allocating and copying image view attachments
+\item Creating Vk\+Framebuffer objects from render passes
+\item Properly freeing memory during shutdown
+\end{DoxyItemize}
+
+Framebuffers are essential for rendering — they define what images are rendered into. 
+
+Definition in file \mbox{\hyperlink{vulkan__framebuffer_8c_source}{vulkan\+\_\+framebuffer.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__framebuffer_8c_af32d3dc7e47a5b215d7908a41cb0b0b8}\label{vulkan__framebuffer_8c_af32d3dc7e47a5b215d7908a41cb0b0b8} 
+\index{vulkan\_framebuffer.c@{vulkan\_framebuffer.c}!vulkan\_framebuffer\_create@{vulkan\_framebuffer\_create}}
+\index{vulkan\_framebuffer\_create@{vulkan\_framebuffer\_create}!vulkan\_framebuffer.c@{vulkan\_framebuffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_framebuffer\_create()}{vulkan\_framebuffer\_create()}}
+{\footnotesize\ttfamily void vulkan\+\_\+framebuffer\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+renderpass \texorpdfstring{$\ast$}{*}}]{renderpass,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{height,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{attachment\+\_\+count,  }\item[{Vk\+Image\+View \texorpdfstring{$\ast$}{*}}]{attachments,  }\item[{vulkan\+\_\+framebuffer \texorpdfstring{$\ast$}{*}}]{out\+\_\+framebuffer }\end{DoxyParamCaption})}
+
+
+
+Creates a new Vulkan framebuffer using the provided attachments and render pass. 
+
+Wraps {\ttfamily vk\+Create\+Framebuffer(...)} and stores the attachments internally. Used when creating or recreating framebuffers after swapchain changes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em renderpass} & A pointer to the render pass this framebuffer will use. \\
+\hline
+{\em width} & Width of the framebuffer in pixels. \\
+\hline
+{\em height} & Height of the framebuffer in pixels. \\
+\hline
+{\em attachment\+\_\+count} & Number of image views being bound. \\
+\hline
+{\em attachments} & An array of Vk\+Image\+View objects to attach. \\
+\hline
+{\em out\+\_\+framebuffer} & A pointer to a vulkan\+\_\+framebuffer structure to populate. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00017}{17}} of file \mbox{\hyperlink{vulkan__framebuffer_8c_source}{vulkan\+\_\+framebuffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}, \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, and \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00478}{regenerate\+\_\+framebuffers()}}.
+
+\Hypertarget{vulkan__framebuffer_8c_aea0d3009ee4fb379695399f666332691}\label{vulkan__framebuffer_8c_aea0d3009ee4fb379695399f666332691} 
+\index{vulkan\_framebuffer.c@{vulkan\_framebuffer.c}!vulkan\_framebuffer\_destroy@{vulkan\_framebuffer\_destroy}}
+\index{vulkan\_framebuffer\_destroy@{vulkan\_framebuffer\_destroy}!vulkan\_framebuffer.c@{vulkan\_framebuffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_framebuffer\_destroy()}{vulkan\_framebuffer\_destroy()}}
+{\footnotesize\ttfamily void vulkan\+\_\+framebuffer\+\_\+destroy (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+framebuffer \texorpdfstring{$\ast$}{*}}]{framebuffer }\end{DoxyParamCaption})}
+
+
+
+Destroys a Vulkan framebuffer and releases its resources. 
+
+Also frees any internal attachment memory if needed. Must be called before destroying the logical device or render pass.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em framebuffer} & A pointer to the vulkan\+\_\+framebuffer to destroy. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00051}{51}} of file \mbox{\hyperlink{vulkan__framebuffer_8c_source}{vulkan\+\_\+framebuffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00027}{context}}, \mbox{\hyperlink{kmemory_8c_source_l00129}{kfree()}}, and \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00305}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown()}}.
+

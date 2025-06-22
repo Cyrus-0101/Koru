@@ -1,4 +1,28 @@
 var searchData=
 [
-  ['y_0',['y',['../structmouse__state.html#a4698cca2a6993c280a79c758525ecd54',1,'mouse_state']]]
+  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
+  ['regenerate_5fframebuffers_1',['regenerate_framebuffers',['../vulkan__backend_8c.html#aeb8e5befb751f7f77dd00d3b2aafb936',1,'vulkan_backend.c']]],
+  ['registered_2',['registered',['../structevent__system__state.html#a20a86f05bfac98ca3c7d82ab3a5d293a',1,'event_system_state']]],
+  ['registered_5fevent_3',['registered_event',['../event_8c.html#aa8b5e9c994ed612f290eb5e1f03624a9',1,'registered_event:&#160;event.c'],['../structregistered__event.html',1,'registered_event']]],
+  ['render_4',['render',['../structgame.html#ac2c261fc48169dc53096929654c51bfe',1,'game']]],
+  ['render_20layer_5',['📦 High-Level Architecture (Render Layer)',['../index.html#autotoc_md35',1,'']]],
+  ['render_20pass_6',['10. 🎨 Create Render Pass',['../index.html#autotoc_md57',1,'']]],
+  ['renderer_5fbackend_2ec_7',['renderer_backend.c',['../renderer__backend_8c.html',1,'']]],
+  ['renderer_5fbackend_2eh_8',['renderer_backend.h',['../renderer__backend_8h.html',1,'']]],
+  ['renderer_5fbackend_5fcreate_9',['renderer_backend_create',['../renderer__backend_8c.html#a52ef657259e1bf4396b221727cd5ba4f',1,'renderer_backend_create(renderer_backend_type type, struct platform_state *plat_state, renderer_backend *out_renderer_backend):&#160;renderer_backend.c'],['../renderer__backend_8h.html#a52ef657259e1bf4396b221727cd5ba4f',1,'renderer_backend_create(renderer_backend_type type, struct platform_state *plat_state, renderer_backend *out_renderer_backend):&#160;renderer_backend.c']]],
+  ['renderer_5fbackend_5fdestroy_10',['renderer_backend_destroy',['../renderer__backend_8c.html#a7f2f8f1b99fcf0c37b9edbb0be96b9a5',1,'renderer_backend_destroy(renderer_backend *renderer_backend):&#160;renderer_backend.c'],['../renderer__backend_8h.html#a7f2f8f1b99fcf0c37b9edbb0be96b9a5',1,'renderer_backend_destroy(renderer_backend *renderer_backend):&#160;renderer_backend.c']]],
+  ['renderer_5fbegin_5fframe_11',['renderer_begin_frame',['../renderer__frontend_8c.html#a1a8f8d1befb7f8dbbf9d8a64dd84b347',1,'renderer_frontend.c']]],
+  ['renderer_5fdraw_5fframe_12',['renderer_draw_frame',['../renderer__frontend_8h.html#aa1a64974ce989cb8a822d5910e45eeec',1,'renderer_draw_frame(render_packet *packet):&#160;renderer_frontend.c'],['../renderer__frontend_8c.html#aa1a64974ce989cb8a822d5910e45eeec',1,'renderer_draw_frame(render_packet *packet):&#160;renderer_frontend.c']]],
+  ['renderer_5fend_5fframe_13',['renderer_end_frame',['../renderer__frontend_8c.html#af7b0d899f9d9ad513fdb67b6f811268a',1,'renderer_frontend.c']]],
+  ['renderer_5ffrontend_2ec_14',['renderer_frontend.c',['../renderer__frontend_8c.html',1,'']]],
+  ['renderer_5ffrontend_2eh_15',['renderer_frontend.h',['../renderer__frontend_8h.html',1,'']]],
+  ['renderer_5finitialize_16',['renderer_initialize',['../renderer__frontend_8c.html#a22086f105bc3ec5fdad7381f76b5efb5',1,'renderer_initialize(const char *application_name, struct platform_state *plat_state):&#160;renderer_frontend.c'],['../renderer__frontend_8h.html#a22086f105bc3ec5fdad7381f76b5efb5',1,'renderer_initialize(const char *application_name, struct platform_state *plat_state):&#160;renderer_frontend.c']]],
+  ['renderer_5fon_5fresized_17',['renderer_on_resized',['../renderer__frontend_8h.html#a344ab27f3e341fd7b45eb38eafea2e00',1,'renderer_frontend.h']]],
+  ['renderer_5fshutdown_18',['renderer_shutdown',['../renderer__frontend_8c.html#a52882bf7ed3f35fe0593d1715edaa0b8',1,'renderer_shutdown():&#160;renderer_frontend.c'],['../renderer__frontend_8h.html#a52882bf7ed3f35fe0593d1715edaa0b8',1,'renderer_shutdown():&#160;renderer_frontend.c']]],
+  ['rendering_20flow_19',['🧩 Diagram: Full Rendering Flow',['../index.html#autotoc_md63',1,'']]],
+  ['rendering_20setup_20process_20',['🛠️ The Full Rendering Setup Process',['../index.html#autotoc_md37',1,'']]],
+  ['rendering_20system_20vulkan_21',['🎮 Koru Engine – Rendering System (Vulkan)',['../index.html#autotoc_md31',1,'']]],
+  ['report_5fassertion_5ffailure_22',['report_assertion_failure',['../asserts_8h.html#a081a03d10de2e1eebf9bb889519687bc',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c'],['../logger_8c.html#a89ca11b6142a42bebac099dfacf57f59',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c']]],
+  ['resource_20management_20strong_23',['3. &lt;strong&gt;Resource Management&lt;/strong&gt;',['../index.html#autotoc_md10',1,'']]],
+  ['roadmap_24',['🔮 Roadmap',['../index.html#autotoc_md25',1,'']]]
 ];

@@ -1,0 +1,82 @@
+\doxysection{engine/src/renderer/vulkan/vulkan\+\_\+platform.h File Reference}
+\hypertarget{vulkan__platform_8h}{}\label{vulkan__platform_8h}\index{engine/src/renderer/vulkan/vulkan\_platform.h@{engine/src/renderer/vulkan/vulkan\_platform.h}}
+
+
+Platform-\/specific Vulkan extension utilities.  
+
+
+{\ttfamily \#include "{}defines.\+h"{}}\newline
+Include dependency graph for vulkan\+\_\+platform.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{vulkan__platform_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{vulkan__platform_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__platform_8h_a48932cc1b8761ab4af6627a36ba06548}{platform\+\_\+create\+\_\+vulkan\+\_\+surface}} (struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state, struct vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
+\item 
+void \mbox{\hyperlink{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}{platform\+\_\+get\+\_\+required\+\_\+extension\+\_\+names}} (const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}names\+\_\+darray)
+\begin{DoxyCompactList}\small\item\em Appends the names of required Vulkan instance extensions for the current platform. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Platform-\/specific Vulkan extension utilities. 
+
+This file provides declarations for functions that handle platform-\/specific Vulkan instance extensions needed to create a Vulkan surface and manage windowing. 
+
+Definition in file \mbox{\hyperlink{vulkan__platform_8h_source}{vulkan\+\_\+platform.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__platform_8h_a48932cc1b8761ab4af6627a36ba06548}\label{vulkan__platform_8h_a48932cc1b8761ab4af6627a36ba06548} 
+\index{vulkan\_platform.h@{vulkan\_platform.h}!platform\_create\_vulkan\_surface@{platform\_create\_vulkan\_surface}}
+\index{platform\_create\_vulkan\_surface@{platform\_create\_vulkan\_surface}!vulkan\_platform.h@{vulkan\_platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_create\_vulkan\_surface()}{platform\_create\_vulkan\_surface()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} platform\+\_\+create\+\_\+vulkan\+\_\+surface (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state,  }\item[{struct vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})}
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00109}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+
+\Hypertarget{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}\label{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702} 
+\index{vulkan\_platform.h@{vulkan\_platform.h}!platform\_get\_required\_extension\_names@{platform\_get\_required\_extension\_names}}
+\index{platform\_get\_required\_extension\_names@{platform\_get\_required\_extension\_names}!vulkan\_platform.h@{vulkan\_platform.h}}
+\doxysubsubsection{\texorpdfstring{platform\_get\_required\_extension\_names()}{platform\_get\_required\_extension\_names()}}
+{\footnotesize\ttfamily void platform\+\_\+get\+\_\+required\+\_\+extension\+\_\+names (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{names\+\_\+darray }\end{DoxyParamCaption})}
+
+
+
+Appends the names of required Vulkan instance extensions for the current platform. 
+
+This function adds platform-\/specific Vulkan extension names (e.\+g., for window surface creation) to the provided dynamic array ({\ttfamily names\+\_\+darray}). These extensions are necessary for creating a Vulkan instance that can interact with the window system.
+
+Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\`{}\`{}\`{}c}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ required\_extensions\ =\ \mbox{\hyperlink{darray_8h_ab9d093e09b642e0d480a7ae82bad3af5}{darray\_create}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{\mbox{\hyperlink{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}{platform\_get\_required\_extension\_names}}(\&required\_extensions);}
+\DoxyCodeLine{\`{}\`{}\`{}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em names\+\_\+darray} & A pointer to a dynamic array of {\ttfamily const char\texorpdfstring{$\ast$}{*}} where extension names will be appended. Must be initialized before calling this function. \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00109}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+

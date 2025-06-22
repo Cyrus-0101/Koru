@@ -113,7 +113,7 @@
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00194}00194\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00195}00195\ }
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{application_8c_a07966d6dab79f2c8568f69a986ae8e68}{app\_state}}.\mbox{\hyperlink{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}{is\_suspended}})\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ clock\ and\ get\ delta\ time.Add\ commentMore\ actions}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ clock\ and\ get\ delta\ time.}}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clock_8c_a4abbdac65212baafffa5d8332a519a16}{clock\_update}}(\&\mbox{\hyperlink{application_8c_a07966d6dab79f2c8568f69a986ae8e68}{app\_state}}.\mbox{\hyperlink{structapplication__state_aa930dcc46dfc1ad594320c1a313a26a2}{clock}});}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00199}00199\ }
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ current\_time\ =\ \mbox{\hyperlink{application_8c_a07966d6dab79f2c8568f69a986ae8e68}{app\_state}}.\mbox{\hyperlink{structapplication__state_aa930dcc46dfc1ad594320c1a313a26a2}{clock}}.\mbox{\hyperlink{structclock_a0ebb32a24769f97d0e05b8e9559bbd8f}{elapsed}};}
@@ -138,7 +138,7 @@
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00221}00221\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ refactor\ packet\ creationAdd\ commentMore\ actions}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ refactor\ packet\ creation}}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ render\_packet\ packet;}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00224}00224\ }
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ packet.delta\_time\ =\ delta;}
@@ -173,7 +173,7 @@
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ frame\ ends.}}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8c_a85450297ce513c03fe70c80cdba41609}{input\_update}}(delta);}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00256}00256\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ last\ timeAdd\ commentMore\ actions}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ last\ time}}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_a07966d6dab79f2c8568f69a986ae8e68}{app\_state}}.\mbox{\hyperlink{structapplication__state_a4fc952bc899881d85115730cf7da1c5a}{last\_time}}\ =\ current\_time;}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00259}00259\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00260}00260\ \ \ \ \ \}}
@@ -196,44 +196,49 @@
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00277}00277\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00278}00278\ \}}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00279}00279\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00280}\mbox{\hyperlink{application_8c_a464af30d5e798df5a25d3c211d5c120f}{00280}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{application_8c_a464af30d5e798df5a25d3c211d5c120f}{application\_on\_event}}(\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ code,\ \textcolor{keywordtype}{void}*\ sender,\ \textcolor{keywordtype}{void}*\ listener\_inst,\ \mbox{\hyperlink{structevent__context}{event\_context}}\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00281}00281\ \ \ \ \ \textcolor{keywordflow}{switch}\ (code)\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677}{EVENT\_CODE\_APPLICATION\_QUIT}}:\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}EVENT\_CODE\_APPLICATION\_QUIT\ received,\ shutting\ down.\(\backslash\)n"{}});}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_a07966d6dab79f2c8568f69a986ae8e68}{app\_state}}.\mbox{\hyperlink{structapplication__state_a7c10d54c29174a16313dfc1992ccabde}{is\_running}}\ =\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00286}00286\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00287}00287\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00288}00288\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00289}00289\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00290}00290\ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00291}00291\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00292}\mbox{\hyperlink{application_8c_a193a750e12452924346788eb62a3a327}{00292}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{application_8c_a193a750e12452924346788eb62a3a327}{application\_on\_key}}(\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ code,\ \textcolor{keywordtype}{void}*\ sender,\ \textcolor{keywordtype}{void}*\ listener\_inst,\ \mbox{\hyperlink{structevent__context}{event\_context}}\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00293}00293\ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1}{EVENT\_CODE\_KEY\_PRESSED}})\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00294}00294\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\_code\ ==\ KEY\_ESCAPE)\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ NOTE:\ Technically\ firing\ an\ event\ to\ itself,\ but\ there\ may\ be\ other\ listeners.}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structevent__context}{event\_context}}\ data\ =\ \{\};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\_fire}}(\mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677}{EVENT\_CODE\_APPLICATION\_QUIT}},\ 0,\ data);}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00299}00299\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Block\ anything\ else\ from\ processing\ this.}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00302}00302\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\_code\ ==\ KEY\_A)\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Example\ on\ checking\ for\ a\ key}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Explicit\ -\/\ A\ key\ pressed!"{}});}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00305}00305\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}'\%c'\ key\ pressed\ in\ window."{}},\ key\_code);}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00307}00307\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00308}00308\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (code\ ==\ \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f}{EVENT\_CODE\_KEY\_RELEASED}})\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00309}00309\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00310}00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\_code\ ==\ KEY\_B)\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Example\ on\ checking\ for\ a\ key}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Explicit\ -\/\ B\ key\ released!"{}});}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00313}00313\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}'\%c'\ key\ released\ in\ window."{}},\ key\_code);}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00315}00315\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00316}00316\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00317}00317\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00318}00318\ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00280}\mbox{\hyperlink{application_8c_a8b27580c0175a587af977c52f49cb92f}{00280}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{application_8c_a8b27580c0175a587af977c52f49cb92f}{application\_get\_framebuffer\_size}}(\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}*\ width,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}*\ height)\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00281}00281\ \ \ \ \ *width\ =\ \mbox{\hyperlink{application_8c_a07966d6dab79f2c8568f69a986ae8e68}{app\_state}}.\mbox{\hyperlink{structapplication__state_a5c49a4da818b7bae26b50df80c889279}{width}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00282}00282\ \ \ \ \ *height\ =\ \mbox{\hyperlink{application_8c_a07966d6dab79f2c8568f69a986ae8e68}{app\_state}}.\mbox{\hyperlink{structapplication__state_a4a01899027b7429dce0fa6290b927f9c}{height}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00283}00283\ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00285}\mbox{\hyperlink{application_8c_a464af30d5e798df5a25d3c211d5c120f}{00285}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{application_8c_a464af30d5e798df5a25d3c211d5c120f}{application\_on\_event}}(\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ code,\ \textcolor{keywordtype}{void}*\ sender,\ \textcolor{keywordtype}{void}*\ listener\_inst,\ \mbox{\hyperlink{structevent__context}{event\_context}}\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00286}00286\ \ \ \ \ \textcolor{keywordflow}{switch}\ (code)\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00287}00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677}{EVENT\_CODE\_APPLICATION\_QUIT}}:\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}EVENT\_CODE\_APPLICATION\_QUIT\ received,\ shutting\ down.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_a07966d6dab79f2c8568f69a986ae8e68}{app\_state}}.\mbox{\hyperlink{structapplication__state_a7c10d54c29174a16313dfc1992ccabde}{is\_running}}\ =\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00291}00291\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00292}00292\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00294}00294\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00295}00295\ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00297}\mbox{\hyperlink{application_8c_a193a750e12452924346788eb62a3a327}{00297}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{application_8c_a193a750e12452924346788eb62a3a327}{application\_on\_key}}(\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ code,\ \textcolor{keywordtype}{void}*\ sender,\ \textcolor{keywordtype}{void}*\ listener\_inst,\ \mbox{\hyperlink{structevent__context}{event\_context}}\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00298}00298\ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1}{EVENT\_CODE\_KEY\_PRESSED}})\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00299}00299\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\_code\ ==\ KEY\_ESCAPE)\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ NOTE:\ Technically\ firing\ an\ event\ to\ itself,\ but\ there\ may\ be\ other\ listeners.}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structevent__context}{event\_context}}\ data\ =\ \{\};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\_fire}}(\mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677}{EVENT\_CODE\_APPLICATION\_QUIT}},\ 0,\ data);}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00304}00304\ }
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Block\ anything\ else\ from\ processing\ this.}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00307}00307\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\_code\ ==\ KEY\_A)\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Example\ on\ checking\ for\ a\ key}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Explicit\ -\/\ A\ key\ pressed!"{}});}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00310}00310\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}'\%c'\ key\ pressed\ in\ window."{}},\ key\_code);}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00312}00312\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00313}00313\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (code\ ==\ \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f}{EVENT\_CODE\_KEY\_RELEASED}})\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00314}00314\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ key\_code\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\_code\ ==\ KEY\_B)\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Example\ on\ checking\ for\ a\ key}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Explicit\ -\/\ B\ key\ released!"{}});}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00318}00318\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}'\%c'\ key\ released\ in\ window."{}},\ key\_code);}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00320}00320\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00321}00321\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00322}00322\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00323}00323\ \}}
 
 \end{DoxyCode}

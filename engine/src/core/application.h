@@ -79,3 +79,13 @@ KAPI b8 application_create(struct game* game_inst);
  * @return TRUE if the application exited cleanly; FALSE if an error occurred or early exit.
  */
 b8 application_run();
+
+/**
+ * @brief Retrieves the current window (framebuffer) size.
+ *
+ * Used by the renderer to know what resolution to create/resize the swapchain to.
+ *
+ * @param width Output variable for the current width.
+ * @param height Output variable for the current height.
+ */
+void application_get_framebuffer_size(u32* width, u32* height);

@@ -97,6 +97,14 @@ b8 renderer_end_frame(f32 delta_time) {
     return result;
 }
 
+void renderer_on_resized(u16 width, u16 height) {   
+    if (backend) {
+        backend->resized(backend, width, height);
+    } else {
+        KWARN("Renderer backend does not exist to accept resize: %i %i", width, height);
+    }
+}
+
 /**
  * @brief Performs the complete frame rendering process.
  *

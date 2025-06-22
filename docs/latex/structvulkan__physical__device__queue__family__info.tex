@@ -1,0 +1,113 @@
+\doxysection{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info Struct Reference}
+\hypertarget{structvulkan__physical__device__queue__family__info}{}\label{structvulkan__physical__device__queue__family__info}\index{vulkan\_physical\_device\_queue\_family\_info@{vulkan\_physical\_device\_queue\_family\_info}}
+
+
+Stores indices of queue families for a physical device.  
+
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structvulkan__physical__device__queue__family__info_a3e0af6aee700c3bfa0c29b971272154d}{graphics\+\_\+family\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em Index of the queue family that supports graphics operations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structvulkan__physical__device__queue__family__info_a00ce509975784215988d6af3aea9c607}{present\+\_\+family\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em Index of the queue family that supports presentation to the window. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structvulkan__physical__device__queue__family__info_a65cd341cf94f09630fbaa7507887a6ad}{compute\+\_\+family\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em Index of the queue family that supports compute operations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structvulkan__physical__device__queue__family__info_a28f1191238998f94992757a1168c40b9}{transfer\+\_\+family\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em Index of the queue family that supports transfer operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stores indices of queue families for a physical device. 
+
+Used to record which queue families support\+:
+\begin{DoxyItemize}
+\item Graphics
+\item Presentation
+\item Compute
+\item Transfer operations 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00072}{72}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structvulkan__physical__device__queue__family__info_a65cd341cf94f09630fbaa7507887a6ad}\label{structvulkan__physical__device__queue__family__info_a65cd341cf94f09630fbaa7507887a6ad} 
+\index{vulkan\_physical\_device\_queue\_family\_info@{vulkan\_physical\_device\_queue\_family\_info}!compute\_family\_index@{compute\_family\_index}}
+\index{compute\_family\_index@{compute\_family\_index}!vulkan\_physical\_device\_queue\_family\_info@{vulkan\_physical\_device\_queue\_family\_info}}
+\doxysubsubsection{\texorpdfstring{compute\_family\_index}{compute\_family\_index}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::compute\+\_\+family\+\_\+index}
+
+
+
+Index of the queue family that supports compute operations. 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00086}{86}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}.
+
+\Hypertarget{structvulkan__physical__device__queue__family__info_a3e0af6aee700c3bfa0c29b971272154d}\label{structvulkan__physical__device__queue__family__info_a3e0af6aee700c3bfa0c29b971272154d} 
+\index{vulkan\_physical\_device\_queue\_family\_info@{vulkan\_physical\_device\_queue\_family\_info}!graphics\_family\_index@{graphics\_family\_index}}
+\index{graphics\_family\_index@{graphics\_family\_index}!vulkan\_physical\_device\_queue\_family\_info@{vulkan\_physical\_device\_queue\_family\_info}}
+\doxysubsubsection{\texorpdfstring{graphics\_family\_index}{graphics\_family\_index}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::graphics\+\_\+family\+\_\+index}
+
+
+
+Index of the queue family that supports graphics operations. 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00076}{76}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+\Hypertarget{structvulkan__physical__device__queue__family__info_a00ce509975784215988d6af3aea9c607}\label{structvulkan__physical__device__queue__family__info_a00ce509975784215988d6af3aea9c607} 
+\index{vulkan\_physical\_device\_queue\_family\_info@{vulkan\_physical\_device\_queue\_family\_info}!present\_family\_index@{present\_family\_index}}
+\index{present\_family\_index@{present\_family\_index}!vulkan\_physical\_device\_queue\_family\_info@{vulkan\_physical\_device\_queue\_family\_info}}
+\doxysubsubsection{\texorpdfstring{present\_family\_index}{present\_family\_index}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::present\+\_\+family\+\_\+index}
+
+
+
+Index of the queue family that supports presentation to the window. 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00081}{81}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+\Hypertarget{structvulkan__physical__device__queue__family__info_a28f1191238998f94992757a1168c40b9}\label{structvulkan__physical__device__queue__family__info_a28f1191238998f94992757a1168c40b9} 
+\index{vulkan\_physical\_device\_queue\_family\_info@{vulkan\_physical\_device\_queue\_family\_info}!transfer\_family\_index@{transfer\_family\_index}}
+\index{transfer\_family\_index@{transfer\_family\_index}!vulkan\_physical\_device\_queue\_family\_info@{vulkan\_physical\_device\_queue\_family\_info}}
+\doxysubsubsection{\texorpdfstring{transfer\_family\_index}{transfer\_family\_index}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::transfer\+\_\+family\+\_\+index}
+
+
+
+Index of the queue family that supports transfer operations. 
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00091}{91}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/renderer/vulkan/\mbox{\hyperlink{vulkan__device_8c}{vulkan\+\_\+device.\+c}}\end{DoxyCompactItemize}

@@ -23,6 +23,8 @@ This graph shows which files directly or indirectly include this file\+:
 \#define \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}}~0
 \item 
 \#define \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}~/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} GCC/Clang doesn\textquotesingle{}t need special import \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{defines_8h_ac007fb317c156d98a91628a86b3c9c0e}{KCLAMP}}(value,  min,  max)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -125,6 +127,22 @@ Usage\+:
 \end{DoxyItemize}
 
 Definition at line \mbox{\hyperlink{defines_8h_source_l00179}{179}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_ac007fb317c156d98a91628a86b3c9c0e}\label{defines_8h_ac007fb317c156d98a91628a86b3c9c0e} 
+\index{defines.h@{defines.h}!KCLAMP@{KCLAMP}}
+\index{KCLAMP@{KCLAMP}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{KCLAMP}{KCLAMP}}
+{\footnotesize\ttfamily \#define KCLAMP(\begin{DoxyParamCaption}\item[{}]{value,  }\item[{}]{min,  }\item[{}]{max }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (value\ <=\ min)\ ?\ min\ :\ (value\ >=\ max)\ ?\ max\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ value;}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00183}{183}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_a24df254ec81fc13256ad54cfe955d229}\label{defines_8h_a24df254ec81fc13256ad54cfe955d229} 
 \index{defines.h@{defines.h}!STATIC\_ASSERT@{STATIC\_ASSERT}}

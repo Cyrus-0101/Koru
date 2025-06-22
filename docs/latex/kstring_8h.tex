@@ -17,7 +17,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=217pt]{kstring_8h__dep__incl}
+\includegraphics[width=350pt]{kstring_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Functions}
@@ -26,7 +26,9 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{kstring_8h_ab7a013ae84adad0a807d921d9e38d424}{string\+\_\+length}} (const char \texorpdfstring{$\ast$}{*}str)
 \begin{DoxyCompactList}\small\item\em Returns the length of the given null-\/terminated string. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8h_a6313f0a692f28c80f3016a5f77f31bec}{string\+\_\+duplicate}} (const char \texorpdfstring{$\ast$}{*}str)
-\begin{DoxyCompactList}\small\item\em Duplicates the given null-\/terminated string into a new heap-\/allocated copy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Duplicates the given null-\/terminated string into a new heap-\/allocated copy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{kstring_8h_a3ffc35591464c532cf94a5bcb6adb2bc}{strings\+\_\+equal}} (const char \texorpdfstring{$\ast$}{*}str0, const char \texorpdfstring{$\ast$}{*}str1)
+\begin{DoxyCompactList}\small\item\em Compares two null-\/terminated strings for equality (case-\/sensitive). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -101,4 +103,34 @@ Definition at line \mbox{\hyperlink{kstring_8c_source_l00020}{20}} of file \mbox
 
 
 Referenced by \mbox{\hyperlink{kstring_8c_source_l00024}{string\+\_\+duplicate()}}.
+
+\Hypertarget{kstring_8h_a3ffc35591464c532cf94a5bcb6adb2bc}\label{kstring_8h_a3ffc35591464c532cf94a5bcb6adb2bc} 
+\index{kstring.h@{kstring.h}!strings\_equal@{strings\_equal}}
+\index{strings\_equal@{strings\_equal}!kstring.h@{kstring.h}}
+\doxysubsubsection{\texorpdfstring{strings\_equal()}{strings\_equal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} strings\+\_\+equal (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str0,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{str1 }\end{DoxyParamCaption})}
+
+
+
+Compares two null-\/terminated strings for equality (case-\/sensitive). 
+
+This function performs a character-\/by-\/character comparison of two strings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str0} & First string to compare. \\
+\hline
+{\em str1} & Second string to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+TRUE if both strings are identical; FALSE otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00034}{34}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00109}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 

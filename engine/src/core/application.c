@@ -109,6 +109,24 @@ b8 application_on_event(u16 code, void* sender, void* listener_inst, event_conte
 b8 application_on_key(u16 code, void* sender, void* listener_inst, event_context context);
 
 /**
+ * @brief Handles window resize events.
+ *
+ * This function is registered as an event listener for 'EVENT_CODE_RESIZED' events.
+ * It updates internal state, suspends/resumes rendering,
+ * and forwards the resize event to the game and renderer modules.
+ *
+ * On Linux/X11, minimized windows report size 0x0 — this function detects that
+ * and suspends rendering until the window is restored.
+ *
+ * @param code The event code (should be EVENT_CODE_RESIZED).
+ * @param sender A pointer to the object that sent the event (unused here).
+ * @param listener_inst A pointer to the listener instance (unused here).
+ * @param context Event-specific data containing width and height.
+ * @return TRUE if handled; FALSE otherwise (so other listeners can also receive the event).
+ */
+b8 application_on_resized(u16 code, void* sender, void* listener_inst, event_context context);
+
+/**
  * @brief Initializes the application with the provided configuration.
  *
  * This function must be called once before calling application_run().
@@ -143,10 +161,11 @@ b8 application_create(game* game_inst) {
     event_register(EVENT_CODE_APPLICATION_QUIT, 0, application_on_event);
     event_register(EVENT_CODE_KEY_PRESSED, 0, application_on_key);
     event_register(EVENT_CODE_KEY_RELEASED, 0, application_on_key);
+    event_register(EVENT_CODE_RESIZED, 0, application_on_resized);
 
     // Start platform layer
     if (!platform_startup(&app_state.platform, game_inst->app_config.name, game_inst->app_config.start_pos_x, game_inst->app_config.start_pos_y, game_inst->app_config.start_width, game_inst->app_config.start_height)) {
-        return TRUE;
+        return FALSE;
     }
 
     // Renderer startup
@@ -194,7 +213,7 @@ b8 application_run() {
         }
 
         if (!app_state.is_suspended) {
-            // Update clock and get delta time.Add commentMore actions
+            // Update clock and get delta time.
             clock_update(&app_state.clock);
 
             f64 current_time = app_state.clock.elapsed;
@@ -214,12 +233,13 @@ b8 application_run() {
             // Call game render routine
             if (!app_state.game_inst->render(app_state.game_inst, (f32)delta)) {
                 KFATAL("Game render failed. Shutting down!");
+
                 app_state.is_running = FALSE;
 
                 break;
             }
 
-            // TODO: refactor packet creationAdd commentMore actions
+            // TODO: refactor packet creation
             render_packet packet;
 
             packet.delta_time = delta;
@@ -254,7 +274,7 @@ b8 application_run() {
             // this frame ends.
             input_update(delta);
 
-            // Update last timeAdd commentMore actions
+            // Update last time
             app_state.last_time = current_time;
         }
     }
@@ -266,6 +286,7 @@ b8 application_run() {
     event_unregister(EVENT_CODE_APPLICATION_QUIT, 0, application_on_event);
     event_unregister(EVENT_CODE_KEY_PRESSED, 0, application_on_key);
     event_unregister(EVENT_CODE_KEY_RELEASED, 0, application_on_key);
+    // event_unregister(EVENT_CODE_RESIZED, 0, application_on_resized);
 
     event_shutdown();
     input_shutdown();
@@ -275,6 +296,11 @@ b8 application_run() {
     platform_shutdown(&app_state.platform);
 
     return TRUE;
+}
+
+void application_get_framebuffer_size(u32* width, u32* height) {
+    *width = app_state.width;
+    *height = app_state.height;
 }
 
 b8 application_on_event(u16 code, void* sender, void* listener_inst, event_context context) {
@@ -316,3 +342,41 @@ b8 application_on_key(u16 code, void* sender, void* listener_inst, event_context
     }
     return FALSE;
 }
+
+b8 application_on_resized(u16 code, void* sender, void* listener_inst, event_context context) {
+    if (code == EVENT_CODE_RESIZED) {
+        u16 width = context.data.u16[0];
+        u16 height = context.data.u16[1];
+        b8 is_visible = (b8)context.data.u16[2];  // Get visibility flag
+
+        // Always update stored dimensions
+        app_state.width = width;
+        app_state.height = height;
+
+        // Determine if we should suspend
+        b8 should_suspend = !is_visible || (width <= 10 || height <= 10);
+
+        if (should_suspend && !app_state.is_suspended) {
+            KINFO("Window minimized or hidden, suspending application.");
+            app_state.is_suspended = TRUE;
+        } else if (!should_suspend && app_state.is_suspended) {
+            KINFO("Window restored, resuming application.");
+            app_state.is_suspended = FALSE;
+
+            // Only trigger resize if we have valid dimensions
+            if (width > 10 && height > 10) {
+                app_state.game_inst->on_resize(app_state.game_inst, width, height);
+                renderer_on_resized(width, height);
+            }
+        } else if (!should_suspend) {
+            // Normal resize case
+            app_state.game_inst->on_resize(app_state.game_inst, width, height);
+            renderer_on_resized(width, height);
+        }
+
+        return TRUE;
+    }
+    return FALSE;
+}
+
+//
