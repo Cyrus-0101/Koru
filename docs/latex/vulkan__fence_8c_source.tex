@@ -33,7 +33,7 @@
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00039}00039\ \ \ \ \ \ \ \ \ fence-\/>handle\ =\ 0;}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00040}00040\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00041}00041\ \ \ \ \ fence-\/>is\_signaled\ =\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00041}00041\ \ \ \ \ fence-\/>is\_signaled\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00042}00042\ \}}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00043}00043\ }
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00044}\mbox{\hyperlink{vulkan__fence_8c_a6b9eca5608aec3856d20de19fa9e3f55}{00044}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{vulkan__fence_8c_a6b9eca5608aec3856d20de19fa9e3f55}{vulkan\_fence\_wait}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_fence*\ fence,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ timeout\_ns)\ \{}
@@ -42,12 +42,12 @@
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ 1,}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \&fence-\/>handle,}
-\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}},}
+\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}},}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ timeout\_ns);}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (result)\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_SUCCESS:}
-\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fence-\/>is\_signaled\ =\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
-\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fence-\/>is\_signaled\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_TIMEOUT:}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a3e40140ad218fd4ef727b1a9009a1bea}{KWARN}}(\textcolor{stringliteral}{"{}vk\_fence\_wait\ -\/\ Timed\ out"{}});}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
@@ -66,16 +66,16 @@
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00072}00072\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ already\ signaled,\ do\ not\ wait.}}
-\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00075}00075\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00076}00076\ }
-\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00078}00078\ \}}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00079}00079\ }
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00080}\mbox{\hyperlink{vulkan__fence_8c_a7692eaefbda15ac834201d11d15ad664}{00080}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__fence_8c_a7692eaefbda15ac834201d11d15ad664}{vulkan\_fence\_reset}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_fence*\ fence)\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (fence-\/>is\_signaled)\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ VK\_CHECK(vkResetFences(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ 1,\ \&fence-\/>handle));}
-\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ fence-\/>is\_signaled\ =\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ fence-\/>is\_signaled\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00084}00084\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{vulkan__fence_8c_source_l00085}00085\ \}}
 

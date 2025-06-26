@@ -100,7 +100,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// TODO: Make backend type configurable via config or runtime settings</span></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="renderer__backend_8c.html#a52ef657259e1bf4396b221727cd5ba4f">renderer_backend_create</a>(RENDERER_BACKEND_TYPE_VULKAN, plat_state, <a class="code hl_variable" href="renderer__frontend_8c.html#ab235bbe0a86eab45a9bb2b513a4f06d4">backend</a>)) {</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Failed to create renderer backend.&quot;</span>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// Initialize the frame counter</span></div>
@@ -109,10 +109,10 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// Call the backend&#39;s initialization routine</span></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="renderer__frontend_8c.html#ab235bbe0a86eab45a9bb2b513a4f06d4">backend</a>-&gt;initialize(<a class="code hl_variable" href="renderer__frontend_8c.html#ab235bbe0a86eab45a9bb2b513a4f06d4">backend</a>, application_name, plat_state)) {</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Renderer backend failed to initialize. Shutting down.&quot;</span>);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
 </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
@@ -161,18 +161,18 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordflow">if</span> (!result) {</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;renderer_end_frame failed. Application shutting down...&quot;</span>);</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        }</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    }</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}</div>
 </div>
+<div class="ttc" id="adefines_8h_html_a306ebd41c0cd1303b1372c6153f0caf8"><div class="ttname"><a href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></div><div class="ttdeci">#define False</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00106">defines.h:106</a></div></div>
 <div class="ttc" id="adefines_8h_html_a5f6906312a689f27d70e9d086649d3fd"><div class="ttname"><a href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a></div><div class="ttdeci">float f32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00045">defines.h:45</a></div></div>
 <div class="ttc" id="adefines_8h_html_a7415f24c35cb3e16a79f143c5527fdfa"><div class="ttname"><a href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a></div><div class="ttdeci">char b8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00055">defines.h:55</a></div></div>
 <div class="ttc" id="adefines_8h_html_a9e6c91d77e24643b888dbd1a1a590054"><div class="ttname"><a href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a></div><div class="ttdeci">unsigned short u16</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00020">defines.h:20</a></div></div>
-<div class="ttc" id="adefines_8h_html_aa8cecfc5c5c054d2875c03e77b7be15d"><div class="ttname"><a href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a></div><div class="ttdeci">#define TRUE</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00104">defines.h:104</a></div></div>
-<div class="ttc" id="adefines_8h_html_aa93f0eb578d23995850d61f7d61c55c1"><div class="ttname"><a href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a></div><div class="ttdeci">#define FALSE</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00106">defines.h:106</a></div></div>
+<div class="ttc" id="adefines_8h_html_add3ca9eefe3b5b754426f51d3043e579"><div class="ttname"><a href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a></div><div class="ttdeci">#define True</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00104">defines.h:104</a></div></div>
 <div class="ttc" id="akmemory_8c_html_a49e85a536f69ab06ccc689d5701450dc"><div class="ttname"><a href="kmemory_8c.html#a49e85a536f69ab06ccc689d5701450dc">kfree</a></div><div class="ttdeci">void kfree(void *block, u64 size, memory_tag tag)</div><div class="ttdoc">Frees a previously allocated memory block.</div><div class="ttdef"><b>Definition</b> <a href="kmemory_8c_source.html#l00129">kmemory.c:129</a></div></div>
 <div class="ttc" id="akmemory_8c_html_aaff7cb37687dfc7680be1a2101890d88"><div class="ttname"><a href="kmemory_8c.html#aaff7cb37687dfc7680be1a2101890d88">kallocate</a></div><div class="ttdeci">void * kallocate(u64 size, memory_tag tag)</div><div class="ttdoc">Allocates memory with a given size and tag.</div><div class="ttdef"><b>Definition</b> <a href="kmemory_8c_source.html#l00105">kmemory.c:105</a></div></div>
 <div class="ttc" id="akmemory_8h_html"><div class="ttname"><a href="kmemory_8h.html">kmemory.h</a></div><div class="ttdoc">Memory allocation system with tagging and tracking.</div></div>
@@ -195,7 +195,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 22 2025 12:39:34 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jun 26 2025 17:53:37 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -651,16 +651,16 @@ Windows</h2>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">if</span> ((props.optimalTilingFeatures &amp; VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT)) {</div>
 <div class="line">            device-&gt;depth_format = candidates[i];</div>
-<div class="line">            <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line">            <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;No supported depth format found.&quot;</span>);</div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line">}</div>
-<div class="ttc" id="adefines_8h_html_aa8cecfc5c5c054d2875c03e77b7be15d"><div class="ttname"><a href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a></div><div class="ttdeci">#define TRUE</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00104">defines.h:104</a></div></div>
-<div class="ttc" id="adefines_8h_html_aa93f0eb578d23995850d61f7d61c55c1"><div class="ttname"><a href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a></div><div class="ttdeci">#define FALSE</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00106">defines.h:106</a></div></div>
+<div class="ttc" id="adefines_8h_html_a306ebd41c0cd1303b1372c6153f0caf8"><div class="ttname"><a href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></div><div class="ttdeci">#define False</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00106">defines.h:106</a></div></div>
 <div class="ttc" id="adefines_8h_html_ad758b7a5c3f18ed79d2fcd23d9f16357"><div class="ttname"><a href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a></div><div class="ttdeci">unsigned long long u64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00026">defines.h:26</a></div></div>
+<div class="ttc" id="adefines_8h_html_add3ca9eefe3b5b754426f51d3043e579"><div class="ttname"><a href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a></div><div class="ttdeci">#define True</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00104">defines.h:104</a></div></div>
 <div class="ttc" id="alogger_8h_html_a473bb2cc3b3bf3c93084eeca6cb19132"><div class="ttname"><a href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a></div><div class="ttdeci">#define KERROR(message,...)</div><div class="ttdoc">Logs an error-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00162">logger.h:162</a></div></div>
 <div class="ttc" id="avulkan__device_8c_html_a4af4291b3e9e0fc739c88bde97d74693"><div class="ttname"><a href="vulkan__device_8c.html#a4af4291b3e9e0fc739c88bde97d74693">vulkan_device_detect_depth_format</a></div><div class="ttdeci">b8 vulkan_device_detect_depth_format(vulkan_device *device)</div><div class="ttdoc">Detects and selects a suitable depth/stencil format for the given device.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00366">vulkan_device.c:366</a></div></div>
 </div><!-- fragment --><p>🧃 Once selected, create a depth/stencil image and its view.</p>
@@ -999,13 +999,13 @@ Windows</h2>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">if</span> (result == VK_ERROR_OUT_OF_DATE_KHR) {</div>
 <div class="line">        <a class="code hl_function" href="vulkan__swapchain_8c.html#a37945527d25893e83ecde0d83f11b550">vulkan_swapchain_recreate</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, width, height, swapchain);</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line">        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (result != VK_SUCCESS &amp;&amp; result != VK_SUBOPTIMAL_KHR) {</div>
 <div class="line">        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Failed to acquire swapchain image!&quot;</span>);</div>
-<div class="line">        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line">        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line">}</div>
 <div class="ttc" id="alogger_8h_html_a8eb60bd7b3dfc5cadc7364b06ce7bd07"><div class="ttname"><a href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a></div><div class="ttdeci">#define KFATAL(message,...)</div><div class="ttdoc">Logs a fatal-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00149">logger.h:149</a></div></div>
 <div class="ttc" id="avulkan__swapchain_8c_html_a37945527d25893e83ecde0d83f11b550"><div class="ttname"><a href="vulkan__swapchain_8c.html#a37945527d25893e83ecde0d83f11b550">vulkan_swapchain_recreate</a></div><div class="ttdeci">void vulkan_swapchain_recreate(vulkan_context *context, u32 width, u32 height, vulkan_swapchain *swapchain)</div><div class="ttdoc">Recreates the swapchain after resize or resolution change.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__swapchain_8c_source.html#l00080">vulkan_swapchain.c:80</a></div></div>
@@ -1022,7 +1022,7 @@ Windows</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 22 2025 12:39:34 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jun 26 2025 17:53:37 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

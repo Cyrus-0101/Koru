@@ -44,10 +44,17 @@ Provides access to components via\+:
 \item Position (x,y)
 \item Color (r,g)
 \item Texture coordinates (s,t) or (u,v)
-\item Raw array index 
+\item Raw array index
 \end{DoxyItemize}
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00023}{23}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Why needed\+:
+\begin{DoxyItemize}
+\item Unified type for different interpretations of 2D data
+\item Memory-\/efficient (no conversion between color/position/\+UVs needed)
+\item Cleaner code with semantic naming (e.\+g., .x/.y for position vs .u/.v for UVs) 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00028}{28}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 
 
@@ -72,7 +79,7 @@ Array access for direct component manipulation.
 
 
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00025}{25}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00030}{30}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 \Hypertarget{unionvec2__u_aff0ae00bf7a12746b464e98aa9d13b72}\label{unionvec2__u_aff0ae00bf7a12746b464e98aa9d13b72} 
 \index{vec2\_u@{vec2\_u}!g@{g}}
@@ -82,7 +89,7 @@ Definition at line \mbox{\hyperlink{math__types_8h_source_l00025}{25}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00035}{35}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00040}{40}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 \Hypertarget{unionvec2__u_a5e055d1f80e2b2f5d434ea6dadd3fdb1}\label{unionvec2__u_a5e055d1f80e2b2f5d434ea6dadd3fdb1} 
 \index{vec2\_u@{vec2\_u}!r@{r}}
@@ -92,7 +99,7 @@ Definition at line \mbox{\hyperlink{math__types_8h_source_l00035}{35}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00031}{31}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00036}{36}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 \Hypertarget{unionvec2__u_a7f7d6696b7c77ae7331260852380b603}\label{unionvec2__u_a7f7d6696b7c77ae7331260852380b603} 
 \index{vec2\_u@{vec2\_u}!s@{s}}
@@ -102,7 +109,7 @@ Definition at line \mbox{\hyperlink{math__types_8h_source_l00031}{31}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00031}{31}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00036}{36}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 \Hypertarget{unionvec2__u_a480b918bed0b2bd88f55c397ac98b06d}\label{unionvec2__u_a480b918bed0b2bd88f55c397ac98b06d} 
 \index{vec2\_u@{vec2\_u}!t@{t}}
@@ -112,7 +119,7 @@ Definition at line \mbox{\hyperlink{math__types_8h_source_l00031}{31}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00035}{35}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00040}{40}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 \Hypertarget{unionvec2__u_aac7ad2f145e47f10c4ff4e1076edfa00}\label{unionvec2__u_aac7ad2f145e47f10c4ff4e1076edfa00} 
 \index{vec2\_u@{vec2\_u}!u@{u}}
@@ -122,7 +129,7 @@ Definition at line \mbox{\hyperlink{math__types_8h_source_l00035}{35}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00031}{31}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00036}{36}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 \Hypertarget{unionvec2__u_a6de9393911c25f76eb3a83b0b5a72f7b}\label{unionvec2__u_a6de9393911c25f76eb3a83b0b5a72f7b} 
 \index{vec2\_u@{vec2\_u}!v@{v}}
@@ -132,7 +139,7 @@ Definition at line \mbox{\hyperlink{math__types_8h_source_l00031}{31}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00035}{35}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00040}{40}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 \Hypertarget{unionvec2__u_a8351557ed259ae82d0e97ad7f2be04c1}\label{unionvec2__u_a8351557ed259ae82d0e97ad7f2be04c1} 
 \index{vec2\_u@{vec2\_u}!x@{x}}
@@ -146,11 +153,11 @@ First component (x position, red channel, s/u texture coord)
 
 
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00031}{31}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00036}{36}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{kmath_8h_source_l00220}{vec2\+\_\+add()}}, \mbox{\hyperlink{kmath_8h_source_l00316}{vec2\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00164}{vec2\+\_\+create()}}, \mbox{\hyperlink{kmath_8h_source_l00335}{vec2\+\_\+distance()}}, \mbox{\hyperlink{kmath_8h_source_l00259}{vec2\+\_\+div()}}, \mbox{\hyperlink{kmath_8h_source_l00271}{vec2\+\_\+length\+\_\+squared()}}, \mbox{\hyperlink{kmath_8h_source_l00246}{vec2\+\_\+mul()}}, \mbox{\hyperlink{kmath_8h_source_l00290}{vec2\+\_\+normalize()}}, and \mbox{\hyperlink{kmath_8h_source_l00233}{vec2\+\_\+sub()}}.
+Referenced by \mbox{\hyperlink{kmath_8h_source_l00221}{vec2\+\_\+add()}}, \mbox{\hyperlink{kmath_8h_source_l00317}{vec2\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00165}{vec2\+\_\+create()}}, \mbox{\hyperlink{kmath_8h_source_l00336}{vec2\+\_\+distance()}}, \mbox{\hyperlink{kmath_8h_source_l00260}{vec2\+\_\+div()}}, \mbox{\hyperlink{kmath_8h_source_l00272}{vec2\+\_\+length\+\_\+squared()}}, \mbox{\hyperlink{kmath_8h_source_l00247}{vec2\+\_\+mul()}}, \mbox{\hyperlink{kmath_8h_source_l00291}{vec2\+\_\+normalize()}}, and \mbox{\hyperlink{kmath_8h_source_l00234}{vec2\+\_\+sub()}}.
 
 \Hypertarget{unionvec2__u_a8903716708ec9cdf2b006dc78e1f54b6}\label{unionvec2__u_a8903716708ec9cdf2b006dc78e1f54b6} 
 \index{vec2\_u@{vec2\_u}!y@{y}}
@@ -164,11 +171,11 @@ Second component (y position, green channel, t/v texture coord)
 
 
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00035}{35}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00040}{40}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{kmath_8h_source_l00220}{vec2\+\_\+add()}}, \mbox{\hyperlink{kmath_8h_source_l00316}{vec2\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00164}{vec2\+\_\+create()}}, \mbox{\hyperlink{kmath_8h_source_l00335}{vec2\+\_\+distance()}}, \mbox{\hyperlink{kmath_8h_source_l00259}{vec2\+\_\+div()}}, \mbox{\hyperlink{kmath_8h_source_l00271}{vec2\+\_\+length\+\_\+squared()}}, \mbox{\hyperlink{kmath_8h_source_l00246}{vec2\+\_\+mul()}}, \mbox{\hyperlink{kmath_8h_source_l00290}{vec2\+\_\+normalize()}}, and \mbox{\hyperlink{kmath_8h_source_l00233}{vec2\+\_\+sub()}}.
+Referenced by \mbox{\hyperlink{kmath_8h_source_l00221}{vec2\+\_\+add()}}, \mbox{\hyperlink{kmath_8h_source_l00317}{vec2\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00165}{vec2\+\_\+create()}}, \mbox{\hyperlink{kmath_8h_source_l00336}{vec2\+\_\+distance()}}, \mbox{\hyperlink{kmath_8h_source_l00260}{vec2\+\_\+div()}}, \mbox{\hyperlink{kmath_8h_source_l00272}{vec2\+\_\+length\+\_\+squared()}}, \mbox{\hyperlink{kmath_8h_source_l00247}{vec2\+\_\+mul()}}, \mbox{\hyperlink{kmath_8h_source_l00291}{vec2\+\_\+normalize()}}, and \mbox{\hyperlink{kmath_8h_source_l00234}{vec2\+\_\+sub()}}.
 
 
 

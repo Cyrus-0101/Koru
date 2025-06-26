@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['recreate_5fswapchain_0',['recreate_swapchain',['../vulkan__backend_8c.html#afe660c6d3ba8621d1a7b395500e6fc02',1,'vulkan_backend.c']]],
-  ['regenerate_5fframebuffers_1',['regenerate_framebuffers',['../vulkan__backend_8c.html#aeb8e5befb751f7f77dd00d3b2aafb936',1,'vulkan_backend.c']]],
-  ['renderer_5fbackend_5fcreate_2',['renderer_backend_create',['../renderer__backend_8c.html#a52ef657259e1bf4396b221727cd5ba4f',1,'renderer_backend_create(renderer_backend_type type, struct platform_state *plat_state, renderer_backend *out_renderer_backend):&#160;renderer_backend.c'],['../renderer__backend_8h.html#a52ef657259e1bf4396b221727cd5ba4f',1,'renderer_backend_create(renderer_backend_type type, struct platform_state *plat_state, renderer_backend *out_renderer_backend):&#160;renderer_backend.c']]],
-  ['renderer_5fbackend_5fdestroy_3',['renderer_backend_destroy',['../renderer__backend_8c.html#a7f2f8f1b99fcf0c37b9edbb0be96b9a5',1,'renderer_backend_destroy(renderer_backend *renderer_backend):&#160;renderer_backend.c'],['../renderer__backend_8h.html#a7f2f8f1b99fcf0c37b9edbb0be96b9a5',1,'renderer_backend_destroy(renderer_backend *renderer_backend):&#160;renderer_backend.c']]],
-  ['renderer_5fbegin_5fframe_4',['renderer_begin_frame',['../renderer__frontend_8c.html#a1a8f8d1befb7f8dbbf9d8a64dd84b347',1,'renderer_frontend.c']]],
-  ['renderer_5fdraw_5fframe_5',['renderer_draw_frame',['../renderer__frontend_8c.html#aa1a64974ce989cb8a822d5910e45eeec',1,'renderer_draw_frame(render_packet *packet):&#160;renderer_frontend.c'],['../renderer__frontend_8h.html#aa1a64974ce989cb8a822d5910e45eeec',1,'renderer_draw_frame(render_packet *packet):&#160;renderer_frontend.c']]],
-  ['renderer_5fend_5fframe_6',['renderer_end_frame',['../renderer__frontend_8c.html#af7b0d899f9d9ad513fdb67b6f811268a',1,'renderer_frontend.c']]],
-  ['renderer_5finitialize_7',['renderer_initialize',['../renderer__frontend_8c.html#a22086f105bc3ec5fdad7381f76b5efb5',1,'renderer_initialize(const char *application_name, struct platform_state *plat_state):&#160;renderer_frontend.c'],['../renderer__frontend_8h.html#a22086f105bc3ec5fdad7381f76b5efb5',1,'renderer_initialize(const char *application_name, struct platform_state *plat_state):&#160;renderer_frontend.c']]],
-  ['renderer_5fon_5fresized_8',['renderer_on_resized',['../renderer__frontend_8c.html#a344ab27f3e341fd7b45eb38eafea2e00',1,'renderer_on_resized(u16 width, u16 height):&#160;renderer_frontend.c'],['../renderer__frontend_8h.html#a344ab27f3e341fd7b45eb38eafea2e00',1,'renderer_on_resized(u16 width, u16 height):&#160;renderer_frontend.c']]],
-  ['renderer_5fshutdown_9',['renderer_shutdown',['../renderer__frontend_8c.html#a52882bf7ed3f35fe0593d1715edaa0b8',1,'renderer_shutdown():&#160;renderer_frontend.c'],['../renderer__frontend_8h.html#a52882bf7ed3f35fe0593d1715edaa0b8',1,'renderer_shutdown():&#160;renderer_frontend.c']]],
-  ['report_5fassertion_5ffailure_10',['report_assertion_failure',['../asserts_8h.html#a081a03d10de2e1eebf9bb889519687bc',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c'],['../logger_8c.html#a89ca11b6142a42bebac099dfacf57f59',1,'report_assertion_failure(const char *expression, const char *message, const char *file, i32 line):&#160;logger.c']]]
+  ['quat_5fconjugate_0',['quat_conjugate',['../kmath_8h.html#a07c8b0a7152d96143691ca040b8c0d23',1,'kmath.h']]],
+  ['quat_5fdot_1',['quat_dot',['../kmath_8h.html#a8a93afbc27ca642569857bd4a766f27b',1,'kmath.h']]],
+  ['quat_5ffrom_5faxis_5fangle_2',['quat_from_axis_angle',['../kmath_8h.html#adfcab382a3cbf4493982e93fda95e257',1,'kmath.h']]],
+  ['quat_5fidentity_3',['quat_identity',['../kmath_8h.html#a6edab62f710b9718c0590664774b1845',1,'kmath.h']]],
+  ['quat_5finverse_4',['quat_inverse',['../kmath_8h.html#a5c05ed1e69ca8563590cc8718fca5435',1,'kmath.h']]],
+  ['quat_5fmul_5',['quat_mul',['../kmath_8h.html#aac6db5c9028952d279408093822b4cbd',1,'kmath.h']]],
+  ['quat_5fnormal_6',['quat_normal',['../kmath_8h.html#a988ae268cd1fcd9e3cf6f37425e396ae',1,'kmath.h']]],
+  ['quat_5fnormalize_7',['quat_normalize',['../kmath_8h.html#a80f41015fc07b514f4fedc2d76157e11',1,'kmath.h']]],
+  ['quat_5fslerp_8',['quat_slerp',['../kmath_8h.html#aef737c7e466f76a8e93d4a8ee72d9b3a',1,'kmath.h']]],
+  ['quat_5fto_5fmat4_9',['quat_to_mat4',['../kmath_8h.html#ac84936abc187f178a2228f699a5b5a9d',1,'kmath.h']]],
+  ['quat_5fto_5frotation_5fmatrix_10',['quat_to_rotation_matrix',['../kmath_8h.html#a70c81ca5e2bcb020031dc593c9969609',1,'kmath.h']]]
 ];

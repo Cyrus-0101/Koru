@@ -57,13 +57,13 @@
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00134}00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ VK\_ERROR\_OUT\_OF\_DATE\_KHR)\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Trigger\ swapchain\ recreation,\ then\ boot\ out\ of\ the\ render\ loop.}}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__swapchain_8c_a37945527d25893e83ecde0d83f11b550}{vulkan\_swapchain\_recreate}}(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>framebuffer\_width,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>framebuffer\_height,\ swapchain);}
-\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00138}00138\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ !=\ VK\_SUCCESS\ \&\&\ result\ !=\ VK\_SUBOPTIMAL\_KHR)\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00139}00139\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Failed\ to\ acquire\ swapchain\ image!"{}});}
-\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00141}00141\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00142}00142\ }
-\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00143}00143\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00143}00143\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00144}00144\ \}}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00145}00145\ }
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00159}\mbox{\hyperlink{vulkan__swapchain_8c_a401617aff019b05a923dcda96f83c958}{00159}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__swapchain_8c_a401617aff019b05a923dcda96f83c958}{vulkan\_swapchain\_present}}(}
@@ -100,14 +100,14 @@
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00204}00204\ \ \ \ \ swapchain-\/>max\_frames\_in\_flight\ =\ 2;}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00205}00205\ }
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00206}00206\ \ \ \ \ \textcolor{comment}{//\ Choose\ a\ swap\ surface\ format.}}
-\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00207}00207\ \ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ found\ =\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00207}00207\ \ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ found\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00208}00208\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.swapchain\_support.format\_count;\ ++i)\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00209}00209\ \ \ \ \ \ \ \ \ VkSurfaceFormatKHR\ format\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.swapchain\_support.formats[i];}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00210}00210\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Preferred\ formats:\ B8G8R8A8\_UNORM\ +\ sRGB\ color\ space}}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (format.format\ ==\ VK\_FORMAT\_B8G8R8A8\_UNORM\ \&\&}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ format.colorSpace\ ==\ VK\_COLOR\_SPACE\_SRGB\_NONLINEAR\_KHR)\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ swapchain-\/>image\_format\ =\ format;}
-\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ found\ =\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ found\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00216}00216\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00217}00217\ \ \ \ \ \}}
@@ -230,7 +230,7 @@
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00334}00334\ \ \ \ \ \ \ \ \ VK\_IMAGE\_TILING\_OPTIMAL,}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00335}00335\ \ \ \ \ \ \ \ \ VK\_IMAGE\_USAGE\_DEPTH\_STENCIL\_ATTACHMENT\_BIT,}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00336}00336\ \ \ \ \ \ \ \ \ VK\_MEMORY\_PROPERTY\_DEVICE\_LOCAL\_BIT,}
-\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00337}00337\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}},}
+\DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00337}00337\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}},}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00338}00338\ \ \ \ \ \ \ \ \ VK\_IMAGE\_ASPECT\_DEPTH\_BIT,}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00339}00339\ \ \ \ \ \ \ \ \ \&swapchain-\/>depth\_attachment);}
 \DoxyCodeLine{\Hypertarget{vulkan__swapchain_8c_source_l00340}00340\ }
