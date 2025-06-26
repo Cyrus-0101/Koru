@@ -852,13 +852,14 @@ KINLINE f32 vec4_distance(vec4 vector_0, vec4 vector_1) {
 
 /**
  * @brief Creates and returns an identity matrix:
- * 
+ * ```sh
  * {
  *   {1, 0, 0, 0},
  *   {0, 1, 0, 0},
  *   {0, 0, 1, 0},
  *   {0, 0, 0, 1}
  * }
+ * ```
  * 
  * @return A new identity matrix 
  */
