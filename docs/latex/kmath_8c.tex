@@ -1,0 +1,324 @@
+\doxysection{engine/src/math/kmath.c File Reference}
+\hypertarget{kmath_8c}{}\label{kmath_8c}\index{engine/src/math/kmath.c@{engine/src/math/kmath.c}}
+
+
+Math utilities for the Koru Engine.  
+
+
+{\ttfamily \#include "{}kmath.\+h"{}}\newline
+Include dependency graph for kmath.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{kmath_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{kmath_8c_a9364645d161bc75bd590e8e977217278}{ksin}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} x)
+\begin{DoxyCompactList}\small\item\em Calculates the sine of the given angle in radians. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{kmath_8c_a0ce8bf3d83d26b8c7da6d1f5725ec44b}{kcos}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} x)
+\begin{DoxyCompactList}\small\item\em Calculates the cosine of the given angle in radians. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{kmath_8c_afc94bc880a4d0cb2cf0f20c48796027f}{ktan}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} x)
+\begin{DoxyCompactList}\small\item\em Calculates the tangent of the given angle in radians. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{kmath_8c_a2adccf60c1cbd9907e83dfe741b0d990}{kacos}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} x)
+\begin{DoxyCompactList}\small\item\em Calculates the arccosine of x. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{kmath_8c_a30400cea640c072f9a1ce1eb4c6b8dc4}{ksqrt}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} x)
+\begin{DoxyCompactList}\small\item\em Calculates the square root of x. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{kmath_8c_a4380a0a81e9be5d9f20baa91cb6f28ce}{kabs}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} x)
+\begin{DoxyCompactList}\small\item\em Calculates the absolute value of x. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{kmath_8c_a4d0ffee03587717f7012d16de2d9278c}{krandom}} ()
+\begin{DoxyCompactList}\small\item\em Generates a random integer between 0 and RAND\+\_\+\+MAX. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{kmath_8c_a56bbad16ca196bbe13fc4952f4520859}{krandom\+\_\+in\+\_\+range}} (\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} min, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} max)
+\begin{DoxyCompactList}\small\item\em Generates a random integer within the specified range \mbox{[}min, max\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{kmath_8c_a238195d21a9e1dd0fafdb54c462eb20b}{fkrandom}} ()
+\begin{DoxyCompactList}\small\item\em Generates a random floating-\/point number between 0.\+0 and 1.\+0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{kmath_8c_ab8d0f10cfb49f6d93d0da26e82964029}{fkrandom\+\_\+in\+\_\+range}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} min, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} max)
+\begin{DoxyCompactList}\small\item\em Generates a random float within the specified range \mbox{[}min, max\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{kmath_8c_a5437ccb0b0fb715b4ffffb0ee59babcb}{rand\+\_\+seeded}} = \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Math utilities for the Koru Engine. 
+
+This module wraps basic math functions from \texorpdfstring{$<$}{<}math.\+h\texorpdfstring{$>$}{>} to avoid importing it everywhere. It also provides random number generation functionality with optional range support.
+
+All functions are safe to call before full engine initialization, except those that require seeded randomness. 
+
+Definition in file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{kmath_8c_a238195d21a9e1dd0fafdb54c462eb20b}\label{kmath_8c_a238195d21a9e1dd0fafdb54c462eb20b} 
+\index{kmath.c@{kmath.c}!fkrandom@{fkrandom}}
+\index{fkrandom@{fkrandom}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{fkrandom()}{fkrandom()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} fkrandom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates a random floating-\/point number between 0.\+0 and 1.\+0. 
+
+\begin{DoxyReturn}{Returns}
+Random float in \mbox{[}0.\+0, 1.\+0\mbox{]} 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00079}{79}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmath_8c_source_l00055}{krandom()}}.
+
+\Hypertarget{kmath_8c_ab8d0f10cfb49f6d93d0da26e82964029}\label{kmath_8c_ab8d0f10cfb49f6d93d0da26e82964029} 
+\index{kmath.c@{kmath.c}!fkrandom\_in\_range@{fkrandom\_in\_range}}
+\index{fkrandom\_in\_range@{fkrandom\_in\_range}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{fkrandom\_in\_range()}{fkrandom\_in\_range()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} fkrandom\+\_\+in\+\_\+range (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{min,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{max }\end{DoxyParamCaption})}
+
+
+
+Generates a random float within the specified range \mbox{[}min, max\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & Minimum value (inclusive) \\
+\hline
+{\em max} & Maximum value (inclusive) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random float in range 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00083}{83}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmath_8c_source_l00055}{krandom()}}.
+
+\Hypertarget{kmath_8c_a4380a0a81e9be5d9f20baa91cb6f28ce}\label{kmath_8c_a4380a0a81e9be5d9f20baa91cb6f28ce} 
+\index{kmath.c@{kmath.c}!kabs@{kabs}}
+\index{kabs@{kabs}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{kabs()}{kabs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} kabs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{x }\end{DoxyParamCaption})}
+
+
+
+Calculates the absolute value of x. 
+
+Note that these are here in order to prevent having to import the entire \texorpdfstring{$<$}{<}math.\+h\texorpdfstring{$>$}{>} everywhere. 
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00051}{51}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l00317}{vec2\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00589}{vec3\+\_\+compare()}}, and \mbox{\hyperlink{kmath_8h_source_l00825}{vec4\+\_\+compare()}}.
+
+\Hypertarget{kmath_8c_a2adccf60c1cbd9907e83dfe741b0d990}\label{kmath_8c_a2adccf60c1cbd9907e83dfe741b0d990} 
+\index{kmath.c@{kmath.c}!kacos@{kacos}}
+\index{kacos@{kacos}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{kacos()}{kacos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} kacos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{x }\end{DoxyParamCaption})}
+
+
+
+Calculates the arccosine of x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Value between -\/1 and 1 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Angle in radians 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00038}{38}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l01479}{quat\+\_\+slerp()}}.
+
+\Hypertarget{kmath_8c_a0ce8bf3d83d26b8c7da6d1f5725ec44b}\label{kmath_8c_a0ce8bf3d83d26b8c7da6d1f5725ec44b} 
+\index{kmath.c@{kmath.c}!kcos@{kcos}}
+\index{kcos@{kcos}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{kcos()}{kcos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} kcos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{x }\end{DoxyParamCaption})}
+
+
+
+Calculates the cosine of the given angle in radians. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Angle in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cosine of x 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00030}{30}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l01119}{mat4\+\_\+euler\+\_\+x()}}, \mbox{\hyperlink{kmath_8h_source_l01137}{mat4\+\_\+euler\+\_\+y()}}, \mbox{\hyperlink{kmath_8h_source_l01155}{mat4\+\_\+euler\+\_\+z()}}, \mbox{\hyperlink{kmath_8h_source_l01459}{quat\+\_\+from\+\_\+axis\+\_\+angle()}}, and \mbox{\hyperlink{kmath_8h_source_l01479}{quat\+\_\+slerp()}}.
+
+\Hypertarget{kmath_8c_a4d0ffee03587717f7012d16de2d9278c}\label{kmath_8c_a4d0ffee03587717f7012d16de2d9278c} 
+\index{kmath.c@{kmath.c}!krandom@{krandom}}
+\index{krandom@{krandom}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{krandom()}{krandom()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} krandom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates a random integer between 0 and RAND\+\_\+\+MAX. 
+
+\begin{DoxyReturn}{Returns}
+Random integer 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00055}{55}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\+\_\+get\+\_\+absolute\+\_\+time()}}, \mbox{\hyperlink{kmath_8c_source_l00024}{rand\+\_\+seeded}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8c_source_l00079}{fkrandom()}}, and \mbox{\hyperlink{kmath_8c_source_l00083}{fkrandom\+\_\+in\+\_\+range()}}.
+
+\Hypertarget{kmath_8c_a56bbad16ca196bbe13fc4952f4520859}\label{kmath_8c_a56bbad16ca196bbe13fc4952f4520859} 
+\index{kmath.c@{kmath.c}!krandom\_in\_range@{krandom\_in\_range}}
+\index{krandom\_in\_range@{krandom\_in\_range}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{krandom\_in\_range()}{krandom\_in\_range()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} krandom\+\_\+in\+\_\+range (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{min,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{max }\end{DoxyParamCaption})}
+
+
+
+Generates a random integer within the specified range \mbox{[}min, max\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & Minimum value (inclusive) \\
+\hline
+{\em max} & Maximum value (inclusive) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random integer in range 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00063}{63}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+References \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\+\_\+get\+\_\+absolute\+\_\+time()}}, \mbox{\hyperlink{kmath_8c_source_l00024}{rand\+\_\+seeded}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+
+\Hypertarget{kmath_8c_a9364645d161bc75bd590e8e977217278}\label{kmath_8c_a9364645d161bc75bd590e8e977217278} 
+\index{kmath.c@{kmath.c}!ksin@{ksin}}
+\index{ksin@{ksin}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{ksin()}{ksin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} ksin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{x }\end{DoxyParamCaption})}
+
+
+
+Calculates the sine of the given angle in radians. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Angle in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sine of x 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00026}{26}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l01119}{mat4\+\_\+euler\+\_\+x()}}, \mbox{\hyperlink{kmath_8h_source_l01137}{mat4\+\_\+euler\+\_\+y()}}, \mbox{\hyperlink{kmath_8h_source_l01155}{mat4\+\_\+euler\+\_\+z()}}, \mbox{\hyperlink{kmath_8h_source_l01459}{quat\+\_\+from\+\_\+axis\+\_\+angle()}}, and \mbox{\hyperlink{kmath_8h_source_l01479}{quat\+\_\+slerp()}}.
+
+\Hypertarget{kmath_8c_a30400cea640c072f9a1ce1eb4c6b8dc4}\label{kmath_8c_a30400cea640c072f9a1ce1eb4c6b8dc4} 
+\index{kmath.c@{kmath.c}!ksqrt@{ksqrt}}
+\index{ksqrt@{ksqrt}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{ksqrt()}{ksqrt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} ksqrt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{x }\end{DoxyParamCaption})}
+
+
+
+Calculates the square root of x. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Non-\/negative value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Square root of x 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00042}{42}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l01294}{quat\+\_\+normal()}}, \mbox{\hyperlink{kmath_8h_source_l00282}{vec2\+\_\+length()}}, \mbox{\hyperlink{kmath_8h_source_l00522}{vec3\+\_\+length()}}, and \mbox{\hyperlink{kmath_8h_source_l00764}{vec4\+\_\+length()}}.
+
+\Hypertarget{kmath_8c_afc94bc880a4d0cb2cf0f20c48796027f}\label{kmath_8c_afc94bc880a4d0cb2cf0f20c48796027f} 
+\index{kmath.c@{kmath.c}!ktan@{ktan}}
+\index{ktan@{ktan}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{ktan()}{ktan()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} ktan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{x }\end{DoxyParamCaption})}
+
+
+
+Calculates the tangent of the given angle in radians. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Angle in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tangent of x 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00034}{34}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{kmath_8c_a5437ccb0b0fb715b4ffffb0ee59babcb}\label{kmath_8c_a5437ccb0b0fb715b4ffffb0ee59babcb} 
+\index{kmath.c@{kmath.c}!rand\_seeded@{rand\_seeded}}
+\index{rand\_seeded@{rand\_seeded}!kmath.c@{kmath.c}}
+\doxysubsubsection{\texorpdfstring{rand\_seeded}{rand\_seeded}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} rand\+\_\+seeded = \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}}\hspace{0.3cm}{\ttfamily [static]}}
+
+Note that these are here in order to prevent having to import the entire \texorpdfstring{$<$}{<}math.\+h\texorpdfstring{$>$}{>} everywhere. 
+
+Definition at line \mbox{\hyperlink{kmath_8c_source_l00024}{24}} of file \mbox{\hyperlink{kmath_8c_source}{kmath.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8c_source_l00055}{krandom()}}, and \mbox{\hyperlink{kmath_8c_source_l00063}{krandom\+\_\+in\+\_\+range()}}.
+

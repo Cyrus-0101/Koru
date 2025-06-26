@@ -1,0 +1,69 @@
+\doxysection{mat4\+\_\+u Union Reference}
+\hypertarget{unionmat4__u}{}\label{unionmat4__u}\index{mat4\_u@{mat4\_u}}
+
+
+A 4x4 matrix union for linear transformations.  
+
+
+
+
+{\ttfamily \#include $<$math\+\_\+types.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{unionmat4__u_a6620223582f7ff7804fb7bf579d06d32}{data}} \mbox{[}16\mbox{]}
+\begin{DoxyCompactList}\small\item\em Flat array of 16 elements in column-\/major order. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A 4x4 matrix union for linear transformations. 
+
+Stored in column-\/major order\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ 0,\ 4,\ \ 8,\ 12,}
+\DoxyCodeLine{\ \ 1,\ 5,\ \ 9,\ 13,}
+\DoxyCodeLine{\ \ 2,\ 6,\ 10,\ 14,}
+\DoxyCodeLine{\ \ 3,\ 7,\ 11,\ 15}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+Why needed\+:
+\begin{DoxyItemize}
+\item Standard representation for 3D transformations (translation, rotation, scale)
+\item Column-\/major matches Open\+GL/\+Vulkan conventions
+\item Raw array access for direct GPU buffer uploads
+\item Basis for camera/view/projection matrices 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00158}{158}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{unionmat4__u_a6620223582f7ff7804fb7bf579d06d32}\label{unionmat4__u_a6620223582f7ff7804fb7bf579d06d32} 
+\index{mat4\_u@{mat4\_u}!data@{data}}
+\index{data@{data}!mat4\_u@{mat4\_u}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} mat4\+\_\+u\+::data\mbox{[}16\mbox{]}}
+
+
+
+Flat array of 16 elements in column-\/major order. 
+
+
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00160}{160}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmath_8h_source_l01206}{mat4\+\_\+backward()}}, \mbox{\hyperlink{kmath_8h_source_l01236}{mat4\+\_\+down()}}, \mbox{\hyperlink{kmath_8h_source_l01119}{mat4\+\_\+euler\+\_\+x()}}, \mbox{\hyperlink{kmath_8h_source_l01137}{mat4\+\_\+euler\+\_\+y()}}, \mbox{\hyperlink{kmath_8h_source_l01155}{mat4\+\_\+euler\+\_\+z()}}, \mbox{\hyperlink{kmath_8h_source_l01191}{mat4\+\_\+forward()}}, \mbox{\hyperlink{kmath_8h_source_l00866}{mat4\+\_\+identity()}}, \mbox{\hyperlink{kmath_8h_source_l01027}{mat4\+\_\+inverse()}}, \mbox{\hyperlink{kmath_8h_source_l01251}{mat4\+\_\+left()}}, \mbox{\hyperlink{kmath_8h_source_l00963}{mat4\+\_\+look\+\_\+at()}}, \mbox{\hyperlink{kmath_8h_source_l00883}{mat4\+\_\+mul()}}, \mbox{\hyperlink{kmath_8h_source_l00916}{mat4\+\_\+orthographic()}}, \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}, \mbox{\hyperlink{kmath_8h_source_l01266}{mat4\+\_\+right()}}, \mbox{\hyperlink{kmath_8h_source_l01105}{mat4\+\_\+scale()}}, \mbox{\hyperlink{kmath_8h_source_l01091}{mat4\+\_\+translation()}}, \mbox{\hyperlink{kmath_8h_source_l01000}{mat4\+\_\+transposed()}}, \mbox{\hyperlink{kmath_8h_source_l01221}{mat4\+\_\+up()}}, \mbox{\hyperlink{kmath_8h_source_l01395}{quat\+\_\+to\+\_\+mat4()}}, and \mbox{\hyperlink{kmath_8h_source_l01425}{quat\+\_\+to\+\_\+rotation\+\_\+matrix()}}.
+
+
+
+The documentation for this union was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/math/\mbox{\hyperlink{math__types_8h}{math\+\_\+types.\+h}}\end{DoxyCompactItemize}
