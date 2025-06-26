@@ -42,7 +42,7 @@ static u32 cached_framebuffer_height = 0;
  * @param message_types The type(s) of message (validation/performance/general).
  * @param callback_data Additional data about the message.
  * @param user_data Optional user-defined data (not used here).
- * @return Always returns VK_FALSE (no need to abort due to message).
+ * @return Always returns VK_False (no need to abort due to message).
  */
 VKAPI_ATTR VkBool32 VKAPI_CALL vk_debug_callback(
     VkDebugUtilsMessageSeverityFlagBitsEXT message_severity,
