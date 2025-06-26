@@ -113,7 +113,7 @@ void vulkan_swapchain_destroy(
  * @param image_available_semaphore Semaphore signaled when image is ready.
  * @param fence Optional fence to wait on before using the image.
  * @param out_image_index Output variable to store the acquired image index.
- * @return TRUE if successful; FALSE if the swapchain needs recreation.
+ * @return True if successful; False if the swapchain needs recreation.
  */
 b8 vulkan_swapchain_acquire_next_image_index(
     vulkan_context* context,
@@ -134,13 +134,13 @@ b8 vulkan_swapchain_acquire_next_image_index(
     if (result == VK_ERROR_OUT_OF_DATE_KHR) {
         // Trigger swapchain recreation, then boot out of the render loop.
         vulkan_swapchain_recreate(context, context->framebuffer_width, context->framebuffer_height, swapchain);
-        return FALSE;
+        return False;
     } else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
         KFATAL("Failed to acquire swapchain image!");
-        return FALSE;
+        return False;
     }
 
-    return TRUE;
+    return True;
 }
 
 /**
@@ -204,14 +204,14 @@ void create(vulkan_context* context, u32 width, u32 height, vulkan_swapchain* sw
     swapchain->max_frames_in_flight = 2;
 
     // Choose a swap surface format.
-    b8 found = FALSE;
+    b8 found = False;
     for (u32 i = 0; i < context->device.swapchain_support.format_count; ++i) {
         VkSurfaceFormatKHR format = context->device.swapchain_support.formats[i];
         // Preferred formats: B8G8R8A8_UNORM + sRGB color space
         if (format.format == VK_FORMAT_B8G8R8A8_UNORM &&
             format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
             swapchain->image_format = format;
-            found = TRUE;
+            found = True;
             break;
         }
     }
@@ -334,7 +334,7 @@ void create(vulkan_context* context, u32 width, u32 height, vulkan_swapchain* sw
         VK_IMAGE_TILING_OPTIMAL,
         VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT,
         VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
-        TRUE,
+        True,
         VK_IMAGE_ASPECT_DEPTH_BIT,
         &swapchain->depth_attachment);
 

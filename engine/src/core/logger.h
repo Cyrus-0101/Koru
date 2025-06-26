@@ -103,12 +103,12 @@ typedef enum log_level {
 /**
  * @brief Initializes the logging system.
  *
- * Currently just returns TRUE. In future versions, this may include:
+ * Currently just returns True. In future versions, this may include:
  * - Opening a log file
  * - Initializing mutexes for thread safety
  * - Detecting terminal capabilities
  *
- * @return TRUE if initialization succeeded; FALSE otherwise.
+ * @return True if initialization succeeded; False otherwise.
  */
 b8 initialize_logging();
 

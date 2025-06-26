@@ -62,7 +62,7 @@ typedef struct application_config {
  * Must be called before application_run().
  *
  * @param game_inst A pointer to the game instance containing setup parameters.
- * @return TRUE if initialization was successful; FALSE otherwise.
+ * @return True if initialization was successful; False otherwise.
  */
 KAPI b8 application_create(struct game* game_inst);
 
@@ -76,7 +76,7 @@ KAPI b8 application_create(struct game* game_inst);
  *
  * This function blocks until the application exits.
  *
- * @return TRUE if the application exited cleanly; FALSE if an error occurred or early exit.
+ * @return True if the application exited cleanly; False if an error occurred or early exit.
  */
 b8 application_run();
 

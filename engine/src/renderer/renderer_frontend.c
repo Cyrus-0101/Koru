@@ -32,7 +32,7 @@ static renderer_backend* backend = 0;
  *
  * @param application_name Name of the application using the renderer.
  * @param plat_state A pointer to the platform-specific state.
- * @return TRUE if initialization was successful; otherwise FALSE.
+ * @return True if initialization was successful; otherwise False.
  */
 b8 renderer_initialize(const char* application_name, struct platform_state* plat_state) {
     // Allocate memory for the backend structure
@@ -41,7 +41,7 @@ b8 renderer_initialize(const char* application_name, struct platform_state* plat
     // TODO: Make backend type configurable via config or runtime settings
     if (!renderer_backend_create(RENDERER_BACKEND_TYPE_VULKAN, plat_state, backend)) {
         KFATAL("Failed to create renderer backend.");
-        return FALSE;
+        return False;
     }
 
     // Initialize the frame counter
@@ -50,10 +50,10 @@ b8 renderer_initialize(const char* application_name, struct platform_state* plat
     // Call the backend's initialization routine
     if (!backend->initialize(backend, application_name, plat_state)) {
         KFATAL("Renderer backend failed to initialize. Shutting down.");
-        return FALSE;
+        return False;
     }
 
-    return TRUE;
+    return True;
 }
 
 /**
@@ -76,7 +76,7 @@ void renderer_shutdown() {
  * and preparing for rendering operations.
  *
  * @param delta_time Time in seconds since the last frame.
- * @return TRUE if the frame was successfully started; otherwise FALSE.
+ * @return True if the frame was successfully started; otherwise False.
  */
 b8 renderer_begin_frame(f32 delta_time) {
     return backend->begin_frame(backend, delta_time);
@@ -89,7 +89,7 @@ b8 renderer_begin_frame(f32 delta_time) {
  * and cleaning up per-frame resources.
  *
  * @param delta_time Time in seconds since the last frame.
- * @return TRUE if the frame was successfully ended; otherwise FALSE.
+ * @return True if the frame was successfully ended; otherwise False.
  */
 b8 renderer_end_frame(f32 delta_time) {
     b8 result = backend->end_frame(backend, delta_time);
@@ -112,7 +112,7 @@ void renderer_on_resized(u16 width, u16 height) {
  * and ends the frame. Called once per frame by the engine.
  *
  * @param packet A pointer to the render packet containing frame-specific data.
- * @return TRUE if the frame was drawn successfully; otherwise FALSE.
+ * @return True if the frame was drawn successfully; otherwise False.
  */
 b8 renderer_draw_frame(render_packet* packet) {
     // Begin the frame
@@ -124,9 +124,9 @@ b8 renderer_draw_frame(render_packet* packet) {
 
         if (!result) {
             KERROR("renderer_end_frame failed. Application shutting down...");
-            return FALSE;
+            return False;
         }
     }
 
-    return TRUE;
+    return True;
 }

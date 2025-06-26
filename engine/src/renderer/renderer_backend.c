@@ -20,7 +20,7 @@
  * @param type The type of renderer backend to create.
  * @param plat_state A pointer to the platform-specific state.
  * @param out_renderer_backend A pointer to a renderer_backend structure to populate.
- * @return TRUE if the backend was successfully created; otherwise FALSE.
+ * @return True if the backend was successfully created; otherwise False.
  */
 b8 renderer_backend_create(renderer_backend_type type, struct platform_state* plat_state, renderer_backend* out_renderer_backend) {
     // Store the platform state in the backend for later use
@@ -34,12 +34,12 @@ b8 renderer_backend_create(renderer_backend_type type, struct platform_state* pl
         out_renderer_backend->end_frame = vulkan_renderer_backend_end_frame;
         out_renderer_backend->resized = vulkan_renderer_backend_on_resized;
 
-        return TRUE;
+        return True;
     }
 
     // Unsupported backend type
     KERROR("Unsupported renderer backend type: %d", type);
-    return FALSE;
+    return False;
 }
 
 /**

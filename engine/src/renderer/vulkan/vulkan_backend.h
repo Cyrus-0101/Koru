@@ -19,7 +19,7 @@
  * @param backend A pointer to the renderer backend structure.
  * @param application_name Name of the application using the renderer.
  * @param plat_state A pointer to the platform-specific state.
- * @return TRUE if successful; otherwise FALSE.
+ * @return True if successful; otherwise False.
  */
 b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* application_name, struct platform_state* plat_state);
 
@@ -50,7 +50,7 @@ void vulkan_renderer_backend_on_resized(renderer_backend* backend, u16 width, u1
  *
  * @param backend A pointer to the renderer backend structure.
  * @param delta_time Time in seconds since the last frame.
- * @return TRUE if successful; otherwise FALSE.
+ * @return True if successful; otherwise False.
  */
 b8 vulkan_renderer_backend_begin_frame(renderer_backend* backend, f32 delta_time);
 
@@ -61,6 +61,6 @@ b8 vulkan_renderer_backend_begin_frame(renderer_backend* backend, f32 delta_time
  *
  * @param backend A pointer to the renderer backend structure.
  * @param delta_time Time in seconds since the last frame.
- * @return TRUE if successful; otherwise FALSE.
+ * @return True if successful; otherwise False.
  */
 b8 vulkan_renderer_backend_end_frame(renderer_backend* backend, f32 delta_time);

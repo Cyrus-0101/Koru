@@ -24,7 +24,7 @@
  */
 typedef struct keyboard_state {
     /**
-     * @brief Array tracking whether each key is currently pressed (TRUE/FALSE).
+     * @brief Array tracking whether each key is currently pressed (True/False).
      *
      * Supports up to 256 keys — sufficient for all standard keyboard inputs.
      */
@@ -77,7 +77,7 @@ typedef struct input_state {
 } input_state;
 
 // Static global instance of the input state
-static b8 initialized = FALSE;
+static b8 initialized = False;
 static input_state state = {};
 
 /**
@@ -87,18 +87,18 @@ static input_state state = {};
  */
 void input_initialize() {
     kzero_memory(&state, sizeof(input_state));
-    initialized = TRUE;
+    initialized = True;
     KINFO("Input subsystem initialized.");
 }
 
 /**
  * @brief Shuts down the input system.
  *
- * Currently just sets the initialized flag to FALSE. Can be extended to clean up resources.
+ * Currently just sets the initialized flag to False. Can be extended to clean up resources.
  */
 void input_shutdown() {
     // TODO: Add shutdown routines when needed.
-    initialized = FALSE;
+    initialized = False;
 }
 
 /**
@@ -125,7 +125,7 @@ void input_update(f64 delta_time) {
  * only if the key state has changed.
  *
  * @param key The key being processed.
- * @param pressed TRUE if the key is now pressed; FALSE if released.
+ * @param pressed True if the key is now pressed; False if released.
  */
 void input_process_key(keys key, b8 pressed) {
     // Only handle changes in state
@@ -147,7 +147,7 @@ void input_process_key(keys key, b8 pressed) {
  * only if the button state has changed.
  *
  * @param button The mouse button being processed.
- * @param pressed TRUE if the button is now pressed; FALSE if released.
+ * @param pressed True if the button is now pressed; False if released.
  */
 void input_process_button(buttons button, b8 pressed) {
     // Only process if state changed
@@ -206,26 +206,26 @@ void input_process_mouse_wheel(i8 z_delta) {
  * @brief Checks if a key is currently pressed.
  *
  * @param key The key to check.
- * @return TRUE if the key is currently down; FALSE otherwise.
+ * @return True if the key is currently down; False otherwise.
  */
 b8 input_is_key_down(keys key) {
     if (!initialized) {
-        return FALSE;
+        return False;
     }
-    return state.keyboard_current.keys[key] == TRUE;
+    return state.keyboard_current.keys[key] == True;
 }
 
 /**
  * @brief Checks if a key is currently released.
  *
  * @param key The key to check.
- * @return TRUE if the key is currently up; FALSE otherwise.
+ * @return True if the key is currently up; False otherwise.
  */
 b8 input_is_key_up(keys key) {
     if (!initialized) {
-        return TRUE;
+        return True;
     }
-    return state.keyboard_current.keys[key] == FALSE;
+    return state.keyboard_current.keys[key] == False;
 }
 
 /**
@@ -234,13 +234,13 @@ b8 input_is_key_up(keys key) {
  * Useful for detecting single-frame input actions.
  *
  * @param key The key to check.
- * @return TRUE if the key was pressed last frame; FALSE otherwise.
+ * @return True if the key was pressed last frame; False otherwise.
  */
 b8 input_was_key_down(keys key) {
     if (!initialized) {
-        return FALSE;
+        return False;
     }
-    return state.keyboard_previous.keys[key] == TRUE;
+    return state.keyboard_previous.keys[key] == True;
 }
 
 /**
@@ -249,39 +249,39 @@ b8 input_was_key_down(keys key) {
  * Useful for detecting single-frame input releases.
  *
  * @param key The key to check.
- * @return TRUE if the key was released last frame; FALSE otherwise.
+ * @return True if the key was released last frame; False otherwise.
  */
 b8 input_was_key_up(keys key) {
     if (!initialized) {
-        return TRUE;
+        return True;
     }
-    return state.keyboard_previous.keys[key] == FALSE;
+    return state.keyboard_previous.keys[key] == False;
 }
 
 /**
  * @brief Checks if a mouse button is currently pressed.
  *
  * @param button The mouse button to check.
- * @return TRUE if the button is currently down; FALSE otherwise.
+ * @return True if the button is currently down; False otherwise.
  */
 b8 input_is_button_down(buttons button) {
     if (!initialized) {
-        return FALSE;
+        return False;
     }
-    return state.mouse_current.buttons[button] == TRUE;
+    return state.mouse_current.buttons[button] == True;
 }
 
 /**
  * @brief Checks if a mouse button is currently released.
  *
  * @param button The mouse button to check.
- * @return TRUE if the button is currently up; FALSE otherwise.
+ * @return True if the button is currently up; False otherwise.
  */
 b8 input_is_button_up(buttons button) {
     if (!initialized) {
-        return TRUE;
+        return True;
     }
-    return state.mouse_current.buttons[button] == FALSE;
+    return state.mouse_current.buttons[button] == False;
 }
 
 /**
@@ -290,13 +290,13 @@ b8 input_is_button_up(buttons button) {
  * Useful for detecting single-frame clicks.
  *
  * @param button The mouse button to check.
- * @return TRUE if the button was pressed last frame; FALSE otherwise.
+ * @return True if the button was pressed last frame; False otherwise.
  */
 b8 input_was_button_down(buttons button) {
     if (!initialized) {
-        return FALSE;
+        return False;
     }
-    return state.mouse_previous.buttons[button] == TRUE;
+    return state.mouse_previous.buttons[button] == True;
 }
 
 /**
@@ -305,13 +305,13 @@ b8 input_was_button_down(buttons button) {
  * Useful for detecting single-frame button releases.
  *
  * @param button The mouse button to check.
- * @return TRUE if the button was released last frame; FALSE otherwise.
+ * @return True if the button was released last frame; False otherwise.
  */
 b8 input_was_button_up(buttons button) {
     if (!initialized) {
-        return TRUE;
+        return True;
     }
-    return state.mouse_previous.buttons[button] == FALSE;
+    return state.mouse_previous.buttons[button] == False;
 }
 
 /**

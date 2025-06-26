@@ -21,14 +21,14 @@
  * - Assertion failure handler
  */
 
-// Terminal supports colour FALSE by default
-static b8 terminal_supports_color = FALSE;
+// Terminal supports colour False by default
+static b8 terminal_supports_color = False;
 
 // Initialize the logging system.
-// For now it just returns TRUE. Later, you can create/open a log file here.
+// For now it just returns True. Later, you can create/open a log file here.
 b8 initialize_logging() {
     // TO-DO: Create log file
-    return TRUE;
+    return True;
 }
 
 // Clean up the logging system.

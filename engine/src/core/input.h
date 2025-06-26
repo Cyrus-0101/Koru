@@ -224,7 +224,7 @@ void input_update(f64 delta_time);
  * @brief Checks if the given key is currently pressed down.
  *
  * @param key The key to check.
- * @return TRUE if the key is currently down; FALSE otherwise.
+ * @return True if the key is currently down; False otherwise.
  */
 KAPI b8 input_is_key_down(keys key);
 
@@ -232,7 +232,7 @@ KAPI b8 input_is_key_down(keys key);
  * @brief Checks if the given key is currently released.
  *
  * @param key The key to check.
- * @return TRUE if the key is currently up; FALSE otherwise.
+ * @return True if the key is currently up; False otherwise.
  */
 KAPI b8 input_is_key_up(keys key);
 
@@ -242,7 +242,7 @@ KAPI b8 input_is_key_up(keys key);
  * Useful for detecting single key presses that occurred between frames.
  *
  * @param key The key to check.
- * @return TRUE if the key was pressed last frame; FALSE otherwise.
+ * @return True if the key was pressed last frame; False otherwise.
  */
 KAPI b8 input_was_key_down(keys key);
 
@@ -252,7 +252,7 @@ KAPI b8 input_was_key_down(keys key);
  * Useful for detecting key releases that occurred between frames.
  *
  * @param key The key to check.
- * @return TRUE if the key was released last frame; FALSE otherwise.
+ * @return True if the key was released last frame; False otherwise.
  */
 KAPI b8 input_was_key_up(keys key);
 
@@ -262,7 +262,7 @@ KAPI b8 input_was_key_up(keys key);
  * This should be called by the platform layer when a key event occurs.
  *
  * @param key The key being processed.
- * @param pressed TRUE if the key is pressed; FALSE if released.
+ * @param pressed True if the key is pressed; False if released.
  */
 void input_process_key(keys key, b8 pressed);
 
@@ -274,7 +274,7 @@ void input_process_key(keys key, b8 pressed);
  * @brief Checks if the given mouse button is currently pressed.
  *
  * @param button The mouse button to check.
- * @return TRUE if the button is down; FALSE otherwise.
+ * @return True if the button is down; False otherwise.
  */
 KAPI b8 input_is_button_down(buttons button);
 
@@ -282,7 +282,7 @@ KAPI b8 input_is_button_down(buttons button);
  * @brief Checks if the given mouse button is currently released.
  *
  * @param button The mouse button to check.
- * @return TRUE if the button is up; FALSE otherwise.
+ * @return True if the button is up; False otherwise.
  */
 KAPI b8 input_is_button_up(buttons button);
 
@@ -290,7 +290,7 @@ KAPI b8 input_is_button_up(buttons button);
  * @brief Checks if the given mouse button was pressed in the previous frame.
  *
  * @param button The mouse button to check.
- * @return TRUE if the button was pressed last frame; FALSE otherwise.
+ * @return True if the button was pressed last frame; False otherwise.
  */
 KAPI b8 input_was_button_down(buttons button);
 
@@ -298,7 +298,7 @@ KAPI b8 input_was_button_down(buttons button);
  * @brief Checks if the given mouse button was released in the previous frame.
  *
  * @param button The mouse button to check.
- * @return TRUE if the button was released last frame; FALSE otherwise.
+ * @return True if the button was released last frame; False otherwise.
  */
 KAPI b8 input_was_button_up(buttons button);
 
@@ -326,7 +326,7 @@ KAPI void input_get_previous_mouse_position(i32* x, i32* y);
  * Should be called by the platform-specific code when a mouse button changes state.
  *
  * @param button The mouse button involved.
- * @param pressed TRUE if the button is pressed; FALSE if released.
+ * @param pressed True if the button is pressed; False if released.
  */
 void input_process_button(buttons button, b8 pressed);
 

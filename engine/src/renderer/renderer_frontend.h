@@ -40,7 +40,7 @@ struct platform_state;
  *
  * @param application_name Name of the application using the renderer.
  * @param plat_state A pointer to the platform-specific state.
- * @return TRUE if initialization was successful; otherwise FALSE.
+ * @return True if initialization was successful; otherwise False.
  */
 b8 renderer_initialize(const char* application_name, struct platform_state* plat_state);
 
@@ -70,6 +70,6 @@ void renderer_on_resized(u16 width, u16 height);
  * Begins the frame, submits draw commands, and ends the frame. Called once per frame.
  *
  * @param packet A pointer to the render packet containing frame-specific data.
- * @return TRUE if the frame was drawn successfully; otherwise FALSE.
+ * @return True if the frame was drawn successfully; otherwise False.
  */
 b8 renderer_draw_frame(render_packet* packet);

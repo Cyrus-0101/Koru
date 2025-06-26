@@ -26,7 +26,7 @@
  * Useful for logging and debugging Vulkan API calls.
  *
  * @param result The VkResult value to convert.
- * @param get_extended TRUE to get a descriptive message; FALSE to get only the enum name.
+ * @param get_extended True to get a descriptive message; False to get only the enum name.
  * @return const char* A static string representation of the result.
  */
 const char* vulkan_result_string(VkResult result, b8 get_extended);
@@ -38,6 +38,6 @@ const char* vulkan_result_string(VkResult result, b8 get_extended);
  * such as VK_NOT_READY or VK_SUBOPTIMAL_KHR.
  *
  * @param result The VkResult to evaluate.
- * @return TRUE if the result indicates success (operation completed), FALSE otherwise (error occurred).
+ * @return True if the result indicates success (operation completed), False otherwise (error occurred).
  */
 b8 vulkan_result_is_success(VkResult result);

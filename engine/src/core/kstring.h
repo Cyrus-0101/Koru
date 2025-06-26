@@ -42,6 +42,6 @@ KAPI char* string_duplicate(const char* str);
  *
  * @param str0 First string to compare.
  * @param str1 Second string to compare.
- * @return TRUE if both strings are identical; FALSE otherwise.
+ * @return True if both strings are identical; False otherwise.
  */
 KAPI b8 strings_equal(const char* str0, const char* str1);

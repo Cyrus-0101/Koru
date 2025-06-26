@@ -125,7 +125,7 @@ keys translate_keycode(u32 x_keycode);
  * @param y The initial y position of the window.
  * @param width The width of the client area.
  * @param height The height of the client area.
- * @return TRUE if successful; FALSE otherwise.
+ * @return True if successful; False otherwise.
  */
 b8 platform_startup(
     platform_state* plat_state,
@@ -152,7 +152,7 @@ b8 platform_startup(
     // Check if there was any error connecting
     if (xcb_connection_has_error(state->connection)) {
         KFATAL("Failed to connect to X server via XCB.");
-        return FALSE;
+        return False;
     }
 
     // Retrieve the setup data from the connection, akin to getting configuration
@@ -265,12 +265,12 @@ b8 platform_startup(
     i32 stream_result = xcb_flush(state->connection);
     if (stream_result <= 0) {
         KFATAL("An error occurred when flusing the stream: %d", stream_result);
-        return FALSE;
+        return False;
     }
 
-    state->is_visible = TRUE;
+    state->is_visible = True;
 
-    return TRUE;
+    return True;
 }
 
 /**
@@ -299,7 +299,7 @@ void platform_shutdown(platform_state* plat_state) {
  * input and event systems.
  *
  * @param plat_state A pointer to the platform_state structure.
- * @return TRUE if the application should continue running; FALSE if quit is requested.
+ * @return True if the application should continue running; False if quit is requested.
  */
 b8 platform_pump_messages(platform_state* plat_state) {
     // Simply cold-cast to the known type.
@@ -308,7 +308,7 @@ b8 platform_pump_messages(platform_state* plat_state) {
     xcb_generic_event_t* event;
     xcb_client_message_event_t* cm;
 
-    b8 quit_flagged = FALSE;
+    b8 quit_flagged = False;
 
     // Poll for all pending events
     while ((event = xcb_poll_for_event(state->connection))) {
@@ -406,7 +406,7 @@ b8 platform_pump_messages(platform_state* plat_state) {
                 // Window close
                 // If the message is WM_DELETE_WINDOW, user wants to quit
                 if (cm->data.data32[0] == state->wm_delete_win) {
-                    quit_flagged = TRUE;
+                    quit_flagged = True;
                 }
             } break;
 
@@ -541,11 +541,11 @@ b8 platform_create_vulkan_surface(platform_state* plat_state, vulkan_context* co
         &state->surface);
     if (result != VK_SUCCESS) {
         KFATAL("Vulkan surface creation failed.");
-        return FALSE;
+        return False;
     }
 
     context->surface = state->surface;
-    return TRUE;
+    return True;
 }
 
 /**

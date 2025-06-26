@@ -67,7 +67,7 @@ b8 platform_startup(
 
     if (!RegisterClassA(&wc)) {
         MessageBoxA(0, "Window registration failed", "Error", MB_ICONEXCLAMATION | MB_OK);
-        return FALSE;
+        return False;
     }
 
     // Desired client area dimensions
@@ -107,7 +107,7 @@ b8 platform_startup(
         MessageBoxA(NULL, "Window creation failed!", "Error!", MB_ICONEXCLAMATION | MB_OK);
 
         KFATAL("Window creation failed!");
-        return FALSE;
+        return False;
     } else {
         state->hwnd = handle;
     }
@@ -125,7 +125,7 @@ b8 platform_startup(
     clock_frequency = 1.0 / (f64)frequency.QuadPart;
     QueryPerformanceCounter(&start_time);
 
-    return TRUE;
+    return True;
 }
 
 // Destroys the window and frees internal resources
@@ -149,7 +149,7 @@ b8 platform_pump_messages(platform_state *plat_state) {
         DispatchMessageA(&message);
     }
 
-    return TRUE;
+    return True;
 }
 
 // Basic memory allocation functions
@@ -225,12 +225,12 @@ b8 platform_create_vulkan_surface(platform_state *plat_state, vulkan_context *co
     VkResult result = vkCreateWin32SurfaceKHR(context->instance, &create_info, context->allocator, &state->surface);
     if (result != VK_SUCCESS) {
         KFATAL("Vulkan surface creation failed.");
-        return FALSE;
+        return False;
     }
 
     context->surface = state->surface;
 
-    return TRUE;
+    return True;
 }
 
 LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARAM l_param) {
@@ -241,7 +241,7 @@ LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARA
         case WM_CLOSE:
             event_context data = {};
             event_fire(EVENT_CODE_APPLICATION_QUIT, 0, data);
-            return TRUE;
+            return True;
         case WM_DESTROY:
             PostQuitMessage(0);
             return 0;

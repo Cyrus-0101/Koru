@@ -66,7 +66,7 @@ typedef struct event_system_state {
 /**
  * @brief Internal state tracking whether the system has been initialized.
  */
-static b8 is_initialized = FALSE;
+static b8 is_initialized = False;
 
 /**
  * @brief Static global instance of the event system state.
@@ -74,15 +74,15 @@ static b8 is_initialized = FALSE;
 static event_system_state state;
 
 b8 event_initialize() {
-    if (is_initialized == TRUE) {
-        return FALSE;
+    if (is_initialized == True) {
+        return False;
     }
 
     // Zero out the entire state structure
     kzero_memory(&state, sizeof(state));
-    is_initialized = TRUE;
+    is_initialized = True;
 
-    return TRUE;
+    return True;
 }
 
 void event_shutdown() {
@@ -94,12 +94,12 @@ void event_shutdown() {
         }
     }
 
-    is_initialized = FALSE;
+    is_initialized = False;
 }
 
 b8 event_register(u16 code, void* listener, PFN_on_event on_event) {
     if (!is_initialized) {
-        return FALSE;
+        return False;
     }
 
     // Lazily create the array for this event code if not already created
@@ -113,7 +113,7 @@ b8 event_register(u16 code, void* listener, PFN_on_event on_event) {
         if (state.registered[code].events[i].listener == listener &&
             state.registered[code].events[i].callback == on_event) {
             // Duplicate registration found — skip
-            return FALSE;
+            return False;
         }
     }
 
@@ -123,17 +123,17 @@ b8 event_register(u16 code, void* listener, PFN_on_event on_event) {
     event.callback = on_event;
     darray_push(state.registered[code].events, event);
 
-    return TRUE;
+    return True;
 }
 
 b8 event_unregister(u16 code, void* listener, PFN_on_event on_event) {
     if (!is_initialized) {
-        return FALSE;
+        return False;
     }
 
     // No listeners registered for this code
     if (state.registered[code].events == 0) {
-        return FALSE;
+        return False;
     }
 
     // Search for matching registration
@@ -144,23 +144,23 @@ b8 event_unregister(u16 code, void* listener, PFN_on_event on_event) {
             // Found match — remove it
             registered_event popped_event;
             darray_pop_at(state.registered[code].events, i, &popped_event);
-            return TRUE;
+            return True;
         }
     }
 
     // No match found
-    return FALSE;
+    return False;
 }
 
 
 b8 event_fire(u16 code, void* sender, event_context context) {
     if (!is_initialized) {
-        return FALSE;
+        return False;
     }
 
     // No listeners for this code
     if (state.registered[code].events == 0) {
-        return FALSE;
+        return False;
     }
 
     // Notify all listeners until one handles the event
@@ -169,10 +169,10 @@ b8 event_fire(u16 code, void* sender, event_context context) {
         registered_event e = state.registered[code].events[i];
         if (e.callback(code, sender, e.listener, context)) {
             // Event was handled — stop propagation
-            return TRUE;
+            return True;
         }
     }
 
     // Event was not handled
-    return FALSE;
+    return False;
 }

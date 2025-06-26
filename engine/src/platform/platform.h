@@ -47,7 +47,7 @@ typedef struct platform_state {
  * @param y Y position of the window on the screen.
  * @param width Width of the window client area.
  * @param height Height of the window client area.
- * @return TRUE if initialization was successful; FALSE otherwise.
+ * @return True if initialization was successful; False otherwise.
  */
 b8 platform_startup(
     platform_state* plat_state,
@@ -79,7 +79,7 @@ void platform_shutdown(platform_state* plat_state);
  * - Close button click
  *
  * @param plat_state A pointer to the initialized platform_state struct.
- * @return TRUE if the application should continue running; FALSE if quit was requested.
+ * @return True if the application should continue running; False if quit was requested.
  */
 b8 platform_pump_messages(platform_state* plat_state);
 

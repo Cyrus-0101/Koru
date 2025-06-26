@@ -104,7 +104,7 @@ typedef struct vulkan_physical_device_queue_family_info {
  * - Optional preference for discrete GPU
  *
  * @param context A pointer to the Vulkan context where device info will be stored.
- * @return TRUE if a suitable device was found and selected; FALSE otherwise.
+ * @return True if a suitable device was found and selected; False otherwise.
  */
 b8 select_physical_device(vulkan_context* context);
 
@@ -124,7 +124,7 @@ b8 select_physical_device(vulkan_context* context);
  * @param requirements Required features and capabilities.
  * @param out_queue_family_info Output structure for queue family indices.
  * @param out_swapchain_support Output structure for swapchain support data.
- * @return TRUE if device meets all requirements; FALSE otherwise.
+ * @return True if device meets all requirements; False otherwise.
  */
 b8 physical_device_meets_requirements(
     VkPhysicalDevice device,
@@ -142,11 +142,11 @@ b8 physical_device_meets_requirements(
  * creates a logical device, and initializes queues (graphics, present, compute, transfer).
  *
  * @param context A pointer to the Vulkan context. Must be valid and initialized.
- * @return TRUE if a suitable device was found and successfully created; FALSE otherwise.
+ * @return True if a suitable device was found and successfully created; False otherwise.
  */
 b8 vulkan_device_create(vulkan_context* context) {
     if (!select_physical_device(context)) {
-        return FALSE;
+        return False;
     }
 
     KINFO("Creating logical device...");
@@ -250,7 +250,7 @@ b8 vulkan_device_create(vulkan_context* context) {
 
     KINFO("Graphics command pool created.");
 
-    return TRUE;
+    return True;
 }
 
 void vulkan_device_destroy(vulkan_context* context) {
@@ -378,14 +378,14 @@ b8 vulkan_device_detect_depth_format(vulkan_device* device) {
 
         if ((properties.linearTilingFeatures & flags) == flags) {
             device->depth_format = candidates[i];
-            return TRUE;
+            return True;
         } else if ((properties.optimalTilingFeatures & flags) == flags) {
             device->depth_format = candidates[i];
-            return TRUE;
+            return True;
         }
     }
 
-    return FALSE;
+    return False;
 }
 
 b8 select_physical_device(vulkan_context* context) {
@@ -395,7 +395,7 @@ b8 select_physical_device(vulkan_context* context) {
 
     if (physical_device_count == 0) {
         KFATAL("No devices which support Vulkan were found.");
-        return FALSE;
+        return False;
     }
 
     VkPhysicalDevice physical_devices[physical_device_count];
@@ -414,13 +414,13 @@ b8 select_physical_device(vulkan_context* context) {
         // TODO: These requirements should probably be driven by engine
         // configuration.
         vulkan_physical_device_requirements requirements = {};
-        requirements.graphics = TRUE;
-        requirements.present = TRUE;
-        requirements.transfer = TRUE;
+        requirements.graphics = True;
+        requirements.present = True;
+        requirements.transfer = True;
         // NOTE: Enable this if compute will be required.
-        requirements.compute = TRUE;
-        requirements.sampler_anisotropy = TRUE;
-        requirements.discrete_gpu = FALSE;
+        requirements.compute = True;
+        requirements.sampler_anisotropy = True;
+        requirements.discrete_gpu = False;
         requirements.device_extension_names = darray_create(const char*);
         darray_push(requirements.device_extension_names, &VK_KHR_SWAPCHAIN_EXTENSION_NAME);
 
@@ -496,11 +496,11 @@ b8 select_physical_device(vulkan_context* context) {
     // Ensure a device was selected
     if (!context->device.physical_device) {
         KERROR("No physical devices were found which meet the requirements.");
-        return FALSE;
+        return False;
     }
 
     KINFO("Physical device selected.");
-    return TRUE;
+    return True;
 }
 
 b8 physical_device_meets_requirements(
@@ -521,7 +521,7 @@ b8 physical_device_meets_requirements(
     if (requirements->discrete_gpu) {
         if (properties->deviceType != VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU) {
             KINFO("Device is not a discrete GPU, and one is required. Skipping.");
-            return FALSE;
+            return False;
         }
     }
 
@@ -599,7 +599,7 @@ b8 physical_device_meets_requirements(
                 kfree(out_swapchain_support->present_modes, sizeof(VkPresentModeKHR) * out_swapchain_support->present_mode_count, MEMORY_TAG_RENDERER);
             }
             KINFO("Required swapchain support not present, skipping device.");
-            return FALSE;
+            return False;
         }
 
         // Device extensions.
@@ -621,10 +621,10 @@ b8 physical_device_meets_requirements(
 
                 u32 required_extension_count = darray_length(requirements->device_extension_names);
                 for (u32 i = 0; i < required_extension_count; ++i) {
-                    b8 found = FALSE;
+                    b8 found = False;
                     for (u32 j = 0; j < available_extension_count; ++j) {
                         if (strings_equal(requirements->device_extension_names[i], available_extensions[j].extensionName)) {
-                            found = TRUE;
+                            found = True;
                             break;
                         }
                     }
@@ -632,7 +632,7 @@ b8 physical_device_meets_requirements(
                     if (!found) {
                         KINFO("Required extension not found: '%s', skipping device.", requirements->device_extension_names[i]);
                         kfree(available_extensions, sizeof(VkExtensionProperties) * available_extension_count, MEMORY_TAG_RENDERER);
-                        return FALSE;
+                        return False;
                     }
                 }
             }
@@ -642,12 +642,12 @@ b8 physical_device_meets_requirements(
         // Sampler anisotropy
         if (requirements->sampler_anisotropy && !features->samplerAnisotropy) {
             KINFO("Device does not support sampler_anisotropy, skipping.");
-            return FALSE;
+            return False;
         }
 
         // Device meets all requirements.
-        return TRUE;
+        return True;
     }
 
-    return FALSE;
+    return False;
 }
