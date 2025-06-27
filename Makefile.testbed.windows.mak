@@ -52,8 +52,16 @@ OBJ_FILES := $(SRC_FILES:%=$(OBJ_DIR)/%.o)
 # Maps each .c file to a corresponding .o in obj/
 
 # Targets
-all: scaffold compile link
-# Default target — builds the testbed executable
+all: log-start scaffold compile link log-finish
+# Default target — runs log start time, scaffold, compile, link and log finish time
+
+.PHONY: log-start
+log-start: # Logs build start time (EAT)
+	@echo "===== Build started at $$(TZ=Africa/Nairobi date +'%Y-%m-%d %H:%M:%S.%3N %Z') ====="
+
+.PHONY: log-finish
+log-finish: # Logs build finish time (EAT)
+	@echo "===== Build finished at $$(TZ=Africa/Nairobi date +'%Y-%m-%d %H:%M:%S.%3N %Z') ====="
 
 .PHONY: scaffold
 scaffold: # Create folder structure for object files
