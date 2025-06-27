@@ -178,8 +178,8 @@ typedef enum keys {
     DEFINE_KEY(RSHIFT, 0xA1),    ///< Right Shift key
     DEFINE_KEY(LCONTROL, 0xA2),  ///< Left Control key
     DEFINE_KEY(RCONTROL, 0xA3),  ///< Right Control key
-    DEFINE_KEY(LMENU, 0xA4),     ///< Left Alt key
-    DEFINE_KEY(RMENU, 0xA5),     ///< Right Alt key
+    DEFINE_KEY(LALT, 0xA4),     ///< Left Alt key
+    DEFINE_KEY(RALT, 0xA5),     ///< Right Alt key
 
     // Punctuation and Symbols
     DEFINE_KEY(SEMICOLON, 0xBA),  ///< Semicolon (;)

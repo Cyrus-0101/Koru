@@ -130,6 +130,20 @@ void input_update(f64 delta_time) {
 void input_process_key(keys key, b8 pressed) {
     // Only handle changes in state
     if (state.keyboard_current.keys[key] != pressed) {
+        if (key == KEY_LALT) {
+            KINFO("Left Alt Key Pressed");
+        } else if (key == KEY_RALT) {
+            KINFO("Right Alt Key Pressed");
+        } else if (key == KEY_LSHIFT) {
+            KINFO("Left Shift Key Pressed");
+        } else if (key == KEY_RSHIFT) {
+            KINFO("Right Shift Key Pressed");
+        } else if (key == KEY_LCONTROL) {
+            KINFO("Left Control Key Pressed");
+        } else if (key == KEY_RCONTROL) {
+            KINFO("Right Control Key Pressed");
+        }
+
         // Update internal state
         state.keyboard_current.keys[key] = pressed;
 
