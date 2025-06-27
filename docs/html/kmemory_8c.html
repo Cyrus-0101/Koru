@@ -190,9 +190,9 @@ Variables</h2></td></tr>
 <p>Useful for logging and debugging. Automatically scales values to KB/MB/GB.</p>
 <dl class="section return"><dt>Returns</dt><dd>A heap-allocated string containing formatted memory usage info. Caller must free it using <a class="el" href="kmemory_8h.html#a6b55b65a2f2d473dac0d8ff4605a44fb" title="Frees a previously allocated memory block.">kfree()</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00184">184</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00185">185</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">References <a class="el" href="kmemory_8h_source.html#l00077">MEMORY_TAG_MAX_TAGS</a>, <a class="el" href="kmemory_8c_source.html#l00052">memory_tag_strings</a>, <a class="el" href="kmemory_8c_source.html#l00076">stats</a>, and <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>.</p>
+<p class="reference">References <a class="el" href="kmemory_8h_source.html#l00080">MEMORY_TAG_MAX_TAGS</a>, <a class="el" href="kmemory_8c_source.html#l00052">memory_tag_strings</a>, <a class="el" href="kmemory_8c_source.html#l00077">stats</a>, and <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
 
@@ -217,9 +217,9 @@ Variables</h2></td></tr>
 <p>Initializes the memory allocator subsystem.</p>
 <p>Resets all counters to zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00083">83</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00084">84</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">References <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>, and <a class="el" href="kmemory_8c_source.html#l00076">stats</a>.</p>
+<p class="reference">References <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>, and <a class="el" href="kmemory_8c_source.html#l00077">stats</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00051">main()</a>.</p>
 
@@ -263,11 +263,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the allocated memory block. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00105">105</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00106">106</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00026">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate()</a>, <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00076">stats</a>, <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00039">memory_stats::total_allocated</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00026">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate()</a>, <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00077">stats</a>, <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00039">memory_stats::total_allocated</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="darray_8c_source.html#l00024">_darray_create()</a>, <a class="el" href="vulkan__swapchain_8c_source.html#l00202">create()</a>, <a class="el" href="entry_8c_source.html#l00020">create_game()</a>, <a class="el" href="vulkan__device_8c_source.html#l00506">physical_device_meets_requirements()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00037">renderer_initialize()</a>, <a class="el" href="kstring_8c_source.html#l00024">string_duplicate()</a>, <a class="el" href="vulkan__device_8c_source.html#l00320">vulkan_device_query_swapchain_support()</a>, and <a class="el" href="vulkan__framebuffer_8c_source.html#l00017">vulkan_framebuffer_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="darray_8c_source.html#l00024">_darray_create()</a>, <a class="el" href="vulkan__swapchain_8c_source.html#l00200">create()</a>, <a class="el" href="entry_8c_source.html#l00020">create_game()</a>, <a class="el" href="linear__allocator_8c_source.html#l00014">linear_allocator_create()</a>, <a class="el" href="vulkan__device_8c_source.html#l00508">physical_device_meets_requirements()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00037">renderer_initialize()</a>, <a class="el" href="kstring_8c_source.html#l00024">string_duplicate()</a>, <a class="el" href="vulkan__device_8c_source.html#l00322">vulkan_device_query_swapchain_support()</a>, and <a class="el" href="vulkan__framebuffer_8c_source.html#l00017">vulkan_framebuffer_create()</a>.</p>
 
 </div>
 </div>
@@ -315,7 +315,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the destination memory block. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00160">160</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00161">161</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
 <p class="reference">References <a class="el" href="platform_8h.html#a15258bb22b902725b1fbf405463ed07d">platform_copy_memory()</a>.</p>
 
@@ -366,11 +366,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00129">129</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00130">130</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00026">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free()</a>, <a class="el" href="kmemory_8c_source.html#l00076">stats</a>, <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00039">memory_stats::total_allocated</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="logger_8h_source.html#l00176">KWARN</a>, <a class="el" href="kmemory_8h_source.html#l00026">MEMORY_TAG_UNKNOWN</a>, <a class="el" href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free()</a>, <a class="el" href="kmemory_8c_source.html#l00077">stats</a>, <a class="el" href="kmemory_8c_source.html#l00044">memory_stats::tagged_allocations</a>, and <a class="el" href="kmemory_8c_source.html#l00039">memory_stats::total_allocated</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="darray_8c_source.html#l00044">_darray_destroy()</a>, <a class="el" href="vulkan__device_8c_source.html#l00506">physical_device_meets_requirements()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00064">renderer_shutdown()</a>, <a class="el" href="vulkan__device_8c_source.html#l00256">vulkan_device_destroy()</a>, and <a class="el" href="vulkan__framebuffer_8c_source.html#l00051">vulkan_framebuffer_destroy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="darray_8c_source.html#l00044">_darray_destroy()</a>, <a class="el" href="linear__allocator_8c_source.html#l00031">linear_allocator_destroy()</a>, <a class="el" href="vulkan__device_8c_source.html#l00508">physical_device_meets_requirements()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00064">renderer_shutdown()</a>, <a class="el" href="vulkan__device_8c_source.html#l00258">vulkan_device_destroy()</a>, and <a class="el" href="vulkan__framebuffer_8c_source.html#l00051">vulkan_framebuffer_destroy()</a>.</p>
 
 </div>
 </div>
@@ -418,7 +418,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the filled memory block. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00172">172</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00173">173</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
 <p class="reference">References <a class="el" href="platform_8h.html#aa65146de20a7fd23870d3809834021b7">platform_set_memory()</a>.</p>
 
@@ -462,11 +462,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the zeroed memory block. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00148">148</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00149">149</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
 <p class="reference">References <a class="el" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00612">create_command_buffers()</a>, <a class="el" href="event_8c_source.html#l00076">event_initialize()</a>, <a class="el" href="input_8c_source.html#l00088">input_initialize()</a>, <a class="el" href="kmath_8h_source.html#l00866">mat4_identity()</a>, <a class="el" href="kmath_8h_source.html#l00942">mat4_perspective()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00018">vulkan_command_buffer_allocate()</a>, <a class="el" href="vulkan__device_8c_source.html#l00256">vulkan_device_destroy()</a>, and <a class="el" href="vulkan__renderpass_8c_source.html#l00180">vulkan_renderpass_begin()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00612">create_command_buffers()</a>, <a class="el" href="event_8c_source.html#l00076">event_initialize()</a>, <a class="el" href="input_8c_source.html#l00088">input_initialize()</a>, <a class="el" href="linear__allocator_8c_source.html#l00070">linear_allocator_free_all()</a>, <a class="el" href="kmath_8h_source.html#l00866">mat4_identity()</a>, <a class="el" href="kmath_8h_source.html#l00942">mat4_perspective()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00018">vulkan_command_buffer_allocate()</a>, <a class="el" href="vulkan__device_8c_source.html#l00258">vulkan_device_destroy()</a>, and <a class="el" href="vulkan__renderpass_8c_source.html#l00181">vulkan_renderpass_begin()</a>.</p>
 
 </div>
 </div>
@@ -489,7 +489,7 @@ Variables</h2></td></tr>
 <p>Shuts down the memory allocator subsystem.</p>
 <p>Currently does nothing but can be extended to log final usage or detect leaks. </p>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00092">92</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00093">93</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8h_source.html#l00051">main()</a>.</p>
 
@@ -518,6 +518,7 @@ Variables</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">    <span class="stringliteral">&quot;UNKNOWN    &quot;</span>,</div>
 <div class="line">    <span class="stringliteral">&quot;ARRAY      &quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;LINEAR_ALLOC&quot;</span>,</div>
 <div class="line">    <span class="stringliteral">&quot;DARRAY     &quot;</span>,</div>
 <div class="line">    <span class="stringliteral">&quot;DICT       &quot;</span>,</div>
 <div class="line">    <span class="stringliteral">&quot;RING_QUEUE &quot;</span>,</div>
@@ -539,7 +540,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00052">52</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00184">get_memory_usage_str()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00185">get_memory_usage_str()</a>.</p>
 
 </div>
 </div>
@@ -566,16 +567,16 @@ Variables</h2></td></tr>
 <p>Global instance of memory usage statistics. </p>
 <p>Aggregates all memory allocations tracked by kallocate/kfree. </p>
 
-<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00076">76</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kmemory_8c_source.html#l00077">77</a> of file <a class="el" href="kmemory_8c_source.html">kmemory.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00184">get_memory_usage_str()</a>, <a class="el" href="kmemory_8c_source.html#l00083">initialize_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00105">kallocate()</a>, and <a class="el" href="kmemory_8c_source.html#l00129">kfree()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="kmemory_8c_source.html#l00185">get_memory_usage_str()</a>, <a class="el" href="kmemory_8c_source.html#l00084">initialize_memory()</a>, <a class="el" href="kmemory_8c_source.html#l00106">kallocate()</a>, and <a class="el" href="kmemory_8c_source.html#l00130">kfree()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 26 2025 17:53:37 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Fri Jun 27 2025 14:39:23 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

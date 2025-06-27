@@ -16,7 +16,7 @@ var searchData=
   ['darray_5fpush_13',['darray_push',['../darray_8h.html#a7ad89931e6589fa09b83ea99de2b32e6',1,'darray.h']]],
   ['darray_5freserve_14',['darray_reserve',['../darray_8h.html#a0805205fc6e4a577824396a03d82e951',1,'darray.h']]],
   ['darray_5fresize_5ffactor_15',['DARRAY_RESIZE_FACTOR',['../darray_8h.html#a95fc981d9c4e984fd55bb36a324617cc',1,'darray.h']]],
-  ['darray_5fstride_16',['darray_stride',['../darray_8h.html#a93bfa9b817a0adc18e500581ffef8440',1,'darray_stride:&#160;darray.h'],['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba22984e01177b1eb2695a4850727db127',1,'DARRAY_STRIDE:&#160;darray.h']]],
+  ['darray_5fstride_16',['darray_stride',['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba22984e01177b1eb2695a4850727db127',1,'DARRAY_STRIDE:&#160;darray.h'],['../darray_8h.html#a93bfa9b817a0adc18e500581ffef8440',1,'darray_stride:&#160;darray.h']]],
   ['data_17',['data',['../unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32',1,'mat4_u::data'],['../structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3',1,'event_context::data']]],
   ['debugbreak_18',['debugBreak',['../asserts_8h.html#a13bf501f420bb63f3cf9b62b06b03574',1,'asserts.h']]],
   ['define_5fkey_19',['define_key',['../input_8h.html#a545241bfccd86821b0187ee96e1f4c51',1,'DEFINE_KEY:&#160;input.h'],['../input_8h.html#a3121b5e20cccb8e49edcbd3e9ac77712a1bc581eb932153853ea4b6fadf91cff8',1,'DEFINE_KEY:&#160;input.h']]],

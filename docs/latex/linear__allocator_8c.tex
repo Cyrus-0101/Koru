@@ -1,0 +1,157 @@
+\doxysection{engine/src/memory/linear\+\_\+allocator.c File Reference}
+\hypertarget{linear__allocator_8c}{}\label{linear__allocator_8c}\index{engine/src/memory/linear\_allocator.c@{engine/src/memory/linear\_allocator.c}}
+
+
+Implementation of a linear memory allocator.  
+
+
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}core/logger.\+h"{}}\newline
+{\ttfamily \#include "{}linear\+\_\+allocator.\+h"{}}\newline
+Include dependency graph for linear\+\_\+allocator.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{linear__allocator_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{linear__allocator_8c_a707ac8c1c965d8109c32a9792e9745f3}{linear\+\_\+allocator\+\_\+create}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} total\+\_\+size, void \texorpdfstring{$\ast$}{*}memory, \mbox{\hyperlink{structlinear__allocator}{linear\+\_\+allocator}} \texorpdfstring{$\ast$}{*}out\+\_\+allocator)
+\begin{DoxyCompactList}\small\item\em Creates a linear allocator with the specified total size and memory block. This function initializes the linear allocator with a given size and memory block. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{linear__allocator_8c_a1923cbd73d164e43bb141d95374cae6d}{linear\+\_\+allocator\+\_\+destroy}} (\mbox{\hyperlink{structlinear__allocator}{linear\+\_\+allocator}} \texorpdfstring{$\ast$}{*}out\+\_\+allocator)
+\begin{DoxyCompactList}\small\item\em Destroys the linear allocator. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{linear__allocator_8c_ae35bf045e0f97a4406dbe4df59ad0624}{linear\+\_\+allocator\+\_\+allocate}} (\mbox{\hyperlink{structlinear__allocator}{linear\+\_\+allocator}} \texorpdfstring{$\ast$}{*}allocator, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\begin{DoxyCompactList}\small\item\em Allocates a block of memory from the linear allocator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{linear__allocator_8c_a92df78f169decacd209ca69c6e1252cd}{linear\+\_\+allocator\+\_\+free\+\_\+all}} (\mbox{\hyperlink{structlinear__allocator}{linear\+\_\+allocator}} \texorpdfstring{$\ast$}{*}allocator)
+\begin{DoxyCompactList}\small\item\em Frees all allocated memory in the linear allocator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of a linear memory allocator. 
+
+This file implements functions to create, destroy, allocate, and free memory 
+
+Definition in file \mbox{\hyperlink{linear__allocator_8c_source}{linear\+\_\+allocator.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{linear__allocator_8c_ae35bf045e0f97a4406dbe4df59ad0624}\label{linear__allocator_8c_ae35bf045e0f97a4406dbe4df59ad0624} 
+\index{linear\_allocator.c@{linear\_allocator.c}!linear\_allocator\_allocate@{linear\_allocator\_allocate}}
+\index{linear\_allocator\_allocate@{linear\_allocator\_allocate}!linear\_allocator.c@{linear\_allocator.c}}
+\doxysubsubsection{\texorpdfstring{linear\_allocator\_allocate()}{linear\_allocator\_allocate()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} linear\+\_\+allocator\+\_\+allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlinear__allocator}{linear\+\_\+allocator}} \texorpdfstring{$\ast$}{*}}]{allocator,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Allocates a block of memory from the linear allocator. 
+
+This function allocates a block of memory of the specified size from the linear allocator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em allocator} & Pointer to the \doxylink{structlinear__allocator}{linear\+\_\+allocator} structure to allocate from. \\
+\hline
+{\em size} & The size of the memory block to allocate in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the allocated memory block, or NULL if allocation fails. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{linear__allocator_8c_source_l00050}{50}} of file \mbox{\hyperlink{linear__allocator_8c_source}{linear\+\_\+allocator.\+c}}.
+
+
+
+References \mbox{\hyperlink{linear__allocator_8h_source_l00025}{linear\+\_\+allocator\+::allocated}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{linear__allocator_8h_source_l00026}{linear\+\_\+allocator\+::memory}}, and \mbox{\hyperlink{linear__allocator_8h_source_l00024}{linear\+\_\+allocator\+::total\+\_\+size}}.
+
+\Hypertarget{linear__allocator_8c_a707ac8c1c965d8109c32a9792e9745f3}\label{linear__allocator_8c_a707ac8c1c965d8109c32a9792e9745f3} 
+\index{linear\_allocator.c@{linear\_allocator.c}!linear\_allocator\_create@{linear\_allocator\_create}}
+\index{linear\_allocator\_create@{linear\_allocator\_create}!linear\_allocator.c@{linear\_allocator.c}}
+\doxysubsubsection{\texorpdfstring{linear\_allocator\_create()}{linear\_allocator\_create()}}
+{\footnotesize\ttfamily void linear\+\_\+allocator\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{total\+\_\+size,  }\item[{void \texorpdfstring{$\ast$}{*}}]{memory,  }\item[{\mbox{\hyperlink{structlinear__allocator}{linear\+\_\+allocator}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+allocator }\end{DoxyParamCaption})}
+
+
+
+Creates a linear allocator with the specified total size and memory block. This function initializes the linear allocator with a given size and memory block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+\_\+size} & The total size of the allocator in bytes. \\
+\hline
+{\em memory} & Pointer to the memory block to use for allocation. \\
+\hline
+{\em out\+\_\+allocator} & Pointer to the \doxylink{structlinear__allocator}{linear\+\_\+allocator} structure to initialize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{linear__allocator_8c_source_l00014}{14}} of file \mbox{\hyperlink{linear__allocator_8c_source}{linear\+\_\+allocator.\+c}}.
+
+
+
+References \mbox{\hyperlink{linear__allocator_8h_source_l00025}{linear\+\_\+allocator\+::allocated}}, \mbox{\hyperlink{kmemory_8c_source_l00106}{kallocate()}}, \mbox{\hyperlink{linear__allocator_8h_source_l00026}{linear\+\_\+allocator\+::memory}}, \mbox{\hyperlink{kmemory_8h_source_l00032}{MEMORY\+\_\+\+TAG\+\_\+\+LINEAR\+\_\+\+ALLOCATOR}}, \mbox{\hyperlink{linear__allocator_8h_source_l00027}{linear\+\_\+allocator\+::owns\+\_\+memory}}, \mbox{\hyperlink{linear__allocator_8h_source_l00024}{linear\+\_\+allocator\+::total\+\_\+size}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+
+\Hypertarget{linear__allocator_8c_a1923cbd73d164e43bb141d95374cae6d}\label{linear__allocator_8c_a1923cbd73d164e43bb141d95374cae6d} 
+\index{linear\_allocator.c@{linear\_allocator.c}!linear\_allocator\_destroy@{linear\_allocator\_destroy}}
+\index{linear\_allocator\_destroy@{linear\_allocator\_destroy}!linear\_allocator.c@{linear\_allocator.c}}
+\doxysubsubsection{\texorpdfstring{linear\_allocator\_destroy()}{linear\_allocator\_destroy()}}
+{\footnotesize\ttfamily void linear\+\_\+allocator\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlinear__allocator}{linear\+\_\+allocator}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+allocator }\end{DoxyParamCaption})}
+
+
+
+Destroys the linear allocator. 
+
+This function cleans up the linear allocator, freeing any resources it owns.
+
+
+\begin{DoxyParams}{Parameters}
+{\em out\+\_\+allocator} & Pointer to the \doxylink{structlinear__allocator}{linear\+\_\+allocator} structure to destroy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{linear__allocator_8c_source_l00031}{31}} of file \mbox{\hyperlink{linear__allocator_8c_source}{linear\+\_\+allocator.\+c}}.
+
+
+
+References \mbox{\hyperlink{linear__allocator_8h_source_l00025}{linear\+\_\+allocator\+::allocated}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{kmemory_8c_source_l00130}{kfree()}}, \mbox{\hyperlink{linear__allocator_8h_source_l00026}{linear\+\_\+allocator\+::memory}}, \mbox{\hyperlink{kmemory_8h_source_l00032}{MEMORY\+\_\+\+TAG\+\_\+\+LINEAR\+\_\+\+ALLOCATOR}}, \mbox{\hyperlink{linear__allocator_8h_source_l00027}{linear\+\_\+allocator\+::owns\+\_\+memory}}, and \mbox{\hyperlink{linear__allocator_8h_source_l00024}{linear\+\_\+allocator\+::total\+\_\+size}}.
+
+\Hypertarget{linear__allocator_8c_a92df78f169decacd209ca69c6e1252cd}\label{linear__allocator_8c_a92df78f169decacd209ca69c6e1252cd} 
+\index{linear\_allocator.c@{linear\_allocator.c}!linear\_allocator\_free\_all@{linear\_allocator\_free\_all}}
+\index{linear\_allocator\_free\_all@{linear\_allocator\_free\_all}!linear\_allocator.c@{linear\_allocator.c}}
+\doxysubsubsection{\texorpdfstring{linear\_allocator\_free\_all()}{linear\_allocator\_free\_all()}}
+{\footnotesize\ttfamily void linear\+\_\+allocator\+\_\+free\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlinear__allocator}{linear\+\_\+allocator}} \texorpdfstring{$\ast$}{*}}]{allocator }\end{DoxyParamCaption})}
+
+
+
+Frees all allocated memory in the linear allocator. 
+
+This function resets the allocator, freeing all memory blocks that were allocated. It does not free the memory block itself, only resets the allocation state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em allocator} & Pointer to the \doxylink{structlinear__allocator}{linear\+\_\+allocator} structure to free. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{linear__allocator_8c_source_l00070}{70}} of file \mbox{\hyperlink{linear__allocator_8c_source}{linear\+\_\+allocator.\+c}}.
+
+
+
+References \mbox{\hyperlink{linear__allocator_8h_source_l00025}{linear\+\_\+allocator\+::allocated}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kzero\+\_\+memory()}}, \mbox{\hyperlink{linear__allocator_8h_source_l00026}{linear\+\_\+allocator\+::memory}}, and \mbox{\hyperlink{linear__allocator_8h_source_l00024}{linear\+\_\+allocator\+::total\+\_\+size}}.
+

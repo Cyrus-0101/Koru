@@ -1,0 +1,24 @@
+\doxysection{linear\+\_\+allocator.\+h}
+\hypertarget{linear__allocator_8h_source}{}\label{linear__allocator_8h_source}\index{engine/src/memory/linear\_allocator.h@{engine/src/memory/linear\_allocator.h}}
+\mbox{\hyperlink{linear__allocator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defines_8h}{defines.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00023}\mbox{\hyperlink{structlinear__allocator}{00023}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structlinear__allocator}{linear\_allocator}}\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00024}\mbox{\hyperlink{structlinear__allocator_a6de4731939da3764dcc981b0e0d39247}{00024}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ \mbox{\hyperlink{structlinear__allocator_a6de4731939da3764dcc981b0e0d39247}{total\_size}};\ \ \textcolor{comment}{//\ Total\ size\ of\ the\ allocator}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00025}\mbox{\hyperlink{structlinear__allocator_abf697b097e6ddf6ee3235dfbb7714986}{00025}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ \mbox{\hyperlink{structlinear__allocator_abf697b097e6ddf6ee3235dfbb7714986}{allocated}};\ \ \ \textcolor{comment}{//\ Total\ size\ currently\ allocated}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00026}\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{00026}}\ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}};\ \ \ \ \textcolor{comment}{//\ Pointer\ to\ the\ memory\ block\ used\ for\ allocation}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00027}\mbox{\hyperlink{structlinear__allocator_a30fa0cad29324cf412b8d8c6f48fee92}{00027}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{structlinear__allocator_a30fa0cad29324cf412b8d8c6f48fee92}{owns\_memory}};\ \ \textcolor{comment}{//\ Whether\ this\ allocator\ owns\ the\ memory\ block}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00028}\mbox{\hyperlink{linear__allocator_8h_a7302d19cddae04a62c3ab45926f9722d}{00028}}\ \}\ \mbox{\hyperlink{structlinear__allocator}{linear\_allocator}};}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00039}00039\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{linear__allocator_8h_a493211b4086becd537f0cae44cfa24a4}{linear\_allocator\_create}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ total\_size,\ \textcolor{keywordtype}{void}*\ memory,\ \mbox{\hyperlink{structlinear__allocator}{linear\_allocator}}*\ out\_allocator);}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00049}00049\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{linear__allocator_8h_a26466ec33467a298467e2ff1b1511b10}{linear\_allocator\_destroy}}(\mbox{\hyperlink{structlinear__allocator}{linear\_allocator}}*\ out\_allocator);}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00060}00060\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{linear__allocator_8h_a251fc4a9830b9102474172fb84ff2898}{linear\_allocator\_allocate}}(\mbox{\hyperlink{structlinear__allocator}{linear\_allocator}}*\ allocator,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size);}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8h_source_l00071}00071\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{linear__allocator_8h_a2e11fb25edcf6bb5f93ed77b66d99d68}{linear\_allocator\_free\_all}}(\mbox{\hyperlink{structlinear__allocator}{linear\_allocator}}*\ allocator);}
+
+\end{DoxyCode}

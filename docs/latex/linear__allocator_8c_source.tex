@@ -1,0 +1,72 @@
+\doxysection{linear\+\_\+allocator.\+c}
+\hypertarget{linear__allocator_8c_source}{}\label{linear__allocator_8c_source}\index{engine/src/memory/linear\_allocator.c@{engine/src/memory/linear\_allocator.c}}
+\mbox{\hyperlink{linear__allocator_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{kmemory_8h}{core/kmemory.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logger_8h}{core/logger.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{linear__allocator_8h}{linear\_allocator.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00014}\mbox{\hyperlink{linear__allocator_8c_a707ac8c1c965d8109c32a9792e9745f3}{00014}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{linear__allocator_8c_a707ac8c1c965d8109c32a9792e9745f3}{linear\_allocator\_create}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ total\_size,\ \textcolor{keywordtype}{void}*\ memory,\ \mbox{\hyperlink{structlinear__allocator}{linear\_allocator}}*\ out\_allocator)\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{if}\ (out\_allocator)\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00016}00016\ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_a6de4731939da3764dcc981b0e0d39247}{total\_size}}\ =\ total\_size;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00017}00017\ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_abf697b097e6ddf6ee3235dfbb7714986}{allocated}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00018}00018\ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}}\ =\ memory;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ memory\ is\ 1,\ the\ allocator\ owns\ it,\ if\ memory\ is\ 0,\ it\ does\ not\ own\ it}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00020}00020\ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_a30fa0cad29324cf412b8d8c6f48fee92}{owns\_memory}}\ =\ memory\ ==\ 0;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (memory)\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}}\ =\ memory;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00024}00024\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}}\ =\ \mbox{\hyperlink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate}}(total\_size,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ab81d2fb2b4b81e92373f3f6d51ea3f00}{MEMORY\_TAG\_LINEAR\_ALLOCATOR}});}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_a30fa0cad29324cf412b8d8c6f48fee92}{owns\_memory}}\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};\ \ \textcolor{comment}{//\ if\ we\ allocated\ memory,\ we\ own\ it}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00027}00027\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00031}\mbox{\hyperlink{linear__allocator_8c_a1923cbd73d164e43bb141d95374cae6d}{00031}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{linear__allocator_8c_a1923cbd73d164e43bb141d95374cae6d}{linear\_allocator\_destroy}}(\mbox{\hyperlink{structlinear__allocator}{linear\_allocator}}*\ out\_allocator)\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (out\_allocator)\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00033}00033\ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_abf697b097e6ddf6ee3235dfbb7714986}{allocated}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_a30fa0cad29324cf412b8d8c6f48fee92}{owns\_memory}}\ \&\&\ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}})\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc}{kfree}}(out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}},\ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_a6de4731939da3764dcc981b0e0d39247}{total\_size}},\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942ab81d2fb2b4b81e92373f3f6d51ea3f00}{MEMORY\_TAG\_LINEAR\_ALLOCATOR}});}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00036}00036\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ memory\ pointer}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00039}00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00041}00041\ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_a6de4731939da3764dcc981b0e0d39247}{total\_size}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00042}00042\ \ \ \ \ \ \ \ \ out\_allocator-\/>\mbox{\hyperlink{structlinear__allocator_a30fa0cad29324cf412b8d8c6f48fee92}{owns\_memory}}\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};\ \ \textcolor{comment}{//\ Reset\ ownership}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ Note:\ We\ don't\ free\ the\ out\_allocator\ itself,\ as\ it\ may\ be\ a\ stack-\/allocated\ structure.}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ If\ it\ was\ dynamically\ allocated,\ the\ caller\ should\ handle\ that.}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ If\ you\ want\ to\ free\ the\ out\_allocator\ itself,\ you\ can\ do\ so\ by\ calling\ kfree(out\_allocator,\ sizeof(linear\_allocator),\ MEMORY\_TAG\_LINEAR\_ALLOCATOR);}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ But\ this\ is\ typically\ not\ done,\ as\ linear\_allocator\ is\ often\ used\ as\ a\ stack-\/allocated\ structure.}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00050}\mbox{\hyperlink{linear__allocator_8c_ae35bf045e0f97a4406dbe4df59ad0624}{00050}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{linear__allocator_8c_ae35bf045e0f97a4406dbe4df59ad0624}{linear\_allocator\_allocate}}(\mbox{\hyperlink{structlinear__allocator}{linear\_allocator}}*\ allocator,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{if}\ (allocator\ \&\&\ allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}})\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allocator-\/>\mbox{\hyperlink{structlinear__allocator_abf697b097e6ddf6ee3235dfbb7714986}{allocated}}\ +\ size\ >\ allocator-\/>\mbox{\hyperlink{structlinear__allocator_a6de4731939da3764dcc981b0e0d39247}{total\_size}})\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ enough\ space\ left\ in\ the\ allocator}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ remaining\ =\ allocator-\/>\mbox{\hyperlink{structlinear__allocator_a6de4731939da3764dcc981b0e0d39247}{total\_size}}\ =\ allocator-\/>\mbox{\hyperlink{structlinear__allocator_abf697b097e6ddf6ee3235dfbb7714986}{allocated}};}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}linear\_allocator\_alocate\ -\/\ Out\ of\ memory!\ Requested:\ \%lluB,\ Available:\ \%lluB"{}},\ size,\ remaining);}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;\ \ \textcolor{comment}{//\ Allocation\ failed}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ block\ =\ ((\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}*)allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}})\ +\ allocator-\/>\mbox{\hyperlink{structlinear__allocator_abf697b097e6ddf6ee3235dfbb7714986}{allocated}};}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ allocator-\/>\mbox{\hyperlink{structlinear__allocator_abf697b097e6ddf6ee3235dfbb7714986}{allocated}}\ +=\ size;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ block;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00065}00065\ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}linear\_allocator\_allocate,\ provided\ allocator\ not\ initialized"{}});}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00068}00068\ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00070}\mbox{\hyperlink{linear__allocator_8c_a92df78f169decacd209ca69c6e1252cd}{00070}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{linear__allocator_8c_a92df78f169decacd209ca69c6e1252cd}{linear\_allocator\_free\_all}}(\mbox{\hyperlink{structlinear__allocator}{linear\_allocator}}*\ allocator)\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00071}00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (allocator\ \&\&\ allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}})\ \{}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00072}00072\ \ \ \ \ \ \ \ \ allocator-\/>\mbox{\hyperlink{structlinear__allocator_abf697b097e6ddf6ee3235dfbb7714986}{allocated}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\_memory}}(allocator-\/>\mbox{\hyperlink{structlinear__allocator_ac9d33e2d5c60ece2b06f4f44ae3376af}{memory}},\ allocator-\/>\mbox{\hyperlink{structlinear__allocator_a6de4731939da3764dcc981b0e0d39247}{total\_size}});}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00074}00074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linear__allocator_8c_source_l00075}00075\ \}}
+
+\end{DoxyCode}
