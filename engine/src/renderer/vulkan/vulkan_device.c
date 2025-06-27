@@ -4,6 +4,8 @@
 #include "core/kmemory.h"
 #include "vulkan_device.h"
 
+#define MAX_DEVICE_COUNT 32
+
 /**
  * @file vulkan_device.c
  * @brief Implementation of Vulkan device creation and selection logic.
@@ -164,7 +166,7 @@ b8 vulkan_device_create(vulkan_context* context) {
         index_count++;
     }
 
-    u32 indices[index_count];
+    u32 indices[32];
     u8 index = 0;
     indices[index++] = context->device.graphics_queue_index;
 
@@ -176,7 +178,7 @@ b8 vulkan_device_create(vulkan_context* context) {
         indices[index++] = context->device.transfer_queue_index;
     }
 
-    VkDeviceQueueCreateInfo queue_create_infos[index_count];
+    VkDeviceQueueCreateInfo queue_create_infos[32];
     for (u32 i = 0; i < index_count; ++i) {
         queue_create_infos[i].sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
         queue_create_infos[i].queueFamilyIndex = indices[i];
@@ -397,8 +399,8 @@ b8 select_physical_device(vulkan_context* context) {
         KFATAL("No devices which support Vulkan were found.");
         return False;
     }
-
-    VkPhysicalDevice physical_devices[physical_device_count];
+        
+    VkPhysicalDevice physical_devices[MAX_DEVICE_COUNT];
     VK_CHECK(vkEnumeratePhysicalDevices(context->instance, &physical_device_count, physical_devices));
 
     for (u32 i = 0; i < physical_device_count; ++i) {
@@ -527,7 +529,7 @@ b8 physical_device_meets_requirements(
 
     u32 queue_family_count = 0;
     vkGetPhysicalDeviceQueueFamilyProperties(device, &queue_family_count, 0);
-    VkQueueFamilyProperties queue_families[queue_family_count];
+    VkQueueFamilyProperties queue_families[32];
     vkGetPhysicalDeviceQueueFamilyProperties(device, &queue_family_count, queue_families);
 
     // Look at each queue and see what queues it supports
