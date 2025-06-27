@@ -136,7 +136,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a6f1b2b14ddf48b8eb0877e9d1192352f" id="r_a6f1b2b14ddf48b8eb0877e9d1192352f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__swapchain_8c.html#a6f1b2b14ddf48b8eb0877e9d1192352f">vulkan_swapchain_destroy</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_swapchain *swapchain)</td></tr>
 <tr class="memdesc:a6f1b2b14ddf48b8eb0877e9d1192352f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the given swapchain and associated resources.  <br /></td></tr>
 <tr class="separator:a6f1b2b14ddf48b8eb0877e9d1192352f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a559f69815dfb6ccb3a6776516d9025b7" id="r_a559f69815dfb6ccb3a6776516d9025b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__swapchain_8c.html#a559f69815dfb6ccb3a6776516d9025b7">vulkan_swapchain_acquire_next_image_index</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_swapchain *swapchain, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> timeout_ns, VkSemaphore image_available_semaphore, VkFence fence, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> *out_image_index)</td></tr>
+<tr class="memitem:a559f69815dfb6ccb3a6776516d9025b7" id="r_a559f69815dfb6ccb3a6776516d9025b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__swapchain_8c.html#a559f69815dfb6ccb3a6776516d9025b7">vulkan_swapchain_acquire_next_image_index</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_swapchain *swapchain, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> timeout_ns, VkSemaphore image_available_semaphore, VkFence fence, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> *out_image_index)</td></tr>
 <tr class="memdesc:a559f69815dfb6ccb3a6776516d9025b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquires the index of the next available image from the swapchain.  <br /></td></tr>
 <tr class="separator:a559f69815dfb6ccb3a6776516d9025b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a401617aff019b05a923dcda96f83c958" id="r_a401617aff019b05a923dcda96f83c958"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__swapchain_8c.html#a401617aff019b05a923dcda96f83c958">vulkan_swapchain_present</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_swapchain *swapchain, VkQueue graphics_queue, VkQueue present_queue, VkSemaphore render_complete_semaphore, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> present_image_index)</td></tr>
@@ -227,7 +227,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="vulkan__swapchain_8c_source.html#l00200">200</a> of file <a class="el" href="vulkan__swapchain_8c_source.html">vulkan_swapchain.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="kmemory_8c_source.html#l00106">kallocate()</a>, <a class="el" href="defines_8h_source.html#l00203">KCLAMP</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="kmemory_8h_source.html#l00062">MEMORY_TAG_RENDERER</a>, <a class="el" href="defines_8h_source.html#l00104">True</a>, <a class="el" href="vulkan__device_8c_source.html#l00368">vulkan_device_detect_depth_format()</a>, <a class="el" href="vulkan__device_8c_source.html#l00322">vulkan_device_query_swapchain_support()</a>, and <a class="el" href="vulkan__image_8c_source.html#l00041">vulkan_image_create()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kmemory_8c_source.html#l00106">kallocate()</a>, <a class="el" href="defines_8h_source.html#l00295">KCLAMP</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="kmemory_8h_source.html#l00062">MEMORY_TAG_RENDERER</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__device_8c_source.html#l00368">vulkan_device_detect_depth_format()</a>, <a class="el" href="vulkan__device_8c_source.html#l00322">vulkan_device_query_swapchain_support()</a>, and <a class="el" href="vulkan__image_8c_source.html#l00041">vulkan_image_create()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00061">vulkan_swapchain_create()</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00080">vulkan_swapchain_recreate()</a>.</p>
 
@@ -293,7 +293,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> vulkan_swapchain_acquire_next_image_index </td>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> vulkan_swapchain_acquire_next_image_index </td>
           <td>(</td>
           <td class="paramtype">vulkan_context *&#160;</td>
           <td class="paramname"><em>context</em>, </td>
@@ -354,7 +354,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="vulkan__swapchain_8c_source.html#l00118">118</a> of file <a class="el" href="vulkan__swapchain_8c_source.html">vulkan_swapchain.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="defines_8h_source.html#l00104">True</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00080">vulkan_swapchain_recreate()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00149">KFATAL</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00080">vulkan_swapchain_recreate()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00408">vulkan_renderer_backend_begin_frame()</a>.</p>
 
@@ -604,7 +604,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 27 2025 14:39:24 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -33,15 +33,15 @@ typedef struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \mb
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup}} (\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state, const char \texorpdfstring{$\ast$}{*}application\+\_\+name, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} x, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} y, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} width, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} height)
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\+\_\+startup}} (\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state, const char \texorpdfstring{$\ast$}{*}application\+\_\+name, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} x, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} y, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} width, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} height)
 \begin{DoxyCompactList}\small\item\em Initializes the platform layer. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\+\_\+shutdown}} (\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state)
 \begin{DoxyCompactList}\small\item\em Shuts down the platform layer. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages}} (\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state)
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\+\_\+pump\+\_\+messages}} (\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state)
 \begin{DoxyCompactList}\small\item\em Processes messages/events from the operating system. \end{DoxyCompactList}\item 
-void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\+\_\+allocate}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} aligned)
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\+\_\+allocate}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} aligned)
 \begin{DoxyCompactList}\small\item\em Allocates memory from the platform. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\+\_\+free}} (void \texorpdfstring{$\ast$}{*}block, \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} aligned)
+void \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\+\_\+free}} (void \texorpdfstring{$\ast$}{*}block, \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} aligned)
 \begin{DoxyCompactList}\small\item\em Frees a previously allocated block of memory. \end{DoxyCompactList}\item 
 void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}block, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
 \begin{DoxyCompactList}\small\item\em Fills a block of memory with zeros. \end{DoxyCompactList}\item 
@@ -96,7 +96,7 @@ The actual contents are defined privately in platform\+\_\+\texorpdfstring{$\ast
 \index{platform.h@{platform.h}!platform\_allocate@{platform\_allocate}}
 \index{platform\_allocate@{platform\_allocate}!platform.h@{platform.h}}
 \doxysubsubsection{\texorpdfstring{platform\_allocate()}{platform\_allocate()}}
-{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} platform\+\_\+allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{aligned }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} platform\+\_\+allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}}]{aligned }\end{DoxyParamCaption})}
 
 
 
@@ -192,7 +192,7 @@ Referenced by \mbox{\hyperlink{kmemory_8c_source_l00161}{kcopy\+\_\+memory()}}.
 \index{platform.h@{platform.h}!platform\_free@{platform\_free}}
 \index{platform\_free@{platform\_free}!platform.h@{platform.h}}
 \doxysubsubsection{\texorpdfstring{platform\_free()}{platform\_free()}}
-{\footnotesize\ttfamily void platform\+\_\+free (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{block,  }\item[{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}]{aligned }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void platform\+\_\+free (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{block,  }\item[{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}}]{aligned }\end{DoxyParamCaption})}
 
 
 
@@ -232,7 +232,7 @@ Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+ru
 \index{platform.h@{platform.h}!platform\_pump\_messages@{platform\_pump\_messages}}
 \index{platform\_pump\_messages@{platform\_pump\_messages}!platform.h@{platform.h}}
 \doxysubsubsection{\texorpdfstring{platform\_pump\_messages()}{platform\_pump\_messages()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} platform\+\_\+pump\+\_\+messages (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} platform\+\_\+pump\+\_\+messages (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state }\end{DoxyParamCaption})}
 
 
 
@@ -335,7 +335,7 @@ Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+ru
 \index{platform.h@{platform.h}!platform\_startup@{platform\_startup}}
 \index{platform\_startup@{platform\_startup}!platform.h@{platform.h}}
 \doxysubsubsection{\texorpdfstring{platform\_startup()}{platform\_startup()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} platform\+\_\+startup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{application\+\_\+name,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{x,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{y,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{height }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} platform\+\_\+startup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{application\+\_\+name,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{x,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{y,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{height }\end{DoxyParamCaption})}
 
 
 

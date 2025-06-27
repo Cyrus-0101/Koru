@@ -31,7 +31,7 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00037}00037\ LRESULT\ CALLBACK\ win32\_process\_message(HWND\ hwnd,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ msg,\ WPARAM\ w\_param,\ LPARAM\ l\_param);}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00038}00038\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00039}00039\ \textcolor{comment}{//\ Initializes\ the\ platform:\ registers\ window\ class,\ creates\ a\ window,\ sets\ up\ the\ timer.}}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00040}00040\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\_startup}}(}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00040}00040\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\_startup}}(}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{structplatform__state}{platform\_state}}\ *plat\_state,}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *application\_name,}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ x,}
@@ -135,7 +135,7 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00141}00141\ \}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00142}00142\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00143}00143\ \textcolor{comment}{//\ Processes\ all\ pending\ Windows\ messages\ (non-\/blocking)}}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00144}00144\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\_pump\_messages}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}\ *plat\_state)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00144}00144\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\_pump\_messages}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}\ *plat\_state)\ \{}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00145}00145\ \ \ \ \ MSG\ message;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00146}00146\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{while}\ (PeekMessageA(\&message,\ NULL,\ 0,\ 0,\ PM\_REMOVE))\ \{}
@@ -147,11 +147,11 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00153}00153\ \}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00154}00154\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00155}00155\ \textcolor{comment}{//\ Basic\ memory\ allocation\ functions}}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00156}00156\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\_allocate}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ aligned)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00156}00156\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\_allocate}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ aligned)\ \{}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00157}00157\ \ \ \ \ \textcolor{keywordflow}{return}\ malloc(size);}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00158}00158\ \}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00159}00159\ }
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00160}00160\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\_free}}(\textcolor{keywordtype}{void}\ *block,\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ aligned)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00160}00160\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\_free}}(\textcolor{keywordtype}{void}\ *block,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ aligned)\ \{}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00161}00161\ \ \ \ \ free(block);}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00162}00162\ \}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00163}00163\ }
@@ -208,7 +208,7 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00214}00214\ \}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00215}00215\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00216}00216\ \textcolor{comment}{//\ Surface\ creation\ for\ Vulkan}}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00217}00217\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{vulkan__platform_8h_a48932cc1b8761ab4af6627a36ba06548}{platform\_create\_vulkan\_surface}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}\ *plat\_state,\ vulkan\_context\ *\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00217}00217\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__platform_8h_a48932cc1b8761ab4af6627a36ba06548}{platform\_create\_vulkan\_surface}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}\ *plat\_state,\ vulkan\_context\ *\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00218}00218\ \ \ \ \ \textcolor{comment}{//\ Simply\ cold-\/cast\ to\ the\ known\ type.}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00219}00219\ \ \ \ \ internal\_state\ *\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}\ =\ (internal\_state\ *)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00220}00220\ }
@@ -263,7 +263,7 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_KEYUP:}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_SYSKEYUP:\ \{}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Key\ pressed/released}}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ pressed\ =\ (msg\ ==\ WM\_KEYDOWN\ ||\ msg\ ==\ WM\_SYSKEYDOWN);}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ pressed\ =\ (msg\ ==\ WM\_KEYDOWN\ ||\ msg\ ==\ WM\_SYSKEYDOWN);}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ key\ =\ (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}})w\_param;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00274}00274\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\_param\ ==\ VK\_MENU)\ \{}
@@ -314,7 +314,7 @@
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00320}00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_LBUTTONUP:}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_MBUTTONUP:}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00322}00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ WM\_RBUTTONUP:\ \{}
-\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ pressed\ =\ msg\ ==\ WM\_LBUTTONDOWN\ ||\ msg\ ==\ WM\_RBUTTONDOWN\ ||\ msg\ ==\ WM\_MBUTTONDOWN;}
+\DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ pressed\ =\ msg\ ==\ WM\_LBUTTONDOWN\ ||\ msg\ ==\ WM\_RBUTTONDOWN\ ||\ msg\ ==\ WM\_MBUTTONDOWN;}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00324}00324\ }
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ necessary\ but\ ynk}}
 \DoxyCodeLine{\Hypertarget{platform__win32_8c_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}}\ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7}{BUTTON\_MAX\_BUTTONS}};}

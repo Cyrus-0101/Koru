@@ -507,7 +507,7 @@ Then select one that meets requirements\+:
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{structvulkan__physical__device__queue__family__info}{vulkan\_physical\_device\_queue\_family\_info}}\ queue\_info\ =\ \{\};}
 \DoxyCodeLine{\ \ \ \ vulkan\_swapchain\_support\_info\ swapchain\_support\ =\ \{\};}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ result\ =\ \mbox{\hyperlink{vulkan__device_8c_aa53d88ed2ed351537ad6b3f6ff109f7c}{physical\_device\_meets\_requirements}}(}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ result\ =\ \mbox{\hyperlink{vulkan__device_8c_aa53d88ed2ed351537ad6b3f6ff109f7c}{physical\_device\_meets\_requirements}}(}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ physical\_devices[i],}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>surface,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \&properties,}
@@ -535,8 +535,8 @@ After selecting a suitable physical device, create a {\bfseries{logical device}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{comment}{//\ vulkan\_device.c}}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ present\_shares\_graphics\_queue\ =\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index\ ==\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.present\_queue\_index);}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ transfer\_shares\_graphics\_queue\ =\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index\ ==\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.transfer\_queue\_index);}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ present\_shares\_graphics\_queue\ =\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index\ ==\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.present\_queue\_index);}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ transfer\_shares\_graphics\_queue\ =\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index\ ==\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.transfer\_queue\_index);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ index\_count\ =\ 1;}
 \DoxyCodeLine{\textcolor{keywordflow}{if}\ (!present\_shares\_graphics\_queue)\ index\_count++;}
@@ -689,7 +689,7 @@ For depth testing, a compatible depth format is needed\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{vulkan__device_8c_a4af4291b3e9e0fc739c88bde97d74693}{vulkan\_device\_detect\_depth\_format}}(vulkan\_device*\ device)\ \{}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__device_8c_a4af4291b3e9e0fc739c88bde97d74693}{vulkan\_device\_detect\_depth\_format}}(vulkan\_device*\ device)\ \{}
 \DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ candidate\_count\ =\ 3;}
 \DoxyCodeLine{\ \ \ \ VkFormat\ candidates[candidate\_count]\ =\ \{}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ VK\_FORMAT\_D32\_SFLOAT,}
@@ -981,7 +981,7 @@ Tracks global Vulkan state\+:
 \DoxyCodeLine{\ \ \ \ vulkan\_swapchain\ swapchain;}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ image\_index;}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ current\_frame;}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ recreating\_swapchain;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ recreating\_swapchain;}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ (*\mbox{\hyperlink{vulkan__backend_8c_aada43db2d3a25f12c6511695c5d74d0a}{find\_memory\_index}})(...);}
 \DoxyCodeLine{\}\ vulkan\_context;}
 
@@ -1090,7 +1090,7 @@ Vulkan is explicit by design. Every operation must be described precisely. Here\
 \hypertarget{index_autotoc_md75}{}\doxysubsection{\texorpdfstring{🧪 Bonus\+: Sample Code for Acquiring an Image}{🧪 Bonus: Sample Code for Acquiring an Image}}\label{index_autotoc_md75}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{vulkan__swapchain_8c_a559f69815dfb6ccb3a6776516d9025b7}{vulkan\_swapchain\_acquire\_next\_image\_index}}(...)\ \{}
+\DoxyCodeLine{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__swapchain_8c_a559f69815dfb6ccb3a6776516d9025b7}{vulkan\_swapchain\_acquire\_next\_image\_index}}(...)\ \{}
 \DoxyCodeLine{\ \ \ \ VkResult\ result\ =\ vkAcquireNextImageKHR(}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ swapchain-\/>handle,}

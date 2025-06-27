@@ -32,7 +32,7 @@ void \mbox{\hyperlink{vulkan__swapchain_8c_a37945527d25893e83ecde0d83f11b550}{vu
 \begin{DoxyCompactList}\small\item\em Recreates the swapchain after resize or resolution change. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__swapchain_8c_a6f1b2b14ddf48b8eb0877e9d1192352f}{vulkan\+\_\+swapchain\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+swapchain \texorpdfstring{$\ast$}{*}swapchain)
 \begin{DoxyCompactList}\small\item\em Destroys the given swapchain and associated resources. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__swapchain_8c_a559f69815dfb6ccb3a6776516d9025b7}{vulkan\+\_\+swapchain\+\_\+acquire\+\_\+next\+\_\+image\+\_\+index}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+swapchain \texorpdfstring{$\ast$}{*}swapchain, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} timeout\+\_\+ns, Vk\+Semaphore image\+\_\+available\+\_\+semaphore, Vk\+Fence fence, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}out\+\_\+image\+\_\+index)
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__swapchain_8c_a559f69815dfb6ccb3a6776516d9025b7}{vulkan\+\_\+swapchain\+\_\+acquire\+\_\+next\+\_\+image\+\_\+index}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+swapchain \texorpdfstring{$\ast$}{*}swapchain, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} timeout\+\_\+ns, Vk\+Semaphore image\+\_\+available\+\_\+semaphore, Vk\+Fence fence, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}out\+\_\+image\+\_\+index)
 \begin{DoxyCompactList}\small\item\em Acquires the index of the next available image from the swapchain. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__swapchain_8c_a401617aff019b05a923dcda96f83c958}{vulkan\+\_\+swapchain\+\_\+present}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+swapchain \texorpdfstring{$\ast$}{*}swapchain, Vk\+Queue graphics\+\_\+queue, Vk\+Queue present\+\_\+queue, Vk\+Semaphore render\+\_\+complete\+\_\+semaphore, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} present\+\_\+image\+\_\+index)
 \begin{DoxyCompactList}\small\item\em Presents the rendered image at the given index to the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -110,7 +110,7 @@ Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00200}{200}} of
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{kmemory_8c_source_l00106}{kallocate()}}, \mbox{\hyperlink{defines_8h_source_l00203}{KCLAMP}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}, \mbox{\hyperlink{defines_8h_source_l00104}{True}}, \mbox{\hyperlink{vulkan__device_8c_source_l00368}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00322}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00041}{vulkan\+\_\+image\+\_\+create()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{kmemory_8c_source_l00106}{kallocate()}}, \mbox{\hyperlink{defines_8h_source_l00295}{KCLAMP}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__device_8c_source_l00368}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00322}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00041}{vulkan\+\_\+image\+\_\+create()}}.
 
 
 
@@ -162,7 +162,7 @@ Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00098}{vulkan\+\_\+s
 \index{vulkan\_swapchain.c@{vulkan\_swapchain.c}!vulkan\_swapchain\_acquire\_next\_image\_index@{vulkan\_swapchain\_acquire\_next\_image\_index}}
 \index{vulkan\_swapchain\_acquire\_next\_image\_index@{vulkan\_swapchain\_acquire\_next\_image\_index}!vulkan\_swapchain.c@{vulkan\_swapchain.c}}
 \doxysubsubsection{\texorpdfstring{vulkan\_swapchain\_acquire\_next\_image\_index()}{vulkan\_swapchain\_acquire\_next\_image\_index()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+swapchain\+\_\+acquire\+\_\+next\+\_\+image\+\_\+index (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+swapchain \texorpdfstring{$\ast$}{*}}]{swapchain,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{timeout\+\_\+ns,  }\item[{Vk\+Semaphore}]{image\+\_\+available\+\_\+semaphore,  }\item[{Vk\+Fence}]{fence,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+image\+\_\+index }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} vulkan\+\_\+swapchain\+\_\+acquire\+\_\+next\+\_\+image\+\_\+index (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+swapchain \texorpdfstring{$\ast$}{*}}]{swapchain,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{timeout\+\_\+ns,  }\item[{Vk\+Semaphore}]{image\+\_\+available\+\_\+semaphore,  }\item[{Vk\+Fence}]{fence,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+image\+\_\+index }\end{DoxyParamCaption})}
 
 
 
@@ -196,7 +196,7 @@ Definition at line \mbox{\hyperlink{vulkan__swapchain_8c_source_l00118}{118}} of
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{defines_8h_source_l00104}{True}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00080}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00080}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
 
 
 

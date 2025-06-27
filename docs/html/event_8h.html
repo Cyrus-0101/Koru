@@ -129,7 +129,7 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a6f265c5acd97e3c89ad3a77b5eda27ec" id="r_a6f265c5acd97e3c89ad3a77b5eda27ec"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structevent__context.html">event_context</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a6f265c5acd97e3c89ad3a77b5eda27ec">event_context</a></td></tr>
 <tr class="memdesc:a6f265c5acd97e3c89ad3a77b5eda27ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context structure used to pass event-specific data.  <br /></td></tr>
 <tr class="separator:a6f265c5acd97e3c89ad3a77b5eda27ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac694dc305b9660134b170d9560b0563a" id="r_ac694dc305b9660134b170d9560b0563a"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ac694dc305b9660134b170d9560b0563a">PFN_on_event</a>) (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, void *listener_inst, <a class="el" href="structevent__context.html">event_context</a> data)</td></tr>
+<tr class="memitem:ac694dc305b9660134b170d9560b0563a" id="r_ac694dc305b9660134b170d9560b0563a"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ac694dc305b9660134b170d9560b0563a">PFN_on_event</a>) (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, void *listener_inst, <a class="el" href="structevent__context.html">event_context</a> data)</td></tr>
 <tr class="memdesc:ac694dc305b9660134b170d9560b0563a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event handler callback function type.  <br /></td></tr>
 <tr class="separator:ac694dc305b9660134b170d9560b0563a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb3aa7dc1a87db9aae0a5f0b3df676b9" id="r_aeb3aa7dc1a87db9aae0a5f0b3df676b9"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226">system_event_code</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#aeb3aa7dc1a87db9aae0a5f0b3df676b9">system_event_code</a></td></tr>
@@ -157,19 +157,19 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aaaec3136b95f3d089d55ebfe440c2a4f" id="r_aaaec3136b95f3d089d55ebfe440c2a4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#aaaec3136b95f3d089d55ebfe440c2a4f">event_initialize</a> ()</td></tr>
+<tr class="memitem:aaaec3136b95f3d089d55ebfe440c2a4f" id="r_aaaec3136b95f3d089d55ebfe440c2a4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#aaaec3136b95f3d089d55ebfe440c2a4f">event_initialize</a> ()</td></tr>
 <tr class="memdesc:aaaec3136b95f3d089d55ebfe440c2a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the event system.  <br /></td></tr>
 <tr class="separator:aaaec3136b95f3d089d55ebfe440c2a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4747584f93c48ffe1a1fa895c3746c7c" id="r_a4747584f93c48ffe1a1fa895c3746c7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a4747584f93c48ffe1a1fa895c3746c7c">event_shutdown</a> ()</td></tr>
 <tr class="memdesc:a4747584f93c48ffe1a1fa895c3746c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the event system.  <br /></td></tr>
 <tr class="separator:a4747584f93c48ffe1a1fa895c3746c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ef51b7c38c54169c57b45bb8e55047a" id="r_a8ef51b7c38c54169c57b45bb8e55047a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a8ef51b7c38c54169c57b45bb8e55047a">event_register</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *listener, <a class="el" href="event_8h.html#ac694dc305b9660134b170d9560b0563a">PFN_on_event</a> on_event)</td></tr>
+<tr class="memitem:a8ef51b7c38c54169c57b45bb8e55047a" id="r_a8ef51b7c38c54169c57b45bb8e55047a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a8ef51b7c38c54169c57b45bb8e55047a">event_register</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *listener, <a class="el" href="event_8h.html#ac694dc305b9660134b170d9560b0563a">PFN_on_event</a> on_event)</td></tr>
 <tr class="memdesc:a8ef51b7c38c54169c57b45bb8e55047a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a listener for a specific event code.  <br /></td></tr>
 <tr class="separator:a8ef51b7c38c54169c57b45bb8e55047a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6b9afa0e8bc3c94752e7b2c0b9c17f8" id="r_ae6b9afa0e8bc3c94752e7b2c0b9c17f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ae6b9afa0e8bc3c94752e7b2c0b9c17f8">event_unregister</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *listener, <a class="el" href="event_8h.html#ac694dc305b9660134b170d9560b0563a">PFN_on_event</a> on_event)</td></tr>
+<tr class="memitem:ae6b9afa0e8bc3c94752e7b2c0b9c17f8" id="r_ae6b9afa0e8bc3c94752e7b2c0b9c17f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#ae6b9afa0e8bc3c94752e7b2c0b9c17f8">event_unregister</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *listener, <a class="el" href="event_8h.html#ac694dc305b9660134b170d9560b0563a">PFN_on_event</a> on_event)</td></tr>
 <tr class="memdesc:ae6b9afa0e8bc3c94752e7b2c0b9c17f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters a listener for a specific event code.  <br /></td></tr>
 <tr class="separator:ae6b9afa0e8bc3c94752e7b2c0b9c17f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4174710cacb6cab063e91e0f0f02d63f" id="r_a4174710cacb6cab063e91e0f0f02d63f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a4174710cacb6cab063e91e0f0f02d63f">event_fire</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, <a class="el" href="structevent__context.html">event_context</a> <a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>)</td></tr>
+<tr class="memitem:a4174710cacb6cab063e91e0f0f02d63f" id="r_a4174710cacb6cab063e91e0f0f02d63f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event_8h.html#a4174710cacb6cab063e91e0f0f02d63f">event_fire</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, <a class="el" href="structevent__context.html">event_context</a> <a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>)</td></tr>
 <tr class="memdesc:a4174710cacb6cab063e91e0f0f02d63f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fires an event to all registered listeners for the given code.  <br /></td></tr>
 <tr class="separator:a4174710cacb6cab063e91e0f0f02d63f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -208,7 +208,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a>(* PFN_on_event) (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, void *listener_inst, <a class="el" href="structevent__context.html">event_context</a> data)</td>
+          <td class="memname">typedef <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>(* PFN_on_event) (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, void *listener_inst, <a class="el" href="structevent__context.html">event_context</a> data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -308,7 +308,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> event_fire </td>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> event_fire </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
           <td class="paramname"><em>code</em>, </td>
@@ -347,7 +347,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="event_8c_source.html#l00156">156</a> of file <a class="el" href="event_8c_source.html">event.c</a>.</p>
 
-<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00104">True</a>.</p>
+<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00318">application_on_key()</a>, <a class="el" href="input_8c_source.html#l00166">input_process_button()</a>, <a class="el" href="input_8c_source.html#l00130">input_process_key()</a>, <a class="el" href="input_8c_source.html#l00187">input_process_mouse_move()</a>, and <a class="el" href="input_8c_source.html#l00212">input_process_mouse_wheel()</a>.</p>
 
@@ -360,7 +360,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> event_initialize </td>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> event_initialize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -374,7 +374,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="event_8c_source.html#l00076">76</a> of file <a class="el" href="event_8c_source.html">event.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="kmemory_8c_source.html#l00149">kzero_memory()</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00104">True</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="kmemory_8c_source.html#l00149">kzero_memory()</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>.</p>
 
@@ -387,7 +387,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> event_register </td>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> event_register </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
           <td class="paramname"><em>code</em>, </td>
@@ -426,7 +426,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="event_8c_source.html#l00100">100</a> of file <a class="el" href="event_8c_source.html">event.c</a>.</p>
 
-<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="darray_8h_source.html#l00148">darray_create</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00182">darray_push</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00104">True</a>.</p>
+<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="darray_8h_source.html#l00148">darray_create</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00182">darray_push</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>.</p>
 
@@ -452,7 +452,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="event_8c_source.html#l00088">88</a> of file <a class="el" href="event_8c_source.html">event.c</a>.</p>
 
-<p class="reference">References <a class="el" href="darray_8h_source.html#l00170">darray_destroy</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00050">MAX_MESSAGE_CODES</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, and <a class="el" href="event_8c_source.html#l00074">state</a>.</p>
+<p class="reference">References <a class="el" href="darray_8h_source.html#l00170">darray_destroy</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00050">MAX_MESSAGE_CODES</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, and <a class="el" href="event_8c_source.html#l00074">state</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
 
@@ -465,7 +465,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> event_unregister </td>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> event_unregister </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
           <td class="paramname"><em>code</em>, </td>
@@ -504,7 +504,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="event_8c_source.html#l00129">129</a> of file <a class="el" href="event_8c_source.html">event.c</a>.</p>
 
-<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00223">darray_pop_at</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00106">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00104">True</a>.</p>
+<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00223">darray_pop_at</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="event_8c_source.html#l00069">is_initialized</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00074">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
 
@@ -513,7 +513,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 27 2025 14:39:23 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

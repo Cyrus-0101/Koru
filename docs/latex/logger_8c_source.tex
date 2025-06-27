@@ -14,11 +14,11 @@
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00010}\mbox{\hyperlink{logger_8c_aa204ec58d846f2354e6bd239460db89f}{00010}}\ \textcolor{preprocessor}{\#define\ MSG\_LENGTH\ 32000}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00011}00011\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00026}00026\ \textcolor{comment}{//\ Terminal\ supports\ colour\ False\ by\ default}}
-\DoxyCodeLine{\Hypertarget{logger_8c_source_l00027}\mbox{\hyperlink{logger_8c_acceded25efdbbd2bf2cbd1bd79a1d91a}{00027}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{logger_8c_acceded25efdbbd2bf2cbd1bd79a1d91a}{terminal\_supports\_color}}\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{logger_8c_source_l00027}\mbox{\hyperlink{logger_8c_acceded25efdbbd2bf2cbd1bd79a1d91a}{00027}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{logger_8c_acceded25efdbbd2bf2cbd1bd79a1d91a}{terminal\_supports\_color}}\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00028}00028\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00029}00029\ \textcolor{comment}{//\ Initialize\ the\ logging\ system.}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00030}00030\ \textcolor{comment}{//\ For\ now\ it\ just\ returns\ True.\ Later,\ you\ can\ create/open\ a\ log\ file\ here.}}
-\DoxyCodeLine{\Hypertarget{logger_8c_source_l00031}\mbox{\hyperlink{logger_8c_aae701ec9fd1cbb624f28156730027305}{00031}}\ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ \mbox{\hyperlink{logger_8c_aae701ec9fd1cbb624f28156730027305}{initialize\_logging}}()\ \{}
+\DoxyCodeLine{\Hypertarget{logger_8c_source_l00031}\mbox{\hyperlink{logger_8c_aae701ec9fd1cbb624f28156730027305}{00031}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{logger_8c_aae701ec9fd1cbb624f28156730027305}{initialize\_logging}}()\ \{}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ TO-\/DO:\ Create\ log\ file}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00034}00034\ \}}
@@ -51,7 +51,7 @@
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00061}00061\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ level\_strings[6]\ =\ \{\textcolor{stringliteral}{"{}[FATAL]:\ "{}},\ \textcolor{stringliteral}{"{}[ERROR]:\ "{}},\ \textcolor{stringliteral}{"{}[WARN]:\ \ "{}},\ \textcolor{stringliteral}{"{}[INFO]:\ \ "{}},\ \textcolor{stringliteral}{"{}[DEBUG]:\ "{}},\ \textcolor{stringliteral}{"{}[TRACE]:\ "{}}\};}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00062}00062\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ True\ if\ the\ log\ level\ is\ FATAL\ or\ ERROR}}
-\DoxyCodeLine{\Hypertarget{logger_8c_source_l00064}00064\ \ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ is\_error\ =\ level\ <\ \mbox{\hyperlink{logger_8h_ac91d55174d383848b976a34de843748ea99c1e5c8e6d557f3993b9ab54a0107f4}{LOG\_LEVEL\_WARN}};}
+\DoxyCodeLine{\Hypertarget{logger_8c_source_l00064}00064\ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ is\_error\ =\ level\ <\ \mbox{\hyperlink{logger_8h_ac91d55174d383848b976a34de843748ea99c1e5c8e6d557f3993b9ab54a0107f4}{LOG\_LEVEL\_WARN}};}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00065}00065\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//\ RISKY\ Code\ since\ we\ are\ avoding\ memory\ allocation\ which\ is\ slow}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ It\ technically\ imposes\ a\ 32k\ character\ limit\ on\ a\ single\ log\ entry,\ this\ SHOULD\ NOT\ HAPPEN}}

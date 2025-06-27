@@ -74,6 +74,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
@@ -224,6 +225,15 @@ $(function() {
 </div>
 <p><a href="defines_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkrange.html">krange</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A range, typically of memory.  <a href="structkrange.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrange32.html">range32</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A range, typically of memory.  <a href="structrange32.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a24df254ec81fc13256ad54cfe955d229" id="r_a24df254ec81fc13256ad54cfe955d229"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a24df254ec81fc13256ad54cfe955d229">STATIC_ASSERT</a>&#160;&#160;&#160;static_assert /** Fallback for other compilers */</td></tr>
@@ -232,14 +242,111 @@ Macros</h2></td></tr>
 <tr class="separator:add3ca9eefe3b5b754426f51d3043e579"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a306ebd41c0cd1303b1372c6153f0caf8" id="r_a306ebd41c0cd1303b1372c6153f0caf8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:a306ebd41c0cd1303b1372c6153f0caf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c9e5ae5e9214bf306f3394a32e42f7" id="r_ab8c9e5ae5e9214bf306f3394a32e42f7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#ab8c9e5ae5e9214bf306f3394a32e42f7">INVALID_ID_U64</a>&#160;&#160;&#160;18446744073709551615UL</td></tr>
+<tr class="memdesc:ab8c9e5ae5e9214bf306f3394a32e42f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an invalid 64-bit unsigned ID (max value of u64).  <br /></td></tr>
+<tr class="separator:ab8c9e5ae5e9214bf306f3394a32e42f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a483b0a38edf0c10ef4a7cb633dc8a9fc" id="r_a483b0a38edf0c10ef4a7cb633dc8a9fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a483b0a38edf0c10ef4a7cb633dc8a9fc">INVALID_ID</a>&#160;&#160;&#160;4294967295U</td></tr>
+<tr class="memdesc:a483b0a38edf0c10ef4a7cb633dc8a9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an invalid 32-bit unsigned ID (max value of u32).  <br /></td></tr>
+<tr class="separator:a483b0a38edf0c10ef4a7cb633dc8a9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e761fd5d2416d048a66c671766a2212" id="r_a1e761fd5d2416d048a66c671766a2212"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a1e761fd5d2416d048a66c671766a2212">INVALID_ID_U32</a>&#160;&#160;&#160;<a class="el" href="defines_8h.html#a483b0a38edf0c10ef4a7cb633dc8a9fc">INVALID_ID</a></td></tr>
+<tr class="memdesc:a1e761fd5d2416d048a66c671766a2212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an invalid 32-bit unsigned ID (max value of u32).  <br /></td></tr>
+<tr class="separator:a1e761fd5d2416d048a66c671766a2212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af184a0442a40bbe1787bb234d3a8bfae" id="r_af184a0442a40bbe1787bb234d3a8bfae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#af184a0442a40bbe1787bb234d3a8bfae">INVALID_ID_U16</a>&#160;&#160;&#160;65535U</td></tr>
+<tr class="memdesc:af184a0442a40bbe1787bb234d3a8bfae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an invalid 16-bit unsigned ID (max value of u16).  <br /></td></tr>
+<tr class="separator:af184a0442a40bbe1787bb234d3a8bfae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41fdc8d1e5968c92eb3b51a1ee1fc731" id="r_a41fdc8d1e5968c92eb3b51a1ee1fc731"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a41fdc8d1e5968c92eb3b51a1ee1fc731">INVALID_ID_U8</a>&#160;&#160;&#160;255U</td></tr>
+<tr class="memdesc:a41fdc8d1e5968c92eb3b51a1ee1fc731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an invalid 8-bit unsigned ID (max value of u8).  <br /></td></tr>
+<tr class="separator:a41fdc8d1e5968c92eb3b51a1ee1fc731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf73a88ad00da5c878558d6dc80b2f5c" id="r_aaf73a88ad00da5c878558d6dc80b2f5c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#aaf73a88ad00da5c878558d6dc80b2f5c">U64_MAX</a>&#160;&#160;&#160;18446744073709551615UL</td></tr>
+<tr class="memdesc:aaf73a88ad00da5c878558d6dc80b2f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for a 64-bit unsigned integer.  <br /></td></tr>
+<tr class="separator:aaf73a88ad00da5c878558d6dc80b2f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4028a1a55fd7b907a44c48d5ca42d6a6" id="r_a4028a1a55fd7b907a44c48d5ca42d6a6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a4028a1a55fd7b907a44c48d5ca42d6a6">U32_MAX</a>&#160;&#160;&#160;4294967295U</td></tr>
+<tr class="memdesc:a4028a1a55fd7b907a44c48d5ca42d6a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for a 32-bit unsigned integer.  <br /></td></tr>
+<tr class="separator:a4028a1a55fd7b907a44c48d5ca42d6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac580728e242e90fe3082dc7fe45ec6c9" id="r_ac580728e242e90fe3082dc7fe45ec6c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#ac580728e242e90fe3082dc7fe45ec6c9">U16_MAX</a>&#160;&#160;&#160;65535U</td></tr>
+<tr class="memdesc:ac580728e242e90fe3082dc7fe45ec6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for a 16-bit unsigned integer.  <br /></td></tr>
+<tr class="separator:ac580728e242e90fe3082dc7fe45ec6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1187e707402ca2fca73f06f7beb1e631" id="r_a1187e707402ca2fca73f06f7beb1e631"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a1187e707402ca2fca73f06f7beb1e631">U8_MAX</a>&#160;&#160;&#160;255U</td></tr>
+<tr class="memdesc:a1187e707402ca2fca73f06f7beb1e631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for an 8-bit unsigned integer.  <br /></td></tr>
+<tr class="separator:a1187e707402ca2fca73f06f7beb1e631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a361528a08635372583d48b4d6e35dfa5" id="r_a361528a08635372583d48b4d6e35dfa5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a361528a08635372583d48b4d6e35dfa5">U64_MIN</a>&#160;&#160;&#160;0UL</td></tr>
+<tr class="memdesc:a361528a08635372583d48b4d6e35dfa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for unsigned 64 bit integers (0 for all sizes).  <br /></td></tr>
+<tr class="separator:a361528a08635372583d48b4d6e35dfa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0d6d592d964acd9de17674242bf2707" id="r_ad0d6d592d964acd9de17674242bf2707"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#ad0d6d592d964acd9de17674242bf2707">U32_MIN</a>&#160;&#160;&#160;0U</td></tr>
+<tr class="memdesc:ad0d6d592d964acd9de17674242bf2707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for unsigned 32 bit integers (0 for all sizes).  <br /></td></tr>
+<tr class="separator:ad0d6d592d964acd9de17674242bf2707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80b4ee16c02644eef90553da09dc0907" id="r_a80b4ee16c02644eef90553da09dc0907"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a80b4ee16c02644eef90553da09dc0907">U16_MIN</a>&#160;&#160;&#160;0U</td></tr>
+<tr class="memdesc:a80b4ee16c02644eef90553da09dc0907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for unsigned 16 bit integers (0 for all sizes).  <br /></td></tr>
+<tr class="separator:a80b4ee16c02644eef90553da09dc0907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50185cccc95df2269f9f4e400d1fa6ed" id="r_a50185cccc95df2269f9f4e400d1fa6ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a50185cccc95df2269f9f4e400d1fa6ed">U8_MIN</a>&#160;&#160;&#160;0U</td></tr>
+<tr class="memdesc:a50185cccc95df2269f9f4e400d1fa6ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for unsigned 8 bit integers (0 for all sizes).  <br /></td></tr>
+<tr class="separator:a50185cccc95df2269f9f4e400d1fa6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06aab1f97b965931eb9b623f9cc4952d" id="r_a06aab1f97b965931eb9b623f9cc4952d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a06aab1f97b965931eb9b623f9cc4952d">I8_MAX</a>&#160;&#160;&#160;127</td></tr>
+<tr class="memdesc:a06aab1f97b965931eb9b623f9cc4952d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for an 8-bit signed integer.  <br /></td></tr>
+<tr class="separator:a06aab1f97b965931eb9b623f9cc4952d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31c11a64ca799bf89552369a63cecf98" id="r_a31c11a64ca799bf89552369a63cecf98"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a31c11a64ca799bf89552369a63cecf98">I16_MAX</a>&#160;&#160;&#160;32767</td></tr>
+<tr class="memdesc:a31c11a64ca799bf89552369a63cecf98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for a 16-bit signed integer.  <br /></td></tr>
+<tr class="separator:a31c11a64ca799bf89552369a63cecf98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e0f9d2db6ef5d899eb21081ef248851" id="r_a6e0f9d2db6ef5d899eb21081ef248851"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a6e0f9d2db6ef5d899eb21081ef248851">I32_MAX</a>&#160;&#160;&#160;2147483647</td></tr>
+<tr class="memdesc:a6e0f9d2db6ef5d899eb21081ef248851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for a 32-bit signed integer.  <br /></td></tr>
+<tr class="separator:a6e0f9d2db6ef5d899eb21081ef248851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f660b55f835b170812ab67f556e9a5a" id="r_a5f660b55f835b170812ab67f556e9a5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a5f660b55f835b170812ab67f556e9a5a">I64_MAX</a>&#160;&#160;&#160;9223372036854775807L</td></tr>
+<tr class="memdesc:a5f660b55f835b170812ab67f556e9a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value for a 64-bit signed integer.  <br /></td></tr>
+<tr class="separator:a5f660b55f835b170812ab67f556e9a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50b6c3c5a46f347eb58da649285ddaa8" id="r_a50b6c3c5a46f347eb58da649285ddaa8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a50b6c3c5a46f347eb58da649285ddaa8">I8_MIN</a>&#160;&#160;&#160;(-<a class="el" href="defines_8h.html#a06aab1f97b965931eb9b623f9cc4952d">I8_MAX</a> - 1)</td></tr>
+<tr class="memdesc:a50b6c3c5a46f347eb58da649285ddaa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for an 8-bit signed integer.  <br /></td></tr>
+<tr class="separator:a50b6c3c5a46f347eb58da649285ddaa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72800ba3863b6bae70ee3f22482e6db3" id="r_a72800ba3863b6bae70ee3f22482e6db3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a72800ba3863b6bae70ee3f22482e6db3">I16_MIN</a>&#160;&#160;&#160;(-<a class="el" href="defines_8h.html#a31c11a64ca799bf89552369a63cecf98">I16_MAX</a> - 1)</td></tr>
+<tr class="memdesc:a72800ba3863b6bae70ee3f22482e6db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for a 16-bit signed integer.  <br /></td></tr>
+<tr class="separator:a72800ba3863b6bae70ee3f22482e6db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf167b5064e33111b4da99625631b8af" id="r_acf167b5064e33111b4da99625631b8af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#acf167b5064e33111b4da99625631b8af">I32_MIN</a>&#160;&#160;&#160;(-<a class="el" href="defines_8h.html#a6e0f9d2db6ef5d899eb21081ef248851">I32_MAX</a> - 1)</td></tr>
+<tr class="memdesc:acf167b5064e33111b4da99625631b8af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for a 32-bit signed integer.  <br /></td></tr>
+<tr class="separator:acf167b5064e33111b4da99625631b8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0427de163db0e1a357eee973c48bdfb5" id="r_a0427de163db0e1a357eee973c48bdfb5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a0427de163db0e1a357eee973c48bdfb5">I64_MIN</a>&#160;&#160;&#160;(-<a class="el" href="defines_8h.html#a5f660b55f835b170812ab67f556e9a5a">I64_MAX</a> - 1)</td></tr>
+<tr class="memdesc:a0427de163db0e1a357eee973c48bdfb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value for a 64-bit signed integer.  <br /></td></tr>
+<tr class="separator:a0427de163db0e1a357eee973c48bdfb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dc00ea56793277f556f072353318f35" id="r_a0dc00ea56793277f556f072353318f35"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a>&#160;&#160;&#160;/** GCC/Clang doesn't need special import */</td></tr>
 <tr class="separator:a0dc00ea56793277f556f072353318f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa275d4e22dec543092be2a8c845da267" id="r_aa275d4e22dec543092be2a8c845da267"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#aa275d4e22dec543092be2a8c845da267">KOHI_RELEASE</a>&#160;&#160;&#160;1 /** @brief Defined as 1 in release builds, 0 otherwise. */</td></tr>
+<tr class="separator:aa275d4e22dec543092be2a8c845da267"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac84907cd2a910dfcd456807cce1a6621" id="r_ac84907cd2a910dfcd456807cce1a6621"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#ac84907cd2a910dfcd456807cce1a6621">KOHI_DEBUG</a>&#160;&#160;&#160;0   /** @brief Defined as 1 in debug builds, 0 otherwise. */</td></tr>
+<tr class="separator:ac84907cd2a910dfcd456807cce1a6621"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac007fb317c156d98a91628a86b3c9c0e" id="r_ac007fb317c156d98a91628a86b3c9c0e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#ac007fb317c156d98a91628a86b3c9c0e">KCLAMP</a>(value,  min,  max)</td></tr>
 <tr class="separator:ac007fb317c156d98a91628a86b3c9c0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d0d8cdc3aafc511f63fecffd1806c9" id="r_ab4d0d8cdc3aafc511f63fecffd1806c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#ab4d0d8cdc3aafc511f63fecffd1806c9">KINLINE</a>&#160;&#160;&#160;static inline</td></tr>
 <tr class="separator:ab4d0d8cdc3aafc511f63fecffd1806c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc8c390e62fe367aaf65e4b3a8e9d64c" id="r_afc8c390e62fe367aaf65e4b3a8e9d64c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#afc8c390e62fe367aaf65e4b3a8e9d64c">KNOINLINE</a></td></tr>
 <tr class="separator:afc8c390e62fe367aaf65e4b3a8e9d64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb39342a6d484da1ffc0ac4893309be4" id="r_acb39342a6d484da1ffc0ac4893309be4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#acb39342a6d484da1ffc0ac4893309be4">GIBIBYTES</a>(amount)&#160;&#160;&#160;((amount) * 1024ULL * 1024ULL * 1024ULL)</td></tr>
+<tr class="memdesc:acb39342a6d484da1ffc0ac4893309be4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of bytes from amount of gibibytes (GiB) (1024*1024*1024)  <br /></td></tr>
+<tr class="separator:acb39342a6d484da1ffc0ac4893309be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9b433687761bfc5d19c9d72b0b37d4c" id="r_af9b433687761bfc5d19c9d72b0b37d4c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#af9b433687761bfc5d19c9d72b0b37d4c">MEBIBYTES</a>(amount)&#160;&#160;&#160;((amount) * 1024ULL * 1024ULL)</td></tr>
+<tr class="memdesc:af9b433687761bfc5d19c9d72b0b37d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of bytes from amount of mebibytes (MiB) (1024*1024)  <br /></td></tr>
+<tr class="separator:af9b433687761bfc5d19c9d72b0b37d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d2716f9382777bbbb48201373249974" id="r_a6d2716f9382777bbbb48201373249974"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a6d2716f9382777bbbb48201373249974">KIBIBYTES</a>(amount)&#160;&#160;&#160;((amount) * 1024ULL)</td></tr>
+<tr class="memdesc:a6d2716f9382777bbbb48201373249974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of bytes from amount of kibibytes (KiB) (1024)  <br /></td></tr>
+<tr class="separator:a6d2716f9382777bbbb48201373249974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19138fcdc83c10d33f2c076344ca7686" id="r_a19138fcdc83c10d33f2c076344ca7686"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a19138fcdc83c10d33f2c076344ca7686">GIGABYTES</a>(amount)&#160;&#160;&#160;((amount) * 1000ULL * 1000ULL * 1000ULL)</td></tr>
+<tr class="memdesc:a19138fcdc83c10d33f2c076344ca7686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of bytes from amount of gigabytes (GB) (1000*1000*1000)  <br /></td></tr>
+<tr class="separator:a19138fcdc83c10d33f2c076344ca7686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a05dd1ee59ce4fc5aa7343bb227e97" id="r_a16a05dd1ee59ce4fc5aa7343bb227e97"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a16a05dd1ee59ce4fc5aa7343bb227e97">MEGABYTES</a>(amount)&#160;&#160;&#160;((amount) * 1000ULL * 1000ULL)</td></tr>
+<tr class="memdesc:a16a05dd1ee59ce4fc5aa7343bb227e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of bytes from amount of megabytes (MB) (1000*1000)  <br /></td></tr>
+<tr class="separator:a16a05dd1ee59ce4fc5aa7343bb227e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab45c9b185ca38d7f25aa3387e881f2d4" id="r_ab45c9b185ca38d7f25aa3387e881f2d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#ab45c9b185ca38d7f25aa3387e881f2d4">KILOBYTES</a>(amount)&#160;&#160;&#160;((amount) * 1000ULL)</td></tr>
+<tr class="memdesc:ab45c9b185ca38d7f25aa3387e881f2d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of bytes from amount of kilobytes (KB) (1000)  <br /></td></tr>
+<tr class="separator:ab45c9b185ca38d7f25aa3387e881f2d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cb45394d95d76663ea4ef913732fe29" id="r_a8cb45394d95d76663ea4ef913732fe29"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a8cb45394d95d76663ea4ef913732fe29">KMIN</a>(x,  y)&#160;&#160;&#160;(x &lt; y ? x : y)</td></tr>
+<tr class="memdesc:a8cb45394d95d76663ea4ef913732fe29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the smaller of two values.  <br /></td></tr>
+<tr class="separator:a8cb45394d95d76663ea4ef913732fe29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa38f54712172212d6112b01f51123f0d" id="r_aa38f54712172212d6112b01f51123f0d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#aa38f54712172212d6112b01f51123f0d">KMAX</a>(x,  y)&#160;&#160;&#160;(x &gt; y ? x : y)</td></tr>
+<tr class="memdesc:aa38f54712172212d6112b01f51123f0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the larger of two values.  <br /></td></tr>
+<tr class="separator:aa38f54712172212d6112b01f51123f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab658c8d48fee5df2fdb24fd42044a734" id="r_ab658c8d48fee5df2fdb24fd42044a734"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#ab658c8d48fee5df2fdb24fd42044a734">FLAG_GET</a>(flags,  flag)&#160;&#160;&#160;((flags &amp; flag) == flag)</td></tr>
+<tr class="memdesc:ab658c8d48fee5df2fdb24fd42044a734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a specific flag is enabled in a bitmask.  <br /></td></tr>
+<tr class="separator:ab658c8d48fee5df2fdb24fd42044a734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed084076a09d851c0439e110bd38ed23" id="r_aed084076a09d851c0439e110bd38ed23"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#aed084076a09d851c0439e110bd38ed23">FLAG_SET</a>(flags,  flag,  enabled)&#160;&#160;&#160;(flags = (enabled ? (flags | flag) : (flags &amp; ~flag)))</td></tr>
+<tr class="memdesc:aed084076a09d851c0439e110bd38ed23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets or clears a flag in a bitmask.  <br /></td></tr>
+<tr class="separator:aed084076a09d851c0439e110bd38ed23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -265,8 +372,14 @@ Typedefs</h2></td></tr>
 <tr class="separator:a94dab5770726ccbef8c7d026cfbdf8e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6baccc379c73d4e641ef847dbb08fa2" id="r_ac6baccc379c73d4e641ef847dbb08fa2"><td class="memItemLeft" align="right" valign="top">typedef int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#ac6baccc379c73d4e641ef847dbb08fa2">b32</a></td></tr>
 <tr class="separator:ac6baccc379c73d4e641ef847dbb08fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7415f24c35cb3e16a79f143c5527fdfa" id="r_a7415f24c35cb3e16a79f143c5527fdfa"><td class="memItemLeft" align="right" valign="top">typedef char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a></td></tr>
-<tr class="separator:a7415f24c35cb3e16a79f143c5527fdfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a58feb08f4f45ee137ec358217c3270" id="r_a3a58feb08f4f45ee137ec358217c3270"><td class="memItemLeft" align="right" valign="top">typedef _Bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a></td></tr>
+<tr class="separator:a3a58feb08f4f45ee137ec358217c3270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d37ef0b1a77903e7698337d2594035e" id="r_a0d37ef0b1a77903e7698337d2594035e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structkrange.html">krange</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a0d37ef0b1a77903e7698337d2594035e">krange</a></td></tr>
+<tr class="memdesc:a0d37ef0b1a77903e7698337d2594035e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A range, typically of memory.  <br /></td></tr>
+<tr class="separator:a0d37ef0b1a77903e7698337d2594035e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a60b69f67a735eb885a52430192253" id="r_a48a60b69f67a735eb885a52430192253"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structrange32.html">range32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a48a60b69f67a735eb885a52430192253">range32</a></td></tr>
+<tr class="memdesc:a48a60b69f67a735eb885a52430192253"><td class="mdescLeft">&#160;</td><td class="mdescRight">A range, typically of memory.  <br /></td></tr>
+<tr class="separator:a48a60b69f67a735eb885a52430192253"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -290,6 +403,12 @@ Functions</h2></td></tr>
 <tr class="separator:a9864ac51060117e5bfbb49a4a211c41b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e6b73ddb58819ce321fc06954dd592f" id="r_a1e6b73ddb58819ce321fc06954dd592f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a1e6b73ddb58819ce321fc06954dd592f">STATIC_ASSERT</a> (sizeof(<a class="el" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a>)==8, &quot;Expected <a class="el" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> to be 8 bytes.&quot;)</td></tr>
 <tr class="separator:a1e6b73ddb58819ce321fc06954dd592f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf0b958d00fe41b2f3b02d9ed263f780" id="r_abf0b958d00fe41b2f3b02d9ed263f780"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#ab4d0d8cdc3aafc511f63fecffd1806c9">KINLINE</a> <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#abf0b958d00fe41b2f3b02d9ed263f780">get_aligned</a> (<a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> operand, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> granularity)</td></tr>
+<tr class="memdesc:abf0b958d00fe41b2f3b02d9ed263f780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aligns a value to the nearest multiple of a granularity. Useful for memory alignment (e.g., Vulkan buffers).  <br /></td></tr>
+<tr class="separator:abf0b958d00fe41b2f3b02d9ed263f780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f99ca6366e01a8ead4227cecbb8b67f" id="r_a2f99ca6366e01a8ead4227cecbb8b67f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#ab4d0d8cdc3aafc511f63fecffd1806c9">KINLINE</a> <a class="el" href="structkrange.html">krange</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defines_8h.html#a2f99ca6366e01a8ead4227cecbb8b67f">get_aligned_range</a> (<a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> granularity)</td></tr>
+<tr class="memdesc:a2f99ca6366e01a8ead4227cecbb8b67f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aligns both the offset and size of a memory range to a granularity.  <br /></td></tr>
+<tr class="separator:a2f99ca6366e01a8ead4227cecbb8b67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Core definitions and platform-specific utilities. </p>
@@ -315,7 +434,371 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Standard boolean values </p>
 
-<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00106">106</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00122">122</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="ab658c8d48fee5df2fdb24fd42044a734" name="ab658c8d48fee5df2fdb24fd42044a734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab658c8d48fee5df2fdb24fd42044a734">&#9670;&#160;</a></span>FLAG_GET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FLAG_GET</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">flags, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">flag&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((flags &amp; flag) == flag)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a specific flag is enabled in a bitmask. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flags</td><td>The bitmask to check. </td></tr>
+    <tr><td class="paramname">flag</td><td>The flag to test. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the flag is set; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00396">396</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="aed084076a09d851c0439e110bd38ed23" name="aed084076a09d851c0439e110bd38ed23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed084076a09d851c0439e110bd38ed23">&#9670;&#160;</a></span>FLAG_SET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FLAG_SET</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">flags, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">flag, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">enabled&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(flags = (enabled ? (flags | flag) : (flags &amp; ~flag)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets or clears a flag in a bitmask. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flags</td><td>The bitmask to modify (passed by reference). </td></tr>
+    <tr><td class="paramname">flag</td><td>The flag to set/clear. </td></tr>
+    <tr><td class="paramname">enabled</td><td>If true, sets the flag; if false, clears it. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00405">405</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="acb39342a6d484da1ffc0ac4893309be4" name="acb39342a6d484da1ffc0ac4893309be4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb39342a6d484da1ffc0ac4893309be4">&#9670;&#160;</a></span>GIBIBYTES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GIBIBYTES</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">amount</td><td>)</td>
+          <td>&#160;&#160;&#160;((amount) * 1024ULL * 1024ULL * 1024ULL)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of bytes from amount of gibibytes (GiB) (1024*1024*1024) </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00342">342</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a19138fcdc83c10d33f2c076344ca7686" name="a19138fcdc83c10d33f2c076344ca7686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19138fcdc83c10d33f2c076344ca7686">&#9670;&#160;</a></span>GIGABYTES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GIGABYTES</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">amount</td><td>)</td>
+          <td>&#160;&#160;&#160;((amount) * 1000ULL * 1000ULL * 1000ULL)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of bytes from amount of gigabytes (GB) (1000*1000*1000) </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00351">351</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a31c11a64ca799bf89552369a63cecf98" name="a31c11a64ca799bf89552369a63cecf98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31c11a64ca799bf89552369a63cecf98">&#9670;&#160;</a></span>I16_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I16_MAX&#160;&#160;&#160;32767</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum value for a 16-bit signed integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00167">167</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a72800ba3863b6bae70ee3f22482e6db3" name="a72800ba3863b6bae70ee3f22482e6db3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72800ba3863b6bae70ee3f22482e6db3">&#9670;&#160;</a></span>I16_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I16_MIN&#160;&#160;&#160;(-<a class="el" href="defines_8h.html#a31c11a64ca799bf89552369a63cecf98">I16_MAX</a> - 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum value for a 16-bit signed integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00179">179</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a6e0f9d2db6ef5d899eb21081ef248851" name="a6e0f9d2db6ef5d899eb21081ef248851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e0f9d2db6ef5d899eb21081ef248851">&#9670;&#160;</a></span>I32_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I32_MAX&#160;&#160;&#160;2147483647</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum value for a 32-bit signed integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00170">170</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="acf167b5064e33111b4da99625631b8af" name="acf167b5064e33111b4da99625631b8af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf167b5064e33111b4da99625631b8af">&#9670;&#160;</a></span>I32_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I32_MIN&#160;&#160;&#160;(-<a class="el" href="defines_8h.html#a6e0f9d2db6ef5d899eb21081ef248851">I32_MAX</a> - 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum value for a 32-bit signed integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00182">182</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a5f660b55f835b170812ab67f556e9a5a" name="a5f660b55f835b170812ab67f556e9a5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f660b55f835b170812ab67f556e9a5a">&#9670;&#160;</a></span>I64_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I64_MAX&#160;&#160;&#160;9223372036854775807L</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum value for a 64-bit signed integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00173">173</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a0427de163db0e1a357eee973c48bdfb5" name="a0427de163db0e1a357eee973c48bdfb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0427de163db0e1a357eee973c48bdfb5">&#9670;&#160;</a></span>I64_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I64_MIN&#160;&#160;&#160;(-<a class="el" href="defines_8h.html#a5f660b55f835b170812ab67f556e9a5a">I64_MAX</a> - 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum value for a 64-bit signed integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00185">185</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a06aab1f97b965931eb9b623f9cc4952d" name="a06aab1f97b965931eb9b623f9cc4952d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06aab1f97b965931eb9b623f9cc4952d">&#9670;&#160;</a></span>I8_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I8_MAX&#160;&#160;&#160;127</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum value for an 8-bit signed integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00164">164</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a50b6c3c5a46f347eb58da649285ddaa8" name="a50b6c3c5a46f347eb58da649285ddaa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50b6c3c5a46f347eb58da649285ddaa8">&#9670;&#160;</a></span>I8_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I8_MIN&#160;&#160;&#160;(-<a class="el" href="defines_8h.html#a06aab1f97b965931eb9b623f9cc4952d">I8_MAX</a> - 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum value for an 8-bit signed integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00176">176</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a483b0a38edf0c10ef4a7cb633dc8a9fc" name="a483b0a38edf0c10ef4a7cb633dc8a9fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a483b0a38edf0c10ef4a7cb633dc8a9fc">&#9670;&#160;</a></span>INVALID_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INVALID_ID&#160;&#160;&#160;4294967295U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents an invalid 32-bit unsigned ID (max value of u32). </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00128">128</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="af184a0442a40bbe1787bb234d3a8bfae" name="af184a0442a40bbe1787bb234d3a8bfae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af184a0442a40bbe1787bb234d3a8bfae">&#9670;&#160;</a></span>INVALID_ID_U16</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INVALID_ID_U16&#160;&#160;&#160;65535U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents an invalid 16-bit unsigned ID (max value of u16). </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00134">134</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a1e761fd5d2416d048a66c671766a2212" name="a1e761fd5d2416d048a66c671766a2212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e761fd5d2416d048a66c671766a2212">&#9670;&#160;</a></span>INVALID_ID_U32</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INVALID_ID_U32&#160;&#160;&#160;<a class="el" href="defines_8h.html#a483b0a38edf0c10ef4a7cb633dc8a9fc">INVALID_ID</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents an invalid 32-bit unsigned ID (max value of u32). </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00131">131</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="ab8c9e5ae5e9214bf306f3394a32e42f7" name="ab8c9e5ae5e9214bf306f3394a32e42f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8c9e5ae5e9214bf306f3394a32e42f7">&#9670;&#160;</a></span>INVALID_ID_U64</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INVALID_ID_U64&#160;&#160;&#160;18446744073709551615UL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents an invalid 64-bit unsigned ID (max value of u64). </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00125">125</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a41fdc8d1e5968c92eb3b51a1ee1fc731" name="a41fdc8d1e5968c92eb3b51a1ee1fc731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41fdc8d1e5968c92eb3b51a1ee1fc731">&#9670;&#160;</a></span>INVALID_ID_U8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INVALID_ID_U8&#160;&#160;&#160;255U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents an invalid 8-bit unsigned ID (max value of u8). </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00137">137</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
 </div>
 </div>
@@ -347,7 +830,7 @@ DLL EXPORT/IMPORT</h1>
 </ul>
 <p>MSVC uses <code>__declspec(dllexport)</code> GCC or Clang uses <code>__attribute__((visibility("default")))</code> Using the library – import symbols MSVC uses <code>__declspec(dllimport)</code> GCC/Clang doesn't need special import </p>
 
-<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00190">190</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00274">274</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
 </div>
 </div>
@@ -395,7 +878,51 @@ DLL EXPORT/IMPORT</h1>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The clamped value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00203">203</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00295">295</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a6d2716f9382777bbbb48201373249974" name="a6d2716f9382777bbbb48201373249974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d2716f9382777bbbb48201373249974">&#9670;&#160;</a></span>KIBIBYTES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KIBIBYTES</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">amount</td><td>)</td>
+          <td>&#160;&#160;&#160;((amount) * 1024ULL)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of bytes from amount of kibibytes (KiB) (1024) </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00348">348</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="ab45c9b185ca38d7f25aa3387e881f2d4" name="ab45c9b185ca38d7f25aa3387e881f2d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab45c9b185ca38d7f25aa3387e881f2d4">&#9670;&#160;</a></span>KILOBYTES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KILOBYTES</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">amount</td><td>)</td>
+          <td>&#160;&#160;&#160;((amount) * 1000ULL)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of bytes from amount of kilobytes (KB) (1000) </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00357">357</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
 </div>
 </div>
@@ -412,7 +939,71 @@ DLL EXPORT/IMPORT</h1>
 </div><div class="memdoc">
 <p>Inlining directives. Used for performance-critical functions. Forces inlining of a function (MSVC: __forceinline). GCC or Clang: uses static inline by default. </p>
 
-<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00229">229</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00320">320</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="aa38f54712172212d6112b01f51123f0d" name="aa38f54712172212d6112b01f51123f0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa38f54712172212d6112b01f51123f0d">&#9670;&#160;</a></span>KMAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KMAX</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(x &gt; y ? x : y)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the larger of two values. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00387">387</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a8cb45394d95d76663ea4ef913732fe29" name="a8cb45394d95d76663ea4ef913732fe29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cb45394d95d76663ea4ef913732fe29">&#9670;&#160;</a></span>KMIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KMIN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;(x &lt; y ? x : y)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the smaller of two values. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00384">384</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
 </div>
 </div>
@@ -429,7 +1020,83 @@ DLL EXPORT/IMPORT</h1>
 </div><div class="memdoc">
 <p>Inlining directives. Used for performance-critical functions. Forces inlining of a function (MSVC: __forceinline). GCC or Clang: uses static inline by default. </p>
 
-<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00236">236</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00327">327</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="ac84907cd2a910dfcd456807cce1a6621" name="ac84907cd2a910dfcd456807cce1a6621"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac84907cd2a910dfcd456807cce1a6621">&#9670;&#160;</a></span>KOHI_DEBUG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KOHI_DEBUG&#160;&#160;&#160;0   /** @brief Defined as 1 in debug builds, 0 otherwise. */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00283">283</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="aa275d4e22dec543092be2a8c845da267" name="aa275d4e22dec543092be2a8c845da267"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa275d4e22dec543092be2a8c845da267">&#9670;&#160;</a></span>KOHI_RELEASE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KOHI_RELEASE&#160;&#160;&#160;1 /** @brief Defined as 1 in release builds, 0 otherwise. */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00282">282</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="af9b433687761bfc5d19c9d72b0b37d4c" name="af9b433687761bfc5d19c9d72b0b37d4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9b433687761bfc5d19c9d72b0b37d4c">&#9670;&#160;</a></span>MEBIBYTES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MEBIBYTES</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">amount</td><td>)</td>
+          <td>&#160;&#160;&#160;((amount) * 1024ULL * 1024ULL)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of bytes from amount of mebibytes (MiB) (1024*1024) </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00345">345</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a16a05dd1ee59ce4fc5aa7343bb227e97" name="a16a05dd1ee59ce4fc5aa7343bb227e97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a05dd1ee59ce4fc5aa7343bb227e97">&#9670;&#160;</a></span>MEGABYTES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MEGABYTES</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">amount</td><td>)</td>
+          <td>&#160;&#160;&#160;((amount) * 1000ULL * 1000ULL)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of bytes from amount of megabytes (MB) (1000*1000) </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00354">354</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
 </div>
 </div>
@@ -446,7 +1113,7 @@ DLL EXPORT/IMPORT</h1>
 </div><div class="memdoc">
 <p>Define STATIC_ASSERT based on compiler support. Uses C11 standard <code>_Static_assert</code> if available, otherwise falls back to a custom <code>static_assert</code> macro. </p>
 
-<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00065">65</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00081">81</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
 </div>
 </div>
@@ -463,7 +1130,151 @@ DLL EXPORT/IMPORT</h1>
 </div><div class="memdoc">
 <p>Standard boolean values </p>
 
-<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00104">104</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00120">120</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="ac580728e242e90fe3082dc7fe45ec6c9" name="ac580728e242e90fe3082dc7fe45ec6c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac580728e242e90fe3082dc7fe45ec6c9">&#9670;&#160;</a></span>U16_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U16_MAX&#160;&#160;&#160;65535U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum value for a 16-bit unsigned integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00146">146</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a80b4ee16c02644eef90553da09dc0907" name="a80b4ee16c02644eef90553da09dc0907"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80b4ee16c02644eef90553da09dc0907">&#9670;&#160;</a></span>U16_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U16_MIN&#160;&#160;&#160;0U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum value for unsigned 16 bit integers (0 for all sizes). </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00158">158</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a4028a1a55fd7b907a44c48d5ca42d6a6" name="a4028a1a55fd7b907a44c48d5ca42d6a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4028a1a55fd7b907a44c48d5ca42d6a6">&#9670;&#160;</a></span>U32_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U32_MAX&#160;&#160;&#160;4294967295U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum value for a 32-bit unsigned integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00143">143</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="ad0d6d592d964acd9de17674242bf2707" name="ad0d6d592d964acd9de17674242bf2707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0d6d592d964acd9de17674242bf2707">&#9670;&#160;</a></span>U32_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U32_MIN&#160;&#160;&#160;0U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum value for unsigned 32 bit integers (0 for all sizes). </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00155">155</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="aaf73a88ad00da5c878558d6dc80b2f5c" name="aaf73a88ad00da5c878558d6dc80b2f5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf73a88ad00da5c878558d6dc80b2f5c">&#9670;&#160;</a></span>U64_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U64_MAX&#160;&#160;&#160;18446744073709551615UL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum value for a 64-bit unsigned integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00140">140</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a361528a08635372583d48b4d6e35dfa5" name="a361528a08635372583d48b4d6e35dfa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a361528a08635372583d48b4d6e35dfa5">&#9670;&#160;</a></span>U64_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U64_MIN&#160;&#160;&#160;0UL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum value for unsigned 64 bit integers (0 for all sizes). </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00152">152</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a1187e707402ca2fca73f06f7beb1e631" name="a1187e707402ca2fca73f06f7beb1e631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1187e707402ca2fca73f06f7beb1e631">&#9670;&#160;</a></span>U8_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U8_MAX&#160;&#160;&#160;255U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum value for an 8-bit unsigned integer. </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00149">149</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+</div>
+</div>
+<a id="a50185cccc95df2269f9f4e400d1fa6ed" name="a50185cccc95df2269f9f4e400d1fa6ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50185cccc95df2269f9f4e400d1fa6ed">&#9670;&#160;</a></span>U8_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define U8_MIN&#160;&#160;&#160;0U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum value for unsigned 8 bit integers (0 for all sizes). </p>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00161">161</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
 </div>
 </div>
@@ -485,14 +1296,14 @@ DLL EXPORT/IMPORT</h1>
 
 </div>
 </div>
-<a id="a7415f24c35cb3e16a79f143c5527fdfa" name="a7415f24c35cb3e16a79f143c5527fdfa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7415f24c35cb3e16a79f143c5527fdfa">&#9670;&#160;</a></span>b8</h2>
+<a id="a3a58feb08f4f45ee137ec358217c3270" name="a3a58feb08f4f45ee137ec358217c3270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a58feb08f4f45ee137ec358217c3270">&#9670;&#160;</a></span>b8</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef char <a class="el" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a></td>
+          <td class="memname">typedef _Bool <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -604,6 +1415,38 @@ DLL EXPORT/IMPORT</h1>
 
 </div>
 </div>
+<a id="a0d37ef0b1a77903e7698337d2594035e" name="a0d37ef0b1a77903e7698337d2594035e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d37ef0b1a77903e7698337d2594035e">&#9670;&#160;</a></span>krange</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structkrange.html">krange</a> <a class="el" href="structkrange.html">krange</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A range, typically of memory. </p>
+
+</div>
+</div>
+<a id="a48a60b69f67a735eb885a52430192253" name="a48a60b69f67a735eb885a52430192253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48a60b69f67a735eb885a52430192253">&#9670;&#160;</a></span>range32</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structrange32.html">range32</a> <a class="el" href="structrange32.html">range32</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A range, typically of memory. </p>
+
+</div>
+</div>
 <a id="a9e6c91d77e24643b888dbd1a1a590054" name="a9e6c91d77e24643b888dbd1a1a590054"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e6c91d77e24643b888dbd1a1a590054">&#9670;&#160;</a></span>u16</h2>
 
@@ -673,6 +1516,97 @@ DLL EXPORT/IMPORT</h1>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="abf0b958d00fe41b2f3b02d9ed263f780" name="abf0b958d00fe41b2f3b02d9ed263f780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf0b958d00fe41b2f3b02d9ed263f780">&#9670;&#160;</a></span>get_aligned()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#ab4d0d8cdc3aafc511f63fecffd1806c9">KINLINE</a> <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> get_aligned </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td>
+          <td class="paramname"><em>operand</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td>
+          <td class="paramname"><em>granularity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aligns a value to the nearest multiple of a granularity. Useful for memory alignment (e.g., Vulkan buffers). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">operand</td><td>The value to align. </td></tr>
+    <tr><td class="paramname">granularity</td><td>The alignment boundary (must be power of 2). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The aligned value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00367">367</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="defines_8h_source.html#l00379">get_aligned_range()</a>.</p>
+
+</div>
+</div>
+<a id="a2f99ca6366e01a8ead4227cecbb8b67f" name="a2f99ca6366e01a8ead4227cecbb8b67f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f99ca6366e01a8ead4227cecbb8b67f">&#9670;&#160;</a></span>get_aligned_range()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#ab4d0d8cdc3aafc511f63fecffd1806c9">KINLINE</a> <a class="el" href="structkrange.html">krange</a> get_aligned_range </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td>
+          <td class="paramname"><em>granularity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aligns both the offset and size of a memory range to a granularity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>The starting offset to align. </td></tr>
+    <tr><td class="paramname">size</td><td>The size to align. </td></tr>
+    <tr><td class="paramname">granularity</td><td>The alignment boundary (must be power of 2). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An aligned krange. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="defines_8h_source.html#l00379">379</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00367">get_aligned()</a>.</p>
+
+</div>
+</div>
 <a id="a9864ac51060117e5bfbb49a4a211c41b" name="a9864ac51060117e5bfbb49a4a211c41b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9864ac51060117e5bfbb49a4a211c41b">&#9670;&#160;</a></span>STATIC_ASSERT() <span class="overload">[1/10]</span></h2>
 
@@ -966,7 +1900,7 @@ DLL EXPORT/IMPORT</h1>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 27 2025 14:39:23 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

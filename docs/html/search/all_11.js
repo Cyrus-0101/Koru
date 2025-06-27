@@ -12,7 +12,11 @@ var searchData=
   ['game_5ftypes_2eh_9',['game_types.h',['../game__types_8h.html',1,'']]],
   ['game_5fupdate_10',['game_update',['../game_8c.html#a1a612ae5a139848e80e1f7ddec49fdcf',1,'game_update(game *game_inst, f32 delta_time):&#160;game.c'],['../game_8h.html#a1a612ae5a139848e80e1f7ddec49fdcf',1,'game_update(game *game_inst, f32 delta_time):&#160;game.c']]],
   ['get_20queues_11',['5. ⏱ Get Queues',['../index.html#autotoc_md47',1,'']]],
-  ['get_5fmemory_5fusage_5fstr_12',['get_memory_usage_str',['../kmemory_8c.html#a952570f1b67855783413d2a0d4b0503a',1,'get_memory_usage_str():&#160;kmemory.c'],['../kmemory_8h.html#afab51208fe57736ae8ff62918c8c3e69',1,'get_memory_usage_str():&#160;kmemory.c']]],
-  ['graphics_13',['graphics',['../structvulkan__physical__device__requirements.html#a0d60ecb3ea4f8cf40a7f31781785b867',1,'vulkan_physical_device_requirements']]],
-  ['graphics_5ffamily_5findex_14',['graphics_family_index',['../structvulkan__physical__device__queue__family__info.html#a3e0af6aee700c3bfa0c29b971272154d',1,'vulkan_physical_device_queue_family_info']]]
+  ['get_5faligned_12',['get_aligned',['../defines_8h.html#abf0b958d00fe41b2f3b02d9ed263f780',1,'defines.h']]],
+  ['get_5faligned_5frange_13',['get_aligned_range',['../defines_8h.html#a2f99ca6366e01a8ead4227cecbb8b67f',1,'defines.h']]],
+  ['get_5fmemory_5fusage_5fstr_14',['get_memory_usage_str',['../kmemory_8c.html#a952570f1b67855783413d2a0d4b0503a',1,'get_memory_usage_str():&#160;kmemory.c'],['../kmemory_8h.html#afab51208fe57736ae8ff62918c8c3e69',1,'get_memory_usage_str():&#160;kmemory.c']]],
+  ['gibibytes_15',['GIBIBYTES',['../defines_8h.html#acb39342a6d484da1ffc0ac4893309be4',1,'defines.h']]],
+  ['gigabytes_16',['GIGABYTES',['../defines_8h.html#a19138fcdc83c10d33f2c076344ca7686',1,'defines.h']]],
+  ['graphics_17',['graphics',['../structvulkan__physical__device__requirements.html#a0d60ecb3ea4f8cf40a7f31781785b867',1,'vulkan_physical_device_requirements']]],
+  ['graphics_5ffamily_5findex_18',['graphics_family_index',['../structvulkan__physical__device__queue__family__info.html#a3e0af6aee700c3bfa0c29b971272154d',1,'vulkan_physical_device_queue_family_info']]]
 ];
