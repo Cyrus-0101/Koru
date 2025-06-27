@@ -45,3 +45,23 @@ KAPI char* string_duplicate(const char* str);
  * @return True if both strings are identical; False otherwise.
  */
 KAPI b8 strings_equal(const char* str0, const char* str1);
+
+/**
+ * @brief Performs string formatting against the given format string and parameters.
+ * NOTE: that this performs a dynamic allocation and should be freed by the caller.
+ *
+ * @param format The format string to use for the operation
+ * @param ... The format arguments.
+ * @returns The newly-formatted string (dynamically allocated).
+ */
+KAPI i32 string_format(char* dest, const char* format, ...);
+
+/**
+ * @brief Performs variadic string formatting against the given format string and va_list.
+ * NOTE: that this performs a dynamic allocation and should be freed by the caller.
+ *
+ * @param format The string to be formatted.
+ * @param va_list The variadic argument list.
+ * @returns The newly-formatted string (dynamically allocated).
+ */
+KAPI i32 string_format_v(char* dest, const char* format, void* va_list);
