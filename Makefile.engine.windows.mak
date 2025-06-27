@@ -57,8 +57,16 @@ OBJ_FILES := $(SRC_FILES:%=$(OBJ_DIR)/%.o)
 # Compiles each .c file into a .o object in obj/
 
 # Targets
-all: scaffold compile link
-# Default target — runs scaffold, compile, and link
+all: log-start scaffold compile link log-finish
+# Default target — runs log start time, scaffold, compile, link and log finish time
+
+.PHONY: log-start
+log-start: # Logs build start time (EAT)
+	@echo "===== Build started at $$(TZ=Africa/Nairobi date +'%Y-%m-%d %H:%M:%S.%3N %Z') ====="
+
+.PHONY: log-finish
+log-finish: # Logs build finish time (EAT)
+	@echo "===== Build finished at $$(TZ=Africa/Nairobi date +'%Y-%m-%d %H:%M:%S.%3N %Z') ====="
 
 .PHONY: scaffold
 scaffold: # Creates folder structure needed for compilation
