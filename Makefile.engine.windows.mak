@@ -14,7 +14,7 @@ ASSEMBLY := engine
 EXTENSION := .dll
 
 # Compiler flags
-COMPILER_FLAGS := -g -fdeclspec -fPIC
+COMPILER_FLAGS := -g -MD -Werror=vla -fdeclspec -fPIC
 # -g             : Enable debugging symbols
 # -fdeclspec     : Allow __declspec(dllexport/dllimport) usage
 # -fPIC          : Position Independent Code (needed for DLLs even though Windows doesn't enforce it)
