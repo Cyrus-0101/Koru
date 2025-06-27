@@ -7,6 +7,8 @@
 #include <stdarg.h>  // for variable argument lists (va_list)
 // #include <unistd.h>  // for isatty() - seeing if terminal supports colour
 
+#define MSG_LENGTH 32000
+
 /**
  * @file logger.c
  * @brief Implementation of the logging system.
@@ -63,9 +65,8 @@ void log_output(log_level level, const char* message, ...) {
 
     // RISKY Code since we are avoding memory allocation which is slow
     // It technically imposes a 32k character limit on a single log entry, this SHOULD NOT HAPPEN
-    const i32 msg_length = 32000;
     // Buffer for the formatted message. Large buffer to avoid malloc.
-    char out_message[msg_length];
+    char out_message[MSG_LENGTH];
     memset(out_message, 0, sizeof(out_message));
 
     // Format original message.
@@ -84,7 +85,7 @@ void log_output(log_level level, const char* message, ...) {
     va_end(arg_ptr);
 
     // Final buffer with level prefix added
-    char out_message2[msg_length];
+    char out_message2[MSG_LENGTH];
     sprintf(out_message2, "%s%s%s%s\n", level_colors[level], level_strings[level], out_message, level_reset);
 
     // Platform Specific Output
