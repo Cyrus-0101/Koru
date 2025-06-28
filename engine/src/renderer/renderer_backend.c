@@ -22,10 +22,7 @@
  * @param out_renderer_backend A pointer to a renderer_backend structure to populate.
  * @return True if the backend was successfully created; otherwise False.
  */
-b8 renderer_backend_create(renderer_backend_type type, struct platform_state* plat_state, renderer_backend* out_renderer_backend) {
-    // Store the platform state in the backend for later use
-    out_renderer_backend->plat_state = plat_state;
-
+b8 renderer_backend_create(renderer_backend_type type, renderer_backend* out_renderer_backend) {
     // Assign function pointers based on the requested backend type
     if (type == RENDERER_BACKEND_TYPE_VULKAN) {
         out_renderer_backend->initialize = vulkan_renderer_backend_initialize;
