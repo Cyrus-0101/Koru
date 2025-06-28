@@ -13,16 +13,22 @@
  * It manages initialization, frame lifecycle, and drawing operations using a render packet.
  */
 
-// Forward declaration for platform state
-struct platform_state;
-
 /**
- * @brief A pointer to the active renderer backend instance.
+ * @struct renderer_system_state
  *
- * This is set during initialization and used throughout the lifetime of the application
- * to dispatch rendering commands to the appropriate backend.
+ * @brief Represents the state of the rendering system.
+ *
+ * Contains the current rendering backend and its associated state.
  */
-static renderer_backend* backend = 0;
+typedef struct renderer_system_state {
+    /**
+     * @brief Pointer to the platform-specific state.
+     */
+    renderer_backend backend;
+} renderer_system_state;
+
+// Global pointer to the renderer backend instance
+static renderer_system_state* state_ptr;
 
 /**
  * @brief Initializes the rendering system.
@@ -34,21 +40,20 @@ static renderer_backend* backend = 0;
  * @param plat_state A pointer to the platform-specific state.
  * @return True if initialization was successful; otherwise False.
  */
-b8 renderer_initialize(const char* application_name, struct platform_state* plat_state) {
-    // Allocate memory for the backend structure
-    backend = kallocate(sizeof(renderer_backend), MEMORY_TAG_RENDERER);
-
-    // TODO: Make backend type configurable via config or runtime settings
-    if (!renderer_backend_create(RENDERER_BACKEND_TYPE_VULKAN, plat_state, backend)) {
-        KFATAL("Failed to create renderer backend.");
-        return False;
+b8 renderer_system_initialize(u64* memory_requirement, void* state, const char* application_name) {
+    *memory_requirement = sizeof(renderer_system_state);
+    if (state == 0) {
+        return True;  // No state provided, nothing to initialize
     }
 
+    state_ptr = state;
+    // TODO: Make backend type configurable via config or runtime settings
+    renderer_backend_create(RENDERER_BACKEND_TYPE_VULKAN, &state_ptr->backend);
     // Initialize the frame counter
-    backend->frame_number = 0;
+    state_ptr->backend.frame_number = 0;
 
     // Call the backend's initialization routine
-    if (!backend->initialize(backend, application_name, plat_state)) {
+    if (!state_ptr->backend.initialize(&state_ptr->backend, application_name)) {
         KFATAL("Renderer backend failed to initialize. Shutting down.");
         return False;
     }
@@ -61,12 +66,12 @@ b8 renderer_initialize(const char* application_name, struct platform_state* plat
  *
  * Calls the backend's shutdown routine and frees allocated resources.
  */
-void renderer_shutdown() {
-    // Call the backend's shutdown function
-    backend->shutdown(backend);
+void renderer_system_shutdown(void* state) {
+    if (state_ptr) {
+        state_ptr->backend.shutdown(&state_ptr->backend);
+    }
 
-    // Free the backend memory
-    kfree(backend, sizeof(renderer_backend), MEMORY_TAG_RENDERER);
+    state_ptr = 0;
 }
 
 /**
@@ -79,7 +84,11 @@ void renderer_shutdown() {
  * @return True if the frame was successfully started; otherwise False.
  */
 b8 renderer_begin_frame(f32 delta_time) {
-    return backend->begin_frame(backend, delta_time);
+    if (!state_ptr) {
+        return False;
+    }
+
+    return state_ptr->backend.begin_frame(&state_ptr->backend, delta_time);
 }
 
 /**
@@ -92,14 +101,18 @@ b8 renderer_begin_frame(f32 delta_time) {
  * @return True if the frame was successfully ended; otherwise False.
  */
 b8 renderer_end_frame(f32 delta_time) {
-    b8 result = backend->end_frame(backend, delta_time);
-    backend->frame_number++; // Increment frame number after end of frame
+    if (!state_ptr) {
+        return False;
+    }
+
+    b8 result = state_ptr->backend.end_frame(&state_ptr->backend, delta_time);
+    state_ptr->backend.frame_number++;  // Increment frame number after end of frame
     return result;
 }
 
-void renderer_on_resized(u16 width, u16 height) {   
-    if (backend) {
-        backend->resized(backend, width, height);
+void renderer_on_resized(u16 width, u16 height) {
+    if (state_ptr) {
+        state_ptr->backend.resized(&state_ptr->backend, width, height);
     } else {
         KWARN("Renderer backend does not exist to accept resize: %i %i", width, height);
     }
