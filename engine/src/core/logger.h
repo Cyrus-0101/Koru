@@ -101,16 +101,19 @@ typedef enum log_level {
 } log_level;
 
 /**
- * @brief Initializes the logging system.
+ * @brief Initializes the logging system. Called twice; once with state = 0 to get required memory size
+ * then a second time passing allocated memory to the state.
  *
- * Currently just returns True. In future versions, this may include:
- * - Opening a log file
- * - Initializing mutexes for thread safety
- * - Detecting terminal capabilities
  *
- * @return True if initialization succeeded; False otherwise.
+ * Allocates necessary resources and prepares the logging subsystem.
+ * This function should be called before any logging occurs.
+ *
+ * @param memory_requirement Pointer to store the required memory size for the logging system.
+ * @param state Pointer to a pre-allocated memory block for the logger state.
+ *              If NULL, no state is initialized.
+ * @return True if initialization was successful; False otherwise.
  */
-b8 initialize_logging();
+b8 initialize_logging(u64* memory_requirement, void* state);
 
 /**
  * @brief Shuts down the logging system.
@@ -120,7 +123,7 @@ b8 initialize_logging();
  * - Closing log files
  * - Releasing logging resources
  */
-void shutdown_logging();
+void shutdown_logging(void* state);
 
 /**
  * @brief Logs a formatted message at the specified log level.
