@@ -82,6 +82,8 @@ $(function() {
 <p>Implementation of the testbed game logic.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="game_8h_source.html">game.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="input_8h_source.html">core/input.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="kmemory_8h_source.html">core/kmemory.h</a>&quot;</code><br />
 <code>#include &lt;<a class="el" href="logger_8h_source.html">core/logger.h</a>&gt;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for game.c:</div>
@@ -90,19 +92,25 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="game_8c__incl.png" border="0" usemap="#atestbed_2src_2game_8c" alt=""/></div>
 <map name="atestbed_2src_2game_8c" id="atestbed_2src_2game_8c">
-<area shape="rect" title="Implementation of the testbed game logic." alt="" coords="52,5,198,31"/>
-<area shape="rect" href="game_8h.html" title="Interface for the testbed game implementation." alt="" coords="54,79,124,104"/>
-<area shape="poly" title=" " alt="" coords="122,32,104,68,99,65,117,30"/>
-<area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="170,152,277,177"/>
-<area shape="poly" title=" " alt="" coords="135,30,210,139,206,142,131,33"/>
-<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="60,299,142,324"/>
-<area shape="poly" title=" " alt="" coords="69,106,43,126,22,153,12,179,8,202,11,224,22,249,40,272,64,290,61,294,36,276,17,252,6,225,3,202,7,178,17,151,39,122,66,102"/>
-<area shape="rect" href="game__types_8h.html" title="Game&#45;related types and structures used across the engine." alt="" coords="32,152,146,177"/>
-<area shape="poly" title=" " alt="" coords="92,104,92,138,86,138,86,104"/>
-<area shape="rect" href="application_8h.html" title="Public interface for the core application system." alt="" coords="32,225,170,251"/>
-<area shape="poly" title=" " alt="" coords="94,177,100,211,94,212,88,178"/>
-<area shape="poly" title=" " alt="" coords="104,251,104,285,98,285,98,251"/>
-<area shape="poly" title=" " alt="" coords="223,178,209,213,185,252,161,275,135,294,132,289,157,271,180,249,204,211,218,176"/>
+<area shape="rect" title="Implementation of the testbed game logic." alt="" coords="211,5,358,31"/>
+<area shape="rect" href="game_8h.html" title="Interface for the testbed game implementation." alt="" coords="58,79,129,104"/>
+<area shape="poly" title=" " alt="" coords="255,33,139,76,137,71,253,28"/>
+<area shape="rect" href="input_8h.html" title="Input system interface for handling keyboard and mouse events." alt="" coords="175,152,274,177"/>
+<area shape="poly" title=" " alt="" coords="282,32,237,140,232,138,277,30"/>
+<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="248,225,374,251"/>
+<area shape="poly" title=" " alt="" coords="288,31,310,211,305,211,283,31"/>
+<area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="354,79,460,104"/>
+<area shape="poly" title=" " alt="" coords="305,28,377,69,374,74,303,33"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="169,299,250,324"/>
+<area shape="poly" title=" " alt="" coords="74,106,48,126,27,153,15,180,9,203,11,225,24,249,51,275,84,291,120,302,155,307,155,312,119,307,82,296,48,279,20,252,6,227,3,203,10,178,22,151,44,122,71,102"/>
+<area shape="rect" href="game__types_8h.html" title="Game&#45;related types and structures used across the engine." alt="" coords="36,152,151,177"/>
+<area shape="poly" title=" " alt="" coords="96,104,96,138,91,138,91,104"/>
+<area shape="rect" href="application_8h.html" title="Public interface for the core application system." alt="" coords="34,225,172,251"/>
+<area shape="poly" title=" " alt="" coords="98,177,102,211,97,212,93,178"/>
+<area shape="poly" title=" " alt="" coords="122,248,182,289,179,293,119,253"/>
+<area shape="poly" title=" " alt="" coords="226,178,215,285,210,285,220,178"/>
+<area shape="poly" title=" " alt="" coords="296,253,239,293,236,288,293,248"/>
+<area shape="poly" title=" " alt="" coords="412,104,415,133,415,172,408,214,400,234,388,252,361,276,330,292,296,303,264,309,263,304,295,298,328,287,358,272,384,249,395,232,403,213,410,172,410,133,406,104"/>
 </map>
 </div>
 </div>
@@ -166,9 +174,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if initialization succeeded; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00029">29</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00031">31</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8h_source.html#l00210">KDEBUG</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8c_source.html#l00020">create_game()</a>.</p>
 
@@ -222,7 +230,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00078">78</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00089">89</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8c_source.html#l00020">create_game()</a>.</p>
 
@@ -270,7 +278,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if rendering succeeded; False on unrecoverable error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00062">62</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00073">73</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 <p class="reference">References <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
@@ -320,9 +328,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if update succeeded; False to request application exit. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00046">46</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00048">48</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="kmemory_8c_source.html#l00244">get_memory_alloc_count()</a>, <a class="el" href="input_8c_source.html#l00241">input_is_key_down()</a>, <a class="el" href="input_8c_source.html#l00284">input_was_key_up()</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8c_source.html#l00020">create_game()</a>.</p>
 
@@ -331,7 +339,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 19:11:02 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

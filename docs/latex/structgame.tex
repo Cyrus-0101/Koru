@@ -32,7 +32,9 @@ Collaboration diagram for game\+:\nopagebreak
 void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgame_a320793f814af5f889a43b7ab25d75b67}{on\+\_\+resize}} )(struct \mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} width, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} height)
 \begin{DoxyCompactList}\small\item\em Function pointer to handle window resizing. \end{DoxyCompactList}\item 
 void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgame_aa77684f4c43b2aafcaa57421159f5d03}{state}}
-\begin{DoxyCompactList}\small\item\em Pointer to game-\/specific state data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pointer to game-\/specific state data. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgame_abbde50654ea1c9e81c5eb9611b0dc7ee}{application\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Pointer to application-\/specific state data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -61,7 +63,25 @@ Definition at line \mbox{\hyperlink{game__types_8h_source_l00029}{29}} of file \
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+create()}}, and \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}, and \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
+
+\Hypertarget{structgame_abbde50654ea1c9e81c5eb9611b0dc7ee}\label{structgame_abbde50654ea1c9e81c5eb9611b0dc7ee} 
+\index{game@{game}!application\_state@{application\_state}}
+\index{application\_state@{application\_state}!game@{game}}
+\doxysubsubsection{\texorpdfstring{application\_state}{application\_state}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} game\+::application\+\_\+state}
+
+
+
+Pointer to application-\/specific state data. 
+
+This can be used to store data that needs to persist 
+
+Definition at line \mbox{\hyperlink{game__types_8h_source_l00071}{71}} of file \mbox{\hyperlink{game__types_8h_source}{game\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}, and \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
 
 \Hypertarget{structgame_a5466af7e15d158c9a30a2c733514bc13}\label{structgame_a5466af7e15d158c9a30a2c733514bc13} 
 \index{game@{game}!initialize@{initialize}}
@@ -79,7 +99,7 @@ Definition at line \mbox{\hyperlink{game__types_8h_source_l00036}{36}} of file \
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+create()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00050}{main()}}.
 
 \Hypertarget{structgame_a320793f814af5f889a43b7ab25d75b67}\label{structgame_a320793f814af5f889a43b7ab25d75b67} 
 \index{game@{game}!on\_resize@{on\_resize}}
@@ -97,7 +117,7 @@ Definition at line \mbox{\hyperlink{game__types_8h_source_l00057}{57}} of file \
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00346}{application\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00417}{application\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00050}{main()}}.
 
 \Hypertarget{structgame_ac2c261fc48169dc53096929654c51bfe}\label{structgame_ac2c261fc48169dc53096929654c51bfe} 
 \index{game@{game}!render@{render}}
@@ -115,7 +135,7 @@ Definition at line \mbox{\hyperlink{game__types_8h_source_l00050}{50}} of file \
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00050}{main()}}.
 
 \Hypertarget{structgame_aa77684f4c43b2aafcaa57421159f5d03}\label{structgame_aa77684f4c43b2aafcaa57421159f5d03} 
 \index{game@{game}!state@{state}}
@@ -151,7 +171,7 @@ Definition at line \mbox{\hyperlink{game__types_8h_source_l00043}{43}} of file \
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, and \mbox{\hyperlink{entry_8h_source_l00050}{main()}}.
 
 
 

@@ -17,7 +17,7 @@ var searchData=
   ['listener_14',['listener',['../structregistered__event.html#a8baaf13de842035b82f17465e592fe19',1,'registered_event']]],
   ['log_5fdebug_5fenabled_15',['LOG_DEBUG_ENABLED',['../logger_8h.html#aebce09616e526858093c3252925bffe2',1,'logger.h']]],
   ['log_5finfo_5fenabled_16',['LOG_INFO_ENABLED',['../logger_8h.html#a4690d76db76927ae412ba4860e008b16',1,'logger.h']]],
-  ['log_5flevel_17',['log_level',['../logger_8h.html#a073554067a9aac1790a5744efd4c22c6',1,'log_level:&#160;logger.h'],['../logger_8h.html#ac91d55174d383848b976a34de843748e',1,'log_level:&#160;logger.h']]],
+  ['log_5flevel_17',['log_level',['../logger_8h.html#ac91d55174d383848b976a34de843748e',1,'log_level:&#160;logger.h'],['../logger_8h.html#a073554067a9aac1790a5744efd4c22c6',1,'log_level:&#160;logger.h']]],
   ['log_5flevel_5fdebug_18',['LOG_LEVEL_DEBUG',['../logger_8h.html#ac91d55174d383848b976a34de843748ea538b2b6e011479d408ecd2be0f6d6177',1,'logger.h']]],
   ['log_5flevel_5ferror_19',['LOG_LEVEL_ERROR',['../logger_8h.html#ac91d55174d383848b976a34de843748ea5b40f003febbc3b535649d63f4b8a44f',1,'logger.h']]],
   ['log_5flevel_5ffatal_20',['LOG_LEVEL_FATAL',['../logger_8h.html#ac91d55174d383848b976a34de843748ea779dc8dd26898fb0f88cd5f6e02ba1e5',1,'logger.h']]],
@@ -29,5 +29,8 @@ var searchData=
   ['log_5fwarn_5fenabled_26',['LOG_WARN_ENABLED',['../logger_8h.html#a2613df29c73e9a080ac48d350321f2aa',1,'logger.h']]],
   ['logger_2ec_27',['logger.c',['../logger_8c.html',1,'']]],
   ['logger_2eh_28',['logger.h',['../logger_8h.html',1,'']]],
-  ['logical_20device_29',['4. 🔄 Create Logical Device',['../index.html#autotoc_md45',1,'']]]
+  ['logger_5fsystem_5fstate_29',['logger_system_state',['../structlogger__system__state.html',1,'logger_system_state'],['../logger_8c.html#ae29328f40e5eace9aeffeebfc1b93c09',1,'logger_system_state:&#160;logger.c']]],
+  ['logging_5fsystem_5fmemory_5frequirement_30',['logging_system_memory_requirement',['../structapplication__state.html#a7f3de38a5a5c937b28bce6620ebe8c48',1,'application_state']]],
+  ['logging_5fsystem_5fstate_31',['logging_system_state',['../structapplication__state.html#aca514d3246b5d5a1973c29df11550ea1',1,'application_state']]],
+  ['logical_20device_32',['4. 🔄 Create Logical Device',['../index.html#autotoc_md45',1,'']]]
 ];

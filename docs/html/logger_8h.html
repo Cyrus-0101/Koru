@@ -202,12 +202,12 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aae701ec9fd1cbb624f28156730027305" id="r_aae701ec9fd1cbb624f28156730027305"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8h.html#aae701ec9fd1cbb624f28156730027305">initialize_logging</a> ()</td></tr>
-<tr class="memdesc:aae701ec9fd1cbb624f28156730027305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the logging system.  <br /></td></tr>
-<tr class="separator:aae701ec9fd1cbb624f28156730027305"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a811866002a3bf25ead26b47687cfccdf" id="r_a811866002a3bf25ead26b47687cfccdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8h.html#a811866002a3bf25ead26b47687cfccdf">shutdown_logging</a> ()</td></tr>
-<tr class="memdesc:a811866002a3bf25ead26b47687cfccdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the logging system.  <br /></td></tr>
-<tr class="separator:a811866002a3bf25ead26b47687cfccdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a124a9e558949da0e8f11f6929992a5c8" id="r_a124a9e558949da0e8f11f6929992a5c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8h.html#a124a9e558949da0e8f11f6929992a5c8">initialize_logging</a> (<a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *memory_requirement, void *state)</td></tr>
+<tr class="memdesc:a124a9e558949da0e8f11f6929992a5c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the logging system. Called twice; once with state = 0 to get required memory size then a second time passing allocated memory to the state.  <br /></td></tr>
+<tr class="separator:a124a9e558949da0e8f11f6929992a5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa19340b3c2c2f8f90a5c40d08b7919c7" id="r_aa19340b3c2c2f8f90a5c40d08b7919c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8h.html#aa19340b3c2c2f8f90a5c40d08b7919c7">shutdown_logging</a> (void *state)</td></tr>
+<tr class="memdesc:aa19340b3c2c2f8f90a5c40d08b7919c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the logging system.  <br /></td></tr>
+<tr class="separator:aa19340b3c2c2f8f90a5c40d08b7919c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c968c3f536c566594a9fd2d14dfedfc" id="r_a0c968c3f536c566594a9fd2d14dfedfc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8h.html#a0c968c3f536c566594a9fd2d14dfedfc">log_output</a> (<a class="el" href="logger_8h.html#ac91d55174d383848b976a34de843748e">log_level</a> level, const char *message,...)</td></tr>
 <tr class="memdesc:a0c968c3f536c566594a9fd2d14dfedfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a formatted message at the specified log level.  <br /></td></tr>
 <tr class="separator:a0c968c3f536c566594a9fd2d14dfedfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,9 +253,9 @@ Functions</h2></td></tr>
 <p>Logs a debug-level message. </p>
 <p>Used for developer diagnostics.</p>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code hl_define" href="logger_8h.html#a23768ad708f2a648844bd09e15e52d1c">KDEBUG</a>(<span class="stringliteral">&quot;Function called with value: %d&quot;</span>, x);</div>
-<div class="ttc" id="alogger_8h_html_a23768ad708f2a648844bd09e15e52d1c"><div class="ttname"><a href="logger_8h.html#a23768ad708f2a648844bd09e15e52d1c">KDEBUG</a></div><div class="ttdeci">#define KDEBUG(message,...)</div><div class="ttdoc">Logs a debug-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00210">logger.h:210</a></div></div>
+<div class="ttc" id="alogger_8h_html_a23768ad708f2a648844bd09e15e52d1c"><div class="ttname"><a href="logger_8h.html#a23768ad708f2a648844bd09e15e52d1c">KDEBUG</a></div><div class="ttdeci">#define KDEBUG(message,...)</div><div class="ttdoc">Logs a debug-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00213">logger.h:213</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00210">210</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00213">213</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -288,9 +288,9 @@ Functions</h2></td></tr>
 <p>Logs an error-level message. </p>
 <p>Used for recoverable errors.</p>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;Asset failed to load: %s&quot;</span>, asset_name);</div>
-<div class="ttc" id="alogger_8h_html_a473bb2cc3b3bf3c93084eeca6cb19132"><div class="ttname"><a href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a></div><div class="ttdeci">#define KERROR(message,...)</div><div class="ttdoc">Logs an error-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00162">logger.h:162</a></div></div>
+<div class="ttc" id="alogger_8h_html_a473bb2cc3b3bf3c93084eeca6cb19132"><div class="ttname"><a href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a></div><div class="ttdeci">#define KERROR(message,...)</div><div class="ttdoc">Logs an error-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00165">logger.h:165</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00162">162</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00165">165</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -323,9 +323,9 @@ Functions</h2></td></tr>
 <p>Logs a fatal-level message. </p>
 <p>Used for unrecoverable errors. Always displayed.</p>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Out of memory!&quot;</span>);</div>
-<div class="ttc" id="alogger_8h_html_a8eb60bd7b3dfc5cadc7364b06ce7bd07"><div class="ttname"><a href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a></div><div class="ttdeci">#define KFATAL(message,...)</div><div class="ttdoc">Logs a fatal-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00149">logger.h:149</a></div></div>
+<div class="ttc" id="alogger_8h_html_a8eb60bd7b3dfc5cadc7364b06ce7bd07"><div class="ttname"><a href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a></div><div class="ttdeci">#define KFATAL(message,...)</div><div class="ttdoc">Logs a fatal-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00152">logger.h:152</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00149">149</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00152">152</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -358,9 +358,9 @@ Functions</h2></td></tr>
 <p>Logs an info-level message. </p>
 <p>Used for general status updates.</p>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code hl_define" href="logger_8h.html#aaa79d2f465f4712163343e3d3052a200">KINFO</a>(<span class="stringliteral">&quot;Engine started successfully.&quot;</span>);</div>
-<div class="ttc" id="alogger_8h_html_aaa79d2f465f4712163343e3d3052a200"><div class="ttname"><a href="logger_8h.html#aaa79d2f465f4712163343e3d3052a200">KINFO</a></div><div class="ttdeci">#define KINFO(message,...)</div><div class="ttdoc">Logs an info-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00193">logger.h:193</a></div></div>
+<div class="ttc" id="alogger_8h_html_aaa79d2f465f4712163343e3d3052a200"><div class="ttname"><a href="logger_8h.html#aaa79d2f465f4712163343e3d3052a200">KINFO</a></div><div class="ttdeci">#define KINFO(message,...)</div><div class="ttdoc">Logs an info-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00196">logger.h:196</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00193">193</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00196">196</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -393,9 +393,9 @@ Functions</h2></td></tr>
 <p>Logs a trace-level message. </p>
 <p>Most verbose level; used for detailed debugging.</p>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code hl_define" href="logger_8h.html#a1871a1767ecd70d973893d36176a697f">KTRACE</a>(<span class="stringliteral">&quot;Frame delta time: %f&quot;</span>, dt);</div>
-<div class="ttc" id="alogger_8h_html_a1871a1767ecd70d973893d36176a697f"><div class="ttname"><a href="logger_8h.html#a1871a1767ecd70d973893d36176a697f">KTRACE</a></div><div class="ttdeci">#define KTRACE(message,...)</div><div class="ttdoc">Logs a trace-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00227">logger.h:227</a></div></div>
+<div class="ttc" id="alogger_8h_html_a1871a1767ecd70d973893d36176a697f"><div class="ttname"><a href="logger_8h.html#a1871a1767ecd70d973893d36176a697f">KTRACE</a></div><div class="ttdeci">#define KTRACE(message,...)</div><div class="ttdoc">Logs a trace-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00230">logger.h:230</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00227">227</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00230">230</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -428,9 +428,9 @@ Functions</h2></td></tr>
 <p>Logs a warning-level message. </p>
 <p>Used for non-critical issues.</p>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code hl_define" href="logger_8h.html#a3e40140ad218fd4ef727b1a9009a1bea">KWARN</a>(<span class="stringliteral">&quot;Deprecated function called&quot;</span>);</div>
-<div class="ttc" id="alogger_8h_html_a3e40140ad218fd4ef727b1a9009a1bea"><div class="ttname"><a href="logger_8h.html#a3e40140ad218fd4ef727b1a9009a1bea">KWARN</a></div><div class="ttdeci">#define KWARN(message,...)</div><div class="ttdoc">Logs a warning-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00176">logger.h:176</a></div></div>
+<div class="ttc" id="alogger_8h_html_a3e40140ad218fd4ef727b1a9009a1bea"><div class="ttname"><a href="logger_8h.html#a3e40140ad218fd4ef727b1a9009a1bea">KWARN</a></div><div class="ttdeci">#define KWARN(message,...)</div><div class="ttdoc">Logs a warning-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00179">logger.h:179</a></div></div>
 </div><!-- fragment --> 
-<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00176">176</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8h_source.html#l00179">179</a> of file <a class="el" href="logger_8h_source.html">logger.h</a>.</p>
 
 </div>
 </div>
@@ -565,8 +565,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aae701ec9fd1cbb624f28156730027305" name="aae701ec9fd1cbb624f28156730027305"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae701ec9fd1cbb624f28156730027305">&#9670;&#160;</a></span>initialize_logging()</h2>
+<a id="a124a9e558949da0e8f11f6929992a5c8" name="a124a9e558949da0e8f11f6929992a5c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a124a9e558949da0e8f11f6929992a5c8">&#9670;&#160;</a></span>initialize_logging()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -574,25 +574,39 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> initialize_logging </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *&#160;</td>
+          <td class="paramname"><em>memory_requirement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the logging system. </p>
-<p>Currently just returns True. In future versions, this may include:</p><ul>
-<li>Opening a log file</li>
-<li>Initializing mutexes for thread safety</li>
-<li>Detecting terminal capabilities</li>
-</ul>
-<dl class="section return"><dt>Returns</dt><dd>True if initialization succeeded; False otherwise. </dd></dl>
+<p>Initializes the logging system. Called twice; once with state = 0 to get required memory size then a second time passing allocated memory to the state. </p>
+<p>Allocates necessary resources and prepares the logging subsystem. This function should be called before any logging occurs.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">memory_requirement</td><td>Pointer to store the required memory size for the logging system. </td></tr>
+    <tr><td class="paramname">state</td><td>Pointer to a pre-allocated memory block for the logger state. If NULL, no state is initialized. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if initialization was successful; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00031">31</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00042">42</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="logger_8c_source.html#l00035">logger_system_state::initialized</a>, <a class="el" href="logger_8c_source.html#l00038">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
 
 </div>
 </div>
@@ -643,16 +657,16 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00046">46</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00068">68</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
 <p class="reference">References <a class="el" href="logger_8h_source.html#l00078">LOG_LEVEL_WARN</a>, <a class="el" href="logger_8c_source.html#l00010">MSG_LENGTH</a>, <a class="el" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write()</a>, and <a class="el" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00100">report_assertion_failure()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00122">report_assertion_failure()</a>.</p>
 
 </div>
 </div>
-<a id="a811866002a3bf25ead26b47687cfccdf" name="a811866002a3bf25ead26b47687cfccdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a811866002a3bf25ead26b47687cfccdf">&#9670;&#160;</a></span>shutdown_logging()</h2>
+<a id="aa19340b3c2c2f8f90a5c40d08b7919c7" name="aa19340b3c2c2f8f90a5c40d08b7919c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa19340b3c2c2f8f90a5c40d08b7919c7">&#9670;&#160;</a></span>shutdown_logging()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -660,7 +674,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void shutdown_logging </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -673,14 +688,16 @@ Functions</h2></td></tr>
 <li>Releasing logging resources </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00038">38</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00058">58</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+
+<p class="reference">References <a class="el" href="logger_8c_source.html#l00038">state_ptr</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 19:11:01 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

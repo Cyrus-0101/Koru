@@ -40,44 +40,44 @@
 \DoxyCodeLine{\Hypertarget{logger_8h_source_l00100}00100\ }
 \DoxyCodeLine{\Hypertarget{logger_8h_source_l00101}\mbox{\hyperlink{logger_8h_a073554067a9aac1790a5744efd4c22c6}{00101}}\ \}\ \mbox{\hyperlink{logger_8h_ac91d55174d383848b976a34de843748e}{log\_level}};}
 \DoxyCodeLine{\Hypertarget{logger_8h_source_l00102}00102\ }
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00113}00113\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{logger_8h_aae701ec9fd1cbb624f28156730027305}{initialize\_logging}}();}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00114}00114\ }
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00123}00123\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{logger_8h_a811866002a3bf25ead26b47687cfccdf}{shutdown\_logging}}();}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00124}00124\ }
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00137}00137\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{logger_8h_a0c968c3f536c566594a9fd2d14dfedfc}{log\_output}}(\mbox{\hyperlink{logger_8h_ac91d55174d383848b976a34de843748e}{log\_level}}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ ...);}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00138}00138\ }
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00149}\mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{00149}}\ \textcolor{preprocessor}{\#define\ KFATAL(message,\ ...)\ log\_output(LOG\_LEVEL\_FATAL,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00150}00150\ }
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00151}00151\ \textcolor{preprocessor}{\#ifndef\ KERROR}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00162}\mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{00162}}\ \textcolor{preprocessor}{\#define\ KERROR(message,\ ...)\ log\_output(LOG\_LEVEL\_ERROR,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00163}00163\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00164}00164\ }
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00165}00165\ \textcolor{preprocessor}{\#if\ LOG\_WARN\_ENABLED\ ==\ 1}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00176}\mbox{\hyperlink{logger_8h_a3e40140ad218fd4ef727b1a9009a1bea}{00176}}\ \textcolor{preprocessor}{\#define\ KWARN(message,\ ...)\ log\_output(LOG\_LEVEL\_WARN,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00177}00177\ \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00178}00178\ \textcolor{comment}{//\ No-\/op\ version\ when\ warnings\ are\ disabled}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00179}00179\ \textcolor{preprocessor}{\#define\ KWARN(message,\ ...)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00180}00180\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00181}00181\ }
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00182}00182\ \textcolor{preprocessor}{\#if\ LOG\_INFO\_ENABLED\ ==\ 1}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00193}\mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{00193}}\ \textcolor{preprocessor}{\#define\ KINFO(message,\ ...)\ log\_output(LOG\_LEVEL\_INFO,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00194}00194\ \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00195}00195\ \textcolor{comment}{//\ No-\/op\ version\ when\ info\ logs\ are\ disabled}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00196}00196\ \textcolor{preprocessor}{\#define\ KINFO(message,\ ...)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00197}00197\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00198}00198\ }
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00199}00199\ \textcolor{preprocessor}{\#if\ LOG\_DEBUG\_ENABLED\ ==\ 1}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00210}\mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{00210}}\ \textcolor{preprocessor}{\#define\ KDEBUG(message,\ ...)\ log\_output(LOG\_LEVEL\_DEBUG,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00211}00211\ \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00212}00212\ \textcolor{comment}{//\ No-\/op\ version\ when\ debug\ logs\ are\ disabled}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00213}00213\ \textcolor{preprocessor}{\#define\ KDEBUG(message,\ ...)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00214}00214\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00215}00215\ }
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00216}00216\ \textcolor{preprocessor}{\#if\ LOG\_TRACE\_ENABLED\ ==\ 1}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00227}\mbox{\hyperlink{logger_8h_a1871a1767ecd70d973893d36176a697f}{00227}}\ \textcolor{preprocessor}{\#define\ KTRACE(message,\ ...)\ log\_output(LOG\_LEVEL\_TRACE,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00228}00228\ \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00229}00229\ \textcolor{comment}{//\ No-\/op\ version\ when\ trace\ logs\ are\ disabled}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00230}00230\ \textcolor{preprocessor}{\#define\ KTRACE(message,\ ...)}}
-\DoxyCodeLine{\Hypertarget{logger_8h_source_l00231}00231\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00116}00116\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{logger_8h_a124a9e558949da0e8f11f6929992a5c8}{initialize\_logging}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ memory\_requirement,\ \textcolor{keywordtype}{void}*\ state);}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00126}00126\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{logger_8h_aa19340b3c2c2f8f90a5c40d08b7919c7}{shutdown\_logging}}(\textcolor{keywordtype}{void}*\ state);}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00140}00140\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{logger_8h_a0c968c3f536c566594a9fd2d14dfedfc}{log\_output}}(\mbox{\hyperlink{logger_8h_ac91d55174d383848b976a34de843748e}{log\_level}}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ ...);}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00152}\mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{00152}}\ \textcolor{preprocessor}{\#define\ KFATAL(message,\ ...)\ log\_output(LOG\_LEVEL\_FATAL,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00154}00154\ \textcolor{preprocessor}{\#ifndef\ KERROR}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00165}\mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{00165}}\ \textcolor{preprocessor}{\#define\ KERROR(message,\ ...)\ log\_output(LOG\_LEVEL\_ERROR,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00166}00166\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00168}00168\ \textcolor{preprocessor}{\#if\ LOG\_WARN\_ENABLED\ ==\ 1}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00179}\mbox{\hyperlink{logger_8h_a3e40140ad218fd4ef727b1a9009a1bea}{00179}}\ \textcolor{preprocessor}{\#define\ KWARN(message,\ ...)\ log\_output(LOG\_LEVEL\_WARN,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00180}00180\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00181}00181\ \textcolor{comment}{//\ No-\/op\ version\ when\ warnings\ are\ disabled}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00182}00182\ \textcolor{preprocessor}{\#define\ KWARN(message,\ ...)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00183}00183\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00185}00185\ \textcolor{preprocessor}{\#if\ LOG\_INFO\_ENABLED\ ==\ 1}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00196}\mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{00196}}\ \textcolor{preprocessor}{\#define\ KINFO(message,\ ...)\ log\_output(LOG\_LEVEL\_INFO,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00197}00197\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00198}00198\ \textcolor{comment}{//\ No-\/op\ version\ when\ info\ logs\ are\ disabled}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00199}00199\ \textcolor{preprocessor}{\#define\ KINFO(message,\ ...)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00200}00200\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00202}00202\ \textcolor{preprocessor}{\#if\ LOG\_DEBUG\_ENABLED\ ==\ 1}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00213}\mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{00213}}\ \textcolor{preprocessor}{\#define\ KDEBUG(message,\ ...)\ log\_output(LOG\_LEVEL\_DEBUG,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00214}00214\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00215}00215\ \textcolor{comment}{//\ No-\/op\ version\ when\ debug\ logs\ are\ disabled}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00216}00216\ \textcolor{preprocessor}{\#define\ KDEBUG(message,\ ...)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00217}00217\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00219}00219\ \textcolor{preprocessor}{\#if\ LOG\_TRACE\_ENABLED\ ==\ 1}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00230}\mbox{\hyperlink{logger_8h_a1871a1767ecd70d973893d36176a697f}{00230}}\ \textcolor{preprocessor}{\#define\ KTRACE(message,\ ...)\ log\_output(LOG\_LEVEL\_TRACE,\ message,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00231}00231\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00232}00232\ \textcolor{comment}{//\ No-\/op\ version\ when\ trace\ logs\ are\ disabled}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00233}00233\ \textcolor{preprocessor}{\#define\ KTRACE(message,\ ...)}}
+\DoxyCodeLine{\Hypertarget{logger_8h_source_l00234}00234\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

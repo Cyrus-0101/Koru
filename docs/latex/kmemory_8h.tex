@@ -13,7 +13,8 @@ Include dependency graph for kmemory.\+h\+:\nopagebreak
 \includegraphics[width=229pt]{kmemory_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -57,9 +58,9 @@ enum \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{kmemory_8h_acd4839b23d7754212dd84e626ab2f01d}{initialize\+\_\+memory}} ()
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{kmemory_8h_a7cf8c0e8d880cf67f62f937387aefad2}{initialize\+\_\+memory}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}memory\+\_\+requirement, void \texorpdfstring{$\ast$}{*}state)
 \begin{DoxyCompactList}\small\item\em Initializes the memory allocator subsystem. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{kmemory_8h_adf99ff00dcf22ad42c38ee19fea0eb37}{shutdown\+\_\+memory}} ()
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{kmemory_8h_a154d1be94ed84fd8da3c2e709d43bbee}{shutdown\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}state)
 \begin{DoxyCompactList}\small\item\em Shuts down the memory allocator subsystem. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8h_a35f22575c2b4fcbda423b6108e352b15}{kallocate}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+tag}} tag)
 \begin{DoxyCompactList}\small\item\em Allocates memory with the given size and tag. \end{DoxyCompactList}\item 
@@ -72,7 +73,9 @@ enum \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942}{memory\+\_\+
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8h_a9b0af42158bf4d4a8db3d25d284b83f4}{kset\+\_\+memory}} (void \texorpdfstring{$\ast$}{*}dest, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} value, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
 \begin{DoxyCompactList}\small\item\em Fills a memory block with a specific byte value. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kmemory_8h_afab51208fe57736ae8ff62918c8c3e69}{get\+\_\+memory\+\_\+usage\+\_\+str}} ()
-\begin{DoxyCompactList}\small\item\em Gets a formatted string showing current memory usage per tag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets a formatted string showing current memory usage per tag. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{kmemory_8h_ae08429b1ce06f06ef75ff0eafc823887}{get\+\_\+memory\+\_\+alloc\+\_\+count}} ()
+\begin{DoxyCompactList}\small\item\em Gets the total number of memory allocations made. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -200,6 +203,33 @@ Definition at line \mbox{\hyperlink{kmemory_8h_source_l00024}{24}} of file \mbox
 
 
 \doxysubsection{Function Documentation}
+\Hypertarget{kmemory_8h_ae08429b1ce06f06ef75ff0eafc823887}\label{kmemory_8h_ae08429b1ce06f06ef75ff0eafc823887} 
+\index{kmemory.h@{kmemory.h}!get\_memory\_alloc\_count@{get\_memory\_alloc\_count}}
+\index{get\_memory\_alloc\_count@{get\_memory\_alloc\_count}!kmemory.h@{kmemory.h}}
+\doxysubsubsection{\texorpdfstring{get\_memory\_alloc\_count()}{get\_memory\_alloc\_count()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} get\+\_\+memory\+\_\+alloc\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the total number of memory allocations made. 
+
+This is useful for tracking memory usage and potential leaks.
+
+\begin{DoxyReturn}{Returns}
+The total number of allocations made since the application started. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00244}{244}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmemory_8c_source_l00079}{memory\+\_\+system\+\_\+state\+::alloc\+\_\+count}}, and \mbox{\hyperlink{kmemory_8c_source_l00083}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{game_8c_source_l00048}{game\+\_\+update()}}.
+
 \Hypertarget{kmemory_8h_afab51208fe57736ae8ff62918c8c3e69}\label{kmemory_8h_afab51208fe57736ae8ff62918c8c3e69} 
 \index{kmemory.h@{kmemory.h}!get\_memory\_usage\_str@{get\_memory\_usage\_str}}
 \index{get\_memory\_usage\_str@{get\_memory\_usage\_str}!kmemory.h@{kmemory.h}}
@@ -224,21 +254,21 @@ A heap-\/allocated string containing formatted memory usage info. Caller must fr
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00185}{185}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00206}{206}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-References \mbox{\hyperlink{kmemory_8h_source_l00080}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}, \mbox{\hyperlink{kmemory_8c_source_l00052}{memory\+\_\+tag\+\_\+strings}}, \mbox{\hyperlink{kmemory_8c_source_l00077}{stats}}, and \mbox{\hyperlink{kmemory_8c_source_l00044}{memory\+\_\+stats\+::tagged\+\_\+allocations}}.
+References \mbox{\hyperlink{kmemory_8h_source_l00080}{MEMORY\+\_\+\+TAG\+\_\+\+MAX\+\_\+\+TAGS}}, \mbox{\hyperlink{kmemory_8c_source_l00052}{memory\+\_\+tag\+\_\+strings}}, \mbox{\hyperlink{kmemory_8c_source_l00083}{state\+\_\+ptr}}, \mbox{\hyperlink{kmemory_8c_source_l00078}{memory\+\_\+system\+\_\+state\+::stats}}, and \mbox{\hyperlink{kmemory_8c_source_l00044}{memory\+\_\+stats\+::tagged\+\_\+allocations}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}.
 
-\Hypertarget{kmemory_8h_acd4839b23d7754212dd84e626ab2f01d}\label{kmemory_8h_acd4839b23d7754212dd84e626ab2f01d} 
+\Hypertarget{kmemory_8h_a7cf8c0e8d880cf67f62f937387aefad2}\label{kmemory_8h_a7cf8c0e8d880cf67f62f937387aefad2} 
 \index{kmemory.h@{kmemory.h}!initialize\_memory@{initialize\_memory}}
 \index{initialize\_memory@{initialize\_memory}!kmemory.h@{kmemory.h}}
 \doxysubsubsection{\texorpdfstring{initialize\_memory()}{initialize\_memory()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void initialize\+\_\+memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void initialize\+\_\+memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{memory\+\_\+requirement,  }\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
 
 
 
@@ -250,15 +280,15 @@ Initializes the memory allocator subsystem.
 
 Resets all counters to zero. 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00084}{84}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00090}{90}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-References \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8c_source_l00077}{stats}}.
+References \mbox{\hyperlink{kmemory_8c_source_l00079}{memory\+\_\+system\+\_\+state\+::alloc\+\_\+count}}, \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00083}{state\+\_\+ptr}}, and \mbox{\hyperlink{kmemory_8c_source_l00078}{memory\+\_\+system\+\_\+state\+::stats}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}.
 
 \Hypertarget{kmemory_8h_a35f22575c2b4fcbda423b6108e352b15}\label{kmemory_8h_a35f22575c2b4fcbda423b6108e352b15} 
 \index{kmemory.h@{kmemory.h}!kallocate@{kallocate}}
@@ -296,15 +326,15 @@ A pointer to the allocated memory block.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00106}{106}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00122}{122}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00026}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\+\_\+allocate()}}, \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00077}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00044}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00039}{memory\+\_\+stats\+::total\+\_\+allocated}}.
+References \mbox{\hyperlink{kmemory_8c_source_l00079}{memory\+\_\+system\+\_\+state\+::alloc\+\_\+count}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00026}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\+\_\+allocate()}}, \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\+\_\+zero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00083}{state\+\_\+ptr}}, \mbox{\hyperlink{kmemory_8c_source_l00078}{memory\+\_\+system\+\_\+state\+::stats}}, \mbox{\hyperlink{kmemory_8c_source_l00044}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00039}{memory\+\_\+stats\+::total\+\_\+allocated}}.
 
 
 
-Referenced by \mbox{\hyperlink{darray_8c_source_l00024}{\+\_\+darray\+\_\+create()}}, \mbox{\hyperlink{vulkan__swapchain_8c_source_l00200}{create()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, \mbox{\hyperlink{linear__allocator_8c_source_l00014}{linear\+\_\+allocator\+\_\+create()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00508}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+initialize()}}, \mbox{\hyperlink{kstring_8c_source_l00027}{string\+\_\+duplicate()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00322}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}, and \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00017}{vulkan\+\_\+framebuffer\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{darray_8c_source_l00024}{\+\_\+darray\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}, \mbox{\hyperlink{vulkan__swapchain_8c_source_l00200}{create()}}, \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}, \mbox{\hyperlink{linear__allocator_8c_source_l00014}{linear\+\_\+allocator\+\_\+create()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00508}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, \mbox{\hyperlink{kstring_8c_source_l00027}{string\+\_\+duplicate()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00322}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}, and \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00017}{vulkan\+\_\+framebuffer\+\_\+create()}}.
 
 \Hypertarget{kmemory_8h_ae88e143a36677919fee16bdf0f11bc79}\label{kmemory_8h_ae88e143a36677919fee16bdf0f11bc79} 
 \index{kmemory.h@{kmemory.h}!kcopy\_memory@{kcopy\_memory}}
@@ -344,7 +374,7 @@ Pointer to the destination memory block.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00161}{161}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00182}{182}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
@@ -352,7 +382,7 @@ References \mbox{\hyperlink{platform_8h_a15258bb22b902725b1fbf405463ed07d}{platf
 
 
 
-Referenced by \mbox{\hyperlink{darray_8c_source_l00155}{\+\_\+darray\+\_\+insert\+\_\+at()}}, \mbox{\hyperlink{darray_8c_source_l00112}{\+\_\+darray\+\_\+pop()}}, \mbox{\hyperlink{darray_8c_source_l00127}{\+\_\+darray\+\_\+pop\+\_\+at()}}, \mbox{\hyperlink{darray_8c_source_l00090}{\+\_\+darray\+\_\+push()}}, \mbox{\hyperlink{darray_8c_source_l00069}{\+\_\+darray\+\_\+resize()}}, \mbox{\hyperlink{input_8c_source_l00111}{input\+\_\+update()}}, \mbox{\hyperlink{kstring_8c_source_l00027}{string\+\_\+duplicate()}}, and \mbox{\hyperlink{kstring_8c_source_l00052}{string\+\_\+format\+\_\+v()}}.
+Referenced by \mbox{\hyperlink{darray_8c_source_l00155}{\+\_\+darray\+\_\+insert\+\_\+at()}}, \mbox{\hyperlink{darray_8c_source_l00112}{\+\_\+darray\+\_\+pop()}}, \mbox{\hyperlink{darray_8c_source_l00127}{\+\_\+darray\+\_\+pop\+\_\+at()}}, \mbox{\hyperlink{darray_8c_source_l00090}{\+\_\+darray\+\_\+push()}}, \mbox{\hyperlink{darray_8c_source_l00069}{\+\_\+darray\+\_\+resize()}}, \mbox{\hyperlink{input_8c_source_l00120}{input\+\_\+update()}}, \mbox{\hyperlink{kstring_8c_source_l00027}{string\+\_\+duplicate()}}, and \mbox{\hyperlink{kstring_8c_source_l00052}{string\+\_\+format\+\_\+v()}}.
 
 \Hypertarget{kmemory_8h_a6b55b65a2f2d473dac0d8ff4605a44fb}\label{kmemory_8h_a6b55b65a2f2d473dac0d8ff4605a44fb} 
 \index{kmemory.h@{kmemory.h}!kfree@{kfree}}
@@ -386,15 +416,15 @@ Subtracts the deallocated size from internal statistics.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00130}{130}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00149}{149}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00026}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\+\_\+free()}}, \mbox{\hyperlink{kmemory_8c_source_l00077}{stats}}, \mbox{\hyperlink{kmemory_8c_source_l00044}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00039}{memory\+\_\+stats\+::total\+\_\+allocated}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{kmemory_8h_source_l00026}{MEMORY\+\_\+\+TAG\+\_\+\+UNKNOWN}}, \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\+\_\+free()}}, \mbox{\hyperlink{kmemory_8c_source_l00083}{state\+\_\+ptr}}, \mbox{\hyperlink{kmemory_8c_source_l00078}{memory\+\_\+system\+\_\+state\+::stats}}, \mbox{\hyperlink{kmemory_8c_source_l00044}{memory\+\_\+stats\+::tagged\+\_\+allocations}}, and \mbox{\hyperlink{kmemory_8c_source_l00039}{memory\+\_\+stats\+::total\+\_\+allocated}}.
 
 
 
-Referenced by \mbox{\hyperlink{darray_8c_source_l00044}{\+\_\+darray\+\_\+destroy()}}, \mbox{\hyperlink{linear__allocator_8c_source_l00028}{linear\+\_\+allocator\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00508}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00064}{renderer\+\_\+shutdown()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00258}{vulkan\+\_\+device\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00051}{vulkan\+\_\+framebuffer\+\_\+destroy()}}.
+Referenced by \mbox{\hyperlink{darray_8c_source_l00044}{\+\_\+darray\+\_\+destroy()}}, \mbox{\hyperlink{linear__allocator_8c_source_l00028}{linear\+\_\+allocator\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00508}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00258}{vulkan\+\_\+device\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00051}{vulkan\+\_\+framebuffer\+\_\+destroy()}}.
 
 \Hypertarget{kmemory_8h_a9b0af42158bf4d4a8db3d25d284b83f4}\label{kmemory_8h_a9b0af42158bf4d4a8db3d25d284b83f4} 
 \index{kmemory.h@{kmemory.h}!kset\_memory@{kset\_memory}}
@@ -434,7 +464,7 @@ Pointer to the filled memory block.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00173}{173}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00194}{194}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
@@ -466,7 +496,7 @@ Pointer to the zeroed memory block.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00149}{149}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00170}{170}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
@@ -474,13 +504,13 @@ References \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platf
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00612}{create\+\_\+command\+\_\+buffers()}}, \mbox{\hyperlink{event_8c_source_l00076}{event\+\_\+initialize()}}, \mbox{\hyperlink{input_8c_source_l00088}{input\+\_\+initialize()}}, \mbox{\hyperlink{linear__allocator_8c_source_l00065}{linear\+\_\+allocator\+\_\+free\+\_\+all()}}, \mbox{\hyperlink{kmath_8h_source_l00866}{mat4\+\_\+identity()}}, \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00018}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00258}{vulkan\+\_\+device\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__renderpass_8c_source_l00181}{vulkan\+\_\+renderpass\+\_\+begin()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00612}{create\+\_\+command\+\_\+buffers()}}, \mbox{\hyperlink{event_8c_source_l00071}{event\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{input_8c_source_l00088}{input\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{linear__allocator_8c_source_l00065}{linear\+\_\+allocator\+\_\+free\+\_\+all()}}, \mbox{\hyperlink{kmath_8h_source_l00866}{mat4\+\_\+identity()}}, \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00018}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00258}{vulkan\+\_\+device\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__renderpass_8c_source_l00181}{vulkan\+\_\+renderpass\+\_\+begin()}}.
 
-\Hypertarget{kmemory_8h_adf99ff00dcf22ad42c38ee19fea0eb37}\label{kmemory_8h_adf99ff00dcf22ad42c38ee19fea0eb37} 
+\Hypertarget{kmemory_8h_a154d1be94ed84fd8da3c2e709d43bbee}\label{kmemory_8h_a154d1be94ed84fd8da3c2e709d43bbee} 
 \index{kmemory.h@{kmemory.h}!shutdown\_memory@{shutdown\_memory}}
 \index{shutdown\_memory@{shutdown\_memory}!kmemory.h@{kmemory.h}}
 \doxysubsubsection{\texorpdfstring{shutdown\_memory()}{shutdown\_memory()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void shutdown\+\_\+memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void shutdown\+\_\+memory (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
 
 
 
@@ -492,9 +522,13 @@ Shuts down the memory allocator subsystem.
 
 Currently does nothing but can be extended to log final usage or detect leaks. 
 
-Definition at line \mbox{\hyperlink{kmemory_8c_source_l00093}{93}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00107}{107}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{entry_8h_source_l00051}{main()}}.
+References \mbox{\hyperlink{kmemory_8c_source_l00083}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}.
 

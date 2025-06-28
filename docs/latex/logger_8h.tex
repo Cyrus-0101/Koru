@@ -64,9 +64,9 @@ enum \mbox{\hyperlink{logger_8h_ac91d55174d383848b976a34de843748e}{log\+\_\+leve
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{logger_8h_aae701ec9fd1cbb624f28156730027305}{initialize\+\_\+logging}} ()
-\begin{DoxyCompactList}\small\item\em Initializes the logging system. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{logger_8h_a811866002a3bf25ead26b47687cfccdf}{shutdown\+\_\+logging}} ()
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{logger_8h_a124a9e558949da0e8f11f6929992a5c8}{initialize\+\_\+logging}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}memory\+\_\+requirement, void \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Initializes the logging system. Called twice; once with state = 0 to get required memory size then a second time passing allocated memory to the state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{logger_8h_aa19340b3c2c2f8f90a5c40d08b7919c7}{shutdown\+\_\+logging}} (void \texorpdfstring{$\ast$}{*}state)
 \begin{DoxyCompactList}\small\item\em Shuts down the logging system. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{logger_8h_a0c968c3f536c566594a9fd2d14dfedfc}{log\+\_\+output}} (\mbox{\hyperlink{logger_8h_ac91d55174d383848b976a34de843748e}{log\+\_\+level}} level, const char \texorpdfstring{$\ast$}{*}message,...)
 \begin{DoxyCompactList}\small\item\em Logs a formatted message at the specified log level. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -109,7 +109,7 @@ Example\+:
 \end{DoxyCode}
  
 
-Definition at line \mbox{\hyperlink{logger_8h_source_l00210}{210}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
+Definition at line \mbox{\hyperlink{logger_8h_source_l00213}{213}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
 
 \Hypertarget{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}\label{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132} 
 \index{logger.h@{logger.h}!KERROR@{KERROR}}
@@ -130,7 +130,7 @@ Example\+:
 \end{DoxyCode}
  
 
-Definition at line \mbox{\hyperlink{logger_8h_source_l00162}{162}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
+Definition at line \mbox{\hyperlink{logger_8h_source_l00165}{165}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
 
 \Hypertarget{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}\label{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07} 
 \index{logger.h@{logger.h}!KFATAL@{KFATAL}}
@@ -151,7 +151,7 @@ Example\+:
 \end{DoxyCode}
  
 
-Definition at line \mbox{\hyperlink{logger_8h_source_l00149}{149}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
+Definition at line \mbox{\hyperlink{logger_8h_source_l00152}{152}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
 
 \Hypertarget{logger_8h_aaa79d2f465f4712163343e3d3052a200}\label{logger_8h_aaa79d2f465f4712163343e3d3052a200} 
 \index{logger.h@{logger.h}!KINFO@{KINFO}}
@@ -172,7 +172,7 @@ Example\+:
 \end{DoxyCode}
  
 
-Definition at line \mbox{\hyperlink{logger_8h_source_l00193}{193}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
+Definition at line \mbox{\hyperlink{logger_8h_source_l00196}{196}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
 
 \Hypertarget{logger_8h_a1871a1767ecd70d973893d36176a697f}\label{logger_8h_a1871a1767ecd70d973893d36176a697f} 
 \index{logger.h@{logger.h}!KTRACE@{KTRACE}}
@@ -193,7 +193,7 @@ Example\+:
 \end{DoxyCode}
  
 
-Definition at line \mbox{\hyperlink{logger_8h_source_l00227}{227}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
+Definition at line \mbox{\hyperlink{logger_8h_source_l00230}{230}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
 
 \Hypertarget{logger_8h_a3e40140ad218fd4ef727b1a9009a1bea}\label{logger_8h_a3e40140ad218fd4ef727b1a9009a1bea} 
 \index{logger.h@{logger.h}!KWARN@{KWARN}}
@@ -214,7 +214,7 @@ Example\+:
 \end{DoxyCode}
  
 
-Definition at line \mbox{\hyperlink{logger_8h_source_l00176}{176}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
+Definition at line \mbox{\hyperlink{logger_8h_source_l00179}{179}} of file \mbox{\hyperlink{logger_8h_source}{logger.\+h}}.
 
 \Hypertarget{logger_8h_aebce09616e526858093c3252925bffe2}\label{logger_8h_aebce09616e526858093c3252925bffe2} 
 \index{logger.h@{logger.h}!LOG\_DEBUG\_ENABLED@{LOG\_DEBUG\_ENABLED}}
@@ -331,37 +331,39 @@ Definition at line \mbox{\hyperlink{logger_8h_source_l00058}{58}} of file \mbox{
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{logger_8h_aae701ec9fd1cbb624f28156730027305}\label{logger_8h_aae701ec9fd1cbb624f28156730027305} 
+\Hypertarget{logger_8h_a124a9e558949da0e8f11f6929992a5c8}\label{logger_8h_a124a9e558949da0e8f11f6929992a5c8} 
 \index{logger.h@{logger.h}!initialize\_logging@{initialize\_logging}}
 \index{initialize\_logging@{initialize\_logging}!logger.h@{logger.h}}
 \doxysubsubsection{\texorpdfstring{initialize\_logging()}{initialize\_logging()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} initialize\+\_\+logging (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} initialize\+\_\+logging (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{memory\+\_\+requirement,  }\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
 
 
 
-Initializes the logging system. 
+Initializes the logging system. Called twice; once with state = 0 to get required memory size then a second time passing allocated memory to the state. 
 
-Currently just returns True. In future versions, this may include\+:
-\begin{DoxyItemize}
-\item Opening a log file
-\item Initializing mutexes for thread safety
-\item Detecting terminal capabilities
-\end{DoxyItemize}
+Allocates necessary resources and prepares the logging subsystem. This function should be called before any logging occurs.
 
+
+\begin{DoxyParams}{Parameters}
+{\em memory\+\_\+requirement} & Pointer to store the required memory size for the logging system. \\
+\hline
+{\em state} & Pointer to a pre-\/allocated memory block for the logger state. If NULL, no state is initialized. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-True if initialization succeeded; False otherwise. 
+True if initialization was successful; False otherwise. 
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{logger_8c_source_l00031}{31}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+Definition at line \mbox{\hyperlink{logger_8c_source_l00042}{42}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{logger_8c_source_l00035}{logger\+\_\+system\+\_\+state\+::initialized}}, \mbox{\hyperlink{logger_8c_source_l00038}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}.
 
 \Hypertarget{logger_8h_a0c968c3f536c566594a9fd2d14dfedfc}\label{logger_8h_a0c968c3f536c566594a9fd2d14dfedfc} 
 \index{logger.h@{logger.h}!log\_output@{log\_output}}
@@ -391,7 +393,7 @@ Supports standard formatting like {\ttfamily printf()} and includes\+:
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{logger_8c_source_l00046}{46}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+Definition at line \mbox{\hyperlink{logger_8c_source_l00068}{68}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
@@ -399,13 +401,13 @@ References \mbox{\hyperlink{logger_8h_source_l00078}{LOG\+\_\+\+LEVEL\+\_\+\+WAR
 
 
 
-Referenced by \mbox{\hyperlink{logger_8c_source_l00100}{report\+\_\+assertion\+\_\+failure()}}.
+Referenced by \mbox{\hyperlink{logger_8c_source_l00122}{report\+\_\+assertion\+\_\+failure()}}.
 
-\Hypertarget{logger_8h_a811866002a3bf25ead26b47687cfccdf}\label{logger_8h_a811866002a3bf25ead26b47687cfccdf} 
+\Hypertarget{logger_8h_aa19340b3c2c2f8f90a5c40d08b7919c7}\label{logger_8h_aa19340b3c2c2f8f90a5c40d08b7919c7} 
 \index{logger.h@{logger.h}!shutdown\_logging@{shutdown\_logging}}
 \index{shutdown\_logging@{shutdown\_logging}!logger.h@{logger.h}}
 \doxysubsubsection{\texorpdfstring{shutdown\_logging()}{shutdown\_logging()}}
-{\footnotesize\ttfamily void shutdown\+\_\+logging (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void shutdown\+\_\+logging (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
 
 
 
@@ -418,5 +420,9 @@ Currently just returns. In future versions, this may include\+:
 \item Releasing logging resources 
 \end{DoxyItemize}
 
-Definition at line \mbox{\hyperlink{logger_8c_source_l00038}{38}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+Definition at line \mbox{\hyperlink{logger_8c_source_l00058}{58}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+
+
+
+References \mbox{\hyperlink{logger_8c_source_l00038}{state\+\_\+ptr}}.
 

@@ -97,333 +97,348 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;renderer/vulkan/vulkan_types.inl&quot;</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// Internal struct used only on Windows to track handles.</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">typedef</span> <span class="keyword">struct </span>internal_state {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structplatform__state.html">platform_state</a> {</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    HINSTANCE h_instance;  <span class="comment">// Handle to the application instance</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    HWND hwnd;             <span class="comment">// Handle to the window</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>} internal_state;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// Clock-related globals</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">static</span> <a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> clock_frequency;       <span class="comment">// How often the performance counter updates (used to convert ticks to seconds)</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">static</span> LARGE_INTEGER start_time;  <span class="comment">// Startup timestamp</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    VkSurfaceKHR surface;  <span class="comment">// Handle to the Vulkan surface</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>} <a class="code hl_struct" href="structplatform__state.html">platform_state</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">// Global pointer to the platform state, used by all functions</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">static</span> <a class="code hl_struct" href="structplatform__state.html">platform_state</a> *<a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">// Windows-specific message processor (WinProc)</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>LRESULT CALLBACK win32_process_message(HWND hwnd, <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> msg, WPARAM w_param, LPARAM l_param);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// Initializes the platform: registers window class, creates a window, sets up the timer.</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="platform_8h.html#a1557f29064029f8b437d0fbcc587ebbd">platform_startup</a>(</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_struct" href="structplatform__state.html">platform_state</a> *plat_state,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *application_name,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> x,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> y,</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> width,</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> height) {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// Allocate and set internal state</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    plat_state-&gt;<a class="code hl_variable" href="structplatform__state.html#ac902a69fe12cf6868862aad5a57b15d5">internal_state</a> = malloc(<span class="keyword">sizeof</span>(internal_state));</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    internal_state *<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a> = (internal_state *)plat_state-&gt;<a class="code hl_variable" href="structplatform__state.html#ac902a69fe12cf6868862aad5a57b15d5">internal_state</a>;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;h_instance = GetModuleHandleA(0);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// Load default icon</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    HICON icon = LoadIcon(<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;h_instance, IDI_APPLICATION);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// Setup and register window class.</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    WNDCLASSA wc;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    memset(&amp;wc, 0, <span class="keyword">sizeof</span>(wc));</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    wc.style = CS_DBLCLKS;  <span class="comment">// Get double-clicks</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    wc.lpfnWndProc = win32_process_message;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    wc.cbClsExtra = 0;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    wc.cbWndExtra = 0;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    wc.hInstance = <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;h_instance;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    wc.hIcon = icon;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    wc.hCursor = LoadCursor(NULL, IDC_ARROW);  <span class="comment">// NULL; // Manage the cursor manually</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    wc.hbrBackground = NULL;                   <span class="comment">// Transparent</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    wc.lpszClassName = <span class="stringliteral">&quot;koru_window_class&quot;</span>;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">if</span> (!RegisterClassA(&amp;wc)) {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        MessageBoxA(0, <span class="stringliteral">&quot;Window registration failed&quot;</span>, <span class="stringliteral">&quot;Error&quot;</span>, MB_ICONEXCLAMATION | MB_OK);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// Desired client area dimensions</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> client_x = x;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> client_y = y;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> client_width = width;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> client_height = height;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// These will be adjusted for window borders</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_x = client_x;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_y = client_y;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_width = client_width;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_height = client_height;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// Window styles</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_style = WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_THICKFRAME;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_ex_style = WS_EX_APPWINDOW;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">// Adjust for window border to get correct client area size</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    RECT border_rect = {0, 0, 0, 0};</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    AdjustWindowRectEx(&amp;border_rect, window_style, 0, window_ex_style);</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">// In this case, the border rectangle is negative.</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    window_x += border_rect.left;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    window_y += border_rect.top;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// Grow by the size of the OS border.</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    window_width += border_rect.right - border_rect.left;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    window_height += border_rect.bottom - border_rect.top;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    HWND handle = CreateWindowExA(</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        window_ex_style, <span class="stringliteral">&quot;koru_window_class&quot;</span>, application_name,</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        window_style, window_x, window_y, window_width, window_height,</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        0, 0, <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;h_instance, 0);</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">if</span> (handle == 0) {</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        MessageBoxA(NULL, <span class="stringliteral">&quot;Window creation failed!&quot;</span>, <span class="stringliteral">&quot;Error!&quot;</span>, MB_ICONEXCLAMATION | MB_OK);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Window creation failed!&quot;</span>);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;hwnd = handle;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="comment">// Show window (with input focus)</span></div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <a class="code hl_typedef" href="defines_8h.html#ac6baccc379c73d4e641ef847dbb08fa2">b32</a> should_activate = 1;  <span class="comment">// TODO: if the window should not accept input, this should be false.</span></div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> show_window_command_flags = should_activate ? SW_SHOW : SW_SHOWNOACTIVATE;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// If initially minimized, use SW_MINIMIZE : SW_SHOWMINNOACTIVE;</span></div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// If initially maximized, use SW_SHOWMAXIMIZED : SW_MAXIMIZE</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    ShowWindow(<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;hwnd, show_window_command_flags);</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// Setup high-performance timer</span></div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    LARGE_INTEGER frequency;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    QueryPerformanceFrequency(&amp;frequency);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    clock_frequency = 1.0 / (<a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a>)frequency.QuadPart;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    QueryPerformanceCounter(&amp;start_time);</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">// Destroys the window and frees internal resources</span></div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#a7fe7553c63bc948e2ee04d15597d6ccd">platform_shutdown</a>(<a class="code hl_struct" href="structplatform__state.html">platform_state</a> *plat_state) {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// Simply cold-cast to the known type.</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    internal_state *<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a> = (internal_state *)plat_state-&gt;<a class="code hl_variable" href="structplatform__state.html#ac902a69fe12cf6868862aad5a57b15d5">internal_state</a>;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;hwnd) {</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        DestroyWindow(<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;hwnd);</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;hwnd = 0;</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">// Clock-related globals</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">static</span> <a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> clock_frequency;       <span class="comment">// How often the performance counter updates (used to convert ticks to seconds)</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">static</span> LARGE_INTEGER start_time;  <span class="comment">// Startup timestamp</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">// Windows-specific message processor (WinProc)</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>LRESULT CALLBACK win32_process_message(HWND hwnd, <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> msg, WPARAM w_param, LPARAM l_param);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// Sets up the high-performance timer using QueryPerformanceCounter</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">void</span> clock_setup() {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    LARGE_INTEGER frequency;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    QueryPerformanceFrequency(&amp;frequency);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    clock_frequency = 1.0 / (<a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a>)frequency.QuadPart;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    QueryPerformanceCounter(&amp;start_time);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">// Initializes the platform: registers window class, creates a window, sets up the timer.</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="platform_8h.html#a2f0dc66ac164c4d7fc389e8e545513df">platform_system_startup</a>(</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *memory_requirement,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> *state,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *application_name,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> x,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> y,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> width,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> height) {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    *memory_requirement = <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structplatform__state.html">platform_state</a>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">if</span> (state == 0) {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a> = state;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;h_instance = GetModuleHandleA(0);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// Load default icon</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    HICON icon = LoadIcon(<a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;h_instance, IDI_APPLICATION);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// Setup and register window class.</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    WNDCLASSA wc;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    memset(&amp;wc, 0, <span class="keyword">sizeof</span>(wc));</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    wc.style = CS_DBLCLKS;  <span class="comment">// Get double-clicks</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    wc.lpfnWndProc = win32_process_message;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    wc.cbClsExtra = 0;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    wc.cbWndExtra = 0;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    wc.hInstance = <a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;h_instance;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    wc.hIcon = icon;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    wc.hCursor = LoadCursor(NULL, IDC_ARROW);  <span class="comment">// NULL; // Manage the cursor manually</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    wc.hbrBackground = NULL;                   <span class="comment">// Transparent</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    wc.lpszClassName = <span class="stringliteral">&quot;koru_window_class&quot;</span>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">if</span> (!RegisterClassA(&amp;wc)) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        MessageBoxA(0, <span class="stringliteral">&quot;Window registration failed&quot;</span>, <span class="stringliteral">&quot;Error&quot;</span>, MB_ICONEXCLAMATION | MB_OK);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// Desired client area dimensions</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> client_x = x;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> client_y = y;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> client_width = width;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> client_height = height;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// These will be adjusted for window borders</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_x = client_x;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_y = client_y;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_width = client_width;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_height = client_height;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// Window styles</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_style = WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_THICKFRAME;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> window_ex_style = WS_EX_APPWINDOW;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// Adjust for window border to get correct client area size</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    RECT border_rect = {0, 0, 0, 0};</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    AdjustWindowRectEx(&amp;border_rect, window_style, 0, window_ex_style);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// In this case, the border rectangle is negative.</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    window_x += border_rect.left;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    window_y += border_rect.top;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="comment">// Grow by the size of the OS border.</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    window_width += border_rect.right - border_rect.left;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    window_height += border_rect.bottom - border_rect.top;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    HWND handle = CreateWindowExA(</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        window_ex_style, <span class="stringliteral">&quot;koru_window_class&quot;</span>, application_name,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        window_style, window_x, window_y, window_width, window_height,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        0, 0, <a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;h_instance, 0);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">if</span> (handle == 0) {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        MessageBoxA(NULL, <span class="stringliteral">&quot;Window creation failed!&quot;</span>, <span class="stringliteral">&quot;Error!&quot;</span>, MB_ICONEXCLAMATION | MB_OK);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Window creation failed!&quot;</span>);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;hwnd = handle;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// Show window (with input focus)</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_typedef" href="defines_8h.html#ac6baccc379c73d4e641ef847dbb08fa2">b32</a> should_activate = 1;  <span class="comment">// TODO: if the window should not accept input, this should be false.</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> show_window_command_flags = should_activate ? SW_SHOW : SW_SHOWNOACTIVATE;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// If initially minimized, use SW_MINIMIZE : SW_SHOWMINNOACTIVE;</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// If initially maximized, use SW_SHOWMAXIMIZED : SW_MAXIMIZE</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    ShowWindow(<a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;hwnd, show_window_command_flags);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// Setup high-performance timer</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    clock_setup();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>}</div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment">// Processes all pending Windows messages (non-blocking)</span></div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="platform_8h.html#af47d0fad6d6e686e1e0f668c95b1c201">platform_pump_messages</a>(<a class="code hl_struct" href="structplatform__state.html">platform_state</a> *plat_state) {</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    MSG message;</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordflow">while</span> (PeekMessageA(&amp;message, NULL, 0, 0, PM_REMOVE)) {</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        TranslateMessage(&amp;message);</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        DispatchMessageA(&amp;message);</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment">// Destroys the window and frees internal resources</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#a2d23b533b1e998f3f20e6025632ca2c4">platform_system_shutdown</a>(<a class="code hl_struct" href="structplatform__state.html">platform_state</a> *plat_state) {</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a> &amp;&amp; <a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;hwnd) {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        DestroyWindow(state-&gt;hwnd);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        state-&gt;hwnd = 0;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>}</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>}</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment">// Basic memory allocation functions</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keywordtype">void</span> *<a class="code hl_function" href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate</a>(<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> aligned) {</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">return</span> malloc(size);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>}</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free</a>(<span class="keywordtype">void</span> *block, <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> aligned) {</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    free(block);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment">// Processes all pending Windows messages (non-blocking)</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="platform_8h.html#a8470764645bd644d6b0a3b98fb8b3eee">platform_pump_messages</a>() {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>) {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        MSG message;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">while</span> (PeekMessageA(&amp;message, NULL, 0, 0, PM_REMOVE)) {</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            TranslateMessage(&amp;message);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            DispatchMessageA(&amp;message);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        }</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="keywordtype">void</span> *<a class="code hl_function" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory</a>(<span class="keywordtype">void</span> *block, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">return</span> memset(block, 0, size);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>}</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="keywordtype">void</span> *<a class="code hl_function" href="platform_8h.html#a15258bb22b902725b1fbf405463ed07d">platform_copy_memory</a>(<span class="keywordtype">void</span> *dest, <span class="keyword">const</span> <span class="keywordtype">void</span> *source, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordflow">return</span> memcpy(dest, source, size);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="keywordtype">void</span> *<a class="code hl_function" href="platform_8h.html#aa65146de20a7fd23870d3809834021b7">platform_set_memory</a>(<span class="keywordtype">void</span> *dest, <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> value, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">return</span> memset(dest, value, size);</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>}</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="comment">// Writes colored text to stdout</span></div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message, <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> colour) {</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    HANDLE console_handle = GetStdHandle(STD_OUTPUT_HANDLE);</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="comment">// FATAL,ERROR,WARN,INFO,DEBUG,TRACE</span></div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keyword">static</span> <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> levels[6] = {64, 4, 6, 2, 1, 8};</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    SetConsoleTextAttribute(console_handle, levels[colour]);</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    OutputDebugStringA(message);</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> length = strlen(message);</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    LPDWORD number_written = 0;</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    WriteConsoleA(GetStdHandle(STD_OUTPUT_HANDLE), message, (DWORD)length, number_written, 0);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">// Writes colored text to stderr</span></div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message, <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> colour) {</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    HANDLE console_handle = GetStdHandle(STD_ERROR_HANDLE);</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">// FATAL,ERROR,WARN,INFO,DEBUG,TRACE</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keyword">static</span> <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> levels[6] = {64, 4, 6, 2, 1, 8};</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    SetConsoleTextAttribute(console_handle, levels[colour]);</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    OutputDebugStringA(message);</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> length = strlen(message);</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    LPDWORD number_written = 0;</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    WriteConsoleA(GetStdHandle(STD_ERROR_HANDLE), message, (DWORD)length, number_written, 0);</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>}</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment">// Returns the current high-precision timestamp in seconds</span></div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> <a class="code hl_function" href="platform_8h.html#af38f532e572a9da41eaad4be29a58ada">platform_get_absolute_time</a>() {</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    LARGE_INTEGER now_time;</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    QueryPerformanceCounter(&amp;now_time);</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordflow">return</span> (<a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a>)now_time.QuadPart * clock_frequency;</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>}</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">// Blocks the current thread for `ms` milliseconds</span></div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#ae21676dfd997b1c6dd9c06f69b5618e4">platform_sleep</a>(<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> ms) {</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    Sleep(ms);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>}</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__platform_8h.html#ac6f33d791e5445db00300cfd71d88702">platform_get_required_extension_names</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> ***names_darray) {</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <a class="code hl_define" href="darray_8h.html#a7ad89931e6589fa09b83ea99de2b32e6">darray_push</a>(*names_darray, &amp;<span class="stringliteral">&quot;VK_KHR_win32_surface&quot;</span>);</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">// Basic memory allocation functions</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keywordtype">void</span> *<a class="code hl_function" href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate</a>(<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> aligned) {</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">return</span> malloc(size);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free</a>(<span class="keywordtype">void</span> *block, <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> aligned) {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    free(block);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>}</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="keywordtype">void</span> *<a class="code hl_function" href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory</a>(<span class="keywordtype">void</span> *block, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keywordflow">return</span> memset(block, 0, size);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>}</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keywordtype">void</span> *<a class="code hl_function" href="platform_8h.html#a15258bb22b902725b1fbf405463ed07d">platform_copy_memory</a>(<span class="keywordtype">void</span> *dest, <span class="keyword">const</span> <span class="keywordtype">void</span> *source, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordflow">return</span> memcpy(dest, source, size);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>}</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="keywordtype">void</span> *<a class="code hl_function" href="platform_8h.html#aa65146de20a7fd23870d3809834021b7">platform_set_memory</a>(<span class="keywordtype">void</span> *dest, <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> value, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordflow">return</span> memset(dest, value, size);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>}</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">// Writes colored text to stdout</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message, <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> colour) {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    HANDLE console_handle = GetStdHandle(STD_OUTPUT_HANDLE);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="comment">// FATAL,ERROR,WARN,INFO,DEBUG,TRACE</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">static</span> <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> levels[6] = {64, 4, 6, 2, 1, 8};</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    SetConsoleTextAttribute(console_handle, levels[colour]);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    OutputDebugStringA(message);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> length = strlen(message);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    LPDWORD number_written = 0;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    WriteConsoleA(GetStdHandle(STD_OUTPUT_HANDLE), message, (DWORD)length, number_written, 0);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>}</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment">// Writes colored text to stderr</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message, <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> colour) {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    HANDLE console_handle = GetStdHandle(STD_ERROR_HANDLE);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="comment">// FATAL,ERROR,WARN,INFO,DEBUG,TRACE</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">static</span> <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> levels[6] = {64, 4, 6, 2, 1, 8};</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    SetConsoleTextAttribute(console_handle, levels[colour]);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    OutputDebugStringA(message);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> length = strlen(message);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    LPDWORD number_written = 0;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    WriteConsoleA(GetStdHandle(STD_ERROR_HANDLE), message, (DWORD)length, number_written, 0);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>}</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment">// Returns the current high-precision timestamp in seconds</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> <a class="code hl_function" href="platform_8h.html#af38f532e572a9da41eaad4be29a58ada">platform_get_absolute_time</a>() {</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordflow">if</span> (!clock_frequency) {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        <span class="comment">// If the clock frequency is not set, initialize it.</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        clock_setup();</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    }</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment">// Surface creation for Vulkan</span></div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="vulkan__platform_8h.html#a48932cc1b8761ab4af6627a36ba06548">platform_create_vulkan_surface</a>(<a class="code hl_struct" href="structplatform__state.html">platform_state</a> *plat_state, vulkan_context *<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>) {</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">// Simply cold-cast to the known type.</span></div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    internal_state *<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a> = (internal_state *)plat_state-&gt;<a class="code hl_variable" href="structplatform__state.html#ac902a69fe12cf6868862aad5a57b15d5">internal_state</a>;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    LARGE_INTEGER now_time;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    QueryPerformanceCounter(&amp;now_time);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordflow">return</span> (<a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a>)now_time.QuadPart * clock_frequency;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>}</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    VkWin32SurfaceCreateInfoKHR create_info = {VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR};</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    create_info.hinstance = <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;h_instance;</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    create_info.hwnd = <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;hwnd;</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    VkResult result = vkCreateWin32SurfaceKHR(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;instance, &amp;create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;surface);</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">if</span> (result != VK_SUCCESS) {</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Vulkan surface creation failed.&quot;</span>);</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    }</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;surface = <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;surface;</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>}</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">// Blocks the current thread for `ms` milliseconds</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#ae21676dfd997b1c6dd9c06f69b5618e4">platform_sleep</a>(<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> ms) {</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    Sleep(ms);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>}</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__platform_8h.html#ac6f33d791e5445db00300cfd71d88702">platform_get_required_extension_names</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> ***names_darray) {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <a class="code hl_define" href="darray_8h.html#a7ad89931e6589fa09b83ea99de2b32e6">darray_push</a>(*names_darray, &amp;<span class="stringliteral">&quot;VK_KHR_win32_surface&quot;</span>);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>}</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">// Surface creation for Vulkan</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="vulkan__platform_8h.html#aaaf33dc6309c5d8963e3a8515493dfd3">platform_create_vulkan_surface</a>(<a class="code hl_struct" href="structplatform__state.html">platform_state</a> *plat_state, vulkan_context *<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>) {</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>) {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    }</div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>LRESULT CALLBACK win32_process_message(HWND hwnd, <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> msg, WPARAM w_param, LPARAM l_param) {</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordflow">switch</span> (msg) {</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        <span class="keywordflow">case</span> WM_ERASEBKGND:</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>            <span class="comment">// Notify the OS that erasing will be handled by the application to prevent flicker.</span></div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="keywordflow">case</span> WM_CLOSE:</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>            <a class="code hl_struct" href="structevent__context.html">event_context</a> data = {};</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            <a class="code hl_function" href="event_8c.html#a1c350143596c6f99cfd34595b4959ef8">event_fire</a>(<a class="code hl_enumvalue" href="event_8h.html#a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677">EVENT_CODE_APPLICATION_QUIT</a>, 0, data);</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        <span class="keywordflow">case</span> WM_DESTROY:</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            PostQuitMessage(0);</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <span class="keywordflow">case</span> WM_SIZE: {</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            <span class="comment">// Get the updated size.</span></div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            RECT r;</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>            GetClientRect(hwnd, &amp;r);</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>            <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> width = r.right - r.left;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>            <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> height = r.bottom - r.top;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>            <span class="comment">/*</span></div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment">             * Fire the event. The application layer should pick this up,</span></div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="comment">             * but not handle it as it shouldn&#39;t be visible to other parts</span></div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment">             * of the application.</span></div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="comment">             */</span></div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            <a class="code hl_struct" href="structevent__context.html">event_context</a> <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.<a class="code hl_variable" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">data</a>.<a class="code hl_variable" href="structevent__context.html#ade4e8f9d8d9433d902f7070c91a393ef">u16</a>[0] = (<a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)width;</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[1] = (<a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)height;</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            <a class="code hl_function" href="event_8c.html#a1c350143596c6f99cfd34595b4959ef8">event_fire</a>(<a class="code hl_enumvalue" href="event_8h.html#a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656">EVENT_CODE_RESIZED</a>, 0, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>);</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        <span class="keywordflow">case</span> WM_KEYDOWN:</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <span class="keywordflow">case</span> WM_SYSKEYDOWN:</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        <span class="keywordflow">case</span> WM_KEYUP:</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <span class="keywordflow">case</span> WM_SYSKEYUP: {</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>            <span class="comment">// Key pressed/released</span></div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> pressed = (msg == WM_KEYDOWN || msg == WM_SYSKEYDOWN);</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            <a class="code hl_enumeration" href="input_8h.html#a3121b5e20cccb8e49edcbd3e9ac77712">keys</a> key = (<a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)w_param;</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            <span class="keywordflow">if</span> (w_param == VK_MENU) {</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                <span class="comment">// References: https://learn.microsoft.com/en-us/windows/win32/learnwin32/keyboard-input</span></div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>                <span class="keywordflow">if</span> (GetKeyState(VK_RMENU) &amp; 0x8000) {</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                    key = KEY_RALT;</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (GetKeyState(VK_LMENU) &amp; 0x8000) {</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>                    key = KEY_LALT;</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                }</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (w_param == VK_SHIFT) {</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                <span class="keywordflow">if</span> (GetKeyState(VK_RSHIFT) &amp; 0x8000) {</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                    key = KEY_RSHIFT;</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (GetKeyState(VK_LSHIFT) &amp; 0x8000) {</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                    key = KEY_LSHIFT;</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                }</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (w_param == VK_SHIFT) {</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                <span class="keywordflow">if</span> (GetKeyState(VK_RCONTROL) &amp; 0x8000) {</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                    key = KEY_RCONTROL;</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (GetKeyState(VK_LCONTROL) &amp; 0x8000) {</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>                    key = KEY_LCONTROL;</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>                }</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>            }</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>            <span class="comment">// Pass to the input subsystem for processing</span></div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            <a class="code hl_function" href="input_8c.html#aa50febeebd057f91a70704851a9b6300">input_process_key</a>(key, pressed)</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        <span class="keywordflow">case</span> WM_MOUSEMOVE: {</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>            <span class="comment">// Mouse move</span></div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>            <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> x_position = GET_X_LPARAM(l_param);</div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>            <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> y_position = GET_Y_LPARAM(l_param);</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>            <span class="comment">// Pass to the input subsystem for processing</span></div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>            <a class="code hl_function" href="input_8c.html#a5d56afad3d78c1e177fa44cef3e7d19d">input_process_mouse_move</a>(x_position, y_position);</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        <span class="keywordflow">case</span> WM_MOUSEWHEEL: {</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>            <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> z_delta = GET_WHEEL_DELTA_WPARAM(w_param);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    VkWin32SurfaceCreateInfoKHR create_info = {VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR};</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    create_info.hinstance = <a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;h_instance;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    create_info.hwnd = <a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;hwnd;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    VkResult result = vkCreateWin32SurfaceKHR(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;instance, &amp;create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;<a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;surface);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordflow">if</span> (result != VK_SUCCESS) {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Vulkan surface creation failed.&quot;</span>);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    }</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;surface = <a class="code hl_variable" href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a>-&gt;surface;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>}</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>LRESULT CALLBACK win32_process_message(HWND hwnd, <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> msg, WPARAM w_param, LPARAM l_param) {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">switch</span> (msg) {</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        <span class="keywordflow">case</span> WM_ERASEBKGND:</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>            <span class="comment">// Notify the OS that erasing will be handled by the application to prevent flicker.</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        <span class="keywordflow">case</span> WM_CLOSE:</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            <a class="code hl_struct" href="structevent__context.html">event_context</a> data = {};</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>            <a class="code hl_function" href="event_8c.html#a1c350143596c6f99cfd34595b4959ef8">event_fire</a>(<a class="code hl_enumvalue" href="event_8h.html#a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677">EVENT_CODE_APPLICATION_QUIT</a>, 0, data);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <span class="keywordflow">case</span> WM_DESTROY:</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>            PostQuitMessage(0);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <span class="keywordflow">case</span> WM_SIZE: {</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            <span class="comment">// Get the updated size.</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            RECT r;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>            GetClientRect(hwnd, &amp;r);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>            <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> width = r.right - r.left;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>            <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> height = r.bottom - r.top;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>            <span class="comment">/*</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment">             * Fire the event. The application layer should pick this up,</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment">             * but not handle it as it shouldn&#39;t be visible to other parts</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment">             * of the application.</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment">             */</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            <a class="code hl_struct" href="structevent__context.html">event_context</a> <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.<a class="code hl_variable" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">data</a>.<a class="code hl_variable" href="structevent__context.html#ade4e8f9d8d9433d902f7070c91a393ef">u16</a>[0] = (<a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)width;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[1] = (<a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)height;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>            <a class="code hl_function" href="event_8c.html#a1c350143596c6f99cfd34595b4959ef8">event_fire</a>(<a class="code hl_enumvalue" href="event_8h.html#a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656">EVENT_CODE_RESIZED</a>, 0, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        } <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        <span class="keywordflow">case</span> WM_KEYDOWN:</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keywordflow">case</span> WM_SYSKEYDOWN:</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        <span class="keywordflow">case</span> WM_KEYUP:</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        <span class="keywordflow">case</span> WM_SYSKEYUP: {</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>            <span class="comment">// Key pressed/released</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>            <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> pressed = (msg == WM_KEYDOWN || msg == WM_SYSKEYDOWN);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>            <a class="code hl_enumeration" href="input_8h.html#a3121b5e20cccb8e49edcbd3e9ac77712">keys</a> key = (<a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)w_param;</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>            <span class="keywordflow">if</span> (w_param == VK_MENU) {</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>                <span class="comment">// References: https://learn.microsoft.com/en-us/windows/win32/learnwin32/keyboard-input</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>                <span class="keywordflow">if</span> (GetKeyState(VK_RMENU) &amp; 0x8000) {</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>                    key = KEY_RALT;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (GetKeyState(VK_LMENU) &amp; 0x8000) {</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>                    key = KEY_LALT;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>                }</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (w_param == VK_SHIFT) {</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>                <span class="keywordflow">if</span> (GetKeyState(VK_RSHIFT) &amp; 0x8000) {</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>                    key = KEY_RSHIFT;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (GetKeyState(VK_LSHIFT) &amp; 0x8000) {</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                    key = KEY_LSHIFT;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>                }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (w_param == VK_SHIFT) {</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>                <span class="keywordflow">if</span> (GetKeyState(VK_RCONTROL) &amp; 0x8000) {</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>                    key = KEY_RCONTROL;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (GetKeyState(VK_LCONTROL) &amp; 0x8000) {</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>                    key = KEY_LCONTROL;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>                }</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>            }</div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>            <span class="keywordflow">if</span> (z_delta != 0) {</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                <span class="comment">// Flatten the input to an OS-independent (-1, 1)</span></div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>                z_delta = (z_delta &lt; 0) ? -1 : 1;</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>                <a class="code hl_function" href="input_8c.html#af9d0e1b4ff7fce1972ba93c810bfbabc">input_process_mouse_wheel</a>(z_delta);</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>            }</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <span class="keywordflow">case</span> WM_LBUTTONDOWN:</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        <span class="keywordflow">case</span> WM_MBUTTONDOWN:</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        <span class="keywordflow">case</span> WM_RBUTTONDOWN:</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        <span class="keywordflow">case</span> WM_LBUTTONUP:</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">case</span> WM_MBUTTONUP:</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>        <span class="keywordflow">case</span> WM_RBUTTONUP: {</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>            <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> pressed = msg == WM_LBUTTONDOWN || msg == WM_RBUTTONDOWN || msg == WM_MBUTTONDOWN;</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>            <span class="comment">// Not necessary but ynk</span></div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>            <a class="code hl_enumeration" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836">buttons</a> mouse_button = <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7">BUTTON_MAX_BUTTONS</a>;</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>            <span class="keywordflow">switch</span> (msg) {</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>                <span class="keywordflow">case</span> WM_LBUTTONDOWN:</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>                <span class="keywordflow">case</span> WM_LBUTTONUP:</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>                    mouse_button = <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836a55dc0d53615e28ee8af66827bee48e4e">BUTTON_LEFT</a>;</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>                <span class="keywordflow">case</span> WM_MBUTTONDOWN:</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>                <span class="keywordflow">case</span> WM_MBUTTONUP:</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>                    mouse_button = <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb">BUTTON_MIDDLE</a>;</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>                <span class="keywordflow">case</span> WM_RBUTTONDOWN:</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>                <span class="keywordflow">case</span> WM_RBUTTONUP:</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>                    mouse_button = <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836a13046edd6d64a0de5821b5ff4c7581ce">BUTTON_RIGHT</a>;</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>            }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>            <span class="comment">// Pass to the input subsystem for processing</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>            <a class="code hl_function" href="input_8c.html#aa50febeebd057f91a70704851a9b6300">input_process_key</a>(key, pressed)</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        } <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <span class="keywordflow">case</span> WM_MOUSEMOVE: {</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>            <span class="comment">// Mouse move</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>            <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> x_position = GET_X_LPARAM(l_param);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>            <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> y_position = GET_Y_LPARAM(l_param);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>            <span class="comment">// Pass to the input subsystem for processing</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>            <a class="code hl_function" href="input_8c.html#a5d56afad3d78c1e177fa44cef3e7d19d">input_process_mouse_move</a>(x_position, y_position);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>        } <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        <span class="keywordflow">case</span> WM_MOUSEWHEEL: {</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>            <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> z_delta = GET_WHEEL_DELTA_WPARAM(w_param);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>            <span class="keywordflow">if</span> (z_delta != 0) {</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>                <span class="comment">// Flatten the input to an OS-independent (-1, 1)</span></div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>                z_delta = (z_delta &lt; 0) ? -1 : 1;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>                <a class="code hl_function" href="input_8c.html#af9d0e1b4ff7fce1972ba93c810bfbabc">input_process_mouse_wheel</a>(z_delta);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>            }</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        } <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>        <span class="keywordflow">case</span> WM_LBUTTONDOWN:</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>        <span class="keywordflow">case</span> WM_MBUTTONDOWN:</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>        <span class="keywordflow">case</span> WM_RBUTTONDOWN:</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        <span class="keywordflow">case</span> WM_LBUTTONUP:</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        <span class="keywordflow">case</span> WM_MBUTTONUP:</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>        <span class="keywordflow">case</span> WM_RBUTTONUP: {</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>            <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> pressed = msg == WM_LBUTTONDOWN || msg == WM_RBUTTONDOWN || msg == WM_MBUTTONDOWN;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>            <span class="comment">// Not necessary but ynk</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>            <a class="code hl_enumeration" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836">buttons</a> mouse_button = <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7">BUTTON_MAX_BUTTONS</a>;</div>
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>            <span class="comment">// Pass over to the input subsystem.</span></div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>            <span class="keywordflow">if</span> (mouse_button != <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7">BUTTON_MAX_BUTTONS</a>) {</div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>                <a class="code hl_function" href="input_8c.html#a4b149b586e2e5e770ddd9ed63f4f5dd2">input_process_button</a>(mouse_button, pressed);</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>            }</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    }</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="keywordflow">return</span> DefWindowProcA(hwnd, msg, w_param, l_param);</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>}</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="preprocessor">#endif  </span><span class="comment">// KPLATFORM_WINDOWS</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>            <span class="keywordflow">switch</span> (msg) {</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>                <span class="keywordflow">case</span> WM_LBUTTONDOWN:</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>                <span class="keywordflow">case</span> WM_LBUTTONUP:</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>                    mouse_button = <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836a55dc0d53615e28ee8af66827bee48e4e">BUTTON_LEFT</a>;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>                <span class="keywordflow">case</span> WM_MBUTTONDOWN:</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>                <span class="keywordflow">case</span> WM_MBUTTONUP:</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>                    mouse_button = <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb">BUTTON_MIDDLE</a>;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>                <span class="keywordflow">case</span> WM_RBUTTONDOWN:</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>                <span class="keywordflow">case</span> WM_RBUTTONUP:</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>                    mouse_button = <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836a13046edd6d64a0de5821b5ff4c7581ce">BUTTON_RIGHT</a>;</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>            }</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>            <span class="comment">// Pass over to the input subsystem.</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>            <span class="keywordflow">if</span> (mouse_button != <a class="code hl_enumvalue" href="input_8h.html#a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7">BUTTON_MAX_BUTTONS</a>) {</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>                <a class="code hl_function" href="input_8c.html#a4b149b586e2e5e770ddd9ed63f4f5dd2">input_process_button</a>(mouse_button, pressed);</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>            }</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        } <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    }</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="keywordflow">return</span> DefWindowProcA(hwnd, msg, w_param, l_param);</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>}</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="preprocessor">#endif  </span><span class="comment">// KPLATFORM_WINDOWS</span></div>
 <div class="ttc" id="adarray_8h_html"><div class="ttname"><a href="darray_8h.html">darray.h</a></div><div class="ttdoc">Dynamic array implementation with automatic resizing.</div></div>
 <div class="ttc" id="adarray_8h_html_a7ad89931e6589fa09b83ea99de2b32e6"><div class="ttname"><a href="darray_8h.html#a7ad89931e6589fa09b83ea99de2b32e6">darray_push</a></div><div class="ttdeci">#define darray_push(array, value)</div><div class="ttdoc">Adds an element to the end of the array.</div><div class="ttdef"><b>Definition</b> <a href="darray_8h_source.html#l00182">darray.h:182</a></div></div>
 <div class="ttc" id="adefines_8h_html_a10e94b422ef0c20dcdec20d31a1f5049"><div class="ttname"><a href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a></div><div class="ttdeci">unsigned int u32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00023">defines.h:23</a></div></div>
@@ -436,15 +451,15 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="adefines_8h_html_ad758b7a5c3f18ed79d2fcd23d9f16357"><div class="ttname"><a href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a></div><div class="ttdeci">unsigned long long u64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00026">defines.h:26</a></div></div>
 <div class="ttc" id="adefines_8h_html_add3ca9eefe3b5b754426f51d3043e579"><div class="ttname"><a href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a></div><div class="ttdeci">#define True</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00120">defines.h:120</a></div></div>
 <div class="ttc" id="adefines_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00017">defines.h:17</a></div></div>
-<div class="ttc" id="aevent_8c_html_a1c350143596c6f99cfd34595b4959ef8"><div class="ttname"><a href="event_8c.html#a1c350143596c6f99cfd34595b4959ef8">event_fire</a></div><div class="ttdeci">b8 event_fire(u16 code, void *sender, event_context context)</div><div class="ttdoc">Fires an event to all registered listeners for the given code.</div><div class="ttdef"><b>Definition</b> <a href="event_8c_source.html#l00156">event.c:156</a></div></div>
-<div class="ttc" id="aevent_8c_html_acfc52e8e20887a09d8db0da0067c76e5"><div class="ttname"><a href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a></div><div class="ttdeci">static event_system_state state</div><div class="ttdoc">Static global instance of the event system state.</div><div class="ttdef"><b>Definition</b> <a href="event_8c_source.html#l00074">event.c:74</a></div></div>
+<div class="ttc" id="aevent_8c_html_a1c350143596c6f99cfd34595b4959ef8"><div class="ttname"><a href="event_8c.html#a1c350143596c6f99cfd34595b4959ef8">event_fire</a></div><div class="ttdeci">b8 event_fire(u16 code, void *sender, event_context context)</div><div class="ttdoc">Fires an event to all registered listeners for the given code.</div><div class="ttdef"><b>Definition</b> <a href="event_8c_source.html#l00150">event.c:150</a></div></div>
+<div class="ttc" id="aevent_8c_html_a8dc4a58304f35c6161d98770d856890f"><div class="ttname"><a href="event_8c.html#a8dc4a58304f35c6161d98770d856890f">state_ptr</a></div><div class="ttdeci">static event_system_state * state_ptr</div><div class="ttdoc">Static global instance of the event system state.</div><div class="ttdef"><b>Definition</b> <a href="event_8c_source.html#l00069">event.c:69</a></div></div>
 <div class="ttc" id="aevent_8h_html"><div class="ttname"><a href="event_8h.html">event.h</a></div><div class="ttdoc">Event system for inter-component communication.</div></div>
 <div class="ttc" id="aevent_8h_html_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656"><div class="ttname"><a href="event_8h.html#a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656">EVENT_CODE_RESIZED</a></div><div class="ttdeci">@ EVENT_CODE_RESIZED</div><div class="ttdoc">Fired when the window is resized or resolution changes.</div><div class="ttdef"><b>Definition</b> <a href="event_8h_source.html#l00221">event.h:221</a></div></div>
 <div class="ttc" id="aevent_8h_html_a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677"><div class="ttname"><a href="event_8h.html#a6779f338629229430f8974f2f86d7226aebab55ac2635b49a369eaa4c17dc2677">EVENT_CODE_APPLICATION_QUIT</a></div><div class="ttdeci">@ EVENT_CODE_APPLICATION_QUIT</div><div class="ttdoc">Shuts the application down on the next frame.</div><div class="ttdef"><b>Definition</b> <a href="event_8h_source.html#l00145">event.h:145</a></div></div>
-<div class="ttc" id="ainput_8c_html_a4b149b586e2e5e770ddd9ed63f4f5dd2"><div class="ttname"><a href="input_8c.html#a4b149b586e2e5e770ddd9ed63f4f5dd2">input_process_button</a></div><div class="ttdeci">void input_process_button(buttons button, b8 pressed)</div><div class="ttdoc">Processes a mouse button press or release.</div><div class="ttdef"><b>Definition</b> <a href="input_8c_source.html#l00166">input.c:166</a></div></div>
-<div class="ttc" id="ainput_8c_html_a5d56afad3d78c1e177fa44cef3e7d19d"><div class="ttname"><a href="input_8c.html#a5d56afad3d78c1e177fa44cef3e7d19d">input_process_mouse_move</a></div><div class="ttdeci">void input_process_mouse_move(i16 x, i16 y)</div><div class="ttdoc">Processes mouse movement and updates internal state.</div><div class="ttdef"><b>Definition</b> <a href="input_8c_source.html#l00187">input.c:187</a></div></div>
-<div class="ttc" id="ainput_8c_html_aa50febeebd057f91a70704851a9b6300"><div class="ttname"><a href="input_8c.html#aa50febeebd057f91a70704851a9b6300">input_process_key</a></div><div class="ttdeci">void input_process_key(keys key, b8 pressed)</div><div class="ttdoc">Processes a key press or release event.</div><div class="ttdef"><b>Definition</b> <a href="input_8c_source.html#l00130">input.c:130</a></div></div>
-<div class="ttc" id="ainput_8c_html_af9d0e1b4ff7fce1972ba93c810bfbabc"><div class="ttname"><a href="input_8c.html#af9d0e1b4ff7fce1972ba93c810bfbabc">input_process_mouse_wheel</a></div><div class="ttdeci">void input_process_mouse_wheel(i8 z_delta)</div><div class="ttdoc">Processes mouse wheel scroll input.</div><div class="ttdef"><b>Definition</b> <a href="input_8c_source.html#l00212">input.c:212</a></div></div>
+<div class="ttc" id="ainput_8c_html_a4b149b586e2e5e770ddd9ed63f4f5dd2"><div class="ttname"><a href="input_8c.html#a4b149b586e2e5e770ddd9ed63f4f5dd2">input_process_button</a></div><div class="ttdeci">void input_process_button(buttons button, b8 pressed)</div><div class="ttdoc">Processes a mouse button press or release.</div><div class="ttdef"><b>Definition</b> <a href="input_8c_source.html#l00182">input.c:182</a></div></div>
+<div class="ttc" id="ainput_8c_html_a5d56afad3d78c1e177fa44cef3e7d19d"><div class="ttname"><a href="input_8c.html#a5d56afad3d78c1e177fa44cef3e7d19d">input_process_mouse_move</a></div><div class="ttdeci">void input_process_mouse_move(i16 x, i16 y)</div><div class="ttdoc">Processes mouse movement and updates internal state.</div><div class="ttdef"><b>Definition</b> <a href="input_8c_source.html#l00203">input.c:203</a></div></div>
+<div class="ttc" id="ainput_8c_html_aa50febeebd057f91a70704851a9b6300"><div class="ttname"><a href="input_8c.html#aa50febeebd057f91a70704851a9b6300">input_process_key</a></div><div class="ttdeci">void input_process_key(keys key, b8 pressed)</div><div class="ttdoc">Processes a key press or release event.</div><div class="ttdef"><b>Definition</b> <a href="input_8c_source.html#l00139">input.c:139</a></div></div>
+<div class="ttc" id="ainput_8c_html_af9d0e1b4ff7fce1972ba93c810bfbabc"><div class="ttname"><a href="input_8c.html#af9d0e1b4ff7fce1972ba93c810bfbabc">input_process_mouse_wheel</a></div><div class="ttdeci">void input_process_mouse_wheel(i8 z_delta)</div><div class="ttdoc">Processes mouse wheel scroll input.</div><div class="ttdef"><b>Definition</b> <a href="input_8c_source.html#l00228">input.c:228</a></div></div>
 <div class="ttc" id="ainput_8h_html"><div class="ttname"><a href="input_8h.html">input.h</a></div><div class="ttdoc">Input system interface for handling keyboard and mouse events.</div></div>
 <div class="ttc" id="ainput_8h_html_a3121b5e20cccb8e49edcbd3e9ac77712"><div class="ttname"><a href="input_8h.html#a3121b5e20cccb8e49edcbd3e9ac77712">keys</a></div><div class="ttdeci">keys</div><div class="ttdoc">Key codes for standard keyboard keys.</div><div class="ttdef"><b>Definition</b> <a href="input_8h_source.html#l00050">input.h:50</a></div></div>
 <div class="ttc" id="ainput_8h_html_a3e08a16703943b810da7b8b2a915c836"><div class="ttname"><a href="input_8h.html#a3e08a16703943b810da7b8b2a915c836">buttons</a></div><div class="ttdeci">buttons</div><div class="ttdoc">Mouse button codes used in input processing.</div><div class="ttdef"><b>Definition</b> <a href="input_8h_source.html#l00024">input.h:24</a></div></div>
@@ -453,32 +468,31 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="ainput_8h_html_a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb"><div class="ttname"><a href="input_8h.html#a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb">BUTTON_MIDDLE</a></div><div class="ttdeci">@ BUTTON_MIDDLE</div><div class="ttdoc">Middle mouse button (scroll wheel press)</div><div class="ttdef"><b>Definition</b> <a href="input_8h_source.html#l00027">input.h:27</a></div></div>
 <div class="ttc" id="ainput_8h_html_a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7"><div class="ttname"><a href="input_8h.html#a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7">BUTTON_MAX_BUTTONS</a></div><div class="ttdeci">@ BUTTON_MAX_BUTTONS</div><div class="ttdoc">Total number of defined mouse buttons.</div><div class="ttdef"><b>Definition</b> <a href="input_8h_source.html#l00029">input.h:28</a></div></div>
 <div class="ttc" id="alogger_8h_html"><div class="ttname"><a href="logger_8h.html">logger.h</a></div><div class="ttdoc">Public interface for the logging system.</div></div>
-<div class="ttc" id="alogger_8h_html_a8eb60bd7b3dfc5cadc7364b06ce7bd07"><div class="ttname"><a href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a></div><div class="ttdeci">#define KFATAL(message,...)</div><div class="ttdoc">Logs a fatal-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00149">logger.h:149</a></div></div>
+<div class="ttc" id="alogger_8h_html_a8eb60bd7b3dfc5cadc7364b06ce7bd07"><div class="ttname"><a href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a></div><div class="ttdeci">#define KFATAL(message,...)</div><div class="ttdoc">Logs a fatal-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00152">logger.h:152</a></div></div>
 <div class="ttc" id="aplatform_8h_html"><div class="ttname"><a href="platform_8h.html">platform.h</a></div><div class="ttdoc">Platform abstraction layer interface.</div></div>
 <div class="ttc" id="aplatform_8h_html_a0b638fcfa31e0704eb976a8662c095f2"><div class="ttname"><a href="platform_8h.html#a0b638fcfa31e0704eb976a8662c095f2">platform_free</a></div><div class="ttdeci">void platform_free(void *block, b8 aligned)</div><div class="ttdoc">Frees a previously allocated block of memory.</div></div>
 <div class="ttc" id="aplatform_8h_html_a15258bb22b902725b1fbf405463ed07d"><div class="ttname"><a href="platform_8h.html#a15258bb22b902725b1fbf405463ed07d">platform_copy_memory</a></div><div class="ttdeci">void * platform_copy_memory(void *dest, const void *source, u64 size)</div><div class="ttdoc">Copies bytes from one memory block to another.</div></div>
-<div class="ttc" id="aplatform_8h_html_a1557f29064029f8b437d0fbcc587ebbd"><div class="ttname"><a href="platform_8h.html#a1557f29064029f8b437d0fbcc587ebbd">platform_startup</a></div><div class="ttdeci">b8 platform_startup(platform_state *plat_state, const char *application_name, i32 x, i32 y, i32 width, i32 height)</div><div class="ttdoc">Initializes the platform layer.</div></div>
 <div class="ttc" id="aplatform_8h_html_a19df473ff145c8579c4c838d5bc67372"><div class="ttname"><a href="platform_8h.html#a19df473ff145c8579c4c838d5bc67372">platform_allocate</a></div><div class="ttdeci">void * platform_allocate(u64 size, b8 aligned)</div><div class="ttdoc">Allocates memory from the platform.</div></div>
+<div class="ttc" id="aplatform_8h_html_a2d23b533b1e998f3f20e6025632ca2c4"><div class="ttname"><a href="platform_8h.html#a2d23b533b1e998f3f20e6025632ca2c4">platform_system_shutdown</a></div><div class="ttdeci">void platform_system_shutdown(void *plat_state)</div><div class="ttdoc">Shuts down the platform layer.</div></div>
+<div class="ttc" id="aplatform_8h_html_a2f0dc66ac164c4d7fc389e8e545513df"><div class="ttname"><a href="platform_8h.html#a2f0dc66ac164c4d7fc389e8e545513df">platform_system_startup</a></div><div class="ttdeci">b8 platform_system_startup(u64 *memory_requirement, void *state, const char *application_name, i32 x, i32 y, i32 width, i32 height)</div><div class="ttdoc">Initializes the platform layer.</div></div>
 <div class="ttc" id="aplatform_8h_html_a59e03b207e95523b84692ea7f68e4654"><div class="ttname"><a href="platform_8h.html#a59e03b207e95523b84692ea7f68e4654">platform_zero_memory</a></div><div class="ttdeci">void * platform_zero_memory(void *block, u64 size)</div><div class="ttdoc">Fills a block of memory with zeros.</div></div>
-<div class="ttc" id="aplatform_8h_html_a7fe7553c63bc948e2ee04d15597d6ccd"><div class="ttname"><a href="platform_8h.html#a7fe7553c63bc948e2ee04d15597d6ccd">platform_shutdown</a></div><div class="ttdeci">void platform_shutdown(platform_state *plat_state)</div><div class="ttdoc">Shuts down the platform layer.</div></div>
+<div class="ttc" id="aplatform_8h_html_a8470764645bd644d6b0a3b98fb8b3eee"><div class="ttname"><a href="platform_8h.html#a8470764645bd644d6b0a3b98fb8b3eee">platform_pump_messages</a></div><div class="ttdeci">b8 platform_pump_messages()</div><div class="ttdoc">Processes messages/events from the operating system.</div></div>
 <div class="ttc" id="aplatform_8h_html_aa65146de20a7fd23870d3809834021b7"><div class="ttname"><a href="platform_8h.html#aa65146de20a7fd23870d3809834021b7">platform_set_memory</a></div><div class="ttdeci">void * platform_set_memory(void *dest, i32 value, u64 size)</div><div class="ttdoc">Fills a block of memory with a specific byte value.</div></div>
 <div class="ttc" id="aplatform_8h_html_ac352c68fed21ee19eff9a165d1648c4c"><div class="ttname"><a href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write</a></div><div class="ttdeci">void platform_console_write(const char *message, u8 colour)</div><div class="ttdoc">Writes a message to the platform console with a given color.</div></div>
 <div class="ttc" id="aplatform_8h_html_adee3e77de1e3374a118e9ebc150c9800"><div class="ttname"><a href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error</a></div><div class="ttdeci">void platform_console_write_error(const char *message, u8 colour)</div><div class="ttdoc">Writes an error message to the platform console with a color.</div></div>
 <div class="ttc" id="aplatform_8h_html_ae21676dfd997b1c6dd9c06f69b5618e4"><div class="ttname"><a href="platform_8h.html#ae21676dfd997b1c6dd9c06f69b5618e4">platform_sleep</a></div><div class="ttdeci">void platform_sleep(u64 ms)</div><div class="ttdoc">Suspends the calling thread for at least the specified number of milliseconds.</div></div>
 <div class="ttc" id="aplatform_8h_html_af38f532e572a9da41eaad4be29a58ada"><div class="ttname"><a href="platform_8h.html#af38f532e572a9da41eaad4be29a58ada">platform_get_absolute_time</a></div><div class="ttdeci">f64 platform_get_absolute_time()</div><div class="ttdoc">Gets the current time in seconds since some arbitrary fixed point in the past.</div></div>
-<div class="ttc" id="aplatform_8h_html_af47d0fad6d6e686e1e0f668c95b1c201"><div class="ttname"><a href="platform_8h.html#af47d0fad6d6e686e1e0f668c95b1c201">platform_pump_messages</a></div><div class="ttdeci">b8 platform_pump_messages(platform_state *plat_state)</div><div class="ttdoc">Processes messages/events from the operating system.</div></div>
 <div class="ttc" id="astructevent__context_html"><div class="ttname"><a href="structevent__context.html">event_context</a></div><div class="ttdoc">Context structure used to pass event-specific data.</div><div class="ttdef"><b>Definition</b> <a href="event_8h_source.html#l00026">event.h:26</a></div></div>
 <div class="ttc" id="astructevent__context_html_aa3780aba001ac7d0979a720b8a86a2c3"><div class="ttname"><a href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a></div><div class="ttdeci">union event_context::@1 data</div><div class="ttdoc">Union of primitive data types for passing event information. Max 128 bytes.</div></div>
 <div class="ttc" id="astructevent__context_html_ade4e8f9d8d9433d902f7070c91a393ef"><div class="ttname"><a href="structevent__context.html#ade4e8f9d8d9433d902f7070c91a393ef">event_context::u16</a></div><div class="ttdeci">u16 u16[8]</div><div class="ttdef"><b>Definition</b> <a href="event_8h_source.html#l00056">event.h:56</a></div></div>
-<div class="ttc" id="astructplatform__state_html"><div class="ttname"><a href="structplatform__state.html">platform_state</a></div><div class="ttdoc">Opaque state structure for the platform layer.</div><div class="ttdef"><b>Definition</b> <a href="platform_8h_source.html#l00026">platform.h:26</a></div></div>
-<div class="ttc" id="astructplatform__state_html_ac902a69fe12cf6868862aad5a57b15d5"><div class="ttname"><a href="structplatform__state.html#ac902a69fe12cf6868862aad5a57b15d5">platform_state::internal_state</a></div><div class="ttdeci">void * internal_state</div><div class="ttdoc">A pointer to internal platform-specific state.</div><div class="ttdef"><b>Definition</b> <a href="platform_8h_source.html#l00033">platform.h:33</a></div></div>
+<div class="ttc" id="astructplatform__state_html"><div class="ttname"><a href="structplatform__state.html">platform_state</a></div><div class="ttdoc">Forward declaration of platform-specific state structure.</div></div>
 <div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00028">vulkan_backend.c:28</a></div></div>
-<div class="ttc" id="avulkan__platform_8h_html_a48932cc1b8761ab4af6627a36ba06548"><div class="ttname"><a href="vulkan__platform_8h.html#a48932cc1b8761ab4af6627a36ba06548">platform_create_vulkan_surface</a></div><div class="ttdeci">b8 platform_create_vulkan_surface(struct platform_state *plat_state, struct vulkan_context *context)</div></div>
+<div class="ttc" id="avulkan__platform_8h_html_aaaf33dc6309c5d8963e3a8515493dfd3"><div class="ttname"><a href="vulkan__platform_8h.html#aaaf33dc6309c5d8963e3a8515493dfd3">platform_create_vulkan_surface</a></div><div class="ttdeci">b8 platform_create_vulkan_surface(struct vulkan_context *context)</div></div>
 <div class="ttc" id="avulkan__platform_8h_html_ac6f33d791e5445db00300cfd71d88702"><div class="ttname"><a href="vulkan__platform_8h.html#ac6f33d791e5445db00300cfd71d88702">platform_get_required_extension_names</a></div><div class="ttdeci">void platform_get_required_extension_names(const char ***names_darray)</div><div class="ttdoc">Appends the names of required Vulkan instance extensions for the current platform.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 19:11:01 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
