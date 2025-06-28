@@ -42,7 +42,7 @@ struct platform_state;
  * @param plat_state A pointer to the platform-specific state.
  * @return True if initialization was successful; otherwise False.
  */
-b8 renderer_initialize(const char* application_name, struct platform_state* plat_state);
+b8 renderer_system_initialize(u64* memory_requirement, void* state, const char* application_name);
 
 /**
  * @brief Shuts down the rendering system.
@@ -50,7 +50,7 @@ b8 renderer_initialize(const char* application_name, struct platform_state* plat
  * Cleans up all resources allocated during initialization, including
  * devices, command pools, buffers, and synchronization primitives.
  */
-void renderer_shutdown();
+void renderer_system_shutdown(void* state);
 
 /**
  * @brief Handles window resize events.

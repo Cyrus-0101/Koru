@@ -62,4 +62,11 @@ typedef struct game {
      * Allocated and managed by the game implementation.
      */
     void* state;
+
+    /**
+     * @brief Pointer to application-specific state data.
+     * 
+     * This can be used to store data that needs to persist
+     */
+    void* application_state;
 } game;

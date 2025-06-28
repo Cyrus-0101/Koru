@@ -1,0 +1,67 @@
+\doxysection{memory\+\_\+system\+\_\+state Struct Reference}
+\hypertarget{structmemory__system__state}{}\label{structmemory__system__state}\index{memory\_system\_state@{memory\_system\_state}}
+
+
+Represents the state of the memory tracking system.  
+
+
+
+
+Collaboration diagram for memory\+\_\+system\+\_\+state\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{structmemory__system__state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmemory__stats}{memory\+\_\+stats}} \mbox{\hyperlink{structmemory__system__state_a531467e3ef52d68219f7def5e3302433}{stats}}
+\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structmemory__system__state_abcab7554a6b06b2f7ed8ee758ef417cb}{alloc\+\_\+count}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the state of the memory tracking system. 
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00077}{77}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmemory__system__state_abcab7554a6b06b2f7ed8ee758ef417cb}\label{structmemory__system__state_abcab7554a6b06b2f7ed8ee758ef417cb} 
+\index{memory\_system\_state@{memory\_system\_state}!alloc\_count@{alloc\_count}}
+\index{alloc\_count@{alloc\_count}!memory\_system\_state@{memory\_system\_state}}
+\doxysubsubsection{\texorpdfstring{alloc\_count}{alloc\_count}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} memory\+\_\+system\+\_\+state\+::alloc\+\_\+count}
+
+Total number of allocations made 
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00079}{79}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmemory_8c_source_l00244}{get\+\_\+memory\+\_\+alloc\+\_\+count()}}, \mbox{\hyperlink{kmemory_8c_source_l00090}{initialize\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}.
+
+\Hypertarget{structmemory__system__state_a531467e3ef52d68219f7def5e3302433}\label{structmemory__system__state_a531467e3ef52d68219f7def5e3302433} 
+\index{memory\_system\_state@{memory\_system\_state}!stats@{stats}}
+\index{stats@{stats}!memory\_system\_state@{memory\_system\_state}}
+\doxysubsubsection{\texorpdfstring{stats}{stats}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structmemory__stats}{memory\+\_\+stats}} memory\+\_\+system\+\_\+state\+::stats}
+
+Memory usage statistics 
+
+Definition at line \mbox{\hyperlink{kmemory_8c_source_l00078}{78}} of file \mbox{\hyperlink{kmemory_8c_source}{kmemory.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{kmemory_8c_source_l00206}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{kmemory_8c_source_l00090}{initialize\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, and \mbox{\hyperlink{kmemory_8c_source_l00149}{kfree()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/core/\mbox{\hyperlink{kmemory_8c}{kmemory.\+c}}\end{DoxyCompactItemize}

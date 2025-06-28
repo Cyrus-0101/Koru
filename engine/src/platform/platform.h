@@ -16,24 +16,6 @@
  */
 
 /**
- * @brief Opaque state structure for the platform layer.
- *
- * This struct holds internal platform-specific data that the implementation needs,
- * such as window handles, device contexts, input state, etc.
- *
- * The actual contents are defined privately in platform_*.c files.
- */
-typedef struct platform_state {
-    /**
-     * @brief A pointer to internal platform-specific state.
-     *
-     * This will point to a platform-specific struct (e.g., Win32PlatformState, LinuxPlatformState)
-     * which contains all the low-level details needed by the implementation.
-     */
-    void* internal_state;
-} platform_state;
-
-/**
  * @brief Initializes the platform layer.
  *
  * Sets up:
@@ -49,8 +31,9 @@ typedef struct platform_state {
  * @param height Height of the window client area.
  * @return True if initialization was successful; False otherwise.
  */
-b8 platform_startup(
-    platform_state* plat_state,
+b8 platform_system_startup(
+    u64* memory_requirement,
+    void* state,
     const char* application_name,
     i32 x,
     i32 y,
@@ -65,10 +48,10 @@ b8 platform_startup(
  * - Input devices
  * - Any allocated memory or threads
  *
- * @param plat_state A pointer to the initialized platform_state struct.
+ * @param plat_state A pointer to the platform_state struct to shut down.
+ * @return True if shutdown was successful; False otherwise.
  */
-void platform_shutdown(platform_state* plat_state);
-
+void platform_system_shutdown(void* plat_state);
 /**
  * @brief Processes messages/events from the operating system.
  *
@@ -78,10 +61,9 @@ void platform_shutdown(platform_state* plat_state);
  * - Window resizing
  * - Close button click
  *
- * @param plat_state A pointer to the initialized platform_state struct.
  * @return True if the application should continue running; False if quit was requested.
  */
-b8 platform_pump_messages(platform_state* plat_state);
+b8 platform_pump_messages();
 
 /**
  * @brief Allocates memory from the platform.

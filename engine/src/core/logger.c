@@ -23,20 +23,42 @@
  * - Assertion failure handler
  */
 
-// Terminal supports colour False by default
-static b8 terminal_supports_color = False;
+/**
+ * @struct logger_system_state
+ *
+ * Tracks the state of the logging system.
+ */
+typedef struct logger_system_state {
+    /**
+     * @brief Indicates whether the logging system has been initialized.
+     */
+    b8 initialized;
+} logger_system_state;
+
+static logger_system_state* state_ptr;
 
 // Initialize the logging system.
 // For now it just returns True. Later, you can create/open a log file here.
-b8 initialize_logging() {
+b8 initialize_logging(u64* memory_requirement, void* state) {
+    *memory_requirement = sizeof(logger_system_state);
+
+    if (state == 0) {
+        return True; // No state provided, nothing to initialize
+    }
+
+    state_ptr = state;
+    state_ptr->initialized = True;
+
     // TO-DO: Create log file
-    return True;
+    return True; 
 }
 
 // Clean up the logging system.
 // Placeholder for cleanup, like flushing buffers or closing the log file.
-void shutdown_logging() {
+void shutdown_logging(void* state) {
     // TO-DO: Cleanup logging/write queued
+
+    state_ptr = 0;
 }
 
 // Logs a message at a given level, with formatting like printf.

@@ -84,15 +84,15 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="structapplication__state__coll__graph.png" border="0" usemap="#aapplication__state_coll__map" alt="Collaboration graph"/></div>
 <map name="aapplication__state_coll__map" id="aapplication__state_coll__map">
-<area shape="rect" title="Internal state structure for the application." alt="" coords="121,181,256,207"/>
+<area shape="rect" title="Internal state structure for the application." alt="" coords="112,181,247,207"/>
 <area shape="rect" href="structgame.html" title="Represents the basic game interface." alt="" coords="46,93,105,119"/>
-<area shape="poly" title=" " alt="" coords="90,129,112,155,132,169,154,179,152,184,129,173,108,159,86,132"/>
+<area shape="poly" title=" " alt="" coords="86,130,103,155,121,169,142,179,139,184,118,174,99,159,82,133"/>
 <area shape="rect" href="structapplication__config.html" title="Configuration settings for initializing the application." alt="" coords="5,5,145,31"/>
 <area shape="poly" title=" " alt="" coords="78,45,78,93,73,93,73,45"/>
-<area shape="rect" href="structplatform__state.html" title="Opaque state structure for the platform layer." alt="" coords="129,93,248,119"/>
-<area shape="poly" title=" " alt="" coords="191,133,191,181,186,181,186,133"/>
-<area shape="rect" href="structclock.html" title="Represents a simple clock that tracks elapsed time." alt="" coords="271,93,327,119"/>
-<area shape="poly" title=" " alt="" coords="285,131,257,159,217,184,214,179,254,155,281,128"/>
+<area shape="rect" href="structclock.html" title="Represents a simple clock that tracks elapsed time." alt="" coords="151,93,207,119"/>
+<area shape="poly" title=" " alt="" coords="182,133,182,181,177,181,177,133"/>
+<area shape="rect" href="structlinear__allocator.html" title="Represents a linear memory allocator." alt="" coords="231,93,354,119"/>
+<area shape="poly" title=" " alt="" coords="268,129,196,183,193,179,265,125"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -106,9 +106,6 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a4e7125d95754ef0c0166479931eafcd1" id="r_a4e7125d95754ef0c0166479931eafcd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1">is_suspended</a></td></tr>
 <tr class="memdesc:a4e7125d95754ef0c0166479931eafcd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the application is currently suspended.  <br /></td></tr>
 <tr class="separator:a4e7125d95754ef0c0166479931eafcd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14782a7e40b24efc8c814f786c6525ba" id="r_a14782a7e40b24efc8c814f786c6525ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structplatform__state.html">platform_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a14782a7e40b24efc8c814f786c6525ba">platform</a></td></tr>
-<tr class="memdesc:a14782a7e40b24efc8c814f786c6525ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opaque platform-specific state used for windowing, input, etc.  <br /></td></tr>
-<tr class="separator:a14782a7e40b24efc8c814f786c6525ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c49a4da818b7bae26b50df80c889279" id="r_a5c49a4da818b7bae26b50df80c889279"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#ac12585a6def54773148d7fb2c72a59c5">i16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a5c49a4da818b7bae26b50df80c889279">width</a></td></tr>
 <tr class="memdesc:a5c49a4da818b7bae26b50df80c889279"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of the application window client area.  <br /></td></tr>
 <tr class="separator:a5c49a4da818b7bae26b50df80c889279"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,10 +113,42 @@ Data Fields</h2></td></tr>
 <tr class="memdesc:a4a01899027b7429dce0fa6290b927f9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The height of the application window client area.  <br /></td></tr>
 <tr class="separator:a4a01899027b7429dce0fa6290b927f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa930dcc46dfc1ad594320c1a313a26a2" id="r_aa930dcc46dfc1ad594320c1a313a26a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structclock.html">clock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#aa930dcc46dfc1ad594320c1a313a26a2">clock</a></td></tr>
+<tr class="memdesc:aa930dcc46dfc1ad594320c1a313a26a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clock used for timing and frame updates.  <br /></td></tr>
 <tr class="separator:aa930dcc46dfc1ad594320c1a313a26a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fc952bc899881d85115730cf7da1c5a" id="r_a4fc952bc899881d85115730cf7da1c5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a4fc952bc899881d85115730cf7da1c5a">last_time</a></td></tr>
 <tr class="memdesc:a4fc952bc899881d85115730cf7da1c5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestamp of the last processed frame for delta time calculation.  <br /></td></tr>
 <tr class="separator:a4fc952bc899881d85115730cf7da1c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a213ee353f6a3fbc499d583c79f369b9a" id="r_a213ee353f6a3fbc499d583c79f369b9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlinear__allocator.html">linear_allocator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a213ee353f6a3fbc499d583c79f369b9a">systems_allocator</a></td></tr>
+<tr class="memdesc:a213ee353f6a3fbc499d583c79f369b9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocator for internal systems.  <br /></td></tr>
+<tr class="separator:a213ee353f6a3fbc499d583c79f369b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3589702e0777ec9177a0445495bf55c" id="r_af3589702e0777ec9177a0445495bf55c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#af3589702e0777ec9177a0445495bf55c">event_system_memory_requirement</a></td></tr>
+<tr class="separator:af3589702e0777ec9177a0445495bf55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9186745c2d8485ef0070a70a4b45688" id="r_ad9186745c2d8485ef0070a70a4b45688"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#ad9186745c2d8485ef0070a70a4b45688">event_system_state</a></td></tr>
+<tr class="separator:ad9186745c2d8485ef0070a70a4b45688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae310c177456b1deb7275b38c0bbfa4bd" id="r_ae310c177456b1deb7275b38c0bbfa4bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#ae310c177456b1deb7275b38c0bbfa4bd">memory_system_memory_requirement</a></td></tr>
+<tr class="memdesc:ae310c177456b1deb7275b38c0bbfa4bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The total memory requirement for the memory system.  <br /></td></tr>
+<tr class="separator:ae310c177456b1deb7275b38c0bbfa4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed0f63cc9b22798a6713c74d624a13c" id="r_abed0f63cc9b22798a6713c74d624a13c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#abed0f63cc9b22798a6713c74d624a13c">memory_system_state</a></td></tr>
+<tr class="memdesc:abed0f63cc9b22798a6713c74d624a13c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the memory system state.  <br /></td></tr>
+<tr class="separator:abed0f63cc9b22798a6713c74d624a13c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f3de38a5a5c937b28bce6620ebe8c48" id="r_a7f3de38a5a5c937b28bce6620ebe8c48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a7f3de38a5a5c937b28bce6620ebe8c48">logging_system_memory_requirement</a></td></tr>
+<tr class="memdesc:a7f3de38a5a5c937b28bce6620ebe8c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">The total memory requirement for the logging system.  <br /></td></tr>
+<tr class="separator:a7f3de38a5a5c937b28bce6620ebe8c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca514d3246b5d5a1973c29df11550ea1" id="r_aca514d3246b5d5a1973c29df11550ea1"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#aca514d3246b5d5a1973c29df11550ea1">logging_system_state</a></td></tr>
+<tr class="memdesc:aca514d3246b5d5a1973c29df11550ea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the logging system state.  <br /></td></tr>
+<tr class="separator:aca514d3246b5d5a1973c29df11550ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a9175d2ced90985c4c30c8c75857cd9" id="r_a2a9175d2ced90985c4c30c8c75857cd9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a2a9175d2ced90985c4c30c8c75857cd9">input_system_memory_requirement</a></td></tr>
+<tr class="separator:a2a9175d2ced90985c4c30c8c75857cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7949e6624c3ebfad501d54da232cc65b" id="r_a7949e6624c3ebfad501d54da232cc65b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a7949e6624c3ebfad501d54da232cc65b">input_system_state</a></td></tr>
+<tr class="separator:a7949e6624c3ebfad501d54da232cc65b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ab8ec34eb94a7cb31bf3385b7c72709" id="r_a1ab8ec34eb94a7cb31bf3385b7c72709"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a1ab8ec34eb94a7cb31bf3385b7c72709">platform_system_memory_requirement</a></td></tr>
+<tr class="separator:a1ab8ec34eb94a7cb31bf3385b7c72709"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef6e3d3187e197b9a6f293be7d5d5591" id="r_aef6e3d3187e197b9a6f293be7d5d5591"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#aef6e3d3187e197b9a6f293be7d5d5591">platform_system_state</a></td></tr>
+<tr class="separator:aef6e3d3187e197b9a6f293be7d5d5591"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00a59ff2c4530d84fcea3927994f1ee0" id="r_a00a59ff2c4530d84fcea3927994f1ee0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a00a59ff2c4530d84fcea3927994f1ee0">renderer_system_memory_requirement</a></td></tr>
+<tr class="separator:a00a59ff2c4530d84fcea3927994f1ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9013e0f2cacc1dca598af239a280c24b" id="r_a9013e0f2cacc1dca598af239a280c24b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structapplication__state.html#a9013e0f2cacc1dca598af239a280c24b">renderer_system_state</a></td></tr>
+<tr class="separator:a9013e0f2cacc1dca598af239a280c24b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Internal state structure for the application. </p>
@@ -130,7 +159,7 @@ Data Fields</h2></td></tr>
 <li>Timing information for frame updates </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00034">34</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00036">36</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="aa930dcc46dfc1ad594320c1a313a26a2" name="aa930dcc46dfc1ad594320c1a313a26a2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa930dcc46dfc1ad594320c1a313a26a2">&#9670;&#160;</a></span>clock</h2>
@@ -144,9 +173,47 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Clock used for timing and frame updates. </p>
+
 <p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00061">61</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
+
+</div>
+</div>
+<a id="af3589702e0777ec9177a0445495bf55c" name="af3589702e0777ec9177a0445495bf55c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3589702e0777ec9177a0445495bf55c">&#9670;&#160;</a></span>event_system_memory_requirement</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> application_state::event_system_memory_requirement</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00073">73</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
+
+</div>
+</div>
+<a id="ad9186745c2d8485ef0070a70a4b45688" name="ad9186745c2d8485ef0070a70a4b45688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9186745c2d8485ef0070a70a4b45688">&#9670;&#160;</a></span>event_system_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* application_state::event_system_state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00075">75</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, and <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
 </div>
 </div>
@@ -162,9 +229,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00035">35</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00037">37</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>, <a class="el" href="application_8c_source.html#l00346">application_on_resized()</a>, and <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, <a class="el" href="application_8c_source.html#l00417">application_on_resized()</a>, and <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
 </div>
 </div>
@@ -182,9 +249,45 @@ Data Fields</h2></td></tr>
 
 <p>The height of the application window client area. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00059">59</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00056">56</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>, <a class="el" href="application_8c_source.html#l00301">application_get_framebuffer_size()</a>, and <a class="el" href="application_8c_source.html#l00346">application_on_resized()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, <a class="el" href="application_8c_source.html#l00372">application_get_framebuffer_size()</a>, and <a class="el" href="application_8c_source.html#l00417">application_on_resized()</a>.</p>
+
+</div>
+</div>
+<a id="a2a9175d2ced90985c4c30c8c75857cd9" name="a2a9175d2ced90985c4c30c8c75857cd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a9175d2ced90985c4c30c8c75857cd9">&#9670;&#160;</a></span>input_system_memory_requirement</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> application_state::input_system_memory_requirement</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00105">105</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
+
+</div>
+</div>
+<a id="a7949e6624c3ebfad501d54da232cc65b" name="a7949e6624c3ebfad501d54da232cc65b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7949e6624c3ebfad501d54da232cc65b">&#9670;&#160;</a></span>input_system_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* application_state::input_system_state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00107">107</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, and <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
 </div>
 </div>
@@ -202,9 +305,9 @@ Data Fields</h2></td></tr>
 
 <p>Indicates whether the application is currently running. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00039">39</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00041">41</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>, <a class="el" href="application_8c_source.html#l00306">application_on_event()</a>, and <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, <a class="el" href="application_8c_source.html#l00377">application_on_event()</a>, and <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
 </div>
 </div>
@@ -222,9 +325,9 @@ Data Fields</h2></td></tr>
 
 <p>Indicates whether the application is currently suspended. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00044">44</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00046">46</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>, <a class="el" href="application_8c_source.html#l00346">application_on_resized()</a>, and <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, <a class="el" href="application_8c_source.html#l00417">application_on_resized()</a>, and <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
 </div>
 </div>
@@ -244,27 +347,183 @@ Data Fields</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00066">66</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
 </div>
 </div>
-<a id="a14782a7e40b24efc8c814f786c6525ba" name="a14782a7e40b24efc8c814f786c6525ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14782a7e40b24efc8c814f786c6525ba">&#9670;&#160;</a></span>platform</h2>
+<a id="a7f3de38a5a5c937b28bce6620ebe8c48" name="a7f3de38a5a5c937b28bce6620ebe8c48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f3de38a5a5c937b28bce6620ebe8c48">&#9670;&#160;</a></span>logging_system_memory_requirement</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structplatform__state.html">platform_state</a> application_state::platform</td>
+          <td class="memname"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> application_state::logging_system_memory_requirement</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Opaque platform-specific state used for windowing, input, etc. </p>
+<p>The total memory requirement for the logging system. </p>
+<p>This is used to allocate memory for the logging system state. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00049">49</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00096">96</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>, and <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
+
+</div>
+</div>
+<a id="aca514d3246b5d5a1973c29df11550ea1" name="aca514d3246b5d5a1973c29df11550ea1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca514d3246b5d5a1973c29df11550ea1">&#9670;&#160;</a></span>logging_system_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* application_state::logging_system_state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pointer to the logging system state. </p>
+<p>This is used to manage the logging system's internal state. </p>
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00103">103</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
+
+</div>
+</div>
+<a id="ae310c177456b1deb7275b38c0bbfa4bd" name="ae310c177456b1deb7275b38c0bbfa4bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae310c177456b1deb7275b38c0bbfa4bd">&#9670;&#160;</a></span>memory_system_memory_requirement</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> application_state::memory_system_memory_requirement</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The total memory requirement for the memory system. </p>
+<p>This is used to allocate memory for the memory system state. </p>
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00082">82</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
+
+</div>
+</div>
+<a id="abed0f63cc9b22798a6713c74d624a13c" name="abed0f63cc9b22798a6713c74d624a13c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abed0f63cc9b22798a6713c74d624a13c">&#9670;&#160;</a></span>memory_system_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* application_state::memory_system_state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pointer to the memory system state. </p>
+<p>This is used to manage the memory system's internal state. </p>
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00089">89</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, and <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
+
+</div>
+</div>
+<a id="a1ab8ec34eb94a7cb31bf3385b7c72709" name="a1ab8ec34eb94a7cb31bf3385b7c72709"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ab8ec34eb94a7cb31bf3385b7c72709">&#9670;&#160;</a></span>platform_system_memory_requirement</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> application_state::platform_system_memory_requirement</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00109">109</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
+
+</div>
+</div>
+<a id="aef6e3d3187e197b9a6f293be7d5d5591" name="aef6e3d3187e197b9a6f293be7d5d5591"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef6e3d3187e197b9a6f293be7d5d5591">&#9670;&#160;</a></span>platform_system_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* application_state::platform_system_state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00111">111</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, and <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
+
+</div>
+</div>
+<a id="a00a59ff2c4530d84fcea3927994f1ee0" name="a00a59ff2c4530d84fcea3927994f1ee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00a59ff2c4530d84fcea3927994f1ee0">&#9670;&#160;</a></span>renderer_system_memory_requirement</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> application_state::renderer_system_memory_requirement</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00113">113</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
+
+</div>
+</div>
+<a id="a9013e0f2cacc1dca598af239a280c24b" name="a9013e0f2cacc1dca598af239a280c24b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9013e0f2cacc1dca598af239a280c24b">&#9670;&#160;</a></span>renderer_system_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* application_state::renderer_system_state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00115">115</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, and <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
+
+</div>
+</div>
+<a id="a213ee353f6a3fbc499d583c79f369b9a" name="a213ee353f6a3fbc499d583c79f369b9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a213ee353f6a3fbc499d583c79f369b9a">&#9670;&#160;</a></span>systems_allocator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structlinear__allocator.html">linear_allocator</a> application_state::systems_allocator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Allocator for internal systems. </p>
+
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00071">71</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
 
 </div>
 </div>
@@ -282,9 +541,9 @@ Data Fields</h2></td></tr>
 
 <p>The width of the application window client area. </p>
 
-<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00054">54</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="application_8c_source.html#l00051">51</a> of file <a class="el" href="application_8c_source.html">application.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>, <a class="el" href="application_8c_source.html#l00301">application_get_framebuffer_size()</a>, and <a class="el" href="application_8c_source.html#l00346">application_on_resized()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, <a class="el" href="application_8c_source.html#l00372">application_get_framebuffer_size()</a>, and <a class="el" href="application_8c_source.html#l00417">application_on_resized()</a>.</p>
 
 </div>
 </div>
@@ -294,7 +553,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 19:11:02 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

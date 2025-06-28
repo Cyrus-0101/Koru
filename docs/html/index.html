@@ -477,15 +477,14 @@ Windows</h2>
 <p>In Linux:</p>
 <div class="fragment"><div class="line"><span class="comment">// platform_linux.c</span></div>
 <div class="line">xcb_intern_atom_reply_t* wm_delete_reply = xcb_intern_atom_reply(...);</div>
-<div class="line"><a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;wm_delete_win = wm_delete_reply-&gt;atom;</div>
+<div class="line">state-&gt;wm_delete_win = wm_delete_reply-&gt;atom;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Create surface</span></div>
 <div class="line">VkXcbSurfaceCreateInfoKHR surface_create_info = {VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR};</div>
-<div class="line">surface_create_info.connection = <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;connection;</div>
-<div class="line">surface_create_info.window = <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;window;</div>
+<div class="line">surface_create_info.connection = state-&gt;connection;</div>
+<div class="line">surface_create_info.window = state-&gt;window;</div>
 <div class="line"> </div>
 <div class="line">vkCreateXcbSurfaceKHR(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;instance, &amp;surface_create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;surface);</div>
-<div class="ttc" id="aevent_8c_html_acfc52e8e20887a09d8db0da0067c76e5"><div class="ttname"><a href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a></div><div class="ttdeci">static event_system_state state</div><div class="ttdoc">Static global instance of the event system state.</div><div class="ttdef"><b>Definition</b> <a href="event_8c_source.html#l00074">event.c:74</a></div></div>
 </div><!-- fragment --><p>In Windows: The engine uses <code>vkCreateWin32SurfaceKHR()</code> instead.</p>
 <p>✅ A surface is essential because it defines where rendered frames go usually the screen or a window.</p>
 <hr  />
@@ -661,7 +660,7 @@ Windows</h2>
 <div class="ttc" id="adefines_8h_html_a306ebd41c0cd1303b1372c6153f0caf8"><div class="ttname"><a href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></div><div class="ttdeci">#define False</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00122">defines.h:122</a></div></div>
 <div class="ttc" id="adefines_8h_html_ad758b7a5c3f18ed79d2fcd23d9f16357"><div class="ttname"><a href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a></div><div class="ttdeci">unsigned long long u64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00026">defines.h:26</a></div></div>
 <div class="ttc" id="adefines_8h_html_add3ca9eefe3b5b754426f51d3043e579"><div class="ttname"><a href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a></div><div class="ttdeci">#define True</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00120">defines.h:120</a></div></div>
-<div class="ttc" id="alogger_8h_html_a473bb2cc3b3bf3c93084eeca6cb19132"><div class="ttname"><a href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a></div><div class="ttdeci">#define KERROR(message,...)</div><div class="ttdoc">Logs an error-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00162">logger.h:162</a></div></div>
+<div class="ttc" id="alogger_8h_html_a473bb2cc3b3bf3c93084eeca6cb19132"><div class="ttname"><a href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a></div><div class="ttdeci">#define KERROR(message,...)</div><div class="ttdoc">Logs an error-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00165">logger.h:165</a></div></div>
 <div class="ttc" id="avulkan__device_8c_html_a4af4291b3e9e0fc739c88bde97d74693"><div class="ttname"><a href="vulkan__device_8c.html#a4af4291b3e9e0fc739c88bde97d74693">vulkan_device_detect_depth_format</a></div><div class="ttdeci">b8 vulkan_device_detect_depth_format(vulkan_device *device)</div><div class="ttdoc">Detects and selects a suitable depth/stencil format for the given device.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00368">vulkan_device.c:368</a></div></div>
 </div><!-- fragment --><p>🧃 Once selected, create a depth/stencil image and its view.</p>
 <hr  />
@@ -969,7 +968,7 @@ Windows</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Module   </th><th class="markdownTableHeadNone">Responsibility    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code><a class="el" href="vulkan__backend_8c.html#a0b90ec94f78aae6814140d684323d8d2" title="Initializes the Vulkan renderer backend.">vulkan_renderer_backend_initialize()</a></code>   </td><td class="markdownTableBodyNone">Creates instance, surface, and starts device setup    </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="vulkan__backend_8c.html#afc2cbf296cd3a6e4999750da67deaca9" title="Initializes the Vulkan renderer backend.">vulkan_renderer_backend_initialize()</a></code>   </td><td class="markdownTableBodyNone">Creates instance, surface, and starts device setup    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code><a class="el" href="vulkan__device_8c.html#abb07eb6d710c4e98364b57e42e4af4ac" title="Creates and selects a suitable physical/logical Vulkan device.">vulkan_device_create()</a></code>   </td><td class="markdownTableBodyNone">Selects physical device, creates logical device    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -1007,7 +1006,7 @@ Windows</h2>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line">}</div>
-<div class="ttc" id="alogger_8h_html_a8eb60bd7b3dfc5cadc7364b06ce7bd07"><div class="ttname"><a href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a></div><div class="ttdeci">#define KFATAL(message,...)</div><div class="ttdoc">Logs a fatal-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00149">logger.h:149</a></div></div>
+<div class="ttc" id="alogger_8h_html_a8eb60bd7b3dfc5cadc7364b06ce7bd07"><div class="ttname"><a href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a></div><div class="ttdeci">#define KFATAL(message,...)</div><div class="ttdoc">Logs a fatal-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00152">logger.h:152</a></div></div>
 <div class="ttc" id="avulkan__swapchain_8c_html_a37945527d25893e83ecde0d83f11b550"><div class="ttname"><a href="vulkan__swapchain_8c.html#a37945527d25893e83ecde0d83f11b550">vulkan_swapchain_recreate</a></div><div class="ttdeci">void vulkan_swapchain_recreate(vulkan_context *context, u32 width, u32 height, vulkan_swapchain *swapchain)</div><div class="ttdoc">Recreates the swapchain after resize or resolution change.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__swapchain_8c_source.html#l00080">vulkan_swapchain.c:80</a></div></div>
 <div class="ttc" id="avulkan__swapchain_8c_html_a559f69815dfb6ccb3a6776516d9025b7"><div class="ttname"><a href="vulkan__swapchain_8c.html#a559f69815dfb6ccb3a6776516d9025b7">vulkan_swapchain_acquire_next_image_index</a></div><div class="ttdeci">b8 vulkan_swapchain_acquire_next_image_index(vulkan_context *context, vulkan_swapchain *swapchain, u64 timeout_ns, VkSemaphore image_available_semaphore, VkFence fence, u32 *out_image_index)</div><div class="ttdoc">Acquires the index of the next available image from the swapchain.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__swapchain_8c_source.html#l00118">vulkan_swapchain.c:118</a></div></div>
 </div><!-- fragment --><p>This function gets the next image from the swapchain — and triggers recreation if needed.</p>
@@ -1022,7 +1021,7 @@ Windows</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 19:11:02 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

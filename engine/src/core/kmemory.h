@@ -85,14 +85,14 @@ typedef enum memory_tag {
  *
  * Sets internal counters to zero and prepares for tracking allocations.
  */
-KAPI void initialize_memory();
+KAPI void initialize_memory(u64* memory_requirement, void* state);
 
 /**
  * @brief Shuts down the memory allocator subsystem.
  *
  * Currently does nothing but may be extended to log final stats or validate leaks.
  */
-KAPI void shutdown_memory();
+KAPI void shutdown_memory(void* state);
 
 /**
  * @brief Allocates memory with the given size and tag.
@@ -150,3 +150,12 @@ KAPI void* kset_memory(void* dest, i32 value, u64 size);
  *         Caller must free it using kfree().
  */
 KAPI char* get_memory_usage_str();
+
+/**
+ * @brief Gets the total number of memory allocations made.
+ *
+ * This is useful for tracking memory usage and potential leaks.
+ *
+ * @return The total number of allocations made since the application started.
+ */
+KAPI u64 get_memory_alloc_count();

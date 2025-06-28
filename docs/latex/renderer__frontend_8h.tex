@@ -23,9 +23,9 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{renderer__frontend_8h_a22086f105bc3ec5fdad7381f76b5efb5}{renderer\+\_\+initialize}} (const char \texorpdfstring{$\ast$}{*}application\+\_\+name, struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state)
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{renderer__frontend_8h_a4a8eb9df8447b9317c06c2592aa4944d}{renderer\+\_\+system\+\_\+initialize}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}memory\+\_\+requirement, void \texorpdfstring{$\ast$}{*}state, const char \texorpdfstring{$\ast$}{*}application\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Initializes the rendering system. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{renderer__frontend_8h_a52882bf7ed3f35fe0593d1715edaa0b8}{renderer\+\_\+shutdown}} ()
+void \mbox{\hyperlink{renderer__frontend_8h_a2be6c28c095877944c89e1fa246e6a3f}{renderer\+\_\+system\+\_\+shutdown}} (void \texorpdfstring{$\ast$}{*}state)
 \begin{DoxyCompactList}\small\item\em Shuts down the rendering system. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00}{renderer\+\_\+on\+\_\+resized}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} width, \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} height)
 \begin{DoxyCompactList}\small\item\em Handles window resize events. \end{DoxyCompactList}\item 
@@ -79,21 +79,52 @@ True if the frame was drawn successfully; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00117}{117}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00130}{130}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00094}{renderer\+\_\+end\+\_\+frame()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00086}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00103}{renderer\+\_\+end\+\_\+frame()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}.
 
-\Hypertarget{renderer__frontend_8h_a22086f105bc3ec5fdad7381f76b5efb5}\label{renderer__frontend_8h_a22086f105bc3ec5fdad7381f76b5efb5} 
-\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_initialize@{renderer\_initialize}}
-\index{renderer\_initialize@{renderer\_initialize}!renderer\_frontend.h@{renderer\_frontend.h}}
-\doxysubsubsection{\texorpdfstring{renderer\_initialize()}{renderer\_initialize()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} renderer\+\_\+initialize (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{application\+\_\+name,  }\item[{struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state }\end{DoxyParamCaption})}
+\Hypertarget{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00}\label{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_on\_resized@{renderer\_on\_resized}}
+\index{renderer\_on\_resized@{renderer\_on\_resized}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_on\_resized()}{renderer\_on\_resized()}}
+{\footnotesize\ttfamily void renderer\+\_\+on\+\_\+resized (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{height }\end{DoxyParamCaption})}
+
+
+
+Handles window resize events. 
+
+Notifies the renderer that the window dimensions have changed and triggers any necessary internal updates such as recreating the swapchain or adjusting viewport/scissor settings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & New width of the window. \\
+\hline
+{\em height} & New height of the window. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00113}{113}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00417}{application\+\_\+on\+\_\+resized()}}.
+
+\Hypertarget{renderer__frontend_8h_a4a8eb9df8447b9317c06c2592aa4944d}\label{renderer__frontend_8h_a4a8eb9df8447b9317c06c2592aa4944d} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_system\_initialize@{renderer\_system\_initialize}}
+\index{renderer\_system\_initialize@{renderer\_system\_initialize}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_system\_initialize()}{renderer\_system\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} renderer\+\_\+system\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{memory\+\_\+requirement,  }\item[{void \texorpdfstring{$\ast$}{*}}]{state,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{application\+\_\+name }\end{DoxyParamCaption})}
 
 
 
@@ -125,52 +156,21 @@ True if initialization was successful; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{37}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00043}{43}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{kmemory_8c_source_l00106}{kallocate()}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}, \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}.
 
-\Hypertarget{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00}\label{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00} 
-\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_on\_resized@{renderer\_on\_resized}}
-\index{renderer\_on\_resized@{renderer\_on\_resized}!renderer\_frontend.h@{renderer\_frontend.h}}
-\doxysubsubsection{\texorpdfstring{renderer\_on\_resized()}{renderer\_on\_resized()}}
-{\footnotesize\ttfamily void renderer\+\_\+on\+\_\+resized (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{height }\end{DoxyParamCaption})}
-
-
-
-Handles window resize events. 
-
-Notifies the renderer that the window dimensions have changed and triggers any necessary internal updates such as recreating the swapchain or adjusting viewport/scissor settings.
-
-
-\begin{DoxyParams}{Parameters}
-{\em width} & New width of the window. \\
-\hline
-{\em height} & New height of the window. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00100}{100}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
-
-
-
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, and \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}.
-
-
-
-Referenced by \mbox{\hyperlink{application_8c_source_l00346}{application\+\_\+on\+\_\+resized()}}.
-
-\Hypertarget{renderer__frontend_8h_a52882bf7ed3f35fe0593d1715edaa0b8}\label{renderer__frontend_8h_a52882bf7ed3f35fe0593d1715edaa0b8} 
-\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_shutdown@{renderer\_shutdown}}
-\index{renderer\_shutdown@{renderer\_shutdown}!renderer\_frontend.h@{renderer\_frontend.h}}
-\doxysubsubsection{\texorpdfstring{renderer\_shutdown()}{renderer\_shutdown()}}
-{\footnotesize\ttfamily void renderer\+\_\+shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\Hypertarget{renderer__frontend_8h_a2be6c28c095877944c89e1fa246e6a3f}\label{renderer__frontend_8h_a2be6c28c095877944c89e1fa246e6a3f} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_system\_shutdown@{renderer\_system\_shutdown}}
+\index{renderer\_system\_shutdown@{renderer\_system\_shutdown}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_system\_shutdown()}{renderer\_system\_shutdown()}}
+{\footnotesize\ttfamily void renderer\+\_\+system\+\_\+shutdown (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
 
 
 
@@ -180,13 +180,13 @@ Cleans up all resources allocated during initialization, including devices, comm
 
 Calls the backend\textquotesingle{}s shutdown routine and frees allocated resources. 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00064}{64}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00069}{69}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, \mbox{\hyperlink{kmemory_8c_source_l00130}{kfree()}}, and \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}.
 

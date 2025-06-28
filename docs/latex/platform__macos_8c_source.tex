@@ -1,0 +1,596 @@
+\doxysection{platform\+\_\+macos.\+c}
+\hypertarget{platform__macos_8c_source}{}\label{platform__macos_8c_source}\index{engine/src/platform/platform\_macos.c@{engine/src/platform/platform\_macos.c}}
+\mbox{\hyperlink{platform__macos_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{platform_8h}{platform/platform.h}}>}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00003}00003\ \textcolor{preprocessor}{\#if\ KPLATFORM\_APPLE}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{darray_8h}{containers/darray.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{event_8h}{core/event.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{input_8h}{core/input.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{kstring_8h}{core/kstring.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logger_8h}{core/logger.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}renderer/vulkan/vulkan\_types.inl"{}}\ \ \textcolor{comment}{//\ For\ surface\ creation.}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00012}00012\ \textcolor{comment}{//\ Include\ Vulkan\ before\ GLFW.}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <vulkan/vulkan.h>}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00015}00015\ \textcolor{preprocessor}{\#ifndef\ GLFW\_INCLUDE\_NONE}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00016}00016\ \textcolor{preprocessor}{\#define\ GLFW\_INCLUDE\_NONE}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00017}00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <GLFW/glfw3.h>}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00025}00025\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplatform__state}{platform\_state}}\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00026}00026\ \ \ \ \ GLFWwindow*\ glfw\_window;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ start\_time;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00028}00028\ \}\ \mbox{\hyperlink{structplatform__state}{platform\_state}};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00030}00030\ \textcolor{keyword}{static}\ \mbox{\hyperlink{structplatform__state}{platform\_state}}*\ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00032}00032\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_console\_write\_file(FILE*\ file,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00034}00034\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_error\_callback(\textcolor{keywordtype}{int}\ error,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ description);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00035}00035\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_key\_callback(GLFWwindow*\ window,\ \textcolor{keywordtype}{int}\ key,\ \textcolor{keywordtype}{int}\ scancode,\ \textcolor{keywordtype}{int}\ action,\ \textcolor{keywordtype}{int}\ mods);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00036}00036\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_mouse\_button\_callback(GLFWwindow*\ window,\ \textcolor{keywordtype}{int}\ button,\ \textcolor{keywordtype}{int}\ action,\ \textcolor{keywordtype}{int}\ mods);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00037}00037\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_cursor\_position\_callback(GLFWwindow*\ window,\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ xpos,\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ ypos);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00038}00038\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_scroll\_callback(GLFWwindow*\ window,\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ xoffset,\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ yoffset);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00039}00039\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_framebuffer\_size\_callback(GLFWwindow*\ window,\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00041}00041\ \textcolor{keyword}{static}\ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ translate\_key(\textcolor{keywordtype}{int}\ key);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00043}00043\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{platform_8h_a2f0dc66ac164c4d7fc389e8e545513df}{platform\_system\_startup}}(}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ memory\_requirement,}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{void}*\ state,}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00046}00046\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ application\_name,}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00047}00047\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ x,}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ y,}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ width,}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ height)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00051}00051\ \ \ \ \ *memory\_requirement\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structplatform__state}{platform\_state}});}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{if}\ (state\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00054}00054\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00056}00056\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}\ =\ state;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00058}00058\ \ \ \ \ glfwSetErrorCallback(platform\_error\_callback);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{if}\ (!glfwInit())\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Failed\ to\ initialise\ GLFW"{}});}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00064}00064\ \ \ \ \ glfwWindowHint(GLFW\_VISIBLE,\ GLFW\_FALSE);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00065}00065\ \ \ \ \ glfwWindowHint(GLFW\_RESIZABLE,\ GLFW\_TRUE);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00066}00066\ \ \ \ \ glfwWindowHint(GLFW\_CLIENT\_API,\ GLFW\_NO\_API);\ \ \textcolor{comment}{//\ Required\ for\ Vulkan.}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00068}00068\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window\ =\ glfwCreateWindow(width,\ height,\ application\_name,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00070}00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Failed\ to\ create\ a\ window"{}});}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ glfwTerminate();}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00075}00075\ \ \ \ \ glfwSetKeyCallback(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window,\ platform\_key\_callback);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00076}00076\ \ \ \ \ glfwSetMouseButtonCallback(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window,\ platform\_mouse\_button\_callback);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00077}00077\ \ \ \ \ glfwSetCursorPosCallback(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window,\ platform\_cursor\_position\_callback);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00078}00078\ \ \ \ \ glfwSetScrollCallback(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window,\ platform\_scroll\_callback);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00079}00079\ \ \ \ \ glfwSetFramebufferSizeCallback(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window,\ platform\_framebuffer\_size\_callback);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00081}00081\ \ \ \ \ glfwSetWindowPos(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window,\ x,\ y);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00082}00082\ \ \ \ \ glfwShowWindow(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00083}00083\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>start\_time\ =\ glfwGetTime();}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00086}00086\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00088}00088\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a2d23b533b1e998f3f20e6025632ca2c4}{platform\_system\_shutdown}}(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{structplatform__state}{platform\_state}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ glfwDestroyWindow(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ glfwSetErrorCallback(0);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00094}00094\ \ \ \ \ \ \ \ \ glfwTerminate();}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00095}00095\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00096}00096\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00097}00097\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00099}00099\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{platform_8h_a8470764645bd644d6b0a3b98fb8b3eee}{platform\_pump\_messages}}()\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00101}00101\ \ \ \ \ \ \ \ \ glfwPollEvents();}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00102}00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ should\_continue\ =\ !glfwWindowShouldClose(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ should\_continue;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00104}00104\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00105}00105\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00106}00106\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00108}00108\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\_allocate}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ aligned)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{return}\ malloc(size);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00110}00110\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00112}00112\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\_free}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ aligned)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00113}00113\ \ \ \ \ free(block);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00114}00114\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00116}00116\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\_zero\_memory}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00117}00117\ \ \ \ \ \textcolor{keywordflow}{return}\ memset(block,\ 0,\ size);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00118}00118\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00120}00120\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a15258bb22b902725b1fbf405463ed07d}{platform\_copy\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ source,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00121}00121\ \ \ \ \ \textcolor{keywordflow}{return}\ memcpy(dest,\ source,\ size);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00122}00122\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00124}00124\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_aa65146de20a7fd23870d3809834021b7}{platform\_set\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ value,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00125}00125\ \ \ \ \ \textcolor{keywordflow}{return}\ memset(dest,\ value,\ size);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00126}00126\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00128}00128\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_ac352c68fed21ee19eff9a165d1648c4c}{platform\_console\_write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00129}00129\ \ \ \ \ platform\_console\_write\_file(stdout,\ message,\ colour);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00130}00130\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00132}00132\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\_console\_write\_error}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00133}00133\ \ \ \ \ platform\_console\_write\_file(stderr,\ message,\ colour);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00134}00134\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00136}00136\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_console\_write\_file(FILE*\ file,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00137}00137\ \ \ \ \ \textcolor{comment}{//\ Colours:\ FATAL,\ ERROR,\ WARN,\ INFO,\ DEBUG,\ TRACE.}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00138}00138\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ colour\_strings[]\ =\ \{\textcolor{stringliteral}{"{}0;41"{}},\ \textcolor{stringliteral}{"{}1;31"{}},\ \textcolor{stringliteral}{"{}1;33"{}},\ \textcolor{stringliteral}{"{}1;32"{}},\ \textcolor{stringliteral}{"{}1;34"{}},\ \textcolor{stringliteral}{"{}1;30"{}}\};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00139}00139\ \ \ \ \ fprintf(file,\ \textcolor{stringliteral}{"{}\(\backslash\)033[\%sm\%s\(\backslash\)033[0m"{}},\ colour\_strings[colour],\ message);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00140}00140\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00142}00142\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\_get\_absolute\_time}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00143}00143\ \ \ \ \ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ time\ =\ glfwGetTime();}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{return}\ time;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00145}00145\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00147}00147\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_ae21676dfd997b1c6dd9c06f69b5618e4}{platform\_sleep}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ ms)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00148}00148\ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ ts\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00149}00149\ \ \ \ \ ts.tv\_sec\ =\ (long)((\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}})ms\ *\ 0.001);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00150}00150\ \ \ \ \ ts.tv\_nsec\ =\ ((long)ms\ \%\ 1000)\ *\ 1000\ *\ 1000;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00151}00151\ \ \ \ \ nanosleep(\&ts,\ 0);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00152}00152\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00154}00154\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}{platform\_get\_required\_extension\_names}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}***\ names\_darray)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00155}00155\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ count\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00156}00156\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ extensions\ =\ glfwGetRequiredInstanceExtensions(\&count);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00157}00157\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ i\ =\ 0;\ i\ <\ count;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{kstring_8c_a4088fb073177638c470fee72f8f2180a}{strings\_equal}}(extensions[i],\ \textcolor{stringliteral}{"{}VK\_KHR\_surface"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ already\ include\ "{}VK\_KHR\_surface"{},\ so\ skip\ this.}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00162}00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{darray_8h_a7ad89931e6589fa09b83ea99de2b32e6}{darray\_push}}(*names\_darray,\ extensions[i]);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00163}00163\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00164}00164\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00166}00166\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__platform_8h_aaaf33dc6309c5d8963e3a8515493dfd3}{platform\_create\_vulkan\_surface}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state,\ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00167}00167\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00169}00169\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00171}00171\ \ \ \ \ VkResult\ result\ =\ glfwCreateWindowSurface(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>instance,\ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>glfw\_window,\ 0,\ \&\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>surface);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00172}00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00173}00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Vulkan\ surface\ creation\ failed."{}});}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00175}00175\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00177}00177\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00178}00178\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00180}00180\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_error\_callback(\textcolor{keywordtype}{int}\ error,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ description)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00181}00181\ \ \ \ \ \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\_console\_write\_error}}(description,\ 0);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00182}00182\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00184}00184\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_key\_callback(GLFWwindow*\ window,\ \textcolor{keywordtype}{int}\ key,\ \textcolor{keywordtype}{int}\ scancode,\ \textcolor{keywordtype}{int}\ action,\ \textcolor{keywordtype}{int}\ mods)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00185}00185\ \ \ \ \ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ our\_key\ =\ translate\_key(key);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00186}00186\ \ \ \ \ \textcolor{keywordflow}{if}\ (our\_key\ !=\ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712afa1179db741cb68f2ffe7806175e544c}{KEYS\_MAX\_KEYS}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00187}00187\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ pressed\ =\ action\ ==\ GLFW\_PRESS\ ||\ action\ ==\ GLFW\_REPEAT;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00188}00188\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8c_aa50febeebd057f91a70704851a9b6300}{input\_process\_key}}(our\_key,\ pressed);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00189}00189\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00190}00190\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00192}00192\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_mouse\_button\_callback(GLFWwindow*\ window,\ \textcolor{keywordtype}{int}\ button,\ \textcolor{keywordtype}{int}\ action,\ \textcolor{keywordtype}{int}\ mods)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00193}00193\ \ \ \ \ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}}\ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7}{BUTTON\_MAX\_BUTTONS}};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00195}00195\ \ \ \ \ \textcolor{keywordflow}{switch}\ (button)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_MOUSE\_BUTTON\_LEFT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836a55dc0d53615e28ee8af66827bee48e4e}{BUTTON\_LEFT}};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_MOUSE\_BUTTON\_MIDDLE:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb}{BUTTON\_MIDDLE}};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_MOUSE\_BUTTON\_RIGHT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836a13046edd6d64a0de5821b5ff4c7581ce}{BUTTON\_RIGHT}};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7}{BUTTON\_MAX\_BUTTONS}};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00207}00207\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00209}00209\ \ \ \ \ \textcolor{keywordflow}{if}\ (mouse\_button\ !=\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7}{BUTTON\_MAX\_BUTTONS}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00210}00210\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ pressed\ =\ action\ ==\ GLFW\_PRESS;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00211}00211\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8c_a4b149b586e2e5e770ddd9ed63f4f5dd2}{input\_process\_button}}(mouse\_button,\ pressed);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00212}00212\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00213}00213\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00215}00215\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_cursor\_position\_callback(GLFWwindow*\ window,\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ xpos,\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ ypos)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00216}00216\ \ \ \ \ \mbox{\hyperlink{input_8c_a5d56afad3d78c1e177fa44cef3e7d19d}{input\_process\_mouse\_move}}((\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}})xpos,\ (\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}})ypos);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00217}00217\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00219}00219\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_scroll\_callback(GLFWwindow*\ window,\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ xoffset,\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ yoffset)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00220}00220\ \ \ \ \ \textcolor{comment}{//\ We\ ignore\ horizontal\ scroll\ and\ also\ flatten\ to\ OS-\/independent\ values\ (-\/1,\ +1).}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00221}00221\ \ \ \ \ \mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}}\ z\_delta\ =\ (\mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}})yoffset;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00222}00222\ \ \ \ \ \textcolor{keywordflow}{if}\ (z\_delta\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ z\_delta\ =\ (z\_delta\ <\ 0)\ ?\ -\/1\ :\ 1;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00224}00224\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00225}00225\ \ \ \ \ \mbox{\hyperlink{input_8c_af9d0e1b4ff7fce1972ba93c810bfbabc}{input\_process\_mouse\_wheel}}(z\_delta);}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00226}00226\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00228}00228\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ platform\_framebuffer\_size\_callback(GLFWwindow*\ window,\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00229}00229\ \ \ \ \ \mbox{\hyperlink{structevent__context}{event\_context}}\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}\ =\ \{.\mbox{\hyperlink{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}{data}}.\mbox{\hyperlink{structevent__context_ade4e8f9d8d9433d902f7070c91a393ef}{u16}}[0]\ =\ (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}})width,\ .data.u16[1]\ =\ (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}})height\};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00230}00230\ \ \ \ \ \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\_fire}}(\mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656}{EVENT\_CODE\_RESIZED}},\ 0,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}});}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00231}00231\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00233}00233\ \textcolor{keyword}{static}\ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ translate\_key(\textcolor{keywordtype}{int}\ key)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00234}00234\ \ \ \ \ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ our\_key\ =\ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712afa1179db741cb68f2ffe7806175e544c}{KEYS\_MAX\_KEYS}};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00236}00236\ \ \ \ \ \textcolor{keywordflow}{switch}\ (key)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_SPACE:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_SPACE;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00240}00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_COMMA:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_COMMA;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_MINUS:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_MINUS;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00246}00246\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_PERIOD:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_PERIOD;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00249}00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_SLASH:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_SLASH;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_0:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD0;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_1:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD1;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_2:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD2;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00261}00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_3:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD3;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_4:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD4;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00267}00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_5:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD5;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_6:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD6;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_7:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD7;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00276}00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_8:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD8;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00279}00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_9:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD9;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_SEMICOLON:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_SEMICOLON;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00285}00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_EQUAL:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_PLUS;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00288}00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_A:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_A;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_B:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_B;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_C:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_C;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00297}00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_D:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_D;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_E:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_E;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_G:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_G;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00309}00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_H:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_H;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00312}00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_I:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_I;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_J:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_J;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00318}00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_K:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_K;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_L:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_L;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00324}00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_M:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_M;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_N:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_N;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00330}00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_O:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_O;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00333}00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_P:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_P;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00336}00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_Q:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_Q;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00339}00339\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_R:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_R;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_S:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_S;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00345}00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_T:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_T;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00348}00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_U:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_U;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00351}00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_V:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_V;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00354}00354\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_W:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_W;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00357}00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_X:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_X;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00360}00360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_Y:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_Y;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00363}00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_Z:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_Z;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00366}00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_GRAVE\_ACCENT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_GRAVE;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00369}00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_ESCAPE:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_ESCAPE;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00372}00372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_ENTER:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_ENTER;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00375}00375\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_TAB:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_TAB;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00378}00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_BACKSPACE:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_BACKSPACE;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00381}00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_INSERT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_INSERT;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00384}00384\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_DELETE:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_DELETE;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00387}00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_RIGHT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_RIGHT;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00390}00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_LEFT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_LEFT;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00393}00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_DOWN:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_DOWN;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00396}00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_UP:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_UP;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00399}00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_PAGE\_UP:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_PRIOR;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00402}00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_PAGE\_DOWN:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NEXT;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00405}00405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_HOME:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_HOME;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00408}00408\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_END:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_END;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00411}00411\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_CAPS\_LOCK:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_CAPITAL;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00414}00414\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_SCROLL\_LOCK:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_SCROLL;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00417}00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_NUM\_LOCK:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMLOCK;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00420}00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_PRINT\_SCREEN:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_SNAPSHOT;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00423}00423\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_PAUSE:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_PAUSE;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00426}00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F1:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F1;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00429}00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F2:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F2;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00432}00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F3:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F3;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00435}00435\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F4:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F4;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00438}00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F5:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F5;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00441}00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F6:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F6;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00444}00444\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F7:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F7;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00447}00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F8:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F8;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00450}00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F9:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F9;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00453}00453\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F10:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F10;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00456}00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F11:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F11;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00459}00459\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F12:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F12;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00462}00462\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F13:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F13;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00465}00465\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F14:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F14;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00468}00468\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F15:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F15;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00471}00471\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F16:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F16;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00474}00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F17:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F17;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00477}00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F18:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F18;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00480}00480\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F19:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F19;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00483}00483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F20:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F20;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00486}00486\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F21:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F21;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00489}00489\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F22:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F22;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00492}00492\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F23:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F23;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00495}00495\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_F24:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_F24;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00498}00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_0:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD0;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00501}00501\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_1:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD1;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00504}00504\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_2:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD2;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00507}00507\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_3:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD3;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00510}00510\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_4:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD4;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00513}00513\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_5:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD5;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00516}00516\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_6:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD6;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00518}00518\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00519}00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_7:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD7;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00522}00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_8:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD8;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00525}00525\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_9:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD9;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00528}00528\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_DECIMAL:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_DECIMAL;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00531}00531\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_DIVIDE:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_DIVIDE;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00534}00534\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_MULTIPLY:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_MULTIPLY;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00536}00536\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00537}00537\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_SUBTRACT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00538}00538\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_SUBTRACT;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00540}00540\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_ADD:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_ADD;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00543}00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_ENTER:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00544}00544\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_ENTER;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00546}00546\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_KP\_EQUAL:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_NUMPAD\_EQUAL;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00549}00549\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_LEFT\_SHIFT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_LSHIFT;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00552}00552\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_LEFT\_CONTROL:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_LCONTROL;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00555}00555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_LEFT\_ALT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_LMENU;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00558}00558\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_LEFT\_SUPER:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_LWIN;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00561}00561\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_RIGHT\_SHIFT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_RSHIFT;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00564}00564\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_RIGHT\_CONTROL:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_RCONTROL;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00567}00567\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_RIGHT\_ALT:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_RMENU;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00570}00570\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GLFW\_KEY\_RIGHT\_SUPER:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ KEY\_RWIN;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00573}00573\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_UNKNOWN}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_LAST}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_APOSTROPHE}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_LEFT\_BRACKET}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_BACKSLASH}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_RIGHT\_BRACKET}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_F25}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_WORLD\_1}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_WORLD\_2}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GLFW\_KEY\_MENU}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ our\_key\ =\ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712afa1179db741cb68f2ffe7806175e544c}{KEYS\_MAX\_KEYS}};}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00585}00585\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00586}00586\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00587}00587\ \ \ \ \ \textcolor{keywordflow}{return}\ our\_key;}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00588}00588\ \}}
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00589}00589\ }
+\DoxyCodeLine{\Hypertarget{platform__macos_8c_source_l00590}00590\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ KPLATFORM\_APPLE}}
+
+\end{DoxyCode}

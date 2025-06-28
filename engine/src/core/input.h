@@ -198,14 +198,14 @@ typedef enum keys {
  *
  * Sets up internal state tracking for keyboard and mouse.
  */
-void input_initialize();
+void input_system_initialize(u64* memory_requirement, void* state);
 
 /**
  * @brief Shuts down the input system.
  *
  * Cleans up any resources used by the input system.
  */
-void input_shutdown();
+void input_system_shutdown(void* state);
 
 /**
  * @brief Updates the input system state.

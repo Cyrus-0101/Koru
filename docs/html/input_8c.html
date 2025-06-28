@@ -140,12 +140,12 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af638af2714fc9aa2110414c9d2905cd8" id="r_af638af2714fc9aa2110414c9d2905cd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8c.html#af638af2714fc9aa2110414c9d2905cd8">input_initialize</a> ()</td></tr>
-<tr class="memdesc:af638af2714fc9aa2110414c9d2905cd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the input system.  <br /></td></tr>
-<tr class="separator:af638af2714fc9aa2110414c9d2905cd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd09dfdf0b5697ef47aea599e686e280" id="r_acd09dfdf0b5697ef47aea599e686e280"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8c.html#acd09dfdf0b5697ef47aea599e686e280">input_shutdown</a> ()</td></tr>
-<tr class="memdesc:acd09dfdf0b5697ef47aea599e686e280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the input system.  <br /></td></tr>
-<tr class="separator:acd09dfdf0b5697ef47aea599e686e280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50da38663daa6b407afd71b0e27be80e" id="r_a50da38663daa6b407afd71b0e27be80e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8c.html#a50da38663daa6b407afd71b0e27be80e">input_system_initialize</a> (<a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *memory_requirement, void *state)</td></tr>
+<tr class="memdesc:a50da38663daa6b407afd71b0e27be80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the input system.  <br /></td></tr>
+<tr class="separator:a50da38663daa6b407afd71b0e27be80e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dd948679d0749af4d6047e16d15d6f7" id="r_a5dd948679d0749af4d6047e16d15d6f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8c.html#a5dd948679d0749af4d6047e16d15d6f7">input_system_shutdown</a> (void *state)</td></tr>
+<tr class="memdesc:a5dd948679d0749af4d6047e16d15d6f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the input system.  <br /></td></tr>
+<tr class="separator:a5dd948679d0749af4d6047e16d15d6f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85450297ce513c03fe70c80cdba41609" id="r_a85450297ce513c03fe70c80cdba41609"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8c.html#a85450297ce513c03fe70c80cdba41609">input_update</a> (<a class="el" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> delta_time)</td></tr>
 <tr class="memdesc:a85450297ce513c03fe70c80cdba41609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates input state from the previous to current frame.  <br /></td></tr>
 <tr class="separator:a85450297ce513c03fe70c80cdba41609"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,10 +194,8 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aca033d9c168f6eceec40a0e9a9354e79" id="r_aca033d9c168f6eceec40a0e9a9354e79"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8c.html#aca033d9c168f6eceec40a0e9a9354e79">initialized</a> = <a class="el" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></td></tr>
-<tr class="separator:aca033d9c168f6eceec40a0e9a9354e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a5226dfa7ff1110dc16120adfdec6f6" id="r_a3a5226dfa7ff1110dc16120adfdec6f6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structinput__state.html">input_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8c.html#a3a5226dfa7ff1110dc16120adfdec6f6">state</a> = {}</td></tr>
-<tr class="separator:a3a5226dfa7ff1110dc16120adfdec6f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19e7998236f8f4d24cc81e5c16c9ca94" id="r_a19e7998236f8f4d24cc81e5c16c9ca94"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structinput__state.html">input_state</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="input_8c.html#a19e7998236f8f4d24cc81e5c16c9ca94">state_ptr</a></td></tr>
+<tr class="separator:a19e7998236f8f4d24cc81e5c16c9ca94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of the input system for keyboard and mouse events. </p>
@@ -296,9 +294,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00337">337</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00353">353</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, <a class="el" href="input_8c_source.html#l00041">mouse_state::x</a>, and <a class="el" href="input_8c_source.html#l00046">mouse_state::y</a>.</p>
+<p class="reference">References <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, <a class="el" href="input_8c_source.html#l00041">mouse_state::x</a>, and <a class="el" href="input_8c_source.html#l00046">mouse_state::y</a>.</p>
 
 </div>
 </div>
@@ -338,35 +336,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00356">356</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00372">372</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00076">input_state::mouse_previous</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, <a class="el" href="input_8c_source.html#l00041">mouse_state::x</a>, and <a class="el" href="input_8c_source.html#l00046">mouse_state::y</a>.</p>
-
-</div>
-</div>
-<a id="af638af2714fc9aa2110414c9d2905cd8" name="af638af2714fc9aa2110414c9d2905cd8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af638af2714fc9aa2110414c9d2905cd8">&#9670;&#160;</a></span>input_initialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void input_initialize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initializes the input system. </p>
-<p>Sets internal state to zeroed memory and marks the system as initialized. </p>
-
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00088">88</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
-
-<p class="reference">References <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="kmemory_8c_source.html#l00149">kzero_memory()</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>.</p>
+<p class="reference">References <a class="el" href="input_8c_source.html#l00076">input_state::mouse_previous</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, <a class="el" href="input_8c_source.html#l00041">mouse_state::x</a>, and <a class="el" href="input_8c_source.html#l00046">mouse_state::y</a>.</p>
 
 </div>
 </div>
@@ -396,9 +368,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the button is currently down; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00281">281</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00297">297</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 </div>
 </div>
@@ -428,9 +400,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the button is currently up; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00294">294</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00310">310</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 </div>
 </div>
@@ -460,9 +432,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the key is currently down; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00225">225</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00241">241</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00061">input_state::keyboard_current</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00061">input_state::keyboard_current</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00048">game_update()</a>.</p>
 
 </div>
 </div>
@@ -492,9 +466,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the key is currently up; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00238">238</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00254">254</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00061">input_state::keyboard_current</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00061">input_state::keyboard_current</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 </div>
 </div>
@@ -535,9 +509,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00166">166</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00182">182</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a>, <a class="el" href="event_8h_source.html#l00177">EVENT_CODE_BUTTON_PRESSED</a>, <a class="el" href="event_8h_source.html#l00187">EVENT_CODE_BUTTON_RELEASED</a>, <a class="el" href="event_8c_source.html#l00156">event_fire()</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="event_8h_source.html#l00056">event_context::u16</a>.</p>
+<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a>, <a class="el" href="event_8h_source.html#l00177">EVENT_CODE_BUTTON_PRESSED</a>, <a class="el" href="event_8h_source.html#l00187">EVENT_CODE_BUTTON_RELEASED</a>, <a class="el" href="event_8c_source.html#l00150">event_fire()</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="event_8h_source.html#l00056">event_context::u16</a>.</p>
 
 </div>
 </div>
@@ -578,9 +552,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00130">130</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00139">139</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00156">event_fire()</a>, <a class="el" href="input_8c_source.html#l00061">input_state::keyboard_current</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="logger_8h_source.html#l00193">KINFO</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="event_8h_source.html#l00056">event_context::u16</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a>, <a class="el" href="event_8h_source.html#l00156">EVENT_CODE_KEY_PRESSED</a>, <a class="el" href="event_8h_source.html#l00166">EVENT_CODE_KEY_RELEASED</a>, <a class="el" href="event_8c_source.html#l00150">event_fire()</a>, <a class="el" href="input_8c_source.html#l00061">input_state::keyboard_current</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="event_8h_source.html#l00056">event_context::u16</a>.</p>
 
 </div>
 </div>
@@ -621,9 +595,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00187">187</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00203">203</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a>, <a class="el" href="event_8h_source.html#l00199">EVENT_CODE_MOUSE_MOVED</a>, <a class="el" href="event_8c_source.html#l00156">event_fire()</a>, <a class="el" href="logger_8h_source.html#l00210">KDEBUG</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, <a class="el" href="event_8h_source.html#l00056">event_context::u16</a>, <a class="el" href="input_8c_source.html#l00041">mouse_state::x</a>, and <a class="el" href="input_8c_source.html#l00046">mouse_state::y</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a>, <a class="el" href="event_8h_source.html#l00199">EVENT_CODE_MOUSE_MOVED</a>, <a class="el" href="event_8c_source.html#l00150">event_fire()</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, <a class="el" href="event_8h_source.html#l00056">event_context::u16</a>, <a class="el" href="input_8c_source.html#l00041">mouse_state::x</a>, and <a class="el" href="input_8c_source.html#l00046">mouse_state::y</a>.</p>
 
 </div>
 </div>
@@ -652,22 +626,60 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00212">212</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00228">228</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a>, <a class="el" href="event_8h_source.html#l00209">EVENT_CODE_MOUSE_WHEEL</a>, <a class="el" href="event_8c_source.html#l00156">event_fire()</a>, and <a class="el" href="event_8h_source.html#l00061">event_context::u8</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3">event_context::data</a>, <a class="el" href="event_8h_source.html#l00209">EVENT_CODE_MOUSE_WHEEL</a>, <a class="el" href="event_8c_source.html#l00150">event_fire()</a>, and <a class="el" href="event_8h_source.html#l00061">event_context::u8</a>.</p>
 
 </div>
 </div>
-<a id="acd09dfdf0b5697ef47aea599e686e280" name="acd09dfdf0b5697ef47aea599e686e280"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd09dfdf0b5697ef47aea599e686e280">&#9670;&#160;</a></span>input_shutdown()</h2>
+<a id="a50da38663daa6b407afd71b0e27be80e" name="a50da38663daa6b407afd71b0e27be80e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50da38663daa6b407afd71b0e27be80e">&#9670;&#160;</a></span>input_system_initialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void input_shutdown </td>
+          <td class="memname">void input_system_initialize </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *&#160;</td>
+          <td class="paramname"><em>memory_requirement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the input system. </p>
+<p>Sets internal state to zeroed memory and marks the system as initialized. </p>
+
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00088">88</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+
+<p class="reference">References <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, and <a class="el" href="input_8c_source.html#l00081">state_ptr</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
+
+</div>
+</div>
+<a id="a5dd948679d0749af4d6047e16d15d6f7" name="a5dd948679d0749af4d6047e16d15d6f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dd948679d0749af4d6047e16d15d6f7">&#9670;&#160;</a></span>input_system_shutdown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void input_system_shutdown </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -676,11 +688,11 @@ Variables</h2></td></tr>
 <p>Shuts down the input system. </p>
 <p>Currently just sets the initialized flag to False. Can be extended to clean up resources. </p>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00099">99</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00107">107</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, and <a class="el" href="input_8c_source.html#l00080">initialized</a>.</p>
+<p class="reference">References <a class="el" href="input_8c_source.html#l00081">state_ptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
 </div>
 </div>
@@ -710,11 +722,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00111">111</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00120">120</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="kmemory_8c_source.html#l00161">kcopy_memory()</a>, <a class="el" href="input_8c_source.html#l00061">input_state::keyboard_current</a>, <a class="el" href="input_8c_source.html#l00066">input_state::keyboard_previous</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00076">input_state::mouse_previous</a>, and <a class="el" href="input_8c_source.html#l00081">state</a>.</p>
+<p class="reference">References <a class="el" href="kmemory_8c_source.html#l00182">kcopy_memory()</a>, <a class="el" href="input_8c_source.html#l00061">input_state::keyboard_current</a>, <a class="el" href="input_8c_source.html#l00066">input_state::keyboard_previous</a>, <a class="el" href="input_8c_source.html#l00071">input_state::mouse_current</a>, <a class="el" href="input_8c_source.html#l00076">input_state::mouse_previous</a>, and <a class="el" href="input_8c_source.html#l00081">state_ptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00192">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
 </div>
 </div>
@@ -745,9 +757,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the button was pressed last frame; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00309">309</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00325">325</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00076">input_state::mouse_previous</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00076">input_state::mouse_previous</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 </div>
 </div>
@@ -778,9 +790,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the button was released last frame; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00324">324</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00340">340</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00076">input_state::mouse_previous</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="input_8c_source.html#l00051">mouse_state::buttons</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00076">input_state::mouse_previous</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 </div>
 </div>
@@ -811,9 +823,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the key was pressed last frame; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00253">253</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00269">269</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00066">input_state::keyboard_previous</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00066">input_state::keyboard_previous</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 </div>
 </div>
@@ -844,15 +856,17 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the key was released last frame; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00268">268</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00284">284</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00080">initialized</a>, <a class="el" href="input_8c_source.html#l00066">input_state::keyboard_previous</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="input_8c_source.html#l00081">state</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="input_8c_source.html#l00066">input_state::keyboard_previous</a>, <a class="el" href="input_8c_source.html#l00031">keyboard_state::keys</a>, <a class="el" href="input_8c_source.html#l00081">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00048">game_update()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="aca033d9c168f6eceec40a0e9a9354e79" name="aca033d9c168f6eceec40a0e9a9354e79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca033d9c168f6eceec40a0e9a9354e79">&#9670;&#160;</a></span>initialized</h2>
+<a id="a19e7998236f8f4d24cc81e5c16c9ca94" name="a19e7998236f8f4d24cc81e5c16c9ca94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19e7998236f8f4d24cc81e5c16c9ca94">&#9670;&#160;</a></span>state_ptr</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -861,33 +875,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> initialized = <a class="el" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00080">80</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="input_8c_source.html#l00337">input_get_mouse_position()</a>, <a class="el" href="input_8c_source.html#l00356">input_get_previous_mouse_position()</a>, <a class="el" href="input_8c_source.html#l00088">input_initialize()</a>, <a class="el" href="input_8c_source.html#l00281">input_is_button_down()</a>, <a class="el" href="input_8c_source.html#l00294">input_is_button_up()</a>, <a class="el" href="input_8c_source.html#l00225">input_is_key_down()</a>, <a class="el" href="input_8c_source.html#l00238">input_is_key_up()</a>, <a class="el" href="input_8c_source.html#l00099">input_shutdown()</a>, <a class="el" href="input_8c_source.html#l00111">input_update()</a>, <a class="el" href="input_8c_source.html#l00309">input_was_button_down()</a>, <a class="el" href="input_8c_source.html#l00324">input_was_button_up()</a>, <a class="el" href="input_8c_source.html#l00253">input_was_key_down()</a>, and <a class="el" href="input_8c_source.html#l00268">input_was_key_up()</a>.</p>
-
-</div>
-</div>
-<a id="a3a5226dfa7ff1110dc16120adfdec6f6" name="a3a5226dfa7ff1110dc16120adfdec6f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a5226dfa7ff1110dc16120adfdec6f6">&#9670;&#160;</a></span>state</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structinput__state.html">input_state</a> state = {}</td>
+          <td class="memname"><a class="el" href="structinput__state.html">input_state</a>* state_ptr</td>
         </tr>
       </table>
   </td>
@@ -899,14 +887,14 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="input_8c_source.html#l00081">81</a> of file <a class="el" href="input_8c_source.html">input.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="input_8c_source.html#l00337">input_get_mouse_position()</a>, <a class="el" href="input_8c_source.html#l00356">input_get_previous_mouse_position()</a>, <a class="el" href="input_8c_source.html#l00088">input_initialize()</a>, <a class="el" href="input_8c_source.html#l00281">input_is_button_down()</a>, <a class="el" href="input_8c_source.html#l00294">input_is_button_up()</a>, <a class="el" href="input_8c_source.html#l00225">input_is_key_down()</a>, <a class="el" href="input_8c_source.html#l00238">input_is_key_up()</a>, <a class="el" href="input_8c_source.html#l00166">input_process_button()</a>, <a class="el" href="input_8c_source.html#l00130">input_process_key()</a>, <a class="el" href="input_8c_source.html#l00187">input_process_mouse_move()</a>, <a class="el" href="input_8c_source.html#l00111">input_update()</a>, <a class="el" href="input_8c_source.html#l00309">input_was_button_down()</a>, <a class="el" href="input_8c_source.html#l00324">input_was_button_up()</a>, <a class="el" href="input_8c_source.html#l00253">input_was_key_down()</a>, and <a class="el" href="input_8c_source.html#l00268">input_was_key_up()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="input_8c_source.html#l00353">input_get_mouse_position()</a>, <a class="el" href="input_8c_source.html#l00372">input_get_previous_mouse_position()</a>, <a class="el" href="input_8c_source.html#l00297">input_is_button_down()</a>, <a class="el" href="input_8c_source.html#l00310">input_is_button_up()</a>, <a class="el" href="input_8c_source.html#l00241">input_is_key_down()</a>, <a class="el" href="input_8c_source.html#l00254">input_is_key_up()</a>, <a class="el" href="input_8c_source.html#l00182">input_process_button()</a>, <a class="el" href="input_8c_source.html#l00139">input_process_key()</a>, <a class="el" href="input_8c_source.html#l00203">input_process_mouse_move()</a>, <a class="el" href="input_8c_source.html#l00088">input_system_initialize()</a>, <a class="el" href="input_8c_source.html#l00107">input_system_shutdown()</a>, <a class="el" href="input_8c_source.html#l00120">input_update()</a>, <a class="el" href="input_8c_source.html#l00325">input_was_button_down()</a>, <a class="el" href="input_8c_source.html#l00340">input_was_button_up()</a>, <a class="el" href="input_8c_source.html#l00269">input_was_key_down()</a>, and <a class="el" href="input_8c_source.html#l00284">input_was_key_up()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 19:11:01 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -16,12 +16,22 @@ Include dependency graph for renderer\+\_\+frontend.\+c\+:\nopagebreak
 \includegraphics[width=350pt]{renderer__frontend_8c__incl}
 \end{center}
 \end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrenderer__system__state}{renderer\+\_\+system\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Represents the state of the rendering system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrenderer__system__state}{renderer\+\_\+system\+\_\+state}} \mbox{\hyperlink{renderer__frontend_8c_af1fc62d1de6c2a9c576325feb7f8fc21}{renderer\+\_\+system\+\_\+state}}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{renderer__frontend_8c_a22086f105bc3ec5fdad7381f76b5efb5}{renderer\+\_\+initialize}} (const char \texorpdfstring{$\ast$}{*}application\+\_\+name, struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}plat\+\_\+state)
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{renderer__frontend_8c_a4a8eb9df8447b9317c06c2592aa4944d}{renderer\+\_\+system\+\_\+initialize}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}memory\+\_\+requirement, void \texorpdfstring{$\ast$}{*}state, const char \texorpdfstring{$\ast$}{*}application\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Initializes the rendering system. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{renderer__frontend_8c_a52882bf7ed3f35fe0593d1715edaa0b8}{renderer\+\_\+shutdown}} ()
+void \mbox{\hyperlink{renderer__frontend_8c_a2be6c28c095877944c89e1fa246e6a3f}{renderer\+\_\+system\+\_\+shutdown}} (void \texorpdfstring{$\ast$}{*}state)
 \begin{DoxyCompactList}\small\item\em Shuts down the rendering system. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{renderer__frontend_8c_a1a8f8d1befb7f8dbbf9d8a64dd84b347}{renderer\+\_\+begin\+\_\+frame}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} delta\+\_\+time)
 \begin{DoxyCompactList}\small\item\em Begins a new rendering frame. \end{DoxyCompactList}\item 
@@ -34,8 +44,8 @@ void \mbox{\hyperlink{renderer__frontend_8c_a344ab27f3e341fd7b45eb38eafea2e00}{r
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static renderer\+\_\+backend \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}{backend}} = 0
-\begin{DoxyCompactList}\small\item\em A pointer to the active renderer backend instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static \mbox{\hyperlink{structrenderer__system__state}{renderer\+\_\+system\+\_\+state}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{renderer__frontend_8c_aee022f3b82c40f95de6b2773066454fc}{state\+\_\+ptr}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -44,6 +54,15 @@ Frontend implementation for the Koru rendering system.
 This file provides the implementation for the main rendering interface functions, abstracting away the specific backend (e.\+g., Vulkan, Open\+GL) from the rest of the engine. It manages initialization, frame lifecycle, and drawing operations using a render packet. 
 
 Definition in file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{renderer__frontend_8c_af1fc62d1de6c2a9c576325feb7f8fc21}\label{renderer__frontend_8c_af1fc62d1de6c2a9c576325feb7f8fc21} 
+\index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_system\_state@{renderer\_system\_state}}
+\index{renderer\_system\_state@{renderer\_system\_state}!renderer\_frontend.c@{renderer\_frontend.c}}
+\doxysubsubsection{\texorpdfstring{renderer\_system\_state}{renderer\_system\_state}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrenderer__system__state}{renderer\+\_\+system\+\_\+state}} \mbox{\hyperlink{structrenderer__system__state}{renderer\+\_\+system\+\_\+state}}}
 
 
 
@@ -70,15 +89,15 @@ True if the frame was successfully started; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{81}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00086}{86}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00117}{renderer\+\_\+draw\+\_\+frame()}}.
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00130}{renderer\+\_\+draw\+\_\+frame()}}.
 
 \Hypertarget{renderer__frontend_8c_aa1a64974ce989cb8a822d5910e45eeec}\label{renderer__frontend_8c_aa1a64974ce989cb8a822d5910e45eeec} 
 \index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_draw\_frame@{renderer\_draw\_frame}}
@@ -104,15 +123,15 @@ True if the frame was drawn successfully; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00117}{117}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00130}{130}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00094}{renderer\+\_\+end\+\_\+frame()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00086}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00103}{renderer\+\_\+end\+\_\+frame()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}.
 
 \Hypertarget{renderer__frontend_8c_af7b0d899f9d9ad513fdb67b6f811268a}\label{renderer__frontend_8c_af7b0d899f9d9ad513fdb67b6f811268a} 
 \index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_end\_frame@{renderer\_end\_frame}}
@@ -136,49 +155,15 @@ True if the frame was successfully ended; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00094}{94}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00103}{103}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00117}{renderer\+\_\+draw\+\_\+frame()}}.
-
-\Hypertarget{renderer__frontend_8c_a22086f105bc3ec5fdad7381f76b5efb5}\label{renderer__frontend_8c_a22086f105bc3ec5fdad7381f76b5efb5} 
-\index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_initialize@{renderer\_initialize}}
-\index{renderer\_initialize@{renderer\_initialize}!renderer\_frontend.c@{renderer\_frontend.c}}
-\doxysubsubsection{\texorpdfstring{renderer\_initialize()}{renderer\_initialize()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} renderer\+\_\+initialize (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{application\+\_\+name,  }\item[{struct \mbox{\hyperlink{structplatform__state}{platform\+\_\+state}} \texorpdfstring{$\ast$}{*}}]{plat\+\_\+state }\end{DoxyParamCaption})}
-
-
-
-Initializes the rendering system. 
-
-Creates the appropriate rendering backend (currently hardcoded to Vulkan), and calls its initialize function to prepare for rendering.
-
-
-\begin{DoxyParams}{Parameters}
-{\em application\+\_\+name} & Name of the application using the renderer. \\
-\hline
-{\em plat\+\_\+state} & A pointer to the platform-\/specific state. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-True if initialization was successful; otherwise False. 
-\end{DoxyReturn}
-
-
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{37}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
-
-
-
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{kmemory_8c_source_l00106}{kallocate()}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}, \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
-
-
-
-Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00130}{renderer\+\_\+draw\+\_\+frame()}}.
 
 \Hypertarget{renderer__frontend_8c_a344ab27f3e341fd7b45eb38eafea2e00}\label{renderer__frontend_8c_a344ab27f3e341fd7b45eb38eafea2e00} 
 \index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_on\_resized@{renderer\_on\_resized}}
@@ -201,21 +186,55 @@ Notifies the renderer that the window dimensions have changed and triggers any n
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00100}{100}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00113}{113}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, and \mbox{\hyperlink{logger_8h_source_l00176}{KWARN}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00346}{application\+\_\+on\+\_\+resized()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00417}{application\+\_\+on\+\_\+resized()}}.
 
-\Hypertarget{renderer__frontend_8c_a52882bf7ed3f35fe0593d1715edaa0b8}\label{renderer__frontend_8c_a52882bf7ed3f35fe0593d1715edaa0b8} 
-\index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_shutdown@{renderer\_shutdown}}
-\index{renderer\_shutdown@{renderer\_shutdown}!renderer\_frontend.c@{renderer\_frontend.c}}
-\doxysubsubsection{\texorpdfstring{renderer\_shutdown()}{renderer\_shutdown()}}
-{\footnotesize\ttfamily void renderer\+\_\+shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\Hypertarget{renderer__frontend_8c_a4a8eb9df8447b9317c06c2592aa4944d}\label{renderer__frontend_8c_a4a8eb9df8447b9317c06c2592aa4944d} 
+\index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_system\_initialize@{renderer\_system\_initialize}}
+\index{renderer\_system\_initialize@{renderer\_system\_initialize}!renderer\_frontend.c@{renderer\_frontend.c}}
+\doxysubsubsection{\texorpdfstring{renderer\_system\_initialize()}{renderer\_system\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} renderer\+\_\+system\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{memory\+\_\+requirement,  }\item[{void \texorpdfstring{$\ast$}{*}}]{state,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{application\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Initializes the rendering system. 
+
+Creates the appropriate rendering backend (currently hardcoded to Vulkan), and calls its initialize function to prepare for rendering.
+
+
+\begin{DoxyParams}{Parameters}
+{\em application\+\_\+name} & Name of the application using the renderer. \\
+\hline
+{\em plat\+\_\+state} & A pointer to the platform-\/specific state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if initialization was successful; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00043}{43}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}.
+
+\Hypertarget{renderer__frontend_8c_a2be6c28c095877944c89e1fa246e6a3f}\label{renderer__frontend_8c_a2be6c28c095877944c89e1fa246e6a3f} 
+\index{renderer\_frontend.c@{renderer\_frontend.c}!renderer\_system\_shutdown@{renderer\_system\_shutdown}}
+\index{renderer\_system\_shutdown@{renderer\_system\_shutdown}!renderer\_frontend.c@{renderer\_frontend.c}}
+\doxysubsubsection{\texorpdfstring{renderer\_system\_shutdown()}{renderer\_system\_shutdown()}}
+{\footnotesize\ttfamily void renderer\+\_\+system\+\_\+shutdown (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
 
 
 
@@ -223,34 +242,30 @@ Shuts down the rendering system.
 
 Calls the backend\textquotesingle{}s shutdown routine and frees allocated resources. 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00064}{64}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00069}{69}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{backend}}, \mbox{\hyperlink{kmemory_8c_source_l00130}{kfree()}}, and \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}.
 
 
 
 \doxysubsection{Variable Documentation}
-\Hypertarget{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4}\label{renderer__frontend_8c_ab235bbe0a86eab45a9bb2b513a4f06d4} 
-\index{renderer\_frontend.c@{renderer\_frontend.c}!backend@{backend}}
-\index{backend@{backend}!renderer\_frontend.c@{renderer\_frontend.c}}
-\doxysubsubsection{\texorpdfstring{backend}{backend}}
-{\footnotesize\ttfamily renderer\+\_\+backend\texorpdfstring{$\ast$}{*} backend = 0\hspace{0.3cm}{\ttfamily [static]}}
+\Hypertarget{renderer__frontend_8c_aee022f3b82c40f95de6b2773066454fc}\label{renderer__frontend_8c_aee022f3b82c40f95de6b2773066454fc} 
+\index{renderer\_frontend.c@{renderer\_frontend.c}!state\_ptr@{state\_ptr}}
+\index{state\_ptr@{state\_ptr}!renderer\_frontend.c@{renderer\_frontend.c}}
+\doxysubsubsection{\texorpdfstring{state\_ptr}{state\_ptr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrenderer__system__state}{renderer\+\_\+system\+\_\+state}}\texorpdfstring{$\ast$}{*} state\+\_\+ptr\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
-A pointer to the active renderer backend instance. 
-
-This is set during initialization and used throughout the lifetime of the application to dispatch rendering commands to the appropriate backend. 
-
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00025}{25}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{31}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00659}{recreate\+\_\+swapchain()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00094}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+initialize()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00100}{renderer\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00064}{renderer\+\_\+shutdown()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00408}{vulkan\+\_\+renderer\+\_\+backend\+\_\+begin\+\_\+frame()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00112}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00086}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00103}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00113}{renderer\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00043}{renderer\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00069}{renderer\+\_\+system\+\_\+shutdown()}}.
 

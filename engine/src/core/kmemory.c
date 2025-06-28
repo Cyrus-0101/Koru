@@ -50,39 +50,53 @@ struct memory_stats {
  * Used when printing memory usage stats to provide meaningful labels.
  */
 static const char* memory_tag_strings[MEMORY_TAG_MAX_TAGS] = {
-    "UNKNOWN    ",
-    "ARRAY      ",
-    "LINEAR_ALLOC",
-    "DARRAY     ",
-    "DICT       ",
-    "RING_QUEUE ",
-    "BST        ",
-    "STRING     ",
-    "APPLICATION",
-    "JOB        ",
-    "TEXTURE    ",
-    "MAT_INST   ",
-    "RENDERER   ",
-    "GAME       ",
-    "TRANSFORM  ",
-    "ENTITY     ",
-    "ENTITY_NODE",
-    "SCENE      "};
+    "UNKNOWN      ",
+    "ARRAY        ",
+    "LINEAR_ALLOC ",
+    "DARRAY       ",
+    "DICT         ",
+    "RING_QUEUE   ",
+    "BST          ",
+    "STRING       ",
+    "APPLICATION  ",
+    "JOB          ",
+    "TEXTURE      ",
+    "MAT_INST     ",
+    "RENDERER     ",
+    "GAME         ",
+    "TRANSFORM    ",
+    "ENTITY       ",
+    "ENTITY_NODE  ",
+    "SCENE        "};
 
 /**
- * @brief Global instance of memory usage statistics.
+ * @struct memory_system_state
  *
- * Aggregates all memory allocations tracked by kallocate/kfree.
+ * @brief Represents the state of the memory tracking system.
  */
-static struct memory_stats stats;
+typedef struct memory_system_state {
+    struct memory_stats stats; /**< Memory usage statistics */
+    u64 alloc_count;           /**< Total number of allocations made */
+} memory_system_state;
+
+// Global instance of memory tracking state
+static memory_system_state* state_ptr;
 
 /**
  * @brief Initializes the memory tracking system.
  *
  * Resets all counters to zero.
  */
-void initialize_memory() {
-    platform_zero_memory(&stats, sizeof(stats));
+void initialize_memory(u64* memory_requirement, void* state) {
+    *memory_requirement = sizeof(memory_system_state);
+
+    if (state == 0) {
+        return;
+    }
+
+    state_ptr = state;
+    state_ptr->alloc_count = 0;
+    platform_zero_memory(&state_ptr->stats, sizeof(state_ptr->stats));
 }
 
 /**
@@ -90,8 +104,10 @@ void initialize_memory() {
  *
  * Currently does nothing but can be extended to log final usage or detect leaks.
  */
-void shutdown_memory() {
+void shutdown_memory(void* state) {
     // Optional TO-DO: Log final memory usage
+
+    state_ptr = 0;
 }
 
 /**
@@ -108,8 +124,11 @@ void* kallocate(u64 size, memory_tag tag) {
         KWARN("kallocate called using MEMORY_TAG_UNKNOWN. Re-class this allocation.");
     }
 
-    stats.total_allocated += size;
-    stats.tagged_allocations[tag] += size;
+    if (state_ptr) {
+        state_ptr->stats.total_allocated += size;
+        state_ptr->stats.tagged_allocations[tag] += size;
+        state_ptr->alloc_count++;
+    }
 
     // TODO: Memory alignment
     void* block = platform_allocate(size, False);
@@ -132,8 +151,10 @@ void kfree(void* block, u64 size, memory_tag tag) {
         KWARN("kfree called using MEMORY_TAG_UNKNOWN. Re-class this allocation.");
     }
 
-    stats.total_allocated -= size;
-    stats.tagged_allocations[tag] -= size;
+    if (state_ptr) {
+        state_ptr->stats.total_allocated -= size;
+        state_ptr->stats.tagged_allocations[tag] -= size;
+    }
 
     // TODO: Memory alignment
     platform_free(block, False);
@@ -195,19 +216,19 @@ char* get_memory_usage_str() {
 
         float amount = 1.0f;
 
-        if (stats.tagged_allocations[i] >= gib) {
+        if (state_ptr->stats.tagged_allocations[i] >= gib) {
             unit[0] = 'G';
-            amount = stats.tagged_allocations[i] / (float)gib;
-        } else if (stats.tagged_allocations[i] >= mib) {
+            amount = state_ptr->stats.tagged_allocations[i] / (float)gib;
+        } else if (state_ptr->stats.tagged_allocations[i] >= mib) {
             unit[0] = 'M';
-            amount = stats.tagged_allocations[i] / (float)mib;
-        } else if (stats.tagged_allocations[i] >= kib) {
+            amount = state_ptr->stats.tagged_allocations[i] / (float)mib;
+        } else if (state_ptr->stats.tagged_allocations[i] >= kib) {
             unit[0] = 'K';
-            amount = stats.tagged_allocations[i] / (float)kib;
+            amount = state_ptr->stats.tagged_allocations[i] / (float)kib;
         } else {
             unit[0] = 'B';
             unit[1] = 0;
-            amount = (float)stats.tagged_allocations[i];
+            amount = (float)state_ptr->stats.tagged_allocations[i];
         }
 
         i32 length = snprintf(buffer + offset, 8000, "  %s: %.2f%s\n", memory_tag_strings[i], amount, unit);
@@ -218,4 +239,12 @@ char* get_memory_usage_str() {
     char* out_string = strdup(buffer);  // Note: May need platform_strdup if _strdup isn't available
 
     return out_string;
+}
+
+u64 get_memory_alloc_count() {
+    if (state_ptr) {
+        return state_ptr->alloc_count;
+    } else {
+        return 0;  // No memory tracking initialized
+    }
 }

@@ -109,7 +109,7 @@ void regenerate_framebuffers(renderer_backend* backend, vulkan_swapchain* swapch
 
 b8 recreate_swapchain(renderer_backend* backend);
 
-b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* application_name, struct platform_state* plat_state) {
+b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* application_name) {
     KINFO("Creating Vulkan instance...");
     // Function pointers
     context.find_memory_index = find_memory_index;
@@ -235,7 +235,7 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
     // Surface creation
     KDEBUG("Creating Vulkan surface...");
 
-    if (!platform_create_vulkan_surface(plat_state, &context)) {
+    if (!platform_create_vulkan_surface(&context)) {
         KERROR("Failed to create platform surface!");
         return False;
     }

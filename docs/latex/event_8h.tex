@@ -54,9 +54,9 @@ enum \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226}{system\+\_\+ev
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{event_8h_aaaec3136b95f3d089d55ebfe440c2a4f}{event\+\_\+initialize}} ()
+void \mbox{\hyperlink{event_8h_afb2d061ae1d2d3f10da20d9db502aac1}{event\+\_\+system\+\_\+initialize}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}memory\+\_\+requirement, void \texorpdfstring{$\ast$}{*}state)
 \begin{DoxyCompactList}\small\item\em Initializes the event system. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{event_8h_a4747584f93c48ffe1a1fa895c3746c7c}{event\+\_\+shutdown}} ()
+void \mbox{\hyperlink{event_8h_abcfbe6c08c785d8f77f9d697ea94abb1}{event\+\_\+system\+\_\+shutdown}} (void \texorpdfstring{$\ast$}{*}state)
 \begin{DoxyCompactList}\small\item\em Shuts down the event system. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{event_8h_a8ef51b7c38c54169c57b45bb8e55047a}{event\+\_\+register}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
 \begin{DoxyCompactList}\small\item\em Registers a listener for a specific event code. \end{DoxyCompactList}\item 
@@ -254,42 +254,15 @@ True if handled by at least one listener; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{event_8c_source_l00156}{156}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+Definition at line \mbox{\hyperlink{event_8c_source_l00150}{150}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00069}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00318}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00166}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00130}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00187}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, and \mbox{\hyperlink{input_8c_source_l00212}{input\+\_\+process\+\_\+mouse\+\_\+wheel()}}.
-
-\Hypertarget{event_8h_aaaec3136b95f3d089d55ebfe440c2a4f}\label{event_8h_aaaec3136b95f3d089d55ebfe440c2a4f} 
-\index{event.h@{event.h}!event\_initialize@{event\_initialize}}
-\index{event\_initialize@{event\_initialize}!event.h@{event.h}}
-\doxysubsubsection{\texorpdfstring{event\_initialize()}{event\_initialize()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} event\+\_\+initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Initializes the event system. 
-
-Must be called before any other event functions are used. Sets up internal structures for managing event listeners.
-
-\begin{DoxyReturn}{Returns}
-True if initialization succeeded; False otherwise. 
-\end{DoxyReturn}
-
-
-Definition at line \mbox{\hyperlink{event_8c_source_l00076}{76}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
-
-
-
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kzero\+\_\+memory()}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
-
-
-
-Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00389}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00182}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00139}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00203}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, and \mbox{\hyperlink{input_8c_source_l00228}{input\+\_\+process\+\_\+mouse\+\_\+wheel()}}.
 
 \Hypertarget{event_8h_a8ef51b7c38c54169c57b45bb8e55047a}\label{event_8h_a8ef51b7c38c54169c57b45bb8e55047a} 
 \index{event.h@{event.h}!event\_register@{event\_register}}
@@ -317,21 +290,48 @@ True if successfully registered; False if already registered or invalid paramete
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{event_8c_source_l00100}{100}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+Definition at line \mbox{\hyperlink{event_8c_source_l00095}{95}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00069}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}.
 
-\Hypertarget{event_8h_a4747584f93c48ffe1a1fa895c3746c7c}\label{event_8h_a4747584f93c48ffe1a1fa895c3746c7c} 
-\index{event.h@{event.h}!event\_shutdown@{event\_shutdown}}
-\index{event\_shutdown@{event\_shutdown}!event.h@{event.h}}
-\doxysubsubsection{\texorpdfstring{event\_shutdown()}{event\_shutdown()}}
-{\footnotesize\ttfamily void event\+\_\+shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\Hypertarget{event_8h_afb2d061ae1d2d3f10da20d9db502aac1}\label{event_8h_afb2d061ae1d2d3f10da20d9db502aac1} 
+\index{event.h@{event.h}!event\_system\_initialize@{event\_system\_initialize}}
+\index{event\_system\_initialize@{event\_system\_initialize}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{event\_system\_initialize()}{event\_system\_initialize()}}
+{\footnotesize\ttfamily void event\+\_\+system\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{memory\+\_\+requirement,  }\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
+
+
+
+Initializes the event system. 
+
+Must be called before any other event functions are used. Sets up internal structures for managing event listeners.
+
+\begin{DoxyReturn}{Returns}
+True if initialization succeeded; False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{event_8c_source_l00071}{71}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, and \mbox{\hyperlink{event_8c_source_l00069}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00183}{application\+\_\+create()}}.
+
+\Hypertarget{event_8h_abcfbe6c08c785d8f77f9d697ea94abb1}\label{event_8h_abcfbe6c08c785d8f77f9d697ea94abb1} 
+\index{event.h@{event.h}!event\_system\_shutdown@{event\_system\_shutdown}}
+\index{event\_system\_shutdown@{event\_system\_shutdown}!event.h@{event.h}}
+\doxysubsubsection{\texorpdfstring{event\_system\_shutdown()}{event\_system\_shutdown()}}
+{\footnotesize\ttfamily void event\+\_\+system\+\_\+shutdown (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
 
 
 
@@ -339,15 +339,15 @@ Shuts down the event system.
 
 Cleans up internal state, removes all registered listeners, and prepares for safe termination. 
 
-Definition at line \mbox{\hyperlink{event_8c_source_l00088}{88}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+Definition at line \mbox{\hyperlink{event_8c_source_l00082}{82}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
 
 
 
-References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00050}{MAX\+\_\+\+MESSAGE\+\_\+\+CODES}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, and \mbox{\hyperlink{event_8c_source_l00074}{state}}.
+References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{event_8c_source_l00050}{MAX\+\_\+\+MESSAGE\+\_\+\+CODES}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, and \mbox{\hyperlink{event_8c_source_l00069}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}.
 
 \Hypertarget{event_8h_ae6b9afa0e8bc3c94752e7b2c0b9c17f8}\label{event_8h_ae6b9afa0e8bc3c94752e7b2c0b9c17f8} 
 \index{event.h@{event.h}!event\_unregister@{event\_unregister}}
@@ -375,13 +375,13 @@ True if successfully unregistered; False if not found.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{event_8c_source_l00129}{129}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
+Definition at line \mbox{\hyperlink{event_8c_source_l00124}{124}} of file \mbox{\hyperlink{event_8c_source}{event.\+c}}.
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00223}{darray\+\_\+pop\+\_\+at}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00223}{darray\+\_\+pop\+\_\+at}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00069}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00259}{application\+\_\+run()}}.
 

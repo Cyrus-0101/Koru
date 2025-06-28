@@ -74,7 +74,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">logger.c File Reference</div></div>
@@ -114,19 +116,29 @@ $(function() {
 </div>
 <p><a href="logger_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlogger__system__state.html">logger_system_state</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:aa204ec58d846f2354e6bd239460db89f" id="r_aa204ec58d846f2354e6bd239460db89f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#aa204ec58d846f2354e6bd239460db89f">MSG_LENGTH</a>&#160;&#160;&#160;32000</td></tr>
 <tr class="separator:aa204ec58d846f2354e6bd239460db89f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ae29328f40e5eace9aeffeebfc1b93c09" id="r_ae29328f40e5eace9aeffeebfc1b93c09"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structlogger__system__state.html">logger_system_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#ae29328f40e5eace9aeffeebfc1b93c09">logger_system_state</a></td></tr>
+<tr class="separator:ae29328f40e5eace9aeffeebfc1b93c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aae701ec9fd1cbb624f28156730027305" id="r_aae701ec9fd1cbb624f28156730027305"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#aae701ec9fd1cbb624f28156730027305">initialize_logging</a> ()</td></tr>
-<tr class="memdesc:aae701ec9fd1cbb624f28156730027305"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the logging system.  <br /></td></tr>
-<tr class="separator:aae701ec9fd1cbb624f28156730027305"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a811866002a3bf25ead26b47687cfccdf" id="r_a811866002a3bf25ead26b47687cfccdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#a811866002a3bf25ead26b47687cfccdf">shutdown_logging</a> ()</td></tr>
-<tr class="memdesc:a811866002a3bf25ead26b47687cfccdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the logging system.  <br /></td></tr>
-<tr class="separator:a811866002a3bf25ead26b47687cfccdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a124a9e558949da0e8f11f6929992a5c8" id="r_a124a9e558949da0e8f11f6929992a5c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#a124a9e558949da0e8f11f6929992a5c8">initialize_logging</a> (<a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *memory_requirement, void *state)</td></tr>
+<tr class="memdesc:a124a9e558949da0e8f11f6929992a5c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the logging system. Called twice; once with state = 0 to get required memory size then a second time passing allocated memory to the state.  <br /></td></tr>
+<tr class="separator:a124a9e558949da0e8f11f6929992a5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa19340b3c2c2f8f90a5c40d08b7919c7" id="r_aa19340b3c2c2f8f90a5c40d08b7919c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#aa19340b3c2c2f8f90a5c40d08b7919c7">shutdown_logging</a> (void *state)</td></tr>
+<tr class="memdesc:aa19340b3c2c2f8f90a5c40d08b7919c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down the logging system.  <br /></td></tr>
+<tr class="separator:aa19340b3c2c2f8f90a5c40d08b7919c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdf99acf6ecc4a6fd2277e74ed3fd8c6" id="r_abdf99acf6ecc4a6fd2277e74ed3fd8c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#abdf99acf6ecc4a6fd2277e74ed3fd8c6">log_output</a> (<a class="el" href="logger_8h.html#ac91d55174d383848b976a34de843748e">log_level</a> level, const char *message,...)</td></tr>
 <tr class="memdesc:abdf99acf6ecc4a6fd2277e74ed3fd8c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a formatted message at the specified log level.  <br /></td></tr>
 <tr class="separator:abdf99acf6ecc4a6fd2277e74ed3fd8c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,8 +148,8 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:acceded25efdbbd2bf2cbd1bd79a1d91a" id="r_acceded25efdbbd2bf2cbd1bd79a1d91a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#acceded25efdbbd2bf2cbd1bd79a1d91a">terminal_supports_color</a> = <a class="el" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></td></tr>
-<tr class="separator:acceded25efdbbd2bf2cbd1bd79a1d91a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78fb062cf70ff40ec53ede87b44ebb48" id="r_a78fb062cf70ff40ec53ede87b44ebb48"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structlogger__system__state.html">logger_system_state</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#a78fb062cf70ff40ec53ede87b44ebb48">state_ptr</a></td></tr>
+<tr class="separator:a78fb062cf70ff40ec53ede87b44ebb48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of the logging system. </p>
@@ -167,9 +179,24 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ae29328f40e5eace9aeffeebfc1b93c09" name="ae29328f40e5eace9aeffeebfc1b93c09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae29328f40e5eace9aeffeebfc1b93c09">&#9670;&#160;</a></span>logger_system_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structlogger__system__state.html">logger_system_state</a> <a class="el" href="structlogger__system__state.html">logger_system_state</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aae701ec9fd1cbb624f28156730027305" name="aae701ec9fd1cbb624f28156730027305"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae701ec9fd1cbb624f28156730027305">&#9670;&#160;</a></span>initialize_logging()</h2>
+<a id="a124a9e558949da0e8f11f6929992a5c8" name="a124a9e558949da0e8f11f6929992a5c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a124a9e558949da0e8f11f6929992a5c8">&#9670;&#160;</a></span>initialize_logging()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,25 +204,39 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> initialize_logging </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *&#160;</td>
+          <td class="paramname"><em>memory_requirement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the logging system. </p>
-<p>Currently just returns True. In future versions, this may include:</p><ul>
-<li>Opening a log file</li>
-<li>Initializing mutexes for thread safety</li>
-<li>Detecting terminal capabilities</li>
-</ul>
-<dl class="section return"><dt>Returns</dt><dd>True if initialization succeeded; False otherwise. </dd></dl>
+<p>Initializes the logging system. Called twice; once with state = 0 to get required memory size then a second time passing allocated memory to the state. </p>
+<p>Allocates necessary resources and prepares the logging subsystem. This function should be called before any logging occurs.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">memory_requirement</td><td>Pointer to store the required memory size for the logging system. </td></tr>
+    <tr><td class="paramname">state</td><td>Pointer to a pre-allocated memory block for the logger state. If NULL, no state is initialized. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if initialization was successful; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00031">31</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00042">42</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">References <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="logger_8c_source.html#l00035">logger_system_state::initialized</a>, <a class="el" href="logger_8c_source.html#l00038">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00139">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
 
 </div>
 </div>
@@ -246,11 +287,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00046">46</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00068">68</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
 <p class="reference">References <a class="el" href="logger_8h_source.html#l00078">LOG_LEVEL_WARN</a>, <a class="el" href="logger_8c_source.html#l00010">MSG_LENGTH</a>, <a class="el" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write()</a>, and <a class="el" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00100">report_assertion_failure()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00122">report_assertion_failure()</a>.</p>
 
 </div>
 </div>
@@ -304,14 +345,14 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00100">100</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00122">122</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8h_source.html#l00064">LOG_LEVEL_FATAL</a>, and <a class="el" href="logger_8c_source.html#l00046">log_output()</a>.</p>
+<p class="reference">References <a class="el" href="logger_8h_source.html#l00064">LOG_LEVEL_FATAL</a>, and <a class="el" href="logger_8c_source.html#l00068">log_output()</a>.</p>
 
 </div>
 </div>
-<a id="a811866002a3bf25ead26b47687cfccdf" name="a811866002a3bf25ead26b47687cfccdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a811866002a3bf25ead26b47687cfccdf">&#9670;&#160;</a></span>shutdown_logging()</h2>
+<a id="aa19340b3c2c2f8f90a5c40d08b7919c7" name="aa19340b3c2c2f8f90a5c40d08b7919c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa19340b3c2c2f8f90a5c40d08b7919c7">&#9670;&#160;</a></span>shutdown_logging()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -319,7 +360,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void shutdown_logging </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -332,13 +374,15 @@ Variables</h2></td></tr>
 <li>Releasing logging resources </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00038">38</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00058">58</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+
+<p class="reference">References <a class="el" href="logger_8c_source.html#l00038">state_ptr</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="acceded25efdbbd2bf2cbd1bd79a1d91a" name="acceded25efdbbd2bf2cbd1bd79a1d91a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acceded25efdbbd2bf2cbd1bd79a1d91a">&#9670;&#160;</a></span>terminal_supports_color</h2>
+<a id="a78fb062cf70ff40ec53ede87b44ebb48" name="a78fb062cf70ff40ec53ede87b44ebb48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78fb062cf70ff40ec53ede87b44ebb48">&#9670;&#160;</a></span>state_ptr</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -347,7 +391,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> terminal_supports_color = <a class="el" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></td>
+          <td class="memname"><a class="el" href="structlogger__system__state.html">logger_system_state</a>* state_ptr</td>
         </tr>
       </table>
   </td>
@@ -357,14 +401,16 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00027">27</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00038">38</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00042">initialize_logging()</a>, and <a class="el" href="logger_8c_source.html#l00058">shutdown_logging()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 00:34:14 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Jun 28 2025 19:11:01 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

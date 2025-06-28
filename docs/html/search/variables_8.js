@@ -5,9 +5,9 @@ var searchData=
   ['i64_2',['i64',['../structevent__context.html#a31a4610e1961d5333e6e0be776da62be',1,'event_context']]],
   ['i8_3',['i8',['../structevent__context.html#a56f10070bb73660cfec58b51ec157414',1,'event_context']]],
   ['initialize_4',['initialize',['../structgame.html#a5466af7e15d158c9a30a2c733514bc13',1,'game']]],
-  ['initialized_5',['initialized',['../application_8c.html#aca033d9c168f6eceec40a0e9a9354e79',1,'initialized:&#160;application.c'],['../input_8c.html#aca033d9c168f6eceec40a0e9a9354e79',1,'initialized:&#160;input.c']]],
-  ['internal_5fstate_6',['internal_state',['../structplatform__state.html#ac902a69fe12cf6868862aad5a57b15d5',1,'platform_state']]],
-  ['is_5finitialized_7',['is_initialized',['../event_8c.html#aaf91097086deb8321aa029e833198c3d',1,'event.c']]],
+  ['initialized_5',['initialized',['../structlogger__system__state.html#a7ead9fc41f059e2ef062233c0541e0d6',1,'logger_system_state']]],
+  ['input_5fsystem_5fmemory_5frequirement_6',['input_system_memory_requirement',['../structapplication__state.html#a2a9175d2ced90985c4c30c8c75857cd9',1,'application_state']]],
+  ['input_5fsystem_5fstate_7',['input_system_state',['../structapplication__state.html#a7949e6624c3ebfad501d54da232cc65b',1,'application_state']]],
   ['is_5frunning_8',['is_running',['../structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde',1,'application_state']]],
   ['is_5fsuspended_9',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]]
 ];

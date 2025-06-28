@@ -460,12 +460,12 @@ In Linux\+:
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{comment}{//\ platform\_linux.c}}
 \DoxyCodeLine{xcb\_intern\_atom\_reply\_t*\ wm\_delete\_reply\ =\ xcb\_intern\_atom\_reply(...);}
-\DoxyCodeLine{\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>wm\_delete\_win\ =\ wm\_delete\_reply-\/>atom;}
+\DoxyCodeLine{state-\/>wm\_delete\_win\ =\ wm\_delete\_reply-\/>atom;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{//\ Create\ surface}}
 \DoxyCodeLine{VkXcbSurfaceCreateInfoKHR\ surface\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_XCB\_SURFACE\_CREATE\_INFO\_KHR\};}
-\DoxyCodeLine{surface\_create\_info.connection\ =\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection;}
-\DoxyCodeLine{surface\_create\_info.window\ =\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>window;}
+\DoxyCodeLine{surface\_create\_info.connection\ =\ state-\/>connection;}
+\DoxyCodeLine{surface\_create\_info.window\ =\ state-\/>window;}
 \DoxyCodeLine{}
 \DoxyCodeLine{vkCreateXcbSurfaceKHR(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>instance,\ \&surface\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>surface);}
 
@@ -1075,7 +1075,7 @@ Vulkan is explicit by design. Every operation must be described precisely. Here\
 \hline
 \PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Responsibility    }\\\cline{1-2}
 \endhead
-{\ttfamily \doxylink{vulkan__backend_8c_a0b90ec94f78aae6814140d684323d8d2}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}   &Creates instance, surface, and starts device setup    \\\cline{1-2}
+{\ttfamily \doxylink{vulkan__backend_8c_afc2cbf296cd3a6e4999750da67deaca9}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}   &Creates instance, surface, and starts device setup    \\\cline{1-2}
 {\ttfamily \doxylink{vulkan__device_8c_abb07eb6d710c4e98364b57e42e4af4ac}{vulkan\+\_\+device\+\_\+create()}}   &Selects physical device, creates logical device    \\\cline{1-2}
 {\ttfamily \doxylink{vulkan__device_8c_ac4eb42eebcc937d35197f1b899668021}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}   &Queries device capabilities for swapchain    \\\cline{1-2}
 {\ttfamily \doxylink{vulkan__swapchain_8c_a3385e045032018c37ee427c2caa82bfb}{vulkan\+\_\+swapchain\+\_\+create()}}   &Initializes the swapchain and image views    \\\cline{1-2}

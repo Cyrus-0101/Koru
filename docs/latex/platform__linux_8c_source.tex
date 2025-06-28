@@ -39,7 +39,7 @@
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00046}00046\ \textcolor{preprocessor}{\#include\ <vulkan/vulkan.h>}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00047}00047\ \textcolor{preprocessor}{\#include\ "{}renderer/vulkan/vulkan\_types.inl"{}}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00048}00048\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00058}00058\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }internal\_state\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00058}00058\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplatform__state}{platform\_state}}\ \{}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00064}00064\ \ \ \ \ Display*\ display;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00065}00065\ }
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00071}00071\ \ \ \ \ xcb\_connection\_t*\ connection;}
@@ -52,645 +52,643 @@
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00093}00093\ }
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00099}00099\ \ \ \ \ xcb\_atom\_t\ wm\_delete\_win;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00100}00100\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00101}00101\ \ \ \ \ VkSurfaceKHR\ surface;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00102}00102\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00103}00103\ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ is\_visible;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00104}00104\ \}\ internal\_state;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00105}00105\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00114}00114\ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ translate\_keycode(\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ x\_keycode);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00115}00115\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00130}00130\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{platform_8h_a1557f29064029f8b437d0fbcc587ebbd}{platform\_startup}}(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00131}00131\ \ \ \ \ \mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00132}00132\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ application\_name,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00133}00133\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ x,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00134}00134\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ y,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00135}00135\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ width,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00136}00136\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ height)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00137}00137\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ internal\ state.\ Allocate\ memory\ for\ internal\_state\ using\ malloc}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00138}00138\ \ \ \ \ plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}}\ =\ malloc(\textcolor{keyword}{sizeof}(internal\_state));}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00139}00139\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00140}00140\ \ \ \ \ \textcolor{comment}{//\ Cast\ the\ void\ pointer\ to\ a\ typed\ pointer}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00141}00141\ \ \ \ \ internal\_state*\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}\ =\ (internal\_state*)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00142}00142\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00143}00143\ \ \ \ \ \textcolor{comment}{//\ Open\ a\ connection\ to\ the\ X11\ server}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00144}00144\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>display\ =\ XOpenDisplay(NULL);\ \ \textcolor{comment}{//\ NULL\ means\ default\ display}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00145}00145\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00146}00146\ \ \ \ \ \textcolor{comment}{//\ Disable\ keyboard\ auto-\/repeat\ globally\ (games\ usually\ want\ discrete\ key\ presses)}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00147}00147\ \ \ \ \ XAutoRepeatOff(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>display);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00148}00148\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00149}00149\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ modern\ XCB\ connection\ from\ the\ old\ Xlib\ Display}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00150}00150\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection\ =\ XGetXCBConnection(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>display);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00106}00106\ \ \ \ \ VkSurfaceKHR\ surface;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00107}00107\ \}\ \mbox{\hyperlink{structplatform__state}{platform\_state}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00109}00109\ \textcolor{keyword}{static}\ \mbox{\hyperlink{structplatform__state}{platform\_state}}*\ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}};\ \ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00119}00119\ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ translate\_keycode(\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ x\_keycode);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00135}00135\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{platform_8h_a2f0dc66ac164c4d7fc389e8e545513df}{platform\_system\_startup}}(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00136}00136\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ memory\_requirement,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00137}00137\ \ \ \ \ \textcolor{keywordtype}{void}*\ state,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00138}00138\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ application\_name,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00139}00139\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ x,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00140}00140\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ y,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00141}00141\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ width,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00142}00142\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ height)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00143}00143\ \ \ \ \ *memory\_requirement\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structplatform__state}{platform\_state}});}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{if}\ (state\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00146}00146\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00148}00148\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}\ =\ state;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00149}00149\ \ \ \ \ \textcolor{comment}{//\ Connect\ to\ X}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00150}00150\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>display\ =\ XOpenDisplay(NULL);}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00151}00151\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00152}00152\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ there\ was\ any\ error\ connecting}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00153}00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (xcb\_connection\_has\_error(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection))\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Failed\ to\ connect\ to\ X\ server\ via\ XCB."{}});}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00156}00156\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00152}00152\ \ \ \ \ \textcolor{comment}{//\ Disable\ keyboard\ auto-\/repeat\ globally\ (games\ usually\ want\ discrete\ key\ presses)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00153}00153\ \ \ \ \ XAutoRepeatOff(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>display);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00155}00155\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ modern\ XCB\ connection\ from\ the\ old\ Xlib\ Display}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00156}00156\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection\ =\ XGetXCBConnection(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>display);}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00157}00157\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00158}00158\ \ \ \ \ \textcolor{comment}{//\ Retrieve\ the\ setup\ data\ from\ the\ connection,\ akin\ to\ getting\ configuration}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00159}00159\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }xcb\_setup\_t*\ setup\ =\ xcb\_get\_setup(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00160}00160\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00161}00161\ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ available\ screens\ (monitors)\ using\ an\ iterator}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00162}00162\ \ \ \ \ xcb\_screen\_iterator\_t\ it\ =\ xcb\_setup\_roots\_iterator(setup);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00158}00158\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ there\ was\ any\ error\ connecting}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (xcb\_connection\_has\_error(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection))\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Failed\ to\ connect\ to\ X\ server\ via\ XCB."{}});}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00162}00162\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00163}00163\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00164}00164\ \ \ \ \ \textcolor{comment}{//\ We're\ choosing\ the\ first\ screen}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00165}00165\ \ \ \ \ \textcolor{keywordtype}{int}\ screen\_p\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00164}00164\ \ \ \ \ \textcolor{comment}{//\ Retrieve\ the\ setup\ data\ from\ the\ connection,\ akin\ to\ getting\ configuration}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00165}00165\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }xcb\_setup\_t*\ setup\ =\ xcb\_get\_setup(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection);}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00166}00166\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00167}00167\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ s\ =\ screen\_p;\ s\ >\ 0;\ s-\/-\/)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00168}00168\ \ \ \ \ \ \ \ \ xcb\_screen\_next(\&it);\ \ \textcolor{comment}{//\ Move\ iterator\ forward}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00169}00169\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00170}00170\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00171}00171\ \ \ \ \ \textcolor{comment}{//\ Assign\ the\ selected\ screen}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00172}00172\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>screen\ =\ it.data;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00173}00173\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00174}00174\ \ \ \ \ \textcolor{comment}{//\ Generate\ a\ unique\ XID\ for\ the\ window\ created}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00175}00175\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>window\ =\ xcb\_generate\_id(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00167}00167\ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ available\ screens\ (monitors)\ using\ an\ iterator}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00168}00168\ \ \ \ \ xcb\_screen\_iterator\_t\ it\ =\ xcb\_setup\_roots\_iterator(setup);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00170}00170\ \ \ \ \ \textcolor{comment}{//\ We're\ choosing\ the\ first\ screen}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00171}00171\ \ \ \ \ \textcolor{keywordtype}{int}\ screen\_p\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00173}00173\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ s\ =\ screen\_p;\ s\ >\ 0;\ s-\/-\/)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00174}00174\ \ \ \ \ \ \ \ \ xcb\_screen\_next(\&it);\ \ \textcolor{comment}{//\ Move\ iterator\ forward}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00175}00175\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00176}00176\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00177}00177\ \ \ \ \ \textcolor{comment}{//\ Register\ event\ types.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00178}00178\ \ \ \ \ \textcolor{comment}{//\ XCB\_CW\_BACK\_PIXEL\ =\ filling\ then\ window\ bg\ with\ a\ single\ colour}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00179}00179\ \ \ \ \ \textcolor{comment}{//\ XCB\_CW\_EVENT\_MASK\ is\ required.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00180}00180\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ event\_mask\ =\ XCB\_CW\_BACK\_PIXEL\ |\ XCB\_CW\_EVENT\_MASK;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00181}00181\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00182}00182\ \ \ \ \ \textcolor{comment}{//\ Listen\ for\ keyboard\ and\ mouse\ buttons\ events}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00183}00183\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ event\_values\ =\ XCB\_EVENT\_MASK\_BUTTON\_PRESS\ |\ XCB\_EVENT\_MASK\_BUTTON\_RELEASE\ |}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ XCB\_EVENT\_MASK\_KEY\_PRESS\ |\ XCB\_EVENT\_MASK\_KEY\_RELEASE\ |}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ XCB\_EVENT\_MASK\_EXPOSURE\ |\ XCB\_EVENT\_MASK\_POINTER\_MOTION\ |}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ XCB\_EVENT\_MASK\_STRUCTURE\_NOTIFY;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00177}00177\ \ \ \ \ \textcolor{comment}{//\ Assign\ the\ selected\ screen}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00178}00178\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>screen\ =\ it.data;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00180}00180\ \ \ \ \ \textcolor{comment}{//\ Generate\ a\ unique\ XID\ for\ the\ window\ created}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00181}00181\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>window\ =\ xcb\_generate\_id(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00183}00183\ \ \ \ \ \textcolor{comment}{//\ Register\ event\ types.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00184}00184\ \ \ \ \ \textcolor{comment}{//\ XCB\_CW\_BACK\_PIXEL\ =\ filling\ then\ window\ bg\ with\ a\ single\ colour}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00185}00185\ \ \ \ \ \textcolor{comment}{//\ XCB\_CW\_EVENT\_MASK\ is\ required.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00186}00186\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ event\_mask\ =\ XCB\_CW\_BACK\_PIXEL\ |\ XCB\_CW\_EVENT\_MASK;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00187}00187\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00188}00188\ \ \ \ \ \textcolor{comment}{//\ Values\ to\ be\ sent\ over\ XCB\ (bg\ colour,\ events)}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00189}00189\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ value\_list[]\ =\ \{\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>screen-\/>black\_pixel,\ event\_values\};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00190}00190\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00194}00194\ \ \ \ \ xcb\_void\_cookie\_t\ cookie\ =\ xcb\_create\_window(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00195}00195\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ XCB\_COPY\_FROM\_PARENT,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ same\ depth\ as\ parent}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00197}00197\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>window,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Parent\ window\ (root\ window\ of\ screen)}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00198}00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>screen-\/>root,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ parent}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00199}00199\ \ \ \ \ \ \ \ \ x,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ x\ position}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00200}00200\ \ \ \ \ \ \ \ \ y,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ y\ position}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00201}00201\ \ \ \ \ \ \ \ \ width,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ width}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00202}00202\ \ \ \ \ \ \ \ \ height,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ height}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00203}00203\ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ border}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00204}00204\ \ \ \ \ \ \ \ \ XCB\_WINDOW\_CLASS\_INPUT\_OUTPUT,\ \ \textcolor{comment}{//\ Can\ both\ draw\ and\ receive\ input}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00205}00205\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>screen-\/>root\_visual,\ \ \ \ \ \textcolor{comment}{//\ Same\ color\ format\ as\ root\ window}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00206}00206\ \ \ \ \ \ \ \ \ event\_mask,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mask\ for\ attributes}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00207}00207\ \ \ \ \ \ \ \ \ value\_list);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Values\ for\ those\ attributes}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00208}00208\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00209}00209\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ window\ title}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00210}00210\ \ \ \ \ xcb\_change\_property(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00211}00211\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00212}00212\ \ \ \ \ \ \ \ \ XCB\_PROP\_MODE\_REPLACE,\ \ \textcolor{comment}{//\ Replace\ existing\ property}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00213}00213\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>window,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00214}00214\ \ \ \ \ \ \ \ \ XCB\_ATOM\_WM\_NAME,\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Property\ name\ (window\ title)}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00215}00215\ \ \ \ \ \ \ \ \ XCB\_ATOM\_STRING,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Type\ of\ data}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00216}00216\ \ \ \ \ \ \ \ \ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Format:\ data\ should\ be\ viewed\ 8\ bits\ at\ a\ time}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00217}00217\ \ \ \ \ \ \ \ \ strlen(application\_name),\ \ \textcolor{comment}{//\ Length\ of\ string}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00218}00218\ \ \ \ \ \ \ \ \ application\_name);\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ actual\ title\ string}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00219}00219\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00224}00224\ \ \ \ \ xcb\_intern\_atom\_cookie\_t\ wm\_delete\_cookie\ =\ xcb\_intern\_atom(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00225}00225\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00226}00226\ \ \ \ \ \ \ \ \ 0,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00227}00227\ \ \ \ \ \ \ \ \ strlen(\textcolor{stringliteral}{"{}WM\_DELETE\_WINDOW"{}}),}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}WM\_DELETE\_WINDOW"{}});}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00229}00229\ \ \ \ \ xcb\_intern\_atom\_cookie\_t\ wm\_protocols\_cookie\ =\ xcb\_intern\_atom(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00230}00230\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00231}00231\ \ \ \ \ \ \ \ \ 0,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00232}00232\ \ \ \ \ \ \ \ \ strlen(\textcolor{stringliteral}{"{}WM\_PROTOCOLS"{}}),}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}WM\_PROTOCOLS"{}});}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00234}00234\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00235}00235\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ replies}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00236}00236\ \ \ \ \ xcb\_intern\_atom\_reply\_t*\ wm\_delete\_reply\ =\ xcb\_intern\_atom\_reply(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00237}00237\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00238}00238\ \ \ \ \ \ \ \ \ wm\_delete\_cookie,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00239}00239\ \ \ \ \ \ \ \ \ NULL);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00240}00240\ \ \ \ \ xcb\_intern\_atom\_reply\_t*\ wm\_protocols\_reply\ =\ xcb\_intern\_atom\_reply(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00241}00241\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00242}00242\ \ \ \ \ \ \ \ \ wm\_protocols\_cookie,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00243}00243\ \ \ \ \ \ \ \ \ NULL);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00244}00244\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00245}00245\ \ \ \ \ \textcolor{comment}{//\ Save\ atoms\ to\ internal\ state}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00246}00246\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>wm\_delete\_win\ =\ wm\_delete\_reply-\/>atom;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00247}00247\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>wm\_protocols\ =\ wm\_protocols\_reply-\/>atom;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00248}00248\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00249}00249\ \ \ \ \ \textcolor{comment}{//\ Let\ the\ window\ manager\ know\ we\ support\ WM\_DELETE\_WINDOW\ protocol}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00250}00250\ \ \ \ \ xcb\_change\_property(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00251}00251\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00252}00252\ \ \ \ \ \ \ \ \ XCB\_PROP\_MODE\_REPLACE,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00253}00253\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>window,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00254}00254\ \ \ \ \ \ \ \ \ wm\_protocols\_reply-\/>atom,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00255}00255\ \ \ \ \ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Format}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00256}00256\ \ \ \ \ \ \ \ \ 32,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32-\/bit\ values}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ One\ element}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00258}00258\ \ \ \ \ \ \ \ \ \&wm\_delete\_reply-\/>atom);\ \ \textcolor{comment}{//\ Pointer\ to\ atom}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00259}00259\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00260}00260\ \ \ \ \ \textcolor{comment}{//\ Map\ the\ window\ to\ the\ screen,\ make\ the\ window\ visible}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00261}00261\ \ \ \ \ xcb\_map\_window(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection,\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>window);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00262}00262\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00263}00263\ \ \ \ \ \textcolor{comment}{//\ Send\ all\ previous\ commands\ to\ the\ X\ server}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00264}00264\ \ \ \ \ \textcolor{comment}{//\ Flush\ the\ stream}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00265}00265\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ stream\_result\ =\ xcb\_flush(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00266}00266\ \ \ \ \ \textcolor{keywordflow}{if}\ (stream\_result\ <=\ 0)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00267}00267\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}An\ error\ occurred\ when\ flusing\ the\ stream:\ \%d"{}},\ stream\_result);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00269}00269\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00270}00270\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00271}00271\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>is\_visible\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00272}00272\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00273}00273\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00274}00274\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00275}00275\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00284}00284\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\_shutdown}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00285}00285\ \ \ \ \ \textcolor{comment}{//\ Simply\ cold-\/cast\ to\ the\ known\ type.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00286}00286\ \ \ \ \ internal\_state*\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}\ =\ (internal\_state*)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00287}00287\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00288}00288\ \ \ \ \ \textcolor{comment}{//\ //\ Turn\ key\ repeat\ back\ on\ since\ it\ was\ turned\ off\ globally,\ this\ is\ global\ for\ the\ OS...\ just...\ wow.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00289}00289\ \ \ \ \ XAutoRepeatOn(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>display);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00290}00290\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00291}00291\ \ \ \ \ \textcolor{comment}{//\ Destroy\ the\ window}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00292}00292\ \ \ \ \ xcb\_destroy\_window(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection,\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>window);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00293}00293\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00294}00294\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00304}00304\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{platform_8h_af47d0fad6d6e686e1e0f668c95b1c201}{platform\_pump\_messages}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00305}00305\ \ \ \ \ \textcolor{comment}{//\ Simply\ cold-\/cast\ to\ the\ known\ type.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00306}00306\ \ \ \ \ internal\_state*\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}\ =\ (internal\_state*)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00307}00307\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00308}00308\ \ \ \ \ xcb\_generic\_event\_t*\ event;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00309}00309\ \ \ \ \ xcb\_client\_message\_event\_t*\ cm;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00310}00310\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00311}00311\ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00312}00312\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00313}00313\ \ \ \ \ \textcolor{comment}{//\ Poll\ for\ all\ pending\ events}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00314}00314\ \ \ \ \ \textcolor{keywordflow}{while}\ ((event\ =\ xcb\_poll\_for\_event(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection)))\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ only\ one\ event\ per\ loop\ iteration}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00316}00316\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!event)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00318}00318\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00319}00319\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00320}00320\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ Input\ events}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (event-\/>response\_type\ \&\ \string~0x80)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_KEY\_PRESS:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_KEY\_RELEASE:\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Key\ press\ event\ -\/\ xcb\_key\_press\_event\_t\ /\ xcb\_key\_release\_event\_t\ are\ similar}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_key\_press\_event\_t*\ kb\_event\ =\ (xcb\_key\_press\_event\_t*)event;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ pressed\ =\ \textcolor{keyword}{event}-\/>response\_type\ ==\ XCB\_KEY\_PRESS;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00327}00327\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_keycode\_t\ code\ =\ kb\_event-\/>detail;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00329}00329\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KeySym\ key\_sym\ =\ XkbKeycodeToKeysym(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>display,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (KeyCode)code,\ \ \textcolor{comment}{//\ event.xkey.keycode}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ code\ \&\ ShiftMask\ ?\ 1\ :\ 0);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00335}00335\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ key\ =\ translate\_keycode(key\_sym);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00337}00337\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pass\ to\ the\ input\ subsystem\ for\ processing.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8c_aa50febeebd057f91a70704851a9b6300}{input\_process\_key}}(key,\ pressed);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00341}00341\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_PRESS:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_RELEASE:\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_button\_press\_event\_t*\ mouse\_event\ =\ (xcb\_button\_press\_event\_t*)event;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00345}00345\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ pressed\ =\ \textcolor{keyword}{event}-\/>response\_type\ ==\ XCB\_BUTTON\_PRESS;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00347}00347\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}}\ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7}{BUTTON\_MAX\_BUTTONS}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00349}00349\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (mouse\_event-\/>detail)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_INDEX\_1:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836a55dc0d53615e28ee8af66827bee48e4e}{BUTTON\_LEFT}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00353}00353\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_INDEX\_2:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb}{BUTTON\_MIDDLE}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00357}00357\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_INDEX\_3:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836a13046edd6d64a0de5821b5ff4c7581ce}{BUTTON\_RIGHT}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00361}00361\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00188}00188\ \ \ \ \ \textcolor{comment}{//\ Listen\ for\ keyboard\ and\ mouse\ buttons\ events}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00189}00189\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ event\_values\ =\ XCB\_EVENT\_MASK\_BUTTON\_PRESS\ |\ XCB\_EVENT\_MASK\_BUTTON\_RELEASE\ |}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ XCB\_EVENT\_MASK\_KEY\_PRESS\ |\ XCB\_EVENT\_MASK\_KEY\_RELEASE\ |}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ XCB\_EVENT\_MASK\_EXPOSURE\ |\ XCB\_EVENT\_MASK\_POINTER\_MOTION\ |}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ XCB\_EVENT\_MASK\_STRUCTURE\_NOTIFY;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00194}00194\ \ \ \ \ \textcolor{comment}{//\ Values\ to\ be\ sent\ over\ XCB\ (bg\ colour,\ events)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00195}00195\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ value\_list[]\ =\ \{\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>screen-\/>black\_pixel,\ event\_values\};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00200}00200\ \ \ \ \ xcb\_void\_cookie\_t\ cookie\ =\ xcb\_create\_window(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00201}00201\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00202}00202\ \ \ \ \ \ \ \ \ XCB\_COPY\_FROM\_PARENT,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ same\ depth\ as\ parent}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00203}00203\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>window,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Parent\ window\ (root\ window\ of\ screen)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00204}00204\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>screen-\/>root,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ parent}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00205}00205\ \ \ \ \ \ \ \ \ x,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ x\ position}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00206}00206\ \ \ \ \ \ \ \ \ y,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ y\ position}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00207}00207\ \ \ \ \ \ \ \ \ width,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ width}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00208}00208\ \ \ \ \ \ \ \ \ height,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ height}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00209}00209\ \ \ \ \ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ No\ border}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00210}00210\ \ \ \ \ \ \ \ \ XCB\_WINDOW\_CLASS\_INPUT\_OUTPUT,\ \ \ \textcolor{comment}{//\ Can\ both\ draw\ and\ receive\ input}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00211}00211\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>screen-\/>root\_visual,\ \ \textcolor{comment}{//\ Same\ color\ format\ as\ root\ window}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00212}00212\ \ \ \ \ \ \ \ \ event\_mask,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mask\ for\ attributes}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00213}00213\ \ \ \ \ \ \ \ \ value\_list);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Values\ for\ those\ attributes}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00215}00215\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ window\ title}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00216}00216\ \ \ \ \ xcb\_change\_property(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00217}00217\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00218}00218\ \ \ \ \ \ \ \ \ XCB\_PROP\_MODE\_REPLACE,\ \ \textcolor{comment}{//\ Replace\ existing\ property}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00219}00219\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>window,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00220}00220\ \ \ \ \ \ \ \ \ XCB\_ATOM\_WM\_NAME,\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Property\ name\ (window\ title)}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00221}00221\ \ \ \ \ \ \ \ \ XCB\_ATOM\_STRING,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Type\ of\ data}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Format:\ data\ should\ be\ viewed\ 8\ bits\ at\ a\ time}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ strlen(application\_name),\ \ \textcolor{comment}{//\ Length\ of\ string}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00224}00224\ \ \ \ \ \ \ \ \ application\_name);\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ actual\ title\ string}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00230}00230\ \ \ \ \ xcb\_intern\_atom\_cookie\_t\ wm\_delete\_cookie\ =\ xcb\_intern\_atom(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00231}00231\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00232}00232\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00233}00233\ \ \ \ \ \ \ \ \ strlen(\textcolor{stringliteral}{"{}WM\_DELETE\_WINDOW"{}}),}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}WM\_DELETE\_WINDOW"{}});}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00235}00235\ \ \ \ \ xcb\_intern\_atom\_cookie\_t\ wm\_protocols\_cookie\ =\ xcb\_intern\_atom(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00236}00236\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00237}00237\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00238}00238\ \ \ \ \ \ \ \ \ strlen(\textcolor{stringliteral}{"{}WM\_PROTOCOLS"{}}),}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}WM\_PROTOCOLS"{}});}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00241}00241\ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ replies}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00242}00242\ \ \ \ \ xcb\_intern\_atom\_reply\_t*\ wm\_delete\_reply\ =\ xcb\_intern\_atom\_reply(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00243}00243\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00244}00244\ \ \ \ \ \ \ \ \ wm\_delete\_cookie,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00245}00245\ \ \ \ \ \ \ \ \ NULL);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00246}00246\ \ \ \ \ xcb\_intern\_atom\_reply\_t*\ wm\_protocols\_reply\ =\ xcb\_intern\_atom\_reply(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00247}00247\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00248}00248\ \ \ \ \ \ \ \ \ wm\_protocols\_cookie,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00249}00249\ \ \ \ \ \ \ \ \ NULL);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00251}00251\ \ \ \ \ \textcolor{comment}{//\ Save\ atoms\ to\ internal\ state}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00252}00252\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>wm\_delete\_win\ =\ wm\_delete\_reply-\/>atom;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00253}00253\ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>wm\_protocols\ =\ wm\_protocols\_reply-\/>atom;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00255}00255\ \ \ \ \ \textcolor{comment}{//\ Let\ the\ window\ manager\ know\ we\ support\ WM\_DELETE\_WINDOW\ protocol}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00256}00256\ \ \ \ \ xcb\_change\_property(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00258}00258\ \ \ \ \ \ \ \ \ XCB\_PROP\_MODE\_REPLACE,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00259}00259\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>window,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00260}00260\ \ \ \ \ \ \ \ \ wm\_protocols\_reply-\/>atom,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00261}00261\ \ \ \ \ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Format}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00262}00262\ \ \ \ \ \ \ \ \ 32,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32-\/bit\ values}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00263}00263\ \ \ \ \ \ \ \ \ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ One\ element}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00264}00264\ \ \ \ \ \ \ \ \ \&wm\_delete\_reply-\/>atom);\ \ \textcolor{comment}{//\ Pointer\ to\ atom}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00266}00266\ \ \ \ \ \textcolor{comment}{//\ Map\ the\ window\ to\ the\ screen,\ make\ the\ window\ visible}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00267}00267\ \ \ \ \ xcb\_map\_window(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection,\ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>window);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00269}00269\ \ \ \ \ \textcolor{comment}{//\ Send\ all\ previous\ commands\ to\ the\ X\ server}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00270}00270\ \ \ \ \ \textcolor{comment}{//\ Flush\ the\ stream}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00271}00271\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ stream\_result\ =\ xcb\_flush(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00272}00272\ \ \ \ \ \textcolor{keywordflow}{if}\ (stream\_result\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00273}00273\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}An\ error\ occurred\ when\ flusing\ the\ stream:\ \%d"{}},\ stream\_result);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00275}00275\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00277}00277\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00278}00278\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00288}00288\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a2d23b533b1e998f3f20e6025632ca2c4}{platform\_system\_shutdown}}(\textcolor{keywordtype}{void}*\ plat\_state)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00289}00289\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00290}00290\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Turn\ key\ repeat\ back\ on\ since\ it\ was\ turned\ off\ globally,\ this\ is\ global\ for\ the\ OS,\ almost\ unbelievable.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00291}00291\ \ \ \ \ \ \ \ \ XAutoRepeatOn(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>display);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destroy\ the\ window}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00294}00294\ \ \ \ \ \ \ \ \ xcb\_destroy\_window(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection,\ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>window);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00295}00295\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00296}00296\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00307}00307\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{platform_8h_a8470764645bd644d6b0a3b98fb8b3eee}{platform\_pump\_messages}}()\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00308}00308\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00309}00309\ \ \ \ \ \ \ \ \ xcb\_generic\_event\_t*\ event;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00310}00310\ \ \ \ \ \ \ \ \ xcb\_client\_message\_event\_t*\ cm;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00312}00312\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poll\ for\ all\ pending\ events}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (event\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}\ =\ xcb\_poll\_for\_event(\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ only\ one\ event\ per\ loop\ iteration}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (event\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00322}00322\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ Input\ events}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (event-\/>response\_type\ \&\ \string~0x80)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_KEY\_PRESS:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_KEY\_RELEASE:\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Key\ press\ event\ -\/\ xcb\_key\_press\_event\_t\ /\ xcb\_key\_release\_event\_t\ are\ similar}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_key\_press\_event\_t*\ kb\_event\ =\ (xcb\_key\_press\_event\_t*)event;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ pressed\ =\ \textcolor{keyword}{event}-\/>response\_type\ ==\ XCB\_KEY\_PRESS;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00330}00330\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_keycode\_t\ code\ =\ kb\_event-\/>detail;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ KeySym\ key\_sym\ =\ XkbKeycodeToKeysym(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>display,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (KeyCode)code,\ \ \textcolor{comment}{//\ event.xkey.keycode}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ code\ \&\ ShiftMask\ ?\ 1\ :\ 0);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ key\ =\ translate\_keycode(key\_sym);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pass\ to\ the\ input\ subsystem\ for\ processing.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8c_aa50febeebd057f91a70704851a9b6300}{input\_process\_key}}(key,\ pressed);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00344}00344\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_PRESS:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_RELEASE:\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_button\_press\_event\_t*\ mouse\_event\ =\ (xcb\_button\_press\_event\_t*)event;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00348}00348\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ pressed\ =\ \textcolor{keyword}{event}-\/>response\_type\ ==\ XCB\_BUTTON\_PRESS;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00350}00350\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836}{buttons}}\ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7}{BUTTON\_MAX\_BUTTONS}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (mouse\_event-\/>detail)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_INDEX\_1:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836a55dc0d53615e28ee8af66827bee48e4e}{BUTTON\_LEFT}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00356}00356\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_INDEX\_2:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb}{BUTTON\_MIDDLE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00360}00360\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_BUTTON\_INDEX\_3:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mouse\_button\ =\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836a13046edd6d64a0de5821b5ff4c7581ce}{BUTTON\_RIGHT}};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00364}00364\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pass\ over\ to\ the\ input\ subsystem.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mouse\_button\ !=\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7}{BUTTON\_MAX\_BUTTONS}})\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8c_a4b149b586e2e5e770ddd9ed63f4f5dd2}{input\_process\_button}}(mouse\_button,\ pressed);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00370}00370\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_MOTION\_NOTIFY:\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mouse\ move}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_motion\_notify\_event\_t*\ move\_event\ =\ (xcb\_motion\_notify\_event\_t*)event;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00374}00374\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pass\ to\ the\ input\ subsystem.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8c_a5d56afad3d78c1e177fa44cef3e7d19d}{input\_process\_mouse\_move}}(move\_event-\/>event\_x,\ move\_event-\/>event\_y);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00378}00378\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_CONFIGURE\_NOTIFY:\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00381}00381\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ Resizing\ -\/\ note\ that\ this\ is\ also\ triggered\ by\ moving\ the\ window,\ but\ should\ be}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00382}00382\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ passed\ anyway\ since\ a\ change\ in\ the\ x/y\ could\ mean\ an\ upper-\/left\ resize.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00383}00383\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ The\ application\ layer\ can\ decide\ what\ to\ do\ with\ this.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00384}00384\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_configure\_notify\_event\_t*\ configure\_event\ =\ (xcb\_configure\_notify\_event\_t*)event;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00386}00386\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>is\_visible\ =\ (configure\_event-\/>width\ >\ 0\ \&\&\ configure\_event-\/>height\ >\ 0);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00388}00388\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00390}00390\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ Fire\ the\ event.\ The\ application\ layer\ should\ pick\ this\ up,}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00391}00391\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ but\ not\ handle\ it\ as\ it\ shouldn't\ be\ visible\ to\ other\ parts}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00392}00392\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ of\ the\ application.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00393}00393\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structevent__context}{event\_context}}\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00395}00395\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.\mbox{\hyperlink{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}{data}}.\mbox{\hyperlink{structevent__context_ade4e8f9d8d9433d902f7070c91a393ef}{u16}}[0]\ =\ configure\_event-\/>width;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[1]\ =\ configure\_event-\/>height;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[2]\ =\ (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}})\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>is\_visible;\ \ \textcolor{comment}{//\ Pass\ visibility\ flag}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00367}00367\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pass\ over\ to\ the\ input\ subsystem.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mouse\_button\ !=\ \mbox{\hyperlink{input_8h_a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7}{BUTTON\_MAX\_BUTTONS}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8c_a4b149b586e2e5e770ddd9ed63f4f5dd2}{input\_process\_button}}(mouse\_button,\ pressed);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00373}00373\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_MOTION\_NOTIFY:\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mouse\ move}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_motion\_notify\_event\_t*\ move\_event\ =\ (xcb\_motion\_notify\_event\_t*)event;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pass\ to\ the\ input\ subsystem.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{input_8c_a5d56afad3d78c1e177fa44cef3e7d19d}{input\_process\_mouse\_move}}(move\_event-\/>event\_x,\ move\_event-\/>event\_y);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_CONFIGURE\_NOTIFY:\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00384}00384\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ Resizing\ -\/\ note\ that\ this\ is\ also\ triggered\ by\ moving\ the\ window,\ but\ should\ be}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00385}00385\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ passed\ anyway\ since\ a\ change\ in\ the\ x/y\ could\ mean\ an\ upper-\/left\ resize.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00386}00386\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ The\ application\ layer\ can\ decide\ what\ to\ do\ with\ this.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00387}00387\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xcb\_configure\_notify\_event\_t*\ configure\_event\ =\ (xcb\_configure\_notify\_event\_t*)event;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00391}00391\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ Fire\ the\ event.\ The\ application\ layer\ should\ pick\ this\ up,}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00392}00392\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ but\ not\ handle\ it\ as\ it\ shouldn't\ be\ visible\ to\ other\ parts}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00393}00393\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ of\ the\ application.}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00394}00394\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structevent__context}{event\_context}}\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00396}00396\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.\mbox{\hyperlink{structevent__context_aa3780aba001ac7d0979a720b8a86a2c3}{data}}.\mbox{\hyperlink{structevent__context_ade4e8f9d8d9433d902f7070c91a393ef}{u16}}[0]\ =\ configure\_event-\/>width;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[1]\ =\ configure\_event-\/>height;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00399}00399\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\_fire}}(\mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656}{EVENT\_CODE\_RESIZED}},\ 0,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}});}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\_fire}}(\mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656}{EVENT\_CODE\_RESIZED}},\ 0,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}});}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00402}00402\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_CLIENT\_MESSAGE:\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cm\ =\ (xcb\_client\_message\_event\_t*)event;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XCB\_CLIENT\_MESSAGE:\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cm\ =\ (xcb\_client\_message\_event\_t*)event;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00405}00405\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Window\ close}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ message\ is\ WM\_DELETE\_WINDOW,\ user\ wants\ to\ quit}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cm-\/>data.data32[0]\ ==\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>wm\_delete\_win)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Window\ close}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ message\ is\ WM\_DELETE\_WINDOW,\ user\ wants\ to\ quit}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cm-\/>data.data32[0]\ ==\ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>wm\_delete\_win)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00412}00412\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ unknown\ events}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00416}00416\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignore\ unknown\ events}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00417}00417\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00418}00418\ \ \ \ \ \ \ \ \ free(event);\ \ \textcolor{comment}{//\ Free\ the\ event\ after\ processing}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00419}00419\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ free(event);\ \ \textcolor{comment}{//\ Free\ the\ event\ after\ processing}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00419}00419\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00420}00420\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00421}00421\ \ \ \ \ \textcolor{keywordflow}{return}\ !quit\_flagged;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00422}00422\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00423}00423\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00434}00434\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\_allocate}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ aligned)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00435}00435\ \ \ \ \ \textcolor{keywordflow}{return}\ malloc(size);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00436}00436\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00437}00437\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00446}00446\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\_free}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ aligned)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00447}00447\ \ \ \ \ free(block);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00448}00448\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00449}00449\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00459}00459\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\_zero\_memory}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00460}00460\ \ \ \ \ \textcolor{keywordflow}{return}\ memset(block,\ 0,\ size);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00461}00461\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00462}00462\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00473}00473\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a15258bb22b902725b1fbf405463ed07d}{platform\_copy\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ source,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00474}00474\ \ \ \ \ \textcolor{keywordflow}{return}\ memcpy(dest,\ source,\ size);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00475}00475\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00476}00476\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00487}00487\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_aa65146de20a7fd23870d3809834021b7}{platform\_set\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ value,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00488}00488\ \ \ \ \ \textcolor{keywordflow}{return}\ memset(dest,\ value,\ size);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00489}00489\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00490}00490\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00491}00491\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_ac352c68fed21ee19eff9a165d1648c4c}{platform\_console\_write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00492}00492\ \ \ \ \ \textcolor{comment}{//\ FATAL,ERROR,WARN,INFO,DEBUG,TRACE}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00493}00493\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ colour\_strings[]\ =\ \{\textcolor{stringliteral}{"{}0;41"{}},\ \textcolor{stringliteral}{"{}1;31"{}},\ \textcolor{stringliteral}{"{}1;33"{}},\ \textcolor{stringliteral}{"{}1;32"{}},\ \textcolor{stringliteral}{"{}1;34"{}},\ \textcolor{stringliteral}{"{}1;30"{}}\};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00494}00494\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[\%sm\%s\(\backslash\)033[0m"{}},\ colour\_strings[colour],\ message);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00495}00495\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00496}00496\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00497}00497\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\_console\_write\_error}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00498}00498\ \ \ \ \ \textcolor{comment}{//\ FATAL,ERROR,WARN,INFO,DEBUG,TRACE}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00499}00499\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ colour\_strings[]\ =\ \{\textcolor{stringliteral}{"{}0;41"{}},\ \textcolor{stringliteral}{"{}1;31"{}},\ \textcolor{stringliteral}{"{}1;33"{}},\ \textcolor{stringliteral}{"{}1;32"{}},\ \textcolor{stringliteral}{"{}1;34"{}},\ \textcolor{stringliteral}{"{}1;30"{}}\};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00500}00500\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[\%sm\%s\(\backslash\)033[0m"{}},\ colour\_strings[colour],\ message);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00501}00501\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00502}00502\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00503}00503\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\_get\_absolute\_time}}()\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00504}00504\ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ now;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00505}00505\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00506}00506\ \ \ \ \ clock\_gettime(CLOCK\_MONOTONIC,\ \&now);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00421}00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !quit\_flagged;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00422}00422\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00423}00423\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};\ \ \textcolor{comment}{//\ If\ no\ state\_ptr,\ assume\ no\ events\ to\ process}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00424}00424\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00425}00425\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00436}00436\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a19df473ff145c8579c4c838d5bc67372}{platform\_allocate}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ aligned)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00437}00437\ \ \ \ \ \textcolor{keywordflow}{return}\ malloc(size);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00438}00438\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00439}00439\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00448}00448\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a0b638fcfa31e0704eb976a8662c095f2}{platform\_free}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ aligned)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00449}00449\ \ \ \ \ free(block);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00450}00450\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00451}00451\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00461}00461\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a59e03b207e95523b84692ea7f68e4654}{platform\_zero\_memory}}(\textcolor{keywordtype}{void}*\ block,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00462}00462\ \ \ \ \ \textcolor{keywordflow}{return}\ memset(block,\ 0,\ size);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00463}00463\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00464}00464\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00475}00475\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_a15258bb22b902725b1fbf405463ed07d}{platform\_copy\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ source,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00476}00476\ \ \ \ \ \textcolor{keywordflow}{return}\ memcpy(dest,\ source,\ size);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00477}00477\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00478}00478\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00489}00489\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{platform_8h_aa65146de20a7fd23870d3809834021b7}{platform\_set\_memory}}(\textcolor{keywordtype}{void}*\ dest,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ value,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00490}00490\ \ \ \ \ \textcolor{keywordflow}{return}\ memset(dest,\ value,\ size);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00491}00491\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00492}00492\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00493}00493\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_ac352c68fed21ee19eff9a165d1648c4c}{platform\_console\_write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00494}00494\ \ \ \ \ \textcolor{comment}{//\ FATAL,ERROR,WARN,INFO,DEBUG,TRACE}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00495}00495\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ colour\_strings[]\ =\ \{\textcolor{stringliteral}{"{}0;41"{}},\ \textcolor{stringliteral}{"{}1;31"{}},\ \textcolor{stringliteral}{"{}1;33"{}},\ \textcolor{stringliteral}{"{}1;32"{}},\ \textcolor{stringliteral}{"{}1;34"{}},\ \textcolor{stringliteral}{"{}1;30"{}}\};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00496}00496\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[\%sm\%s\(\backslash\)033[0m"{}},\ colour\_strings[colour],\ message);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00497}00497\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00498}00498\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00499}00499\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\_console\_write\_error}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ message,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}\ colour)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00500}00500\ \ \ \ \ \textcolor{comment}{//\ FATAL,ERROR,WARN,INFO,DEBUG,TRACE}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00501}00501\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ colour\_strings[]\ =\ \{\textcolor{stringliteral}{"{}0;41"{}},\ \textcolor{stringliteral}{"{}1;31"{}},\ \textcolor{stringliteral}{"{}1;33"{}},\ \textcolor{stringliteral}{"{}1;32"{}},\ \textcolor{stringliteral}{"{}1;34"{}},\ \textcolor{stringliteral}{"{}1;30"{}}\};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00502}00502\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)033[\%sm\%s\(\backslash\)033[0m"{}},\ colour\_strings[colour],\ message);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00503}00503\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00504}00504\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00505}00505\ \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}}\ \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\_get\_absolute\_time}}()\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00506}00506\ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ now;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00507}00507\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00508}00508\ \ \ \ \ \textcolor{keywordflow}{return}\ now.tv\_sec\ +\ now.tv\_nsec\ *\ 0.000000001;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00509}00509\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00510}00510\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00511}00511\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_ae21676dfd997b1c6dd9c06f69b5618e4}{platform\_sleep}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ ms)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00512}00512\ \textcolor{preprocessor}{\#if\ \_POSIX\_C\_SOURCE\ >=\ 199309L}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00513}00513\ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ ts;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00514}00514\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00515}00515\ \ \ \ \ ts.tv\_sec\ =\ ms\ /\ 1000;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00516}00516\ \ \ \ \ ts.tv\_nsec\ =\ (ms\ \%\ 1000)\ *\ 1000\ *\ 1000;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00517}00517\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00518}00518\ \ \ \ \ nanosleep(\&ts,\ 0);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00519}00519\ \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00520}00520\ \ \ \ \ \textcolor{keywordflow}{if}\ (ms\ >=\ 1000)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00521}00521\ \ \ \ \ \ \ \ \ sleep(ms\ /\ 1000);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00522}00522\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00523}00523\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00524}00524\ \ \ \ \ usleep((ms\ \%\ 1000)\ *\ 1000);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00525}00525\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00526}00526\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00527}00527\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00528}00528\ \textcolor{comment}{//\ Surface\ creation\ for\ VulkanAdd\ commentMore\ actions}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00529}00529\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__platform_8h_a48932cc1b8761ab4af6627a36ba06548}{platform\_create\_vulkan\_surface}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state,\ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00530}00530\ \ \ \ \ \textcolor{comment}{//\ Simply\ cold-\/cast\ to\ the\ known\ type.}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00531}00531\ \ \ \ \ internal\_state*\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}\ =\ (internal\_state*)plat\_state-\/>\mbox{\hyperlink{structplatform__state_ac902a69fe12cf6868862aad5a57b15d5}{internal\_state}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00532}00532\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00533}00533\ \ \ \ \ VkXcbSurfaceCreateInfoKHR\ create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_XCB\_SURFACE\_CREATE\_INFO\_KHR\};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00534}00534\ \ \ \ \ create\_info.connection\ =\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00535}00535\ \ \ \ \ create\_info.window\ =\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>window;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00536}00536\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00537}00537\ \ \ \ \ VkResult\ result\ =\ vkCreateXcbSurfaceKHR(}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00538}00538\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>instance,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00539}00539\ \ \ \ \ \ \ \ \ \&create\_info,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00540}00540\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00541}00541\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>surface);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00542}00542\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ VK\_SUCCESS)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00543}00543\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Vulkan\ surface\ creation\ failed."{}});}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00544}00544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00545}00545\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00546}00546\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00547}00547\ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>surface\ =\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>surface;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00548}00548\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00549}00549\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00550}00550\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00559}00559\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}{platform\_get\_required\_extension\_names}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}***\ names\_darray)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00560}00560\ \ \ \ \ \mbox{\hyperlink{darray_8h_a7ad89931e6589fa09b83ea99de2b32e6}{darray\_push}}(*names\_darray,\ \&\textcolor{stringliteral}{"{}VK\_KHR\_xcb\_surface"{}});\ \ \textcolor{comment}{//\ VK\_KHR\_xlib\_surface?}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00561}00561\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00562}00562\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00563}00563\ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ translate\_keycode(\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ x\_keycode)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00564}00564\ \ \ \ \ \textcolor{keywordflow}{switch}\ (x\_keycode)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00565}00565\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_BackSpace:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_BACKSPACE;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00567}00567\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Return:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_ENTER;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00569}00569\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Tab:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00570}00570\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_TAB;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_Shift:\ return\ KEY\_SHIFT;}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_Control:\ return\ KEY\_CONTROL;}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00573}00573\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00574}00574\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Pause:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PAUSE;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00576}00576\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Caps\_Lock:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_CAPITAL;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00578}00578\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00579}00579\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Escape:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_ESCAPE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00508}00508\ \ \ \ \ clock\_gettime(CLOCK\_MONOTONIC,\ \&now);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00509}00509\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00510}00510\ \ \ \ \ \textcolor{keywordflow}{return}\ now.tv\_sec\ +\ now.tv\_nsec\ *\ 0.000000001;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00511}00511\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00512}00512\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00513}00513\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_ae21676dfd997b1c6dd9c06f69b5618e4}{platform\_sleep}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ ms)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00514}00514\ \textcolor{preprocessor}{\#if\ \_POSIX\_C\_SOURCE\ >=\ 199309L}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00515}00515\ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ ts;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00516}00516\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00517}00517\ \ \ \ \ ts.tv\_sec\ =\ ms\ /\ 1000;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00518}00518\ \ \ \ \ ts.tv\_nsec\ =\ (ms\ \%\ 1000)\ *\ 1000\ *\ 1000;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00519}00519\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00520}00520\ \ \ \ \ nanosleep(\&ts,\ 0);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00521}00521\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00522}00522\ \ \ \ \ \textcolor{keywordflow}{if}\ (ms\ >=\ 1000)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00523}00523\ \ \ \ \ \ \ \ \ sleep(ms\ /\ 1000);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00524}00524\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00525}00525\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00526}00526\ \ \ \ \ usleep((ms\ \%\ 1000)\ *\ 1000);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00527}00527\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00528}00528\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00529}00529\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00530}00530\ \textcolor{comment}{//\ Surface\ creation\ for\ VulkanAdd\ commentMore\ actions}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00531}00531\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__platform_8h_aaaf33dc6309c5d8963e3a8515493dfd3}{platform\_create\_vulkan\_surface}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00532}00532\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}})\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00533}00533\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00534}00534\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00535}00535\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00536}00536\ \ \ \ \ VkXcbSurfaceCreateInfoKHR\ create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_XCB\_SURFACE\_CREATE\_INFO\_KHR\};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00537}00537\ \ \ \ \ create\_info.connection\ =\ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>connection;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00538}00538\ \ \ \ \ create\_info.window\ =\ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>window;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00539}00539\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00540}00540\ \ \ \ \ VkResult\ result\ =\ vkCreateXcbSurfaceKHR(}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00541}00541\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>instance,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00542}00542\ \ \ \ \ \ \ \ \ \&create\_info,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00543}00543\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00544}00544\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>surface);}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00545}00545\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00546}00546\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Vulkan\ surface\ creation\ failed."{}});}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00547}00547\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00548}00548\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00549}00549\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00550}00550\ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>surface\ =\ \mbox{\hyperlink{event_8c_a8dc4a58304f35c6161d98770d856890f}{state\_ptr}}-\/>surface;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00551}00551\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00552}00552\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00553}00553\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00562}00562\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}{platform\_get\_required\_extension\_names}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}***\ names\_darray)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00563}00563\ \ \ \ \ \mbox{\hyperlink{darray_8h_a7ad89931e6589fa09b83ea99de2b32e6}{darray\_push}}(*names\_darray,\ \&\textcolor{stringliteral}{"{}VK\_KHR\_xcb\_surface"{}});\ \ \textcolor{comment}{//\ VK\_KHR\_xlib\_surface?}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00564}00564\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00565}00565\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00566}00566\ \mbox{\hyperlink{input_8h_a3121b5e20cccb8e49edcbd3e9ac77712}{keys}}\ translate\_keycode(\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ x\_keycode)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00567}00567\ \ \ \ \ \textcolor{keywordflow}{switch}\ (x\_keycode)\ \{}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00568}00568\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_BackSpace:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_BACKSPACE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00570}00570\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Return:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_ENTER;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00572}00572\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Tab:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_TAB;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_Shift:\ return\ KEY\_SHIFT;}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_Control:\ return\ KEY\_CONTROL;}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00576}00576\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00577}00577\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Pause:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PAUSE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00579}00579\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Caps\_Lock:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_CAPITAL;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00581}00581\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ supported}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ :\ return\ KEY\_CONVERT;}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ :\ return\ KEY\_NONCONVERT;}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ :\ return\ KEY\_ACCEPT;}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00586}00586\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00587}00587\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Mode\_switch:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_MODECHANGE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00582}00582\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Escape:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_ESCAPE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00584}00584\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ supported}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ :\ return\ KEY\_CONVERT;}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ :\ return\ KEY\_NONCONVERT;}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ :\ return\ KEY\_ACCEPT;}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00589}00589\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00590}00590\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_space:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00591}00591\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SPACE;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00592}00592\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Prior:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00593}00593\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PRIOR;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00594}00594\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Next:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00595}00595\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NEXT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00596}00596\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_End:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00597}00597\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_END;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00598}00598\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Home:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00599}00599\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_HOME;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00600}00600\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Left:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LEFT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00602}00602\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Up:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00603}00603\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_UP;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00604}00604\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Right:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00605}00605\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RIGHT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00606}00606\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Down:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00607}00607\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_DOWN;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00608}00608\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Select:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00609}00609\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SELECT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00610}00610\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Print:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00611}00611\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PRINT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00612}00612\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Execute:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00613}00613\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_EXECUTE;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00614}00614\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_snapshot:\ return\ KEY\_SNAPSHOT;\ //\ not\ supported}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00615}00615\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Insert:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_INSERT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00617}00617\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Delete:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_DELETE;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00619}00619\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Help:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_HELP;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00621}00621\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00622}00622\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Meta\_L:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LWIN;\ \ \textcolor{comment}{//\ TODO:\ not\ sure\ this\ is\ right}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00624}00624\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Meta\_R:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00625}00625\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RWIN;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00626}00626\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_apps:\ return\ KEY\_APPS;\ //\ not\ supported}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00627}00627\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_sleep:\ return\ KEY\_SLEEP;\ //not\ supported}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00629}00629\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00630}00630\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_0:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00631}00631\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_0:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00632}00632\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD0;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00633}00633\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_1:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00634}00634\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_1:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00635}00635\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD1;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00636}00636\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_2:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00637}00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_2:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00638}00638\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD2;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00639}00639\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_3:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00640}00640\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_3:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00641}00641\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD3;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00642}00642\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_4:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00643}00643\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_4:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00644}00644\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD4;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00645}00645\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_5:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00646}00646\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_5:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00647}00647\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD5;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00648}00648\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_6:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00649}00649\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_6:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00650}00650\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD6;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00651}00651\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_7:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00652}00652\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_7:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00653}00653\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD7;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00654}00654\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_8:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00655}00655\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_8:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00656}00656\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD8;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00657}00657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_9:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00658}00658\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_9:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00659}00659\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD9;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00660}00660\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_multiply:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00661}00661\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_MULTIPLY;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00662}00662\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Add:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00663}00663\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_ADD;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00664}00664\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Separator:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00665}00665\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SEPARATOR;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00666}00666\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Subtract:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00667}00667\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SUBTRACT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00668}00668\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Decimal:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00669}00669\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_DECIMAL;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00670}00670\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Divide:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00671}00671\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_DIVIDE;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00672}00672\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F1:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00673}00673\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F1;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00674}00674\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F2:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00675}00675\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F2;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00676}00676\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F3:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00677}00677\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F3;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00678}00678\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F4:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00679}00679\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F4;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00680}00680\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F5:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00681}00681\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F5;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00682}00682\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F6:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00683}00683\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F6;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00684}00684\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F7:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00685}00685\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F7;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00686}00686\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F8:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00687}00687\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F8;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00688}00688\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F9:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00689}00689\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F9;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00690}00690\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F10:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00691}00691\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F10;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00692}00692\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F11:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00693}00693\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F11;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00694}00694\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F12:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00695}00695\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F12;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00696}00696\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F13:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00697}00697\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F13;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00698}00698\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F14:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00699}00699\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F14;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00700}00700\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F15:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00701}00701\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F15;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00702}00702\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F16:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00703}00703\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F16;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00704}00704\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F17:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00705}00705\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F17;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00706}00706\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F18:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00707}00707\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F18;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00708}00708\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F19:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00709}00709\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F19;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00710}00710\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F20:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00711}00711\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F20;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00712}00712\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F21:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00713}00713\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F21;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00714}00714\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F22:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00715}00715\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F22;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00716}00716\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F23:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00717}00717\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F23;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00718}00718\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F24:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00719}00719\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F24;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00720}00720\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00721}00721\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Num\_Lock:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00722}00722\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMLOCK;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00723}00723\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Scroll\_Lock:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00724}00724\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SCROLL;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00725}00725\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00726}00726\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Equal:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00727}00727\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD\_EQUAL;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00590}00590\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Mode\_switch:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00591}00591\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_MODECHANGE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00592}00592\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00593}00593\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_space:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SPACE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00595}00595\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Prior:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PRIOR;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00597}00597\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Next:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00598}00598\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NEXT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00599}00599\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_End:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00600}00600\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_END;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00601}00601\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Home:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_HOME;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00603}00603\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Left:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LEFT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00605}00605\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Up:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00606}00606\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_UP;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00607}00607\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Right:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00608}00608\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RIGHT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00609}00609\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Down:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00610}00610\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_DOWN;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00611}00611\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Select:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00612}00612\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SELECT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00613}00613\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Print:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PRINT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00615}00615\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Execute:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_EXECUTE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00617}00617\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_snapshot:\ return\ KEY\_SNAPSHOT;\ //\ not\ supported}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00618}00618\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Insert:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_INSERT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00620}00620\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Delete:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_DELETE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00622}00622\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Help:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_HELP;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00624}00624\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00625}00625\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Meta\_L:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00626}00626\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LWIN;\ \ \textcolor{comment}{//\ TODO:\ not\ sure\ this\ is\ right}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00627}00627\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Meta\_R:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RWIN;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00629}00629\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_apps:\ return\ KEY\_APPS;\ //\ not\ supported}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00630}00630\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00631}00631\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ case\ XK\_sleep:\ return\ KEY\_SLEEP;\ //not\ supported}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00632}00632\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00633}00633\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_0:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00634}00634\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_0:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00635}00635\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD0;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00636}00636\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_1:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00637}00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_1:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00638}00638\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD1;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00639}00639\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_2:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00640}00640\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_2:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00641}00641\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD2;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00642}00642\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_3:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00643}00643\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_3:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00644}00644\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD3;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00645}00645\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_4:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00646}00646\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_4:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00647}00647\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD4;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00648}00648\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_5:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00649}00649\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_5:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00650}00650\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD5;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00651}00651\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_6:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00652}00652\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_6:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00653}00653\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD6;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00654}00654\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_7:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00655}00655\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_7:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00656}00656\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD7;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00657}00657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_8:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00658}00658\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_8:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00659}00659\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD8;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00660}00660\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_9:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00661}00661\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_9:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00662}00662\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD9;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00663}00663\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_multiply:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00664}00664\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_MULTIPLY;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00665}00665\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Add:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00666}00666\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_ADD;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00667}00667\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Separator:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00668}00668\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SEPARATOR;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00669}00669\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Subtract:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00670}00670\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SUBTRACT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00671}00671\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Decimal:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00672}00672\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_DECIMAL;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00673}00673\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Divide:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00674}00674\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_DIVIDE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00675}00675\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F1:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00676}00676\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F1;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00677}00677\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F2:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00678}00678\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F2;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00679}00679\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F3:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00680}00680\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F3;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00681}00681\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F4:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00682}00682\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F4;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00683}00683\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F5:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00684}00684\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F5;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00685}00685\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F6:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00686}00686\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F6;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00687}00687\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F7:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00688}00688\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F7;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00689}00689\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F8:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00690}00690\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F8;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00691}00691\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F9:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00692}00692\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F9;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00693}00693\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F10:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00694}00694\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F10;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00695}00695\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F11:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00696}00696\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F11;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00697}00697\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F12:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00698}00698\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F12;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00699}00699\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F13:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00700}00700\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F13;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00701}00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F14:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00702}00702\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F14;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00703}00703\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F15:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00704}00704\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F15;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00705}00705\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F16:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00706}00706\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F16;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00707}00707\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F17:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00708}00708\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F17;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00709}00709\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F18:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00710}00710\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F18;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00711}00711\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F19:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00712}00712\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F19;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00713}00713\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F20:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00714}00714\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F20;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00715}00715\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F21:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00716}00716\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F21;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00717}00717\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F22:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00718}00718\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F22;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00719}00719\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F23:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00720}00720\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F23;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00721}00721\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F24:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00722}00722\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F24;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00723}00723\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00724}00724\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Num\_Lock:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00725}00725\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMLOCK;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00726}00726\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Scroll\_Lock:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00727}00727\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SCROLL;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00728}00728\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00729}00729\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Shift\_L:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00730}00730\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LSHIFT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00731}00731\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Shift\_R:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00732}00732\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RSHIFT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00733}00733\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Control\_L:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00734}00734\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LCONTROL;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00735}00735\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Control\_R:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00736}00736\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RCONTROL;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00737}00737\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Alt\_L:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00738}00738\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LALT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00739}00739\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Alt\_R:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00740}00740\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RALT;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00741}00741\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00742}00742\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_semicolon:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00743}00743\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SEMICOLON;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00744}00744\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_plus:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00745}00745\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PLUS;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00746}00746\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_comma:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00747}00747\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_COMMA;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00748}00748\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_minus:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00749}00749\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_MINUS;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00750}00750\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_period:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00751}00751\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PERIOD;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00752}00752\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_slash:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00753}00753\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SLASH;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00754}00754\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_grave:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00755}00755\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_GRAVE;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00756}00756\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00757}00757\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_a:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00758}00758\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_A:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00759}00759\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_A;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00760}00760\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_b:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00761}00761\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_B:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00762}00762\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_B;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00763}00763\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_c:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00764}00764\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_C:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00765}00765\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_C;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00766}00766\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_d:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00767}00767\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_D:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00768}00768\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_D;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00769}00769\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_e:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00770}00770\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_E:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00771}00771\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_E;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00772}00772\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_f:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00773}00773\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00774}00774\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00775}00775\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_g:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00776}00776\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_G:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00777}00777\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_G;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00778}00778\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_h:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00779}00779\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_H:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00780}00780\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_H;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00781}00781\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_i:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00782}00782\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_I:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00783}00783\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_I;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00784}00784\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_j:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00785}00785\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_J:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00786}00786\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_J;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00787}00787\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_k:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00788}00788\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_K:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00789}00789\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_K;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00790}00790\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_l:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00791}00791\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_L:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00792}00792\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_L;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00793}00793\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_m:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00794}00794\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_M:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00795}00795\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_M;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00796}00796\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_n:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00797}00797\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_N:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00798}00798\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_N;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00799}00799\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_o:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00800}00800\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_O:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00801}00801\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_O;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00802}00802\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_p:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00803}00803\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_P:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00804}00804\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_P;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00805}00805\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_q:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00806}00806\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Q:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00807}00807\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_Q;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00808}00808\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_r:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00809}00809\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_R:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00810}00810\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_R;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00811}00811\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_s:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00812}00812\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_S:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00813}00813\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_S;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00814}00814\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_t:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00815}00815\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_T:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00816}00816\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_T;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00817}00817\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_u:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00818}00818\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_U:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00819}00819\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_U;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00820}00820\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_v:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00821}00821\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_V:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00822}00822\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_V;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00823}00823\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_w:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00824}00824\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_W:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00825}00825\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_W;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00826}00826\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_x:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00827}00827\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_X:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00828}00828\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_X;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00829}00829\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_y:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00830}00830\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Y:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00831}00831\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_Y;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00832}00832\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_z:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00833}00833\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Z:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00834}00834\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_Z;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00835}00835\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00836}00836\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00837}00837\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00838}00838\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00839}00839\ \}}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00840}00840\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00841}00841\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00729}00729\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_KP\_Equal:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00730}00730\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_NUMPAD\_EQUAL;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00731}00731\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00732}00732\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Shift\_L:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00733}00733\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LSHIFT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00734}00734\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Shift\_R:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00735}00735\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RSHIFT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00736}00736\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Control\_L:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00737}00737\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LCONTROL;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00738}00738\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Control\_R:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00739}00739\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RCONTROL;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00740}00740\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Alt\_L:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00741}00741\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_LALT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00742}00742\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Alt\_R:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00743}00743\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_RALT;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00744}00744\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00745}00745\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_semicolon:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00746}00746\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SEMICOLON;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00747}00747\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_plus:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00748}00748\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PLUS;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00749}00749\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_comma:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00750}00750\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_COMMA;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00751}00751\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_minus:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00752}00752\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_MINUS;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00753}00753\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_period:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00754}00754\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_PERIOD;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00755}00755\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_slash:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00756}00756\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_SLASH;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00757}00757\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_grave:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00758}00758\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_GRAVE;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00759}00759\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00760}00760\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_a:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00761}00761\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_A:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00762}00762\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_A;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00763}00763\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_b:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00764}00764\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_B:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00765}00765\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_B;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00766}00766\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_c:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00767}00767\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_C:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00768}00768\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_C;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00769}00769\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_d:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00770}00770\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_D:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00771}00771\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_D;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00772}00772\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_e:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00773}00773\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_E:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00774}00774\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_E;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00775}00775\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_f:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00776}00776\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_F:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00777}00777\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_F;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00778}00778\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_g:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00779}00779\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_G:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00780}00780\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_G;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00781}00781\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_h:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00782}00782\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_H:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00783}00783\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_H;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00784}00784\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_i:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00785}00785\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_I:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00786}00786\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_I;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00787}00787\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_j:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00788}00788\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_J:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00789}00789\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_J;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00790}00790\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_k:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00791}00791\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_K:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00792}00792\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_K;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00793}00793\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_l:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00794}00794\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_L:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00795}00795\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_L;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00796}00796\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_m:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00797}00797\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_M:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00798}00798\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_M;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00799}00799\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_n:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00800}00800\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_N:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00801}00801\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_N;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00802}00802\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_o:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00803}00803\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_O:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00804}00804\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_O;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00805}00805\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_p:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00806}00806\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_P:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00807}00807\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_P;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00808}00808\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_q:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00809}00809\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Q:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00810}00810\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_Q;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00811}00811\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_r:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00812}00812\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_R:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00813}00813\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_R;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00814}00814\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_s:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00815}00815\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_S:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00816}00816\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_S;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00817}00817\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_t:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00818}00818\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_T:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00819}00819\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_T;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00820}00820\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_u:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00821}00821\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_U:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00822}00822\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_U;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00823}00823\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_v:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00824}00824\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_V:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00825}00825\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_V;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00826}00826\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_w:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00827}00827\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_W:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00828}00828\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_W;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00829}00829\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_x:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00830}00830\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_X:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00831}00831\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_X;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00832}00832\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_y:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00833}00833\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Y:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00834}00834\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_Y;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00835}00835\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_z:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00836}00836\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ XK\_Z:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00837}00837\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ KEY\_Z;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00838}00838\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00839}00839\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00840}00840\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00841}00841\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00842}00842\ \}}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00843}00843\ }
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00844}00844\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

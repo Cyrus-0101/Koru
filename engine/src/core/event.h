@@ -86,7 +86,7 @@ typedef b8 (*PFN_on_event)(u16 code, void* sender, void* listener_inst, event_co
  *
  * @return True if initialization succeeded; False otherwise.
  */
-b8 event_initialize();
+void event_system_initialize(u64* memory_requirement, void* state);
 
 /**
  * @brief Shuts down the event system.
@@ -94,7 +94,7 @@ b8 event_initialize();
  * Cleans up internal state, removes all registered listeners,
  * and prepares for safe termination.
  */
-void event_shutdown();
+void event_system_shutdown(void* state);
 
 /**
  * @brief Registers a listener for a specific event code.

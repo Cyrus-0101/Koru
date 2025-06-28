@@ -77,17 +77,25 @@ typedef struct input_state {
 } input_state;
 
 // Static global instance of the input state
-static b8 initialized = False;
-static input_state state = {};
+// Internal input state pointer
+static input_state* state_ptr;
 
 /**
  * @brief Initializes the input system.
  *
  * Sets internal state to zeroed memory and marks the system as initialized.
  */
-void input_initialize() {
-    kzero_memory(&state, sizeof(input_state));
-    initialized = True;
+void input_system_initialize(u64* memory_requirement, void* state) {
+    *memory_requirement = sizeof(input_state);
+
+    if (state == 0) {
+        return;
+    }
+
+    kzero_memory(state, sizeof(input_state));
+
+    state_ptr = state;
+
     KINFO("Input subsystem initialized.");
 }
 
@@ -96,9 +104,10 @@ void input_initialize() {
  *
  * Currently just sets the initialized flag to False. Can be extended to clean up resources.
  */
-void input_shutdown() {
+void input_system_shutdown(void* state) {
     // TODO: Add shutdown routines when needed.
-    initialized = False;
+
+    state_ptr = 0;  // Clear the pointer to the input states
 }
 
 /**
@@ -109,13 +118,13 @@ void input_shutdown() {
  * @param delta_time Time since the last update (unused here but follows pattern).
  */
 void input_update(f64 delta_time) {
-    if (!initialized) {
+    if (!state_ptr) {
         return;
     }
 
     // Copy current states to previous states for delta comparison
-    kcopy_memory(&state.keyboard_previous, &state.keyboard_current, sizeof(keyboard_state));
-    kcopy_memory(&state.mouse_previous, &state.mouse_current, sizeof(mouse_state));
+    kcopy_memory(&state_ptr->keyboard_previous, &state_ptr->keyboard_current, sizeof(keyboard_state));
+    kcopy_memory(&state_ptr->mouse_previous, &state_ptr->mouse_current, sizeof(mouse_state));
 }
 
 /**
@@ -129,23 +138,30 @@ void input_update(f64 delta_time) {
  */
 void input_process_key(keys key, b8 pressed) {
     // Only handle changes in state
-    if (state.keyboard_current.keys[key] != pressed) {
+    if (state_ptr && state_ptr->keyboard_current.keys[key] != pressed) {
+        // Update internal state_ptr->
+        state_ptr->keyboard_current.keys[key] = pressed;
+
         if (key == KEY_LALT) {
             KINFO("Left Alt Key Pressed");
         } else if (key == KEY_RALT) {
             KINFO("Right Alt Key Pressed");
-        } else if (key == KEY_LSHIFT) {
+        }
+
+        if (key == KEY_LSHIFT) {
             KINFO("Left Shift Key Pressed");
         } else if (key == KEY_RSHIFT) {
             KINFO("Right Shift Key Pressed");
-        } else if (key == KEY_LCONTROL) {
+        }
+
+        if (key == KEY_LCONTROL) {
             KINFO("Left Control Key Pressed");
         } else if (key == KEY_RCONTROL) {
             KINFO("Right Control Key Pressed");
         }
 
         // Update internal state
-        state.keyboard_current.keys[key] = pressed;
+        state_ptr->keyboard_current.keys[key] = pressed;
 
         // Fire event so listeners can respond
         event_context context;
@@ -165,9 +181,9 @@ void input_process_key(keys key, b8 pressed) {
  */
 void input_process_button(buttons button, b8 pressed) {
     // Only process if state changed
-    if (state.mouse_current.buttons[button] != pressed) {
+    if (state_ptr->mouse_current.buttons[button] != pressed) {
         // Update internal state
-        state.mouse_current.buttons[button] = pressed;
+        state_ptr->mouse_current.buttons[button] = pressed;
 
         // Notify listeners
         event_context context;
@@ -186,13 +202,13 @@ void input_process_button(buttons button, b8 pressed) {
  */
 void input_process_mouse_move(i16 x, i16 y) {
     // Only update if position actually changed
-    if (state.mouse_current.x != x || state.mouse_current.y != y) {
+    if (state_ptr->mouse_current.x != x || state_ptr->mouse_current.y != y) {
         // DEBUG INFO
         KDEBUG("Mouse pos: %i, %i!", x, y);
 
         // Update internal state
-        state.mouse_current.x = x;
-        state.mouse_current.y = y;
+        state_ptr->mouse_current.x = x;
+        state_ptr->mouse_current.y = y;
 
         // Fire mouse move event
         event_context context;
@@ -223,10 +239,10 @@ void input_process_mouse_wheel(i8 z_delta) {
  * @return True if the key is currently down; False otherwise.
  */
 b8 input_is_key_down(keys key) {
-    if (!initialized) {
+    if (!state_ptr) {
         return False;
     }
-    return state.keyboard_current.keys[key] == True;
+    return state_ptr->keyboard_current.keys[key] == True;
 }
 
 /**
@@ -236,10 +252,10 @@ b8 input_is_key_down(keys key) {
  * @return True if the key is currently up; False otherwise.
  */
 b8 input_is_key_up(keys key) {
-    if (!initialized) {
+    if (!state_ptr) {
         return True;
     }
-    return state.keyboard_current.keys[key] == False;
+    return state_ptr->keyboard_current.keys[key] == False;
 }
 
 /**
@@ -251,10 +267,10 @@ b8 input_is_key_up(keys key) {
  * @return True if the key was pressed last frame; False otherwise.
  */
 b8 input_was_key_down(keys key) {
-    if (!initialized) {
+    if (!state_ptr) {
         return False;
     }
-    return state.keyboard_previous.keys[key] == True;
+    return state_ptr->keyboard_previous.keys[key] == True;
 }
 
 /**
@@ -266,10 +282,10 @@ b8 input_was_key_down(keys key) {
  * @return True if the key was released last frame; False otherwise.
  */
 b8 input_was_key_up(keys key) {
-    if (!initialized) {
+    if (!state_ptr) {
         return True;
     }
-    return state.keyboard_previous.keys[key] == False;
+    return state_ptr->keyboard_previous.keys[key] == False;
 }
 
 /**
@@ -279,10 +295,10 @@ b8 input_was_key_up(keys key) {
  * @return True if the button is currently down; False otherwise.
  */
 b8 input_is_button_down(buttons button) {
-    if (!initialized) {
+    if (!state_ptr) {
         return False;
     }
-    return state.mouse_current.buttons[button] == True;
+    return state_ptr->mouse_current.buttons[button] == True;
 }
 
 /**
@@ -292,10 +308,10 @@ b8 input_is_button_down(buttons button) {
  * @return True if the button is currently up; False otherwise.
  */
 b8 input_is_button_up(buttons button) {
-    if (!initialized) {
+    if (!state_ptr) {
         return True;
     }
-    return state.mouse_current.buttons[button] == False;
+    return state_ptr->mouse_current.buttons[button] == False;
 }
 
 /**
@@ -307,10 +323,10 @@ b8 input_is_button_up(buttons button) {
  * @return True if the button was pressed last frame; False otherwise.
  */
 b8 input_was_button_down(buttons button) {
-    if (!initialized) {
+    if (!state_ptr) {
         return False;
     }
-    return state.mouse_previous.buttons[button] == True;
+    return state_ptr->mouse_previous.buttons[button] == True;
 }
 
 /**
@@ -322,10 +338,10 @@ b8 input_was_button_down(buttons button) {
  * @return True if the button was released last frame; False otherwise.
  */
 b8 input_was_button_up(buttons button) {
-    if (!initialized) {
+    if (!state_ptr) {
         return True;
     }
-    return state.mouse_previous.buttons[button] == False;
+    return state_ptr->mouse_previous.buttons[button] == False;
 }
 
 /**
@@ -335,14 +351,14 @@ b8 input_was_button_up(buttons button) {
  * @param y Pointer to store the current Y position.
  */
 void input_get_mouse_position(i32* x, i32* y) {
-    if (!initialized) {
+    if (!state_ptr) {
         *x = 0;
         *y = 0;
         return;
     }
 
-    *x = state.mouse_current.x;
-    *y = state.mouse_current.y;
+    *x = state_ptr->mouse_current.x;
+    *y = state_ptr->mouse_current.y;
 }
 
 /**
@@ -354,12 +370,12 @@ void input_get_mouse_position(i32* x, i32* y) {
  * @param y Pointer to store the previous Y position.
  */
 void input_get_previous_mouse_position(i32* x, i32* y) {
-    if (!initialized) {
+    if (!state_ptr) {
         *x = 0;
         *y = 0;
         return;
     }
 
-    *x = state.mouse_previous.x;
-    *y = state.mouse_previous.y;
+    *x = state_ptr->mouse_previous.x;
+    *y = state_ptr->mouse_previous.y;
 }
