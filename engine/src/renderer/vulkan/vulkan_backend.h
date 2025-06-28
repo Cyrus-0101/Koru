@@ -21,7 +21,7 @@
  * @param plat_state A pointer to the platform-specific state.
  * @return True if successful; otherwise False.
  */
-b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* application_name, struct platform_state* plat_state);
+b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* application_name);
 
 /**
  * @brief Shuts down the Vulkan renderer backend.
