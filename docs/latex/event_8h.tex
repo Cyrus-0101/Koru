@@ -117,7 +117,7 @@ Called when an event matching the registered code is fired.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-TRUE if the event was handled; FALSE to allow further propagation. 
+True if the event was handled; False to allow further propagation. 
 \end{DoxyReturn}
 
 
@@ -238,7 +238,7 @@ Definition at line \mbox{\hyperlink{event_8h_source_l00143}{143}} of file \mbox{
 
 Fires an event to all registered listeners for the given code. 
 
-If any handler returns TRUE, the event is considered handled and will not be passed to remaining listeners.
+If any handler returns True, the event is considered handled and will not be passed to remaining listeners.
 
 
 \begin{DoxyParams}{Parameters}
@@ -250,7 +250,7 @@ If any handler returns TRUE, the event is considered handled and will not be pas
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-TRUE if handled by at least one listener; FALSE otherwise. 
+True if handled by at least one listener; False otherwise. 
 \end{DoxyReturn}
 
 
@@ -258,7 +258,7 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00156}{156}} of file \mbox{
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{TRUE}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
 
 
 
@@ -277,7 +277,7 @@ Initializes the event system.
 Must be called before any other event functions are used. Sets up internal structures for managing event listeners.
 
 \begin{DoxyReturn}{Returns}
-TRUE if initialization succeeded; FALSE otherwise. 
+True if initialization succeeded; False otherwise. 
 \end{DoxyReturn}
 
 
@@ -285,7 +285,7 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00076}{76}} of file \mbox{\
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00106}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{TRUE}}.
+References \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
 
 
 
@@ -313,7 +313,7 @@ Prevents duplicate registrations of the same listener/callback pair. Multiple di
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-TRUE if successfully registered; FALSE if already registered or invalid parameters. 
+True if successfully registered; False if already registered or invalid parameters. 
 \end{DoxyReturn}
 
 
@@ -321,7 +321,7 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00100}{100}} of file \mbox{
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{TRUE}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
 
 
 
@@ -343,7 +343,7 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00088}{88}} of file \mbox{\
 
 
 
-References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00050}{MAX\+\_\+\+MESSAGE\+\_\+\+CODES}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, and \mbox{\hyperlink{event_8c_source_l00074}{state}}.
+References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00050}{MAX\+\_\+\+MESSAGE\+\_\+\+CODES}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, and \mbox{\hyperlink{event_8c_source_l00074}{state}}.
 
 
 
@@ -359,7 +359,7 @@ Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+ru
 
 Unregisters a listener for a specific event code. 
 
-If no matching registration exists, this function returns FALSE.
+If no matching registration exists, this function returns False.
 
 
 \begin{DoxyParams}{Parameters}
@@ -371,7 +371,7 @@ If no matching registration exists, this function returns FALSE.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-TRUE if successfully unregistered; FALSE if not found. 
+True if successfully unregistered; False if not found. 
 \end{DoxyReturn}
 
 
@@ -379,7 +379,7 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00129}{129}} of file \mbox{
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00223}{darray\+\_\+pop\+\_\+at}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{FALSE}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{TRUE}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00223}{darray\+\_\+pop\+\_\+at}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
 
 
 

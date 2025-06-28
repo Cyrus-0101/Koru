@@ -24,7 +24,7 @@
  *
  * @param context A pointer to the active Vulkan context.
  * @param pool The command pool to allocate from.
- * @param is_primary TRUE if primary command buffer, FALSE for secondary.
+ * @param is_primary True if primary command buffer, False for secondary.
  * @param out_command_buffer A pointer to a vulkan_command_buffer to populate.
  */
 void vulkan_command_buffer_allocate(
@@ -53,9 +53,9 @@ void vulkan_command_buffer_free(
  * Sets up flags like one-time use or simultaneous access.
  *
  * @param command_buffer A pointer to the command buffer being recorded.
- * @param is_single_use TRUE if this buffer will only be used once.
- * @param is_renderpass_continue TRUE if this is a secondary buffer continuing a render pass.
- * @param is_simultaneous_use TRUE if the buffer can be re-recorded while in flight.
+ * @param is_single_use True if this buffer will only be used once.
+ * @param is_renderpass_continue True if this is a secondary buffer continuing a render pass.
+ * @param is_simultaneous_use True if the buffer can be re-recorded while in flight.
  */
 void vulkan_command_buffer_begin(
     vulkan_command_buffer* command_buffer,

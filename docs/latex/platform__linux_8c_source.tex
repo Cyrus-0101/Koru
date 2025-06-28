@@ -84,7 +84,7 @@
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00152}00152\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ there\ was\ any\ error\ connecting}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00153}00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (xcb\_connection\_has\_error(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection))\ \{}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Failed\ to\ connect\ to\ X\ server\ via\ XCB."{}});}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00156}00156\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00157}00157\ }
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00158}00158\ \ \ \ \ \textcolor{comment}{//\ Retrieve\ the\ setup\ data\ from\ the\ connection,\ akin\ to\ getting\ configuration}}
@@ -190,12 +190,12 @@
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00265}00265\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ stream\_result\ =\ xcb\_flush(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection);}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00266}00266\ \ \ \ \ \textcolor{keywordflow}{if}\ (stream\_result\ <=\ 0)\ \{}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00267}00267\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}An\ error\ occurred\ when\ flusing\ the\ stream:\ \%d"{}},\ stream\_result);}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00269}00269\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00270}00270\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00271}00271\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>is\_visible\ =\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00271}00271\ \ \ \ \ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>is\_visible\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00272}00272\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00273}00273\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00273}00273\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00274}00274\ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00275}00275\ }
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00284}00284\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a7fe7553c63bc948e2ee04d15597d6ccd}{platform\_shutdown}}(\mbox{\hyperlink{structplatform__state}{platform\_state}}*\ plat\_state)\ \{}
@@ -216,7 +216,7 @@
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00308}00308\ \ \ \ \ xcb\_generic\_event\_t*\ event;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00309}00309\ \ \ \ \ xcb\_client\_message\_event\_t*\ cm;}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00310}00310\ }
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00311}00311\ \ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00311}00311\ \ \ \ \ \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}\ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00312}00312\ }
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00313}00313\ \ \ \ \ \textcolor{comment}{//\ Poll\ for\ all\ pending\ events}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00314}00314\ \ \ \ \ \textcolor{keywordflow}{while}\ ((event\ =\ xcb\_poll\_for\_event(\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>connection)))\ \{}
@@ -314,7 +314,7 @@
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Window\ close}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ message\ is\ WM\_DELETE\_WINDOW,\ user\ wants\ to\ quit}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cm-\/>data.data32[0]\ ==\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>wm\_delete\_win)\ \{}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quit\_flagged\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{break};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00412}00412\ }
@@ -402,11 +402,11 @@
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00541}00541\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>surface);}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00542}00542\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ VK\_SUCCESS)\ \{}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00543}00543\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}Vulkan\ surface\ creation\ failed."{}});}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00544}00544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa93f0eb578d23995850d61f7d61c55c1}{FALSE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00544}00544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00545}00545\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00546}00546\ }
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00547}00547\ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>surface\ =\ \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}-\/>surface;}
-\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00548}00548\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{TRUE}};}
+\DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00548}00548\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00549}00549\ \}}
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00550}00550\ }
 \DoxyCodeLine{\Hypertarget{platform__linux_8c_source_l00559}00559\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}{platform\_get\_required\_extension\_names}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}***\ names\_darray)\ \{}

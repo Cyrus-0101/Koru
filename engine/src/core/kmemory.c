@@ -111,7 +111,7 @@ void* kallocate(u64 size, memory_tag tag) {
     stats.tagged_allocations[tag] += size;
 
     // TODO: Memory alignment
-    void* block = platform_allocate(size, FALSE);
+    void* block = platform_allocate(size, False);
     platform_zero_memory(block, size);
 
     return block;
@@ -135,7 +135,7 @@ void kfree(void* block, u64 size, memory_tag tag) {
     stats.tagged_allocations[tag] -= size;
 
     // TODO: Memory alignment
-    platform_free(block, FALSE);
+    platform_free(block, False);
 }
 
 /**

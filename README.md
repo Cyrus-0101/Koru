@@ -654,12 +654,12 @@ b8 vulkan_device_detect_depth_format(vulkan_device* device) {
 
         if ((props.optimalTilingFeatures & VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT)) {
             device->depth_format = candidates[i];
-            return TRUE;
+            return True;
         }
     }
 
     KERROR("No supported depth format found.");
-    return FALSE;
+    return False;
 }
 ```
 
@@ -1022,13 +1022,13 @@ b8 vulkan_swapchain_acquire_next_image_index(...) {
 
     if (result == VK_ERROR_OUT_OF_DATE_KHR) {
         vulkan_swapchain_recreate(context, width, height, swapchain);
-        return FALSE;
+        return False;
     } else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
         KFATAL("Failed to acquire swapchain image!");
-        return FALSE;
+        return False;
     }
 
-    return TRUE;
+    return True;
 }
 ```
 

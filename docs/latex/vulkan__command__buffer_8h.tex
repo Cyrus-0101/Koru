@@ -77,7 +77,7 @@ Initializes the command buffer and sets its state to READY.
 \hline
 {\em pool} & The command pool to allocate from. \\
 \hline
-{\em is\+\_\+primary} & TRUE if primary command buffer, FALSE for secondary. \\
+{\em is\+\_\+primary} & True if primary command buffer, False for secondary. \\
 \hline
 {\em out\+\_\+command\+\_\+buffer} & A pointer to a vulkan\+\_\+command\+\_\+buffer to populate. \\
 \hline
@@ -121,7 +121,7 @@ Definition at line \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00089}{89
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{defines_8h_source_l00106}{FALSE}}, \mbox{\hyperlink{defines_8h_source_l00104}{TRUE}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00018}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate()}}, and \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00054}{vulkan\+\_\+command\+\_\+buffer\+\_\+begin()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{defines_8h_source_l00104}{True}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00018}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate()}}, and \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00054}{vulkan\+\_\+command\+\_\+buffer\+\_\+begin()}}.
 
 \Hypertarget{vulkan__command__buffer_8h_a953bb97410e7ac3fb6bcb885111b076a}\label{vulkan__command__buffer_8h_a953bb97410e7ac3fb6bcb885111b076a} 
 \index{vulkan\_command\_buffer.h@{vulkan\_command\_buffer.h}!vulkan\_command\_buffer\_begin@{vulkan\_command\_buffer\_begin}}
@@ -139,11 +139,11 @@ Sets up flags like one-\/time use or simultaneous access.
 \begin{DoxyParams}{Parameters}
 {\em command\+\_\+buffer} & A pointer to the command buffer being recorded. \\
 \hline
-{\em is\+\_\+single\+\_\+use} & TRUE if this buffer will only be used once. \\
+{\em is\+\_\+single\+\_\+use} & True if this buffer will only be used once. \\
 \hline
-{\em is\+\_\+renderpass\+\_\+continue} & TRUE if this is a secondary buffer continuing a render pass. \\
+{\em is\+\_\+renderpass\+\_\+continue} & True if this is a secondary buffer continuing a render pass. \\
 \hline
-{\em is\+\_\+simultaneous\+\_\+use} & TRUE if the buffer can be re-\/recorded while in flight. \\
+{\em is\+\_\+simultaneous\+\_\+use} & True if the buffer can be re-\/recorded while in flight. \\
 \hline
 \end{DoxyParams}
 

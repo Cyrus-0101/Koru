@@ -59,7 +59,7 @@ typedef struct renderer_backend {
      * @param backend A pointer to the renderer backend instance.
      * @param application_name Name of the application using the renderer.
      * @param plat_state A pointer to the platform-specific state.
-     * @return TRUE if successful; otherwise FALSE.
+     * @return True if successful; otherwise False.
      */
     b8 (*initialize)(struct renderer_backend* backend, const char* application_name, struct platform_state* plat_state);
 
@@ -84,7 +84,7 @@ typedef struct renderer_backend {
      *
      * @param backend A pointer to the renderer backend instance.
      * @param delta_time Time in seconds since the last frame.
-     * @return TRUE if successful; otherwise FALSE.
+     * @return True if successful; otherwise False.
      */
     b8 (*begin_frame)(struct renderer_backend* backend, f32 delta_time);
 
@@ -93,7 +93,7 @@ typedef struct renderer_backend {
      *
      * @param backend A pointer to the renderer backend instance.
      * @param delta_time Time in seconds since the last frame.
-     * @return TRUE if successful; otherwise FALSE.
+     * @return True if successful; otherwise False.
      */
     b8 (*end_frame)(struct renderer_backend* backend, f32 delta_time);
 } renderer_backend;

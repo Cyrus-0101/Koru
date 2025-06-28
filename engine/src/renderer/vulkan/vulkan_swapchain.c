@@ -113,7 +113,7 @@ void vulkan_swapchain_destroy(
  * @param image_available_semaphore Semaphore signaled when image is ready.
  * @param fence Optional fence to wait on before using the image.
  * @param out_image_index Output variable to store the acquired image index.
- * @return TRUE if successful; FALSE if the swapchain needs recreation.
+ * @return True if successful; False if the swapchain needs recreation.
  */
 b8 vulkan_swapchain_acquire_next_image_index(
     vulkan_context* context,
@@ -122,7 +122,6 @@ b8 vulkan_swapchain_acquire_next_image_index(
     VkSemaphore image_available_semaphore,
     VkFence fence,
     u32* out_image_index) {
-
     VkResult result = vkAcquireNextImageKHR(
         context->device.logical_device,
         swapchain->handle,
@@ -134,13 +133,13 @@ b8 vulkan_swapchain_acquire_next_image_index(
     if (result == VK_ERROR_OUT_OF_DATE_KHR) {
         // Trigger swapchain recreation, then boot out of the render loop.
         vulkan_swapchain_recreate(context, context->framebuffer_width, context->framebuffer_height, swapchain);
-        return FALSE;
+        return False;
     } else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
         KFATAL("Failed to acquire swapchain image!");
-        return FALSE;
+        return False;
     }
 
-    return TRUE;
+    return True;
 }
 
 /**
@@ -163,7 +162,6 @@ void vulkan_swapchain_present(
     VkQueue present_queue,
     VkSemaphore render_complete_semaphore,
     u32 present_image_index) {
-
     // Return the image to the swapchain for presentation.
     VkPresentInfoKHR present_info = {VK_STRUCTURE_TYPE_PRESENT_INFO_KHR};
     present_info.waitSemaphoreCount = 1;
@@ -201,17 +199,16 @@ void vulkan_swapchain_present(
  */
 void create(vulkan_context* context, u32 width, u32 height, vulkan_swapchain* swapchain) {
     VkExtent2D swapchain_extent = {width, height};
-    swapchain->max_frames_in_flight = 2;
 
     // Choose a swap surface format.
-    b8 found = FALSE;
+    b8 found = False;
     for (u32 i = 0; i < context->device.swapchain_support.format_count; ++i) {
         VkSurfaceFormatKHR format = context->device.swapchain_support.formats[i];
         // Preferred formats: B8G8R8A8_UNORM + sRGB color space
         if (format.format == VK_FORMAT_B8G8R8A8_UNORM &&
             format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR) {
             swapchain->image_format = format;
-            found = TRUE;
+            found = True;
             break;
         }
     }
@@ -252,6 +249,8 @@ void create(vulkan_context* context, u32 width, u32 height, vulkan_swapchain* sw
     if (context->device.swapchain_support.capabilities.maxImageCount > 0 && image_count > context->device.swapchain_support.capabilities.maxImageCount) {
         image_count = context->device.swapchain_support.capabilities.maxImageCount;
     }
+
+    swapchain->max_frames_in_flight = image_count - 1;
 
     // Build the swapchain creation info
     VkSwapchainCreateInfoKHR swapchain_create_info = {VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR};
@@ -334,7 +333,7 @@ void create(vulkan_context* context, u32 width, u32 height, vulkan_swapchain* sw
         VK_IMAGE_TILING_OPTIMAL,
         VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT,
         VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
-        TRUE,
+        True,
         VK_IMAGE_ASPECT_DEPTH_BIT,
         &swapchain->depth_attachment);
 

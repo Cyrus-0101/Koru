@@ -28,7 +28,9 @@ union \mbox{\hyperlink{unionvec2__u}{vec2\+\_\+u}}
 struct \mbox{\hyperlink{structvec3__u}{vec3\+\_\+u}}
 \begin{DoxyCompactList}\small\item\em A 3-\/component vector union with multiple access patterns. \end{DoxyCompactList}\item 
 union \mbox{\hyperlink{unionvec4__u}{vec4\+\_\+u}}
-\begin{DoxyCompactList}\small\item\em A 4-\/component vector union with multiple access patterns. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A 4-\/component vector union with multiple access patterns. \end{DoxyCompactList}\item 
+union \mbox{\hyperlink{unionmat4__u}{mat4\+\_\+u}}
+\begin{DoxyCompactList}\small\item\em A 4x4 matrix union for linear transformations. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -39,7 +41,9 @@ typedef struct \mbox{\hyperlink{structvec3__u}{vec3\+\_\+u}} \mbox{\hyperlink{ma
 typedef union \mbox{\hyperlink{unionvec4__u}{vec4\+\_\+u}} \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}}
 \begin{DoxyCompactList}\small\item\em A 4-\/component vector union with multiple access patterns. \end{DoxyCompactList}\item 
 typedef \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} \mbox{\hyperlink{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f}{quat}}
-\begin{DoxyCompactList}\small\item\em Quaternion type alias using vec4 storage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Quaternion type alias using vec4 storage. \end{DoxyCompactList}\item 
+typedef union \mbox{\hyperlink{unionmat4__u}{mat4\+\_\+u}} \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}}
+\begin{DoxyCompactList}\small\item\em A 4x4 matrix union for linear transformations. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -52,7 +56,35 @@ Definition in file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}
 
 
 \doxysubsection{Typedef Documentation}
-\Hypertarget{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f}\label{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f} 
+\Hypertarget{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}\label{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30} 
+\index{math\_types.h@{math\_types.h}!mat4@{mat4}}
+\index{mat4@{mat4}!math\_types.h@{math\_types.h}}
+\doxysubsubsection{\texorpdfstring{mat4}{mat4}}
+{\footnotesize\ttfamily typedef union \mbox{\hyperlink{unionmat4__u}{mat4\+\_\+u}} \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}}}
+
+
+
+A 4x4 matrix union for linear transformations. 
+
+Stored in column-\/major order\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ 0,\ 4,\ \ 8,\ 12,}
+\DoxyCodeLine{\ \ 1,\ 5,\ \ 9,\ 13,}
+\DoxyCodeLine{\ \ 2,\ 6,\ 10,\ 14,}
+\DoxyCodeLine{\ \ 3,\ 7,\ 11,\ 15}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+Why needed\+:
+\begin{DoxyItemize}
+\item Standard representation for 3D transformations (translation, rotation, scale)
+\item Column-\/major matches Open\+GL/\+Vulkan conventions
+\item Raw array access for direct GPU buffer uploads
+\item Basis for camera/view/projection matrices 
+\end{DoxyItemize}\Hypertarget{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f}\label{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f} 
 \index{math\_types.h@{math\_types.h}!quat@{quat}}
 \index{quat@{quat}!math\_types.h@{math\_types.h}}
 \doxysubsubsection{\texorpdfstring{quat}{quat}}
@@ -64,11 +96,18 @@ Quaternion type alias using vec4 storage.
 
 Quaternions are stored as\+:
 \begin{DoxyItemize}
-\item x,y,z\+: Vector components
-\item w\+: Scalar component Provides identical memory layout to vec4 for interoperability. 
+\item x,y,z\+: Vector components.
+\item w\+: Scalar component. Provides identical memory layout to vec4 for interoperability.
 \end{DoxyItemize}
 
-Definition at line \mbox{\hyperlink{math__types_8h_source_l00123}{123}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
+Why needed\+:
+\begin{DoxyItemize}
+\item Memory layout matches vec4 for efficient conversions
+\item Avoids separate storage type while maintaining quaternion semantics
+\item Enables using vector operations on quaternion components 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{math__types_8h_source_l00137}{137}} of file \mbox{\hyperlink{math__types_8h_source}{math\+\_\+types.\+h}}.
 
 \Hypertarget{math__types_8h_a4403515b5f13a3b84dafb1667a1f9d88}\label{math__types_8h_a4403515b5f13a3b84dafb1667a1f9d88} 
 \index{math\_types.h@{math\_types.h}!vec2@{vec2}}
@@ -85,7 +124,14 @@ Provides access to components via\+:
 \item Position (x,y)
 \item Color (r,g)
 \item Texture coordinates (s,t) or (u,v)
-\item Raw array index 
+\item Raw array index
+\end{DoxyItemize}
+
+Why needed\+:
+\begin{DoxyItemize}
+\item Unified type for different interpretations of 2D data
+\item Memory-\/efficient (no conversion between color/position/\+UVs needed)
+\item Cleaner code with semantic naming (e.\+g., .x/.y for position vs .u/.v for UVs) 
 \end{DoxyItemize}\Hypertarget{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}\label{math__types_8h_a291ce5191b34b920d576c84fd970b9ef} 
 \index{math\_types.h@{math\_types.h}!vec3@{vec3}}
 \index{vec3@{vec3}!math\_types.h@{math\_types.h}}
@@ -101,7 +147,14 @@ Provides access to components via\+:
 \item Position (x,y,z)
 \item Color (r,g,b)
 \item Texture coordinates (s,t,p)
-\item Raw array index 
+\item Raw array index
+\end{DoxyItemize}
+
+Why needed\+:
+\begin{DoxyItemize}
+\item Standard representation for 3D positions and directions
+\item Color operations without separate color structs
+\item 3D texture coordinates support 
 \end{DoxyItemize}\Hypertarget{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}\label{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd} 
 \index{math\_types.h@{math\_types.h}!vec4@{vec4}}
 \index{vec4@{vec4}!math\_types.h@{math\_types.h}}

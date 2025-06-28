@@ -9,7 +9,7 @@ ASSEMBLY := engine
 EXTENSION := .so
 
 # Compiler flags
-COMPILER_FLAGS := -g -fdeclspec -fPIC
+COMPILER_FLAGS := -g -MD -Werror=vla -fdeclspec -fPIC
 # -g             : Enable debugging info (GDB)
 # -fdeclspec     : Allow __declspec(dllexport/dllimport) for symbol visibility
 # -fPIC          : Position Independent Code (required for shared libraries)

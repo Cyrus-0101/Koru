@@ -80,7 +80,7 @@ void vulkan_swapchain_destroy(
  * @param image_available_semaphore Semaphore signaled when the image is ready for use.
  * @param fence Optional fence to wait on before using the image.
  * @param out_image_index Output variable to store the index of the acquired image.
- * @return TRUE if successful; FALSE otherwise.
+ * @return True if successful; False otherwise.
  */
 b8 vulkan_swapchain_acquire_next_image_index(
     vulkan_context* context,

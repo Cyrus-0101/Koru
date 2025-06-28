@@ -13,7 +13,7 @@ ASSEMBLY := testbed
 EXTENSION := .exe
 
 # Compiler flags
-COMPILER_FLAGS := -g -Wno-missing-braces -fdeclspec
+COMPILER_FLAGS := -g -MD -Werror=vla -Wno-missing-braces -fdeclspec
 # -g             : Debugging info for GDB or Visual Studio
 # -Wno-missing-braces : Prevents warnings from struct initialization
 # -fdeclspec     : Allows dllimport/dllexport macros

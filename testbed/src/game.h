@@ -36,7 +36,7 @@ typedef struct game_state {
  * Used to set up systems like rendering, input, audio, etc.
  *
  * @param game_inst A pointer to the current game instance.
- * @return TRUE if initialization was successful; FALSE otherwise.
+ * @return True if initialization was successful; False otherwise.
  */
 b8 game_initialize(game* game_inst);
 
@@ -47,7 +47,7 @@ b8 game_initialize(game* game_inst);
  *
  * @param game_inst A pointer to the current game instance.
  * @param delta_time Time in seconds since the last frame.
- * @return TRUE if update succeeded; FALSE to quit the application.
+ * @return True if update succeeded; False to quit the application.
  */
 b8 game_update(game* game_inst, f32 delta_time);
 
@@ -58,7 +58,7 @@ b8 game_update(game* game_inst, f32 delta_time);
  *
  * @param game_inst A pointer to the current game instance.
  * @param delta_time Time in seconds since the last frame.
- * @return TRUE if rendering succeeded; FALSE on unrecoverable error.
+ * @return True if rendering succeeded; False on unrecoverable error.
  */
 b8 game_render(game* game_inst, f32 delta_time);
 

@@ -163,7 +163,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// Check if there was any error connecting</span></div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordflow">if</span> (xcb_connection_has_error(<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;connection)) {</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Failed to connect to X server via XCB.&quot;</span>);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="comment">// Retrieve the setup data from the connection, akin to getting configuration</span></div>
@@ -269,12 +269,12 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> stream_result = xcb_flush(<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;connection);</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keywordflow">if</span> (stream_result &lt;= 0) {</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;An error occurred when flusing the stream: %d&quot;</span>, stream_result);</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    }</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;is_visible = <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;is_visible = <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>}</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="keywordtype">void</span> <a class="code hl_function" href="platform_8h.html#a7fe7553c63bc948e2ee04d15597d6ccd">platform_shutdown</a>(<a class="code hl_struct" href="structplatform__state.html">platform_state</a>* plat_state) {</div>
@@ -295,7 +295,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    xcb_generic_event_t* event;</div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    xcb_client_message_event_t* cm;</div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> quit_flagged = <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <a class="code hl_typedef" href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a> quit_flagged = <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="comment">// Poll for all pending events</span></div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="keywordflow">while</span> ((event = xcb_poll_for_event(<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;connection))) {</div>
@@ -393,7 +393,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>                <span class="comment">// Window close</span></div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>                <span class="comment">// If the message is WM_DELETE_WINDOW, user wants to quit</span></div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>                <span class="keywordflow">if</span> (cm-&gt;data.data32[0] == <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;wm_delete_win) {</div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>                    quit_flagged = <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>                    quit_flagged = <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>                }</div>
 <div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>            } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span> </div>
@@ -481,11 +481,11 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>        &amp;<a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;surface);</div>
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>    <span class="keywordflow">if</span> (result != VK_SUCCESS) {</div>
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;Vulkan surface creation failed.&quot;</span>);</div>
-<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>;</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
 <div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>    }</div>
 <div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
 <div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;surface = <a class="code hl_variable" href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a>-&gt;surface;</div>
-<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>;</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
 <div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>}</div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span> </div>
 <div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__platform_8h.html#ac6f33d791e5445db00300cfd71d88702">platform_get_required_extension_names</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>*** names_darray) {</div>
@@ -773,13 +773,13 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="adarray_8h_html"><div class="ttname"><a href="darray_8h.html">darray.h</a></div><div class="ttdoc">Dynamic array implementation with automatic resizing.</div></div>
 <div class="ttc" id="adarray_8h_html_a7ad89931e6589fa09b83ea99de2b32e6"><div class="ttname"><a href="darray_8h.html#a7ad89931e6589fa09b83ea99de2b32e6">darray_push</a></div><div class="ttdeci">#define darray_push(array, value)</div><div class="ttdoc">Adds an element to the end of the array.</div><div class="ttdef"><b>Definition</b> <a href="darray_8h_source.html#l00182">darray.h:182</a></div></div>
 <div class="ttc" id="adefines_8h_html_a10e94b422ef0c20dcdec20d31a1f5049"><div class="ttname"><a href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a></div><div class="ttdeci">unsigned int u32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00023">defines.h:23</a></div></div>
+<div class="ttc" id="adefines_8h_html_a306ebd41c0cd1303b1372c6153f0caf8"><div class="ttname"><a href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></div><div class="ttdeci">#define False</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00106">defines.h:106</a></div></div>
 <div class="ttc" id="adefines_8h_html_a7415f24c35cb3e16a79f143c5527fdfa"><div class="ttname"><a href="defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa">b8</a></div><div class="ttdeci">char b8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00055">defines.h:55</a></div></div>
 <div class="ttc" id="adefines_8h_html_a94dab5770726ccbef8c7d026cfbdf8e5"><div class="ttname"><a href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a></div><div class="ttdeci">double f64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00048">defines.h:48</a></div></div>
 <div class="ttc" id="adefines_8h_html_a9e3ad5f8e752f01d926ce122d5a5285e"><div class="ttname"><a href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a></div><div class="ttdeci">signed int i32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00037">defines.h:37</a></div></div>
 <div class="ttc" id="adefines_8h_html_a9e6c91d77e24643b888dbd1a1a590054"><div class="ttname"><a href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a></div><div class="ttdeci">unsigned short u16</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00020">defines.h:20</a></div></div>
-<div class="ttc" id="adefines_8h_html_aa8cecfc5c5c054d2875c03e77b7be15d"><div class="ttname"><a href="defines_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a></div><div class="ttdeci">#define TRUE</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00104">defines.h:104</a></div></div>
-<div class="ttc" id="adefines_8h_html_aa93f0eb578d23995850d61f7d61c55c1"><div class="ttname"><a href="defines_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a></div><div class="ttdeci">#define FALSE</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00106">defines.h:106</a></div></div>
 <div class="ttc" id="adefines_8h_html_ad758b7a5c3f18ed79d2fcd23d9f16357"><div class="ttname"><a href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a></div><div class="ttdeci">unsigned long long u64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00026">defines.h:26</a></div></div>
+<div class="ttc" id="adefines_8h_html_add3ca9eefe3b5b754426f51d3043e579"><div class="ttname"><a href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a></div><div class="ttdeci">#define True</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00104">defines.h:104</a></div></div>
 <div class="ttc" id="adefines_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00017">defines.h:17</a></div></div>
 <div class="ttc" id="aevent_8c_html_a1c350143596c6f99cfd34595b4959ef8"><div class="ttname"><a href="event_8c.html#a1c350143596c6f99cfd34595b4959ef8">event_fire</a></div><div class="ttdeci">b8 event_fire(u16 code, void *sender, event_context context)</div><div class="ttdoc">Fires an event to all registered listeners for the given code.</div><div class="ttdef"><b>Definition</b> <a href="event_8c_source.html#l00156">event.c:156</a></div></div>
 <div class="ttc" id="aevent_8c_html_acfc52e8e20887a09d8db0da0067c76e5"><div class="ttname"><a href="event_8c.html#acfc52e8e20887a09d8db0da0067c76e5">state</a></div><div class="ttdeci">static event_system_state state</div><div class="ttdoc">Static global instance of the event system state.</div><div class="ttdef"><b>Definition</b> <a href="event_8c_source.html#l00074">event.c:74</a></div></div>
@@ -821,7 +821,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 22 2025 12:39:34 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Thu Jun 26 2025 17:53:37 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

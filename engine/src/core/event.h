@@ -74,7 +74,7 @@ typedef struct event_context {
  * @param sender A pointer to the object that triggered the event.
  * @param listener_inst A pointer to the listener instance (optional).
  * @param data The event context containing additional data.
- * @return TRUE if the event was handled; FALSE to allow further propagation.
+ * @return True if the event was handled; False to allow further propagation.
  */
 typedef b8 (*PFN_on_event)(u16 code, void* sender, void* listener_inst, event_context data);
 
@@ -84,7 +84,7 @@ typedef b8 (*PFN_on_event)(u16 code, void* sender, void* listener_inst, event_co
  * Must be called before any other event functions are used.
  * Sets up internal structures for managing event listeners.
  *
- * @return TRUE if initialization succeeded; FALSE otherwise.
+ * @return True if initialization succeeded; False otherwise.
  */
 b8 event_initialize();
 
@@ -105,32 +105,32 @@ void event_shutdown();
  * @param code The event code to listen for.
  * @param listener A pointer to a listener instance. Can be NULL.
  * @param on_event The callback function to invoke when the event fires.
- * @return TRUE if successfully registered; FALSE if already registered or invalid parameters.
+ * @return True if successfully registered; False if already registered or invalid parameters.
  */
 KAPI b8 event_register(u16 code, void* listener, PFN_on_event on_event);
 
 /**
  * @brief Unregisters a listener for a specific event code.
  *
- * If no matching registration exists, this function returns FALSE.
+ * If no matching registration exists, this function returns False.
  *
  * @param code The event code to stop listening for.
  * @param listener A pointer to a listener instance. Can be NULL.
  * @param on_event The callback function to unregister.
- * @return TRUE if successfully unregistered; FALSE if not found.
+ * @return True if successfully unregistered; False if not found.
  */
 KAPI b8 event_unregister(u16 code, void* listener, PFN_on_event on_event);
 
 /**
  * @brief Fires an event to all registered listeners for the given code.
  *
- * If any handler returns TRUE, the event is considered handled and
+ * If any handler returns True, the event is considered handled and
  * will not be passed to remaining listeners.
  *
  * @param code The event code to fire.
  * @param sender A pointer to the object that triggered the event. Can be NULL.
  * @param context The event context containing additional data.
- * @return TRUE if handled by at least one listener; FALSE otherwise.
+ * @return True if handled by at least one listener; False otherwise.
  */
 KAPI b8 event_fire(u16 code, void* sender, event_context context);
 

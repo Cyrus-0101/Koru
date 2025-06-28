@@ -28,7 +28,7 @@
  * - Game state memory allocation
  *
  * @param out_game A pointer to an uninitialized game struct that will be populated.
- * @return TRUE if the game was successfully created; FALSE otherwise.
+ * @return True if the game was successfully created; False otherwise.
  */
 extern b8 create_game(game* out_game);
 

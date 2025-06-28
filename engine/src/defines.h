@@ -49,7 +49,7 @@ typedef double f64;
 
 // Boolean types
 
-/** 32-bit boolean (can be TRUE/FALSE) */
+/** 32-bit boolean (can be True/False) */
 typedef int b32;
 /** 8-bit boolean (more memory-efficient than b32) */
 typedef char b8;
@@ -101,9 +101,9 @@ STATIC_ASSERT(sizeof(f32) == 4, "Expected f32 to be 4 bytes.");
 STATIC_ASSERT(sizeof(f64) == 8, "Expected f64 to be 8 bytes.");
 
 /** Standard boolean values */
-#define TRUE 1
+#define True 1
 /** Standard boolean values */
-#define FALSE 0
+#define False 0
 
 /**
  * Detects the current platform and defines corresponding macros:

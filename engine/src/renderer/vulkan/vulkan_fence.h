@@ -23,10 +23,10 @@
  * Fences are used to synchronize the CPU with GPU operations.
  * A fence starts in either:
  * - Unsignaled state (default)
- * - Signaled state (`create_signaled == TRUE`)
+ * - Signaled state (`create_signaled == True`)
  *
  * @param context A pointer to the active Vulkan context.
- * @param create_signaled If TRUE, the fence will be created in a signaled state.
+ * @param create_signaled If True, the fence will be created in a signaled state.
  * @param out_fence A pointer to the vulkan_fence struct to populate.
  */
 void vulkan_fence_create(
@@ -53,7 +53,7 @@ void vulkan_fence_destroy(vulkan_context* context, vulkan_fence* fence);
  * @param context A pointer to the active Vulkan context.
  * @param fence A pointer to the vulkan_fence to wait for.
  * @param timeout_ns Maximum time to wait in nanoseconds.
- * @return TRUE if the fence was signaled within the timeout; FALSE otherwise.
+ * @return True if the fence was signaled within the timeout; False otherwise.
  */
 b8 vulkan_fence_wait(vulkan_context* context, vulkan_fence* fence, u64 timeout_ns);
 

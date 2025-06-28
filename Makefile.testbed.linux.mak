@@ -10,7 +10,7 @@ ASSEMBLY := testbed
 EXTENSION := 
 
 # Compiler flags
-COMPILER_FLAGS := -g -fdeclspec -fPIC
+COMPILER_FLAGS := -g -MD -Werror=vla -fdeclspec -fPIC
 # -g             : Debug symbols for GDB
 # -fdeclspec     : Allows dllimport/dlexport syntax
 # -fPIC          : Required for position-independent code (even for executables)

@@ -22,7 +22,7 @@
  * creates a logical device, and initializes queues (graphics, present, compute, transfer).
  *
  * @param context A pointer to the Vulkan context. Must be valid and initialized.
- * @return TRUE if a suitable device was found and successfully created; FALSE otherwise.
+ * @return True if a suitable device was found and successfully created; False otherwise.
  */
 b8 vulkan_device_create(vulkan_context* context);
 
@@ -62,6 +62,6 @@ void vulkan_device_query_swapchain_support(
  * and checks if they are supported with optimal tiling.
  *
  * @param device A pointer to the vulkan_device object.
- * @return TRUE if a valid depth format was found; FALSE otherwise.
+ * @return True if a valid depth format was found; False otherwise.
  */
 b8 vulkan_device_detect_depth_format(vulkan_device* device);

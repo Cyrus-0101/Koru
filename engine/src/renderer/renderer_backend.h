@@ -29,7 +29,7 @@ struct platform_state;
  * @param type The type of renderer backend to create (e.g., Vulkan, OpenGL, DirectX).
  * @param plat_state A pointer to the platform-specific state.
  * @param out_renderer_backend A pointer to a renderer_backend structure to be populated.
- * @return TRUE if the backend was successfully created; otherwise FALSE.
+ * @return True if the backend was successfully created; otherwise False.
  */
 b8 renderer_backend_create(renderer_backend_type type, struct platform_state* plat_state, renderer_backend* out_renderer_backend);
 
