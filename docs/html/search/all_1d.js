@@ -8,12 +8,13 @@ var searchData=
   ['this_20is_20needed_5',['💡 Why All This Is Needed',['../index.html#autotoc_md71',1,'']]],
   ['to_20help_6',['💡 Want to Help?',['../index.html#autotoc_md27',1,'']]],
   ['total_5fallocated_7',['total_allocated',['../structmemory__stats.html#ad0e7709d178700a389b85f6b677d2f5c',1,'memory_stats']]],
-  ['transfer_8',['transfer',['../structvulkan__physical__device__requirements.html#a9e9b7a70d589971a1596c953d43da2ae',1,'vulkan_physical_device_requirements']]],
-  ['transfer_5ffamily_5findex_9',['transfer_family_index',['../structvulkan__physical__device__queue__family__info.html#a28f1191238998f94992757a1168c40b9',1,'vulkan_physical_device_queue_family_info']]],
-  ['true_10',['True',['../defines_8h.html#add3ca9eefe3b5b754426f51d3043e579',1,'defines.h']]],
-  ['tt_20vk_5fdebug_5futils_5fmessage_5fseverity_5fwarning_5fext_20tt_20_3a_20no_20cache_20file_11',['❌ &lt;tt&gt;VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT&lt;/tt&gt;: No cache file',['../index.html#autotoc_md78',1,'']]],
-  ['tt_20vulkan_5fcontext_20tt_12',['&lt;tt&gt;vulkan_context&lt;/tt&gt;',['../index.html#autotoc_md66',1,'']]],
-  ['tt_20vulkan_5fdevice_20tt_13',['&lt;tt&gt;vulkan_device&lt;/tt&gt;',['../index.html#autotoc_md67',1,'']]],
-  ['tt_20vulkan_5frenderpass_20tt_14',['&lt;tt&gt;vulkan_renderpass&lt;/tt&gt;',['../index.html#autotoc_md69',1,'']]],
-  ['tt_20vulkan_5fswapchain_20tt_15',['&lt;tt&gt;vulkan_swapchain&lt;/tt&gt;',['../index.html#autotoc_md68',1,'']]]
+  ['total_5fsize_8',['total_size',['../structlinear__allocator.html#a6de4731939da3764dcc981b0e0d39247',1,'linear_allocator']]],
+  ['transfer_9',['transfer',['../structvulkan__physical__device__requirements.html#a9e9b7a70d589971a1596c953d43da2ae',1,'vulkan_physical_device_requirements']]],
+  ['transfer_5ffamily_5findex_10',['transfer_family_index',['../structvulkan__physical__device__queue__family__info.html#a28f1191238998f94992757a1168c40b9',1,'vulkan_physical_device_queue_family_info']]],
+  ['true_11',['True',['../defines_8h.html#add3ca9eefe3b5b754426f51d3043e579',1,'defines.h']]],
+  ['tt_20vk_5fdebug_5futils_5fmessage_5fseverity_5fwarning_5fext_20tt_20_3a_20no_20cache_20file_12',['❌ &lt;tt&gt;VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT&lt;/tt&gt;: No cache file',['../index.html#autotoc_md78',1,'']]],
+  ['tt_20vulkan_5fcontext_20tt_13',['&lt;tt&gt;vulkan_context&lt;/tt&gt;',['../index.html#autotoc_md66',1,'']]],
+  ['tt_20vulkan_5fdevice_20tt_14',['&lt;tt&gt;vulkan_device&lt;/tt&gt;',['../index.html#autotoc_md67',1,'']]],
+  ['tt_20vulkan_5frenderpass_20tt_15',['&lt;tt&gt;vulkan_renderpass&lt;/tt&gt;',['../index.html#autotoc_md69',1,'']]],
+  ['tt_20vulkan_5fswapchain_20tt_16',['&lt;tt&gt;vulkan_swapchain&lt;/tt&gt;',['../index.html#autotoc_md68',1,'']]]
 ];

@@ -28,6 +28,9 @@ typedef enum memory_tag {
     /** Dynamic arrays (e.g., array_push) */
     MEMORY_TAG_ARRAY,
 
+    /** Linear allocator for fast, sequential allocations.*/
+    MEMORY_TAG_LINEAR_ALLOCATOR,
+
     /** Dynamic arrays that grow/shrink dynamically */
     MEMORY_TAG_DARRAY,
 

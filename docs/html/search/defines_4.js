@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['log_5fdebug_5fenabled_0',['LOG_DEBUG_ENABLED',['../logger_8h.html#aebce09616e526858093c3252925bffe2',1,'logger.h']]],
-  ['log_5finfo_5fenabled_1',['LOG_INFO_ENABLED',['../logger_8h.html#a4690d76db76927ae412ba4860e008b16',1,'logger.h']]],
-  ['log_5ftrace_5fenabled_2',['LOG_TRACE_ENABLED',['../logger_8h.html#a04e549630a5d2b3b2631940bb029e24f',1,'logger.h']]],
-  ['log_5fwarn_5fenabled_3',['LOG_WARN_ENABLED',['../logger_8h.html#a2613df29c73e9a080ac48d350321f2aa',1,'logger.h']]]
+  ['gibibytes_0',['GIBIBYTES',['../defines_8h.html#acb39342a6d484da1ffc0ac4893309be4',1,'defines.h']]],
+  ['gigabytes_1',['GIGABYTES',['../defines_8h.html#a19138fcdc83c10d33f2c076344ca7686',1,'defines.h']]]
 ];

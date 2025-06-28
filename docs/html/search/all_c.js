@@ -2,7 +2,7 @@ var searchData=
 [
   ['b_0',['b',['../structvec3__u.html#a5f79539f30c85a461dddf0d4ac5a37de',1,'vec3_u::b'],['../unionvec4__u.html#a188b547c6bbc01a37cb1478c283dc953',1,'vec4_u::b']]],
   ['b32_1',['b32',['../defines_8h.html#ac6baccc379c73d4e641ef847dbb08fa2',1,'defines.h']]],
-  ['b8_2',['b8',['../defines_8h.html#a7415f24c35cb3e16a79f143c5527fdfa',1,'defines.h']]],
+  ['b8_2',['b8',['../defines_8h.html#a3a58feb08f4f45ee137ec358217c3270',1,'defines.h']]],
   ['backend_3',['backend',['../renderer__frontend_8c.html#ab235bbe0a86eab45a9bb2b513a4f06d4',1,'renderer_frontend.c']]],
   ['bonus_3a_20sample_20code_20for_20acquiring_20an_20image_4',['🧪 Bonus: Sample Code for Acquiring an Image',['../index.html#autotoc_md75',1,'']]],
   ['buffers_20and_20submission_5',['12. 🗂 Command Buffers and Submission',['../index.html#autotoc_md61',1,'']]],

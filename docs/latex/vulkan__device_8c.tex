@@ -26,6 +26,11 @@ struct \mbox{\hyperlink{structvulkan__physical__device__requirements}{vulkan\+\_
 \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structvulkan__physical__device__queue__family__info}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info}}
 \begin{DoxyCompactList}\small\item\em Stores indices of queue families for a physical device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{vulkan__device_8c_a70ca23c85c6385ea64dfa919547104f2}{MAX\+\_\+\+DEVICE\+\_\+\+COUNT}}~32
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,17 +41,17 @@ typedef struct \mbox{\hyperlink{structvulkan__physical__device__queue__family__i
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__device_8c_a9c7b8f8848ce3482b71e4aceecc5b8d9}{select\+\_\+physical\+\_\+device}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__device_8c_a9c7b8f8848ce3482b71e4aceecc5b8d9}{select\+\_\+physical\+\_\+device}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
 \begin{DoxyCompactList}\small\item\em Selects the most suitable physical device from the list of available devices. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__device_8c_aa53d88ed2ed351537ad6b3f6ff109f7c}{physical\+\_\+device\+\_\+meets\+\_\+requirements}} (Vk\+Physical\+Device device, Vk\+Surface\+KHR surface, const Vk\+Physical\+Device\+Properties \texorpdfstring{$\ast$}{*}properties, const Vk\+Physical\+Device\+Features \texorpdfstring{$\ast$}{*}features, const \mbox{\hyperlink{structvulkan__physical__device__requirements}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements}} \texorpdfstring{$\ast$}{*}requirements, \mbox{\hyperlink{structvulkan__physical__device__queue__family__info}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info}} \texorpdfstring{$\ast$}{*}out\+\_\+queue\+\_\+family\+\_\+info, vulkan\+\_\+swapchain\+\_\+support\+\_\+info \texorpdfstring{$\ast$}{*}out\+\_\+swapchain\+\_\+support)
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__device_8c_aa53d88ed2ed351537ad6b3f6ff109f7c}{physical\+\_\+device\+\_\+meets\+\_\+requirements}} (Vk\+Physical\+Device device, Vk\+Surface\+KHR surface, const Vk\+Physical\+Device\+Properties \texorpdfstring{$\ast$}{*}properties, const Vk\+Physical\+Device\+Features \texorpdfstring{$\ast$}{*}features, const \mbox{\hyperlink{structvulkan__physical__device__requirements}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements}} \texorpdfstring{$\ast$}{*}requirements, \mbox{\hyperlink{structvulkan__physical__device__queue__family__info}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info}} \texorpdfstring{$\ast$}{*}out\+\_\+queue\+\_\+family\+\_\+info, vulkan\+\_\+swapchain\+\_\+support\+\_\+info \texorpdfstring{$\ast$}{*}out\+\_\+swapchain\+\_\+support)
 \begin{DoxyCompactList}\small\item\em Checks whether the given physical device meets all specified requirements. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__device_8c_abb07eb6d710c4e98364b57e42e4af4ac}{vulkan\+\_\+device\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__device_8c_abb07eb6d710c4e98364b57e42e4af4ac}{vulkan\+\_\+device\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
 \begin{DoxyCompactList}\small\item\em Creates and selects a suitable physical/logical Vulkan device. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__device_8c_acb801f308c78e06ab4b730a49c07e37f}{vulkan\+\_\+device\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
 \begin{DoxyCompactList}\small\item\em Destroys the logical device and cleans up associated resources. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__device_8c_ac4eb42eebcc937d35197f1b899668021}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support}} (Vk\+Physical\+Device physical\+\_\+device, Vk\+Surface\+KHR surface, vulkan\+\_\+swapchain\+\_\+support\+\_\+info \texorpdfstring{$\ast$}{*}out\+\_\+support\+\_\+info)
 \begin{DoxyCompactList}\small\item\em Queries swapchain support details for a given physical device and surface. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{vulkan__device_8c_a4af4291b3e9e0fc739c88bde97d74693}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format}} (vulkan\+\_\+device \texorpdfstring{$\ast$}{*}device)
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__device_8c_a4af4291b3e9e0fc739c88bde97d74693}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format}} (vulkan\+\_\+device \texorpdfstring{$\ast$}{*}device)
 \begin{DoxyCompactList}\small\item\em Detects and selects a suitable depth/stencil format for the given device. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -62,6 +67,19 @@ This module provides functions to\+:
 \end{DoxyItemize}
 
 Definition in file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{vulkan__device_8c_a70ca23c85c6385ea64dfa919547104f2}\label{vulkan__device_8c_a70ca23c85c6385ea64dfa919547104f2} 
+\index{vulkan\_device.c@{vulkan\_device.c}!MAX\_DEVICE\_COUNT@{MAX\_DEVICE\_COUNT}}
+\index{MAX\_DEVICE\_COUNT@{MAX\_DEVICE\_COUNT}!vulkan\_device.c@{vulkan\_device.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_DEVICE\_COUNT}{MAX\_DEVICE\_COUNT}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+DEVICE\+\_\+\+COUNT~32}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00007}{7}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
 
 
 
@@ -85,7 +103,7 @@ Definition in file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device
 \index{vulkan\_device.c@{vulkan\_device.c}!physical\_device\_meets\_requirements@{physical\_device\_meets\_requirements}}
 \index{physical\_device\_meets\_requirements@{physical\_device\_meets\_requirements}!vulkan\_device.c@{vulkan\_device.c}}
 \doxysubsubsection{\texorpdfstring{physical\_device\_meets\_requirements()}{physical\_device\_meets\_requirements()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} physical\+\_\+device\+\_\+meets\+\_\+requirements (\begin{DoxyParamCaption}\item[{Vk\+Physical\+Device}]{device,  }\item[{Vk\+Surface\+KHR}]{surface,  }\item[{const Vk\+Physical\+Device\+Properties \texorpdfstring{$\ast$}{*}}]{properties,  }\item[{const Vk\+Physical\+Device\+Features \texorpdfstring{$\ast$}{*}}]{features,  }\item[{const \mbox{\hyperlink{structvulkan__physical__device__requirements}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements}} \texorpdfstring{$\ast$}{*}}]{requirements,  }\item[{\mbox{\hyperlink{structvulkan__physical__device__queue__family__info}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+queue\+\_\+family\+\_\+info,  }\item[{vulkan\+\_\+swapchain\+\_\+support\+\_\+info \texorpdfstring{$\ast$}{*}}]{out\+\_\+swapchain\+\_\+support }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} physical\+\_\+device\+\_\+meets\+\_\+requirements (\begin{DoxyParamCaption}\item[{Vk\+Physical\+Device}]{device,  }\item[{Vk\+Surface\+KHR}]{surface,  }\item[{const Vk\+Physical\+Device\+Properties \texorpdfstring{$\ast$}{*}}]{properties,  }\item[{const Vk\+Physical\+Device\+Features \texorpdfstring{$\ast$}{*}}]{features,  }\item[{const \mbox{\hyperlink{structvulkan__physical__device__requirements}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements}} \texorpdfstring{$\ast$}{*}}]{requirements,  }\item[{\mbox{\hyperlink{structvulkan__physical__device__queue__family__info}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+queue\+\_\+family\+\_\+info,  }\item[{vulkan\+\_\+swapchain\+\_\+support\+\_\+info \texorpdfstring{$\ast$}{*}}]{out\+\_\+swapchain\+\_\+support }\end{DoxyParamCaption})}
 
 
 
@@ -121,21 +139,21 @@ True if device meets all requirements; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00506}{506}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00508}{508}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__device_8c_source_l00039}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::compute}}, \mbox{\hyperlink{vulkan__device_8c_source_l00086}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::compute\+\_\+family\+\_\+index}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{vulkan__device_8c_source_l00049}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::device\+\_\+extension\+\_\+names}}, \mbox{\hyperlink{vulkan__device_8c_source_l00059}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::discrete\+\_\+gpu}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{vulkan__device_8c_source_l00029}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::graphics}}, \mbox{\hyperlink{vulkan__device_8c_source_l00076}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::graphics\+\_\+family\+\_\+index}}, \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, \mbox{\hyperlink{kmemory_8c_source_l00129}{kfree()}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00227}{KTRACE}}, \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}, \mbox{\hyperlink{vulkan__device_8c_source_l00034}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::present}}, \mbox{\hyperlink{vulkan__device_8c_source_l00081}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::present\+\_\+family\+\_\+index}}, \mbox{\hyperlink{vulkan__device_8c_source_l00054}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::sampler\+\_\+anisotropy}}, \mbox{\hyperlink{kstring_8c_source_l00034}{strings\+\_\+equal()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00044}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::transfer}}, \mbox{\hyperlink{vulkan__device_8c_source_l00091}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::transfer\+\_\+family\+\_\+index}}, \mbox{\hyperlink{defines_8h_source_l00104}{True}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00320}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}.
+References \mbox{\hyperlink{vulkan__device_8c_source_l00041}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::compute}}, \mbox{\hyperlink{vulkan__device_8c_source_l00088}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::compute\+\_\+family\+\_\+index}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{vulkan__device_8c_source_l00051}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::device\+\_\+extension\+\_\+names}}, \mbox{\hyperlink{vulkan__device_8c_source_l00061}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::discrete\+\_\+gpu}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{vulkan__device_8c_source_l00031}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::graphics}}, \mbox{\hyperlink{vulkan__device_8c_source_l00078}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::graphics\+\_\+family\+\_\+index}}, \mbox{\hyperlink{kmemory_8c_source_l00106}{kallocate()}}, \mbox{\hyperlink{kmemory_8c_source_l00130}{kfree()}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00227}{KTRACE}}, \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}, \mbox{\hyperlink{vulkan__device_8c_source_l00036}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::present}}, \mbox{\hyperlink{vulkan__device_8c_source_l00083}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::present\+\_\+family\+\_\+index}}, \mbox{\hyperlink{vulkan__device_8c_source_l00056}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::sampler\+\_\+anisotropy}}, \mbox{\hyperlink{kstring_8c_source_l00037}{strings\+\_\+equal()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00046}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::transfer}}, \mbox{\hyperlink{vulkan__device_8c_source_l00093}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::transfer\+\_\+family\+\_\+index}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{vulkan__device_8c_source_l00322}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}.
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00393}{select\+\_\+physical\+\_\+device()}}.
 
 \Hypertarget{vulkan__device_8c_a9c7b8f8848ce3482b71e4aceecc5b8d9}\label{vulkan__device_8c_a9c7b8f8848ce3482b71e4aceecc5b8d9} 
 \index{vulkan\_device.c@{vulkan\_device.c}!select\_physical\_device@{select\_physical\_device}}
 \index{select\_physical\_device@{select\_physical\_device}!vulkan\_device.c@{vulkan\_device.c}}
 \doxysubsubsection{\texorpdfstring{select\_physical\_device()}{select\_physical\_device()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} select\+\_\+physical\+\_\+device (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} select\+\_\+physical\+\_\+device (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})}
 
 
 
@@ -161,21 +179,21 @@ True if a suitable device was found and selected; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00391}{391}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00393}{393}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__device_8c_source_l00039}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::compute}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{vulkan__device_8c_source_l00049}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::device\+\_\+extension\+\_\+names}}, \mbox{\hyperlink{vulkan__device_8c_source_l00059}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::discrete\+\_\+gpu}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{vulkan__device_8c_source_l00029}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::graphics}}, \mbox{\hyperlink{vulkan__device_8c_source_l00076}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::graphics\+\_\+family\+\_\+index}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00034}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::present}}, \mbox{\hyperlink{vulkan__device_8c_source_l00081}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::present\+\_\+family\+\_\+index}}, \mbox{\hyperlink{vulkan__device_8c_source_l00054}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::sampler\+\_\+anisotropy}}, \mbox{\hyperlink{vulkan__device_8c_source_l00044}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::transfer}}, \mbox{\hyperlink{vulkan__device_8c_source_l00091}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::transfer\+\_\+family\+\_\+index}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+References \mbox{\hyperlink{vulkan__device_8c_source_l00041}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::compute}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{vulkan__device_8c_source_l00051}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::device\+\_\+extension\+\_\+names}}, \mbox{\hyperlink{vulkan__device_8c_source_l00061}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::discrete\+\_\+gpu}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{vulkan__device_8c_source_l00031}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::graphics}}, \mbox{\hyperlink{vulkan__device_8c_source_l00078}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::graphics\+\_\+family\+\_\+index}}, \mbox{\hyperlink{logger_8h_source_l00162}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00149}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{vulkan__device_8c_source_l00007}{MAX\+\_\+\+DEVICE\+\_\+\+COUNT}}, \mbox{\hyperlink{vulkan__device_8c_source_l00508}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00036}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::present}}, \mbox{\hyperlink{vulkan__device_8c_source_l00083}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::present\+\_\+family\+\_\+index}}, \mbox{\hyperlink{vulkan__device_8c_source_l00056}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::sampler\+\_\+anisotropy}}, \mbox{\hyperlink{vulkan__device_8c_source_l00046}{vulkan\+\_\+physical\+\_\+device\+\_\+requirements\+::transfer}}, \mbox{\hyperlink{vulkan__device_8c_source_l00093}{vulkan\+\_\+physical\+\_\+device\+\_\+queue\+\_\+family\+\_\+info\+::transfer\+\_\+family\+\_\+index}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00147}{vulkan\+\_\+device\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00149}{vulkan\+\_\+device\+\_\+create()}}.
 
 \Hypertarget{vulkan__device_8c_abb07eb6d710c4e98364b57e42e4af4ac}\label{vulkan__device_8c_abb07eb6d710c4e98364b57e42e4af4ac} 
 \index{vulkan\_device.c@{vulkan\_device.c}!vulkan\_device\_create@{vulkan\_device\_create}}
 \index{vulkan\_device\_create@{vulkan\_device\_create}!vulkan\_device.c@{vulkan\_device.c}}
 \doxysubsubsection{\texorpdfstring{vulkan\_device\_create()}{vulkan\_device\_create()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+device\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} vulkan\+\_\+device\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})}
 
 
 
@@ -193,11 +211,11 @@ True if a suitable device was found and successfully created; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00147}{147}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00149}{149}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{vulkan__device_8c_source_l00391}{select\+\_\+physical\+\_\+device()}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{vulkan__device_8c_source_l00393}{select\+\_\+physical\+\_\+device()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
@@ -222,11 +240,11 @@ Shuts down the logical device and any internal structures like queues. Should be
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00256}{256}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00258}{258}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{kmemory_8c_source_l00129}{kfree()}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{kmemory_8c_source_l00130}{kfree()}}, \mbox{\hyperlink{logger_8h_source_l00193}{KINFO}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kzero\+\_\+memory()}}, and \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
 
 
 
@@ -236,7 +254,7 @@ Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00308}{vulkan\+\_\+ren
 \index{vulkan\_device.c@{vulkan\_device.c}!vulkan\_device\_detect\_depth\_format@{vulkan\_device\_detect\_depth\_format}}
 \index{vulkan\_device\_detect\_depth\_format@{vulkan\_device\_detect\_depth\_format}!vulkan\_device.c@{vulkan\_device.c}}
 \doxysubsubsection{\texorpdfstring{vulkan\_device\_detect\_depth\_format()}{vulkan\_device\_detect\_depth\_format()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format (\begin{DoxyParamCaption}\item[{vulkan\+\_\+device \texorpdfstring{$\ast$}{*}}]{device }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format (\begin{DoxyParamCaption}\item[{vulkan\+\_\+device \texorpdfstring{$\ast$}{*}}]{device }\end{DoxyParamCaption})}
 
 
 
@@ -254,15 +272,15 @@ True if a valid depth format was found; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00366}{366}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00368}{368}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00106}{False}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00202}{create()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00659}{recreate\+\_\+swapchain()}}.
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00200}{create()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00659}{recreate\+\_\+swapchain()}}.
 
 \Hypertarget{vulkan__device_8c_ac4eb42eebcc937d35197f1b899668021}\label{vulkan__device_8c_ac4eb42eebcc937d35197f1b899668021} 
 \index{vulkan\_device.c@{vulkan\_device.c}!vulkan\_device\_query\_swapchain\_support@{vulkan\_device\_query\_swapchain\_support}}
@@ -294,13 +312,13 @@ This information is used later when creating a swapchain.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00320}{320}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__device_8c_source_l00322}{322}} of file \mbox{\hyperlink{vulkan__device_8c_source}{vulkan\+\_\+device.\+c}}.
 
 
 
-References \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, and \mbox{\hyperlink{kmemory_8h_source_l00059}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
+References \mbox{\hyperlink{kmemory_8c_source_l00106}{kallocate()}}, and \mbox{\hyperlink{kmemory_8h_source_l00062}{MEMORY\+\_\+\+TAG\+\_\+\+RENDERER}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00202}{create()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00659}{recreate\+\_\+swapchain()}}.
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00200}{create()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00508}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00659}{recreate\+\_\+swapchain()}}.
 

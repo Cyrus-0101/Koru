@@ -41,20 +41,20 @@ typedef struct \mbox{\hyperlink{structevent__system__state}{event\+\_\+system\+\
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_aaaec3136b95f3d089d55ebfe440c2a4f}{event\+\_\+initialize}} ()
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{event_8c_aaaec3136b95f3d089d55ebfe440c2a4f}{event\+\_\+initialize}} ()
 \begin{DoxyCompactList}\small\item\em Initializes the event system. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{event_8c_a4747584f93c48ffe1a1fa895c3746c7c}{event\+\_\+shutdown}} ()
 \begin{DoxyCompactList}\small\item\em Shuts down the event system. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_ae0709e6ce288dc76ad2889c194572f1f}{event\+\_\+register}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{event_8c_ae0709e6ce288dc76ad2889c194572f1f}{event\+\_\+register}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
 \begin{DoxyCompactList}\small\item\em Registers a listener for a specific event code. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_a59fc6e1b34ce65e68076a1e3ba004380}{event\+\_\+unregister}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{event_8c_a59fc6e1b34ce65e68076a1e3ba004380}{event\+\_\+unregister}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}listener, \mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}} on\+\_\+event)
 \begin{DoxyCompactList}\small\item\em Unregisters a listener for a specific event code. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\+\_\+fire}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{event_8c_a1c350143596c6f99cfd34595b4959ef8}{event\+\_\+fire}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
 \begin{DoxyCompactList}\small\item\em Fires an event to all registered listeners for the given code. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{event_8c_aaf91097086deb8321aa029e833198c3d}{is\+\_\+initialized}} = \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}}
+static \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{event_8c_aaf91097086deb8321aa029e833198c3d}{is\+\_\+initialized}} = \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}}
 \begin{DoxyCompactList}\small\item\em Internal state tracking whether the system has been initialized. \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{structevent__system__state}{event\+\_\+system\+\_\+state}} \mbox{\hyperlink{event_8c_acfc52e8e20887a09d8db0da0067c76e5}{state}}
 \begin{DoxyCompactList}\small\item\em Static global instance of the event system state. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -133,7 +133,7 @@ Internal structure representing a registered event listener.
 \index{event.c@{event.c}!event\_fire@{event\_fire}}
 \index{event\_fire@{event\_fire}!event.c@{event.c}}
 \doxysubsubsection{\texorpdfstring{event\_fire()}{event\_fire()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+fire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{sender,  }\item[{\mbox{\hyperlink{structevent__context}{event\+\_\+context}}}]{context }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} event\+\_\+fire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{sender,  }\item[{\mbox{\hyperlink{structevent__context}{event\+\_\+context}}}]{context }\end{DoxyParamCaption})}
 
 
 
@@ -159,17 +159,17 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00156}{156}} of file \mbox{
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00028}{context}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00318}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00152}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00130}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00173}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, and \mbox{\hyperlink{input_8c_source_l00198}{input\+\_\+process\+\_\+mouse\+\_\+wheel()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00318}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00166}{input\+\_\+process\+\_\+button()}}, \mbox{\hyperlink{input_8c_source_l00130}{input\+\_\+process\+\_\+key()}}, \mbox{\hyperlink{input_8c_source_l00187}{input\+\_\+process\+\_\+mouse\+\_\+move()}}, and \mbox{\hyperlink{input_8c_source_l00212}{input\+\_\+process\+\_\+mouse\+\_\+wheel()}}.
 
 \Hypertarget{event_8c_aaaec3136b95f3d089d55ebfe440c2a4f}\label{event_8c_aaaec3136b95f3d089d55ebfe440c2a4f} 
 \index{event.c@{event.c}!event\_initialize@{event\_initialize}}
 \index{event\_initialize@{event\_initialize}!event.c@{event.c}}
 \doxysubsubsection{\texorpdfstring{event\_initialize()}{event\_initialize()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} event\+\_\+initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -186,7 +186,7 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00076}{76}} of file \mbox{\
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{kmemory_8c_source_l00148}{kzero\+\_\+memory()}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kzero\+\_\+memory()}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
@@ -196,7 +196,7 @@ Referenced by \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+cr
 \index{event.c@{event.c}!event\_register@{event\_register}}
 \index{event\_register@{event\_register}!event.c@{event.c}}
 \doxysubsubsection{\texorpdfstring{event\_register()}{event\_register()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener,  }\item[{\mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}}}]{on\+\_\+event }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} event\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener,  }\item[{\mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}}}]{on\+\_\+event }\end{DoxyParamCaption})}
 
 
 
@@ -222,7 +222,7 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00100}{100}} of file \mbox{
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
@@ -244,7 +244,7 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00088}{88}} of file \mbox{\
 
 
 
-References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00050}{MAX\+\_\+\+MESSAGE\+\_\+\+CODES}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, and \mbox{\hyperlink{event_8c_source_l00074}{state}}.
+References \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00050}{MAX\+\_\+\+MESSAGE\+\_\+\+CODES}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, and \mbox{\hyperlink{event_8c_source_l00074}{state}}.
 
 
 
@@ -254,7 +254,7 @@ Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+ru
 \index{event.c@{event.c}!event\_unregister@{event\_unregister}}
 \index{event\_unregister@{event\_unregister}!event.c@{event.c}}
 \doxysubsubsection{\texorpdfstring{event\_unregister()}{event\_unregister()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} event\+\_\+unregister (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener,  }\item[{\mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}}}]{on\+\_\+event }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} event\+\_\+unregister (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener,  }\item[{\mbox{\hyperlink{event_8h_ac694dc305b9660134b170d9560b0563a}{PFN\+\_\+on\+\_\+event}}}]{on\+\_\+event }\end{DoxyParamCaption})}
 
 
 
@@ -280,7 +280,7 @@ Definition at line \mbox{\hyperlink{event_8c_source_l00129}{129}} of file \mbox{
 
 
 
-References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00223}{darray\+\_\+pop\+\_\+at}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00106}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00104}{True}}.
+References \mbox{\hyperlink{event_8c_source_l00034}{registered\+\_\+event\+::callback}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00223}{darray\+\_\+pop\+\_\+at}}, \mbox{\hyperlink{event_8c_source_l00046}{event\+\_\+code\+\_\+entry\+::events}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{event_8c_source_l00069}{is\+\_\+initialized}}, \mbox{\hyperlink{event_8c_source_l00029}{registered\+\_\+event\+::listener}}, \mbox{\hyperlink{event_8c_source_l00063}{event\+\_\+system\+\_\+state\+::registered}}, \mbox{\hyperlink{event_8c_source_l00074}{state}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
@@ -293,7 +293,7 @@ Referenced by \mbox{\hyperlink{application_8c_source_l00192}{application\+\_\+ru
 \index{event.c@{event.c}!is\_initialized@{is\_initialized}}
 \index{is\_initialized@{is\_initialized}!event.c@{event.c}}
 \doxysubsubsection{\texorpdfstring{is\_initialized}{is\_initialized}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} is\+\_\+initialized = \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} is\+\_\+initialized = \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}}\hspace{0.3cm}{\ttfamily [static]}}
 
 
 

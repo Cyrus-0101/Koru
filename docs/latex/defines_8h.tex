@@ -12,6 +12,13 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \includegraphics[width=350pt]{defines_8h__dep__incl}
 \end{center}
 \end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structkrange}{krange}}
+\begin{DoxyCompactList}\small\item\em A range, typically of memory. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrange32}{range32}}
+\begin{DoxyCompactList}\small\item\em A range, typically of memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,14 +28,80 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \item 
 \#define \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}}~0
 \item 
+\#define \mbox{\hyperlink{defines_8h_ab8c9e5ae5e9214bf306f3394a32e42f7}{INVALID\+\_\+\+ID\+\_\+\+U64}}~18446744073709551615UL
+\begin{DoxyCompactList}\small\item\em Represents an invalid 64-\/bit unsigned ID (max value of u64). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a483b0a38edf0c10ef4a7cb633dc8a9fc}{INVALID\+\_\+\+ID}}~4294967295U
+\begin{DoxyCompactList}\small\item\em Represents an invalid 32-\/bit unsigned ID (max value of u32). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a1e761fd5d2416d048a66c671766a2212}{INVALID\+\_\+\+ID\+\_\+\+U32}}~\mbox{\hyperlink{defines_8h_a483b0a38edf0c10ef4a7cb633dc8a9fc}{INVALID\+\_\+\+ID}}
+\begin{DoxyCompactList}\small\item\em Represents an invalid 32-\/bit unsigned ID (max value of u32). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_af184a0442a40bbe1787bb234d3a8bfae}{INVALID\+\_\+\+ID\+\_\+\+U16}}~65535U
+\begin{DoxyCompactList}\small\item\em Represents an invalid 16-\/bit unsigned ID (max value of u16). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a41fdc8d1e5968c92eb3b51a1ee1fc731}{INVALID\+\_\+\+ID\+\_\+\+U8}}~255U
+\begin{DoxyCompactList}\small\item\em Represents an invalid 8-\/bit unsigned ID (max value of u8). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_aaf73a88ad00da5c878558d6dc80b2f5c}{U64\+\_\+\+MAX}}~18446744073709551615UL
+\begin{DoxyCompactList}\small\item\em Maximum value for a 64-\/bit unsigned integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a4028a1a55fd7b907a44c48d5ca42d6a6}{U32\+\_\+\+MAX}}~4294967295U
+\begin{DoxyCompactList}\small\item\em Maximum value for a 32-\/bit unsigned integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_ac580728e242e90fe3082dc7fe45ec6c9}{U16\+\_\+\+MAX}}~65535U
+\begin{DoxyCompactList}\small\item\em Maximum value for a 16-\/bit unsigned integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a1187e707402ca2fca73f06f7beb1e631}{U8\+\_\+\+MAX}}~255U
+\begin{DoxyCompactList}\small\item\em Maximum value for an 8-\/bit unsigned integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a361528a08635372583d48b4d6e35dfa5}{U64\+\_\+\+MIN}}~0\+UL
+\begin{DoxyCompactList}\small\item\em Minimum value for unsigned 64 bit integers (0 for all sizes). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_ad0d6d592d964acd9de17674242bf2707}{U32\+\_\+\+MIN}}~0U
+\begin{DoxyCompactList}\small\item\em Minimum value for unsigned 32 bit integers (0 for all sizes). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a80b4ee16c02644eef90553da09dc0907}{U16\+\_\+\+MIN}}~0U
+\begin{DoxyCompactList}\small\item\em Minimum value for unsigned 16 bit integers (0 for all sizes). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a50185cccc95df2269f9f4e400d1fa6ed}{U8\+\_\+\+MIN}}~0U
+\begin{DoxyCompactList}\small\item\em Minimum value for unsigned 8 bit integers (0 for all sizes). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a06aab1f97b965931eb9b623f9cc4952d}{I8\+\_\+\+MAX}}~127
+\begin{DoxyCompactList}\small\item\em Maximum value for an 8-\/bit signed integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a31c11a64ca799bf89552369a63cecf98}{I16\+\_\+\+MAX}}~32767
+\begin{DoxyCompactList}\small\item\em Maximum value for a 16-\/bit signed integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a6e0f9d2db6ef5d899eb21081ef248851}{I32\+\_\+\+MAX}}~2147483647
+\begin{DoxyCompactList}\small\item\em Maximum value for a 32-\/bit signed integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a5f660b55f835b170812ab67f556e9a5a}{I64\+\_\+\+MAX}}~9223372036854775807L
+\begin{DoxyCompactList}\small\item\em Maximum value for a 64-\/bit signed integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a50b6c3c5a46f347eb58da649285ddaa8}{I8\+\_\+\+MIN}}~(-\/\mbox{\hyperlink{defines_8h_a06aab1f97b965931eb9b623f9cc4952d}{I8\+\_\+\+MAX}} -\/ 1)
+\begin{DoxyCompactList}\small\item\em Minimum value for an 8-\/bit signed integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a72800ba3863b6bae70ee3f22482e6db3}{I16\+\_\+\+MIN}}~(-\/\mbox{\hyperlink{defines_8h_a31c11a64ca799bf89552369a63cecf98}{I16\+\_\+\+MAX}} -\/ 1)
+\begin{DoxyCompactList}\small\item\em Minimum value for a 16-\/bit signed integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_acf167b5064e33111b4da99625631b8af}{I32\+\_\+\+MIN}}~(-\/\mbox{\hyperlink{defines_8h_a6e0f9d2db6ef5d899eb21081ef248851}{I32\+\_\+\+MAX}} -\/ 1)
+\begin{DoxyCompactList}\small\item\em Minimum value for a 32-\/bit signed integer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a0427de163db0e1a357eee973c48bdfb5}{I64\+\_\+\+MIN}}~(-\/\mbox{\hyperlink{defines_8h_a5f660b55f835b170812ab67f556e9a5a}{I64\+\_\+\+MAX}} -\/ 1)
+\begin{DoxyCompactList}\small\item\em Minimum value for a 64-\/bit signed integer. \end{DoxyCompactList}\item 
 \#define \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}~/\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} GCC/Clang doesn\textquotesingle{}t need special import \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{defines_8h_aa275d4e22dec543092be2a8c845da267}{KOHI\+\_\+\+RELEASE}}~1 /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} @brief Defined as 1 in release builds, 0 otherwise. \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{defines_8h_ac84907cd2a910dfcd456807cce1a6621}{KOHI\+\_\+\+DEBUG}}~0   /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} @brief Defined as 1 in debug builds, 0 otherwise. \texorpdfstring{$\ast$}{*}/
 \item 
 \#define \mbox{\hyperlink{defines_8h_ac007fb317c156d98a91628a86b3c9c0e}{KCLAMP}}(value,  min,  max)
 \item 
 \#define \mbox{\hyperlink{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9}{KINLINE}}~static inline
 \item 
 \#define \mbox{\hyperlink{defines_8h_afc8c390e62fe367aaf65e4b3a8e9d64c}{KNOINLINE}}
-\end{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{defines_8h_acb39342a6d484da1ffc0ac4893309be4}{GIBIBYTES}}(amount)~((amount) \texorpdfstring{$\ast$}{*} 1024ULL \texorpdfstring{$\ast$}{*} 1024ULL \texorpdfstring{$\ast$}{*} 1024ULL)
+\begin{DoxyCompactList}\small\item\em Gets the number of bytes from amount of gibibytes (GiB) (1024\texorpdfstring{$\ast$}{*}1024\texorpdfstring{$\ast$}{*}1024) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_af9b433687761bfc5d19c9d72b0b37d4c}{MEBIBYTES}}(amount)~((amount) \texorpdfstring{$\ast$}{*} 1024ULL \texorpdfstring{$\ast$}{*} 1024ULL)
+\begin{DoxyCompactList}\small\item\em Gets the number of bytes from amount of mebibytes (MiB) (1024\texorpdfstring{$\ast$}{*}1024) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a6d2716f9382777bbbb48201373249974}{KIBIBYTES}}(amount)~((amount) \texorpdfstring{$\ast$}{*} 1024ULL)
+\begin{DoxyCompactList}\small\item\em Gets the number of bytes from amount of kibibytes (KiB) (1024) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a19138fcdc83c10d33f2c076344ca7686}{GIGABYTES}}(amount)~((amount) \texorpdfstring{$\ast$}{*} 1000\+ULL \texorpdfstring{$\ast$}{*} 1000\+ULL \texorpdfstring{$\ast$}{*} 1000\+ULL)
+\begin{DoxyCompactList}\small\item\em Gets the number of bytes from amount of gigabytes (GB) (1000\texorpdfstring{$\ast$}{*}1000\texorpdfstring{$\ast$}{*}1000) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a16a05dd1ee59ce4fc5aa7343bb227e97}{MEGABYTES}}(amount)~((amount) \texorpdfstring{$\ast$}{*} 1000\+ULL \texorpdfstring{$\ast$}{*} 1000\+ULL)
+\begin{DoxyCompactList}\small\item\em Gets the number of bytes from amount of megabytes (MB) (1000\texorpdfstring{$\ast$}{*}1000) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_ab45c9b185ca38d7f25aa3387e881f2d4}{KILOBYTES}}(amount)~((amount) \texorpdfstring{$\ast$}{*} 1000\+ULL)
+\begin{DoxyCompactList}\small\item\em Gets the number of bytes from amount of kilobytes (KB) (1000) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_a8cb45394d95d76663ea4ef913732fe29}{KMIN}}(x,  y)~(x $<$ y ? x \+: y)
+\begin{DoxyCompactList}\small\item\em Returns the smaller of two values. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_aa38f54712172212d6112b01f51123f0d}{KMAX}}(x,  y)~(x $>$ y ? x \+: y)
+\begin{DoxyCompactList}\small\item\em Returns the larger of two values. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_ab658c8d48fee5df2fdb24fd42044a734}{FLAG\+\_\+\+GET}}(flags,  flag)~((flags \& flag) == flag)
+\begin{DoxyCompactList}\small\item\em Checks if a specific flag is enabled in a bitmask. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{defines_8h_aed084076a09d851c0439e110bd38ed23}{FLAG\+\_\+\+SET}}(flags,  flag,  enabled)~(flags = (enabled ? (flags \texorpdfstring{$\vert$}{|} flag) \+: (flags \& \texorpdfstring{$\sim$}{\string~}flag)))
+\begin{DoxyCompactList}\small\item\em Sets or clears a flag in a bitmask. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -54,8 +127,12 @@ typedef double \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f6
 \item 
 typedef int \mbox{\hyperlink{defines_8h_ac6baccc379c73d4e641ef847dbb08fa2}{b32}}
 \item 
-typedef char \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}
-\end{DoxyCompactItemize}
+typedef \+\_\+\+Bool \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}
+\item 
+typedef struct \mbox{\hyperlink{structkrange}{krange}} \mbox{\hyperlink{defines_8h_a0d37ef0b1a77903e7698337d2594035e}{krange}}
+\begin{DoxyCompactList}\small\item\em A range, typically of memory. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrange32}{range32}} \mbox{\hyperlink{defines_8h_a48a60b69f67a735eb885a52430192253}{range32}}
+\begin{DoxyCompactList}\small\item\em A range, typically of memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -78,7 +155,11 @@ typedef char \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}
 \mbox{\hyperlink{defines_8h_a9864ac51060117e5bfbb49a4a211c41b}{STATIC\+\_\+\+ASSERT}} (sizeof(\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}})==4, "{}Expected \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} to be 4 bytes."{})
 \item 
 \mbox{\hyperlink{defines_8h_a1e6b73ddb58819ce321fc06954dd592f}{STATIC\+\_\+\+ASSERT}} (sizeof(\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}})==8, "{}Expected \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} to be 8 bytes."{})
-\end{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9}{KINLINE}} \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{defines_8h_abf0b958d00fe41b2f3b02d9ed263f780}{get\+\_\+aligned}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} operand, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} granularity)
+\begin{DoxyCompactList}\small\item\em Aligns a value to the nearest multiple of a granularity. Useful for memory alignment (e.\+g., Vulkan buffers). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9}{KINLINE}} \mbox{\hyperlink{structkrange}{krange}} \mbox{\hyperlink{defines_8h_a2f99ca6366e01a8ead4227cecbb8b67f}{get\+\_\+aligned\+\_\+range}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} offset, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} granularity)
+\begin{DoxyCompactList}\small\item\em Aligns both the offset and size of a memory range to a granularity. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -105,7 +186,264 @@ Definition in file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 Standard boolean values 
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00106}{106}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+Definition at line \mbox{\hyperlink{defines_8h_source_l00122}{122}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_ab658c8d48fee5df2fdb24fd42044a734}\label{defines_8h_ab658c8d48fee5df2fdb24fd42044a734} 
+\index{defines.h@{defines.h}!FLAG\_GET@{FLAG\_GET}}
+\index{FLAG\_GET@{FLAG\_GET}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{FLAG\_GET}{FLAG\_GET}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+GET(\begin{DoxyParamCaption}\item[{}]{flags,  }\item[{}]{flag }\end{DoxyParamCaption})~((flags \& flag) == flag)}
+
+
+
+Checks if a specific flag is enabled in a bitmask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flags} & The bitmask to check. \\
+\hline
+{\em flag} & The flag to test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the flag is set; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00396}{396}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_aed084076a09d851c0439e110bd38ed23}\label{defines_8h_aed084076a09d851c0439e110bd38ed23} 
+\index{defines.h@{defines.h}!FLAG\_SET@{FLAG\_SET}}
+\index{FLAG\_SET@{FLAG\_SET}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{FLAG\_SET}{FLAG\_SET}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+SET(\begin{DoxyParamCaption}\item[{}]{flags,  }\item[{}]{flag,  }\item[{}]{enabled }\end{DoxyParamCaption})~(flags = (enabled ? (flags \texorpdfstring{$\vert$}{|} flag) \+: (flags \& \texorpdfstring{$\sim$}{\string~}flag)))}
+
+
+
+Sets or clears a flag in a bitmask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flags} & The bitmask to modify (passed by reference). \\
+\hline
+{\em flag} & The flag to set/clear. \\
+\hline
+{\em enabled} & If true, sets the flag; if false, clears it. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00405}{405}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_acb39342a6d484da1ffc0ac4893309be4}\label{defines_8h_acb39342a6d484da1ffc0ac4893309be4} 
+\index{defines.h@{defines.h}!GIBIBYTES@{GIBIBYTES}}
+\index{GIBIBYTES@{GIBIBYTES}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{GIBIBYTES}{GIBIBYTES}}
+{\footnotesize\ttfamily \#define GIBIBYTES(\begin{DoxyParamCaption}\item[{}]{amount }\end{DoxyParamCaption})~((amount) \texorpdfstring{$\ast$}{*} 1024ULL \texorpdfstring{$\ast$}{*} 1024ULL \texorpdfstring{$\ast$}{*} 1024ULL)}
+
+
+
+Gets the number of bytes from amount of gibibytes (GiB) (1024\texorpdfstring{$\ast$}{*}1024\texorpdfstring{$\ast$}{*}1024) 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00342}{342}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a19138fcdc83c10d33f2c076344ca7686}\label{defines_8h_a19138fcdc83c10d33f2c076344ca7686} 
+\index{defines.h@{defines.h}!GIGABYTES@{GIGABYTES}}
+\index{GIGABYTES@{GIGABYTES}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{GIGABYTES}{GIGABYTES}}
+{\footnotesize\ttfamily \#define GIGABYTES(\begin{DoxyParamCaption}\item[{}]{amount }\end{DoxyParamCaption})~((amount) \texorpdfstring{$\ast$}{*} 1000\+ULL \texorpdfstring{$\ast$}{*} 1000\+ULL \texorpdfstring{$\ast$}{*} 1000\+ULL)}
+
+
+
+Gets the number of bytes from amount of gigabytes (GB) (1000\texorpdfstring{$\ast$}{*}1000\texorpdfstring{$\ast$}{*}1000) 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00351}{351}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a31c11a64ca799bf89552369a63cecf98}\label{defines_8h_a31c11a64ca799bf89552369a63cecf98} 
+\index{defines.h@{defines.h}!I16\_MAX@{I16\_MAX}}
+\index{I16\_MAX@{I16\_MAX}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{I16\_MAX}{I16\_MAX}}
+{\footnotesize\ttfamily \#define I16\+\_\+\+MAX~32767}
+
+
+
+Maximum value for a 16-\/bit signed integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00167}{167}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a72800ba3863b6bae70ee3f22482e6db3}\label{defines_8h_a72800ba3863b6bae70ee3f22482e6db3} 
+\index{defines.h@{defines.h}!I16\_MIN@{I16\_MIN}}
+\index{I16\_MIN@{I16\_MIN}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{I16\_MIN}{I16\_MIN}}
+{\footnotesize\ttfamily \#define I16\+\_\+\+MIN~(-\/\mbox{\hyperlink{defines_8h_a31c11a64ca799bf89552369a63cecf98}{I16\+\_\+\+MAX}} -\/ 1)}
+
+
+
+Minimum value for a 16-\/bit signed integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00179}{179}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a6e0f9d2db6ef5d899eb21081ef248851}\label{defines_8h_a6e0f9d2db6ef5d899eb21081ef248851} 
+\index{defines.h@{defines.h}!I32\_MAX@{I32\_MAX}}
+\index{I32\_MAX@{I32\_MAX}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{I32\_MAX}{I32\_MAX}}
+{\footnotesize\ttfamily \#define I32\+\_\+\+MAX~2147483647}
+
+
+
+Maximum value for a 32-\/bit signed integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00170}{170}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_acf167b5064e33111b4da99625631b8af}\label{defines_8h_acf167b5064e33111b4da99625631b8af} 
+\index{defines.h@{defines.h}!I32\_MIN@{I32\_MIN}}
+\index{I32\_MIN@{I32\_MIN}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{I32\_MIN}{I32\_MIN}}
+{\footnotesize\ttfamily \#define I32\+\_\+\+MIN~(-\/\mbox{\hyperlink{defines_8h_a6e0f9d2db6ef5d899eb21081ef248851}{I32\+\_\+\+MAX}} -\/ 1)}
+
+
+
+Minimum value for a 32-\/bit signed integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00182}{182}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a5f660b55f835b170812ab67f556e9a5a}\label{defines_8h_a5f660b55f835b170812ab67f556e9a5a} 
+\index{defines.h@{defines.h}!I64\_MAX@{I64\_MAX}}
+\index{I64\_MAX@{I64\_MAX}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{I64\_MAX}{I64\_MAX}}
+{\footnotesize\ttfamily \#define I64\+\_\+\+MAX~9223372036854775807L}
+
+
+
+Maximum value for a 64-\/bit signed integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00173}{173}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a0427de163db0e1a357eee973c48bdfb5}\label{defines_8h_a0427de163db0e1a357eee973c48bdfb5} 
+\index{defines.h@{defines.h}!I64\_MIN@{I64\_MIN}}
+\index{I64\_MIN@{I64\_MIN}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{I64\_MIN}{I64\_MIN}}
+{\footnotesize\ttfamily \#define I64\+\_\+\+MIN~(-\/\mbox{\hyperlink{defines_8h_a5f660b55f835b170812ab67f556e9a5a}{I64\+\_\+\+MAX}} -\/ 1)}
+
+
+
+Minimum value for a 64-\/bit signed integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00185}{185}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a06aab1f97b965931eb9b623f9cc4952d}\label{defines_8h_a06aab1f97b965931eb9b623f9cc4952d} 
+\index{defines.h@{defines.h}!I8\_MAX@{I8\_MAX}}
+\index{I8\_MAX@{I8\_MAX}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{I8\_MAX}{I8\_MAX}}
+{\footnotesize\ttfamily \#define I8\+\_\+\+MAX~127}
+
+
+
+Maximum value for an 8-\/bit signed integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00164}{164}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a50b6c3c5a46f347eb58da649285ddaa8}\label{defines_8h_a50b6c3c5a46f347eb58da649285ddaa8} 
+\index{defines.h@{defines.h}!I8\_MIN@{I8\_MIN}}
+\index{I8\_MIN@{I8\_MIN}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{I8\_MIN}{I8\_MIN}}
+{\footnotesize\ttfamily \#define I8\+\_\+\+MIN~(-\/\mbox{\hyperlink{defines_8h_a06aab1f97b965931eb9b623f9cc4952d}{I8\+\_\+\+MAX}} -\/ 1)}
+
+
+
+Minimum value for an 8-\/bit signed integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00176}{176}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a483b0a38edf0c10ef4a7cb633dc8a9fc}\label{defines_8h_a483b0a38edf0c10ef4a7cb633dc8a9fc} 
+\index{defines.h@{defines.h}!INVALID\_ID@{INVALID\_ID}}
+\index{INVALID\_ID@{INVALID\_ID}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{INVALID\_ID}{INVALID\_ID}}
+{\footnotesize\ttfamily \#define INVALID\+\_\+\+ID~4294967295U}
+
+
+
+Represents an invalid 32-\/bit unsigned ID (max value of u32). 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00128}{128}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_af184a0442a40bbe1787bb234d3a8bfae}\label{defines_8h_af184a0442a40bbe1787bb234d3a8bfae} 
+\index{defines.h@{defines.h}!INVALID\_ID\_U16@{INVALID\_ID\_U16}}
+\index{INVALID\_ID\_U16@{INVALID\_ID\_U16}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{INVALID\_ID\_U16}{INVALID\_ID\_U16}}
+{\footnotesize\ttfamily \#define INVALID\+\_\+\+ID\+\_\+\+U16~65535U}
+
+
+
+Represents an invalid 16-\/bit unsigned ID (max value of u16). 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00134}{134}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a1e761fd5d2416d048a66c671766a2212}\label{defines_8h_a1e761fd5d2416d048a66c671766a2212} 
+\index{defines.h@{defines.h}!INVALID\_ID\_U32@{INVALID\_ID\_U32}}
+\index{INVALID\_ID\_U32@{INVALID\_ID\_U32}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{INVALID\_ID\_U32}{INVALID\_ID\_U32}}
+{\footnotesize\ttfamily \#define INVALID\+\_\+\+ID\+\_\+\+U32~\mbox{\hyperlink{defines_8h_a483b0a38edf0c10ef4a7cb633dc8a9fc}{INVALID\+\_\+\+ID}}}
+
+
+
+Represents an invalid 32-\/bit unsigned ID (max value of u32). 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00131}{131}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_ab8c9e5ae5e9214bf306f3394a32e42f7}\label{defines_8h_ab8c9e5ae5e9214bf306f3394a32e42f7} 
+\index{defines.h@{defines.h}!INVALID\_ID\_U64@{INVALID\_ID\_U64}}
+\index{INVALID\_ID\_U64@{INVALID\_ID\_U64}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{INVALID\_ID\_U64}{INVALID\_ID\_U64}}
+{\footnotesize\ttfamily \#define INVALID\+\_\+\+ID\+\_\+\+U64~18446744073709551615UL}
+
+
+
+Represents an invalid 64-\/bit unsigned ID (max value of u64). 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00125}{125}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a41fdc8d1e5968c92eb3b51a1ee1fc731}\label{defines_8h_a41fdc8d1e5968c92eb3b51a1ee1fc731} 
+\index{defines.h@{defines.h}!INVALID\_ID\_U8@{INVALID\_ID\_U8}}
+\index{INVALID\_ID\_U8@{INVALID\_ID\_U8}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{INVALID\_ID\_U8}{INVALID\_ID\_U8}}
+{\footnotesize\ttfamily \#define INVALID\+\_\+\+ID\+\_\+\+U8~255U}
+
+
+
+Represents an invalid 8-\/bit unsigned ID (max value of u8). 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00137}{137}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_a0dc00ea56793277f556f072353318f35}\label{defines_8h_a0dc00ea56793277f556f072353318f35} 
 \index{defines.h@{defines.h}!KAPI@{KAPI}}
@@ -131,7 +469,7 @@ Usage\+:
 
 MSVC uses {\ttfamily \+\_\+\+\_\+declspec(dllexport)} GCC or Clang uses {\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+((visibility("{}default"{})))} Using the library – import symbols MSVC uses {\ttfamily \+\_\+\+\_\+declspec(dllimport)} GCC/\+Clang doesn\textquotesingle{}t need special import 
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00190}{190}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+Definition at line \mbox{\hyperlink{defines_8h_source_l00274}{274}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_ac007fb317c156d98a91628a86b3c9c0e}\label{defines_8h_ac007fb317c156d98a91628a86b3c9c0e} 
 \index{defines.h@{defines.h}!KCLAMP@{KCLAMP}}
@@ -161,7 +499,35 @@ The clamped value
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00203}{203}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+Definition at line \mbox{\hyperlink{defines_8h_source_l00295}{295}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a6d2716f9382777bbbb48201373249974}\label{defines_8h_a6d2716f9382777bbbb48201373249974} 
+\index{defines.h@{defines.h}!KIBIBYTES@{KIBIBYTES}}
+\index{KIBIBYTES@{KIBIBYTES}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{KIBIBYTES}{KIBIBYTES}}
+{\footnotesize\ttfamily \#define KIBIBYTES(\begin{DoxyParamCaption}\item[{}]{amount }\end{DoxyParamCaption})~((amount) \texorpdfstring{$\ast$}{*} 1024ULL)}
+
+
+
+Gets the number of bytes from amount of kibibytes (KiB) (1024) 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00348}{348}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_ab45c9b185ca38d7f25aa3387e881f2d4}\label{defines_8h_ab45c9b185ca38d7f25aa3387e881f2d4} 
+\index{defines.h@{defines.h}!KILOBYTES@{KILOBYTES}}
+\index{KILOBYTES@{KILOBYTES}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{KILOBYTES}{KILOBYTES}}
+{\footnotesize\ttfamily \#define KILOBYTES(\begin{DoxyParamCaption}\item[{}]{amount }\end{DoxyParamCaption})~((amount) \texorpdfstring{$\ast$}{*} 1000\+ULL)}
+
+
+
+Gets the number of bytes from amount of kilobytes (KB) (1000) 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00357}{357}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9}\label{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9} 
 \index{defines.h@{defines.h}!KINLINE@{KINLINE}}
@@ -171,7 +537,35 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00203}{203}} of file \mbo
 
 Inlining directives. Used for performance-\/critical functions. Forces inlining of a function (MSVC\+: \+\_\+\+\_\+forceinline). GCC or Clang\+: uses static inline by default. 
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00229}{229}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+Definition at line \mbox{\hyperlink{defines_8h_source_l00320}{320}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_aa38f54712172212d6112b01f51123f0d}\label{defines_8h_aa38f54712172212d6112b01f51123f0d} 
+\index{defines.h@{defines.h}!KMAX@{KMAX}}
+\index{KMAX@{KMAX}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{KMAX}{KMAX}}
+{\footnotesize\ttfamily \#define KMAX(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~(x $>$ y ? x \+: y)}
+
+
+
+Returns the larger of two values. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00387}{387}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a8cb45394d95d76663ea4ef913732fe29}\label{defines_8h_a8cb45394d95d76663ea4ef913732fe29} 
+\index{defines.h@{defines.h}!KMIN@{KMIN}}
+\index{KMIN@{KMIN}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{KMIN}{KMIN}}
+{\footnotesize\ttfamily \#define KMIN(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~(x $<$ y ? x \+: y)}
+
+
+
+Returns the smaller of two values. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00384}{384}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_afc8c390e62fe367aaf65e4b3a8e9d64c}\label{defines_8h_afc8c390e62fe367aaf65e4b3a8e9d64c} 
 \index{defines.h@{defines.h}!KNOINLINE@{KNOINLINE}}
@@ -181,7 +575,55 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00229}{229}} of file \mbo
 
 Inlining directives. Used for performance-\/critical functions. Forces inlining of a function (MSVC\+: \+\_\+\+\_\+forceinline). GCC or Clang\+: uses static inline by default. 
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00236}{236}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+Definition at line \mbox{\hyperlink{defines_8h_source_l00327}{327}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_ac84907cd2a910dfcd456807cce1a6621}\label{defines_8h_ac84907cd2a910dfcd456807cce1a6621} 
+\index{defines.h@{defines.h}!KOHI\_DEBUG@{KOHI\_DEBUG}}
+\index{KOHI\_DEBUG@{KOHI\_DEBUG}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{KOHI\_DEBUG}{KOHI\_DEBUG}}
+{\footnotesize\ttfamily \#define KOHI\+\_\+\+DEBUG~0   /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} @brief Defined as 1 in debug builds, 0 otherwise. \texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00283}{283}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_aa275d4e22dec543092be2a8c845da267}\label{defines_8h_aa275d4e22dec543092be2a8c845da267} 
+\index{defines.h@{defines.h}!KOHI\_RELEASE@{KOHI\_RELEASE}}
+\index{KOHI\_RELEASE@{KOHI\_RELEASE}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{KOHI\_RELEASE}{KOHI\_RELEASE}}
+{\footnotesize\ttfamily \#define KOHI\+\_\+\+RELEASE~1 /\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} @brief Defined as 1 in release builds, 0 otherwise. \texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00282}{282}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_af9b433687761bfc5d19c9d72b0b37d4c}\label{defines_8h_af9b433687761bfc5d19c9d72b0b37d4c} 
+\index{defines.h@{defines.h}!MEBIBYTES@{MEBIBYTES}}
+\index{MEBIBYTES@{MEBIBYTES}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{MEBIBYTES}{MEBIBYTES}}
+{\footnotesize\ttfamily \#define MEBIBYTES(\begin{DoxyParamCaption}\item[{}]{amount }\end{DoxyParamCaption})~((amount) \texorpdfstring{$\ast$}{*} 1024ULL \texorpdfstring{$\ast$}{*} 1024ULL)}
+
+
+
+Gets the number of bytes from amount of mebibytes (MiB) (1024\texorpdfstring{$\ast$}{*}1024) 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00345}{345}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a16a05dd1ee59ce4fc5aa7343bb227e97}\label{defines_8h_a16a05dd1ee59ce4fc5aa7343bb227e97} 
+\index{defines.h@{defines.h}!MEGABYTES@{MEGABYTES}}
+\index{MEGABYTES@{MEGABYTES}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{MEGABYTES}{MEGABYTES}}
+{\footnotesize\ttfamily \#define MEGABYTES(\begin{DoxyParamCaption}\item[{}]{amount }\end{DoxyParamCaption})~((amount) \texorpdfstring{$\ast$}{*} 1000\+ULL \texorpdfstring{$\ast$}{*} 1000\+ULL)}
+
+
+
+Gets the number of bytes from amount of megabytes (MB) (1000\texorpdfstring{$\ast$}{*}1000) 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00354}{354}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_a24df254ec81fc13256ad54cfe955d229}\label{defines_8h_a24df254ec81fc13256ad54cfe955d229} 
 \index{defines.h@{defines.h}!STATIC\_ASSERT@{STATIC\_ASSERT}}
@@ -191,7 +633,7 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00236}{236}} of file \mbo
 
 Define STATIC\+\_\+\+ASSERT based on compiler support. Uses C11 standard {\ttfamily \+\_\+\+Static\+\_\+assert} if available, otherwise falls back to a custom {\ttfamily static\+\_\+assert} macro. 
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00065}{65}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+Definition at line \mbox{\hyperlink{defines_8h_source_l00081}{81}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 \Hypertarget{defines_8h_add3ca9eefe3b5b754426f51d3043e579}\label{defines_8h_add3ca9eefe3b5b754426f51d3043e579} 
 \index{defines.h@{defines.h}!True@{True}}
@@ -201,7 +643,119 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00065}{65}} of file \mbox
 
 Standard boolean values 
 
-Definition at line \mbox{\hyperlink{defines_8h_source_l00104}{104}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+Definition at line \mbox{\hyperlink{defines_8h_source_l00120}{120}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_ac580728e242e90fe3082dc7fe45ec6c9}\label{defines_8h_ac580728e242e90fe3082dc7fe45ec6c9} 
+\index{defines.h@{defines.h}!U16\_MAX@{U16\_MAX}}
+\index{U16\_MAX@{U16\_MAX}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{U16\_MAX}{U16\_MAX}}
+{\footnotesize\ttfamily \#define U16\+\_\+\+MAX~65535U}
+
+
+
+Maximum value for a 16-\/bit unsigned integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00146}{146}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a80b4ee16c02644eef90553da09dc0907}\label{defines_8h_a80b4ee16c02644eef90553da09dc0907} 
+\index{defines.h@{defines.h}!U16\_MIN@{U16\_MIN}}
+\index{U16\_MIN@{U16\_MIN}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{U16\_MIN}{U16\_MIN}}
+{\footnotesize\ttfamily \#define U16\+\_\+\+MIN~0U}
+
+
+
+Minimum value for unsigned 16 bit integers (0 for all sizes). 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00158}{158}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a4028a1a55fd7b907a44c48d5ca42d6a6}\label{defines_8h_a4028a1a55fd7b907a44c48d5ca42d6a6} 
+\index{defines.h@{defines.h}!U32\_MAX@{U32\_MAX}}
+\index{U32\_MAX@{U32\_MAX}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{U32\_MAX}{U32\_MAX}}
+{\footnotesize\ttfamily \#define U32\+\_\+\+MAX~4294967295U}
+
+
+
+Maximum value for a 32-\/bit unsigned integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00143}{143}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_ad0d6d592d964acd9de17674242bf2707}\label{defines_8h_ad0d6d592d964acd9de17674242bf2707} 
+\index{defines.h@{defines.h}!U32\_MIN@{U32\_MIN}}
+\index{U32\_MIN@{U32\_MIN}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{U32\_MIN}{U32\_MIN}}
+{\footnotesize\ttfamily \#define U32\+\_\+\+MIN~0U}
+
+
+
+Minimum value for unsigned 32 bit integers (0 for all sizes). 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00155}{155}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_aaf73a88ad00da5c878558d6dc80b2f5c}\label{defines_8h_aaf73a88ad00da5c878558d6dc80b2f5c} 
+\index{defines.h@{defines.h}!U64\_MAX@{U64\_MAX}}
+\index{U64\_MAX@{U64\_MAX}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{U64\_MAX}{U64\_MAX}}
+{\footnotesize\ttfamily \#define U64\+\_\+\+MAX~18446744073709551615UL}
+
+
+
+Maximum value for a 64-\/bit unsigned integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00140}{140}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a361528a08635372583d48b4d6e35dfa5}\label{defines_8h_a361528a08635372583d48b4d6e35dfa5} 
+\index{defines.h@{defines.h}!U64\_MIN@{U64\_MIN}}
+\index{U64\_MIN@{U64\_MIN}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{U64\_MIN}{U64\_MIN}}
+{\footnotesize\ttfamily \#define U64\+\_\+\+MIN~0\+UL}
+
+
+
+Minimum value for unsigned 64 bit integers (0 for all sizes). 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00152}{152}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a1187e707402ca2fca73f06f7beb1e631}\label{defines_8h_a1187e707402ca2fca73f06f7beb1e631} 
+\index{defines.h@{defines.h}!U8\_MAX@{U8\_MAX}}
+\index{U8\_MAX@{U8\_MAX}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{U8\_MAX}{U8\_MAX}}
+{\footnotesize\ttfamily \#define U8\+\_\+\+MAX~255U}
+
+
+
+Maximum value for an 8-\/bit unsigned integer. 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00149}{149}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+\Hypertarget{defines_8h_a50185cccc95df2269f9f4e400d1fa6ed}\label{defines_8h_a50185cccc95df2269f9f4e400d1fa6ed} 
+\index{defines.h@{defines.h}!U8\_MIN@{U8\_MIN}}
+\index{U8\_MIN@{U8\_MIN}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{U8\_MIN}{U8\_MIN}}
+{\footnotesize\ttfamily \#define U8\+\_\+\+MIN~0U}
+
+
+
+Minimum value for unsigned 8 bit integers (0 for all sizes). 
+
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00161}{161}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
 
 
@@ -216,11 +770,11 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00104}{104}} of file \mbo
 
 Definition at line \mbox{\hyperlink{defines_8h_source_l00053}{53}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
-\Hypertarget{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}\label{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa} 
+\Hypertarget{defines_8h_a3a58feb08f4f45ee137ec358217c3270}\label{defines_8h_a3a58feb08f4f45ee137ec358217c3270} 
 \index{defines.h@{defines.h}!b8@{b8}}
 \index{b8@{b8}!defines.h@{defines.h}}
 \doxysubsubsection{\texorpdfstring{b8}{b8}}
-{\footnotesize\ttfamily typedef char \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}}}
+{\footnotesize\ttfamily typedef \+\_\+\+Bool \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}}
 
 8-\/bit boolean (more memory-\/efficient than b32) 
 
@@ -286,6 +840,26 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00040}{40}} of file \mbox
 
 Definition at line \mbox{\hyperlink{defines_8h_source_l00031}{31}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
 
+\Hypertarget{defines_8h_a0d37ef0b1a77903e7698337d2594035e}\label{defines_8h_a0d37ef0b1a77903e7698337d2594035e} 
+\index{defines.h@{defines.h}!krange@{krange}}
+\index{krange@{krange}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{krange}{krange}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structkrange}{krange}} \mbox{\hyperlink{structkrange}{krange}}}
+
+
+
+A range, typically of memory. 
+
+\Hypertarget{defines_8h_a48a60b69f67a735eb885a52430192253}\label{defines_8h_a48a60b69f67a735eb885a52430192253} 
+\index{defines.h@{defines.h}!range32@{range32}}
+\index{range32@{range32}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{range32}{range32}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrange32}{range32}} \mbox{\hyperlink{structrange32}{range32}}}
+
+
+
+A range, typically of memory. 
+
 \Hypertarget{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}\label{defines_8h_a9e6c91d77e24643b888dbd1a1a590054} 
 \index{defines.h@{defines.h}!u16@{u16}}
 \index{u16@{u16}!defines.h@{defines.h}}
@@ -329,6 +903,64 @@ Definition at line \mbox{\hyperlink{defines_8h_source_l00017}{17}} of file \mbox
 
 
 \doxysubsection{Function Documentation}
+\Hypertarget{defines_8h_abf0b958d00fe41b2f3b02d9ed263f780}\label{defines_8h_abf0b958d00fe41b2f3b02d9ed263f780} 
+\index{defines.h@{defines.h}!get\_aligned@{get\_aligned}}
+\index{get\_aligned@{get\_aligned}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{get\_aligned()}{get\_aligned()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9}{KINLINE}} \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} get\+\_\+aligned (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{operand,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{granularity }\end{DoxyParamCaption})}
+
+
+
+Aligns a value to the nearest multiple of a granularity. Useful for memory alignment (e.\+g., Vulkan buffers). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em operand} & The value to align. \\
+\hline
+{\em granularity} & The alignment boundary (must be power of 2). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The aligned value. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00367}{367}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{defines_8h_source_l00379}{get\+\_\+aligned\+\_\+range()}}.
+
+\Hypertarget{defines_8h_a2f99ca6366e01a8ead4227cecbb8b67f}\label{defines_8h_a2f99ca6366e01a8ead4227cecbb8b67f} 
+\index{defines.h@{defines.h}!get\_aligned\_range@{get\_aligned\_range}}
+\index{get\_aligned\_range@{get\_aligned\_range}!defines.h@{defines.h}}
+\doxysubsubsection{\texorpdfstring{get\_aligned\_range()}{get\_aligned\_range()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ab4d0d8cdc3aafc511f63fecffd1806c9}{KINLINE}} \mbox{\hyperlink{structkrange}{krange}} get\+\_\+aligned\+\_\+range (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{offset,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{granularity }\end{DoxyParamCaption})}
+
+
+
+Aligns both the offset and size of a memory range to a granularity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The starting offset to align. \\
+\hline
+{\em size} & The size to align. \\
+\hline
+{\em granularity} & The alignment boundary (must be power of 2). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An aligned krange. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{defines_8h_source_l00379}{379}} of file \mbox{\hyperlink{defines_8h_source}{defines.\+h}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00367}{get\+\_\+aligned()}}.
+
 \Hypertarget{defines_8h_a9864ac51060117e5bfbb49a4a211c41b}\label{defines_8h_a9864ac51060117e5bfbb49a4a211c41b} 
 \index{defines.h@{defines.h}!STATIC\_ASSERT@{STATIC\_ASSERT}}
 \index{STATIC\_ASSERT@{STATIC\_ASSERT}!defines.h@{defines.h}}

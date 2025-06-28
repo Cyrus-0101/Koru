@@ -27,8 +27,12 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactList}\small\item\em Returns the length of the given null-\/terminated string. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8h_a6313f0a692f28c80f3016a5f77f31bec}{string\+\_\+duplicate}} (const char \texorpdfstring{$\ast$}{*}str)
 \begin{DoxyCompactList}\small\item\em Duplicates the given null-\/terminated string into a new heap-\/allocated copy. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} \mbox{\hyperlink{kstring_8h_a3ffc35591464c532cf94a5bcb6adb2bc}{strings\+\_\+equal}} (const char \texorpdfstring{$\ast$}{*}str0, const char \texorpdfstring{$\ast$}{*}str1)
-\begin{DoxyCompactList}\small\item\em Compares two null-\/terminated strings for equality (case-\/sensitive). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8h_a3ffc35591464c532cf94a5bcb6adb2bc}{strings\+\_\+equal}} (const char \texorpdfstring{$\ast$}{*}str0, const char \texorpdfstring{$\ast$}{*}str1)
+\begin{DoxyCompactList}\small\item\em Compares two null-\/terminated strings for equality (case-\/sensitive). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{kstring_8h_a7fec1c1563d0862f70d82a917db33b1d}{string\+\_\+format}} (char \texorpdfstring{$\ast$}{*}dest, const char \texorpdfstring{$\ast$}{*}format,...)
+\begin{DoxyCompactList}\small\item\em Performs string formatting against the given format string and parameters. NOTE\+: that this performs a dynamic allocation and should be freed by the caller. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{kstring_8h_aaa989e81756996ae4818df30bf3288c7}{string\+\_\+format\+\_\+v}} (char \texorpdfstring{$\ast$}{*}dest, const char \texorpdfstring{$\ast$}{*}format, void \texorpdfstring{$\ast$}{*}va\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Performs variadic string formatting against the given format string and va\+\_\+list. NOTE\+: that this performs a dynamic allocation and should be freed by the caller. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -70,11 +74,71 @@ A newly allocated copy of the input string. Caller must free using {\ttfamily \d
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kstring_8c_source_l00024}{24}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00027}{27}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
 
 
 
-References \mbox{\hyperlink{kmemory_8c_source_l00105}{kallocate()}}, \mbox{\hyperlink{kmemory_8c_source_l00160}{kcopy\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00044}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{kstring_8c_source_l00020}{string\+\_\+length()}}.
+References \mbox{\hyperlink{kmemory_8c_source_l00106}{kallocate()}}, \mbox{\hyperlink{kmemory_8c_source_l00161}{kcopy\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{kstring_8c_source_l00023}{string\+\_\+length()}}.
+
+\Hypertarget{kstring_8h_a7fec1c1563d0862f70d82a917db33b1d}\label{kstring_8h_a7fec1c1563d0862f70d82a917db33b1d} 
+\index{kstring.h@{kstring.h}!string\_format@{string\_format}}
+\index{string\_format@{string\_format}!kstring.h@{kstring.h}}
+\doxysubsubsection{\texorpdfstring{string\_format()}{string\_format()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} string\+\_\+format (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Performs string formatting against the given format string and parameters. NOTE\+: that this performs a dynamic allocation and should be freed by the caller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & The format string to use for the operation \\
+\hline
+{\em ...} & The format arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The newly-\/formatted string (dynamically allocated). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00041}{41}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{kstring_8c_source_l00052}{string\+\_\+format\+\_\+v()}}.
+
+\Hypertarget{kstring_8h_aaa989e81756996ae4818df30bf3288c7}\label{kstring_8h_aaa989e81756996ae4818df30bf3288c7} 
+\index{kstring.h@{kstring.h}!string\_format\_v@{string\_format\_v}}
+\index{string\_format\_v@{string\_format\_v}!kstring.h@{kstring.h}}
+\doxysubsubsection{\texorpdfstring{string\_format\_v()}{string\_format\_v()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} string\+\_\+format\+\_\+v (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{format,  }\item[{void \texorpdfstring{$\ast$}{*}}]{va\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Performs variadic string formatting against the given format string and va\+\_\+list. NOTE\+: that this performs a dynamic allocation and should be freed by the caller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & The string to be formatted. \\
+\hline
+{\em va\+\_\+list} & The variadic argument list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The newly-\/formatted string (dynamically allocated). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00052}{52}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmemory_8c_source_l00161}{kcopy\+\_\+memory()}}.
+
+
+
+Referenced by \mbox{\hyperlink{kstring_8c_source_l00041}{string\+\_\+format()}}.
 
 \Hypertarget{kstring_8h_ab7a013ae84adad0a807d921d9e38d424}\label{kstring_8h_ab7a013ae84adad0a807d921d9e38d424} 
 \index{kstring.h@{kstring.h}!string\_length@{string\_length}}
@@ -98,17 +162,17 @@ The number of characters in the string (excluding the null terminator).
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kstring_8c_source_l00020}{20}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00023}{23}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{kstring_8c_source_l00024}{string\+\_\+duplicate()}}.
+Referenced by \mbox{\hyperlink{kstring_8c_source_l00027}{string\+\_\+duplicate()}}.
 
 \Hypertarget{kstring_8h_a3ffc35591464c532cf94a5bcb6adb2bc}\label{kstring_8h_a3ffc35591464c532cf94a5bcb6adb2bc} 
 \index{kstring.h@{kstring.h}!strings\_equal@{strings\_equal}}
 \index{strings\_equal@{strings\_equal}!kstring.h@{kstring.h}}
 \doxysubsubsection{\texorpdfstring{strings\_equal()}{strings\_equal()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a7415f24c35cb3e16a79f143c5527fdfa}{b8}} strings\+\_\+equal (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str0,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{str1 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} strings\+\_\+equal (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str0,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{str1 }\end{DoxyParamCaption})}
 
 
 
@@ -128,9 +192,9 @@ True if both strings are identical; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kstring_8c_source_l00034}{34}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00037}{37}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00506}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00112}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00508}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00112}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 
