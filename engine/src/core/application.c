@@ -6,7 +6,9 @@
 #include "platform/platform.h"
 #include "core/input.h"
 #include "core/clock.h"
+#include "memory/linear_allocator.h"
 #include "renderer/renderer_frontend.h"
+#include "core/event.h"
 
 /**
  * @file application.c
@@ -44,11 +46,6 @@ typedef struct application_state {
     b8 is_suspended;
 
     /**
-     * @brief Opaque platform-specific state used for windowing, input, etc.
-     */
-    platform_state platform;
-
-    /**
      * @brief The width of the application window client area.
      */
     i16 width;
@@ -58,23 +55,70 @@ typedef struct application_state {
      */
     i16 height;
 
+    /**
+     * @brief Clock used for timing and frame updates.
+     */
     clock clock;
 
     /**
      * @brief Timestamp of the last processed frame for delta time calculation.
      */
     f64 last_time;
-} application_state;
 
-/**
- * @brief Global flag indicating if the application has already been initialized.
- */
-static b8 initialized = False;
+    /**
+     * @brief Allocator for internal systems.
+     */
+    linear_allocator systems_allocator;
+
+    u64 event_system_memory_requirement;
+
+    void* event_system_state;
+
+    /**
+     * @brief The total memory requirement for the memory system.
+     *
+     * This is used to allocate memory for the memory system state.
+     */
+    u64 memory_system_memory_requirement;
+
+    /**
+     * @brief Pointer to the memory system state.
+     *
+     * This is used to manage the memory system's internal state.
+     */
+    void* memory_system_state;
+
+    /**
+     * @brief The total memory requirement for the logging system.
+     *
+     * This is used to allocate memory for the logging system state.
+     */
+    u64 logging_system_memory_requirement;
+
+    /**
+     * @brief Pointer to the logging system state.
+     *
+     * This is used to manage the logging system's internal state.
+     */
+    void* logging_system_state;
+
+    u64 input_system_memory_requirement;
+
+    void* input_system_state;
+
+    u64 platform_system_memory_requirement;
+
+    void* platform_system_state;
+
+    u64 renderer_system_memory_requirement;
+
+    void* renderer_system_state;
+} application_state;
 
 /**
  * @brief Global instance of the application state.
  */
-static application_state app_state;
+static application_state* app_state;
 
 /**
  * @brief Global event handler for application-level events.
@@ -137,25 +181,46 @@ b8 application_on_resized(u16 code, void* sender, void* listener_inst, event_con
  * @return True if initialization was successful; False otherwise.
  */
 b8 application_create(game* game_inst) {
-    if (initialized) {
+    if (game_inst->application_state) {
         KERROR("application_create() called more than once");
         return False;
     }
 
-    app_state.game_inst = game_inst;
-
-    // Initialize Subsystem
-    initialize_logging();
-    input_initialize();
+    // TO-DO: Temporary
+    game_inst->application_state = kallocate(sizeof(application_state), MEMORY_TAG_APPLICATION);
+    app_state = game_inst->application_state;
+    app_state->game_inst = game_inst;
 
     // Set initial application state
-    app_state.is_running = True;
-    app_state.is_suspended = False;
+    app_state->is_running = False;
+    app_state->is_suspended = False;
 
-    if (!event_initialize()) {
-        KERROR("Event system failed initialization. Application cannot continue.");
+    // Allocate memory for the application state
+    u64 systems_allocator_total_size = 64 * 1024 * 1024;  // 64 MB
+    linear_allocator_create(systems_allocator_total_size, 0, &app_state->systems_allocator);
+
+    // Initialize event system
+    event_system_initialize(&app_state->event_system_memory_requirement, 0);
+    app_state->event_system_state = linear_allocator_allocate(&app_state->systems_allocator, app_state->event_system_memory_requirement);
+    event_system_initialize(&app_state->event_system_memory_requirement, app_state->event_system_state);
+
+    // Initialize memory system
+    initialize_memory(&app_state->memory_system_memory_requirement, 0);
+    app_state->memory_system_state = linear_allocator_allocate(&app_state->systems_allocator, app_state->memory_system_memory_requirement);
+    initialize_memory(&app_state->memory_system_memory_requirement, app_state->memory_system_state);
+
+    // Initialize Logging Subsystem
+    initialize_logging(&app_state->logging_system_memory_requirement, 0);
+    app_state->logging_system_state = linear_allocator_allocate(&app_state->systems_allocator, app_state->logging_system_memory_requirement);
+    if (!initialize_logging(&app_state->logging_system_memory_requirement, app_state->logging_system_state)) {
+        KERROR("Failed to initialize logging system. Application cannot continue. Shutting down...");
         return False;
     }
+
+    // Initialize input system
+    input_system_initialize(&app_state->input_system_memory_requirement, 0);
+    app_state->input_system_state = linear_allocator_allocate(&app_state->systems_allocator, app_state->input_system_memory_requirement);
+    input_system_initialize(&app_state->input_system_memory_requirement, app_state->input_system_state);
 
     // Register for Key press events
     event_register(EVENT_CODE_APPLICATION_QUIT, 0, application_on_event);
@@ -164,37 +229,41 @@ b8 application_create(game* game_inst) {
     event_register(EVENT_CODE_RESIZED, 0, application_on_resized);
 
     // Start platform layer
-    if (!platform_startup(&app_state.platform, game_inst->app_config.name, game_inst->app_config.start_pos_x, game_inst->app_config.start_pos_y, game_inst->app_config.start_width, game_inst->app_config.start_height)) {
+    platform_system_startup(&app_state->platform_system_memory_requirement, 0, 0, 0, 0, 0, 0);
+    app_state->platform_system_state = linear_allocator_allocate(&app_state->systems_allocator, app_state->platform_system_memory_requirement);
+    if (!platform_system_startup(&app_state->platform_system_memory_requirement, app_state->platform_system_state, game_inst->app_config.name, game_inst->app_config.start_pos_x, game_inst->app_config.start_pos_y, game_inst->app_config.start_width, game_inst->app_config.start_height)) {
         return False;
     }
 
     // Renderer startup
-    if (!renderer_initialize(game_inst->app_config.name, &app_state.platform)) {
+    renderer_system_initialize(&app_state->renderer_system_memory_requirement, 0, 0);
+    app_state->renderer_system_state = linear_allocator_allocate(&app_state->systems_allocator, app_state->renderer_system_memory_requirement);
+    if (!renderer_system_initialize(&app_state->renderer_system_memory_requirement, app_state->renderer_system_state, game_inst->app_config.name)) {
         KFATAL("Failed to initialize renderer. Aborting application.");
 
         return False;
     }
 
     // Initialize Game
-    if (!app_state.game_inst->initialize(app_state.game_inst)) {
+    if (!app_state->game_inst->initialize(app_state->game_inst)) {
         KFATAL("Game failed to initialize");
 
         return False;
     }
 
-    app_state.game_inst->on_resize(app_state.game_inst, app_state.width, app_state.height);
-
-    initialized = True;
+    app_state->game_inst->on_resize(app_state->game_inst, app_state->width, app_state->height);
 
     return True;
 }
 
 b8 application_run() {
-    clock_start(&app_state.clock);
+    app_state->is_running = True;
 
-    clock_update(&app_state.clock);
+    clock_start(&app_state->clock);
 
-    app_state.last_time = app_state.clock.elapsed;
+    clock_update(&app_state->clock);
+
+    app_state->last_time = app_state->clock.elapsed;
 
     f64 running_time = 0;
 
@@ -205,36 +274,35 @@ b8 application_run() {
     // Log memory info - Memory Leak
     KINFO(get_memory_usage_str());
 
-    while (app_state.is_running) {
-        if (!platform_pump_messages(&app_state.platform)) {
+    while (app_state->is_running) {
+        if (!platform_pump_messages()) {
             // If platform request to quit, stop running
-            app_state.is_running = False;
-            break;
+            app_state->is_running = False;
         }
 
-        if (!app_state.is_suspended) {
+        if (!app_state->is_suspended) {
             // Update clock and get delta time.
-            clock_update(&app_state.clock);
+            clock_update(&app_state->clock);
 
-            f64 current_time = app_state.clock.elapsed;
+            f64 current_time = app_state->clock.elapsed;
 
-            f64 delta = (current_time - app_state.last_time);
+            f64 delta = (current_time - app_state->last_time);
 
             f64 frame_start_time = platform_get_absolute_time();
 
-            if (!app_state.game_inst->update(app_state.game_inst, (f32)delta)) {
+            if (!app_state->game_inst->update(app_state->game_inst, (f32)delta)) {
                 KFATAL("Game update failed. Shutting down!");
 
-                app_state.is_running = False;
+                app_state->is_running = False;
 
                 break;
             }
 
             // Call game render routine
-            if (!app_state.game_inst->render(app_state.game_inst, (f32)delta)) {
+            if (!app_state->game_inst->render(app_state->game_inst, (f32)delta)) {
                 KFATAL("Game render failed. Shutting down!");
 
-                app_state.is_running = False;
+                app_state->is_running = False;
 
                 break;
             }
@@ -275,39 +343,42 @@ b8 application_run() {
             input_update(delta);
 
             // Update last time
-            app_state.last_time = current_time;
+            app_state->last_time = current_time;
         }
     }
 
     // Ensure running state is cleared
-    app_state.is_running = False;
+    app_state->is_running = False;
 
     // Shutdown event system.
     event_unregister(EVENT_CODE_APPLICATION_QUIT, 0, application_on_event);
     event_unregister(EVENT_CODE_KEY_PRESSED, 0, application_on_key);
     event_unregister(EVENT_CODE_KEY_RELEASED, 0, application_on_key);
-    // event_unregister(EVENT_CODE_RESIZED, 0, application_on_resized);
+    event_unregister(EVENT_CODE_RESIZED, 0, application_on_resized);
 
-    event_shutdown();
-    input_shutdown();
-    renderer_shutdown();
+    input_system_shutdown(app_state->input_system_state);
+    renderer_system_shutdown(app_state->renderer_system_state);
 
     // Clean up platform resources
-    platform_shutdown(&app_state.platform);
+    platform_system_shutdown(app_state->platform_system_state);
+
+    shutdown_memory(app_state->memory_system_state);
+
+    event_system_shutdown(app_state->event_system_state);
 
     return True;
 }
 
 void application_get_framebuffer_size(u32* width, u32* height) {
-    *width = app_state.width;
-    *height = app_state.height;
+    *width = app_state->width;
+    *height = app_state->height;
 }
 
 b8 application_on_event(u16 code, void* sender, void* listener_inst, event_context context) {
     switch (code) {
         case EVENT_CODE_APPLICATION_QUIT: {
             KINFO("EVENT_CODE_APPLICATION_QUIT received, shutting down.\n");
-            app_state.is_running = False;
+            app_state->is_running = False;
             return True;
         }
     }
@@ -350,27 +421,27 @@ b8 application_on_resized(u16 code, void* sender, void* listener_inst, event_con
         b8 is_visible = (b8)context.data.u16[2];  // Get visibility flag
 
         // Always update stored dimensions
-        app_state.width = width;
-        app_state.height = height;
+        app_state->width = width;
+        app_state->height = height;
 
         // Determine if we should suspend
         b8 should_suspend = !is_visible || (width <= 10 || height <= 10);
 
-        if (should_suspend && !app_state.is_suspended) {
+        if (should_suspend && !app_state->is_suspended) {
             KINFO("Window minimized or hidden, suspending application.");
-            app_state.is_suspended = True;
-        } else if (!should_suspend && app_state.is_suspended) {
+            app_state->is_suspended = True;
+        } else if (!should_suspend && app_state->is_suspended) {
             KINFO("Window restored, resuming application.");
-            app_state.is_suspended = False;
+            app_state->is_suspended = False;
 
             // Only trigger resize if we have valid dimensions
             if (width > 10 && height > 10) {
-                app_state.game_inst->on_resize(app_state.game_inst, width, height);
+                app_state->game_inst->on_resize(app_state->game_inst, width, height);
                 renderer_on_resized(width, height);
             }
         } else if (!should_suspend) {
             // Normal resize case
-            app_state.game_inst->on_resize(app_state.game_inst, width, height);
+            app_state->game_inst->on_resize(app_state->game_inst, width, height);
             renderer_on_resized(width, height);
         }
 
