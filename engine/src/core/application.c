@@ -418,34 +418,27 @@ b8 application_on_resized(u16 code, void* sender, void* listener_inst, event_con
     if (code == EVENT_CODE_RESIZED) {
         u16 width = context.data.u16[0];
         u16 height = context.data.u16[1];
-        b8 is_visible = (b8)context.data.u16[2];  // Get visibility flag
 
-        // Always update stored dimensions
-        app_state->width = width;
-        app_state->height = height;
+        if (width != app_state->width || height != app_state->height) {
+            app_state->width = width;
+            app_state->height = height;
 
-        // Determine if we should suspend
-        b8 should_suspend = !is_visible || (width <= 10 || height <= 10);
+            KDEBUG("Window resize: %i, %i", width, height);
 
-        if (should_suspend && !app_state->is_suspended) {
-            KINFO("Window minimized or hidden, suspending application.");
-            app_state->is_suspended = True;
-        } else if (!should_suspend && app_state->is_suspended) {
-            KINFO("Window restored, resuming application.");
-            app_state->is_suspended = False;
-
-            // Only trigger resize if we have valid dimensions
-            if (width > 10 && height > 10) {
+            // Handle minimization
+            if (width == 0 || height == 0) {
+                KINFO("Window minimized, suspending application.");
+                app_state->is_suspended = True;
+                return True;
+            } else {
+                if (app_state->is_suspended) {
+                    KINFO("Window restored, resuming application.");
+                    app_state->is_suspended = False;
+                }
                 app_state->game_inst->on_resize(app_state->game_inst, width, height);
                 renderer_on_resized(width, height);
             }
-        } else if (!should_suspend) {
-            // Normal resize case
-            app_state->game_inst->on_resize(app_state->game_inst, width, height);
-            renderer_on_resized(width, height);
         }
-
-        return True;
     }
     return False;
 }
