@@ -19,7 +19,7 @@ COMPILER_FLAGS := -g -MD -Werror=vla -fdeclspec -fPIC
 # -fPIC          : Required for position-independent code (even for executables)
 
 # Include paths
-INCLUDE_FLAGS := -Iengine/src -I$(VULKAN_SDK)/include
+INCLUDE_FLAGS := -Iengine/src -Itestbed\src
 # Includes headers from engine and Vulkan SDK
 
 # Linker flags
@@ -69,7 +69,7 @@ scaffold: # Create folder structure for object files
 .PHONY: link
 link: scaffold $(OBJ_FILES) # Link the testbed executable
 	@echo Linking $(ASSEMBLY)...
-	clang $(OBJ_FILES) -o $(BUILD_DIR)/$(ASSEMBLY)$(EXTENSION) $(LINKER_FLAGS)
+	clang $(OBJ_FILES) -o $(BUILD_DIR)/$(ASSEMBLY)$(EXTENSION) $(LINKER_FLAGS) -lm
 # Links testbed main.c with libengine.so and other dependencies
 
 .PHONY: compile
