@@ -42,6 +42,11 @@ void vulkan_fence_destroy(vulkan_context* context, vulkan_fence* fence) {
 }
 
 b8 vulkan_fence_wait(vulkan_context* context, vulkan_fence* fence, u64 timeout_ns) {
+    if (!fence || !fence->handle) {
+        KERROR("vulkan_fence_wait called with null fence or fence handle");
+        return False;
+    }
+
     if (!fence->is_signaled) {
         VkResult result = vkWaitForFences(
             context->device.logical_device,
