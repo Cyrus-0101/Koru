@@ -27,6 +27,15 @@
     }
 
 /**
+ * @def OBJECT_SHADER_STAGE_COUNT
+ * @brief Number of shader stages used in the object shader.
+ *
+ * This is used to define how many shader stages are present in the object shader,
+ * which is typically 2 (vertex and fragment).
+ */
+#define OBJECT_SHADER_STAGE_COUNT 2
+
+/**
  * @struct vulkan_swapchain_support_info
  * @brief Stores information about a physical device’s swapchain capabilities.
  *
@@ -476,6 +485,87 @@ typedef struct vulkan_fence {
      */
     b8 is_signaled;
 } vulkan_fence;
+
+/**
+ * @struct vulkan_shader_stage
+ * @brief Represents a single shader stage in Vulkan.
+ *
+ * Contains:
+ * - Shader module creation info
+ * - Handle to the shader module
+ * - Pipeline shader stage create info
+ */
+typedef struct vulkan_shader_stage {
+    /**
+     * @brief Shader module creation info used to create the shader module.
+     *
+     * Contains details like code size, pointer to shader code, and flags.
+     */
+    VkShaderModuleCreateInfo create_info;
+    /**
+     * @brief Handle to the actual VkShaderModule object.
+     *
+     * This is created from the create_info and used in pipeline creation.
+     */
+    VkShaderModule handle;
+    /**
+     * @brief Pipeline shader stage create info used to specify this stage in a pipeline.
+     *
+     * Contains details like stage type (vertex, fragment), module handle, entry point name,
+     * and specialization info for dynamic constants.
+     */
+    VkPipelineShaderStageCreateInfo shader_stage_create_info;
+} vulkan_shader_stage;
+
+/**
+ * @struct vulkan_pipeline
+ * @brief Represents a Vulkan graphics pipeline.
+ *
+ * Contains:
+ * - Handle to the pipeline object
+ * - Layout used for this pipeline (descriptor sets, push constants)
+ */
+typedef struct vulkan_pipeline {
+    /**
+     * @brief Handle to the actual VkPipeline object.
+     *
+     * This is created from pipeline creation info and used for rendering.
+     */
+    VkPipeline handle;
+    /**
+     * @brief Layout used by this pipeline.
+     *
+     * Contains descriptor set layouts and push constant ranges.
+     * Must be created before the pipeline and destroyed after.
+     */
+    VkPipelineLayout pipeline_layout;
+} vulkan_pipeline;
+
+/**
+ * @struct vulkan_object_shader
+ * @brief Represents the object shader used for rendering 3D objects.
+ *
+ * Contains:
+ * - Shader stages (vertex, fragment)
+ * - Pipeline used for rendering
+ */
+typedef struct vulkan_object_shader {
+    /**
+     * @brief Number of shader stages in this object shader.
+     *
+     * Typically 2: vertex and fragment.
+     */
+    vulkan_shader_stage stages[OBJECT_SHADER_STAGE_COUNT];
+
+    /**
+     * @brief Pipeline used for rendering.
+     *
+     * This pipeline is created from the shader stages and used for drawing 3D objects.
+     */
+    vulkan_pipeline pipeline;
+
+} vulkan_object_shader;
+
 /**
  * @struct vulkan_context
  * @brief Represents the global state of the Vulkan rendering context.
@@ -585,6 +675,13 @@ typedef struct vulkan_context {
      * Prevents other operations while resizing or recreating the swapchain.
      */
     b8 recreating_swapchain;
+
+    /**
+     * @brief Object shader used for rendering 3D objects.
+     *
+     * Contains shader stages and the pipeline used for rendering.
+     */
+    vulkan_object_shader object_shader;
 
     /**
      * @brief Function pointer for finding a compatible memory index based on requirements.
