@@ -31,7 +31,7 @@ includeFlags="-Isrc -I../engine/src/"
 #   -L../bin/     : Look for libraries in ../bin/
 #   -lengine      : Link against libengine.so
 #   -Wl,-rpath,.  : Set runtime path to current dir so it finds the .so
-linkerFlags="-L../bin/ -lengine -Wl,-rpath,."
+linkerFlags="-L../bin/ -lengine -Wl,-rpath,. -lm"
 
 # Preprocessor defines:
 #   -D_DEBUG    : Enable debug mode
