@@ -4,6 +4,7 @@
 #include "core/kstring.h"
 #include "core/kmemory.h"
 #include "platform/platform.h"
+#include "shaders/vulkan_object_shader.h"
 #include "vulkan_backend.h"
 #include "vulkan_command_buffer.h"
 #include "vulkan_device.h"
@@ -301,6 +302,12 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
         context.images_in_flight[i] = 0;
     }
 
+    // Create builtin shaders
+    if (!vulkan_object_shader_create(&context, &context.object_shader)) {
+        KERROR("Error loading built-in basic_lighting shader.");
+        return False;
+    }
+
     KINFO("Vulkan renderer initialized successfully.");
     return True;
 }
@@ -308,6 +315,9 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
 void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
     KINFO("Shutting down Vulkan renderer...");
     vkDeviceWaitIdle(context.device.logical_device);
+
+    KINFO("Destroying Vulkan Object Shaders");
+    vulkan_object_shader_destroy(&context, &context.object_shader);
 
     KDEBUG("Destroying Vulkan Sync Objects...");
     for (u8 i = 0; i < context.swapchain.max_frames_in_flight; ++i) {
@@ -686,6 +696,7 @@ b8 recreate_swapchain(renderer_backend* backend) {
         context.device.physical_device,
         context.surface,
         &context.device.swapchain_support);
+        
     vulkan_device_detect_depth_format(&context.device);
 
     vulkan_swapchain_recreate(
