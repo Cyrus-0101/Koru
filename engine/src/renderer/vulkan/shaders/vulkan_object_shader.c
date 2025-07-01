@@ -5,7 +5,7 @@
 #include "renderer/vulkan/vulkan_shader_utils.h"
 
 /**
- * @brief 
+ * @brief
  */
 #define BUILTIN_SHADER_NAME_OBJECT "Builtin.ObjectShader"
 
@@ -27,9 +27,15 @@ b8 vulkan_object_shader_create(vulkan_context* context, vulkan_object_shader* ou
 }
 
 void vulkan_object_shader_destroy(vulkan_context* context, struct vulkan_object_shader* shader) {
+    for (u32 i = 0; i < OBJECT_SHADER_STAGE_COUNT; ++i) {
+        vkDestroyShaderModule(
+            context->device.logical_device,
+            shader->stages[i].handle,
+            context->allocator);
 
+        shader->stages[i].handle = 0;
+    }
 }
 
 void vulkan_object_shader_use(vulkan_context* context, struct vulkan_object_shader* shader) {
-
 }
