@@ -7,7 +7,10 @@
 // TO-DO: TEMPORARY
 #include <stdarg.h>  // for variable argument lists (va_list)
 // #include <unistd.h>  // for isatty() - seeing if terminal supports colour
-
+ 
+/**
+ * @brief Maximum length of a log message.
+ */
 #define MSG_LENGTH 32000
 
 /**
@@ -36,8 +39,14 @@ typedef struct logger_system_state {
     file_handle log_file_handle;
 } logger_system_state;
 
+// Pointer to the logger system state.
 static logger_system_state* state_ptr;
 
+/**
+ * @brief Appends a message to the log file.
+ *
+ * @param message The message to append.
+ */
 void append_to_log_file(const char* message) {
     if (state_ptr && state_ptr->log_file_handle.is_valid) {
         // Since the message contains '\n' write it out
@@ -84,6 +93,11 @@ void shutdown_logging(void* state) {
 // message is a printf-style format string.
 // ... are the variable arguments for formatting.
 void log_output(log_level level, const char* message, ...) {
+    /**
+     * TO-DO: Move string operations to their own thread 
+     * The ops are pretty slow, and can slow down the engine during startup/shutdown.
+     * Work on threading and offset these ops.
+     */
     // ANSI color prefixes
     const char* level_colors[6] = {
         "\033[1;31m",  // FATAL - bold red
@@ -103,7 +117,7 @@ void log_output(log_level level, const char* message, ...) {
     // True if the log level is FATAL or ERROR
     b8 is_error = level < LOG_LEVEL_WARN;
 
-    // RISKY Code since we are avoding memory allocation which is slow
+    // RISKY Code since we are avoiding memory allocation which is slow
     // It technically imposes a 32k character limit on a single log entry, this SHOULD NOT HAPPEN
     // Buffer for the formatted message. Large buffer to avoid malloc.
     char out_message[MSG_LENGTH];
