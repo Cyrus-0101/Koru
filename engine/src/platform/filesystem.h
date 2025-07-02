@@ -2,15 +2,27 @@
 
 #include "defines.h"
 
-// Holds a handle to a file.
+/**
+ * @struct file_handle
+ * 
+ * Represents a handle to a file in the filesystem.
+ */
 typedef struct file_handle {
     // Opaque handle to internal file handle.
     void* handle;
+    // The path to the file.
     b8 is_valid;
 } file_handle;
 
+/**
+ * @enum file_modes
+ * 
+ * Represents the modes in which a file can be opened.
+ */
 typedef enum file_modes {
+    // Read mode: Opens the file for reading.
     FILE_MODE_READ = 0x1,
+    // Write mode: Opens the file for writing. If the file exists, it will be truncated.
     FILE_MODE_WRITE = 0x2
 } file_modes;
 
