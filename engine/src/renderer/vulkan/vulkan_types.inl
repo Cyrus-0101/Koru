@@ -36,6 +36,54 @@
 #define OBJECT_SHADER_STAGE_COUNT 2
 
 /**
+ * @struct vulkan_buffer
+ * @brief Represents a Vulkan buffer with its size, handle, and memory binding.
+ *
+ * Used for vertex/index buffers, uniform buffers, and other GPU memory allocations.
+ * Tracks whether the buffer is currently locked for writing.
+ */
+typedef struct vulkan_buffer {
+    /**
+     * @brief Size of the buffer in bytes.
+     */
+    u64 total_size;
+    /**
+     * @brief Usage flags indicating how this buffer will be used (e.g., VK_BUFFER_USAGE_VERTEX_BUFFER_BIT).
+     */
+    VkBuffer handle;
+
+    /**
+     * @brief Vulkan buffer usage flags indicating how this buffer will be used.
+     *
+     * For example, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT for vertex buffers,
+     * VK_BUFFER_USAGE_INDEX_BUFFER_BIT for index buffers, etc.
+     */
+    VkBufferUsageFlagBits usage;
+    /**
+     * @brief Indicates if the buffer is currently locked for writing.
+     *
+     * If True, the buffer cannot be used for rendering until unlocked.
+     */
+    b8 is_locked;
+    /**
+     * @brief Memory requirements for this buffer (alignment, size, memory type bits).
+     */
+    VkDeviceMemory memory;
+    /**
+     * @brief Index of the memory type used for this buffer.
+     *
+     * This is used to find the correct memory type index when allocating memory.
+     */
+    i32 memory_index;
+    /**
+     * @brief Memory property flags indicating how this buffer's memory can be accessed.
+     *
+     * For example, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT for CPU access.
+     */
+    u32 memory_property_flags;
+} vulkan_buffer;
+
+/**
  * @struct vulkan_swapchain_support_info
  * @brief Stores information about a physical device’s swapchain capabilities.
  *
@@ -641,17 +689,46 @@ typedef struct vulkan_context {
     vulkan_renderpass main_renderpass;
 
     /**
+     * @brief Framebuffers used for rendering to the swapchain images.
+     *
+     * Each framebuffer corresponds to a swapchain image and is used during rendering.
+     */
+    vulkan_buffer object_vertex_buffer;
+
+    /**
+     * @brief Buffer containing indices for rendering 3D objects.
+     *
+     * Used to store index data for indexed drawing commands.
+     */
+    vulkan_buffer object_index_buffer;
+
+    /**
      * @brief Array of command buffers for rendering (one per frame).
      */
     vulkan_command_buffer* graphics_command_buffers;
 
-    // darray
+    /**
+     * @brief Array of semaphores used to signal when an image is available for rendering.
+     */
     VkSemaphore* image_available_semaphores;
 
-    // darray
+    /**
+     * @brief Array of semaphores used to signal when a frame is complete.
+     *
+     * Each semaphore corresponds to a frame in flight and is signaled when the GPU finishes processing that frame.
+     */
     VkSemaphore* queue_complete_semaphores;
 
+    /**
+     * @brief Number of in-flight frames (frames that are being processed).
+     */
     u32 in_flight_fence_count;
+
+    /**
+     * @brief Array of fences used to synchronize frame rendering.
+     *
+     * Each fence corresponds to a frame in flight and is used to wait for GPU completion before reusing resources.
+     */
     vulkan_fence* in_flight_fences;
 
     // Holds pointers to fences which exist and are owned elsewhere.
@@ -682,6 +759,20 @@ typedef struct vulkan_context {
      * Contains shader stages and the pipeline used for rendering.
      */
     vulkan_object_shader object_shader;
+
+    /**
+     * @brief Offset in bytes for the vertex buffer used for geometry data.
+     *
+     * This is used to calculate where to start writing geometry vertex data in the buffer.
+     */
+    u64 geometry_vertex_offset;
+
+    /**
+     * @brief Offset in bytes for the index buffer used for geometry data.
+     *
+     * This is used to calculate where to start writing geometry index data in the buffer.
+     */
+    u64 geometry_index_offset;
 
     /**
      * @brief Function pointer for finding a compatible memory index based on requirements.
