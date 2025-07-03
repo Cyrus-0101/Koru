@@ -1,7 +1,7 @@
 #pragma once
 
 #include "renderer/renderer_backend.h"
-
+#include "vulkan_types.inl"
 /**
  * @file vulkan_backend.h
  * @brief Public interface for the Vulkan renderer backend implementation.
@@ -10,6 +10,129 @@
  * providing Vulkan-specific implementations for initialization, shutdown,
  * frame handling, and window resize handling.
  */
+
+/**
+ * @brief Debug messenger callback for Vulkan validation layers.
+ *
+ * Logs debug messages from the Vulkan validation layers to the engine's logging system.
+ *
+ * @param message_severity The severity of the message (error/warning/info/verbose).
+ * @param message_types The type(s) of message (validation/performance/general).
+ * @param callback_data Additional data about the message.
+ * @param user_data Optional user-defined data (not used here).
+ * @return Always returns VK_False (no need to abort due to message).
+ */
+VKAPI_ATTR VkBool32 VKAPI_CALL vk_debug_callback(
+    VkDebugUtilsMessageSeverityFlagBitsEXT message_severity,
+    VkDebugUtilsMessageTypeFlagsEXT message_types,
+    const VkDebugUtilsMessengerCallbackDataEXT* callback_data,
+    void* user_data);
+
+/** * @brief Creates the necessary Vulkan buffers for rendering objects.
+ *
+ * This function initializes the vertex and index buffers used for rendering 3D objects.
+ * It sets up the buffers with appropriate usage flags and memory properties.
+ *
+ * The vertex buffer is used to store vertex data, while the index buffer is used for indexed drawing.
+ * Both buffers are created with device-local memory for optimal performance.
+ *
+ * @param context The Vulkan context containing device and memory information.
+ * @return True if buffers were created successfully, false otherwise.
+ */
+b8 create_buffers(vulkan_context* context);
+
+/**
+ * @brief Finds a suitable memory type index that satisfies the given constraints.
+ *
+ * This function queries the physical device's memory properties and looks for a memory type that:
+ * - Is supported by the filter (`type_filter`)
+ * - Has all required property flags (`property_flags`)
+ *
+ * Used when allocating buffers and images to ensure they are placed in memory that is:
+ * - Device-local (fast GPU access)
+ * - Host-visible (can be accessed from CPU)
+ * - Coherent (CPU/GPU cache behavior is consistent)
+ *
+ * If no matching memory type is found, logs a warning and returns -1.
+ *
+ * @param type_filter A bitmask indicating valid memory types (from VkMemoryRequirements.memoryTypeBits).
+ * @param property_flags Required memory property flags (e.g., VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT).
+ * @return i32 The index of a suitable memory type, or -1 if none was found.
+ */
+i32 find_memory_index(u32 type_filter, u32 property_flags);
+
+/**
+ * @brief Creates and allocates command buffers for each frame-in-flight.
+ *
+ * Allocates one command buffer per swapchain image using the graphics command pool.
+ * These buffers are used during rendering to record draw commands and submit them to the GPU.
+ *
+ * This function also ensures:
+ * - All command buffers are zeroed before use
+ * - Command buffers are created only once
+ * - They are properly indexed and accessible globally via context
+ *
+ * @param backend A pointer to the renderer backend interface (unused here, but kept for consistency).
+ */
+void create_command_buffers(renderer_backend* backend);
+
+/**
+ * @brief Regenerates all framebuffers used in rendering after swapchain creation or resize.
+ *
+ * Framebuffers are tightly coupled to the swapchain — every time the swapchain is created,
+ * recreated (due to window resize), or invalidated, all associated framebuffers must be regenerated.
+ *
+ * This function:
+ * - Destroys any existing framebuffers
+ * - Creates new ones using the current swapchain images and render pass
+ * - Binds depth/stencil attachments as needed
+ *
+ * Must be called after:
+ * - Swapchain creation
+ * - Render pass creation
+ * - Depth attachment setup
+ *
+ * @param backend A pointer to the renderer backend interface.
+ * @param swapchain A pointer to the vulkan_swapchain being used for rendering.
+ * @param renderpass A pointer to the vulkan_renderpass that defines how rendering happens.
+ */
+void regenerate_framebuffers(renderer_backend* backend, vulkan_swapchain* swapchain, vulkan_renderpass* renderpass);
+
+/**
+ * @brief Recreates the swapchain and associated resources.
+ *
+ * This function is called when the window is resized or when the swapchain needs to be recreated
+ * for any reason (e.g., device loss). It handles the entire process of destroying the old swapchain
+ * and creating a new one, along with all associated resources (framebuffers, command buffers, etc.).
+ *
+ * @param backend A pointer to the renderer backend interface.
+ * @return True if the swapchain was successfully recreated, false otherwise.
+ */
+b8 recreate_swapchain(renderer_backend* backend);
+
+/**
+ * @brief Uploads data to a specified range of a Vulkan buffer.
+ *
+ * This function creates a staging buffer, uploads the data to it, and then copies it to the
+ * specified Vulkan buffer.
+ *
+ * @param context The Vulkan context.
+ * @param pool The command pool to use for buffer operations.
+ * @param fence The fence to signal when the operation is complete.
+ * @param queue The queue to submit the copy command to.
+ * @param buffer The Vulkan buffer to upload data to.
+ * @param offset The offset within the buffer to upload data to.
+ * @param size The size of the data to upload.
+ * @param data The data to upload.
+ */
+void upload_data_range(vulkan_context* context,
+                       VkCommandPool pool,
+                       VkFence fence,
+                       VkQueue queue,
+                       vulkan_buffer* buffer,
+                       u64 offset,
+                       u64 size,
+                       const void* data);
 
 /**
  * @brief Initializes the Vulkan renderer backend.
