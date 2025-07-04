@@ -159,3 +159,18 @@ typedef union mat4_u {
     /** @brief Flat array of 16 elements in column-major order */
     f32 data[16];
 } mat4;
+
+/**
+ * @brief A 3D vertex structure.
+ *
+ * Represents a vertex in 3D space with position data.
+ * Can be extended to include normals, texture coordinates, etc.
+ *
+ * Why needed:
+ * - Standard representation for 3D vertices in graphics applications
+ * - Simplifies passing vertex data to rendering pipelines
+ * - Can be easily extended for additional attributes
+ */
+typedef struct vertex_3d {
+    vec3 position;  ///< Vertex position in 3D space
+} vertex_3d;
