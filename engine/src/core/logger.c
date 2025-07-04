@@ -1,12 +1,16 @@
 #include "logger.h"
+#include "kmemory.h"
+#include "kstring.h"
 #include "platform/platform.h"
+#include "platform/filesystem.h"
 
 // TO-DO: TEMPORARY
-#include <stdio.h>   // for printf
-#include <string.h>  // for memset
 #include <stdarg.h>  // for variable argument lists (va_list)
 // #include <unistd.h>  // for isatty() - seeing if terminal supports colour
-
+ 
+/**
+ * @brief Maximum length of a log message.
+ */
 #define MSG_LENGTH 32000
 
 /**
@@ -30,12 +34,30 @@
  */
 typedef struct logger_system_state {
     /**
-     * @brief Indicates whether the logging system has been initialized.
+     * @brief Handle to the log file.
      */
-    b8 initialized;
+    file_handle log_file_handle;
 } logger_system_state;
 
+// Pointer to the logger system state.
 static logger_system_state* state_ptr;
+
+/**
+ * @brief Appends a message to the log file.
+ *
+ * @param message The message to append.
+ */
+void append_to_log_file(const char* message) {
+    if (state_ptr && state_ptr->log_file_handle.is_valid) {
+        // Since the message contains '\n' write it out
+        u64 length = string_length(message);
+        u64 written = 0;
+
+        if (!filesystem_write(&state_ptr->log_file_handle, length, message, &written)) {
+            platform_console_write_error("Error writing to console.log.", LOG_LEVEL_ERROR);
+        }
+    }
+}
 
 // Initialize the logging system.
 // For now it just returns True. Later, you can create/open a log file here.
@@ -47,7 +69,12 @@ b8 initialize_logging(u64* memory_requirement, void* state) {
     }
 
     state_ptr = state;
-    state_ptr->initialized = True;
+
+    // Create new/wipe existing log_file, then open it
+    if(!filesystem_open("console.log", FILE_MODE_WRITE, False, &state_ptr->log_file_handle)) {
+        platform_console_write_error("Failed to open console.log for writing.", LOG_LEVEL_ERROR);
+        return False; // Failed to open log file
+    }
 
     // TO-DO: Create log file
     return True; 
@@ -66,6 +93,11 @@ void shutdown_logging(void* state) {
 // message is a printf-style format string.
 // ... are the variable arguments for formatting.
 void log_output(log_level level, const char* message, ...) {
+    /**
+     * TO-DO: Move string operations to their own thread 
+     * The ops are pretty slow, and can slow down the engine during startup/shutdown.
+     * Work on threading and offset these ops.
+     */
     // ANSI color prefixes
     const char* level_colors[6] = {
         "\033[1;31m",  // FATAL - bold red
@@ -85,11 +117,11 @@ void log_output(log_level level, const char* message, ...) {
     // True if the log level is FATAL or ERROR
     b8 is_error = level < LOG_LEVEL_WARN;
 
-    // RISKY Code since we are avoding memory allocation which is slow
+    // RISKY Code since we are avoiding memory allocation which is slow
     // It technically imposes a 32k character limit on a single log entry, this SHOULD NOT HAPPEN
     // Buffer for the formatted message. Large buffer to avoid malloc.
     char out_message[MSG_LENGTH];
-    memset(out_message, 0, sizeof(out_message));
+    kzero_memory(out_message, sizeof(out_message));
 
     // Format original message.
     // NOTE: Oddly enough, MS's headers override the GCC/Clang va_list type with a "typedef char* va_list" in some
@@ -103,12 +135,12 @@ void log_output(log_level level, const char* message, ...) {
     va_start(arg_ptr, message);
 
     // Format into buffer
-    vsnprintf(out_message, 32000, message, arg_ptr);
+    string_format_v(out_message, message, arg_ptr);
     va_end(arg_ptr);
 
     // Final buffer with level prefix added
     char out_message2[MSG_LENGTH];
-    sprintf(out_message2, "%s%s%s%s\n", level_colors[level], level_strings[level], out_message, level_reset);
+    string_format(out_message2, "%s%s%s%s\n", level_colors[level], level_strings[level], out_message, level_reset);
 
     // Platform Specific Output
     if (is_error) {
@@ -116,6 +148,8 @@ void log_output(log_level level, const char* message, ...) {
     } else {
         platform_console_write(out_message2, level);
     }
+
+    append_to_log_file(out_message2);
 }
 
 // Called when an assertion fails to log useful debugging info.

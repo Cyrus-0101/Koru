@@ -37,7 +37,7 @@ includeFlags="-Isrc -I$VULKAN_SDK/include"
 #   -lX11-xcb            : Interop between X11 and XCB
 #   -lxkbcommon          : XKB keyboard handling
 #   -L...                : Specify search path for libraries
-linkerFlags="-lvulkan -lxcb -lX11 -lX11-xcb -lxkbcommon -L$VULKAN_SDK/lib -L/usr/X11R6/lib"
+linkerFlags="-lvulkan -lxcb -lX11 -lX11-xcb -lxkbcommon -L$VULKAN_SDK/lib -L/usr/X11R6/lib -lm"
 
 # Preprocessor defines:
 #   -D_DEBUG     : Enables debug logging/asserts

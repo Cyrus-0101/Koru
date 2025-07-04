@@ -3,9 +3,12 @@
         {
             "label": "Build All Components",
             "dependsOn": [
+                "Build GLSL 2 SPV",
                 "Build Engine",
                 "Build Testbed",
-                "Build Everything"
+                "Build Everything",
+                "Test Everything",
+                "Run Tests of Everything"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": []
@@ -130,6 +133,49 @@
                 "cwd": "${workspaceFolder}"
             },
             "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Build GLSL 2 SPV",
+            "windows": {
+                "command": "${workspaceFolder}/post-build.bat",
+            },
+            "linux": {
+                "command": "${workspaceFolder}/post-build.sh",
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Test Everything",
+            "windows": {
+                "command": "${workspaceFolder}\tests\build.bat",
+            },
+            "linux": {
+                "command": "${workspaceFolder}/tests/build.sh",
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/tests"
+            },
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Run Tests of Everything",
+            "windows": {
+                "command": "cd ${workspaceFolder}/bin && .\\tests.exe && cd ..",
+            },
+            "linux": {
+                "command": "cd ${workspaceFolder}/bin && ./tests && cd ..",
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": []
         },
     ],
     "version": "2.0.0"

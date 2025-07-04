@@ -23,7 +23,7 @@ INCLUDE_FLAGS := -Iengine/src -Itestbed\src
 # Includes headers from engine and Vulkan SDK
 
 # Linker flags
-LINKER_FLAGS := -L./$(BUILD_DIR)/ -lengine -Wl,-rpath,.
+LINKER_FLAGS := -L./$(BUILD_DIR)/ -lengine -Wl,-rpath,. -lm
 # -L...           : Looks for libengine.so in bin/
 # -lengine        : Links with libengine.so
 # -Wl,-rpath,.   : Tells the binary where to look for shared libraries at runtime
