@@ -16,7 +16,7 @@
 
 /**
  *
- * 
+ *
  * @brief Specifies the available rendering backends supported by Koru.
  */
 typedef enum renderer_backend_type {
@@ -36,42 +36,41 @@ typedef enum renderer_backend_type {
     RENDERER_BACKEND_TYPE_DIRECTX
 } renderer_backend_type;
 
-
 /**
- * 
+ *
  * @brief Represents a global uniform object used for rendering.
- * 
+ *
  * NVIDIA requires a 256-byte alignment for uniform buffers.
  * Each field in this structure is aligned to 16 bytes,
  * ensuring compatibility with various graphics APIs.
- * 
+ *
  * Each field is 64 bytes.
  */
 typedef struct global_uniform_object {
-    /** 
+    /**
      * @brief Projection matrix used for transforming 3D coordinates to 2D screen space.
-     * 
+     *
      * This matrix is typically set once per frame and used for all objects rendered in that frame.
      */
     mat4 projection;
 
     /**
      * @brief View matrix used for transforming world coordinates to camera space.
-     * 
+     *
      * This matrix is updated per frame to reflect the camera's position and orientation.
      */
     mat4 view;
-    
+
     /**
      * @brief Model matrix used for transforming object coordinates to world space.
-     * 
+     *
      * This matrix is set per object and defines its position, rotation, and scale in the world.
      */
     mat4 m_reserved0;
 
-    /** 
+    /**
      * @brief Reserved for future use or additional transformations.
-     * 
+     *
      * This field is currently unused but may be utilized in future updates to the rendering system.
      */
     mat4 m_reserved1;
@@ -152,6 +151,15 @@ typedef struct renderer_backend {
      * @return True if successful; otherwise False.
      */
     b8 (*end_frame)(struct renderer_backend* backend, f32 delta_time);
+
+    /**
+     * @brief Updates the model matrix for a specific object.
+     *
+     * @param model The model matrix for the object.
+     *
+     * @return void
+     */
+    void (*update_object)(mat4 model);
 } renderer_backend;
 
 /**
