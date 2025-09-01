@@ -3,8 +3,10 @@
 #include "core/logger.h"
 #include "core/kstring.h"
 #include "core/kmemory.h"
+#include "math/math_types.h"
 #include "platform/platform.h"
 #include "shaders/vulkan_object_shader.h"
+#include "vulkan_buffer.h"
 #include "vulkan_backend.h"
 #include "vulkan_command_buffer.h"
 #include "vulkan_device.h"
@@ -23,6 +25,10 @@
  * using the Vulkan graphics API. Currently, it creates a Vulkan instance and sets
  * up basic placeholder logic for frame handling and resizing.
  */
+
+#define VERTEX_COUNT 4
+
+#define INDEX_COUNT 6
 
 // Static global context for the Vulkan renderer
 static vulkan_context context;
@@ -89,7 +95,7 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
 
     // Application info for the Vulkan instance
     VkApplicationInfo app_info = {VK_STRUCTURE_TYPE_APPLICATION_INFO};
-    app_info.apiVersion = VK_MAKE_API_VERSION(0, 1, 4, 313);
+    app_info.apiVersion = VK_MAKE_API_VERSION(0, 1, 3, 298);
     app_info.pApplicationName = application_name;
     // VK_MAKE_API_VERSION(major, minor, patch, variant)
     app_info.applicationVersion = VK_MAKE_API_VERSION(0, 0, 0, 1);
@@ -271,6 +277,61 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
         return False;
     }
 
+    create_buffers(&context);
+
+    // TO-DO: Temporary Test codds
+    vertex_3d verts[VERTEX_COUNT];
+    kzero_memory(verts, sizeof(vertex_3d) * VERTEX_COUNT);
+
+        const f32 f = 10.0f;
+
+    verts[0].position.x = 0.0 * f;
+    verts[0].position.y = -0.5 * f;
+
+    verts[1].position.x = 0.5 * f;
+    verts[1].position.y = 0.5 * f;
+
+    verts[2].position.x = 0.0 * f;
+    verts[2].position.y = 0.5 * f;
+
+    verts[3].position.x = 0.5 * f;
+    verts[3].position.y = -0.5 * f;
+
+    // verts[0].position.x = 0.0;
+    // verts[0].position.y = -0.5;
+
+    // verts[1].position.x = 0.5;
+    // verts[1].position.y = 0.5;
+
+    // verts[2].position.x = 0.0;
+    // verts[2].position.y = 0.5;
+
+    // verts[3].position.x = 0.5;
+    // verts[3].position.y = -0.5;
+
+    u32 indices[INDEX_COUNT] = {0, 1, 2, 0, 3, 1};
+
+    upload_data_range(
+        &context,
+        context.device.graphics_command_pool,
+        0,
+        context.device.graphics_queue,
+        &context.object_vertex_buffer,
+        0,
+        sizeof(vertex_3d) * VERTEX_COUNT,
+        verts);
+
+    upload_data_range(
+        &context,
+        context.device.graphics_command_pool,
+        0,
+        context.device.graphics_queue,
+        &context.object_index_buffer,
+        0,
+        sizeof(u32) * INDEX_COUNT,
+        indices);
+    // To-DO: End of temporary test code
+
     KINFO("Vulkan renderer initialized successfully.");
     return True;
 }
@@ -279,7 +340,12 @@ void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
     KINFO("Shutting down Vulkan renderer...");
     vkDeviceWaitIdle(context.device.logical_device);
 
-    KINFO("Destroying Vulkan Object Shaders");
+    // Destroy buffers
+    KDEBUG("Destorying Vulkan Buffers...");
+    vulkan_buffer_destroy(&context, &context.object_vertex_buffer);
+    vulkan_buffer_destroy(&context, &context.object_index_buffer);
+
+    KDEBUG("Destroying Vulkan Object Shaders...");
     vulkan_object_shader_destroy(&context, &context.object_shader);
 
     KDEBUG("Destroying Vulkan Sync Objects...");
@@ -467,6 +533,54 @@ b8 vulkan_renderer_backend_begin_frame(renderer_backend* backend, f32 delta_time
         context.swapchain.framebuffers[context.image_index].handle);
 
     return True;
+}
+
+void vulkan_renderer_update_global_state(mat4 projection, mat4 view, vec3 view_position, vec4 ambient_colour, i32 mode) {
+    vulkan_command_buffer* command_buffer = &context.graphics_command_buffers[context.image_index];
+
+    vulkan_object_shader_use(&context, &context.object_shader);
+
+    context.object_shader.global_ubo.projection = projection;
+    context.object_shader.global_ubo.view = view;
+
+    // TODO: other ubo properties
+
+    vulkan_object_shader_update_global_state(&context, &context.object_shader);
+
+    // TO-DO: Temporary Test code
+    vulkan_object_shader_use(&context, &context.object_shader);
+
+    // Bind the graphics pipeline
+    vkCmdBindPipeline(
+        command_buffer->handle,
+        VK_PIPELINE_BIND_POINT_GRAPHICS,
+        context.object_shader.pipeline.handle);
+
+    // Bind the vertex buffer at offset
+    VkDeviceSize offsets[1] = {0};
+    vkCmdBindVertexBuffers(
+        command_buffer->handle,
+        0,
+        1,
+        &context.object_vertex_buffer.handle,
+        (VkDeviceSize*)offsets);
+
+    // Bind the index buffer at offset
+    vkCmdBindIndexBuffer(
+        command_buffer->handle,
+        context.object_index_buffer.handle,
+        0,
+        VK_INDEX_TYPE_UINT32);
+
+    // Draw the triangle
+    vkCmdDrawIndexed(
+        command_buffer->handle,
+        6,   // Index count
+        1,   // Instance count
+        0,   // First index
+        0,   // Vertex offset
+        0);  // First instance
+    // TO-DO: End Temporary Test code
 }
 
 b8 vulkan_renderer_backend_end_frame(renderer_backend* backend, f32 delta_time) {
@@ -659,7 +773,7 @@ b8 recreate_swapchain(renderer_backend* backend) {
         context.device.physical_device,
         context.surface,
         &context.device.swapchain_support);
-        
+
     vulkan_device_detect_depth_format(&context.device);
 
     vulkan_swapchain_recreate(
@@ -701,5 +815,42 @@ b8 recreate_swapchain(renderer_backend* backend) {
     // Clear the recreating flag.
     context.recreating_swapchain = False;
 
+    return True;
+}
+
+b8 create_buffers(vulkan_context* context) {
+    KDEBUG("Creating Vulkan Buffers...");
+
+    VkMemoryPropertyFlagBits memory_property_flags = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+
+    const u64 vertex_buffer_size = sizeof(vertex_3d) * 1024 * 1024;
+    if (!vulkan_buffer_create(
+            context,
+            vertex_buffer_size,
+            VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+            memory_property_flags,
+            True,
+            &context->object_vertex_buffer)) {
+        KERROR("Error creating vertex buffer.");
+        return False;
+    }
+    context->geometry_vertex_offset = 0;
+
+    const u64 index_buffer_size = sizeof(u32) * 1024 * 1024;
+    if (!vulkan_buffer_create(
+            context,
+            index_buffer_size,
+            VK_BUFFER_USAGE_INDEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+            memory_property_flags,
+            True,
+            &context->object_index_buffer)) {
+        KERROR("Error creating vertex buffer.");
+        return False;
+    }
+    context->geometry_index_offset = 0;
+
+    return True;
+
+    KDEBUG("Vulkan Buffers created successfully.");
     return True;
 }
