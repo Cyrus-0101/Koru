@@ -283,31 +283,19 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
     vertex_3d verts[VERTEX_COUNT];
     kzero_memory(verts, sizeof(vertex_3d) * VERTEX_COUNT);
 
-        const f32 f = 10.0f;
+    const f32 f = 10.0f;
 
-    verts[0].position.x = 0.0 * f;
+    verts[0].position.x = -0.5 * f;
     verts[0].position.y = -0.5 * f;
 
     verts[1].position.x = 0.5 * f;
     verts[1].position.y = 0.5 * f;
 
-    verts[2].position.x = 0.0 * f;
+    verts[2].position.x = -0.5 * f;
     verts[2].position.y = 0.5 * f;
 
     verts[3].position.x = 0.5 * f;
     verts[3].position.y = -0.5 * f;
-
-    // verts[0].position.x = 0.0;
-    // verts[0].position.y = -0.5;
-
-    // verts[1].position.x = 0.5;
-    // verts[1].position.y = 0.5;
-
-    // verts[2].position.x = 0.0;
-    // verts[2].position.y = 0.5;
-
-    // verts[3].position.x = 0.5;
-    // verts[3].position.y = -0.5;
 
     u32 indices[INDEX_COUNT] = {0, 1, 2, 0, 3, 1};
 
@@ -546,41 +534,6 @@ void vulkan_renderer_update_global_state(mat4 projection, mat4 view, vec3 view_p
     // TODO: other ubo properties
 
     vulkan_object_shader_update_global_state(&context, &context.object_shader);
-
-    // TO-DO: Temporary Test code
-    vulkan_object_shader_use(&context, &context.object_shader);
-
-    // Bind the graphics pipeline
-    vkCmdBindPipeline(
-        command_buffer->handle,
-        VK_PIPELINE_BIND_POINT_GRAPHICS,
-        context.object_shader.pipeline.handle);
-
-    // Bind the vertex buffer at offset
-    VkDeviceSize offsets[1] = {0};
-    vkCmdBindVertexBuffers(
-        command_buffer->handle,
-        0,
-        1,
-        &context.object_vertex_buffer.handle,
-        (VkDeviceSize*)offsets);
-
-    // Bind the index buffer at offset
-    vkCmdBindIndexBuffer(
-        command_buffer->handle,
-        context.object_index_buffer.handle,
-        0,
-        VK_INDEX_TYPE_UINT32);
-
-    // Draw the triangle
-    vkCmdDrawIndexed(
-        command_buffer->handle,
-        6,   // Index count
-        1,   // Instance count
-        0,   // First index
-        0,   // Vertex offset
-        0);  // First instance
-    // TO-DO: End Temporary Test code
 }
 
 b8 vulkan_renderer_backend_end_frame(renderer_backend* backend, f32 delta_time) {
@@ -653,6 +606,48 @@ b8 vulkan_renderer_backend_end_frame(renderer_backend* backend, f32 delta_time) 
         context.image_index);
 
     return True;
+}
+
+void vulkan_backend_update_object(mat4 model) {
+    vulkan_command_buffer* command_buffer = &context.graphics_command_buffers[context.image_index];
+
+    // TO-DO: Work on this
+    vulkan_object_shader_update_object(&context, &context.object_shader, model);
+
+    // TO-DO: Temporary Test code
+    vulkan_object_shader_use(&context, &context.object_shader);
+
+    // Bind the graphics pipeline
+    vkCmdBindPipeline(
+        command_buffer->handle,
+        VK_PIPELINE_BIND_POINT_GRAPHICS,
+        context.object_shader.pipeline.handle);
+
+    // Bind the vertex buffer at offset
+    VkDeviceSize offsets[1] = {0};
+    vkCmdBindVertexBuffers(
+        command_buffer->handle,
+        0,
+        1,
+        &context.object_vertex_buffer.handle,
+        (VkDeviceSize*)offsets);
+
+    // Bind the index buffer at offset
+    vkCmdBindIndexBuffer(
+        command_buffer->handle,
+        context.object_index_buffer.handle,
+        0,
+        VK_INDEX_TYPE_UINT32);
+
+    // Draw the triangle
+    vkCmdDrawIndexed(
+        command_buffer->handle,
+        6,   // Index count
+        1,   // Instance count
+        0,   // First index
+        0,   // Vertex offset
+        0);  // First instance
+    // TO-DO: End Temporary Test code
 }
 
 VKAPI_ATTR VkBool32 VKAPI_CALL vk_debug_callback(
