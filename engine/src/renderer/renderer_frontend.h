@@ -73,3 +73,12 @@ void renderer_on_resized(u16 width, u16 height);
  * @return True if the frame was drawn successfully; otherwise False.
  */
 b8 renderer_draw_frame(render_packet* packet);
+
+/**
+ * @brief Sets the current view matrix for rendering.
+ *
+ * This function updates the view matrix used in the rendering pipeline.
+ *
+ * @param view The new view matrix to set.
+ */
+void renderer_set_view(mat4 view);
