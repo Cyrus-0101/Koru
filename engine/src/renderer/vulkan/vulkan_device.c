@@ -257,7 +257,7 @@ b8 vulkan_device_create(vulkan_context* context) {
 
 void vulkan_device_destroy(vulkan_context* context) {
     // Step 1: Destroy command pools
-    KINFO("Destroying command pools...");
+    KDEBUG("Destroying command pools...");
     if (context->device.graphics_command_pool) {
         vkDestroyCommandPool(context->device.logical_device, context->device.graphics_command_pool, context->allocator);
         context->device.graphics_command_pool = 0;
@@ -275,14 +275,14 @@ void vulkan_device_destroy(vulkan_context* context) {
     context->device.transfer_queue = 0;
 
     // Step 3: Destroy logical device
-    KINFO("Destroying logical device...");
+    KDEBUG("Destroying logical device...");
     if (context->device.logical_device) {
         vkDestroyDevice(context->device.logical_device, context->allocator);
         context->device.logical_device = 0;
     }
 
     // Step 4: Clean up physical device metadata
-    KINFO("Releasing physical device resources...");
+    KDEBUG("Releasing physical device resources...");
     context->device.physical_device = 0;
 
     if (context->device.swapchain_support.formats) {
