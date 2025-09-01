@@ -6,17 +6,26 @@
 \DoxyCodeLine{\Hypertarget{game_8h_source_l00002}00002\ }
 \DoxyCodeLine{\Hypertarget{game_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{defines_8h}{defines.h}}>}}
 \DoxyCodeLine{\Hypertarget{game_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{game__types_8h}{game\_types.h}}>}}
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00005}00005\ }
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00026}\mbox{\hyperlink{structgame__state}{00026}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgame__state}{game\_state}}\ \{}
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00030}\mbox{\hyperlink{structgame__state_a569999ffeeaf87a08fd91bcfe61e2f48}{00030}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structgame__state_a569999ffeeaf87a08fd91bcfe61e2f48}{delta\_time}};}
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00031}\mbox{\hyperlink{game_8h_ad5eb7fa5077146cd89323dc58e67621d}{00031}}\ \}\ \mbox{\hyperlink{structgame__state}{game\_state}};}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{math__types_8h}{math/math\_types.h}}>}}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00027}\mbox{\hyperlink{structgame__state}{00027}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgame__state}{game\_state}}\ \{}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00031}\mbox{\hyperlink{structgame__state_a569999ffeeaf87a08fd91bcfe61e2f48}{00031}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ \mbox{\hyperlink{structgame__state_a569999ffeeaf87a08fd91bcfe61e2f48}{delta\_time}};}
 \DoxyCodeLine{\Hypertarget{game_8h_source_l00032}00032\ }
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00041}00041\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{game_8h_ab56d8511d5b55e40d88999e59fe8084e}{game\_initialize}}(\mbox{\hyperlink{structgame}{game}}*\ game\_inst);}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00036}\mbox{\hyperlink{structgame__state_ac8ed864b792b0ddf54f2c11cd2073217}{00036}}\ \ \ \ \ \mbox{\hyperlink{unionmat4__u}{mat4}}\ \mbox{\hyperlink{structgame__state_ac8ed864b792b0ddf54f2c11cd2073217}{view}};}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00041}\mbox{\hyperlink{structgame__state_a8324a3d08be65541a5fd7b386dca51ca}{00041}}\ \ \ \ \ \mbox{\hyperlink{structvec3__u}{vec3}}\ \mbox{\hyperlink{structgame__state_a8324a3d08be65541a5fd7b386dca51ca}{camera\_position}};}
 \DoxyCodeLine{\Hypertarget{game_8h_source_l00042}00042\ }
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00052}00052\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{game_8h_a1a612ae5a139848e80e1f7ddec49fdcf}{game\_update}}(\mbox{\hyperlink{structgame}{game}}*\ game\_inst,\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ delta\_time);}
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00053}00053\ }
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00063}00063\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{game_8h_aaa5f574e90e6577a78fbe8f01902525b}{game\_render}}(\mbox{\hyperlink{structgame}{game}}*\ game\_inst,\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ delta\_time);}
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00064}00064\ }
-\DoxyCodeLine{\Hypertarget{game_8h_source_l00074}00074\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{game_8h_a5b4ce7177edb36b28a89471589432d17}{game\_on\_resize}}(\mbox{\hyperlink{structgame}{game}}*\ game\_inst,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ width,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ height);}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00046}\mbox{\hyperlink{structgame__state_a3bce150883b9843e6475d4c3c8e50801}{00046}}\ \ \ \ \ \mbox{\hyperlink{structvec3__u}{vec3}}\ \mbox{\hyperlink{structgame__state_a3bce150883b9843e6475d4c3c8e50801}{camera\_euler}};}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00048}\mbox{\hyperlink{structgame__state_ab1209e77ecff9ee4cd732078ee9bad63}{00048}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{structgame__state_ab1209e77ecff9ee4cd732078ee9bad63}{camera\_view\_dirty}};}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00049}\mbox{\hyperlink{game_8h_ad5eb7fa5077146cd89323dc58e67621d}{00049}}\ \}\ \mbox{\hyperlink{structgame__state}{game\_state}};}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00059}00059\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{game_8h_ab56d8511d5b55e40d88999e59fe8084e}{game\_initialize}}(\mbox{\hyperlink{structgame}{game}}*\ game\_inst);}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00070}00070\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{game_8h_a1a612ae5a139848e80e1f7ddec49fdcf}{game\_update}}(\mbox{\hyperlink{structgame}{game}}*\ game\_inst,\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ delta\_time);}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00081}00081\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{game_8h_aaa5f574e90e6577a78fbe8f01902525b}{game\_render}}(\mbox{\hyperlink{structgame}{game}}*\ game\_inst,\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ delta\_time);}
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{game_8h_source_l00092}00092\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{game_8h_a5b4ce7177edb36b28a89471589432d17}{game\_on\_resize}}(\mbox{\hyperlink{structgame}{game}}*\ game\_inst,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ width,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ height);}
 
 \end{DoxyCode}

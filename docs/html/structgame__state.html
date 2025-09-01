@@ -79,19 +79,102 @@ $(function() {
  <a href="structgame__state.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for game_state:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structgame__state__coll__graph.png" border="0" usemap="#agame__state_coll__map" alt="Collaboration graph"/></div>
+<map name="agame__state_coll__map" id="agame__state_coll__map">
+<area shape="rect" title="Internal game state structure." alt="" coords="38,108,137,133"/>
+<area shape="rect" href="unionmat4__u.html" title="A 4x4 matrix union for linear transformations." alt="" coords="5,5,76,31"/>
+<area shape="poly" title=" " alt="" coords="53,42,71,83,83,106,79,109,66,85,48,44"/>
+<area shape="rect" href="structvec3__u.html" title="A 3&#45;component vector union with multiple access patterns." alt="" coords="100,5,168,31"/>
+<area shape="poly" title=" " alt="" coords="126,44,107,85,96,109,91,106,102,83,121,42"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a569999ffeeaf87a08fd91bcfe61e2f48" id="r_a569999ffeeaf87a08fd91bcfe61e2f48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgame__state.html#a569999ffeeaf87a08fd91bcfe61e2f48">delta_time</a></td></tr>
 <tr class="memdesc:a569999ffeeaf87a08fd91bcfe61e2f48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time in seconds since the last frame.  <br /></td></tr>
 <tr class="separator:a569999ffeeaf87a08fd91bcfe61e2f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ed864b792b0ddf54f2c11cd2073217" id="r_ac8ed864b792b0ddf54f2c11cd2073217"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgame__state.html#ac8ed864b792b0ddf54f2c11cd2073217">view</a></td></tr>
+<tr class="memdesc:ac8ed864b792b0ddf54f2c11cd2073217"><td class="mdescLeft">&#160;</td><td class="mdescRight">View matrix for the current frame.  <br /></td></tr>
+<tr class="separator:ac8ed864b792b0ddf54f2c11cd2073217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8324a3d08be65541a5fd7b386dca51ca" id="r_a8324a3d08be65541a5fd7b386dca51ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math__types_8h.html#a291ce5191b34b920d576c84fd970b9ef">vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgame__state.html#a8324a3d08be65541a5fd7b386dca51ca">camera_position</a></td></tr>
+<tr class="memdesc:a8324a3d08be65541a5fd7b386dca51ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera position in world space.  <br /></td></tr>
+<tr class="separator:a8324a3d08be65541a5fd7b386dca51ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bce150883b9843e6475d4c3c8e50801" id="r_a3bce150883b9843e6475d4c3c8e50801"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math__types_8h.html#a291ce5191b34b920d576c84fd970b9ef">vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgame__state.html#a3bce150883b9843e6475d4c3c8e50801">camera_euler</a></td></tr>
+<tr class="memdesc:a3bce150883b9843e6475d4c3c8e50801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera orientation in Euler angles (pitch, yaw, roll).  <br /></td></tr>
+<tr class="separator:a3bce150883b9843e6475d4c3c8e50801"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1209e77ecff9ee4cd732078ee9bad63" id="r_ab1209e77ecff9ee4cd732078ee9bad63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgame__state.html#ab1209e77ecff9ee4cd732078ee9bad63">camera_view_dirty</a></td></tr>
+<tr class="separator:ab1209e77ecff9ee4cd732078ee9bad63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Internal game state structure. </p>
 <p>This struct holds data that persists across frames. Currently only stores delta time, but can be expanded to include player position, world state, etc. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8h_source.html#l00026">26</a> of file <a class="el" href="game_8h_source.html">game.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8h_source.html#l00027">27</a> of file <a class="el" href="game_8h_source.html">game.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a id="a3bce150883b9843e6475d4c3c8e50801" name="a3bce150883b9843e6475d4c3c8e50801"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bce150883b9843e6475d4c3c8e50801">&#9670;&#160;</a></span>camera_euler</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="math__types_8h.html#a291ce5191b34b920d576c84fd970b9ef">vec3</a> game_state::camera_euler</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Camera orientation in Euler angles (pitch, yaw, roll). </p>
+
+<p class="definition">Definition at line <a class="el" href="game_8h_source.html#l00046">46</a> of file <a class="el" href="game_8h_source.html">game.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00040">camera_pitch()</a>, <a class="el" href="game_8c_source.html#l00050">camera_yaw()</a>, <a class="el" href="game_8c_source.html#l00066">game_initialize()</a>, and <a class="el" href="game_8c_source.html#l00028">recalculate_view_matrix()</a>.</p>
+
+</div>
+</div>
+<a id="a8324a3d08be65541a5fd7b386dca51ca" name="a8324a3d08be65541a5fd7b386dca51ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8324a3d08be65541a5fd7b386dca51ca">&#9670;&#160;</a></span>camera_position</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="math__types_8h.html#a291ce5191b34b920d576c84fd970b9ef">vec3</a> game_state::camera_position</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Camera position in world space. </p>
+
+<p class="definition">Definition at line <a class="el" href="game_8h_source.html#l00041">41</a> of file <a class="el" href="game_8h_source.html">game.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00066">game_initialize()</a>, <a class="el" href="game_8c_source.html#l00093">game_update()</a>, and <a class="el" href="game_8c_source.html#l00028">recalculate_view_matrix()</a>.</p>
+
+</div>
+</div>
+<a id="ab1209e77ecff9ee4cd732078ee9bad63" name="ab1209e77ecff9ee4cd732078ee9bad63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1209e77ecff9ee4cd732078ee9bad63">&#9670;&#160;</a></span>camera_view_dirty</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> game_state::camera_view_dirty</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="game_8h_source.html#l00048">48</a> of file <a class="el" href="game_8h_source.html">game.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00040">camera_pitch()</a>, <a class="el" href="game_8c_source.html#l00050">camera_yaw()</a>, <a class="el" href="game_8c_source.html#l00066">game_initialize()</a>, <a class="el" href="game_8c_source.html#l00093">game_update()</a>, and <a class="el" href="game_8c_source.html#l00028">recalculate_view_matrix()</a>.</p>
+
+</div>
+</div>
 <a id="a569999ffeeaf87a08fd91bcfe61e2f48" name="a569999ffeeaf87a08fd91bcfe61e2f48"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a569999ffeeaf87a08fd91bcfe61e2f48">&#9670;&#160;</a></span>delta_time</h2>
 
@@ -106,7 +189,27 @@ Data Fields</h2></td></tr>
 
 <p>Time in seconds since the last frame. </p>
 
-<p class="definition">Definition at line <a class="el" href="game_8h_source.html#l00030">30</a> of file <a class="el" href="game_8h_source.html">game.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8h_source.html#l00031">31</a> of file <a class="el" href="game_8h_source.html">game.h</a>.</p>
+
+</div>
+</div>
+<a id="ac8ed864b792b0ddf54f2c11cd2073217" name="ac8ed864b792b0ddf54f2c11cd2073217"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8ed864b792b0ddf54f2c11cd2073217">&#9670;&#160;</a></span>view</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a> game_state::view</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>View matrix for the current frame. </p>
+
+<p class="definition">Definition at line <a class="el" href="game_8h_source.html#l00036">36</a> of file <a class="el" href="game_8h_source.html">game.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00066">game_initialize()</a>, <a class="el" href="game_8c_source.html#l00093">game_update()</a>, and <a class="el" href="game_8c_source.html#l00028">recalculate_view_matrix()</a>.</p>
 
 </div>
 </div>
@@ -116,7 +219,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 19:11:02 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

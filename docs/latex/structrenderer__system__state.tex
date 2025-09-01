@@ -5,11 +5,29 @@
 Represents the state of the rendering system.  
 
 
+
+
+Collaboration diagram for renderer\+\_\+system\+\_\+state\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{structrenderer__system__state__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
 renderer\+\_\+backend \mbox{\hyperlink{structrenderer__system__state_a52c3666e5bca364ff89ff93792576649}{backend}}
-\begin{DoxyCompactList}\small\item\em Pointer to the platform-\/specific state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pointer to the platform-\/specific state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} \mbox{\hyperlink{structrenderer__system__state_ac3adbc6ca69f6dd465396ce8eab970f4}{projection}}
+\item 
+\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} \mbox{\hyperlink{structrenderer__system__state_a5ab9382c2529098371f0471a0fc86f62}{view}}
+\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{structrenderer__system__state_ada2e7206a4fa1f531ef5c9f2c2d63884}{near\+\_\+clip}}
+\item 
+\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{structrenderer__system__state_a61ee40d959ec115ad343a2a029e308d2}{far\+\_\+clip}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -17,7 +35,7 @@ Represents the state of the rendering system.
 
 Contains the current rendering backend and its associated state. 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00023}{23}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00024}{24}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
@@ -34,11 +52,67 @@ Pointer to the platform-\/specific state.
 
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{27}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00028}{28}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00086}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00103}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00113}{renderer\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00043}{renderer\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00069}{renderer\+\_\+system\+\_\+shutdown()}}.
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00102}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00147}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00119}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00085}{renderer\+\_\+system\+\_\+shutdown()}}.
+
+\Hypertarget{structrenderer__system__state_a61ee40d959ec115ad343a2a029e308d2}\label{structrenderer__system__state_a61ee40d959ec115ad343a2a029e308d2} 
+\index{renderer\_system\_state@{renderer\_system\_state}!far\_clip@{far\_clip}}
+\index{far\_clip@{far\_clip}!renderer\_system\_state@{renderer\_system\_state}}
+\doxysubsubsection{\texorpdfstring{far\_clip}{far\_clip}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} renderer\+\_\+system\+\_\+state\+::far\+\_\+clip}
+
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{36}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}.
+
+\Hypertarget{structrenderer__system__state_ada2e7206a4fa1f531ef5c9f2c2d63884}\label{structrenderer__system__state_ada2e7206a4fa1f531ef5c9f2c2d63884} 
+\index{renderer\_system\_state@{renderer\_system\_state}!near\_clip@{near\_clip}}
+\index{near\_clip@{near\_clip}!renderer\_system\_state@{renderer\_system\_state}}
+\doxysubsubsection{\texorpdfstring{near\_clip}{near\_clip}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} renderer\+\_\+system\+\_\+state\+::near\+\_\+clip}
+
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00034}{34}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}.
+
+\Hypertarget{structrenderer__system__state_ac3adbc6ca69f6dd465396ce8eab970f4}\label{structrenderer__system__state_ac3adbc6ca69f6dd465396ce8eab970f4} 
+\index{renderer\_system\_state@{renderer\_system\_state}!projection@{projection}}
+\index{projection@{projection}!renderer\_system\_state@{renderer\_system\_state}}
+\doxysubsubsection{\texorpdfstring{projection}{projection}}
+{\footnotesize\ttfamily \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} renderer\+\_\+system\+\_\+state\+::projection}
+
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00030}{30}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00147}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}.
+
+\Hypertarget{structrenderer__system__state_a5ab9382c2529098371f0471a0fc86f62}\label{structrenderer__system__state_a5ab9382c2529098371f0471a0fc86f62} 
+\index{renderer\_system\_state@{renderer\_system\_state}!view@{view}}
+\index{view@{view}!renderer\_system\_state@{renderer\_system\_state}}
+\doxysubsubsection{\texorpdfstring{view}{view}}
+{\footnotesize\ttfamily \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} renderer\+\_\+system\+\_\+state\+::view}
+
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00032}{32}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00147}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00172}{renderer\+\_\+set\+\_\+view()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}.
 
 
 

@@ -77,18 +77,38 @@ $(function() {
 
 <p>Represents the state of the rendering system.  
  <a href="structrenderer__system__state.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for renderer_system_state:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structrenderer__system__state__coll__graph.png" border="0" usemap="#arenderer__system__state_coll__map" alt="Collaboration graph"/></div>
+<map name="arenderer__system__state_coll__map" id="arenderer__system__state_coll__map">
+<area shape="rect" title="Represents the state of the rendering system." alt="" coords="5,108,177,133"/>
+<area shape="rect" href="unionmat4__u.html" title="A 4x4 matrix union for linear transformations." alt="" coords="56,5,127,31"/>
+<area shape="poly" title=" " alt="" coords="94,45,94,108,89,108,89,45"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a52c3666e5bca364ff89ff93792576649" id="r_a52c3666e5bca364ff89ff93792576649"><td class="memItemLeft" align="right" valign="top">renderer_backend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrenderer__system__state.html#a52c3666e5bca364ff89ff93792576649">backend</a></td></tr>
 <tr class="memdesc:a52c3666e5bca364ff89ff93792576649"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the platform-specific state.  <br /></td></tr>
 <tr class="separator:a52c3666e5bca364ff89ff93792576649"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3adbc6ca69f6dd465396ce8eab970f4" id="r_ac3adbc6ca69f6dd465396ce8eab970f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrenderer__system__state.html#ac3adbc6ca69f6dd465396ce8eab970f4">projection</a></td></tr>
+<tr class="separator:ac3adbc6ca69f6dd465396ce8eab970f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ab9382c2529098371f0471a0fc86f62" id="r_a5ab9382c2529098371f0471a0fc86f62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrenderer__system__state.html#a5ab9382c2529098371f0471a0fc86f62">view</a></td></tr>
+<tr class="separator:a5ab9382c2529098371f0471a0fc86f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada2e7206a4fa1f531ef5c9f2c2d63884" id="r_ada2e7206a4fa1f531ef5c9f2c2d63884"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrenderer__system__state.html#ada2e7206a4fa1f531ef5c9f2c2d63884">near_clip</a></td></tr>
+<tr class="separator:ada2e7206a4fa1f531ef5c9f2c2d63884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61ee40d959ec115ad343a2a029e308d2" id="r_a61ee40d959ec115ad343a2a029e308d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrenderer__system__state.html#a61ee40d959ec115ad343a2a029e308d2">far_clip</a></td></tr>
+<tr class="separator:a61ee40d959ec115ad343a2a029e308d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents the state of the rendering system. </p>
 <p>Contains the current rendering backend and its associated state. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00023">23</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00024">24</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a52c3666e5bca364ff89ff93792576649" name="a52c3666e5bca364ff89ff93792576649"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52c3666e5bca364ff89ff93792576649">&#9670;&#160;</a></span>backend</h2>
@@ -104,9 +124,81 @@ Data Fields</h2></td></tr>
 
 <p>Pointer to the platform-specific state. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00027">27</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00028">28</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00086">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00103">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00113">renderer_on_resized()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00043">renderer_system_initialize()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00069">renderer_system_shutdown()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00102">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00147">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00119">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00129">renderer_on_resized()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00052">renderer_system_initialize()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00085">renderer_system_shutdown()</a>.</p>
+
+</div>
+</div>
+<a id="a61ee40d959ec115ad343a2a029e308d2" name="a61ee40d959ec115ad343a2a029e308d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61ee40d959ec115ad343a2a029e308d2">&#9670;&#160;</a></span>far_clip</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> renderer_system_state::far_clip</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00036">36</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00129">renderer_on_resized()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00052">renderer_system_initialize()</a>.</p>
+
+</div>
+</div>
+<a id="ada2e7206a4fa1f531ef5c9f2c2d63884" name="ada2e7206a4fa1f531ef5c9f2c2d63884"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada2e7206a4fa1f531ef5c9f2c2d63884">&#9670;&#160;</a></span>near_clip</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> renderer_system_state::near_clip</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00034">34</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00129">renderer_on_resized()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00052">renderer_system_initialize()</a>.</p>
+
+</div>
+</div>
+<a id="ac3adbc6ca69f6dd465396ce8eab970f4" name="ac3adbc6ca69f6dd465396ce8eab970f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3adbc6ca69f6dd465396ce8eab970f4">&#9670;&#160;</a></span>projection</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a> renderer_system_state::projection</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00030">30</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00147">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00129">renderer_on_resized()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00052">renderer_system_initialize()</a>.</p>
+
+</div>
+</div>
+<a id="a5ab9382c2529098371f0471a0fc86f62" name="a5ab9382c2529098371f0471a0fc86f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ab9382c2529098371f0471a0fc86f62">&#9670;&#160;</a></span>view</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a> renderer_system_state::view</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00032">32</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00147">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00172">renderer_set_view()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00052">renderer_system_initialize()</a>.</p>
 
 </div>
 </div>
@@ -116,7 +208,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 19:11:02 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

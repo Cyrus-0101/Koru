@@ -30,8 +30,10 @@ var searchData=
   ['platform_5fsystem_5fstate_27',['platform_system_state',['../structapplication__state.html#aef6e3d3187e197b9a6f293be7d5d5591',1,'application_state']]],
   ['platform_5fwin32_2ec_28',['platform_win32.c',['../platform__win32_8c.html',1,'']]],
   ['platform_5fzero_5fmemory_29',['platform_zero_memory',['../platform_8h.html#a59e03b207e95523b84692ea7f68e4654',1,'platform.h']]],
-  ['present_30',['present',['../structvulkan__physical__device__requirements.html#a823c487af548bdd104834099356111fd',1,'vulkan_physical_device_requirements']]],
-  ['present_5ffamily_5findex_31',['present_family_index',['../structvulkan__physical__device__queue__family__info.html#a00ce509975784215988d6af3aea9c607',1,'vulkan_physical_device_queue_family_info']]],
-  ['process_32',['🛠️ The Full Rendering Setup Process',['../index.html#autotoc_md37',1,'']]],
-  ['project_20structure_33',['📁 Project Structure',['../index.html#autotoc_md19',1,'']]]
+  ['position_30',['position',['../structvertex__3d.html#a6af32341a39296b603afef4ef7ec8726',1,'vertex_3d']]],
+  ['present_31',['present',['../structvulkan__physical__device__requirements.html#a823c487af548bdd104834099356111fd',1,'vulkan_physical_device_requirements']]],
+  ['present_5ffamily_5findex_32',['present_family_index',['../structvulkan__physical__device__queue__family__info.html#a00ce509975784215988d6af3aea9c607',1,'vulkan_physical_device_queue_family_info']]],
+  ['process_33',['🛠️ The Full Rendering Setup Process',['../index.html#autotoc_md37',1,'']]],
+  ['project_20structure_34',['📁 Project Structure',['../index.html#autotoc_md19',1,'']]],
+  ['projection_35',['projection',['../structrenderer__system__state.html#ac3adbc6ca69f6dd465396ce8eab970f4',1,'renderer_system_state']]]
 ];

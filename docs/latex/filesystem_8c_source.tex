@@ -1,0 +1,125 @@
+\doxysection{filesystem.\+c}
+\hypertarget{filesystem_8c_source}{}\label{filesystem_8c_source}\index{engine/src/platform/filesystem.c@{engine/src/platform/filesystem.c}}
+\mbox{\hyperlink{filesystem_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{filesystem_8h}{filesystem.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{logger_8h}{core/logger.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{kmemory_8h}{core/kmemory.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00010}\mbox{\hyperlink{filesystem_8c_a8cd6ab79b79fc3022c2ff3478cce2377}{00010}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{filesystem_8c_a8cd6ab79b79fc3022c2ff3478cce2377}{filesystem\_exists}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{struct\ }stat\ buffer;}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{return}\ stat(path,\ \&buffer)\ ==\ 0;}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00015}\mbox{\hyperlink{filesystem_8c_a86cbb9441406d6469d0216cd372c9125}{00015}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{filesystem_8c_a86cbb9441406d6469d0216cd372c9125}{filesystem\_open}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ path,\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}{file\_modes}}\ mode,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ binary,\ \mbox{\hyperlink{structfile__handle}{file\_handle}}*\ out\_handle)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00016}00016\ \ \ \ \ out\_handle-\/>\mbox{\hyperlink{structfile__handle_a35a655c6d44306eb8d36f3e313822d7d}{is\_valid}}\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00017}00017\ \ \ \ \ out\_handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ mode\_str;}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00020}00020\ \ \ \ \ \textcolor{keywordflow}{if}\ ((mode\ \&\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca89cf567f3e692c97873d7a795c17feca}{FILE\_MODE\_READ}})\ !=\ 0\ \&\&\ (mode\ \&\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca12eb77a5f1206154eb9f5adc219c9d5b}{FILE\_MODE\_WRITE}})\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00021}00021\ \ \ \ \ \ \ \ \ mode\_str\ =\ binary\ ?\ \textcolor{stringliteral}{"{}w+b"{}}\ :\ \textcolor{stringliteral}{"{}w+"{}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00022}00022\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((mode\ \&\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca89cf567f3e692c97873d7a795c17feca}{FILE\_MODE\_READ}})\ !=\ 0\ \&\&\ (mode\ \&\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca12eb77a5f1206154eb9f5adc219c9d5b}{FILE\_MODE\_WRITE}})\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00023}00023\ \ \ \ \ \ \ \ \ mode\_str\ =\ binary\ ?\ \textcolor{stringliteral}{"{}rb"{}}\ :\ \textcolor{stringliteral}{"{}r"{}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00024}00024\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((mode\ \&\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca89cf567f3e692c97873d7a795c17feca}{FILE\_MODE\_READ}})\ ==\ 0\ \&\&\ (mode\ \&\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca12eb77a5f1206154eb9f5adc219c9d5b}{FILE\_MODE\_WRITE}})\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00025}00025\ \ \ \ \ \ \ \ \ mode\_str\ =\ binary\ ?\ \textcolor{stringliteral}{"{}wb"{}}\ :\ \textcolor{stringliteral}{"{}w"{}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00026}00026\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00027}00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Invalid\ mode\ passed\ while\ trying\ to\ open\ file:\ '\%s'"{}},\ path);}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ Attempt\ to\ open\ the\ file.}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00032}00032\ \ \ \ \ FILE*\ file\ =\ fopen(path,\ mode\_str);}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!file)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00034}00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Error\ opening\ file:\ '\%s'"{}},\ path);}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00038}00038\ \ \ \ \ out\_handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}}\ =\ file;}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00039}00039\ \ \ \ \ out\_handle-\/>\mbox{\hyperlink{structfile__handle_a35a655c6d44306eb8d36f3e313822d7d}{is\_valid}}\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00042}00042\ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00044}\mbox{\hyperlink{filesystem_8c_aeb2523bb568e1ae441a69c05c80d7ed3}{00044}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{filesystem_8c_aeb2523bb568e1ae441a69c05c80d7ed3}{filesystem\_close}}(\mbox{\hyperlink{structfile__handle}{file\_handle}}*\ handle)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}})\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00046}00046\ \ \ \ \ \ \ \ \ fclose((FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00047}00047\ \ \ \ \ \ \ \ \ handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00048}00048\ \ \ \ \ \ \ \ \ handle-\/>\mbox{\hyperlink{structfile__handle_a35a655c6d44306eb8d36f3e313822d7d}{is\_valid}}\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00050}00050\ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00052}\mbox{\hyperlink{filesystem_8c_a4142bfd1fcef32c630016d0716875c83}{00052}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{filesystem_8c_a4142bfd1fcef32c630016d0716875c83}{filesystem\_read\_line}}(\mbox{\hyperlink{structfile__handle}{file\_handle}}*\ handle,\ \textcolor{keywordtype}{char}**\ line\_buf)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}})\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ we\ are\ reading\ a\ single\ line,\ it\ should\ be\ safe\ to\ assume\ this\ is\ enough\ characters.}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ buffer[32000];}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fgets(buffer,\ 32000,\ (FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}})\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ length\ =\ strlen(buffer);}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ *line\_buf\ =\ \mbox{\hyperlink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate}}((\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char})\ *\ length)\ +\ 1,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9}{MEMORY\_TAG\_STRING}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(*line\_buf,\ buffer);}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00066}\mbox{\hyperlink{filesystem_8c_a65afd51588ede15d7fcc0a920ba03a1b}{00066}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{filesystem_8c_a65afd51588ede15d7fcc0a920ba03a1b}{filesystem\_write\_line}}(\mbox{\hyperlink{structfile__handle}{file\_handle}}*\ handle,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ text)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}})\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00068}00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ result\ =\ fputs(text,\ (FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ EOF)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ fputc(\textcolor{charliteral}{'\(\backslash\)n'},\ (FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ to\ flush\ the\ stream\ so\ it\ is\ written\ to\ the\ file\ immediately.}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ prevents\ data\ loss\ in\ the\ event\ of\ a\ crash.}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ fflush((FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result\ !=\ EOF;}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00077}00077\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00079}00079\ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00081}\mbox{\hyperlink{filesystem_8c_a7f5e779e0edfba42ff99dac4ed951729}{00081}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{filesystem_8c_a7f5e779e0edfba42ff99dac4ed951729}{filesystem\_read}}(\mbox{\hyperlink{structfile__handle}{file\_handle}}*\ handle,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ data\_size,\ \textcolor{keywordtype}{void}*\ out\_data,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ out\_bytes\_read)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}}\ \&\&\ out\_data)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ *out\_bytes\_read\ =\ fread(out\_data,\ 1,\ data\_size,\ (FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*out\_bytes\_read\ !=\ data\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00086}00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00090}00090\ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00092}\mbox{\hyperlink{filesystem_8c_ab7a1923de3588dc8ae02e9a5cdda2378}{00092}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{filesystem_8c_ab7a1923de3588dc8ae02e9a5cdda2378}{filesystem\_read\_all\_bytes}}(\mbox{\hyperlink{structfile__handle}{file\_handle}}*\ handle,\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}**\ out\_bytes,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ out\_bytes\_read)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00093}00093\ \ \ \ \ \textcolor{keywordflow}{if}\ (handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}})\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ File\ size}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00095}00095\ \ \ \ \ \ \ \ \ fseek((FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}},\ 0,\ SEEK\_END);}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size\ =\ ftell((FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00097}00097\ \ \ \ \ \ \ \ \ rewind((FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00099}00099\ \ \ \ \ \ \ \ \ *out\_bytes\ =\ \mbox{\hyperlink{kmemory_8c_aaff7cb37687dfc7680be1a2101890d88}{kallocate}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}})\ *\ size,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9}{MEMORY\_TAG\_STRING}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00100}00100\ \ \ \ \ \ \ \ \ *out\_bytes\_read\ =\ fread(*out\_bytes,\ 1,\ size,\ (FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*out\_bytes\_read\ !=\ size)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00105}00105\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00106}00106\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00107}00107\ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00109}\mbox{\hyperlink{filesystem_8c_a6c1efae6bddf1748d47fdc18bdd8fd18}{00109}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{filesystem_8c_a6c1efae6bddf1748d47fdc18bdd8fd18}{filesystem\_write}}(\mbox{\hyperlink{structfile__handle}{file\_handle}}*\ handle,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ data\_size,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ data,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ out\_bytes\_written)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}})\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00111}00111\ \ \ \ \ \ \ \ \ *out\_bytes\_written\ =\ fwrite(data,\ 1,\ data\_size,\ (FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*out\_bytes\_written\ !=\ data\_size)\ \{}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00114}00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00115}00115\ \ \ \ \ \ \ \ \ fflush((FILE*)handle-\/>\mbox{\hyperlink{structfile__handle_ad54400492073b68c9fa49d36b4ad8060}{handle}});}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00117}00117\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{filesystem_8c_source_l00119}00119\ \}}
+
+\end{DoxyCode}

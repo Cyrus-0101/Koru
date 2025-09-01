@@ -1,0 +1,210 @@
+\doxysection{engine/src/renderer/vulkan/shaders/vulkan\+\_\+object\+\_\+shader.h File Reference}
+\hypertarget{vulkan__object__shader_8h}{}\label{vulkan__object__shader_8h}\index{engine/src/renderer/vulkan/shaders/vulkan\_object\_shader.h@{engine/src/renderer/vulkan/shaders/vulkan\_object\_shader.h}}
+
+
+Header for the Vulkan object shader implementation.  
+
+
+{\ttfamily \#include "{}renderer/vulkan/vulkan\+\_\+types.\+inl"{}}\newline
+{\ttfamily \#include "{}renderer/renderer\+\_\+types.\+inl"{}}\newline
+Include dependency graph for vulkan\+\_\+object\+\_\+shader.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vulkan__object__shader_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vulkan__object__shader_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__object__shader_8h_a3f5cbbeebbd3e3c3ca269dd03407ccf6}{vulkan\+\_\+object\+\_\+shader\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}out\+\_\+shader)
+\begin{DoxyCompactList}\small\item\em Creates a Vulkan object shader for rendering 3D objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__object__shader_8h_a6ace9d29f4186e7203ca39087820c339}{vulkan\+\_\+object\+\_\+shader\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, struct vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}shader)
+\begin{DoxyCompactList}\small\item\em Destroys a Vulkan object shader and frees associated resources. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__object__shader_8h_aa17cc66f7287368b8cf3f54d5807851c}{vulkan\+\_\+object\+\_\+shader\+\_\+use}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, struct vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}shader)
+\begin{DoxyCompactList}\small\item\em Binds the Vulkan object shader\textquotesingle{}s pipeline for rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__object__shader_8h_ae23afa083abf27e9402208a60d2a8a15}{vulkan\+\_\+object\+\_\+shader\+\_\+update\+\_\+global\+\_\+state}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, struct vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}shader)
+\begin{DoxyCompactList}\small\item\em Updates the global uniform state for the Vulkan object shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__object__shader_8h_a0b2451b5f3947a1b8a66c8745dce83ab}{vulkan\+\_\+object\+\_\+shader\+\_\+update\+\_\+object}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, struct vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}shader, \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} model)
+\begin{DoxyCompactList}\small\item\em Updates the model matrix for a specific object in the Vulkan object shader. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header for the Vulkan object shader implementation. 
+
+Defines the structure and functions for managing a Vulkan shader used for rendering 3D objects. This includes shader stages, descriptor sets, uniform buffers, and the graphics pipeline. 
+
+Definition in file \mbox{\hyperlink{vulkan__object__shader_8h_source}{vulkan\+\_\+object\+\_\+shader.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__object__shader_8h_a3f5cbbeebbd3e3c3ca269dd03407ccf6}\label{vulkan__object__shader_8h_a3f5cbbeebbd3e3c3ca269dd03407ccf6} 
+\index{vulkan\_object\_shader.h@{vulkan\_object\_shader.h}!vulkan\_object\_shader\_create@{vulkan\_object\_shader\_create}}
+\index{vulkan\_object\_shader\_create@{vulkan\_object\_shader\_create}!vulkan\_object\_shader.h@{vulkan\_object\_shader.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_object\_shader\_create()}{vulkan\_object\_shader\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} vulkan\+\_\+object\+\_\+shader\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}}]{out\+\_\+shader }\end{DoxyParamCaption})}
+
+
+
+Creates a Vulkan object shader for rendering 3D objects. 
+
+This function initializes the shader stages, descriptor sets, uniform buffers, and graphics pipeline needed for rendering objects in a Vulkan context.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The Vulkan context containing device and swapchain information. \\
+\hline
+{\em out\+\_\+shader} & Pointer to the vulkan\+\_\+object\+\_\+shader structure to be initialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the shader was created successfully; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__object__shader_8c_source_l00020}{20}} of file \mbox{\hyperlink{vulkan__object__shader_8c_source}{vulkan\+\_\+object\+\_\+shader.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__object__shader_8c_source_l00018}{ATTRIBUTE\+\_\+\+COUNT}}, \mbox{\hyperlink{vulkan__object__shader_8c_source_l00013}{BUILTIN\+\_\+\+SHADER\+\_\+\+NAME\+\_\+\+OBJECT}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00009}{create\+\_\+shader\+\_\+module()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kfree()}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00029}{MEMORY\+\_\+\+TAG\+\_\+\+ARRAY}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00010}{vulkan\+\_\+buffer\+\_\+create()}}, and \mbox{\hyperlink{vulkan__pipeline_8c_source_l00009}{vulkan\+\_\+graphics\+\_\+pipeline\+\_\+create()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00082}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+
+\Hypertarget{vulkan__object__shader_8h_a6ace9d29f4186e7203ca39087820c339}\label{vulkan__object__shader_8h_a6ace9d29f4186e7203ca39087820c339} 
+\index{vulkan\_object\_shader.h@{vulkan\_object\_shader.h}!vulkan\_object\_shader\_destroy@{vulkan\_object\_shader\_destroy}}
+\index{vulkan\_object\_shader\_destroy@{vulkan\_object\_shader\_destroy}!vulkan\_object\_shader.h@{vulkan\_object\_shader.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_object\_shader\_destroy()}{vulkan\_object\_shader\_destroy()}}
+{\footnotesize\ttfamily void vulkan\+\_\+object\+\_\+shader\+\_\+destroy (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{struct vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}}]{shader }\end{DoxyParamCaption})}
+
+
+
+Destroys a Vulkan object shader and frees associated resources. 
+
+This function cleans up all resources allocated for the object shader, including shader modules, descriptor sets, uniform buffers, and the graphics pipeline.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The Vulkan context containing device information. \\
+\hline
+{\em shader} & Pointer to the vulkan\+\_\+object\+\_\+shader structure to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__object__shader_8c_source_l00153}{153}} of file \mbox{\hyperlink{vulkan__object__shader_8c_source}{vulkan\+\_\+object\+\_\+shader.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00057}{vulkan\+\_\+buffer\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__pipeline_8c_source_l00156}{vulkan\+\_\+pipeline\+\_\+destroy()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00327}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown()}}.
+
+\Hypertarget{vulkan__object__shader_8h_ae23afa083abf27e9402208a60d2a8a15}\label{vulkan__object__shader_8h_ae23afa083abf27e9402208a60d2a8a15} 
+\index{vulkan\_object\_shader.h@{vulkan\_object\_shader.h}!vulkan\_object\_shader\_update\_global\_state@{vulkan\_object\_shader\_update\_global\_state}}
+\index{vulkan\_object\_shader\_update\_global\_state@{vulkan\_object\_shader\_update\_global\_state}!vulkan\_object\_shader.h@{vulkan\_object\_shader.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_object\_shader\_update\_global\_state()}{vulkan\_object\_shader\_update\_global\_state()}}
+{\footnotesize\ttfamily void vulkan\+\_\+object\+\_\+shader\+\_\+update\+\_\+global\+\_\+state (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{struct vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}}]{shader }\end{DoxyParamCaption})}
+
+
+
+Updates the global uniform state for the Vulkan object shader. 
+
+This function updates the global uniform buffer object (UBO) with the current projection and view matrices, and binds the appropriate descriptor set for the current frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The Vulkan context containing command buffers and frame information. \\
+\hline
+{\em shader} & Pointer to the vulkan\+\_\+object\+\_\+shader structure whose global state is to be updated. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__object__shader_8c_source_l00187}{187}} of file \mbox{\hyperlink{vulkan__object__shader_8c_source}{vulkan\+\_\+object\+\_\+shader.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, and \mbox{\hyperlink{vulkan__buffer_8c_source_l00145}{vulkan\+\_\+buffer\+\_\+load\+\_\+data()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00526}{vulkan\+\_\+renderer\+\_\+update\+\_\+global\+\_\+state()}}.
+
+\Hypertarget{vulkan__object__shader_8h_a0b2451b5f3947a1b8a66c8745dce83ab}\label{vulkan__object__shader_8h_a0b2451b5f3947a1b8a66c8745dce83ab} 
+\index{vulkan\_object\_shader.h@{vulkan\_object\_shader.h}!vulkan\_object\_shader\_update\_object@{vulkan\_object\_shader\_update\_object}}
+\index{vulkan\_object\_shader\_update\_object@{vulkan\_object\_shader\_update\_object}!vulkan\_object\_shader.h@{vulkan\_object\_shader.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_object\_shader\_update\_object()}{vulkan\_object\_shader\_update\_object()}}
+{\footnotesize\ttfamily void vulkan\+\_\+object\+\_\+shader\+\_\+update\+\_\+object (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{struct vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}}]{shader,  }\item[{\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}}}]{model }\end{DoxyParamCaption})}
+
+
+
+Updates the model matrix for a specific object in the Vulkan object shader. 
+
+This function uses push constants to update the model transformation matrix for a specific object being rendered, allowing for efficient per-\/object transformations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The Vulkan context containing command buffers and frame information. \\
+\hline
+{\em shader} & Pointer to the vulkan\+\_\+object\+\_\+shader structure whose object state is to be updated. \\
+\hline
+{\em model} & The model transformation matrix for the object. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__object__shader_8c_source_l00219}{219}} of file \mbox{\hyperlink{vulkan__object__shader_8c_source}{vulkan\+\_\+object\+\_\+shader.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00611}{vulkan\+\_\+backend\+\_\+update\+\_\+object()}}.
+
+\Hypertarget{vulkan__object__shader_8h_aa17cc66f7287368b8cf3f54d5807851c}\label{vulkan__object__shader_8h_aa17cc66f7287368b8cf3f54d5807851c} 
+\index{vulkan\_object\_shader.h@{vulkan\_object\_shader.h}!vulkan\_object\_shader\_use@{vulkan\_object\_shader\_use}}
+\index{vulkan\_object\_shader\_use@{vulkan\_object\_shader\_use}!vulkan\_object\_shader.h@{vulkan\_object\_shader.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_object\_shader\_use()}{vulkan\_object\_shader\_use()}}
+{\footnotesize\ttfamily void vulkan\+\_\+object\+\_\+shader\+\_\+use (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{struct vulkan\+\_\+object\+\_\+shader \texorpdfstring{$\ast$}{*}}]{shader }\end{DoxyParamCaption})}
+
+
+
+Binds the Vulkan object shader\textquotesingle{}s pipeline for rendering. 
+
+This function binds the graphics pipeline associated with the object shader to the command buffer for the current frame, preparing it for drawing operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & The Vulkan context containing command buffers and frame information. \\
+\hline
+{\em shader} & Pointer to the vulkan\+\_\+object\+\_\+shader structure whose pipeline is to be bound. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__object__shader_8c_source_l00182}{182}} of file \mbox{\hyperlink{vulkan__object__shader_8c_source}{vulkan\+\_\+object\+\_\+shader.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, and \mbox{\hyperlink{vulkan__pipeline_8c_source_l00173}{vulkan\+\_\+pipeline\+\_\+bind()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00611}{vulkan\+\_\+backend\+\_\+update\+\_\+object()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00526}{vulkan\+\_\+renderer\+\_\+update\+\_\+global\+\_\+state()}}.
+

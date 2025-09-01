@@ -15,10 +15,10 @@ var searchData=
   ['image_12',['🧪 Bonus: Sample Code for Acquiring an Image',['../index.html#autotoc_md75',1,'']]],
   ['image_20views_13',['8. 🖼 Create Image Views',['../index.html#autotoc_md53',1,'']]],
   ['import_14',['DLL EXPORT/IMPORT',['../defines_8h.html#autotoc_md1',1,'']]],
-  ['initialize_15',['initialize',['../structgame.html#a5466af7e15d158c9a30a2c733514bc13',1,'game']]],
-  ['initialize_5flogging_16',['initialize_logging',['../logger_8h.html#a124a9e558949da0e8f11f6929992a5c8',1,'initialize_logging(u64 *memory_requirement, void *state):&#160;logger.c'],['../logger_8c.html#a124a9e558949da0e8f11f6929992a5c8',1,'initialize_logging(u64 *memory_requirement, void *state):&#160;logger.c']]],
-  ['initialize_5fmemory_17',['initialize_memory',['../kmemory_8c.html#ac10c3f597dcba3b1014c4abd12c57839',1,'initialize_memory(u64 *memory_requirement, void *state):&#160;kmemory.c'],['../kmemory_8h.html#a7cf8c0e8d880cf67f62f937387aefad2',1,'initialize_memory(u64 *memory_requirement, void *state):&#160;kmemory.c']]],
-  ['initialized_18',['initialized',['../structlogger__system__state.html#a7ead9fc41f059e2ef062233c0541e0d6',1,'logger_system_state']]],
+  ['index_5fcount_15',['INDEX_COUNT',['../vulkan__backend_8c.html#a6a115da8e112c0fea3160666c42973be',1,'vulkan_backend.c']]],
+  ['initialize_16',['initialize',['../structgame.html#a5466af7e15d158c9a30a2c733514bc13',1,'game']]],
+  ['initialize_5flogging_17',['initialize_logging',['../logger_8c.html#a124a9e558949da0e8f11f6929992a5c8',1,'initialize_logging(u64 *memory_requirement, void *state):&#160;logger.c'],['../logger_8h.html#a124a9e558949da0e8f11f6929992a5c8',1,'initialize_logging(u64 *memory_requirement, void *state):&#160;logger.c']]],
+  ['initialize_5fmemory_18',['initialize_memory',['../kmemory_8c.html#ac10c3f597dcba3b1014c4abd12c57839',1,'initialize_memory(u64 *memory_requirement, void *state):&#160;kmemory.c'],['../kmemory_8h.html#a7cf8c0e8d880cf67f62f937387aefad2',1,'initialize_memory(u64 *memory_requirement, void *state):&#160;kmemory.c']]],
   ['input_2ec_19',['input.c',['../input_8c.html',1,'']]],
   ['input_2eh_20',['input.h',['../input_8h.html',1,'']]],
   ['input_5fget_5fmouse_5fposition_21',['input_get_mouse_position',['../input_8c.html#a1e19103585247155502b24483b586afe',1,'input_get_mouse_position(i32 *x, i32 *y):&#160;input.c'],['../input_8h.html#afc6f79db4354bffcaa5341e3dd94e561',1,'input_get_mouse_position(i32 *x, i32 *y):&#160;input.c']]],
@@ -32,7 +32,7 @@ var searchData=
   ['input_5fprocess_5fmouse_5fmove_29',['input_process_mouse_move',['../input_8c.html#a5d56afad3d78c1e177fa44cef3e7d19d',1,'input_process_mouse_move(i16 x, i16 y):&#160;input.c'],['../input_8h.html#a5d56afad3d78c1e177fa44cef3e7d19d',1,'input_process_mouse_move(i16 x, i16 y):&#160;input.c']]],
   ['input_5fprocess_5fmouse_5fwheel_30',['input_process_mouse_wheel',['../input_8c.html#af9d0e1b4ff7fce1972ba93c810bfbabc',1,'input_process_mouse_wheel(i8 z_delta):&#160;input.c'],['../input_8h.html#af9d0e1b4ff7fce1972ba93c810bfbabc',1,'input_process_mouse_wheel(i8 z_delta):&#160;input.c']]],
   ['input_5fstate_31',['input_state',['../input_8c.html#a762f039269f41faf9e93b6b7c2737a4d',1,'input_state:&#160;input.c'],['../structinput__state.html',1,'input_state']]],
-  ['input_5fsystem_5finitialize_32',['input_system_initialize',['../input_8h.html#a50da38663daa6b407afd71b0e27be80e',1,'input_system_initialize(u64 *memory_requirement, void *state):&#160;input.c'],['../input_8c.html#a50da38663daa6b407afd71b0e27be80e',1,'input_system_initialize(u64 *memory_requirement, void *state):&#160;input.c']]],
+  ['input_5fsystem_5finitialize_32',['input_system_initialize',['../input_8c.html#a50da38663daa6b407afd71b0e27be80e',1,'input_system_initialize(u64 *memory_requirement, void *state):&#160;input.c'],['../input_8h.html#a50da38663daa6b407afd71b0e27be80e',1,'input_system_initialize(u64 *memory_requirement, void *state):&#160;input.c']]],
   ['input_5fsystem_5fmemory_5frequirement_33',['input_system_memory_requirement',['../structapplication__state.html#a2a9175d2ced90985c4c30c8c75857cd9',1,'application_state']]],
   ['input_5fsystem_5fshutdown_34',['input_system_shutdown',['../input_8c.html#a5dd948679d0749af4d6047e16d15d6f7',1,'input_system_shutdown(void *state):&#160;input.c'],['../input_8h.html#a5dd948679d0749af4d6047e16d15d6f7',1,'input_system_shutdown(void *state):&#160;input.c']]],
   ['input_5fsystem_5fstate_35',['input_system_state',['../structapplication__state.html#a7949e6624c3ebfad501d54da232cc65b',1,'application_state']]],
@@ -52,5 +52,6 @@ var searchData=
   ['is_20needed_49',['💡 Why All This Is Needed',['../index.html#autotoc_md71',1,'']]],
   ['is_5fpower_5fof_5f2_50',['is_power_of_2',['../kmath_8h.html#a728ffffd37e34f79e8d0e5669177c9e7',1,'kmath.h']]],
   ['is_5frunning_51',['is_running',['../structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde',1,'application_state']]],
-  ['is_5fsuspended_52',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]]
+  ['is_5fsuspended_52',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]],
+  ['is_5fvalid_53',['is_valid',['../structfile__handle.html#a35a655c6d44306eb8d36f3e313822d7d',1,'file_handle']]]
 ];

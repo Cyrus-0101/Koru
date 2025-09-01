@@ -159,7 +159,7 @@
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00257}00257\ }
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00258}\mbox{\hyperlink{vulkan__device_8c_acb801f308c78e06ab4b730a49c07e37f}{00258}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__device_8c_acb801f308c78e06ab4b730a49c07e37f}{vulkan\_device\_destroy}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00259}00259\ \ \ \ \ \textcolor{comment}{//\ Step\ 1:\ Destroy\ command\ pools}}
-\DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00260}00260\ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}Destroying\ command\ pools..."{}});}
+\DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00260}00260\ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Destroying\ command\ pools..."{}});}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00261}00261\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_command\_pool)\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00262}00262\ \ \ \ \ \ \ \ \ vkDestroyCommandPool(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_command\_pool,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00263}00263\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_command\_pool\ =\ 0;}
@@ -177,14 +177,14 @@
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00275}00275\ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.transfer\_queue\ =\ 0;}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00276}00276\ }
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00277}00277\ \ \ \ \ \textcolor{comment}{//\ Step\ 3:\ Destroy\ logical\ device}}
-\DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00278}00278\ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}Destroying\ logical\ device..."{}});}
+\DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00278}00278\ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Destroying\ logical\ device..."{}});}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00279}00279\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device)\ \{}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00280}00280\ \ \ \ \ \ \ \ \ vkDestroyDevice(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00281}00281\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device\ =\ 0;}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00282}00282\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00283}00283\ }
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00284}00284\ \ \ \ \ \textcolor{comment}{//\ Step\ 4:\ Clean\ up\ physical\ device\ metadata}}
-\DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00285}00285\ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}Releasing\ physical\ device\ resources..."{}});}
+\DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00285}00285\ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Releasing\ physical\ device\ resources..."{}});}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00286}00286\ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.physical\_device\ =\ 0;}
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00287}00287\ }
 \DoxyCodeLine{\Hypertarget{vulkan__device_8c_source_l00288}00288\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.swapchain\_support.formats)\ \{}

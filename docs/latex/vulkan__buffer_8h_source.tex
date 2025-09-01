@@ -1,0 +1,36 @@
+\doxysection{vulkan\+\_\+buffer.\+h}
+\hypertarget{vulkan__buffer_8h_source}{}\label{vulkan__buffer_8h_source}\index{engine/src/renderer/vulkan/vulkan\_buffer.h@{engine/src/renderer/vulkan/vulkan\_buffer.h}}
+\mbox{\hyperlink{vulkan__buffer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}vulkan\_types.inl"{}}}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00005}00005\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__buffer_8h_adc1253645b021b8c8dd0ff5f001c1668}{vulkan\_buffer\_create}}(}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00006}00006\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00007}00007\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00008}00008\ \ \ \ \ VkBufferUsageFlagBits\ usage,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00009}00009\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ memory\_property\_flags,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ bind\_on\_create,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00011}00011\ \ \ \ \ vulkan\_buffer*\ out\_buffer);}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00013}00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__buffer_8h_a0777c036a5cdb692aa0fd21fd1df2adc}{vulkan\_buffer\_destroy}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_buffer*\ buffer);}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00015}00015\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{vulkan__buffer_8h_a1ab2cfc9a303e3f204874a58d9d15f6f}{vulkan\_buffer\_lock\_memory}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_buffer*\ buffer,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ offset,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ flags);}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00017}00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__buffer_8h_a320b309d7773e97e06f2f5ffb342e712}{vulkan\_buffer\_unlock\_memory}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_buffer*\ buffer);}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00019}00019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__buffer_8h_a74035aeef79e5ffe833042ce00499a64}{vulkan\_buffer\_load\_data}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_buffer*\ buffer,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ offset,\ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ flags,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ data);}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00021}00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__buffer_8h_afb4dafb2469273c4c860ba47829e2042}{vulkan\_buffer\_copy\_to}}(}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00022}00022\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00023}00023\ \ \ \ \ VkCommandPool\ pool,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00024}00024\ \ \ \ \ VkFence\ fence,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00025}00025\ \ \ \ \ VkQueue\ queue,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00026}00026\ \ \ \ \ VkBuffer\ source,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ source\_offset,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00028}00028\ \ \ \ \ VkBuffer\ dest,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ dest\_offset,}
+\DoxyCodeLine{\Hypertarget{vulkan__buffer_8h_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size);}
+
+\end{DoxyCode}

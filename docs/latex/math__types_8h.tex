@@ -13,11 +13,12 @@ Include dependency graph for math\+\_\+types.\+h\+:\nopagebreak
 \includegraphics[width=204pt]{math__types_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=219pt]{math__types_8h__dep__incl}
+\includegraphics[width=350pt]{math__types_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Data Structures}
@@ -30,7 +31,9 @@ struct \mbox{\hyperlink{structvec3__u}{vec3\+\_\+u}}
 union \mbox{\hyperlink{unionvec4__u}{vec4\+\_\+u}}
 \begin{DoxyCompactList}\small\item\em A 4-\/component vector union with multiple access patterns. \end{DoxyCompactList}\item 
 union \mbox{\hyperlink{unionmat4__u}{mat4\+\_\+u}}
-\begin{DoxyCompactList}\small\item\em A 4x4 matrix union for linear transformations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A 4x4 matrix union for linear transformations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}}
+\begin{DoxyCompactList}\small\item\em A 3D vertex structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,7 +46,9 @@ typedef union \mbox{\hyperlink{unionvec4__u}{vec4\+\_\+u}} \mbox{\hyperlink{math
 typedef \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} \mbox{\hyperlink{math__types_8h_af5f140c7cfd64fec8b5126ae20ca327f}{quat}}
 \begin{DoxyCompactList}\small\item\em Quaternion type alias using vec4 storage. \end{DoxyCompactList}\item 
 typedef union \mbox{\hyperlink{unionmat4__u}{mat4\+\_\+u}} \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}}
-\begin{DoxyCompactList}\small\item\em A 4x4 matrix union for linear transformations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A 4x4 matrix union for linear transformations. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}} \mbox{\hyperlink{math__types_8h_ac2c96f5ab79ff4c17a05e5c9b044e5c4}{vertex\+\_\+3d}}
+\begin{DoxyCompactList}\small\item\em A 3D vertex structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -172,4 +177,21 @@ Provides access to components via\+:
 \item Texture coordinates (s,t,p,q)
 \item Raw array index
 \item SIMD operations when enabled 
+\end{DoxyItemize}\Hypertarget{math__types_8h_ac2c96f5ab79ff4c17a05e5c9b044e5c4}\label{math__types_8h_ac2c96f5ab79ff4c17a05e5c9b044e5c4} 
+\index{math\_types.h@{math\_types.h}!vertex\_3d@{vertex\_3d}}
+\index{vertex\_3d@{vertex\_3d}!math\_types.h@{math\_types.h}}
+\doxysubsubsection{\texorpdfstring{vertex\_3d}{vertex\_3d}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}} \mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}}}
+
+
+
+A 3D vertex structure. 
+
+Represents a vertex in 3D space with position data. Can be extended to include normals, texture coordinates, etc.
+
+Why needed\+:
+\begin{DoxyItemize}
+\item Standard representation for 3D vertices in graphics applications
+\item Simplifies passing vertex data to rendering pipelines
+\item Can be easily extended for additional attributes 
 \end{DoxyItemize}

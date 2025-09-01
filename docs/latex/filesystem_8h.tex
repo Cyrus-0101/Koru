@@ -1,0 +1,310 @@
+\doxysection{engine/src/platform/filesystem.h File Reference}
+\hypertarget{filesystem_8h}{}\label{filesystem_8h}\index{engine/src/platform/filesystem.h@{engine/src/platform/filesystem.h}}
+{\ttfamily \#include "{}defines.\+h"{}}\newline
+Include dependency graph for filesystem.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{filesystem_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{filesystem_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfile__handle}{file\+\_\+handle}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \mbox{\hyperlink{filesystem_8h_a7476969a55c37c65e7364842e81b93d7}{file\+\_\+handle}}
+\item 
+typedef enum \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}{file\+\_\+modes}} \mbox{\hyperlink{filesystem_8h_a260a6f6af9275cf2bfbc28e6a687710b}{file\+\_\+modes}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}{file\+\_\+modes}} \{ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca89cf567f3e692c97873d7a795c17feca}{FILE\+\_\+\+MODE\+\_\+\+READ}} = 0x1
+, \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca12eb77a5f1206154eb9f5adc219c9d5b}{FILE\+\_\+\+MODE\+\_\+\+WRITE}} = 0x2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_a4997bca99ca6341f66be85cc0cdff3e6}{filesystem\+\_\+exists}} (const char \texorpdfstring{$\ast$}{*}path)
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_a8173a7166321a59549cb1933c498bc24}{filesystem\+\_\+open}} (const char \texorpdfstring{$\ast$}{*}path, \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}{file\+\_\+modes}} mode, \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} binary, \mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}out\+\_\+handle)
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{filesystem_8h_a20450eac56692795d9c28dc6b34bb898}{filesystem\+\_\+close}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle)
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_a075cfd44afc5cc15562af078123f67e0}{filesystem\+\_\+read\+\_\+line}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}line\+\_\+buf)
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_ac9fa1fb71b432ede794211d6a7df7052}{filesystem\+\_\+write\+\_\+line}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle, const char \texorpdfstring{$\ast$}{*}text)
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_aff3cb7ad041d5dec3e40e10509a8bf60}{filesystem\+\_\+read}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} data\+\_\+size, void \texorpdfstring{$\ast$}{*}out\+\_\+data, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}out\+\_\+bytes\+\_\+read)
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_a20bcf5672d324b5e534503c6b5b93a56}{filesystem\+\_\+read\+\_\+all\+\_\+bytes}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}out\+\_\+bytes, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}out\+\_\+bytes\+\_\+read)
+\item 
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_a8570b525f6dc1490dd4193296a96d52d}{filesystem\+\_\+write}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} data\+\_\+size, const void \texorpdfstring{$\ast$}{*}data, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}out\+\_\+bytes\+\_\+written)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{filesystem_8h_a7476969a55c37c65e7364842e81b93d7}\label{filesystem_8h_a7476969a55c37c65e7364842e81b93d7} 
+\index{filesystem.h@{filesystem.h}!file\_handle@{file\_handle}}
+\index{file\_handle@{file\_handle}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{file\_handle}{file\_handle}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \mbox{\hyperlink{structfile__handle}{file\+\_\+handle}}}
+
+\Hypertarget{filesystem_8h_a260a6f6af9275cf2bfbc28e6a687710b}\label{filesystem_8h_a260a6f6af9275cf2bfbc28e6a687710b} 
+\index{filesystem.h@{filesystem.h}!file\_modes@{file\_modes}}
+\index{file\_modes@{file\_modes}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{file\_modes}{file\_modes}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}{file\+\_\+modes}} \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}{file\+\_\+modes}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}\label{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc} 
+\index{filesystem.h@{filesystem.h}!file\_modes@{file\_modes}}
+\index{file\_modes@{file\_modes}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{file\_modes}{file\_modes}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}{file\+\_\+modes}}}
+
+Represents the modes in which a file can be opened. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_MODE\_READ@{FILE\_MODE\_READ}!filesystem.h@{filesystem.h}}\index{filesystem.h@{filesystem.h}!FILE\_MODE\_READ@{FILE\_MODE\_READ}}}\Hypertarget{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca89cf567f3e692c97873d7a795c17feca}\label{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca89cf567f3e692c97873d7a795c17feca} 
+FILE\+\_\+\+MODE\+\_\+\+READ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_MODE\_WRITE@{FILE\_MODE\_WRITE}!filesystem.h@{filesystem.h}}\index{filesystem.h@{filesystem.h}!FILE\_MODE\_WRITE@{FILE\_MODE\_WRITE}}}\Hypertarget{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca12eb77a5f1206154eb9f5adc219c9d5b}\label{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca12eb77a5f1206154eb9f5adc219c9d5b} 
+FILE\+\_\+\+MODE\+\_\+\+WRITE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{filesystem_8h_source_l00022}{22}} of file \mbox{\hyperlink{filesystem_8h_source}{filesystem.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{filesystem_8h_a20450eac56692795d9c28dc6b34bb898}\label{filesystem_8h_a20450eac56692795d9c28dc6b34bb898} 
+\index{filesystem.h@{filesystem.h}!filesystem\_close@{filesystem\_close}}
+\index{filesystem\_close@{filesystem\_close}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{filesystem\_close()}{filesystem\_close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void filesystem\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}}]{handle }\end{DoxyParamCaption})}
+
+Closes the provided handle to a file. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & A pointer to a \doxylink{structfile__handle}{file\+\_\+handle} structure which holds the handle to be closed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00044}{44}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{filesystem_8h_source_l00014}{file\+\_\+handle\+::is\+\_\+valid}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00009}{create\+\_\+shader\+\_\+module()}}.
+
+\Hypertarget{filesystem_8h_a4997bca99ca6341f66be85cc0cdff3e6}\label{filesystem_8h_a4997bca99ca6341f66be85cc0cdff3e6} 
+\index{filesystem.h@{filesystem.h}!filesystem\_exists@{filesystem\_exists}}
+\index{filesystem\_exists@{filesystem\_exists}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{filesystem\_exists()}{filesystem\_exists()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} filesystem\+\_\+exists (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+Checks if a file with the given path exists. 
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the file to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if exists; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00010}{10}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+
+\Hypertarget{filesystem_8h_a8173a7166321a59549cb1933c498bc24}\label{filesystem_8h_a8173a7166321a59549cb1933c498bc24} 
+\index{filesystem.h@{filesystem.h}!filesystem\_open@{filesystem\_open}}
+\index{filesystem\_open@{filesystem\_open}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{filesystem\_open()}{filesystem\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} filesystem\+\_\+open (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path,  }\item[{\mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}{file\+\_\+modes}}}]{mode,  }\item[{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}}]{binary,  }\item[{\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+handle }\end{DoxyParamCaption})}
+
+Attempt to open file located at path. 
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of the file to be opened. \\
+\hline
+{\em mode} & Mode flags for the file when opened (read/write). See file\+\_\+modes enum in \doxylink{filesystem_8h}{filesystem.\+h}. \\
+\hline
+{\em binary} & Indicates if the file should be opened in binary mode. \\
+\hline
+{\em out\+\_\+handle} & A pointer to a \doxylink{structfile__handle}{file\+\_\+handle} structure which holds the handle information. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if opened successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00015}{15}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00024}{FILE\+\_\+\+MODE\+\_\+\+READ}}, \mbox{\hyperlink{filesystem_8h_source_l00026}{FILE\+\_\+\+MODE\+\_\+\+WRITE}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{filesystem_8h_source_l00014}{file\+\_\+handle\+::is\+\_\+valid}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00009}{create\+\_\+shader\+\_\+module()}}, and \mbox{\hyperlink{logger_8c_source_l00064}{initialize\+\_\+logging()}}.
+
+\Hypertarget{filesystem_8h_aff3cb7ad041d5dec3e40e10509a8bf60}\label{filesystem_8h_aff3cb7ad041d5dec3e40e10509a8bf60} 
+\index{filesystem.h@{filesystem.h}!filesystem\_read@{filesystem\_read}}
+\index{filesystem\_read@{filesystem\_read}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{filesystem\_read()}{filesystem\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} filesystem\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}}]{handle,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{data\+\_\+size,  }\item[{void \texorpdfstring{$\ast$}{*}}]{out\+\_\+data,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+bytes\+\_\+read }\end{DoxyParamCaption})}
+
+Reads up to data\+\_\+size bytes of data into out\+\_\+bytes\+\_\+read. Allocates \texorpdfstring{$\ast$}{*}out\+\_\+data, which must be freed by the caller. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & A pointer to a \doxylink{structfile__handle}{file\+\_\+handle} structure. \\
+\hline
+{\em data\+\_\+size} & The number of bytes to read. \\
+\hline
+{\em out\+\_\+data} & A pointer to a block of memory to be populated by this method. \\
+\hline
+{\em out\+\_\+bytes\+\_\+read} & A pointer to a number which will be populated with the number of bytes actually read from the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00081}{81}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+\Hypertarget{filesystem_8h_a20bcf5672d324b5e534503c6b5b93a56}\label{filesystem_8h_a20bcf5672d324b5e534503c6b5b93a56} 
+\index{filesystem.h@{filesystem.h}!filesystem\_read\_all\_bytes@{filesystem\_read\_all\_bytes}}
+\index{filesystem\_read\_all\_bytes@{filesystem\_read\_all\_bytes}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{filesystem\_read\_all\_bytes()}{filesystem\_read\_all\_bytes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} filesystem\+\_\+read\+\_\+all\+\_\+bytes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}}]{handle,  }\item[{\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{out\+\_\+bytes,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+bytes\+\_\+read }\end{DoxyParamCaption})}
+
+Reads up to data\+\_\+size bytes of data into out\+\_\+bytes\+\_\+read. Allocates \texorpdfstring{$\ast$}{*}out\+\_\+bytes, which must be freed by the caller. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & A pointer to a \doxylink{structfile__handle}{file\+\_\+handle} structure. \\
+\hline
+{\em out\+\_\+bytes} & A pointer to a byte array which will be allocated and populated by this method. \\
+\hline
+{\em out\+\_\+bytes\+\_\+read} & A pointer to a number which will be populated with the number of bytes actually read from the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00092}{92}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00009}{create\+\_\+shader\+\_\+module()}}.
+
+\Hypertarget{filesystem_8h_a075cfd44afc5cc15562af078123f67e0}\label{filesystem_8h_a075cfd44afc5cc15562af078123f67e0} 
+\index{filesystem.h@{filesystem.h}!filesystem\_read\_line@{filesystem\_read\_line}}
+\index{filesystem\_read\_line@{filesystem\_read\_line}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{filesystem\_read\_line()}{filesystem\_read\_line()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} filesystem\+\_\+read\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}}]{handle,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{line\+\_\+buf }\end{DoxyParamCaption})}
+
+Reads up to a newline or EOF. Allocates \texorpdfstring{$\ast$}{*}line\+\_\+buf, which must be freed by the caller. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & A pointer to a \doxylink{structfile__handle}{file\+\_\+handle} structure. \\
+\hline
+{\em line\+\_\+buf} & A pointer to a character array which will be allocated and populated by this method. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00052}{52}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+\Hypertarget{filesystem_8h_a8570b525f6dc1490dd4193296a96d52d}\label{filesystem_8h_a8570b525f6dc1490dd4193296a96d52d} 
+\index{filesystem.h@{filesystem.h}!filesystem\_write@{filesystem\_write}}
+\index{filesystem\_write@{filesystem\_write}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{filesystem\_write()}{filesystem\_write()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} filesystem\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}}]{handle,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{data\+\_\+size,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{data,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+bytes\+\_\+written }\end{DoxyParamCaption})}
+
+Writes provided data to the file. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & A pointer to a \doxylink{structfile__handle}{file\+\_\+handle} structure. \\
+\hline
+{\em data\+\_\+size} & The size of the data in bytes. \\
+\hline
+{\em data} & The data to be written. \\
+\hline
+{\em out\+\_\+bytes\+\_\+written} & A pointer to a number which will be populated with the number of bytes actually written to the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00109}{109}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{logger_8c_source_l00050}{append\+\_\+to\+\_\+log\+\_\+file()}}.
+
+\Hypertarget{filesystem_8h_ac9fa1fb71b432ede794211d6a7df7052}\label{filesystem_8h_ac9fa1fb71b432ede794211d6a7df7052} 
+\index{filesystem.h@{filesystem.h}!filesystem\_write\_line@{filesystem\_write\_line}}
+\index{filesystem\_write\_line@{filesystem\_write\_line}!filesystem.h@{filesystem.h}}
+\doxysubsubsection{\texorpdfstring{filesystem\_write\_line()}{filesystem\_write\_line()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} filesystem\+\_\+write\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}}]{handle,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{text }\end{DoxyParamCaption})}
+
+Writes text to the provided file, appending a \textquotesingle{}~\newline
+\textquotesingle{} afterward. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & A pointer to a \doxylink{structfile__handle}{file\+\_\+handle} structure. \\
+\hline
+{\em text} & The text to be written. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00066}{66}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, and \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}.
+

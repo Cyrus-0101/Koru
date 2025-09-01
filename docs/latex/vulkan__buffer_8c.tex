@@ -1,0 +1,170 @@
+\doxysection{engine/src/renderer/vulkan/vulkan\+\_\+buffer.c File Reference}
+\hypertarget{vulkan__buffer_8c}{}\label{vulkan__buffer_8c}\index{engine/src/renderer/vulkan/vulkan\_buffer.c@{engine/src/renderer/vulkan/vulkan\_buffer.c}}
+{\ttfamily \#include "{}core/logger.\+h"{}}\newline
+{\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan\+\_\+buffer.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan\+\_\+command\+\_\+buffer.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan\+\_\+device.\+h"{}}\newline
+{\ttfamily \#include "{}vulkan\+\_\+utils.\+h"{}}\newline
+Include dependency graph for vulkan\+\_\+buffer.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vulkan__buffer_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{vulkan__buffer_8c_a21b2c5ee8d9fbcd29ea73eef9fa5a927}{vulkan\+\_\+buffer\+\_\+bind}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} offset)
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__buffer_8c_adc1253645b021b8c8dd0ff5f001c1668}{vulkan\+\_\+buffer\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, Vk\+Buffer\+Usage\+Flag\+Bits usage, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} memory\+\_\+property\+\_\+flags, \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} bind\+\_\+on\+\_\+create, vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}out\+\_\+buffer)
+\item 
+void \mbox{\hyperlink{vulkan__buffer_8c_a0777c036a5cdb692aa0fd21fd1df2adc}{vulkan\+\_\+buffer\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}buffer)
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__buffer_8c_afbbdca32215c9687f38dc62bcb58a779}{vulkan\+\_\+buffer\+\_\+resize}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} new\+\_\+size, vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}buffer, Vk\+Queue queue, Vk\+Command\+Pool pool)
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{vulkan__buffer_8c_a1ab2cfc9a303e3f204874a58d9d15f6f}{vulkan\+\_\+buffer\+\_\+lock\+\_\+memory}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} offset, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} flags)
+\item 
+void \mbox{\hyperlink{vulkan__buffer_8c_a320b309d7773e97e06f2f5ffb342e712}{vulkan\+\_\+buffer\+\_\+unlock\+\_\+memory}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}buffer)
+\item 
+void \mbox{\hyperlink{vulkan__buffer_8c_a74035aeef79e5ffe833042ce00499a64}{vulkan\+\_\+buffer\+\_\+load\+\_\+data}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} offset, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} flags, const void \texorpdfstring{$\ast$}{*}data)
+\item 
+void \mbox{\hyperlink{vulkan__buffer_8c_afb4dafb2469273c4c860ba47829e2042}{vulkan\+\_\+buffer\+\_\+copy\+\_\+to}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Command\+Pool pool, Vk\+Fence fence, Vk\+Queue queue, Vk\+Buffer source, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} source\+\_\+offset, Vk\+Buffer dest, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} dest\+\_\+offset, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vulkan__buffer_8c_a21b2c5ee8d9fbcd29ea73eef9fa5a927}\label{vulkan__buffer_8c_a21b2c5ee8d9fbcd29ea73eef9fa5a927} 
+\index{vulkan\_buffer.c@{vulkan\_buffer.c}!vulkan\_buffer\_bind@{vulkan\_buffer\_bind}}
+\index{vulkan\_buffer\_bind@{vulkan\_buffer\_bind}!vulkan\_buffer.c@{vulkan\_buffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_buffer\_bind()}{vulkan\_buffer\_bind()}}
+{\footnotesize\ttfamily void vulkan\+\_\+buffer\+\_\+bind (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{offset }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__buffer_8c_source_l00131}{131}} of file \mbox{\hyperlink{vulkan__buffer_8c_source}{vulkan\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__buffer_8c_source_l00010}{vulkan\+\_\+buffer\+\_\+create()}}.
+
+\Hypertarget{vulkan__buffer_8c_afb4dafb2469273c4c860ba47829e2042}\label{vulkan__buffer_8c_afb4dafb2469273c4c860ba47829e2042} 
+\index{vulkan\_buffer.c@{vulkan\_buffer.c}!vulkan\_buffer\_copy\_to@{vulkan\_buffer\_copy\_to}}
+\index{vulkan\_buffer\_copy\_to@{vulkan\_buffer\_copy\_to}!vulkan\_buffer.c@{vulkan\_buffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_buffer\_copy\_to()}{vulkan\_buffer\_copy\_to()}}
+{\footnotesize\ttfamily void vulkan\+\_\+buffer\+\_\+copy\+\_\+to (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{Vk\+Command\+Pool}]{pool,  }\item[{Vk\+Fence}]{fence,  }\item[{Vk\+Queue}]{queue,  }\item[{Vk\+Buffer}]{source,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{source\+\_\+offset,  }\item[{Vk\+Buffer}]{dest,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{dest\+\_\+offset,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__buffer_8c_source_l00152}{152}} of file \mbox{\hyperlink{vulkan__buffer_8c_source}{vulkan\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00089}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate\+\_\+and\+\_\+begin\+\_\+single\+\_\+use()}}, and \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00097}{vulkan\+\_\+command\+\_\+buffer\+\_\+end\+\_\+single\+\_\+use()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00042}{upload\+\_\+data\+\_\+range()}}, and \mbox{\hyperlink{vulkan__buffer_8c_source_l00072}{vulkan\+\_\+buffer\+\_\+resize()}}.
+
+\Hypertarget{vulkan__buffer_8c_adc1253645b021b8c8dd0ff5f001c1668}\label{vulkan__buffer_8c_adc1253645b021b8c8dd0ff5f001c1668} 
+\index{vulkan\_buffer.c@{vulkan\_buffer.c}!vulkan\_buffer\_create@{vulkan\_buffer\_create}}
+\index{vulkan\_buffer\_create@{vulkan\_buffer\_create}!vulkan\_buffer.c@{vulkan\_buffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_buffer\_create()}{vulkan\_buffer\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} vulkan\+\_\+buffer\+\_\+create (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{Vk\+Buffer\+Usage\+Flag\+Bits}]{usage,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{memory\+\_\+property\+\_\+flags,  }\item[{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}}]{bind\+\_\+on\+\_\+create,  }\item[{vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{out\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__buffer_8c_source_l00010}{10}} of file \mbox{\hyperlink{vulkan__buffer_8c_source}{vulkan\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{vulkan__buffer_8c_source_l00131}{vulkan\+\_\+buffer\+\_\+bind()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00816}{create\+\_\+buffers()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00042}{upload\+\_\+data\+\_\+range()}}, and \mbox{\hyperlink{vulkan__object__shader_8c_source_l00020}{vulkan\+\_\+object\+\_\+shader\+\_\+create()}}.
+
+\Hypertarget{vulkan__buffer_8c_a0777c036a5cdb692aa0fd21fd1df2adc}\label{vulkan__buffer_8c_a0777c036a5cdb692aa0fd21fd1df2adc} 
+\index{vulkan\_buffer.c@{vulkan\_buffer.c}!vulkan\_buffer\_destroy@{vulkan\_buffer\_destroy}}
+\index{vulkan\_buffer\_destroy@{vulkan\_buffer\_destroy}!vulkan\_buffer.c@{vulkan\_buffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_buffer\_destroy()}{vulkan\_buffer\_destroy()}}
+{\footnotesize\ttfamily void vulkan\+\_\+buffer\+\_\+destroy (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__buffer_8c_source_l00057}{57}} of file \mbox{\hyperlink{vulkan__buffer_8c_source}{vulkan\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, and \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00042}{upload\+\_\+data\+\_\+range()}}, \mbox{\hyperlink{vulkan__object__shader_8c_source_l00153}{vulkan\+\_\+object\+\_\+shader\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00327}{vulkan\+\_\+renderer\+\_\+backend\+\_\+shutdown()}}.
+
+\Hypertarget{vulkan__buffer_8c_a74035aeef79e5ffe833042ce00499a64}\label{vulkan__buffer_8c_a74035aeef79e5ffe833042ce00499a64} 
+\index{vulkan\_buffer.c@{vulkan\_buffer.c}!vulkan\_buffer\_load\_data@{vulkan\_buffer\_load\_data}}
+\index{vulkan\_buffer\_load\_data@{vulkan\_buffer\_load\_data}!vulkan\_buffer.c@{vulkan\_buffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_buffer\_load\_data()}{vulkan\_buffer\_load\_data()}}
+{\footnotesize\ttfamily void vulkan\+\_\+buffer\+\_\+load\+\_\+data (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{offset,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{flags,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__buffer_8c_source_l00145}{145}} of file \mbox{\hyperlink{vulkan__buffer_8c_source}{vulkan\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, and \mbox{\hyperlink{kmemory_8c_source_l00182}{kcopy\+\_\+memory()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00042}{upload\+\_\+data\+\_\+range()}}, and \mbox{\hyperlink{vulkan__object__shader_8c_source_l00187}{vulkan\+\_\+object\+\_\+shader\+\_\+update\+\_\+global\+\_\+state()}}.
+
+\Hypertarget{vulkan__buffer_8c_a1ab2cfc9a303e3f204874a58d9d15f6f}\label{vulkan__buffer_8c_a1ab2cfc9a303e3f204874a58d9d15f6f} 
+\index{vulkan\_buffer.c@{vulkan\_buffer.c}!vulkan\_buffer\_lock\_memory@{vulkan\_buffer\_lock\_memory}}
+\index{vulkan\_buffer\_lock\_memory@{vulkan\_buffer\_lock\_memory}!vulkan\_buffer.c@{vulkan\_buffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_buffer\_lock\_memory()}{vulkan\_buffer\_lock\_memory()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} vulkan\+\_\+buffer\+\_\+lock\+\_\+memory (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{offset,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{flags }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__buffer_8c_source_l00135}{135}} of file \mbox{\hyperlink{vulkan__buffer_8c_source}{vulkan\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}.
+
+\Hypertarget{vulkan__buffer_8c_afbbdca32215c9687f38dc62bcb58a779}\label{vulkan__buffer_8c_afbbdca32215c9687f38dc62bcb58a779} 
+\index{vulkan\_buffer.c@{vulkan\_buffer.c}!vulkan\_buffer\_resize@{vulkan\_buffer\_resize}}
+\index{vulkan\_buffer\_resize@{vulkan\_buffer\_resize}!vulkan\_buffer.c@{vulkan\_buffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_buffer\_resize()}{vulkan\_buffer\_resize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} vulkan\+\_\+buffer\+\_\+resize (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{new\+\_\+size,  }\item[{vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{Vk\+Queue}]{queue,  }\item[{Vk\+Command\+Pool}]{pool }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__buffer_8c_source_l00072}{72}} of file \mbox{\hyperlink{vulkan__buffer_8c_source}{vulkan\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{vulkan__buffer_8c_source_l00152}{vulkan\+\_\+buffer\+\_\+copy\+\_\+to()}}.
+
+\Hypertarget{vulkan__buffer_8c_a320b309d7773e97e06f2f5ffb342e712}\label{vulkan__buffer_8c_a320b309d7773e97e06f2f5ffb342e712} 
+\index{vulkan\_buffer.c@{vulkan\_buffer.c}!vulkan\_buffer\_unlock\_memory@{vulkan\_buffer\_unlock\_memory}}
+\index{vulkan\_buffer\_unlock\_memory@{vulkan\_buffer\_unlock\_memory}!vulkan\_buffer.c@{vulkan\_buffer.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_buffer\_unlock\_memory()}{vulkan\_buffer\_unlock\_memory()}}
+{\footnotesize\ttfamily void vulkan\+\_\+buffer\+\_\+unlock\+\_\+memory (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__buffer_8c_source_l00141}{141}} of file \mbox{\hyperlink{vulkan__buffer_8c_source}{vulkan\+\_\+buffer.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}.
+

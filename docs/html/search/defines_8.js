@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['max_5fdevice_5fcount_0',['MAX_DEVICE_COUNT',['../vulkan__device_8c.html#a70ca23c85c6385ea64dfa919547104f2',1,'vulkan_device.c']]],
-  ['max_5fmessage_5fcodes_1',['MAX_MESSAGE_CODES',['../event_8c.html#a59db8f883e31171b78490d26c0251f64',1,'event.c']]],
-  ['mebibytes_2',['MEBIBYTES',['../defines_8h.html#af9b433687761bfc5d19c9d72b0b37d4c',1,'defines.h']]],
-  ['megabytes_3',['MEGABYTES',['../defines_8h.html#a16a05dd1ee59ce4fc5aa7343bb227e97',1,'defines.h']]],
-  ['msg_5flength_4',['MSG_LENGTH',['../logger_8c.html#aa204ec58d846f2354e6bd239460db89f',1,'logger.c']]]
+  ['log_5fdebug_5fenabled_0',['LOG_DEBUG_ENABLED',['../logger_8h.html#aebce09616e526858093c3252925bffe2',1,'logger.h']]],
+  ['log_5finfo_5fenabled_1',['LOG_INFO_ENABLED',['../logger_8h.html#a4690d76db76927ae412ba4860e008b16',1,'logger.h']]],
+  ['log_5ftrace_5fenabled_2',['LOG_TRACE_ENABLED',['../logger_8h.html#a04e549630a5d2b3b2631940bb029e24f',1,'logger.h']]],
+  ['log_5fwarn_5fenabled_3',['LOG_WARN_ENABLED',['../logger_8h.html#a2613df29c73e9a080ac48d350321f2aa',1,'logger.h']]]
 ];

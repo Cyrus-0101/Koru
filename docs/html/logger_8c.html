@@ -86,9 +86,10 @@ $(function() {
 <p>Implementation of the logging system.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="kmemory_8h_source.html">kmemory.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="kstring_8h_source.html">kstring.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="platform_8h_source.html">platform/platform.h</a>&quot;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="filesystem_8h_source.html">platform/filesystem.h</a>&quot;</code><br />
 <code>#include &lt;stdarg.h&gt;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for logger.c:</div>
@@ -97,20 +98,25 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="logger_8c__incl.png" border="0" usemap="#aengine_2src_2core_2logger_8c" alt=""/></div>
 <map name="aengine_2src_2core_2logger_8c" id="aengine_2src_2core_2logger_8c">
-<area shape="rect" title="Implementation of the logging system." alt="" coords="225,5,401,31"/>
+<area shape="rect" title="Implementation of the logging system." alt="" coords="244,5,420,31"/>
 <area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="5,79,80,104"/>
-<area shape="poly" title=" " alt="" coords="271,33,94,79,93,74,269,28"/>
-<area shape="rect" href="platform_8h.html" title="Platform abstraction layer interface." alt="" coords="105,79,255,104"/>
-<area shape="poly" title=" " alt="" coords="293,33,215,74,213,70,291,28"/>
-<area shape="rect" title=" " alt="" coords="280,79,347,104"/>
-<area shape="poly" title=" " alt="" coords="316,31,316,65,311,65,311,31"/>
-<area shape="rect" title=" " alt="" coords="371,79,442,104"/>
-<area shape="poly" title=" " alt="" coords="330,29,382,68,379,72,327,33"/>
-<area shape="rect" title=" " alt="" coords="467,79,541,104"/>
-<area shape="poly" title=" " alt="" coords="345,28,461,71,459,76,343,33"/>
-<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="70,152,151,177"/>
-<area shape="poly" title=" " alt="" coords="56,102,92,140,88,144,52,106"/>
-<area shape="poly" title=" " alt="" coords="170,106,133,144,129,140,167,102"/>
+<area shape="poly" title=" " alt="" coords="286,33,94,80,93,75,285,28"/>
+<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="105,79,199,104"/>
+<area shape="poly" title=" " alt="" coords="304,33,195,76,193,71,302,28"/>
+<area shape="rect" href="kstring_8h.html" title="Lightweight string utility library." alt="" coords="223,79,302,104"/>
+<area shape="poly" title=" " alt="" coords="322,33,285,71,281,67,319,29"/>
+<area shape="rect" href="platform_8h.html" title="Platform abstraction layer interface." alt="" coords="326,79,477,104"/>
+<area shape="poly" title=" " alt="" coords="345,29,383,67,379,71,342,33"/>
+<area shape="rect" href="filesystem_8h.html" title=" " alt="" coords="501,79,664,104"/>
+<area shape="poly" title=" " alt="" coords="373,28,530,72,528,77,372,33"/>
+<area shape="rect" title=" " alt="" coords="688,79,763,104"/>
+<area shape="poly" title=" " alt="" coords="405,28,675,76,674,81,404,33"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="222,152,303,177"/>
+<area shape="poly" title=" " alt="" coords="79,101,215,145,214,150,77,107"/>
+<area shape="poly" title=" " alt="" coords="171,102,234,142,231,147,168,106"/>
+<area shape="poly" title=" " alt="" coords="265,104,265,138,260,138,260,104"/>
+<area shape="poly" title=" " alt="" coords="380,106,299,148,296,143,378,102"/>
+<area shape="poly" title=" " alt="" coords="532,107,318,154,317,149,531,101"/>
 </map>
 </div>
 </div>
@@ -124,6 +130,7 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:aa204ec58d846f2354e6bd239460db89f" id="r_aa204ec58d846f2354e6bd239460db89f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#aa204ec58d846f2354e6bd239460db89f">MSG_LENGTH</a>&#160;&#160;&#160;32000</td></tr>
+<tr class="memdesc:aa204ec58d846f2354e6bd239460db89f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum length of a log message.  <br /></td></tr>
 <tr class="separator:aa204ec58d846f2354e6bd239460db89f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -133,6 +140,9 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ac215142da536869ac02894d0198bb88f" id="r_ac215142da536869ac02894d0198bb88f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#ac215142da536869ac02894d0198bb88f">append_to_log_file</a> (const char *message)</td></tr>
+<tr class="memdesc:ac215142da536869ac02894d0198bb88f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends a message to the log file.  <br /></td></tr>
+<tr class="separator:ac215142da536869ac02894d0198bb88f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a124a9e558949da0e8f11f6929992a5c8" id="r_a124a9e558949da0e8f11f6929992a5c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="logger_8c.html#a124a9e558949da0e8f11f6929992a5c8">initialize_logging</a> (<a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *memory_requirement, void *state)</td></tr>
 <tr class="memdesc:a124a9e558949da0e8f11f6929992a5c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the logging system. Called twice; once with state = 0 to get required memory size then a second time passing allocated memory to the state.  <br /></td></tr>
 <tr class="separator:a124a9e558949da0e8f11f6929992a5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,7 +185,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00010">10</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p>Maximum length of a log message. </p>
+
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00014">14</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
 </div>
 </div>
@@ -195,6 +207,38 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ac215142da536869ac02894d0198bb88f" name="ac215142da536869ac02894d0198bb88f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac215142da536869ac02894d0198bb88f">&#9670;&#160;</a></span>append_to_log_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void append_to_log_file </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Appends a message to the log file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>The message to append. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00050">50</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+
+<p class="reference">References <a class="el" href="filesystem_8c_source.html#l00109">filesystem_write()</a>, <a class="el" href="filesystem_8h_source.html#l00014">file_handle::is_valid</a>, <a class="el" href="logger_8c_source.html#l00039">logger_system_state::log_file_handle</a>, <a class="el" href="logger_8h_source.html#l00071">LOG_LEVEL_ERROR</a>, <a class="el" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error()</a>, <a class="el" href="logger_8c_source.html#l00043">state_ptr</a>, and <a class="el" href="kstring_8c_source.html#l00023">string_length()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00095">log_output()</a>.</p>
+
+</div>
+</div>
 <a id="a124a9e558949da0e8f11f6929992a5c8" name="a124a9e558949da0e8f11f6929992a5c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a124a9e558949da0e8f11f6929992a5c8">&#9670;&#160;</a></span>initialize_logging()</h2>
 
@@ -232,9 +276,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if initialization was successful; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00042">42</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00064">64</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8c_source.html#l00035">logger_system_state::initialized</a>, <a class="el" href="logger_8c_source.html#l00038">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="filesystem_8h_source.html#l00026">FILE_MODE_WRITE</a>, <a class="el" href="filesystem_8c_source.html#l00015">filesystem_open()</a>, <a class="el" href="logger_8c_source.html#l00039">logger_system_state::log_file_handle</a>, <a class="el" href="logger_8h_source.html#l00071">LOG_LEVEL_ERROR</a>, <a class="el" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error()</a>, <a class="el" href="logger_8c_source.html#l00043">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
 
@@ -286,12 +330,13 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<p>TO-DO: Move string operations to their own thread The ops are pretty slow, and can slow down the engine during startup/shutdown. Work on threading and offset these ops.</p>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00068">68</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00095">95</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8h_source.html#l00078">LOG_LEVEL_WARN</a>, <a class="el" href="logger_8c_source.html#l00010">MSG_LENGTH</a>, <a class="el" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write()</a>, and <a class="el" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error()</a>.</p>
+<p class="reference">References <a class="el" href="logger_8c_source.html#l00050">append_to_log_file()</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="logger_8h_source.html#l00078">LOG_LEVEL_WARN</a>, <a class="el" href="logger_8c_source.html#l00014">MSG_LENGTH</a>, <a class="el" href="platform_8h.html#ac352c68fed21ee19eff9a165d1648c4c">platform_console_write()</a>, <a class="el" href="platform_8h.html#adee3e77de1e3374a118e9ebc150c9800">platform_console_write_error()</a>, <a class="el" href="kstring_8c_source.html#l00041">string_format()</a>, and <a class="el" href="kstring_8c_source.html#l00052">string_format_v()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00122">report_assertion_failure()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00156">report_assertion_failure()</a>.</p>
 
 </div>
 </div>
@@ -345,9 +390,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00122">122</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00156">156</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8h_source.html#l00064">LOG_LEVEL_FATAL</a>, and <a class="el" href="logger_8c_source.html#l00068">log_output()</a>.</p>
+<p class="reference">References <a class="el" href="logger_8h_source.html#l00064">LOG_LEVEL_FATAL</a>, and <a class="el" href="logger_8c_source.html#l00095">log_output()</a>.</p>
 
 </div>
 </div>
@@ -374,9 +419,9 @@ Variables</h2></td></tr>
 <li>Releasing logging resources </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00058">58</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00085">85</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">References <a class="el" href="logger_8c_source.html#l00038">state_ptr</a>.</p>
+<p class="reference">References <a class="el" href="logger_8c_source.html#l00043">state_ptr</a>.</p>
 
 </div>
 </div>
@@ -401,16 +446,16 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00038">38</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="logger_8c_source.html#l00043">43</a> of file <a class="el" href="logger_8c_source.html">logger.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00042">initialize_logging()</a>, and <a class="el" href="logger_8c_source.html#l00058">shutdown_logging()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00050">append_to_log_file()</a>, <a class="el" href="logger_8c_source.html#l00064">initialize_logging()</a>, and <a class="el" href="logger_8c_source.html#l00085">shutdown_logging()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 19:11:01 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

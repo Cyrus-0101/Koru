@@ -9,11 +9,29 @@ Internal game state structure.
 
 {\ttfamily \#include $<$game.\+h$>$}
 
+
+
+Collaboration diagram for game\+\_\+state\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{structgame__state__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{structgame__state_a569999ffeeaf87a08fd91bcfe61e2f48}{delta\+\_\+time}}
-\begin{DoxyCompactList}\small\item\em Time in seconds since the last frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Time in seconds since the last frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} \mbox{\hyperlink{structgame__state_ac8ed864b792b0ddf54f2c11cd2073217}{view}}
+\begin{DoxyCompactList}\small\item\em View matrix for the current frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}{vec3}} \mbox{\hyperlink{structgame__state_a8324a3d08be65541a5fd7b386dca51ca}{camera\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em Camera position in world space. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}{vec3}} \mbox{\hyperlink{structgame__state_a3bce150883b9843e6475d4c3c8e50801}{camera\+\_\+euler}}
+\begin{DoxyCompactList}\small\item\em Camera orientation in Euler angles (pitch, yaw, roll). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{structgame__state_ab1209e77ecff9ee4cd732078ee9bad63}{camera\+\_\+view\+\_\+dirty}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -21,11 +39,61 @@ Internal game state structure.
 
 This struct holds data that persists across frames. Currently only stores delta time, but can be expanded to include player position, world state, etc. 
 
-Definition at line \mbox{\hyperlink{game_8h_source_l00026}{26}} of file \mbox{\hyperlink{game_8h_source}{game.\+h}}.
+Definition at line \mbox{\hyperlink{game_8h_source_l00027}{27}} of file \mbox{\hyperlink{game_8h_source}{game.\+h}}.
 
 
 
 \doxysubsection{Field Documentation}
+\Hypertarget{structgame__state_a3bce150883b9843e6475d4c3c8e50801}\label{structgame__state_a3bce150883b9843e6475d4c3c8e50801} 
+\index{game\_state@{game\_state}!camera\_euler@{camera\_euler}}
+\index{camera\_euler@{camera\_euler}!game\_state@{game\_state}}
+\doxysubsubsection{\texorpdfstring{camera\_euler}{camera\_euler}}
+{\footnotesize\ttfamily \mbox{\hyperlink{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}{vec3}} game\+\_\+state\+::camera\+\_\+euler}
+
+
+
+Camera orientation in Euler angles (pitch, yaw, roll). 
+
+
+
+Definition at line \mbox{\hyperlink{game_8h_source_l00046}{46}} of file \mbox{\hyperlink{game_8h_source}{game.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{game_8c_source_l00040}{camera\+\_\+pitch()}}, \mbox{\hyperlink{game_8c_source_l00050}{camera\+\_\+yaw()}}, \mbox{\hyperlink{game_8c_source_l00066}{game\+\_\+initialize()}}, and \mbox{\hyperlink{game_8c_source_l00028}{recalculate\+\_\+view\+\_\+matrix()}}.
+
+\Hypertarget{structgame__state_a8324a3d08be65541a5fd7b386dca51ca}\label{structgame__state_a8324a3d08be65541a5fd7b386dca51ca} 
+\index{game\_state@{game\_state}!camera\_position@{camera\_position}}
+\index{camera\_position@{camera\_position}!game\_state@{game\_state}}
+\doxysubsubsection{\texorpdfstring{camera\_position}{camera\_position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}{vec3}} game\+\_\+state\+::camera\+\_\+position}
+
+
+
+Camera position in world space. 
+
+
+
+Definition at line \mbox{\hyperlink{game_8h_source_l00041}{41}} of file \mbox{\hyperlink{game_8h_source}{game.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{game_8c_source_l00066}{game\+\_\+initialize()}}, \mbox{\hyperlink{game_8c_source_l00093}{game\+\_\+update()}}, and \mbox{\hyperlink{game_8c_source_l00028}{recalculate\+\_\+view\+\_\+matrix()}}.
+
+\Hypertarget{structgame__state_ab1209e77ecff9ee4cd732078ee9bad63}\label{structgame__state_ab1209e77ecff9ee4cd732078ee9bad63} 
+\index{game\_state@{game\_state}!camera\_view\_dirty@{camera\_view\_dirty}}
+\index{camera\_view\_dirty@{camera\_view\_dirty}!game\_state@{game\_state}}
+\doxysubsubsection{\texorpdfstring{camera\_view\_dirty}{camera\_view\_dirty}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} game\+\_\+state\+::camera\+\_\+view\+\_\+dirty}
+
+
+
+Definition at line \mbox{\hyperlink{game_8h_source_l00048}{48}} of file \mbox{\hyperlink{game_8h_source}{game.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{game_8c_source_l00040}{camera\+\_\+pitch()}}, \mbox{\hyperlink{game_8c_source_l00050}{camera\+\_\+yaw()}}, \mbox{\hyperlink{game_8c_source_l00066}{game\+\_\+initialize()}}, \mbox{\hyperlink{game_8c_source_l00093}{game\+\_\+update()}}, and \mbox{\hyperlink{game_8c_source_l00028}{recalculate\+\_\+view\+\_\+matrix()}}.
+
 \Hypertarget{structgame__state_a569999ffeeaf87a08fd91bcfe61e2f48}\label{structgame__state_a569999ffeeaf87a08fd91bcfe61e2f48} 
 \index{game\_state@{game\_state}!delta\_time@{delta\_time}}
 \index{delta\_time@{delta\_time}!game\_state@{game\_state}}
@@ -38,7 +106,25 @@ Time in seconds since the last frame.
 
 
 
-Definition at line \mbox{\hyperlink{game_8h_source_l00030}{30}} of file \mbox{\hyperlink{game_8h_source}{game.\+h}}.
+Definition at line \mbox{\hyperlink{game_8h_source_l00031}{31}} of file \mbox{\hyperlink{game_8h_source}{game.\+h}}.
+
+\Hypertarget{structgame__state_ac8ed864b792b0ddf54f2c11cd2073217}\label{structgame__state_ac8ed864b792b0ddf54f2c11cd2073217} 
+\index{game\_state@{game\_state}!view@{view}}
+\index{view@{view}!game\_state@{game\_state}}
+\doxysubsubsection{\texorpdfstring{view}{view}}
+{\footnotesize\ttfamily \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} game\+\_\+state\+::view}
+
+
+
+View matrix for the current frame. 
+
+
+
+Definition at line \mbox{\hyperlink{game_8h_source_l00036}{36}} of file \mbox{\hyperlink{game_8h_source}{game.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{game_8c_source_l00066}{game\+\_\+initialize()}}, \mbox{\hyperlink{game_8c_source_l00093}{game\+\_\+update()}}, and \mbox{\hyperlink{game_8c_source_l00028}{recalculate\+\_\+view\+\_\+matrix()}}.
 
 
 

@@ -101,15 +101,17 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="vulkan__device_8h__dep__incl.png" border="0" usemap="#aengine_2src_2renderer_2vulkan_2vulkan__device_8hdep" alt=""/></div>
 <map name="aengine_2src_2renderer_2vulkan_2vulkan__device_8hdep" id="aengine_2src_2renderer_2vulkan_2vulkan__device_8hdep">
-<area shape="rect" title="Vulkan device management interface." alt="" coords="317,5,495,45"/>
+<area shape="rect" title="Vulkan device management interface." alt="" coords="413,5,591,45"/>
 <area shape="rect" href="vulkan__backend_8c.html" title="Implementation of the Vulkan renderer backend." alt="" coords="5,93,193,133"/>
-<area shape="poly" title=" " alt="" coords="326,52,167,96,166,91,325,46"/>
-<area shape="rect" href="vulkan__device_8c.html" title="Implementation of Vulkan device creation and selection logic." alt="" coords="217,93,395,133"/>
-<area shape="poly" title=" " alt="" coords="375,56,330,95,326,91,372,52"/>
-<area shape="rect" href="vulkan__image_8c.html" title="Implementation of Vulkan image management utilities." alt="" coords="419,93,593,133"/>
-<area shape="poly" title=" " alt="" coords="440,52,486,91,482,95,437,56"/>
-<area shape="rect" href="vulkan__swapchain_8c.html" title="Implementation of Vulkan swapchain creation, recreation, and destruction." alt="" coords="618,93,821,133"/>
-<area shape="poly" title=" " alt="" coords="489,46,651,91,650,96,487,52"/>
+<area shape="poly" title=" " alt="" coords="401,51,188,96,187,91,400,46"/>
+<area shape="rect" href="vulkan__buffer_8c.html" title=" " alt="" coords="218,93,389,133"/>
+<area shape="poly" title=" " alt="" coords="447,53,348,96,346,91,445,48"/>
+<area shape="rect" href="vulkan__device_8c.html" title="Implementation of Vulkan device creation and selection logic." alt="" coords="413,93,591,133"/>
+<area shape="poly" title=" " alt="" coords="505,59,505,93,499,93,499,59"/>
+<area shape="rect" href="vulkan__image_8c.html" title="Implementation of Vulkan image management utilities." alt="" coords="615,93,789,133"/>
+<area shape="poly" title=" " alt="" coords="560,48,659,91,657,96,557,53"/>
+<area shape="rect" href="vulkan__swapchain_8c.html" title="Implementation of Vulkan swapchain creation, recreation, and destruction." alt="" coords="814,93,1017,133"/>
+<area shape="poly" title=" " alt="" coords="605,45,825,91,824,96,604,51"/>
 </map>
 </div>
 </div>
@@ -177,9 +179,9 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="vulkan__device_8c_source.html#l00149">149</a> of file <a class="el" href="vulkan__device_8c_source.html">vulkan_device.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="vulkan__device_8c_source.html#l00393">select_physical_device()</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="vulkan__device_8c_source.html#l00393">select_physical_device()</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00112">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00082">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -210,9 +212,9 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="vulkan__device_8c_source.html#l00258">258</a> of file <a class="el" href="vulkan__device_8c_source.html">vulkan_device.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00028">context</a>, <a class="el" href="kmemory_8c_source.html#l00149">kfree()</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, and <a class="el" href="kmemory_8h_source.html#l00062">MEMORY_TAG_RENDERER</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="kmemory_8c_source.html#l00149">kfree()</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, and <a class="el" href="kmemory_8h_source.html#l00062">MEMORY_TAG_RENDERER</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00308">vulkan_renderer_backend_shutdown()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00327">vulkan_renderer_backend_shutdown()</a>.</p>
 
 </div>
 </div>
@@ -246,7 +248,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00200">create()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00659">recreate_swapchain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00200">create()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00741">recreate_swapchain()</a>.</p>
 
 </div>
 </div>
@@ -302,14 +304,14 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="kmemory_8c_source.html#l00122">kallocate()</a>, and <a class="el" href="kmemory_8h_source.html#l00062">MEMORY_TAG_RENDERER</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00200">create()</a>, <a class="el" href="vulkan__device_8c_source.html#l00508">physical_device_meets_requirements()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00659">recreate_swapchain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00200">create()</a>, <a class="el" href="vulkan__device_8c_source.html#l00508">physical_device_meets_requirements()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00741">recreate_swapchain()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 19:11:02 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

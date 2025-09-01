@@ -7,9 +7,10 @@ var searchData=
   ['bonus_3a_20sample_20code_20for_20acquiring_20an_20image_4',['🧪 Bonus: Sample Code for Acquiring an Image',['../index.html#autotoc_md75',1,'']]],
   ['buffers_20and_20submission_5',['12. 🗂 Command Buffers and Submission',['../index.html#autotoc_md61',1,'']]],
   ['build_20scripts_20instructions_6',['⚙️ Build Scripts/Instructions',['../index.html#autotoc_md21',1,'']]],
-  ['button_5fleft_7',['BUTTON_LEFT',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836a55dc0d53615e28ee8af66827bee48e4e',1,'input.h']]],
-  ['button_5fmax_5fbuttons_8',['BUTTON_MAX_BUTTONS',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7',1,'input.h']]],
-  ['button_5fmiddle_9',['BUTTON_MIDDLE',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb',1,'input.h']]],
-  ['button_5fright_10',['BUTTON_RIGHT',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836a13046edd6d64a0de5821b5ff4c7581ce',1,'input.h']]],
-  ['buttons_11',['buttons',['../structmouse__state.html#a865695ad1100e332feb41e9fa6fd1dbc',1,'mouse_state::buttons'],['../input_8h.html#a3e08a16703943b810da7b8b2a915c836',1,'buttons:&#160;input.h'],['../input_8h.html#a5aec323161d474e9086513582ae9e13c',1,'buttons:&#160;input.h']]]
+  ['builtin_5fshader_5fname_5fobject_7',['BUILTIN_SHADER_NAME_OBJECT',['../vulkan__object__shader_8c.html#a595546cab33d786103a1329d05623bf8',1,'vulkan_object_shader.c']]],
+  ['button_5fleft_8',['BUTTON_LEFT',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836a55dc0d53615e28ee8af66827bee48e4e',1,'input.h']]],
+  ['button_5fmax_5fbuttons_9',['BUTTON_MAX_BUTTONS',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7',1,'input.h']]],
+  ['button_5fmiddle_10',['BUTTON_MIDDLE',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb',1,'input.h']]],
+  ['button_5fright_11',['BUTTON_RIGHT',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836a13046edd6d64a0de5821b5ff4c7581ce',1,'input.h']]],
+  ['buttons_12',['buttons',['../structmouse__state.html#a865695ad1100e332feb41e9fa6fd1dbc',1,'mouse_state::buttons'],['../input_8h.html#a3e08a16703943b810da7b8b2a915c836',1,'buttons:&#160;input.h'],['../input_8h.html#a5aec323161d474e9086513582ae9e13c',1,'buttons:&#160;input.h']]]
 ];

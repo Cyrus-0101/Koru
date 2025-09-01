@@ -301,38 +301,31 @@
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00418}00418\ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ \mbox{\hyperlink{event_8h_a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656}{EVENT\_CODE\_RESIZED}})\ \{}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00419}00419\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ width\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[0];}
 \DoxyCodeLine{\Hypertarget{application_8c_source_l00420}00420\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}\ height\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[1];}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00421}00421\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ is\_visible\ =\ (\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}})\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}.data.u16[2];\ \ \textcolor{comment}{//\ Get\ visibility\ flag}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00422}00422\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00423}00423\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Always\ update\ stored\ dimensions}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00424}00424\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a5c49a4da818b7bae26b50df80c889279}{width}}\ =\ width;}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00425}00425\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4a01899027b7429dce0fa6290b927f9c}{height}}\ =\ height;}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00426}00426\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00427}00427\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Determine\ if\ we\ should\ suspend}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00428}00428\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ should\_suspend\ =\ !is\_visible\ ||\ (width\ <=\ 10\ ||\ height\ <=\ 10);}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00429}00429\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00430}00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (should\_suspend\ \&\&\ !\mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}{is\_suspended}})\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}Window\ minimized\ or\ hidden,\ suspending\ application."{}});}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}{is\_suspended}}\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00433}00433\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!should\_suspend\ \&\&\ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}{is\_suspended}})\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}Window\ restored,\ resuming\ application."{}});}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}{is\_suspended}}\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00436}00436\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ trigger\ resize\ if\ we\ have\ valid\ dimensions}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (width\ >\ 10\ \&\&\ height\ >\ 10)\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_ae224fcec4853d590c4068314f75196c2}{game\_inst}}-\/>\mbox{\hyperlink{structgame_a320793f814af5f889a43b7ab25d75b67}{on\_resize}}(\mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_ae224fcec4853d590c4068314f75196c2}{game\_inst}},\ width,\ height);}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{renderer__frontend_8c_a344ab27f3e341fd7b45eb38eafea2e00}{renderer\_on\_resized}}(width,\ height);}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00442}00442\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!should\_suspend)\ \{}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Normal\ resize\ case}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_ae224fcec4853d590c4068314f75196c2}{game\_inst}}-\/>\mbox{\hyperlink{structgame_a320793f814af5f889a43b7ab25d75b67}{on\_resize}}(\mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_ae224fcec4853d590c4068314f75196c2}{game\_inst}},\ width,\ height);}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{renderer__frontend_8c_a344ab27f3e341fd7b45eb38eafea2e00}{renderer\_on\_resized}}(width,\ height);}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00446}00446\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00447}00447\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00448}00448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00449}00449\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00450}00450\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00451}00451\ \}}
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00452}00452\ }
-\DoxyCodeLine{\Hypertarget{application_8c_source_l00453}00453\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00421}00421\ }
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00422}00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (width\ !=\ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a5c49a4da818b7bae26b50df80c889279}{width}}\ ||\ height\ !=\ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4a01899027b7429dce0fa6290b927f9c}{height}})\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a5c49a4da818b7bae26b50df80c889279}{width}}\ =\ width;}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4a01899027b7429dce0fa6290b927f9c}{height}}\ =\ height;}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00425}00425\ }
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Window\ resize:\ \%i,\ \%i"{}},\ width,\ height);}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00427}00427\ }
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ minimization}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (width\ ==\ 0\ ||\ height\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}Window\ minimized,\ suspending\ application."{}});}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}{is\_suspended}}\ =\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}{is\_suspended}})\ \{}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_aaa79d2f465f4712163343e3d3052a200}{KINFO}}(\textcolor{stringliteral}{"{}Window\ restored,\ resuming\ application."{}});}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}{is\_suspended}}\ =\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_ae224fcec4853d590c4068314f75196c2}{game\_inst}}-\/>\mbox{\hyperlink{structgame_a320793f814af5f889a43b7ab25d75b67}{on\_resize}}(\mbox{\hyperlink{application_8c_aa1db732285c87eacb6563955bff04a73}{app\_state}}-\/>\mbox{\hyperlink{structapplication__state_ae224fcec4853d590c4068314f75196c2}{game\_inst}},\ width,\ height);}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{renderer__frontend_8c_a344ab27f3e341fd7b45eb38eafea2e00}{renderer\_on\_resized}}(width,\ height);}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00441}00441\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00442}00442\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00443}00443\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00444}00444\ \}}
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00445}00445\ }
+\DoxyCodeLine{\Hypertarget{application_8c_source_l00446}00446\ \textcolor{comment}{//}}
 
 \end{DoxyCode}

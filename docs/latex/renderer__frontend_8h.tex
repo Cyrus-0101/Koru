@@ -13,7 +13,8 @@ Include dependency graph for renderer\+\_\+frontend.\+h\+:\nopagebreak
 \includegraphics[width=196pt]{renderer__frontend_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -30,7 +31,9 @@ void \mbox{\hyperlink{renderer__frontend_8h_a2be6c28c095877944c89e1fa246e6a3f}{r
 void \mbox{\hyperlink{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00}{renderer\+\_\+on\+\_\+resized}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} width, \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} height)
 \begin{DoxyCompactList}\small\item\em Handles window resize events. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{renderer__frontend_8h_aa1a64974ce989cb8a822d5910e45eeec}{renderer\+\_\+draw\+\_\+frame}} (render\+\_\+packet \texorpdfstring{$\ast$}{*}packet)
-\begin{DoxyCompactList}\small\item\em Renders a single frame using the provided packet data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Renders a single frame using the provided packet data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{renderer__frontend_8h_a8f4bdfed0b0b2bf648279e914a3db500}{renderer\+\_\+set\+\_\+view}} (\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} view)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -79,11 +82,11 @@ True if the frame was drawn successfully; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00130}{130}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00147}{147}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00086}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00103}{renderer\+\_\+end\+\_\+frame()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00028}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00030}{renderer\+\_\+system\+\_\+state\+::projection}}, \mbox{\hyperlink{kmath_8h_source_l01459}{quat\+\_\+from\+\_\+axis\+\_\+angle()}}, \mbox{\hyperlink{kmath_8h_source_l01425}{quat\+\_\+to\+\_\+rotation\+\_\+matrix()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00102}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00119}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00040}{state\+\_\+ptr}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{kmath_8h_source_l00425}{vec3\+\_\+forward()}}, \mbox{\hyperlink{kmath_8h_source_l00383}{vec3\+\_\+zero()}}, \mbox{\hyperlink{kmath_8h_source_l00684}{vec4\+\_\+one()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00032}{renderer\+\_\+system\+\_\+state\+::view}}.
 
 
 
@@ -110,15 +113,33 @@ Notifies the renderer that the window dimensions have changed and triggers any n
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00113}{113}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{129}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00028}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{kmath_8h_source_l01537}{deg\+\_\+to\+\_\+rad()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{renderer\+\_\+system\+\_\+state\+::far\+\_\+clip}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00034}{renderer\+\_\+system\+\_\+state\+::near\+\_\+clip}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00030}{renderer\+\_\+system\+\_\+state\+::projection}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00040}{state\+\_\+ptr}}.
 
 
 
 Referenced by \mbox{\hyperlink{application_8c_source_l00417}{application\+\_\+on\+\_\+resized()}}.
+
+\Hypertarget{renderer__frontend_8h_a8f4bdfed0b0b2bf648279e914a3db500}\label{renderer__frontend_8h_a8f4bdfed0b0b2bf648279e914a3db500} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_set\_view@{renderer\_set\_view}}
+\index{renderer\_set\_view@{renderer\_set\_view}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_set\_view()}{renderer\_set\_view()}}
+{\footnotesize\ttfamily void renderer\+\_\+set\+\_\+view (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}}}]{view }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00172}{172}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00040}{state\+\_\+ptr}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00032}{renderer\+\_\+system\+\_\+state\+::view}}.
+
+
+
+Referenced by \mbox{\hyperlink{game_8c_source_l00093}{game\+\_\+update()}}.
 
 \Hypertarget{renderer__frontend_8h_a4a8eb9df8447b9317c06c2592aa4944d}\label{renderer__frontend_8h_a4a8eb9df8447b9317c06c2592aa4944d} 
 \index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_system\_initialize@{renderer\_system\_initialize}}
@@ -156,11 +177,11 @@ True if initialization was successful; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00043}{43}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{52}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00028}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{kmath_8h_source_l01537}{deg\+\_\+to\+\_\+rad()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{renderer\+\_\+system\+\_\+state\+::far\+\_\+clip}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{kmath_8h_source_l01027}{mat4\+\_\+inverse()}}, \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}, \mbox{\hyperlink{kmath_8h_source_l01091}{mat4\+\_\+translation()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00034}{renderer\+\_\+system\+\_\+state\+::near\+\_\+clip}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00030}{renderer\+\_\+system\+\_\+state\+::projection}}, \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00040}{state\+\_\+ptr}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00032}{renderer\+\_\+system\+\_\+state\+::view}}.
 
 
 
@@ -180,11 +201,11 @@ Cleans up all resources allocated during initialization, including devices, comm
 
 Calls the backend\textquotesingle{}s shutdown routine and frees allocated resources. 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00069}{69}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00085}{85}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00027}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00031}{state\+\_\+ptr}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00028}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00040}{state\+\_\+ptr}}.
 
 
 

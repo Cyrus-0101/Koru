@@ -935,23 +935,23 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l01244" name="l01244"></a><span class="lineno"> 1244</span> </div>
 <div class="foldopen" id="foldopen01251" data-start="{" data-end="}">
 <div class="line"><a id="l01251" name="l01251"></a><span class="lineno"><a class="line" href="kmath_8h.html#a761e98470ad456f3a58231c2dd6e8169"> 1251</a></span><a class="code hl_define" href="defines_8h.html#ab4d0d8cdc3aafc511f63fecffd1806c9">KINLINE</a> <a class="code hl_struct" href="structvec3__u.html">vec3</a> <a class="code hl_function" href="kmath_8h.html#a761e98470ad456f3a58231c2dd6e8169">mat4_left</a>(<a class="code hl_union" href="unionmat4__u.html">mat4</a> matrix) {</div>
-<div class="line"><a id="l01252" name="l01252"></a><span class="lineno"> 1252</span>    <a class="code hl_struct" href="structvec3__u.html">vec3</a> right;</div>
-<div class="line"><a id="l01253" name="l01253"></a><span class="lineno"> 1253</span>    right.<a class="code hl_variable" href="structvec3__u.html#a813e68cfccc7810eb92e5237e182f05c">x</a> = -matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[0];</div>
-<div class="line"><a id="l01254" name="l01254"></a><span class="lineno"> 1254</span>    right.<a class="code hl_variable" href="structvec3__u.html#aa1c27d65c1ce9cc59b5fda15c1f9a12a">y</a> = -matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[4];</div>
-<div class="line"><a id="l01255" name="l01255"></a><span class="lineno"> 1255</span>    right.<a class="code hl_variable" href="structvec3__u.html#a8b47eb56e9065610e4d881725c2c8bb9">z</a> = -matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[8];</div>
-<div class="line"><a id="l01256" name="l01256"></a><span class="lineno"> 1256</span>    <a class="code hl_function" href="kmath_8h.html#a913dca8151840c5998928a08cc62ede8">vec3_normalize</a>(&amp;right);</div>
-<div class="line"><a id="l01257" name="l01257"></a><span class="lineno"> 1257</span>    <span class="keywordflow">return</span> right;</div>
+<div class="line"><a id="l01252" name="l01252"></a><span class="lineno"> 1252</span>    <a class="code hl_struct" href="structvec3__u.html">vec3</a> left;</div>
+<div class="line"><a id="l01253" name="l01253"></a><span class="lineno"> 1253</span>    left.<a class="code hl_variable" href="structvec3__u.html#a813e68cfccc7810eb92e5237e182f05c">x</a> = -matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[0];</div>
+<div class="line"><a id="l01254" name="l01254"></a><span class="lineno"> 1254</span>    left.<a class="code hl_variable" href="structvec3__u.html#aa1c27d65c1ce9cc59b5fda15c1f9a12a">y</a> = -matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[4];</div>
+<div class="line"><a id="l01255" name="l01255"></a><span class="lineno"> 1255</span>    left.<a class="code hl_variable" href="structvec3__u.html#a8b47eb56e9065610e4d881725c2c8bb9">z</a> = -matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[8];</div>
+<div class="line"><a id="l01256" name="l01256"></a><span class="lineno"> 1256</span>    <a class="code hl_function" href="kmath_8h.html#a913dca8151840c5998928a08cc62ede8">vec3_normalize</a>(&amp;left);</div>
+<div class="line"><a id="l01257" name="l01257"></a><span class="lineno"> 1257</span>    <span class="keywordflow">return</span> left;</div>
 <div class="line"><a id="l01258" name="l01258"></a><span class="lineno"> 1258</span>}</div>
 </div>
 <div class="line"><a id="l01259" name="l01259"></a><span class="lineno"> 1259</span> </div>
 <div class="foldopen" id="foldopen01266" data-start="{" data-end="}">
 <div class="line"><a id="l01266" name="l01266"></a><span class="lineno"><a class="line" href="kmath_8h.html#a447e7a652833758d115184953454a016"> 1266</a></span><a class="code hl_define" href="defines_8h.html#ab4d0d8cdc3aafc511f63fecffd1806c9">KINLINE</a> <a class="code hl_struct" href="structvec3__u.html">vec3</a> <a class="code hl_function" href="kmath_8h.html#a447e7a652833758d115184953454a016">mat4_right</a>(<a class="code hl_union" href="unionmat4__u.html">mat4</a> matrix) {</div>
-<div class="line"><a id="l01267" name="l01267"></a><span class="lineno"> 1267</span>    <a class="code hl_struct" href="structvec3__u.html">vec3</a> left;</div>
-<div class="line"><a id="l01268" name="l01268"></a><span class="lineno"> 1268</span>    left.<a class="code hl_variable" href="structvec3__u.html#a813e68cfccc7810eb92e5237e182f05c">x</a> = matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[0];</div>
-<div class="line"><a id="l01269" name="l01269"></a><span class="lineno"> 1269</span>    left.<a class="code hl_variable" href="structvec3__u.html#aa1c27d65c1ce9cc59b5fda15c1f9a12a">y</a> = matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[4];</div>
-<div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span>    left.<a class="code hl_variable" href="structvec3__u.html#a8b47eb56e9065610e4d881725c2c8bb9">z</a> = matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[8];</div>
-<div class="line"><a id="l01271" name="l01271"></a><span class="lineno"> 1271</span>    <a class="code hl_function" href="kmath_8h.html#a913dca8151840c5998928a08cc62ede8">vec3_normalize</a>(&amp;left);</div>
-<div class="line"><a id="l01272" name="l01272"></a><span class="lineno"> 1272</span>    <span class="keywordflow">return</span> left;</div>
+<div class="line"><a id="l01267" name="l01267"></a><span class="lineno"> 1267</span>    <a class="code hl_struct" href="structvec3__u.html">vec3</a> right;</div>
+<div class="line"><a id="l01268" name="l01268"></a><span class="lineno"> 1268</span>    right.<a class="code hl_variable" href="structvec3__u.html#a813e68cfccc7810eb92e5237e182f05c">x</a> = matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[0];</div>
+<div class="line"><a id="l01269" name="l01269"></a><span class="lineno"> 1269</span>    right.<a class="code hl_variable" href="structvec3__u.html#aa1c27d65c1ce9cc59b5fda15c1f9a12a">y</a> = matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[4];</div>
+<div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span>    right.<a class="code hl_variable" href="structvec3__u.html#a8b47eb56e9065610e4d881725c2c8bb9">z</a> = matrix.<a class="code hl_variable" href="unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32">data</a>[8];</div>
+<div class="line"><a id="l01271" name="l01271"></a><span class="lineno"> 1271</span>    <a class="code hl_function" href="kmath_8h.html#a913dca8151840c5998928a08cc62ede8">vec3_normalize</a>(&amp;right);</div>
+<div class="line"><a id="l01272" name="l01272"></a><span class="lineno"> 1272</span>    <span class="keywordflow">return</span> right;</div>
 <div class="line"><a id="l01273" name="l01273"></a><span class="lineno"> 1273</span>}</div>
 </div>
 <div class="line"><a id="l01274" name="l01274"></a><span class="lineno"> 1274</span> </div>
@@ -1307,7 +1307,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 28 2025 19:11:01 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

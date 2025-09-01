@@ -9,14 +9,14 @@ var searchData=
   ['darray_5fdestroy_6',['darray_destroy',['../darray_8h.html#a276aa834ed16f81d63f16c13dfdbe67d',1,'darray.h']]],
   ['darray_5ffield_5flength_7',['DARRAY_FIELD_LENGTH',['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55bae02a4792fc8b8805f66c1cc56a29625c',1,'darray.h']]],
   ['darray_5finsert_5fat_8',['darray_insert_at',['../darray_8h.html#a95581a1912c392d51125909802a239db',1,'darray.h']]],
-  ['darray_5flength_9',['darray_length',['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9',1,'DARRAY_LENGTH:&#160;darray.h'],['../darray_8h.html#aa556263c163ffb9f29b40b29b7b25165',1,'darray_length:&#160;darray.h']]],
+  ['darray_5flength_9',['darray_length',['../darray_8h.html#aa556263c163ffb9f29b40b29b7b25165',1,'darray_length:&#160;darray.h'],['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba613d770c4de6f9c416cda32de2c1dbb9',1,'DARRAY_LENGTH:&#160;darray.h']]],
   ['darray_5flength_5fset_10',['darray_length_set',['../darray_8h.html#a5b702a1dc9d84a50dec3f965fbe4cc65',1,'darray.h']]],
   ['darray_5fpop_11',['darray_pop',['../darray_8h.html#a2b16ee33713a454fce146cc964d118c4',1,'darray.h']]],
   ['darray_5fpop_5fat_12',['darray_pop_at',['../darray_8h.html#a12977de60ecb8fec22dad4713e45ca27',1,'darray.h']]],
   ['darray_5fpush_13',['darray_push',['../darray_8h.html#a7ad89931e6589fa09b83ea99de2b32e6',1,'darray.h']]],
   ['darray_5freserve_14',['darray_reserve',['../darray_8h.html#a0805205fc6e4a577824396a03d82e951',1,'darray.h']]],
   ['darray_5fresize_5ffactor_15',['DARRAY_RESIZE_FACTOR',['../darray_8h.html#a95fc981d9c4e984fd55bb36a324617cc',1,'darray.h']]],
-  ['darray_5fstride_16',['darray_stride',['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba22984e01177b1eb2695a4850727db127',1,'DARRAY_STRIDE:&#160;darray.h'],['../darray_8h.html#a93bfa9b817a0adc18e500581ffef8440',1,'darray_stride:&#160;darray.h']]],
+  ['darray_5fstride_16',['darray_stride',['../darray_8h.html#a93bfa9b817a0adc18e500581ffef8440',1,'darray_stride:&#160;darray.h'],['../darray_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba22984e01177b1eb2695a4850727db127',1,'DARRAY_STRIDE:&#160;darray.h']]],
   ['data_17',['data',['../unionmat4__u.html#a6620223582f7ff7804fb7bf579d06d32',1,'mat4_u::data'],['../structevent__context.html#aa3780aba001ac7d0979a720b8a86a2c3',1,'event_context::data']]],
   ['debugbreak_18',['debugBreak',['../asserts_8h.html#a13bf501f420bb63f3cf9b62b06b03574',1,'asserts.h']]],
   ['define_5fkey_19',['define_key',['../input_8h.html#a545241bfccd86821b0187ee96e1f4c51',1,'DEFINE_KEY:&#160;input.h'],['../input_8h.html#a3121b5e20cccb8e49edcbd3e9ac77712a1bc581eb932153853ea4b6fadf91cff8',1,'DEFINE_KEY:&#160;input.h']]],
@@ -31,5 +31,6 @@ var searchData=
   ['devices_28',['3. 🔍 Query Physical Devices',['../index.html#autotoc_md43',1,'']]],
   ['diagram_3a_20full_20rendering_20flow_29',['🧩 Diagram: Full Rendering Flow',['../index.html#autotoc_md63',1,'']]],
   ['discrete_5fgpu_30',['discrete_gpu',['../structvulkan__physical__device__requirements.html#a2a6ed14c466b3fa9f8d2f9e9fd61d61c',1,'vulkan_physical_device_requirements']]],
-  ['dll_20export_20import_31',['DLL EXPORT/IMPORT',['../defines_8h.html#autotoc_md1',1,'']]]
+  ['dll_20export_20import_31',['DLL EXPORT/IMPORT',['../defines_8h.html#autotoc_md1',1,'']]],
+  ['dynamic_5fstate_5fcount_32',['DYNAMIC_STATE_COUNT',['../vulkan__pipeline_8c.html#a29ba53a9acf819ee81b0571b1a1f3869',1,'vulkan_pipeline.c']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['memory_5ftag_0',['memory_tag',['../kmemory_8h.html#a37d016888ad6b70195335004614d4942',1,'kmemory.h']]]
+  ['log_5flevel_0',['log_level',['../logger_8h.html#ac91d55174d383848b976a34de843748e',1,'logger.h']]]
 ];

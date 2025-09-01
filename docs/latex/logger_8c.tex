@@ -6,11 +6,13 @@ Implementation of the logging system.
 
 
 {\ttfamily \#include "{}logger.\+h"{}}\newline
+{\ttfamily \#include "{}kmemory.\+h"{}}\newline
+{\ttfamily \#include "{}kstring.\+h"{}}\newline
 {\ttfamily \#include "{}platform/platform.\+h"{}}\newline
-{\ttfamily \#include $<$stdio.\+h$>$}\newline
-{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}platform/filesystem.\+h"{}}\newline
 {\ttfamily \#include $<$stdarg.\+h$>$}\newline
-Include dependency graph for logger.\+c\+:\nopagebreak
+Include dependency graph for logger.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,7 +28,7 @@ struct \mbox{\hyperlink{structlogger__system__state}{logger\+\_\+system\+\_\+sta
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{logger_8c_aa204ec58d846f2354e6bd239460db89f}{MSG\+\_\+\+LENGTH}}~32000
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Maximum length of a log message. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -35,6 +37,8 @@ typedef struct \mbox{\hyperlink{structlogger__system__state}{logger\+\_\+system\
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{logger_8c_ac215142da536869ac02894d0198bb88f}{append\+\_\+to\+\_\+log\+\_\+file}} (const char \texorpdfstring{$\ast$}{*}message)
+\begin{DoxyCompactList}\small\item\em Appends a message to the log file. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{logger_8c_a124a9e558949da0e8f11f6929992a5c8}{initialize\+\_\+logging}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}memory\+\_\+requirement, void \texorpdfstring{$\ast$}{*}state)
 \begin{DoxyCompactList}\small\item\em Initializes the logging system. Called twice; once with state = 0 to get required memory size then a second time passing allocated memory to the state. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{logger_8c_aa19340b3c2c2f8f90a5c40d08b7919c7}{shutdown\+\_\+logging}} (void \texorpdfstring{$\ast$}{*}state)
@@ -76,7 +80,11 @@ Definition in file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
-Definition at line \mbox{\hyperlink{logger_8c_source_l00010}{10}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+Maximum length of a log message. 
+
+
+
+Definition at line \mbox{\hyperlink{logger_8c_source_l00014}{14}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
@@ -90,6 +98,33 @@ Definition at line \mbox{\hyperlink{logger_8c_source_l00010}{10}} of file \mbox{
 
 
 \doxysubsection{Function Documentation}
+\Hypertarget{logger_8c_ac215142da536869ac02894d0198bb88f}\label{logger_8c_ac215142da536869ac02894d0198bb88f} 
+\index{logger.c@{logger.c}!append\_to\_log\_file@{append\_to\_log\_file}}
+\index{append\_to\_log\_file@{append\_to\_log\_file}!logger.c@{logger.c}}
+\doxysubsubsection{\texorpdfstring{append\_to\_log\_file()}{append\_to\_log\_file()}}
+{\footnotesize\ttfamily void append\+\_\+to\+\_\+log\+\_\+file (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{message }\end{DoxyParamCaption})}
+
+
+
+Appends a message to the log file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message to append. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{logger_8c_source_l00050}{50}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+
+
+
+References \mbox{\hyperlink{filesystem_8c_source_l00109}{filesystem\+\_\+write()}}, \mbox{\hyperlink{filesystem_8h_source_l00014}{file\+\_\+handle\+::is\+\_\+valid}}, \mbox{\hyperlink{logger_8c_source_l00039}{logger\+\_\+system\+\_\+state\+::log\+\_\+file\+\_\+handle}}, \mbox{\hyperlink{logger_8h_source_l00071}{LOG\+\_\+\+LEVEL\+\_\+\+ERROR}}, \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\+\_\+console\+\_\+write\+\_\+error()}}, \mbox{\hyperlink{logger_8c_source_l00043}{state\+\_\+ptr}}, and \mbox{\hyperlink{kstring_8c_source_l00023}{string\+\_\+length()}}.
+
+
+
+Referenced by \mbox{\hyperlink{logger_8c_source_l00095}{log\+\_\+output()}}.
+
 \Hypertarget{logger_8c_a124a9e558949da0e8f11f6929992a5c8}\label{logger_8c_a124a9e558949da0e8f11f6929992a5c8} 
 \index{logger.c@{logger.c}!initialize\_logging@{initialize\_logging}}
 \index{initialize\_logging@{initialize\_logging}!logger.c@{logger.c}}
@@ -114,11 +149,11 @@ True if initialization was successful; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{logger_8c_source_l00042}{42}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+Definition at line \mbox{\hyperlink{logger_8c_source_l00064}{64}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
-References \mbox{\hyperlink{logger_8c_source_l00035}{logger\+\_\+system\+\_\+state\+::initialized}}, \mbox{\hyperlink{logger_8c_source_l00038}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00026}{FILE\+\_\+\+MODE\+\_\+\+WRITE}}, \mbox{\hyperlink{filesystem_8c_source_l00015}{filesystem\+\_\+open()}}, \mbox{\hyperlink{logger_8c_source_l00039}{logger\+\_\+system\+\_\+state\+::log\+\_\+file\+\_\+handle}}, \mbox{\hyperlink{logger_8h_source_l00071}{LOG\+\_\+\+LEVEL\+\_\+\+ERROR}}, \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\+\_\+console\+\_\+write\+\_\+error()}}, \mbox{\hyperlink{logger_8c_source_l00043}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
@@ -150,17 +185,17 @@ Supports standard formatting like {\ttfamily printf()} and includes\+:
 {\em ...} & Arguments used to replace format specifiers in the message. \\
 \hline
 \end{DoxyParams}
+TO-\/\+DO\+: Move string operations to their own thread The ops are pretty slow, and can slow down the engine during startup/shutdown. Work on threading and offset these ops.
 
-
-Definition at line \mbox{\hyperlink{logger_8c_source_l00068}{68}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
-
-
-
-References \mbox{\hyperlink{logger_8h_source_l00078}{LOG\+\_\+\+LEVEL\+\_\+\+WARN}}, \mbox{\hyperlink{logger_8c_source_l00010}{MSG\+\_\+\+LENGTH}}, \mbox{\hyperlink{platform_8h_ac352c68fed21ee19eff9a165d1648c4c}{platform\+\_\+console\+\_\+write()}}, and \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\+\_\+console\+\_\+write\+\_\+error()}}.
+Definition at line \mbox{\hyperlink{logger_8c_source_l00095}{95}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{logger_8c_source_l00122}{report\+\_\+assertion\+\_\+failure()}}.
+References \mbox{\hyperlink{logger_8c_source_l00050}{append\+\_\+to\+\_\+log\+\_\+file()}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{logger_8h_source_l00078}{LOG\+\_\+\+LEVEL\+\_\+\+WARN}}, \mbox{\hyperlink{logger_8c_source_l00014}{MSG\+\_\+\+LENGTH}}, \mbox{\hyperlink{platform_8h_ac352c68fed21ee19eff9a165d1648c4c}{platform\+\_\+console\+\_\+write()}}, \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\+\_\+console\+\_\+write\+\_\+error()}}, \mbox{\hyperlink{kstring_8c_source_l00041}{string\+\_\+format()}}, and \mbox{\hyperlink{kstring_8c_source_l00052}{string\+\_\+format\+\_\+v()}}.
+
+
+
+Referenced by \mbox{\hyperlink{logger_8c_source_l00156}{report\+\_\+assertion\+\_\+failure()}}.
 
 \Hypertarget{logger_8c_a89ca11b6142a42bebac099dfacf57f59}\label{logger_8c_a89ca11b6142a42bebac099dfacf57f59} 
 \index{logger.c@{logger.c}!report\_assertion\_failure@{report\_assertion\_failure}}
@@ -187,11 +222,11 @@ This function should be implemented in {\ttfamily \doxylink{logger_8c}{logger.\+
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{logger_8c_source_l00122}{122}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+Definition at line \mbox{\hyperlink{logger_8c_source_l00156}{156}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
-References \mbox{\hyperlink{logger_8h_source_l00064}{LOG\+\_\+\+LEVEL\+\_\+\+FATAL}}, and \mbox{\hyperlink{logger_8c_source_l00068}{log\+\_\+output()}}.
+References \mbox{\hyperlink{logger_8h_source_l00064}{LOG\+\_\+\+LEVEL\+\_\+\+FATAL}}, and \mbox{\hyperlink{logger_8c_source_l00095}{log\+\_\+output()}}.
 
 \Hypertarget{logger_8c_aa19340b3c2c2f8f90a5c40d08b7919c7}\label{logger_8c_aa19340b3c2c2f8f90a5c40d08b7919c7} 
 \index{logger.c@{logger.c}!shutdown\_logging@{shutdown\_logging}}
@@ -210,11 +245,11 @@ Currently just returns. In future versions, this may include\+:
 \item Releasing logging resources 
 \end{DoxyItemize}
 
-Definition at line \mbox{\hyperlink{logger_8c_source_l00058}{58}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+Definition at line \mbox{\hyperlink{logger_8c_source_l00085}{85}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
-References \mbox{\hyperlink{logger_8c_source_l00038}{state\+\_\+ptr}}.
+References \mbox{\hyperlink{logger_8c_source_l00043}{state\+\_\+ptr}}.
 
 
 
@@ -227,9 +262,9 @@ References \mbox{\hyperlink{logger_8c_source_l00038}{state\+\_\+ptr}}.
 
 
 
-Definition at line \mbox{\hyperlink{logger_8c_source_l00038}{38}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
+Definition at line \mbox{\hyperlink{logger_8c_source_l00043}{43}} of file \mbox{\hyperlink{logger_8c_source}{logger.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{logger_8c_source_l00042}{initialize\+\_\+logging()}}, and \mbox{\hyperlink{logger_8c_source_l00058}{shutdown\+\_\+logging()}}.
+Referenced by \mbox{\hyperlink{logger_8c_source_l00050}{append\+\_\+to\+\_\+log\+\_\+file()}}, \mbox{\hyperlink{logger_8c_source_l00064}{initialize\+\_\+logging()}}, and \mbox{\hyperlink{logger_8c_source_l00085}{shutdown\+\_\+logging()}}.
 
