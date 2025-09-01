@@ -146,6 +146,7 @@ b8 vulkan_graphics_pipeline_create(
 }
 
 void vulkan_pipeline_destroy(vulkan_context* context, vulkan_pipeline* pipeline) {
+    KDEBUG("Destroying Vulkan pipeline %p", pipeline->handle);
     if (pipeline) {
         // Destroy Pipeline
         if (pipeline->handle) {

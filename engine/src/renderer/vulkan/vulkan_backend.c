@@ -3,8 +3,10 @@
 #include "core/logger.h"
 #include "core/kstring.h"
 #include "core/kmemory.h"
+#include "math/math_types.h"
 #include "platform/platform.h"
 #include "shaders/vulkan_object_shader.h"
+#include "vulkan_buffer.h"
 #include "vulkan_backend.h"
 #include "vulkan_command_buffer.h"
 #include "vulkan_device.h"
@@ -13,7 +15,6 @@
 #include "vulkan_platform.h"
 #include "vulkan_renderpass.h"
 #include "vulkan_swapchain.h"
-#include "vulkan_types.inl"
 #include "vulkan_utils.h"
 
 /**
@@ -25,6 +26,10 @@
  * up basic placeholder logic for frame handling and resizing.
  */
 
+#define VERTEX_COUNT 4
+
+#define INDEX_COUNT 6
+
 // Static global context for the Vulkan renderer
 static vulkan_context context;
 
@@ -34,81 +39,45 @@ static u32 cached_framebuffer_width = 0;
 // Static global cached_framebuffer_height
 static u32 cached_framebuffer_height = 0;
 
-/**
- * @brief Debug messenger callback for Vulkan validation layers.
- *
- * Logs debug messages from the Vulkan validation layers to the engine's logging system.
- *
- * @param message_severity The severity of the message (error/warning/info/verbose).
- * @param message_types The type(s) of message (validation/performance/general).
- * @param callback_data Additional data about the message.
- * @param user_data Optional user-defined data (not used here).
- * @return Always returns VK_False (no need to abort due to message).
- */
-VKAPI_ATTR VkBool32 VKAPI_CALL vk_debug_callback(
-    VkDebugUtilsMessageSeverityFlagBitsEXT message_severity,
-    VkDebugUtilsMessageTypeFlagsEXT message_types,
-    const VkDebugUtilsMessengerCallbackDataEXT* callback_data,
-    void* user_data);
+void upload_data_range(vulkan_context* context,
+                       VkCommandPool pool,
+                       VkFence fence,
+                       VkQueue queue,
+                       vulkan_buffer* buffer,
+                       u64 offset,
+                       u64 size,
+                       const void* data) {
+    // Create a host-visible staging buffer to upload to. Mark it as the source of the transfer
+    VkBufferUsageFlags flags = VK_BUFFER_USAGE_TRANSFER_SRC_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
 
-/**
- * @brief Finds a suitable memory type index that satisfies the given constraints.
- *
- * This function queries the physical device's memory properties and looks for a memory type that:
- * - Is supported by the filter (`type_filter`)
- * - Has all required property flags (`property_flags`)
- *
- * Used when allocating buffers and images to ensure they are placed in memory that is:
- * - Device-local (fast GPU access)
- * - Host-visible (can be accessed from CPU)
- * - Coherent (CPU/GPU cache behavior is consistent)
- *
- * If no matching memory type is found, logs a warning and returns -1.
- *
- * @param type_filter A bitmask indicating valid memory types (from VkMemoryRequirements.memoryTypeBits).
- * @param property_flags Required memory property flags (e.g., VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT).
- * @return i32 The index of a suitable memory type, or -1 if none was found.
- */
-i32 find_memory_index(u32 type_filter, u32 property_flags);
+    vulkan_buffer staging = {};
 
-/**
- * @brief Creates and allocates command buffers for each frame-in-flight.
- *
- * Allocates one command buffer per swapchain image using the graphics command pool.
- * These buffers are used during rendering to record draw commands and submit them to the GPU.
- *
- * This function also ensures:
- * - All command buffers are zeroed before use
- * - Command buffers are created only once
- * - They are properly indexed and accessible globally via context
- *
- * @param backend A pointer to the renderer backend interface (unused here, but kept for consistency).
- */
-void create_command_buffers(renderer_backend* backend);
+    vulkan_buffer_create(context, size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, flags, True, &staging);
 
-/**
- * @brief Regenerates all framebuffers used in rendering after swapchain creation or resize.
- *
- * Framebuffers are tightly coupled to the swapchain — every time the swapchain is created,
- * recreated (due to window resize), or invalidated, all associated framebuffers must be regenerated.
- *
- * This function:
- * - Destroys any existing framebuffers
- * - Creates new ones using the current swapchain images and render pass
- * - Binds depth/stencil attachments as needed
- *
- * Must be called after:
- * - Swapchain creation
- * - Render pass creation
- * - Depth attachment setup
- *
- * @param backend A pointer to the renderer backend interface.
- * @param swapchain A pointer to the vulkan_swapchain being used for rendering.
- * @param renderpass A pointer to the vulkan_renderpass that defines how rendering happens.
- */
-void regenerate_framebuffers(renderer_backend* backend, vulkan_swapchain* swapchain, vulkan_renderpass* renderpass);
+    // Load the data into the staging buffer
+    vulkan_buffer_load_data(
+        context,
+        &staging,
+        0,
+        size,
+        0,
+        data);
 
-b8 recreate_swapchain(renderer_backend* backend);
+    // Perform the copy from staging to the device local buffer
+    vulkan_buffer_copy_to(
+        context,
+        pool,
+        fence,
+        queue,
+        staging.handle,
+        0,
+        buffer->handle,
+        offset,
+        size);
+
+    // Clean up the staging buffer
+    vulkan_buffer_destroy(context, &staging);
+}
 
 b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* application_name) {
     KINFO("Creating Vulkan instance...");
@@ -126,7 +95,7 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
 
     // Application info for the Vulkan instance
     VkApplicationInfo app_info = {VK_STRUCTURE_TYPE_APPLICATION_INFO};
-    app_info.apiVersion = VK_MAKE_API_VERSION(0, 1, 4, 313);
+    app_info.apiVersion = VK_MAKE_API_VERSION(0, 1, 3, 298);
     app_info.pApplicationName = application_name;
     // VK_MAKE_API_VERSION(major, minor, patch, variant)
     app_info.applicationVersion = VK_MAKE_API_VERSION(0, 0, 0, 1);
@@ -308,6 +277,61 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
         return False;
     }
 
+    create_buffers(&context);
+
+    // TO-DO: Temporary Test codds
+    vertex_3d verts[VERTEX_COUNT];
+    kzero_memory(verts, sizeof(vertex_3d) * VERTEX_COUNT);
+
+        const f32 f = 10.0f;
+
+    verts[0].position.x = 0.0 * f;
+    verts[0].position.y = -0.5 * f;
+
+    verts[1].position.x = 0.5 * f;
+    verts[1].position.y = 0.5 * f;
+
+    verts[2].position.x = 0.0 * f;
+    verts[2].position.y = 0.5 * f;
+
+    verts[3].position.x = 0.5 * f;
+    verts[3].position.y = -0.5 * f;
+
+    // verts[0].position.x = 0.0;
+    // verts[0].position.y = -0.5;
+
+    // verts[1].position.x = 0.5;
+    // verts[1].position.y = 0.5;
+
+    // verts[2].position.x = 0.0;
+    // verts[2].position.y = 0.5;
+
+    // verts[3].position.x = 0.5;
+    // verts[3].position.y = -0.5;
+
+    u32 indices[INDEX_COUNT] = {0, 1, 2, 0, 3, 1};
+
+    upload_data_range(
+        &context,
+        context.device.graphics_command_pool,
+        0,
+        context.device.graphics_queue,
+        &context.object_vertex_buffer,
+        0,
+        sizeof(vertex_3d) * VERTEX_COUNT,
+        verts);
+
+    upload_data_range(
+        &context,
+        context.device.graphics_command_pool,
+        0,
+        context.device.graphics_queue,
+        &context.object_index_buffer,
+        0,
+        sizeof(u32) * INDEX_COUNT,
+        indices);
+    // To-DO: End of temporary test code
+
     KINFO("Vulkan renderer initialized successfully.");
     return True;
 }
@@ -316,7 +340,12 @@ void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
     KINFO("Shutting down Vulkan renderer...");
     vkDeviceWaitIdle(context.device.logical_device);
 
-    KINFO("Destroying Vulkan Object Shaders");
+    // Destroy buffers
+    KDEBUG("Destorying Vulkan Buffers...");
+    vulkan_buffer_destroy(&context, &context.object_vertex_buffer);
+    vulkan_buffer_destroy(&context, &context.object_index_buffer);
+
+    KDEBUG("Destroying Vulkan Object Shaders...");
     vulkan_object_shader_destroy(&context, &context.object_shader);
 
     KDEBUG("Destroying Vulkan Sync Objects...");
@@ -504,6 +533,54 @@ b8 vulkan_renderer_backend_begin_frame(renderer_backend* backend, f32 delta_time
         context.swapchain.framebuffers[context.image_index].handle);
 
     return True;
+}
+
+void vulkan_renderer_update_global_state(mat4 projection, mat4 view, vec3 view_position, vec4 ambient_colour, i32 mode) {
+    vulkan_command_buffer* command_buffer = &context.graphics_command_buffers[context.image_index];
+
+    vulkan_object_shader_use(&context, &context.object_shader);
+
+    context.object_shader.global_ubo.projection = projection;
+    context.object_shader.global_ubo.view = view;
+
+    // TODO: other ubo properties
+
+    vulkan_object_shader_update_global_state(&context, &context.object_shader);
+
+    // TO-DO: Temporary Test code
+    vulkan_object_shader_use(&context, &context.object_shader);
+
+    // Bind the graphics pipeline
+    vkCmdBindPipeline(
+        command_buffer->handle,
+        VK_PIPELINE_BIND_POINT_GRAPHICS,
+        context.object_shader.pipeline.handle);
+
+    // Bind the vertex buffer at offset
+    VkDeviceSize offsets[1] = {0};
+    vkCmdBindVertexBuffers(
+        command_buffer->handle,
+        0,
+        1,
+        &context.object_vertex_buffer.handle,
+        (VkDeviceSize*)offsets);
+
+    // Bind the index buffer at offset
+    vkCmdBindIndexBuffer(
+        command_buffer->handle,
+        context.object_index_buffer.handle,
+        0,
+        VK_INDEX_TYPE_UINT32);
+
+    // Draw the triangle
+    vkCmdDrawIndexed(
+        command_buffer->handle,
+        6,   // Index count
+        1,   // Instance count
+        0,   // First index
+        0,   // Vertex offset
+        0);  // First instance
+    // TO-DO: End Temporary Test code
 }
 
 b8 vulkan_renderer_backend_end_frame(renderer_backend* backend, f32 delta_time) {
@@ -696,7 +773,7 @@ b8 recreate_swapchain(renderer_backend* backend) {
         context.device.physical_device,
         context.surface,
         &context.device.swapchain_support);
-        
+
     vulkan_device_detect_depth_format(&context.device);
 
     vulkan_swapchain_recreate(
@@ -738,5 +815,42 @@ b8 recreate_swapchain(renderer_backend* backend) {
     // Clear the recreating flag.
     context.recreating_swapchain = False;
 
+    return True;
+}
+
+b8 create_buffers(vulkan_context* context) {
+    KDEBUG("Creating Vulkan Buffers...");
+
+    VkMemoryPropertyFlagBits memory_property_flags = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+
+    const u64 vertex_buffer_size = sizeof(vertex_3d) * 1024 * 1024;
+    if (!vulkan_buffer_create(
+            context,
+            vertex_buffer_size,
+            VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+            memory_property_flags,
+            True,
+            &context->object_vertex_buffer)) {
+        KERROR("Error creating vertex buffer.");
+        return False;
+    }
+    context->geometry_vertex_offset = 0;
+
+    const u64 index_buffer_size = sizeof(u32) * 1024 * 1024;
+    if (!vulkan_buffer_create(
+            context,
+            index_buffer_size,
+            VK_BUFFER_USAGE_INDEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+            memory_property_flags,
+            True,
+            &context->object_index_buffer)) {
+        KERROR("Error creating vertex buffer.");
+        return False;
+    }
+    context->geometry_index_offset = 0;
+
+    return True;
+
+    KDEBUG("Vulkan Buffers created successfully.");
     return True;
 }

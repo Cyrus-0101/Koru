@@ -1,6 +1,7 @@
 #pragma once
 
 #include "defines.h"
+#include "math/math_types.h"
 
 /**
  * @file renderer_types.inl
@@ -34,6 +35,47 @@ typedef enum renderer_backend_type {
      */
     RENDERER_BACKEND_TYPE_DIRECTX
 } renderer_backend_type;
+
+
+/**
+ * 
+ * @brief Represents a global uniform object used for rendering.
+ * 
+ * NVIDIA requires a 256-byte alignment for uniform buffers.
+ * Each field in this structure is aligned to 16 bytes,
+ * ensuring compatibility with various graphics APIs.
+ * 
+ * Each field is 64 bytes.
+ */
+typedef struct global_uniform_object {
+    /** 
+     * @brief Projection matrix used for transforming 3D coordinates to 2D screen space.
+     * 
+     * This matrix is typically set once per frame and used for all objects rendered in that frame.
+     */
+    mat4 projection;
+
+    /**
+     * @brief View matrix used for transforming world coordinates to camera space.
+     * 
+     * This matrix is updated per frame to reflect the camera's position and orientation.
+     */
+    mat4 view;
+    
+    /**
+     * @brief Model matrix used for transforming object coordinates to world space.
+     * 
+     * This matrix is set per object and defines its position, rotation, and scale in the world.
+     */
+    mat4 m_reserved0;
+
+    /** 
+     * @brief Reserved for future use or additional transformations.
+     * 
+     * This field is currently unused but may be utilized in future updates to the rendering system.
+     */
+    mat4 m_reserved1;
+} global_uniform_object;
 
 /**
  *
@@ -87,6 +129,20 @@ typedef struct renderer_backend {
      * @return True if successful; otherwise False.
      */
     b8 (*begin_frame)(struct renderer_backend* backend, f32 delta_time);
+
+    /**
+     * @brief Updates the global state for rendering.
+     *
+     * This function is called each frame to update the global uniform object
+     * used for rendering, such as projection and view matrices.
+     *
+     * @param projection The projection matrix for the current frame.
+     * @param view The view matrix for the current frame.
+     * @param view_position The camera's position in world space.
+     * @param ambient_colour The ambient light colour in RGBA format.
+     * @param mode Rendering mode (e.g., wireframe, solid).
+     */
+    void (*update_global_state)(mat4 projection, mat4 view, vec3 view_position, vec4 ambient_colour, i32 mode);
 
     /**
      * @brief Ends the current rendering frame.
