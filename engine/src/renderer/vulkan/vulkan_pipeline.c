@@ -105,6 +105,14 @@ b8 vulkan_graphics_pipeline_create(
     // Pipeline layout
     VkPipelineLayoutCreateInfo pipeline_layout_create_info = {VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO};
 
+    // Push Constant
+    VkPushConstantRange push_constant;
+    push_constant.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+    push_constant.offset = sizeof(mat4) * 0;
+    push_constant.size = sizeof(mat4) * 2;
+    pipeline_layout_create_info.pushConstantRangeCount = 1;
+    pipeline_layout_create_info.pPushConstantRanges = &push_constant;
+
     // Descriptor set layouts
     pipeline_layout_create_info.setLayoutCount = descriptor_set_layout_count;
     pipeline_layout_create_info.pSetLayouts = descriptor_set_layouts;
@@ -136,7 +144,7 @@ b8 vulkan_graphics_pipeline_create(
     // Create the graphics pipeline
     VkResult result = vkCreateGraphicsPipelines(context->device.logical_device, VK_NULL_HANDLE, 1, &pipeline_create_info, context->allocator, &out_pipeline->handle);
 
-    if(vulkan_result_is_success(result)) {
+    if (vulkan_result_is_success(result)) {
         KDEBUG("Vulkan graphics pipeline created successfully.");
         return True;
     }
