@@ -126,14 +126,30 @@ Check out the diagrams included in the `assets/` folder to understand how everyt
 ```
 .
 ├── assets
-│   ├── Koru Engine Architecture.png        # High-level system architecture diagram
-│   ├── Koru Project Structure.png          # Visual representation of file organization
-│   └── Koru v0.1 Feature List.png          # Summary of current features and roadmap
+│   ├── Koru Engine Architecture.png
+│   ├── Koru Project Structure.png
+│   ├── Koru v0.1 Feature List.png
+│   └── shaders
+│       ├── Builtin.ObjectShader.frag.glsl
+│       └── Builtin.ObjectShader.vert.glsl
 ├── bin
-│   ├── libengine.so                        # Compiled engine shared library (Linux)
-│   └── testbed                             # Testbed application binary (Linux)
-├── build-all.bat                           # Windows: Runs all builds sequentially
-├── build-all.sh                            # Linux: Runs all builds sequentially
+│   ├── assets
+│   │   ├── Koru Engine Architecture.png
+│   │   ├── Koru Project Structure.png
+│   │   ├── Koru v0.1 Feature List.png
+│   │   └── shaders
+│   │       ├── Builtin.ObjectShader.frag.glsl
+│   │       ├── Builtin.ObjectShader.frag.spv
+│   │       ├── Builtin.ObjectShader.vert.glsl
+│   │       └── Builtin.ObjectShader.vert.spv
+│   ├── console.log
+│   ├── libengine.so
+│   ├── testbed
+│   └── tests
+├── build-all.bat
+├── build-all.sh
+├── clean-all.bat
+├── clean-all.sh
 ├── Doxyfile                                # Configuration for generating API documentation with Doxygen
 ├── engine
 │   ├── build.bat                           # Windows: Builds engine DLL
@@ -146,30 +162,101 @@ Check out the diagrams included in the `assets/` folder to understand how everyt
 │       │   ├── application.c               # Application lifecycle implementation (init/run/shutdown)
 │       │   ├── application.h               # Public interface for the application system
 │       │   ├── asserts.h                   # Custom assertion macros and debugging utilities
+│       │   ├── clock.c
+│       │   ├── clock.h
 │       │   ├── event.c                     # Event system implementation (register/unregister/fire)
 │       │   ├── event.h                     # Public interface for event handling system
+│       │   ├── input.c
+│       │   ├── input.h
 │       │   ├── kmemory.c                   # Memory allocation system with tagging support
 │       │   ├── kmemory.h                   # Interface for tagged memory management
+│       │   ├── kstring.c
+│       │   ├── kstring.h
 │       │   ├── logger.c                    # Logging system with color-coded output
-│       │   └── logger.h                   # Public interface for logging module
+│       │   └── logger.h                    # Public interface for logging module
 │       ├── defines.h                       # Common type definitions, macros, and platform detection
 │       ├── entry.h                         # Entry point interface; declares create_game()
 │       ├── game_types.h                    # Game-related types used across engine and game logic
-│       └── platform
-│           ├── platform.h                 # Platform abstraction layer interface
-│           ├── platform_linux.c           # Linux-specific implementation of platform functions
-│           └── platform_win32.c           # Windows-specific implementation of platform functions
+│       ├── math
+│       │   ├── kmath.c
+│       │   ├── kmath.h
+│       │   └── math_types.h
+│       ├── memory
+│       │   ├── linear_allocator.c
+│       │   └── linear_allocator.h
+│       ├── platform
+│       │   ├── filesystem.c
+│       │   ├── filesystem.h
+│       │   ├── platform_android.c
+│       |   ├── platform.h                 # Platform abstraction layer interface
+│       │   ├── platform_ios.c
+│       │   ├── platform_linux.c           # Linux-specific implementation of platform functions
+│       │   ├── platform_macos.c
+│       │   └── platform_win32.c           # Windows-specific implementation of platform functions
+│       └── renderer
+│           ├── renderer_backend.c
+│           ├── renderer_backend.h
+│           ├── renderer_frontend.c
+│           ├── renderer_frontend.h
+│           ├── renderer_types.inl
+│           └── vulkan
+│               ├── shaders
+│               │   ├── vulkan_object_shader.c
+│               │   └── vulkan_object_shader.h
+│               ├── vulkan_backend.c
+│               ├── vulkan_backend.h
+│               ├── vulkan_buffer.c
+│               ├── vulkan_buffer.h
+│               ├── vulkan_command_buffer.c
+│               ├── vulkan_command_buffer.h
+│               ├── vulkan_device.c
+│               ├── vulkan_device.h
+│               ├── vulkan_fence.c
+│               ├── vulkan_fence.h
+│               ├── vulkan_framebuffer.c
+│               ├── vulkan_framebuffer.h
+│               ├── vulkan_image.c
+│               ├── vulkan_image.h
+│               ├── vulkan_pipeline.c
+│               ├── vulkan_pipeline.h
+│               ├── vulkan_platform.h
+│               ├── vulkan_renderpass.c
+│               ├── vulkan_renderpass.h
+│               ├── vulkan_shader_utils.c
+│               ├── vulkan_shader_utils.h
+│               ├── vulkan_swapchain.c
+│               ├── vulkan_swapchain.h
+│               ├── vulkan_types.inl
+│               ├── vulkan_utils.c
+│               └── vulkan_utils.h
 ├── LICENSE                                 # MIT License file
+├── Makefile.engine.linux.mak
+├── Makefile.engine.windows.mak
+├── Makefile.testbed.linux.mak
+├── Makefile.testbed.windows.mak
+├── post-build.bat
+├── post-build.sh
 ├── README.md                               # This file - main project overview and guide
-├── test
-│   └── platform                           # Unit tests for platform module
 ├── testbed
-    ├── build.bat                           # Windows: Builds testbed application
-    ├── build.sh                            # Linux: Builds testbed application
+|   ├── build.bat                           # Windows: Builds testbed application
+|   ├── build.sh                            # Linux: Builds testbed application
+|   └── src
+|       ├── entry.c                         # Entry point for testbed app; implements create_game()
+|       ├── game.c                          # Testbed game logic (initialize/update/render stubs)
+|       └── game.h                          # Interface for testbed game implementation
+└── tests
+    ├── build.bat
+    ├── build.sh
     └── src
-        ├── entry.c                         # Entry point for testbed app; implements create_game()
-        ├── game.c                          # Testbed game logic (initialize/update/render stubs)
-        └── game.h                          # Interface for testbed game implementation
+        ├── expect.h
+        ├── main.c
+        ├── memory
+        │   ├── linear_allocator_tests.c
+        │   └── linear_allocator_tests.h
+        ├── test_manager.c
+        └── test_manager.h
+
+37 directories, 176 files   
 ```
 
 ---
@@ -217,6 +304,14 @@ Then run:
 
 ```cmd
 build-all.bat
+```
+
+## Building Docs
+
+To generate our Doxygen documentation, run:
+
+```sh
+    doxygen Doxyfile
 ```
 
 Output files:
