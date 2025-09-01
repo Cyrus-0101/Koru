@@ -2,6 +2,7 @@
 
 #include <defines.h>
 #include <game_types.h>
+#include <math/math_types.h>
 
 /**
  * @file game.h
@@ -28,6 +29,23 @@ typedef struct game_state {
      * @brief Time in seconds since the last frame.
      */
     f32 delta_time;
+
+    /**
+     * @brief View matrix for the current frame.
+     */
+    mat4 view;
+
+    /**
+     * @brief Camera position in world space.
+     */
+    vec3 camera_position;
+
+    /**
+     * @brief Camera orientation in Euler angles (pitch, yaw, roll).
+     */
+    vec3 camera_euler;
+
+    b8 camera_view_dirty;
 } game_state;
 
 /**
