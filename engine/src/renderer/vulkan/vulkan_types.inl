@@ -1,7 +1,9 @@
 #pragma once
 
-#include "defines.h"
 #include "core/asserts.h"
+#include "defines.h"
+#include "renderer/renderer_types.inl"
+
 #include <vulkan/vulkan.h>
 
 /**
@@ -606,12 +608,52 @@ typedef struct vulkan_object_shader {
     vulkan_shader_stage stages[OBJECT_SHADER_STAGE_COUNT];
 
     /**
+     * @brief Descriptor pool used for allocating descriptor sets.
+     * 
+     * This pool is used to manage memory for descriptor sets that hold
+     * uniform buffers, textures, and other resources.
+     */
+    VkDescriptorPool global_descriptor_pool;
+
+    /**
+     * @brief Layout for the global descriptor set.
+     * 
+     * Defines the structure of the descriptor set used for global uniform data.
+     * Typically includes bindings for uniform buffers, textures, etc.
+     */
+    VkDescriptorSetLayout global_descriptor_set_layout;
+
+    /**
+     * @brief Array of descriptor sets used for global uniform data.
+     *
+     * Each set corresponds to a frame in flight, allowing for per-frame updates.
+     * Typically contains the global uniform buffer object (UBO) for rendering.
+     * One descriptor set per frame in flight - for triple buffering.
+     */
+    VkDescriptorSet global_descriptor_sets[4];
+
+    /**
+     * @brief Global uniform buffer object (UBO) used for rendering.
+     *
+     * Contains projection and view matrices, and is updated per frame.
+     * This buffer is bound to the global descriptor set for use in shaders.
+     */
+    global_uniform_object global_ubo;
+
+    /**
+     * @brief Buffer used for global uniform data.
+     *
+     * This buffer holds the global uniform object data and is updated each frame.
+     * It is bound to the global descriptor set for use in shaders.
+     */
+    vulkan_buffer global_uniform_buffer;
+
+    /**
      * @brief Pipeline used for rendering.
      *
      * This pipeline is created from the shader stages and used for drawing 3D objects.
      */
     vulkan_pipeline pipeline;
-
 } vulkan_object_shader;
 
 /**
