@@ -56,7 +56,7 @@ void vulkan_object_shader_use(vulkan_context* context, struct vulkan_object_shad
  * @param context The Vulkan context containing command buffers and frame information.
  * @param shader Pointer to the vulkan_object_shader structure whose global state is to be updated.
  */
-void vulkan_object_shader_update_global_state(vulkan_context* context, struct vulkan_object_shader* shader);
+void vulkan_object_shader_update_global_state(vulkan_context* context, struct vulkan_object_shader* shader, f32 delta_time);
 
 /**
  * @brief Updates the model matrix for a specific object in the Vulkan object shader.
@@ -68,4 +68,8 @@ void vulkan_object_shader_update_global_state(vulkan_context* context, struct vu
  * @param shader Pointer to the vulkan_object_shader structure whose object state is to be updated.
  * @param model The model transformation matrix for the object.
  */
-void vulkan_object_shader_update_object(vulkan_context* context, struct vulkan_object_shader* shader, mat4 model);
+void vulkan_object_shader_update_object(vulkan_context* context, struct vulkan_object_shader* shader, geometry_render_data data);
+
+b8 vulkan_object_shader_acquire_resources(vulkan_context* context, struct vulkan_object_shader* shader, u32* out_object_id);
+
+void vulkan_object_shader_release_resources(vulkan_context* context, struct vulkan_object_shader* shader, u32 object_id);
