@@ -6,6 +6,27 @@
 
 #include <vulkan/vulkan.h>
 
+#define OBJECT_SHADER_STAGE_COUNT 2
+
+#define VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT 2
+
+#define VULKAN_OBJECT_MAX_OBJECT_COUNT 1024
+
+#define MAX_FRAMES_IN_FLIGHT 4
+
+typedef struct vulkan_descriptor_state {
+    // One per frame
+    u32 generations[MAX_FRAMES_IN_FLIGHT];
+} vulkan_descriptor_state;
+
+typedef struct vulkan_object_shader_object_state {
+    // Per frame
+    VkDescriptorSet descriptor_sets[MAX_FRAMES_IN_FLIGHT];
+
+    // Per descriptor
+    vulkan_descriptor_state descriptor_states[VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT];
+} vulkan_object_shader_object_state;
+
 /**
  * @file vulkan_types.inl
  * @brief Internal Vulkan-specific types used across the Koru engine.
@@ -609,7 +630,7 @@ typedef struct vulkan_object_shader {
 
     /**
      * @brief Descriptor pool used for allocating descriptor sets.
-     * 
+     *
      * This pool is used to manage memory for descriptor sets that hold
      * uniform buffers, textures, and other resources.
      */
@@ -617,7 +638,7 @@ typedef struct vulkan_object_shader {
 
     /**
      * @brief Layout for the global descriptor set.
-     * 
+     *
      * Defines the structure of the descriptor set used for global uniform data.
      * Typically includes bindings for uniform buffers, textures, etc.
      */
@@ -630,7 +651,7 @@ typedef struct vulkan_object_shader {
      * Typically contains the global uniform buffer object (UBO) for rendering.
      * One descriptor set per frame in flight - for triple buffering.
      */
-    VkDescriptorSet global_descriptor_sets[4];
+    VkDescriptorSet global_descriptor_sets[MAX_FRAMES_IN_FLIGHT];
 
     /**
      * @brief Global uniform buffer object (UBO) used for rendering.
@@ -648,6 +669,19 @@ typedef struct vulkan_object_shader {
      */
     vulkan_buffer global_uniform_buffer;
 
+    VkDescriptorPool object_descriptor_pool;
+
+    VkDescriptorSetLayout object_descriptor_set_layout;
+
+    // Object Uniform Buffers
+    vulkan_buffer object_uniform_buffer;
+
+    // TODO: Manage a free list of some kind here
+    u32 object_uniform_buffer_index;
+
+    // TODO: Make dynamic
+    vulkan_object_shader_object_state object_states[VULKAN_OBJECT_MAX_OBJECT_COUNT];
+
     /**
      * @brief Pipeline used for rendering.
      *
@@ -664,6 +698,7 @@ typedef struct vulkan_object_shader {
  * It is intended to be initialized at startup and persisted for the lifetime of the renderer.
  */
 typedef struct vulkan_context {
+    f32 frame_delta_time;
     /**
      * @brief The framebuffer's current width.
      */
@@ -823,3 +858,9 @@ typedef struct vulkan_context {
      */
     i32 (*find_memory_index)(u32 type_filter, u32 property_flags);
 } vulkan_context;
+
+typedef struct vulkan_texture_data {
+    vulkan_image image;
+
+    VkSampler sampler;
+} vulkan_texture_data;
