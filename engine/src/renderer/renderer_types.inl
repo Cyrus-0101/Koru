@@ -2,6 +2,7 @@
 
 #include "defines.h"
 #include "math/math_types.h"
+#include "resources/resource_types.h"
 
 /**
  * @file renderer_types.inl
@@ -75,6 +76,27 @@ typedef struct global_uniform_object {
      */
     mat4 m_reserved1;
 } global_uniform_object;
+
+// To be changed to local_uniform_object
+// Potentially uploaded once per object per frame
+typedef struct object_uniform_object {
+    vec4 diffuse_color;  // 16 bytes
+
+    vec4 v_reserved0;  // 16 bytes - reserved for future use
+
+    vec4 v_reserved1;  // 16 bytes - reserved for future use
+
+    vec4 v_reserved2;  // 16 bytes - reserved for future use
+} object_uniform_object;
+
+// Used to pass information to the renderer on how to render specific geometry
+typedef struct geometry_render_data {
+    u32 object_id;
+
+    mat4 model;
+
+    texture* textures[16];  // Array of texture pointers upto 16
+} geometry_render_data;
 
 /**
  *
@@ -159,7 +181,19 @@ typedef struct renderer_backend {
      *
      * @return void
      */
-    void (*update_object)(mat4 model);
+    void (*update_object)(geometry_render_data data);
+
+    void (*create_texture)(
+        const char* name,
+        b8 auto_release,
+        i32 width,
+        i32 height,
+        i32 channel_count,
+        const u8* pixels,
+        b8 has_transparency,
+        struct texture* out_texture);
+
+    void (*destroy_texture)(struct texture* texture);
 } renderer_backend;
 
 /**
