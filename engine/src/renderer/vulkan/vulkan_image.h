@@ -83,3 +83,51 @@ void vulkan_image_view_create(
  * @param image A pointer to the vulkan_image to destroy.
  */
 void vulkan_image_destroy(vulkan_context* context, vulkan_image* image);
+
+/**
+ * @brief Transitions a Vulkan image from one layout to another.
+ *
+ * Image layout transitions are required when changing how an image is used,
+ * such as transitioning from undefined to a color attachment layout before rendering,
+ * or from a color attachment to shader read-only for sampling in a shader.
+ *
+ * This function records the necessary pipeline barrier into the provided command buffer.
+ *
+ * @param context A pointer to the active Vulkan context.
+ * @param command_buffer A pointer to the command buffer to record the transition into.
+ * @param image A pointer to the vulkan_image to transition.
+ * @param format Format of the image (used for depth/stencil aspects).
+ * @param old_layout The current layout of the image.
+ * @param new_layout The desired layout of the image.
+ */
+void vulkan_image_transition_layout(
+    vulkan_context* context,
+    vulkan_command_buffer* command_buffer,
+    vulkan_image* image,
+    VkFormat format,
+    VkImageLayout old_layout,
+    VkImageLayout new_layout);
+
+/**
+ * @brief Copies data from a buffer to a Vulkan image.
+ *
+ * Used for uploading texture data or other image content from CPU-visible buffers.
+ *
+ * @param context A pointer to the active Vulkan context.
+ * @param image A pointer to the destination vulkan_image.
+ * @param buffer The source VkBuffer containing the data to copy.
+ * @param command_buffer A command buffer to record the copy operation into.
+ */
+void vulkan_image_copy_from_buffer(
+    vulkan_context* context,
+    vulkan_image* image,
+    VkBuffer buffer,
+    vulkan_command_buffer* command_buffer);
+
+/**
+ * @brief Destroys a Vulkan image and its associated resources.
+ *
+ * @param context A pointer to the active Vulkan context.
+ * @param image A pointer to the vulkan_image to destroy.
+ */
+void vulkan_image_destroy(vulkan_context* context, vulkan_image* image);
