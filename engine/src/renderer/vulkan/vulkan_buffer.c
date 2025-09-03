@@ -60,10 +60,12 @@ void vulkan_buffer_destroy(vulkan_context* context, vulkan_buffer* buffer) {
         vkFreeMemory(context->device.logical_device, buffer->memory, context->allocator);
         buffer->memory = 0;
     }
+
     if (buffer->handle) {
         vkDestroyBuffer(context->device.logical_device, buffer->handle, context->allocator);
         buffer->handle = 0;
     }
+
     buffer->total_size = 0;
     buffer->usage = 0;
     buffer->is_locked = False;
