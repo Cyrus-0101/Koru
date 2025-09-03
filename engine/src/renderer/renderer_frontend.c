@@ -5,6 +5,14 @@
 #include "core/kmemory.h"
 #include "math/kmath.h"
 
+#include "resources/resource_types.h"
+
+#define TEX_DIMENSIONS 256
+
+#define CHANNELS 4  ///< Bits per pixel RGBA
+
+#define PIXEL_COUNT TEX_DIMENSIONS* TEX_DIMENSIONS
+
 /**
  * @file renderer_frontend.c
  * @brief Frontend implementation for the Koru rendering system.
@@ -46,6 +54,8 @@ typedef struct renderer_system_state {
      * @brief Far clipping plane distance.
      */
     f32 far_clip;
+
+    texture default_texture;
 } renderer_system_state;
 
 // Global pointer to the renderer backend instance
@@ -86,6 +96,45 @@ b8 renderer_system_initialize(u64* memory_requirement, void* state, const char* 
     state_ptr->view = mat4_translation((vec3){0, 0, -30.0f});  //-30.0f
     state_ptr->view = mat4_inverse(state_ptr->view);
 
+    // NOTE: Create default texture, a 256x256 blue/white checkerboard pattern.
+    // This is done in code to eliminate asset dependencies.
+    KTRACE("Creating default texture...");
+
+    u8 pixels[PIXEL_COUNT * CHANNELS];
+    // u8* pixels = kallocate(sizeof(u8) * pixel_count * bpp, MEMORY_TAG_TEXTURE);
+
+    kset_memory(pixels, 255, sizeof(u8) * PIXEL_COUNT * CHANNELS);
+
+    // Each pixel.
+    for (u64 row = 0; row < TEX_DIMENSIONS; ++row) {
+        for (u64 col = 0; col < TEX_DIMENSIONS; ++col) {
+            u64 index = (row * TEX_DIMENSIONS) + col;
+            u64 index_bpp = index * CHANNELS;
+
+            if (row % 2) {
+                if (col % 2) {
+                    pixels[index_bpp + 0] = 0;
+                    pixels[index_bpp + 1] = 0;
+                }
+            } else {
+                if (!(col % 2)) {
+                    pixels[index_bpp + 0] = 0;
+                    pixels[index_bpp + 1] = 0;
+                }
+            }
+        }
+    }
+
+    renderer_create_texture(
+        "default",
+        False,
+        TEX_DIMENSIONS,
+        TEX_DIMENSIONS,
+        4,
+        pixels,
+        False,
+        &state_ptr->default_texture);
+
     return True;
 }
 
@@ -96,6 +145,8 @@ b8 renderer_system_initialize(u64* memory_requirement, void* state, const char* 
  */
 void renderer_system_shutdown(void* state) {
     if (state_ptr) {
+        renderer_destroy_texture(&state_ptr->default_texture);
+
         state_ptr->backend.shutdown(&state_ptr->backend);
     }
 
@@ -167,7 +218,12 @@ b8 renderer_draw_frame(render_packet* packet) {
         quat rotation = quat_from_axis_angle(vec3_forward(), angle, False);
         mat4 model = quat_to_rotation_matrix(rotation, vec3_zero());
 
-        state_ptr->backend.update_object(model);
+        geometry_render_data data = {};
+        data.object_id = 0;  /// TO-DO: Add actual object ID
+        data.model = model;
+        data.textures[0] = &state_ptr->default_texture;
+
+        state_ptr->backend.update_object(data);
 
         // End the frame. If this fails, it is likely unrecoverable.
         b8 result = renderer_end_frame(packet->delta_time);
@@ -183,4 +239,20 @@ b8 renderer_draw_frame(render_packet* packet) {
 
 void renderer_set_view(mat4 view) {
     state_ptr->view = view;
+}
+
+void renderer_create_texture(
+    const char* name,
+    b8 auto_release,
+    i32 width,
+    i32 height,
+    i32 channel_count,
+    const u8* pixels,
+    b8 has_transparency,
+    struct texture* out_texture) {
+    state_ptr->backend.create_texture(name, auto_release, width, height, channel_count, pixels, has_transparency, out_texture);
+}
+
+void renderer_destroy_texture(struct texture* texture) {
+    state_ptr->backend.destroy_texture(texture);
 }
