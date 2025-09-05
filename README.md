@@ -12,6 +12,9 @@ Koru is designed to be fast, portable, and easy to extend — providing a low-le
 
 Koru is a **C99-based game engine** focused on performance, portability, and modularity. It's ideal for developers who want fine-grained control over rendering, input, memory, and platform-specific functionality without the overhead of high-level abstractions.
 
+### External libs (/engine/src/vendor/)
+1. stb-image.h - From [STB by Sean Barrett](https://github.com/nothings/stb) - Lightweight way to handle and load images
+
 ### 🚀 Features:
 - Written entirely in **C99** – minimal dependencies
 - **Vulkan-based renderer** for high-performance graphics
