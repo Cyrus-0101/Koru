@@ -83,6 +83,21 @@ b8 renderer_draw_frame(render_packet* packet);
  */
 void renderer_set_view(mat4 view);
 
+/**
+ * @brief Creates a texture resource from raw pixel data.
+ *
+ * This function uploads the provided pixel data to the GPU and creates
+ * a texture object that can be used in rendering operations.
+ *
+ * @param name Name of the texture (for identification/debugging).
+ * @param auto_release Whether the texture should be automatically released when no longer needed.
+ * @param width Width of the texture in pixels.
+ * @param height Height of the texture in pixels.
+ * @param channel_count Number of color channels (e.g., 3 for RGB, 4 for RGBA).
+ * @param pixels Pointer to the raw pixel data.
+ * @param has_transparency Whether the texture contains transparency (alpha channel).
+ * @param out_texture Pointer to the texture structure to be filled out.
+ */
 void renderer_create_texture(
     const char* name,
     b8 auto_release,
@@ -93,4 +108,9 @@ void renderer_create_texture(
     b8 has_transparency,
     struct texture* out_texture);
 
+/**
+ * @brief Destroys a texture resource and frees associated GPU memory.
+ *
+ * @param texture Pointer to the texture to be destroyed.
+ */
 void renderer_destroy_texture(struct texture* texture);
