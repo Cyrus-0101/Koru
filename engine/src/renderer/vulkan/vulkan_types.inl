@@ -190,6 +190,11 @@ typedef struct vulkan_device {
     i32 transfer_queue_index;
 
     /**
+     * @brief Whether the device supports memory that is both device-local and host-visible.
+     */
+    b8 supports_device_local_host_visible;
+
+    /**
      * @brief Graphics queue handle for submitting command buffers.
      */
     VkQueue graphics_queue;
@@ -681,6 +686,9 @@ typedef struct vulkan_object_shader {
 
     // TODO: Make dynamic
     vulkan_object_shader_object_state object_states[VULKAN_OBJECT_MAX_OBJECT_COUNT];
+
+    // Pointers to default textures.
+    texture* default_diffuse;
 
     /**
      * @brief Pipeline used for rendering.
