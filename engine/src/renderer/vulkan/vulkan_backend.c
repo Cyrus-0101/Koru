@@ -273,7 +273,7 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
     }
 
     // Create builtin shaders
-    if (!vulkan_object_shader_create(&context, &context.object_shader)) {
+    if (!vulkan_object_shader_create(&context, backend->default_diffuse, &context.object_shader)) {
         KERROR("Error loading built-in basic_lighting shader.");
         return False;
     }
@@ -861,8 +861,6 @@ b8 create_buffers(vulkan_context* context) {
     }
     context->geometry_index_offset = 0;
 
-    return True;
-
     KDEBUG("Vulkan Buffers created successfully.");
     return True;
 }
@@ -987,15 +985,17 @@ void vulkan_renderer_destroy_texture(struct texture* texture) {
 
     vulkan_texture_data* data = (vulkan_texture_data*)texture->internal_data;
 
-    vulkan_image_destroy(&context, &data->image);
+    if (data) {
+        vulkan_image_destroy(&context, &data->image);
 
-    kzero_memory(&data->image, sizeof(vulkan_image));
+        kzero_memory(&data->image, sizeof(vulkan_image));
 
-    vkDestroySampler(context.device.logical_device, data->sampler, context.allocator);
+        vkDestroySampler(context.device.logical_device, data->sampler, context.allocator);
 
-    data->sampler = 0;
+        data->sampler = 0;
 
-    kfree(texture->internal_data, sizeof(vulkan_texture_data), MEMORY_TAG_TEXTURE);
+        kfree(texture->internal_data, sizeof(vulkan_texture_data), MEMORY_TAG_TEXTURE);
+    }
 
     kzero_memory(texture, sizeof(struct texture));
 }
