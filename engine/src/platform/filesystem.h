@@ -14,7 +14,7 @@
 /**
  * @struct file_handle
  *
- * Represents a handle to a file in the filesystem.
+ * @brief Represents a handle to a file in the filesystem.
  */
 typedef struct file_handle {
     // Opaque handle to internal file handle.

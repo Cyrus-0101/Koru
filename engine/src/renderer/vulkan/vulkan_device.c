@@ -17,9 +17,9 @@
  * - Create a logical device with necessary queues
  */
 
-///>  Forward declarations
 /**
  * @struct vulkan_physical_device_requirements
+ *
  * @brief Describes required features of a physical device.
  *
  * Used during device selection to filter out unsuitable GPUs.

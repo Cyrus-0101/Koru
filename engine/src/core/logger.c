@@ -7,7 +7,7 @@
 // TO-DO: TEMPORARY
 #include <stdarg.h>  // for variable argument lists (va_list)
 // #include <unistd.h>  // for isatty() - seeing if terminal supports colour
- 
+
 /**
  * @brief Maximum length of a log message.
  */
@@ -30,7 +30,7 @@
 /**
  * @struct logger_system_state
  *
- * Tracks the state of the logging system.
+ * @brief Tracks the state of the logging system.
  */
 typedef struct logger_system_state {
     /**
@@ -65,19 +65,19 @@ b8 initialize_logging(u64* memory_requirement, void* state) {
     *memory_requirement = sizeof(logger_system_state);
 
     if (state == 0) {
-        return True; // No state provided, nothing to initialize
+        return True;  // No state provided, nothing to initialize
     }
 
     state_ptr = state;
 
     // Create new/wipe existing log_file, then open it
-    if(!filesystem_open("console.log", FILE_MODE_WRITE, False, &state_ptr->log_file_handle)) {
+    if (!filesystem_open("console.log", FILE_MODE_WRITE, False, &state_ptr->log_file_handle)) {
         platform_console_write_error("Failed to open console.log for writing.", LOG_LEVEL_ERROR);
-        return False; // Failed to open log file
+        return False;  // Failed to open log file
     }
 
     // TO-DO: Create log file
-    return True; 
+    return True;
 }
 
 // Clean up the logging system.
@@ -94,7 +94,7 @@ void shutdown_logging(void* state) {
 // ... are the variable arguments for formatting.
 void log_output(log_level level, const char* message, ...) {
     /**
-     * TO-DO: Move string operations to their own thread 
+     * TO-DO: Move string operations to their own thread
      * The ops are pretty slow, and can slow down the engine during startup/shutdown.
      * Work on threading and offset these ops.
      */
