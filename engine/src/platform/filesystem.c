@@ -7,6 +7,14 @@
 #include <string.h>
 #include <sys/stat.h>
 
+/**
+ * @file filesystem.c
+ *
+ * @brief Implements a simple cross-platform filesystem abstraction layer.
+ * This module allows for basic file operations such as checking for file existence,
+ * opening, reading, writing, and closing files.
+ */
+
 b8 filesystem_exists(const char* path) {
     struct stat buffer;
     return stat(path, &buffer) == 0;

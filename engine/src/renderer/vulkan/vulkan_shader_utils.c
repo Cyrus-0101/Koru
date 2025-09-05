@@ -6,6 +6,14 @@
 
 #include "platform/filesystem.h"
 
+/**
+ * @file vulkan_shader_utils.c
+ * @brief Implements utility functions for loading and creating Vulkan shader modules.
+ *
+ * This module provides functions to load SPIR-V shader binaries from files,
+ * create Vulkan shader modules, and set up pipeline shader stage info structures.
+ */
+
 b8 create_shader_module(
     vulkan_context* context,
     const char* name,

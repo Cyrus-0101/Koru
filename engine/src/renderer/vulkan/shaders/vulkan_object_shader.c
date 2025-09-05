@@ -8,6 +8,14 @@
 #include "renderer/vulkan/vulkan_shader_utils.h"
 
 /**
+ * @file vulkan_object_shader.c
+ *
+ * @brief Implements a Vulkan shader for rendering 3D objects with support for
+ * basic lighting and texturing. This shader handles vertex transformations,
+ * fragment shading, and resource binding for object rendering.
+ */
+
+/**
  * @brief Name of the built-in object shader.
  */
 #define BUILTIN_SHADER_NAME_OBJECT "Builtin.ObjectShader"
