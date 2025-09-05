@@ -11,7 +11,7 @@
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00007}00007\ \textcolor{comment}{//\ TO-\/DO:\ TEMPORARY}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <stdarg.h>}\ \ \textcolor{comment}{//\ for\ variable\ argument\ lists\ (va\_list)}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00009}00009\ \textcolor{comment}{//\ \#include\ <unistd.h>\ \ //\ for\ isatty()\ -\/\ seeing\ if\ terminal\ supports\ colour}}
-\DoxyCodeLine{\Hypertarget{logger_8c_source_l00010}00010\ \ }
+\DoxyCodeLine{\Hypertarget{logger_8c_source_l00010}00010\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00014}\mbox{\hyperlink{logger_8c_aa204ec58d846f2354e6bd239460db89f}{00014}}\ \textcolor{preprocessor}{\#define\ MSG\_LENGTH\ 32000}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00015}00015\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00035}\mbox{\hyperlink{structlogger__system__state}{00035}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structlogger__system__state}{logger\_system\_state}}\ \{}
@@ -39,19 +39,19 @@
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00065}00065\ \ \ \ \ *memory\_requirement\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlogger__system__state}{logger\_system\_state}});}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00066}00066\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (state\ ==\ 0)\ \{}
-\DoxyCodeLine{\Hypertarget{logger_8c_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};\ \textcolor{comment}{//\ No\ state\ provided,\ nothing\ to\ initialize}}
+\DoxyCodeLine{\Hypertarget{logger_8c_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};\ \ \textcolor{comment}{//\ No\ state\ provided,\ nothing\ to\ initialize}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00069}00069\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00070}00070\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00071}00071\ \ \ \ \ \mbox{\hyperlink{logger_8c_a78fb062cf70ff40ec53ede87b44ebb48}{state\_ptr}}\ =\ state;}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00072}00072\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ Create\ new/wipe\ existing\ log\_file,\ then\ open\ it}}
-\DoxyCodeLine{\Hypertarget{logger_8c_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{filesystem_8c_a86cbb9441406d6469d0216cd372c9125}{filesystem\_open}}(\textcolor{stringliteral}{"{}console.log"{}},\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca12eb77a5f1206154eb9f5adc219c9d5b}{FILE\_MODE\_WRITE}},\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}},\ \&\mbox{\hyperlink{logger_8c_a78fb062cf70ff40ec53ede87b44ebb48}{state\_ptr}}-\/>\mbox{\hyperlink{structlogger__system__state_a66629ccd00019affb3b5e1b2a2a6977d}{log\_file\_handle}}))\ \{}
+\DoxyCodeLine{\Hypertarget{logger_8c_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{filesystem_8c_a86cbb9441406d6469d0216cd372c9125}{filesystem\_open}}(\textcolor{stringliteral}{"{}console.log"{}},\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca12eb77a5f1206154eb9f5adc219c9d5b}{FILE\_MODE\_WRITE}},\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}},\ \&\mbox{\hyperlink{logger_8c_a78fb062cf70ff40ec53ede87b44ebb48}{state\_ptr}}-\/>\mbox{\hyperlink{structlogger__system__state_a66629ccd00019affb3b5e1b2a2a6977d}{log\_file\_handle}}))\ \{}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{platform_8h_adee3e77de1e3374a118e9ebc150c9800}{platform\_console\_write\_error}}(\textcolor{stringliteral}{"{}Failed\ to\ open\ console.log\ for\ writing."{}},\ \mbox{\hyperlink{logger_8h_ac91d55174d383848b976a34de843748ea5b40f003febbc3b535649d63f4b8a44f}{LOG\_LEVEL\_ERROR}});}
-\DoxyCodeLine{\Hypertarget{logger_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};\ \textcolor{comment}{//\ Failed\ to\ open\ log\ file}}
+\DoxyCodeLine{\Hypertarget{logger_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};\ \ \textcolor{comment}{//\ Failed\ to\ open\ log\ file}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00077}00077\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00078}00078\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//\ TO-\/DO:\ Create\ log\ file}}
-\DoxyCodeLine{\Hypertarget{logger_8c_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};\ }
+\DoxyCodeLine{\Hypertarget{logger_8c_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00081}00081\ \}}
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00082}00082\ }
 \DoxyCodeLine{\Hypertarget{logger_8c_source_l00083}00083\ \textcolor{comment}{//\ Clean\ up\ the\ logging\ system.}}

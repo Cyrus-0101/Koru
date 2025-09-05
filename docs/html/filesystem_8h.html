@@ -119,6 +119,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfile__handle.html">file_handle</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a handle to a file in the filesystem.  <a href="structfile__handle.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -227,7 +228,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Closes the provided handle to a file. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html">file_handle</a> structure which holds the handle to be closed. </td></tr>
+    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html" title="Represents a handle to a file in the filesystem.">file_handle</a> structure which holds the handle to be closed. </td></tr>
   </table>
   </dd>
 </dl>
@@ -309,7 +310,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">path</td><td>The path of the file to be opened. </td></tr>
     <tr><td class="paramname">mode</td><td>Mode flags for the file when opened (read/write). See file_modes enum in <a class="el" href="filesystem_8h.html" title="Provides a simple cross-platform filesystem abstraction layer. This module allows for basic file oper...">filesystem.h</a>. </td></tr>
     <tr><td class="paramname">binary</td><td>Indicates if the file should be opened in binary mode. </td></tr>
-    <tr><td class="paramname">out_handle</td><td>A pointer to a <a class="el" href="structfile__handle.html">file_handle</a> structure which holds the handle information. </td></tr>
+    <tr><td class="paramname">out_handle</td><td>A pointer to a <a class="el" href="structfile__handle.html" title="Represents a handle to a file in the filesystem.">file_handle</a> structure which holds the handle information. </td></tr>
   </table>
   </dd>
 </dl>
@@ -362,7 +363,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Reads up to data_size bytes of data into out_bytes_read. Allocates *out_data, which must be freed by the caller. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html">file_handle</a> structure. </td></tr>
+    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html" title="Represents a handle to a file in the filesystem.">file_handle</a> structure. </td></tr>
     <tr><td class="paramname">data_size</td><td>The number of bytes to read. </td></tr>
     <tr><td class="paramname">out_data</td><td>A pointer to a block of memory to be populated by this method. </td></tr>
     <tr><td class="paramname">out_bytes_read</td><td>A pointer to a number which will be populated with the number of bytes actually read from the file. </td></tr>
@@ -410,7 +411,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Reads up to data_size bytes of data into out_bytes_read. Allocates *out_bytes, which must be freed by the caller. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html">file_handle</a> structure. </td></tr>
+    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html" title="Represents a handle to a file in the filesystem.">file_handle</a> structure. </td></tr>
     <tr><td class="paramname">out_bytes</td><td>A pointer to a byte array which will be allocated and populated by this method. </td></tr>
     <tr><td class="paramname">out_bytes_read</td><td>A pointer to a number which will be populated with the number of bytes actually read from the file. </td></tr>
   </table>
@@ -453,7 +454,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Reads up to a newline or EOF. Allocates *line_buf, which must be freed by the caller. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html">file_handle</a> structure. </td></tr>
+    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html" title="Represents a handle to a file in the filesystem.">file_handle</a> structure. </td></tr>
     <tr><td class="paramname">line_buf</td><td>A pointer to a character array which will be allocated and populated by this method. </td></tr>
   </table>
   </dd>
@@ -505,7 +506,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Writes provided data to the file. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html">file_handle</a> structure. </td></tr>
+    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html" title="Represents a handle to a file in the filesystem.">file_handle</a> structure. </td></tr>
     <tr><td class="paramname">data_size</td><td>The size of the data in bytes. </td></tr>
     <tr><td class="paramname">data</td><td>The data to be written. </td></tr>
     <tr><td class="paramname">out_bytes_written</td><td>A pointer to a number which will be populated with the number of bytes actually written to the file. </td></tr>
@@ -550,7 +551,7 @@ Functions</h2></td></tr>
 <p>Writes text to the provided file, appending a '<br  />
 ' afterward. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html">file_handle</a> structure. </td></tr>
+    <tr><td class="paramname">handle</td><td>A pointer to a <a class="el" href="structfile__handle.html" title="Represents a handle to a file in the filesystem.">file_handle</a> structure. </td></tr>
     <tr><td class="paramname">text</td><td>The text to be written. </td></tr>
   </table>
   </dd>
@@ -566,7 +567,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 6 2025 00:32:08 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:35:51 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
