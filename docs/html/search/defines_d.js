@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vertex_5fcount_0',['VERTEX_COUNT',['../vulkan__backend_8c.html#aa12ae2f842a08a8e211d1401e7c80905',1,'vulkan_backend.c']]]
+  ['tex_5fdimensions_0',['TEX_DIMENSIONS',['../renderer__frontend_8c.html#a2bc73196504b08e5d4f0400346ac106f',1,'renderer_frontend.c']]],
+  ['true_1',['True',['../defines_8h.html#add3ca9eefe3b5b754426f51d3043e579',1,'defines.h']]]
 ];

@@ -104,15 +104,19 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="event_8h__dep__incl.png" border="0" usemap="#aengine_2src_2core_2event_8hdep" alt=""/></div>
 <map name="aengine_2src_2core_2event_8hdep" id="aengine_2src_2core_2event_8hdep">
-<area shape="rect" title="Event system for inter&#45;component communication." alt="" coords="334,5,509,31"/>
+<area shape="rect" title="Event system for inter&#45;component communication." alt="" coords="525,5,699,31"/>
 <area shape="rect" href="application_8c.html" title="Implementation of the core application lifecycle functions." alt="" coords="5,86,213,111"/>
-<area shape="poly" title=" " alt="" coords="364,37,155,89,154,83,362,31"/>
+<area shape="poly" title=" " alt="" coords="524,35,226,81,180,89,179,83,225,76,523,30"/>
 <area shape="rect" href="event_8c.html" title="Implementation of a generic event system for inter&#45;component communication." alt="" coords="237,86,411,111"/>
-<area shape="poly" title=" " alt="" coords="398,41,340,88,337,84,395,37"/>
+<area shape="poly" title=" " alt="" coords="558,37,367,89,365,83,556,32"/>
 <area shape="rect" href="input_8c.html" title="Implementation of the input system for keyboard and mouse events." alt="" coords="435,86,605,111"/>
-<area shape="poly" title=" " alt="" coords="448,37,507,84,504,88,445,41"/>
+<area shape="poly" title=" " alt="" coords="590,42,535,88,532,84,586,38"/>
 <area shape="rect" href="platform__linux_8c.html" title="Linux&#45;specific implementation of the platform abstraction layer." alt="" coords="629,79,779,119"/>
-<area shape="poly" title=" " alt="" coords="476,32,637,76,635,81,475,37"/>
+<area shape="poly" title=" " alt="" coords="638,38,684,76,680,81,634,42"/>
+<area shape="rect" href="renderer__frontend_8c.html" title="Frontend implementation for the Koru rendering system." alt="" coords="803,79,957,119"/>
+<area shape="poly" title=" " alt="" coords="665,32,816,76,815,81,664,37"/>
+<area shape="rect" href="game_8c.html" title="Implementation of the testbed game logic." alt="" coords="981,86,1128,111"/>
+<area shape="poly" title=" " alt="" coords="701,30,970,76,1005,83,1004,89,969,81,700,35"/>
 </map>
 </div>
 </div>
@@ -149,7 +153,13 @@ Enumerations</h2></td></tr>
 , <a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226a923e40874ed01a63929ab78f31f1637d">EVENT_CODE_MOUSE_WHEEL</a> = 0x07
 , <a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226a6ed0f7b648dad406c17f0dfdd37ce656">EVENT_CODE_RESIZED</a> = 0x08
 , <br />
-&#160;&#160;<a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb">MAX_EVENT_CODE</a> = 0xFF
+&#160;&#160;<a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226adc91f9e55d1d7deb4a022e6e1cdebf6a">EVENT_CODE_DEBUG0</a> = 0x10
+, <a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226ab117003cd03a50a871af56359135c212">EVENT_CODE_DEBUG1</a> = 0x11
+, <a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226adc02622f68824378583610fcc2f2920f">EVENT_CODE_DEBUG2</a> = 0x12
+, <a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226aab95ada4a3c3fce11c89b5e04289f205">EVENT_CODE_DEBUG3</a> = 0x13
+, <br />
+&#160;&#160;<a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226ac7fd2202a34af1a3ad71273bfbc21ea4">EVENT_CODE_DEBUG4</a> = 0x14
+, <a class="el" href="event_8h.html#a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb">MAX_EVENT_CODE</a> = 0xFF
 <br />
  }</td></tr>
 <tr class="memdesc:a6779f338629229430f8974f2f86d7226"><td class="mdescLeft">&#160;</td><td class="mdescRight">Built-in system event codes.  <a href="event_8h.html#a6779f338629229430f8974f2f86d7226">More...</a><br /></td></tr>
@@ -226,7 +236,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the event was handled; False to allow further propagation. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00079">79</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00078">78</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
 
 </div>
 </div>
@@ -268,7 +278,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1" name="a6779f338629229430f8974f2f86d7226aaf5d469683c442daf841f01c831344c1"></a>EVENT_CODE_KEY_PRESSED&#160;</td><td class="fielddoc"><p>Fired when a keyboard key is pressed. </p>
 <p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> key_code = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[0];</div>
 <div class="ttc" id="adefines_8h_html_a9e6c91d77e24643b888dbd1a1a590054"><div class="ttname"><a href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a></div><div class="ttdeci">unsigned short u16</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00020">defines.h:20</a></div></div>
-<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00034">vulkan_backend.c:34</a></div></div>
+<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00035">vulkan_backend.c:35</a></div></div>
 </div><!-- fragment --> </td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f" name="a6779f338629229430f8974f2f86d7226aa723c6cbe37568fcc035a890e380fb4f"></a>EVENT_CODE_KEY_RELEASED&#160;</td><td class="fielddoc"><p>Fired when a keyboard key is released. </p>
 <p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> key_code = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[0];</div>
@@ -291,12 +301,17 @@ Functions</h2></td></tr>
 <p>Usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> width = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[0];</div>
 <div class="line"><a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> height = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>.data.u16[1];</div>
 </div><!-- fragment --> </td></tr>
+<tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226adc91f9e55d1d7deb4a022e6e1cdebf6a" name="a6779f338629229430f8974f2f86d7226adc91f9e55d1d7deb4a022e6e1cdebf6a"></a>EVENT_CODE_DEBUG0&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226ab117003cd03a50a871af56359135c212" name="a6779f338629229430f8974f2f86d7226ab117003cd03a50a871af56359135c212"></a>EVENT_CODE_DEBUG1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226adc02622f68824378583610fcc2f2920f" name="a6779f338629229430f8974f2f86d7226adc02622f68824378583610fcc2f2920f"></a>EVENT_CODE_DEBUG2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226aab95ada4a3c3fce11c89b5e04289f205" name="a6779f338629229430f8974f2f86d7226aab95ada4a3c3fce11c89b5e04289f205"></a>EVENT_CODE_DEBUG3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226ac7fd2202a34af1a3ad71273bfbc21ea4" name="a6779f338629229430f8974f2f86d7226ac7fd2202a34af1a3ad71273bfbc21ea4"></a>EVENT_CODE_DEBUG4&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb" name="a6779f338629229430f8974f2f86d7226a6f8c37abc1b165817660320b56d197cb"></a>MAX_EVENT_CODE&#160;</td><td class="fielddoc"><p>Maximum valid system event code. </p>
 <p>Reserved for internal use — applications should define custom codes beyond this. </p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00143">143</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="event_8h_source.html#l00142">142</a> of file <a class="el" href="event_8h_source.html">event.h</a>.</p>
 
 </div>
 </div>
@@ -347,9 +362,9 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="event_8c_source.html#l00150">150</a> of file <a class="el" href="event_8c_source.html">event.c</a>.</p>
 
-<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00069">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00069">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00389">application_on_key()</a>, <a class="el" href="input_8c_source.html#l00182">input_process_button()</a>, <a class="el" href="input_8c_source.html#l00139">input_process_key()</a>, <a class="el" href="input_8c_source.html#l00203">input_process_mouse_move()</a>, and <a class="el" href="input_8c_source.html#l00228">input_process_mouse_wheel()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00389">application_on_key()</a>, <a class="el" href="game_8c_source.html#l00094">game_update()</a>, <a class="el" href="input_8c_source.html#l00182">input_process_button()</a>, <a class="el" href="input_8c_source.html#l00139">input_process_key()</a>, <a class="el" href="input_8c_source.html#l00203">input_process_mouse_move()</a>, and <a class="el" href="input_8c_source.html#l00228">input_process_mouse_wheel()</a>.</p>
 
 </div>
 </div>
@@ -401,7 +416,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="darray_8h_source.html#l00148">darray_create</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00182">darray_push</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00069">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00219">renderer_system_initialize()</a>.</p>
 
 </div>
 </div>
@@ -518,14 +533,14 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="event_8c_source.html#l00034">registered_event::callback</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00223">darray_pop_at</a>, <a class="el" href="event_8c_source.html#l00046">event_code_entry::events</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="event_8c_source.html#l00029">registered_event::listener</a>, <a class="el" href="event_8c_source.html#l00063">event_system_state::registered</a>, <a class="el" href="event_8c_source.html#l00069">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00259">application_run()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00300">renderer_system_shutdown()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:32:08 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

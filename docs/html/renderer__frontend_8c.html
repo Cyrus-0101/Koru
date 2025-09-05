@@ -75,6 +75,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -89,6 +90,10 @@ $(function() {
 <code>#include &quot;<a class="el" href="logger_8h_source.html">core/logger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="kmemory_8h_source.html">core/kmemory.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="kmath_8h_source.html">math/kmath.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="resource__types_8h_source.html">resources/resource_types.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="kstring_8h_source.html">core/kstring.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="event_8h_source.html">core/event.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stb__image_8h_source.html">vendor/stb_image.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for renderer_frontend.c:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -96,28 +101,43 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="renderer__frontend_8c__incl.png" border="0" usemap="#aengine_2src_2renderer_2renderer__frontend_8c" alt=""/></div>
 <map name="aengine_2src_2renderer_2renderer__frontend_8c" id="aengine_2src_2renderer_2renderer__frontend_8c">
-<area shape="rect" title="Frontend implementation for the Koru rendering system." alt="" coords="291,5,446,45"/>
-<area shape="rect" href="renderer__frontend_8h.html" title="Frontend interface for the rendering system." alt="" coords="5,93,156,119"/>
-<area shape="poly" title=" " alt="" coords="300,48,137,92,135,87,299,43"/>
-<area shape="rect" href="renderer__backend_8h.html" title="Renderer backend creation and destruction interface." alt="" coords="180,93,331,119"/>
-<area shape="poly" title=" " alt="" coords="343,48,285,87,282,83,340,43"/>
-<area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="225,167,331,192"/>
-<area shape="poly" title=" " alt="" coords="369,46,361,82,344,120,327,142,308,160,304,156,323,138,340,117,356,80,364,45"/>
-<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="356,167,483,192"/>
-<area shape="poly" title=" " alt="" coords="378,45,414,153,409,154,373,47"/>
-<area shape="rect" href="kmath_8h.html" title="Core mathematical operations and constants for the Koru engine." alt="" coords="461,93,575,119"/>
-<area shape="poly" title=" " alt="" coords="406,43,485,84,482,89,403,48"/>
-<area shape="rect" title=" " alt="" coords="36,167,176,192"/>
-<area shape="poly" title=" " alt="" coords="87,118,100,153,95,155,82,120"/>
-<area shape="poly" title=" " alt="" coords="232,121,144,163,142,158,230,116"/>
-<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="429,240,511,265"/>
-<area shape="poly" title=" " alt="" coords="310,190,427,232,425,237,308,195"/>
-<area shape="poly" title=" " alt="" coords="430,191,456,227,452,230,426,194"/>
-<area shape="poly" title=" " alt="" coords="518,120,497,193,483,228,478,226,491,191,513,118"/>
-<area shape="poly" title=" " alt="" coords="504,121,448,161,445,156,501,117"/>
-<area shape="rect" href="math__types_8h.html" title="Core mathematical types used throughout the Koru engine." alt="" coords="559,167,669,192"/>
-<area shape="poly" title=" " alt="" coords="535,117,589,156,586,160,532,121"/>
-<area shape="poly" title=" " alt="" coords="592,194,507,236,505,231,590,190"/>
+<area shape="rect" title="Frontend implementation for the Koru rendering system." alt="" coords="437,5,591,45"/>
+<area shape="rect" href="renderer__frontend_8h.html" title="Frontend interface for the rendering system." alt="" coords="5,101,156,126"/>
+<area shape="poly" title=" " alt="" coords="437,44,168,96,146,100,145,95,167,91,436,38"/>
+<area shape="rect" href="renderer__backend_8h.html" title="Renderer backend creation and destruction interface." alt="" coords="180,101,331,126"/>
+<area shape="poly" title=" " alt="" coords="458,48,303,99,302,94,456,43"/>
+<area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="253,181,359,207"/>
+<area shape="poly" title=" " alt="" coords="492,47,333,175,330,170,489,43"/>
+<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="384,181,511,207"/>
+<area shape="poly" title=" " alt="" coords="487,47,464,68,447,94,442,113,440,132,444,168,438,168,435,132,437,112,442,92,460,65,483,44"/>
+<area shape="rect" href="kmath_8h.html" title="Core mathematical operations and constants for the Koru engine." alt="" coords="457,101,571,126"/>
+<area shape="poly" title=" " alt="" coords="517,46,517,87,511,87,511,46"/>
+<area shape="rect" href="resource__types_8h.html" title="Defines core resource types used in the Koru Engine." alt="" coords="596,93,741,133"/>
+<area shape="poly" title=" " alt="" coords="549,43,624,84,621,89,547,48"/>
+<area shape="rect" href="kstring_8h.html" title="Lightweight string utility library." alt="" coords="721,181,832,207"/>
+<area shape="poly" title=" " alt="" coords="592,26,633,32,677,44,719,64,755,91,767,109,774,129,780,167,775,168,769,130,762,111,751,95,716,68,675,49,632,38,591,31"/>
+<area shape="rect" href="event_8h.html" title="Event system for inter&#45;component communication." alt="" coords="817,101,920,126"/>
+<area shape="poly" title=" " alt="" coords="593,42,799,91,814,95,813,100,797,96,591,47"/>
+<area shape="rect" href="stb__image_8h.html" title=" " alt="" coords="944,101,1095,126"/>
+<area shape="poly" title=" " alt="" coords="592,35,750,59,933,91,956,95,955,100,932,96,749,64,591,40"/>
+<area shape="rect" title=" " alt="" coords="51,181,191,207"/>
+<area shape="poly" title=" " alt="" coords="89,125,111,168,106,170,84,127"/>
+<area shape="poly" title=" " alt="" coords="237,128,154,177,151,172,234,124"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="555,255,636,280"/>
+<area shape="poly" title=" " alt="" coords="353,204,542,250,541,255,352,209"/>
+<area shape="poly" title=" " alt="" coords="472,204,560,246,558,251,470,209"/>
+<area shape="poly" title=" " alt="" coords="522,125,585,241,580,244,518,127"/>
+<area shape="poly" title=" " alt="" coords="506,128,468,173,464,169,502,124"/>
+<area shape="rect" href="math__types_8h.html" title="Core mathematical types used throughout the Koru engine." alt="" coords="587,181,697,207"/>
+<area shape="poly" title=" " alt="" coords="534,124,613,172,610,176,531,128"/>
+<area shape="poly" title=" " alt="" coords="637,208,613,245,608,242,632,206"/>
+<area shape="poly" title=" " alt="" coords="665,134,653,169,648,167,660,133"/>
+<area shape="poly" title=" " alt="" coords="749,209,639,252,637,247,747,204"/>
+<area shape="poly" title=" " alt="" coords="872,126,867,166,859,189,845,209,812,227,761,242,650,262,649,257,760,237,810,222,842,205,854,186,862,165,866,126"/>
+<area shape="rect" title=" " alt="" coords="947,181,1014,207"/>
+<area shape="poly" title=" " alt="" coords="1016,127,995,170,990,168,1011,125"/>
+<area shape="rect" title=" " alt="" coords="1039,181,1109,207"/>
+<area shape="poly" title=" " alt="" coords="1030,125,1060,169,1056,172,1025,128"/>
 </map>
 </div>
 </div>
@@ -129,6 +149,19 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the state of the rendering system.  <a href="structrenderer__system__state.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a18372412ad2fc3ce1e3240b3cf0efe78" id="r_a18372412ad2fc3ce1e3240b3cf0efe78"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#a18372412ad2fc3ce1e3240b3cf0efe78">STB_IMAGE_IMPLEMENTATION</a></td></tr>
+<tr class="separator:a18372412ad2fc3ce1e3240b3cf0efe78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bc73196504b08e5d4f0400346ac106f" id="r_a2bc73196504b08e5d4f0400346ac106f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#a2bc73196504b08e5d4f0400346ac106f">TEX_DIMENSIONS</a>&#160;&#160;&#160;256</td></tr>
+<tr class="separator:a2bc73196504b08e5d4f0400346ac106f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19b7f1b22403d61234a92decaeb6953a" id="r_a19b7f1b22403d61234a92decaeb6953a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#a19b7f1b22403d61234a92decaeb6953a">CHANNELS</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:a19b7f1b22403d61234a92decaeb6953a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bits per pixel RGBA.  <br /></td></tr>
+<tr class="separator:a19b7f1b22403d61234a92decaeb6953a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ed38ca6611a529c6e3120660d457f0" id="r_ab4ed38ca6611a529c6e3120660d457f0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#ab4ed38ca6611a529c6e3120660d457f0">PIXEL_COUNT</a>&#160;&#160;&#160;<a class="el" href="renderer__frontend_8c.html#a2bc73196504b08e5d4f0400346ac106f">TEX_DIMENSIONS</a>* <a class="el" href="renderer__frontend_8c.html#a2bc73196504b08e5d4f0400346ac106f">TEX_DIMENSIONS</a></td></tr>
+<tr class="memdesc:ab4ed38ca6611a529c6e3120660d457f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of pixels in the texture.  <br /></td></tr>
+<tr class="separator:ab4ed38ca6611a529c6e3120660d457f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:af1fc62d1de6c2a9c576325feb7f8fc21" id="r_af1fc62d1de6c2a9c576325feb7f8fc21"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structrenderer__system__state.html">renderer_system_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#af1fc62d1de6c2a9c576325feb7f8fc21">renderer_system_state</a></td></tr>
@@ -136,6 +169,15 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a1322d654c1514117852c79f1942668bb" id="r_a1322d654c1514117852c79f1942668bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#a1322d654c1514117852c79f1942668bb">create_texture</a> (<a class="el" href="structtexture.html">texture</a> *t)</td></tr>
+<tr class="memdesc:a1322d654c1514117852c79f1942668bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a texture structure to default values.  <br /></td></tr>
+<tr class="separator:a1322d654c1514117852c79f1942668bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac691176afc7122b609671e77b157ae2f" id="r_ac691176afc7122b609671e77b157ae2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#ac691176afc7122b609671e77b157ae2f">load_texture</a> (const char *texture_name, <a class="el" href="structtexture.html">texture</a> *t)</td></tr>
+<tr class="memdesc:ac691176afc7122b609671e77b157ae2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a texture from file and uploads it to the GPU.  <br /></td></tr>
+<tr class="separator:ac691176afc7122b609671e77b157ae2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af019003b6d312df0a06715208bb997c1" id="r_af019003b6d312df0a06715208bb997c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#af019003b6d312df0a06715208bb997c1">event_on_debug_event</a> (<a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> code, void *sender, void *listener_inst, <a class="el" href="structevent__context.html">event_context</a> data)</td></tr>
+<tr class="memdesc:af019003b6d312df0a06715208bb997c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event handler for debug events to cycle through test textures.  <br /></td></tr>
+<tr class="separator:af019003b6d312df0a06715208bb997c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a8eb9df8447b9317c06c2592aa4944d" id="r_a4a8eb9df8447b9317c06c2592aa4944d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#a4a8eb9df8447b9317c06c2592aa4944d">renderer_system_initialize</a> (<a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *memory_requirement, void *state, const char *application_name)</td></tr>
 <tr class="memdesc:a4a8eb9df8447b9317c06c2592aa4944d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the rendering system.  <br /></td></tr>
 <tr class="separator:a4a8eb9df8447b9317c06c2592aa4944d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,7 +197,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa1a64974ce989cb8a822d5910e45eeec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the complete frame rendering process.  <br /></td></tr>
 <tr class="separator:aa1a64974ce989cb8a822d5910e45eeec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f4bdfed0b0b2bf648279e914a3db500" id="r_a8f4bdfed0b0b2bf648279e914a3db500"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#a8f4bdfed0b0b2bf648279e914a3db500">renderer_set_view</a> (<a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a> view)</td></tr>
+<tr class="memdesc:a8f4bdfed0b0b2bf648279e914a3db500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current view matrix for rendering.  <br /></td></tr>
 <tr class="separator:a8f4bdfed0b0b2bf648279e914a3db500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b117e7a85c3c42da466c84b6a6e6efa" id="r_a5b117e7a85c3c42da466c84b6a6e6efa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#a5b117e7a85c3c42da466c84b6a6e6efa">renderer_create_texture</a> (const char *name, <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> auto_release, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> width, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> height, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> channel_count, const <a class="el" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *pixels, <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> has_transparency, struct <a class="el" href="structtexture.html">texture</a> *out_texture)</td></tr>
+<tr class="memdesc:a5b117e7a85c3c42da466c84b6a6e6efa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a texture resource from raw pixel data.  <br /></td></tr>
+<tr class="separator:a5b117e7a85c3c42da466c84b6a6e6efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07cb43f363df0240af713c483b72308f" id="r_a07cb43f363df0240af713c483b72308f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="renderer__frontend_8c.html#a07cb43f363df0240af713c483b72308f">renderer_destroy_texture</a> (struct <a class="el" href="structtexture.html">texture</a> *<a class="el" href="structtexture.html">texture</a>)</td></tr>
+<tr class="memdesc:a07cb43f363df0240af713c483b72308f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a texture resource and frees associated GPU memory.  <br /></td></tr>
+<tr class="separator:a07cb43f363df0240af713c483b72308f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -167,7 +216,76 @@ Variables</h2></td></tr>
 <p>This file provides the implementation for the main rendering interface functions, abstracting away the specific backend (e.g., Vulkan, OpenGL) from the rest of the engine. It manages initialization, frame lifecycle, and drawing operations using a render packet. </p>
 
 <p class="definition">Definition in file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
-</div><h2 class="groupheader">Typedef Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a19b7f1b22403d61234a92decaeb6953a" name="a19b7f1b22403d61234a92decaeb6953a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19b7f1b22403d61234a92decaeb6953a">&#9670;&#160;</a></span>CHANNELS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHANNELS&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bits per pixel RGBA. </p>
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00020">20</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+</div>
+</div>
+<a id="ab4ed38ca6611a529c6e3120660d457f0" name="ab4ed38ca6611a529c6e3120660d457f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4ed38ca6611a529c6e3120660d457f0">&#9670;&#160;</a></span>PIXEL_COUNT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PIXEL_COUNT&#160;&#160;&#160;<a class="el" href="renderer__frontend_8c.html#a2bc73196504b08e5d4f0400346ac106f">TEX_DIMENSIONS</a>* <a class="el" href="renderer__frontend_8c.html#a2bc73196504b08e5d4f0400346ac106f">TEX_DIMENSIONS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Total number of pixels in the texture. </p>
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00022">22</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+</div>
+</div>
+<a id="a18372412ad2fc3ce1e3240b3cf0efe78" name="a18372412ad2fc3ce1e3240b3cf0efe78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18372412ad2fc3ce1e3240b3cf0efe78">&#9670;&#160;</a></span>STB_IMAGE_IMPLEMENTATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STB_IMAGE_IMPLEMENTATION</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00014">14</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+</div>
+</div>
+<a id="a2bc73196504b08e5d4f0400346ac106f" name="a2bc73196504b08e5d4f0400346ac106f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bc73196504b08e5d4f0400346ac106f">&#9670;&#160;</a></span>TEX_DIMENSIONS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TEX_DIMENSIONS&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00018">18</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
 <a id="af1fc62d1de6c2a9c576325feb7f8fc21" name="af1fc62d1de6c2a9c576325feb7f8fc21"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1fc62d1de6c2a9c576325feb7f8fc21">&#9670;&#160;</a></span>renderer_system_state</h2>
 
@@ -183,6 +301,142 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a1322d654c1514117852c79f1942668bb" name="a1322d654c1514117852c79f1942668bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1322d654c1514117852c79f1942668bb">&#9670;&#160;</a></span>create_texture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void create_texture </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtexture.html">texture</a> *&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes a texture structure to default values. </p>
+<p>This function sets the fields of the provided texture structure to safe default values, ensuring it is in a known state before use.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>Pointer to the texture structure to initialize. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00090">90</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">References <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, and <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00219">renderer_system_initialize()</a>.</p>
+
+</div>
+</div>
+<a id="af019003b6d312df0a06715208bb997c1" name="af019003b6d312df0a06715208bb997c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af019003b6d312df0a06715208bb997c1">&#9670;&#160;</a></span>event_on_debug_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> event_on_debug_event </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>listener_inst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structevent__context.html">event_context</a>&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Event handler for debug events to cycle through test textures. </p>
+<p>This function is a temporary event handler that listens for a specific debug event and cycles through a set of predefined textures for testing purposes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>The event code. </td></tr>
+    <tr><td class="paramname">sender</td><td>Pointer to the event sender. </td></tr>
+    <tr><td class="paramname">listener_inst</td><td>Pointer to the listener instance (should be the renderer state). </td></tr>
+    <tr><td class="paramname">data</td><td>Event context data (not used here). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the event was handled; otherwise False. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00202">202</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00105">load_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>, <a class="el" href="renderer__frontend_8c_source.html#l00075">renderer_system_state::test_diffuse</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00219">renderer_system_initialize()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00300">renderer_system_shutdown()</a>.</p>
+
+</div>
+</div>
+<a id="ac691176afc7122b609671e77b157ae2f" name="ac691176afc7122b609671e77b157ae2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac691176afc7122b609671e77b157ae2f">&#9670;&#160;</a></span>load_texture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> load_texture </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>texture_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structtexture.html">texture</a> *&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loads a texture from file and uploads it to the GPU. </p>
+<p>This function uses stb_image to load image data from disk, creates a texture resource, and uploads it to the GPU via the renderer backend. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">texture_name</td><td>Name of the texture file (without extension). </td></tr>
+    <tr><td class="paramname">t</td><td>Pointer to the texture structure to be filled out. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the texture was loaded and created successfully; otherwise False. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00105">105</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">References <a class="el" href="resource__types_8h_source.html#l00029">texture::channel_count</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="resource__types_8h_source.html#l00027">texture::height</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="renderer__frontend_8c_source.html#l00411">renderer_create_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00423">renderer_destroy_texture()</a>, <a class="el" href="stb__image_8h.html#ac72f312f610a7df1519ea0f2a2f94be9">stbi_failure_reason()</a>, <a class="el" href="stb__image_8h.html#ad3e11bb44412a7ba348acfbad09caacb">stbi_image_free()</a>, <a class="el" href="stb__image_8h.html#ad3fc296ba0778df0a8094e20da82deab">stbi_load()</a>, <a class="el" href="stb__image_8h.html#ab89c177fc52f1bb2dc1c05e48129a0a4">stbi_set_flip_vertically_on_load()</a>, <a class="el" href="kstring_8c_source.html#l00041">string_format()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="resource__types_8h_source.html#l00025">texture::width</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00202">event_on_debug_event()</a>.</p>
+
+</div>
+</div>
 <a id="a1a8f8d1befb7f8dbbf9d8a64dd84b347" name="a1a8f8d1befb7f8dbbf9d8a64dd84b347"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a8f8d1befb7f8dbbf9d8a64dd84b347">&#9670;&#160;</a></span>renderer_begin_frame()</h2>
 
@@ -209,11 +463,129 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the frame was successfully started; otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00102">102</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00325">325</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00028">renderer_system_state::backend</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00040">state_ptr</a>.</p>
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00044">renderer_system_state::backend</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00147">renderer_draw_frame()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00370">renderer_draw_frame()</a>.</p>
+
+</div>
+</div>
+<a id="a5b117e7a85c3c42da466c84b6a6e6efa" name="a5b117e7a85c3c42da466c84b6a6e6efa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b117e7a85c3c42da466c84b6a6e6efa">&#9670;&#160;</a></span>renderer_create_texture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void renderer_create_texture </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td>
+          <td class="paramname"><em>auto_release</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>channel_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *&#160;</td>
+          <td class="paramname"><em>pixels</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td>
+          <td class="paramname"><em>has_transparency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structtexture.html">texture</a> *&#160;</td>
+          <td class="paramname"><em>out_texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a texture resource from raw pixel data. </p>
+<p>This function uploads the provided pixel data to the GPU and creates a texture object that can be used in rendering operations.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the texture (for identification/debugging). </td></tr>
+    <tr><td class="paramname">auto_release</td><td>Whether the texture should be automatically released when no longer needed. </td></tr>
+    <tr><td class="paramname">width</td><td>Width of the texture in pixels. </td></tr>
+    <tr><td class="paramname">height</td><td>Height of the texture in pixels. </td></tr>
+    <tr><td class="paramname">channel_count</td><td>Number of color channels (e.g., 3 for RGB, 4 for RGBA). </td></tr>
+    <tr><td class="paramname">pixels</td><td>Pointer to the raw pixel data. </td></tr>
+    <tr><td class="paramname">has_transparency</td><td>Whether the texture contains transparency (alpha channel). </td></tr>
+    <tr><td class="paramname">out_texture</td><td>Pointer to the texture structure to be filled out. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00411">411</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00044">renderer_system_state::backend</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00105">load_texture()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00219">renderer_system_initialize()</a>.</p>
+
+</div>
+</div>
+<a id="a07cb43f363df0240af713c483b72308f" name="a07cb43f363df0240af713c483b72308f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07cb43f363df0240af713c483b72308f">&#9670;&#160;</a></span>renderer_destroy_texture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void renderer_destroy_texture </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structtexture.html">texture</a> *&#160;</td>
+          <td class="paramname"><em>texture</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroys a texture resource and frees associated GPU memory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">texture</td><td>Pointer to the texture to be destroyed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00423">423</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00044">renderer_system_state::backend</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00105">load_texture()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00300">renderer_system_shutdown()</a>.</p>
 
 </div>
 </div>
@@ -243,10 +615,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the frame was drawn successfully; otherwise False. </dd></dl>
+<p>TO-DO: Add actual object ID</p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00147">147</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00370">370</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00028">renderer_system_state::backend</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="renderer__frontend_8c_source.html#l00030">renderer_system_state::projection</a>, <a class="el" href="kmath_8h_source.html#l01459">quat_from_axis_angle()</a>, <a class="el" href="kmath_8h_source.html#l01425">quat_to_rotation_matrix()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00102">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00119">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00040">state_ptr</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="kmath_8h_source.html#l00425">vec3_forward()</a>, <a class="el" href="kmath_8h_source.html#l00383">vec3_zero()</a>, <a class="el" href="kmath_8h_source.html#l00684">vec4_one()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00032">renderer_system_state::view</a>.</p>
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00044">renderer_system_state::backend</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmath_8h_source.html#l01091">mat4_translation()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00049">renderer_system_state::projection</a>, <a class="el" href="renderer__frontend_8c_source.html#l00325">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00342">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>, <a class="el" href="renderer__frontend_8c_source.html#l00075">renderer_system_state::test_diffuse</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="kmath_8h_source.html#l00383">vec3_zero()</a>, <a class="el" href="kmath_8h_source.html#l00684">vec4_one()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00054">renderer_system_state::view</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
@@ -278,11 +651,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the frame was successfully ended; otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00119">119</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00342">342</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00028">renderer_system_state::backend</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00040">state_ptr</a>.</p>
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00044">renderer_system_state::backend</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00147">renderer_draw_frame()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00370">renderer_draw_frame()</a>.</p>
 
 </div>
 </div>
@@ -322,9 +695,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00129">129</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00352">352</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00028">renderer_system_state::backend</a>, <a class="el" href="kmath_8h_source.html#l01537">deg_to_rad()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00036">renderer_system_state::far_clip</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="kmath_8h_source.html#l00942">mat4_perspective()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00034">renderer_system_state::near_clip</a>, <a class="el" href="renderer__frontend_8c_source.html#l00030">renderer_system_state::projection</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00040">state_ptr</a>.</p>
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00044">renderer_system_state::backend</a>, <a class="el" href="kmath_8h_source.html#l01537">deg_to_rad()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00064">renderer_system_state::far_clip</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="kmath_8h_source.html#l00942">mat4_perspective()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00059">renderer_system_state::near_clip</a>, <a class="el" href="renderer__frontend_8c_source.html#l00049">renderer_system_state::projection</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00417">application_on_resized()</a>.</p>
 
@@ -346,11 +719,20 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00172">172</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p>Sets the current view matrix for rendering. </p>
+<p>This function updates the view matrix used in the rendering pipeline.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">view</td><td>The new view matrix to set. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00040">state_ptr</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00032">renderer_system_state::view</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00407">407</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00093">game_update()</a>.</p>
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00054">renderer_system_state::view</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00094">game_update()</a>.</p>
 
 </div>
 </div>
@@ -387,7 +769,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes the rendering system. </p>
-<p>Creates the appropriate rendering backend (currently hardcoded to Vulkan), and calls its initialize function to prepare for rendering.</p>
+<p>Sets up the appropriate rendering backend (e.g., Vulkan), creates necessary context, device, swapchain, etc. based on application requirements.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">application_name</td><td>Name of the application using the renderer. </td></tr>
@@ -397,9 +779,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if initialization was successful; otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00052">52</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00219">219</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00028">renderer_system_state::backend</a>, <a class="el" href="kmath_8h_source.html#l01537">deg_to_rad()</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="renderer__frontend_8c_source.html#l00036">renderer_system_state::far_clip</a>, <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>, <a class="el" href="kmath_8h_source.html#l01027">mat4_inverse()</a>, <a class="el" href="kmath_8h_source.html#l00942">mat4_perspective()</a>, <a class="el" href="kmath_8h_source.html#l01091">mat4_translation()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00034">renderer_system_state::near_clip</a>, <a class="el" href="renderer__frontend_8c_source.html#l00030">renderer_system_state::projection</a>, <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00040">state_ptr</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00032">renderer_system_state::view</a>.</p>
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00044">renderer_system_state::backend</a>, <a class="el" href="renderer__frontend_8c_source.html#l00020">CHANNELS</a>, <a class="el" href="renderer__frontend_8c_source.html#l00090">create_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00069">renderer_system_state::default_texture</a>, <a class="el" href="kmath_8h_source.html#l01537">deg_to_rad()</a>, <a class="el" href="event_8h_source.html#l00222">EVENT_CODE_DEBUG0</a>, <a class="el" href="renderer__frontend_8c_source.html#l00202">event_on_debug_event()</a>, <a class="el" href="event_8c_source.html#l00095">event_register()</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="renderer__frontend_8c_source.html#l00064">renderer_system_state::far_clip</a>, <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>, <a class="el" href="kmemory_8c_source.html#l00194">kset_memory()</a>, <a class="el" href="logger_8h_source.html#l00230">KTRACE</a>, <a class="el" href="kmath_8h_source.html#l01027">mat4_inverse()</a>, <a class="el" href="kmath_8h_source.html#l00942">mat4_perspective()</a>, <a class="el" href="kmath_8h_source.html#l01091">mat4_translation()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00059">renderer_system_state::near_clip</a>, <a class="el" href="renderer__frontend_8c_source.html#l00022">PIXEL_COUNT</a>, <a class="el" href="renderer__frontend_8c_source.html#l00049">renderer_system_state::projection</a>, <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00411">renderer_create_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>, <a class="el" href="renderer__frontend_8c_source.html#l00075">renderer_system_state::test_diffuse</a>, <a class="el" href="renderer__frontend_8c_source.html#l00018">TEX_DIMENSIONS</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00054">renderer_system_state::view</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00183">application_create()</a>.</p>
 
@@ -422,11 +804,11 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Shuts down the rendering system. </p>
-<p>Calls the backend's shutdown routine and frees allocated resources. </p>
+<p>Cleans up all resources allocated during initialization, including devices, command pools, buffers, and synchronization primitives. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00085">85</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00300">300</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00028">renderer_system_state::backend</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00040">state_ptr</a>.</p>
+<p class="reference">References <a class="el" href="renderer__frontend_8c_source.html#l00044">renderer_system_state::backend</a>, <a class="el" href="renderer__frontend_8c_source.html#l00069">renderer_system_state::default_texture</a>, <a class="el" href="event_8h_source.html#l00222">EVENT_CODE_DEBUG0</a>, <a class="el" href="renderer__frontend_8c_source.html#l00202">event_on_debug_event()</a>, <a class="el" href="event_8c_source.html#l00124">event_unregister()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00423">renderer_destroy_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00080">state_ptr</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00075">renderer_system_state::test_diffuse</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00259">application_run()</a>.</p>
 
@@ -453,16 +835,16 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00040">40</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00080">80</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00102">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00147">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00119">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00129">renderer_on_resized()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00172">renderer_set_view()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00052">renderer_system_initialize()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00085">renderer_system_shutdown()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00202">event_on_debug_event()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00325">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00411">renderer_create_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00423">renderer_destroy_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00370">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00342">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00352">renderer_on_resized()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00407">renderer_set_view()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00219">renderer_system_initialize()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00300">renderer_system_shutdown()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:32:08 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

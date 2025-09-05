@@ -79,6 +79,9 @@ $(function() {
   <div class="headertitle"><div class="title">vulkan_pipeline.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implements Vulkan pipeline creation and management functions for the Koru Engine.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="kmemory_8h_source.html">core/kmemory.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="logger_8h_source.html">core/logger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="math__types_8h_source.html">math/math_types.h</a>&quot;</code><br />
@@ -91,7 +94,7 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="vulkan__pipeline_8c__incl.png" border="0" usemap="#aengine_2src_2renderer_2vulkan_2vulkan__pipeline_8c" alt=""/></div>
 <map name="aengine_2src_2renderer_2vulkan_2vulkan__pipeline_8c" id="aengine_2src_2renderer_2vulkan_2vulkan__pipeline_8c">
-<area shape="rect" title=" " alt="" coords="269,5,455,45"/>
+<area shape="rect" title="Implements Vulkan pipeline creation and management functions for the Koru Engine." alt="" coords="269,5,455,45"/>
 <area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="5,93,132,119"/>
 <area shape="poly" title=" " alt="" coords="292,48,126,92,124,87,291,43"/>
 <area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="157,93,263,119"/>
@@ -122,14 +125,21 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:abdf5e478e09b63d874660770b71bbf29" id="r_abdf5e478e09b63d874660770b71bbf29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__pipeline_8c.html#abdf5e478e09b63d874660770b71bbf29">vulkan_graphics_pipeline_create</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_renderpass *renderpass, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> attribute_count, VkVertexInputAttributeDescription *attributes, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> descriptor_set_layout_count, VkDescriptorSetLayout *descriptor_set_layouts, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> stage_count, VkPipelineShaderStageCreateInfo *stages, VkViewport viewport, VkRect2D scissor, <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> is_wireframe, vulkan_pipeline *out_pipeline)</td></tr>
-<tr class="memdesc:abdf5e478e09b63d874660770b71bbf29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Vulkan graphics pipeline.  <br /></td></tr>
+<tr class="memdesc:abdf5e478e09b63d874660770b71bbf29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Vulkan graphics pipeline with the specified parameters.  <br /></td></tr>
 <tr class="separator:abdf5e478e09b63d874660770b71bbf29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a283ba7cf0fba53e13fd56f7e2b472145" id="r_a283ba7cf0fba53e13fd56f7e2b472145"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__pipeline_8c.html#a283ba7cf0fba53e13fd56f7e2b472145">vulkan_pipeline_destroy</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_pipeline *pipeline)</td></tr>
+<tr class="memdesc:a283ba7cf0fba53e13fd56f7e2b472145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a Vulkan pipeline and frees its associated resources.  <br /></td></tr>
 <tr class="separator:a283ba7cf0fba53e13fd56f7e2b472145"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9db9bf776b663de8df2847b1493319e6" id="r_a9db9bf776b663de8df2847b1493319e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__pipeline_8c.html#a9db9bf776b663de8df2847b1493319e6">vulkan_pipeline_bind</a> (vulkan_command_buffer *command_buffer, VkPipelineBindPoint bind_point, vulkan_pipeline *pipeline)</td></tr>
+<tr class="memdesc:a9db9bf776b663de8df2847b1493319e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds the specified pipeline to the given command buffer.  <br /></td></tr>
 <tr class="separator:a9db9bf776b663de8df2847b1493319e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements Vulkan pipeline creation and management functions for the Koru Engine. </p>
+<p>This module provides functions to create, destroy, and bind Vulkan graphics pipelines. It handles the configuration of various pipeline states including shader stages, vertex input, input assembly, viewport, rasterization, multisampling, depth/stencil, color blending, and dynamic states. </p>
+
+<p class="definition">Definition in file <a class="el" href="vulkan__pipeline_8c_source.html">vulkan_pipeline.c</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a29ba53a9acf819ee81b0571b1a1f3869" name="a29ba53a9acf819ee81b0571b1a1f3869"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a29ba53a9acf819ee81b0571b1a1f3869">&#9670;&#160;</a></span>DYNAMIC_STATE_COUNT</h2>
 
@@ -142,7 +152,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__pipeline_8c_source.html#l00007">7</a> of file <a class="el" href="vulkan__pipeline_8c_source.html">vulkan_pipeline.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__pipeline_8c_source.html#l00017">17</a> of file <a class="el" href="vulkan__pipeline_8c_source.html">vulkan_pipeline.c</a>.</p>
 
 </div>
 </div>
@@ -233,13 +243,32 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a Vulkan graphics pipeline. </p>
+<p>Creates a Vulkan graphics pipeline with the specified parameters. </p>
+<p>This function sets up a graphics pipeline including shader stages, vertex input, viewport, rasterization, multisampling, depth/stencil state, color blending, and dynamic states. It also creates the pipeline layout with provided descriptor set layouts and push constant ranges.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">renderpass</td><td>A pointer to the vulkan_renderpass defining the render pass to use. </td></tr>
+    <tr><td class="paramname">attribute_count</td><td>The number of vertex input attributes. </td></tr>
+    <tr><td class="paramname">attributes</td><td>An array of VkVertexInputAttributeDescription defining vertex attributes. </td></tr>
+    <tr><td class="paramname">descriptor_set_layout_count</td><td>The number of descriptor set layouts. </td></tr>
+    <tr><td class="paramname">descriptor_set_layouts</td><td>An array of VkDescriptorSetLayout for the pipeline layout. </td></tr>
+    <tr><td class="paramname">stage_count</td><td>The number of shader stages. </td></tr>
+    <tr><td class="paramname">stages</td><td>An array of VkPipelineShaderStageCreateInfo defining shader stages. </td></tr>
+    <tr><td class="paramname">viewport</td><td>The VkViewport defining the viewport dimensions. </td></tr>
+    <tr><td class="paramname">scissor</td><td>The VkRect2D defining the scissor rectangle. </td></tr>
+    <tr><td class="paramname">is_wireframe</td><td>True to use wireframe rasterization, False for fill mode. </td></tr>
+    <tr><td class="paramname">out_pipeline</td><td>A pointer to a vulkan_pipeline struct to populate with the created pipeline details. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the pipeline was created successfully, False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__pipeline_8c_source.html#l00009">9</a> of file <a class="el" href="vulkan__pipeline_8c_source.html">vulkan_pipeline.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__pipeline_8c_source.html#l00019">19</a> of file <a class="el" href="vulkan__pipeline_8c_source.html">vulkan_pipeline.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="vulkan__pipeline_8c_source.html#l00007">DYNAMIC_STATE_COUNT</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__utils_8c_source.html#l00098">vulkan_result_is_success()</a>, and <a class="el" href="vulkan__utils_8c_source.html#l00015">vulkan_result_string()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="vulkan__pipeline_8c_source.html#l00017">DYNAMIC_STATE_COUNT</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__utils_8c_source.html#l00098">vulkan_result_is_success()</a>, and <a class="el" href="vulkan__utils_8c_source.html#l00015">vulkan_result_string()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__object__shader_8c_source.html#l00020">vulkan_object_shader_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__object__shader_8c_source.html#l00028">vulkan_object_shader_create()</a>.</p>
 
 </div>
 </div>
@@ -275,9 +304,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__pipeline_8c_source.html#l00173">173</a> of file <a class="el" href="vulkan__pipeline_8c_source.html">vulkan_pipeline.c</a>.</p>
+<p>Binds the specified pipeline to the given command buffer. </p>
+<p>This function binds the provided vulkan_pipeline to the specified vulkan_command_buffer at the given pipeline bind point (graphics or compute). The command buffer must be in the recording state when this function is called.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command_buffer</td><td>A pointer to the vulkan_command_buffer to bind the pipeline to. </td></tr>
+    <tr><td class="paramname">bind_point</td><td>The VkPipelineBindPoint indicating whether it's a graphics or compute pipeline. </td></tr>
+    <tr><td class="paramname">pipeline</td><td>A pointer to the vulkan_pipeline to bind. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__object__shader_8c_source.html#l00182">vulkan_object_shader_use()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__pipeline_8c_source.html#l00183">183</a> of file <a class="el" href="vulkan__pipeline_8c_source.html">vulkan_pipeline.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__object__shader_8c_source.html#l00257">vulkan_object_shader_use()</a>.</p>
 
 </div>
 </div>
@@ -307,18 +347,28 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__pipeline_8c_source.html#l00156">156</a> of file <a class="el" href="vulkan__pipeline_8c_source.html">vulkan_pipeline.c</a>.</p>
+<p>Destroys a Vulkan pipeline and frees its associated resources. </p>
+<p>This function destroys the VkPipeline and VkPipelineLayout objects associated with the given vulkan_pipeline. It must be called before destroying the Vulkan device or context to avoid memory leaks.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">pipeline</td><td>A pointer to the vulkan_pipeline to destroy. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, and <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__pipeline_8c_source.html#l00166">166</a> of file <a class="el" href="vulkan__pipeline_8c_source.html">vulkan_pipeline.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__object__shader_8c_source.html#l00153">vulkan_object_shader_destroy()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, and <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__object__shader_8c_source.html#l00220">vulkan_object_shader_destroy()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:32:08 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

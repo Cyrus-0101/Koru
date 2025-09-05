@@ -10,59 +10,59 @@
 \DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00006}00006\ }
 \DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{filesystem_8h}{platform/filesystem.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00008}00008\ }
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00009}\mbox{\hyperlink{vulkan__shader__utils_8c_abdafeacc190d500bbd72aa141cadf2e5}{00009}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__shader__utils_8c_abdafeacc190d500bbd72aa141cadf2e5}{create\_shader\_module}}(}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00010}00010\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ type\_str,}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00013}00013\ \ \ \ \ VkShaderStageFlagBits\ shader\_stage\_flag,}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ stage\_index,}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00015}00015\ \ \ \ \ vulkan\_shader\_stage*\ shader\_stages)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00016}00016\ \ \ \ \ \textcolor{comment}{//\ Build\ file\ name.}}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00017}00017\ \ \ \ \ \textcolor{keywordtype}{char}\ file\_name[512];}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{kstring_8c_a86babd936b82eaf4229e77406968f74d}{string\_format}}(file\_name,\ \textcolor{stringliteral}{"{}assets/shaders/\%s.\%s.spv"{}},\ name,\ type\_str);}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00019}00019\ }
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\_memory}}(\&shader\_stages[stage\_index].create\_info,\ \textcolor{keyword}{sizeof}(VkShaderModuleCreateInfo));}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00021}00021\ \ \ \ \ shader\_stages[stage\_index].create\_info.sType\ =\ VK\_STRUCTURE\_TYPE\_SHADER\_MODULE\_CREATE\_INFO;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00022}00022\ }
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00023}00023\ \ \ \ \ \textcolor{comment}{//\ Obtain\ file\ handle.}}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00024}00024\ \ \ \ \ \mbox{\hyperlink{structfile__handle}{file\_handle}}\ handle;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{filesystem_8c_a86cbb9441406d6469d0216cd372c9125}{filesystem\_open}}(file\_name,\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca89cf567f3e692c97873d7a795c17feca}{FILE\_MODE\_READ}},\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}},\ \&handle))\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00026}00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Unable\ to\ read\ shader\ module:\ \%s."{}},\ file\_name);}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00028}00028\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00029}00029\ }
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ Read\ the\ entire\ file\ as\ binary.}}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}*\ file\_buffer\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{filesystem_8c_ab7a1923de3588dc8ae02e9a5cdda2378}{filesystem\_read\_all\_bytes}}(\&handle,\ \&file\_buffer,\ \&size))\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00034}00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Unable\ to\ binary\ read\ shader\ module:\ \%s."{}},\ file\_name);}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00017}\mbox{\hyperlink{vulkan__shader__utils_8c_abdafeacc190d500bbd72aa141cadf2e5}{00017}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__shader__utils_8c_abdafeacc190d500bbd72aa141cadf2e5}{create\_shader\_module}}(}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00018}00018\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00020}00020\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ type\_str,}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00021}00021\ \ \ \ \ VkShaderStageFlagBits\ shader\_stage\_flag,}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00022}00022\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ stage\_index,}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00023}00023\ \ \ \ \ vulkan\_shader\_stage*\ shader\_stages)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ Build\ file\ name.}}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{char}\ file\_name[512];}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{kstring_8c_a86babd936b82eaf4229e77406968f74d}{string\_format}}(file\_name,\ \textcolor{stringliteral}{"{}assets/shaders/\%s.\%s.spv"{}},\ name,\ type\_str);}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\_memory}}(\&shader\_stages[stage\_index].create\_info,\ \textcolor{keyword}{sizeof}(VkShaderModuleCreateInfo));}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00029}00029\ \ \ \ \ shader\_stages[stage\_index].create\_info.sType\ =\ VK\_STRUCTURE\_TYPE\_SHADER\_MODULE\_CREATE\_INFO;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ Obtain\ file\ handle.}}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{structfile__handle}{file\_handle}}\ handle;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{filesystem_8c_a86cbb9441406d6469d0216cd372c9125}{filesystem\_open}}(file\_name,\ \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dca89cf567f3e692c97873d7a795c17feca}{FILE\_MODE\_READ}},\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}},\ \&handle))\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00034}00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Unable\ to\ read\ shader\ module:\ \%s."{}},\ file\_name);}
 \DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
 \DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00036}00036\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00037}00037\ \ \ \ \ shader\_stages[stage\_index].create\_info.codeSize\ =\ size;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00038}00038\ \ \ \ \ shader\_stages[stage\_index].create\_info.pCode\ =\ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}*)file\_buffer;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00039}00039\ }
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00040}00040\ \ \ \ \ \textcolor{comment}{//\ Close\ the\ file.}}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{filesystem_8c_aeb2523bb568e1ae441a69c05c80d7ed3}{filesystem\_close}}(\&handle);}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00042}00042\ }
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00043}00043\ \ \ \ \ VK\_CHECK(vkCreateShaderModule(}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00044}00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00045}00045\ \ \ \ \ \ \ \ \ \&shader\_stages[stage\_index].create\_info,}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00046}00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00047}00047\ \ \ \ \ \ \ \ \ \&shader\_stages[stage\_index].handle));}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00048}00048\ }
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ Shader\ stage\ info}}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\_memory}}(\&shader\_stages[stage\_index].shader\_stage\_create\_info,\ \textcolor{keyword}{sizeof}(VkPipelineShaderStageCreateInfo));}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00051}00051\ \ \ \ \ shader\_stages[stage\_index].shader\_stage\_create\_info.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_SHADER\_STAGE\_CREATE\_INFO;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00052}00052\ \ \ \ \ shader\_stages[stage\_index].shader\_stage\_create\_info.stage\ =\ shader\_stage\_flag;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00053}00053\ \ \ \ \ shader\_stages[stage\_index].shader\_stage\_create\_info.module\ =\ shader\_stages[stage\_index].handle;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00054}00054\ \ \ \ \ shader\_stages[stage\_index].shader\_stage\_create\_info.pName\ =\ \textcolor{stringliteral}{"{}main"{}};}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00055}00055\ }
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_buffer)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc}{kfree}}(file\_buffer,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}})\ *\ size,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9}{MEMORY\_TAG\_STRING}});}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ file\_buffer\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00059}00059\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00060}00060\ }
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
-\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00038}00038\ \ \ \ \ \textcolor{comment}{//\ Read\ the\ entire\ file\ as\ binary.}}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00039}00039\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00040}00040\ \ \ \ \ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}*\ file\_buffer\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{filesystem_8c_ab7a1923de3588dc8ae02e9a5cdda2378}{filesystem\_read\_all\_bytes}}(\&handle,\ \&file\_buffer,\ \&size))\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00042}00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Unable\ to\ binary\ read\ shader\ module:\ \%s."{}},\ file\_name);}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00045}00045\ \ \ \ \ shader\_stages[stage\_index].create\_info.codeSize\ =\ size;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00046}00046\ \ \ \ \ shader\_stages[stage\_index].create\_info.pCode\ =\ (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}*)file\_buffer;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ Close\ the\ file.}}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{filesystem_8c_aeb2523bb568e1ae441a69c05c80d7ed3}{filesystem\_close}}(\&handle);}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00051}00051\ \ \ \ \ VK\_CHECK(vkCreateShaderModule(}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00053}00053\ \ \ \ \ \ \ \ \ \&shader\_stages[stage\_index].create\_info,}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \&shader\_stages[stage\_index].handle));}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ Shader\ stage\ info}}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00058}00058\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\_memory}}(\&shader\_stages[stage\_index].shader\_stage\_create\_info,\ \textcolor{keyword}{sizeof}(VkPipelineShaderStageCreateInfo));}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00059}00059\ \ \ \ \ shader\_stages[stage\_index].shader\_stage\_create\_info.sType\ =\ VK\_STRUCTURE\_TYPE\_PIPELINE\_SHADER\_STAGE\_CREATE\_INFO;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00060}00060\ \ \ \ \ shader\_stages[stage\_index].shader\_stage\_create\_info.stage\ =\ shader\_stage\_flag;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00061}00061\ \ \ \ \ shader\_stages[stage\_index].shader\_stage\_create\_info.module\ =\ shader\_stages[stage\_index].handle;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00062}00062\ \ \ \ \ shader\_stages[stage\_index].shader\_stage\_create\_info.pName\ =\ \textcolor{stringliteral}{"{}main"{}};}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_buffer)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00065}00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{kmemory_8c_a49e85a536f69ab06ccc689d5701450dc}{kfree}}(file\_buffer,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}})\ *\ size,\ \mbox{\hyperlink{kmemory_8h_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9}{MEMORY\_TAG\_STRING}});}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00066}00066\ \ \ \ \ \ \ \ \ file\_buffer\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{vulkan__shader__utils_8c_source_l00070}00070\ \}}
 
 \end{DoxyCode}

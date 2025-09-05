@@ -82,6 +82,7 @@ $(function() {
 <p>Public interface for the Vulkan renderer backend implementation.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="renderer__backend_8h_source.html">renderer/renderer_backend.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="resource__types_8h_source.html">resources/resource_types.h</a>&quot;</code><br />
 <code>#include &quot;vulkan_types.inl&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for vulkan_backend.h:</div>
@@ -90,13 +91,19 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="vulkan__backend_8h__incl.png" border="0" usemap="#aengine_2src_2renderer_2vulkan_2vulkan__backend_8h" alt=""/></div>
 <map name="aengine_2src_2renderer_2vulkan_2vulkan__backend_8h" id="aengine_2src_2renderer_2vulkan_2vulkan__backend_8h">
-<area shape="rect" title="Public interface for the Vulkan renderer backend implementation." alt="" coords="111,5,301,45"/>
-<area shape="rect" href="renderer__backend_8h.html" title="Renderer backend creation and destruction interface." alt="" coords="5,93,215,119"/>
-<area shape="poly" title=" " alt="" coords="184,48,136,87,133,82,181,43"/>
-<area shape="rect" title=" " alt="" coords="239,93,367,119"/>
-<area shape="poly" title=" " alt="" coords="231,43,280,82,277,87,228,48"/>
-<area shape="rect" title=" " alt="" coords="40,167,180,192"/>
-<area shape="poly" title=" " alt="" coords="113,119,113,153,107,153,107,119"/>
+<area shape="rect" title="Public interface for the Vulkan renderer backend implementation." alt="" coords="217,5,406,45"/>
+<area shape="rect" href="renderer__backend_8h.html" title="Renderer backend creation and destruction interface." alt="" coords="5,101,215,126"/>
+<area shape="poly" title=" " alt="" coords="268,48,150,98,148,93,266,43"/>
+<area shape="rect" href="resource__types_8h.html" title="Defines core resource types used in the Koru Engine." alt="" coords="239,93,384,133"/>
+<area shape="poly" title=" " alt="" coords="314,46,314,79,309,79,309,46"/>
+<area shape="rect" title=" " alt="" coords="409,101,537,126"/>
+<area shape="poly" title=" " alt="" coords="348,43,441,92,438,97,345,48"/>
+<area shape="rect" title=" " alt="" coords="40,181,180,207"/>
+<area shape="poly" title=" " alt="" coords="113,126,113,167,107,167,107,126"/>
+<area shape="rect" href="math__types_8h.html" title="Core mathematical types used throughout the Koru engine." alt="" coords="237,181,386,207"/>
+<area shape="poly" title=" " alt="" coords="314,134,314,167,309,167,309,134"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="271,255,352,280"/>
+<area shape="poly" title=" " alt="" coords="314,207,314,241,309,241,309,207"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -136,9 +143,9 @@ Functions</h2></td></tr>
 <tr class="memitem:afe660c6d3ba8621d1a7b395500e6fc02" id="r_afe660c6d3ba8621d1a7b395500e6fc02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__backend_8h.html#afe660c6d3ba8621d1a7b395500e6fc02">recreate_swapchain</a> (renderer_backend *backend)</td></tr>
 <tr class="memdesc:afe660c6d3ba8621d1a7b395500e6fc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recreates the swapchain and associated resources.  <br /></td></tr>
 <tr class="separator:afe660c6d3ba8621d1a7b395500e6fc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7c74c146850082989f7cd632fdab5ea" id="r_ac7c74c146850082989f7cd632fdab5ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__backend_8h.html#ac7c74c146850082989f7cd632fdab5ea">upload_data_range</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, VkCommandPool pool, VkFence fence, VkQueue queue, vulkan_buffer *buffer, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, const void *data)</td></tr>
-<tr class="memdesc:ac7c74c146850082989f7cd632fdab5ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads data to a specified range of a Vulkan buffer.  <br /></td></tr>
-<tr class="separator:ac7c74c146850082989f7cd632fdab5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac31532b42a062bc57ebef2f371970719" id="r_ac31532b42a062bc57ebef2f371970719"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__backend_8h.html#ac31532b42a062bc57ebef2f371970719">upload_data_range</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, VkCommandPool pool, VkFence fence, VkQueue queue, vulkan_buffer *buffer, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, void *data)</td></tr>
+<tr class="memdesc:ac31532b42a062bc57ebef2f371970719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads data to a specified range of a Vulkan buffer.  <br /></td></tr>
+<tr class="separator:ac31532b42a062bc57ebef2f371970719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc2cbf296cd3a6e4999750da67deaca9" id="r_afc2cbf296cd3a6e4999750da67deaca9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__backend_8h.html#afc2cbf296cd3a6e4999750da67deaca9">vulkan_renderer_backend_initialize</a> (renderer_backend *backend, const char *application_name)</td></tr>
 <tr class="memdesc:afc2cbf296cd3a6e4999750da67deaca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Vulkan renderer backend.  <br /></td></tr>
 <tr class="separator:afc2cbf296cd3a6e4999750da67deaca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,9 +164,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a9efcf925da5223123622a6c4e29cdc1c" id="r_a9efcf925da5223123622a6c4e29cdc1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__backend_8h.html#a9efcf925da5223123622a6c4e29cdc1c">vulkan_renderer_update_global_state</a> (<a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a> projection, <a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a> view, <a class="el" href="math__types_8h.html#a291ce5191b34b920d576c84fd970b9ef">vec3</a> view_position, <a class="el" href="math__types_8h.html#a6d07267a855fd8e0194ffcb3128396cd">vec4</a> ambient_colour, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> mode)</td></tr>
 <tr class="memdesc:a9efcf925da5223123622a6c4e29cdc1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the global state for rendering in the Vulkan backend.  <br /></td></tr>
 <tr class="separator:a9efcf925da5223123622a6c4e29cdc1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d648bef014f63076dd8708f0cedff68" id="r_a1d648bef014f63076dd8708f0cedff68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__backend_8h.html#a1d648bef014f63076dd8708f0cedff68">vulkan_backend_update_object</a> (<a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a> model)</td></tr>
-<tr class="memdesc:a1d648bef014f63076dd8708f0cedff68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the model matrix for a specific object in the Vulkan backend.  <br /></td></tr>
-<tr class="separator:a1d648bef014f63076dd8708f0cedff68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a473f9be87792ec76a5af5ac7bcf89971" id="r_a473f9be87792ec76a5af5ac7bcf89971"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__backend_8h.html#a473f9be87792ec76a5af5ac7bcf89971">vulkan_backend_update_object</a> (geometry_render_data data)</td></tr>
+<tr class="memdesc:a473f9be87792ec76a5af5ac7bcf89971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the model matrix for a specific object in the Vulkan backend.  <br /></td></tr>
+<tr class="separator:a473f9be87792ec76a5af5ac7bcf89971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a067715ce2c277cc16f8006041dfdcf3e" id="r_a067715ce2c277cc16f8006041dfdcf3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__backend_8h.html#a067715ce2c277cc16f8006041dfdcf3e">vulkan_renderer_create_texture</a> (const char *name, <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> auto_release, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> width, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> height, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> channel_count, const <a class="el" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *pixels, <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> has_transparency, <a class="el" href="structtexture.html">texture</a> *out_texture)</td></tr>
+<tr class="separator:a067715ce2c277cc16f8006041dfdcf3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a960741cefcbdc168f758b46407bcc9ec" id="r_a960741cefcbdc168f758b46407bcc9ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__backend_8h.html#a960741cefcbdc168f758b46407bcc9ec">vulkan_renderer_destroy_texture</a> (<a class="el" href="structtexture.html">texture</a> *<a class="el" href="structtexture.html">texture</a>)</td></tr>
+<tr class="separator:a960741cefcbdc168f758b46407bcc9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Public interface for the Vulkan renderer backend implementation. </p>
@@ -195,11 +206,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if buffers were created successfully, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00816">816</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00833">833</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00010">vulkan_buffer_create()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00017">vulkan_buffer_create()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00082">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -233,11 +244,11 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00694">694</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00711">711</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="darray_8h_source.html#l00159">darray_reserve</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00018">vulkan_command_buffer_allocate()</a>, and <a class="el" href="vulkan__command__buffer_8c_source.html#l00040">vulkan_command_buffer_free()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="darray_8h_source.html#l00159">darray_reserve</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00018">vulkan_command_buffer_allocate()</a>, and <a class="el" href="vulkan__command__buffer_8c_source.html#l00040">vulkan_command_buffer_free()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00741">recreate_swapchain()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00082">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00758">recreate_swapchain()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -287,11 +298,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>i32 The index of a suitable memory type, or -1 if none was found. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00676">676</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00693">693</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, and <a class="el" href="logger_8h_source.html#l00179">KWARN</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, and <a class="el" href="logger_8h_source.html#l00179">KWARN</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00082">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -321,11 +332,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the swapchain was successfully recreated, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00741">741</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00758">758</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00040">cached_framebuffer_height</a>, <a class="el" href="vulkan__backend_8c_source.html#l00037">cached_framebuffer_width</a>, <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="vulkan__backend_8c_source.html#l00694">create_command_buffers()</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="vulkan__backend_8c_source.html#l00722">regenerate_framebuffers()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00040">vulkan_command_buffer_free()</a>, <a class="el" href="vulkan__device_8c_source.html#l00368">vulkan_device_detect_depth_format()</a>, <a class="el" href="vulkan__device_8c_source.html#l00322">vulkan_device_query_swapchain_support()</a>, <a class="el" href="vulkan__framebuffer_8c_source.html#l00051">vulkan_framebuffer_destroy()</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00080">vulkan_swapchain_recreate()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00041">cached_framebuffer_height</a>, <a class="el" href="vulkan__backend_8c_source.html#l00038">cached_framebuffer_width</a>, <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="vulkan__backend_8c_source.html#l00711">create_command_buffers()</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="vulkan__backend_8c_source.html#l00739">regenerate_framebuffers()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00040">vulkan_command_buffer_free()</a>, <a class="el" href="vulkan__device_8c_source.html#l00368">vulkan_device_detect_depth_format()</a>, <a class="el" href="vulkan__device_8c_source.html#l00322">vulkan_device_query_swapchain_support()</a>, <a class="el" href="vulkan__framebuffer_8c_source.html#l00051">vulkan_framebuffer_destroy()</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00080">vulkan_swapchain_recreate()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00435">vulkan_renderer_backend_begin_frame()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00451">vulkan_renderer_backend_begin_frame()</a>.</p>
 
 </div>
 </div>
@@ -382,16 +393,16 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00722">722</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00739">739</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, and <a class="el" href="vulkan__framebuffer_8c_source.html#l00017">vulkan_framebuffer_create()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, and <a class="el" href="vulkan__framebuffer_8c_source.html#l00017">vulkan_framebuffer_create()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00741">recreate_swapchain()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00082">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00758">recreate_swapchain()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
-<a id="ac7c74c146850082989f7cd632fdab5ea" name="ac7c74c146850082989f7cd632fdab5ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7c74c146850082989f7cd632fdab5ea">&#9670;&#160;</a></span>upload_data_range()</h2>
+<a id="ac31532b42a062bc57ebef2f371970719" name="ac31532b42a062bc57ebef2f371970719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac31532b42a062bc57ebef2f371970719">&#9670;&#160;</a></span>upload_data_range()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -441,7 +452,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const void *&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>data</em>&#160;</td>
         </tr>
         <tr>
@@ -468,11 +479,11 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00042">42</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00043">43</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00152">vulkan_buffer_copy_to()</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00010">vulkan_buffer_create()</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00057">vulkan_buffer_destroy()</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00145">vulkan_buffer_load_data()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00161">vulkan_buffer_copy_to()</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00017">vulkan_buffer_create()</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00064">vulkan_buffer_destroy()</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00154">vulkan_buffer_load_data()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00082">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -527,16 +538,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Always returns VK_False (no need to abort due to message). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00653">653</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00670">670</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
 <p class="reference">References <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="logger_8h_source.html#l00230">KTRACE</a>, and <a class="el" href="logger_8h_source.html#l00179">KWARN</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00082">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
-<a id="a1d648bef014f63076dd8708f0cedff68" name="a1d648bef014f63076dd8708f0cedff68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d648bef014f63076dd8708f0cedff68">&#9670;&#160;</a></span>vulkan_backend_update_object()</h2>
+<a id="a473f9be87792ec76a5af5ac7bcf89971" name="a473f9be87792ec76a5af5ac7bcf89971"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a473f9be87792ec76a5af5ac7bcf89971">&#9670;&#160;</a></span>vulkan_backend_update_object()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -544,8 +555,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void vulkan_backend_update_object </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a>&#160;</td>
-          <td class="paramname"><em>model</em></td><td>)</td>
+          <td class="paramtype">geometry_render_data&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -560,9 +571,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00611">611</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00628">628</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00219">vulkan_object_shader_update_object()</a>, and <a class="el" href="vulkan__object__shader_8c_source.html#l00182">vulkan_object_shader_use()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00298">vulkan_object_shader_update_object()</a>, and <a class="el" href="vulkan__object__shader_8c_source.html#l00257">vulkan_object_shader_use()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>.</p>
 
@@ -605,9 +616,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful; otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00435">435</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00451">451</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="vulkan__backend_8c_source.html#l00741">recreate_swapchain()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00054">vulkan_command_buffer_begin()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00085">vulkan_command_buffer_reset()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00042">vulkan_fence_wait()</a>, <a class="el" href="vulkan__renderpass_8c_source.html#l00181">vulkan_renderpass_begin()</a>, <a class="el" href="vulkan__utils_8c_source.html#l00098">vulkan_result_is_success()</a>, <a class="el" href="vulkan__utils_8c_source.html#l00015">vulkan_result_string()</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00118">vulkan_swapchain_acquire_next_image_index()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="vulkan__backend_8c_source.html#l00758">recreate_swapchain()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00054">vulkan_command_buffer_begin()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00085">vulkan_command_buffer_reset()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00042">vulkan_fence_wait()</a>, <a class="el" href="vulkan__renderpass_8c_source.html#l00181">vulkan_renderpass_begin()</a>, <a class="el" href="vulkan__utils_8c_source.html#l00098">vulkan_result_is_success()</a>, <a class="el" href="vulkan__utils_8c_source.html#l00015">vulkan_result_string()</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00118">vulkan_swapchain_acquire_next_image_index()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>.</p>
 
@@ -650,9 +661,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful; otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00539">539</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00556">556</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00076">vulkan_command_buffer_end()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00081">vulkan_command_buffer_update_submitted()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00078">vulkan_fence_reset()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00042">vulkan_fence_wait()</a>, <a class="el" href="vulkan__renderpass_8c_source.html#l00226">vulkan_renderpass_end()</a>, <a class="el" href="vulkan__utils_8c_source.html#l00015">vulkan_result_string()</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00158">vulkan_swapchain_present()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00076">vulkan_command_buffer_end()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00081">vulkan_command_buffer_update_submitted()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00078">vulkan_fence_reset()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00042">vulkan_fence_wait()</a>, <a class="el" href="vulkan__renderpass_8c_source.html#l00226">vulkan_renderpass_end()</a>, <a class="el" href="vulkan__utils_8c_source.html#l00015">vulkan_result_string()</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00158">vulkan_swapchain_present()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>.</p>
 
@@ -696,9 +707,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if successful; otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00082">82</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00083">83</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="application_8c_source.html#l00372">application_get_framebuffer_size()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00040">cached_framebuffer_height</a>, <a class="el" href="vulkan__backend_8c_source.html#l00037">cached_framebuffer_width</a>, <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="vulkan__backend_8c_source.html#l00816">create_buffers()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00694">create_command_buffers()</a>, <a class="el" href="darray_8h_source.html#l00148">darray_create</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00182">darray_push</a>, <a class="el" href="darray_8h_source.html#l00159">darray_reserve</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="vulkan__backend_8c_source.html#l00676">find_memory_index()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00031">INDEX_COUNT</a>, <a class="el" href="asserts_8h_source.html#l00084">KASSERT_MSG</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="vulkan__platform_8h.html#aaaf33dc6309c5d8963e3a8515493dfd3">platform_create_vulkan_surface()</a>, <a class="el" href="vulkan__platform_8h.html#ac6f33d791e5445db00300cfd71d88702">platform_get_required_extension_names()</a>, <a class="el" href="math__types_8h_source.html#l00175">vertex_3d::position</a>, <a class="el" href="vulkan__backend_8c_source.html#l00722">regenerate_framebuffers()</a>, <a class="el" href="kstring_8c_source.html#l00037">strings_equal()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__backend_8c_source.html#l00042">upload_data_range()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00029">VERTEX_COUNT</a>, <a class="el" href="vulkan__backend_8c_source.html#l00653">vk_debug_callback()</a>, <a class="el" href="vulkan__device_8c_source.html#l00149">vulkan_device_create()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00013">vulkan_fence_create()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00020">vulkan_object_shader_create()</a>, <a class="el" href="vulkan__renderpass_8c_source.html#l00043">vulkan_renderpass_create()</a>, <a class="el" href="vulkan__swapchain_8c_source.html#l00061">vulkan_swapchain_create()</a>, <a class="el" href="math__types_8h_source.html#l00068">vec3_u::x</a>, and <a class="el" href="math__types_8h_source.html#l00072">vec3_u::y</a>.</p>
+<p class="reference">References <a class="el" href="application_8c_source.html#l00372">application_get_framebuffer_size()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00041">cached_framebuffer_height</a>, <a class="el" href="vulkan__backend_8c_source.html#l00038">cached_framebuffer_width</a>, <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="vulkan__backend_8c_source.html#l00833">create_buffers()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00711">create_command_buffers()</a>, <a class="el" href="darray_8h_source.html#l00148">darray_create</a>, <a class="el" href="darray_8h_source.html#l00258">darray_length</a>, <a class="el" href="darray_8h_source.html#l00182">darray_push</a>, <a class="el" href="darray_8h_source.html#l00159">darray_reserve</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="vulkan__backend_8c_source.html#l00693">find_memory_index()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00032">INDEX_COUNT</a>, <a class="el" href="asserts_8h_source.html#l00084">KASSERT_MSG</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="vulkan__platform_8h.html#aaaf33dc6309c5d8963e3a8515493dfd3">platform_create_vulkan_surface()</a>, <a class="el" href="vulkan__platform_8h.html#ac6f33d791e5445db00300cfd71d88702">platform_get_required_extension_names()</a>, <a class="el" href="math__types_8h_source.html#l00175">vertex_3d::position</a>, <a class="el" href="vulkan__backend_8c_source.html#l00739">regenerate_framebuffers()</a>, <a class="el" href="kstring_8c_source.html#l00037">strings_equal()</a>, <a class="el" href="math__types_8h_source.html#l00177">vertex_3d::texcoord</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__backend_8c_source.html#l00043">upload_data_range()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00030">VERTEX_COUNT</a>, <a class="el" href="vulkan__backend_8c_source.html#l00670">vk_debug_callback()</a>, <a class="el" href="vulkan__device_8c_source.html#l00149">vulkan_device_create()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00013">vulkan_fence_create()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00401">vulkan_object_shader_acquire_resources()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00028">vulkan_object_shader_create()</a>, <a class="el" href="vulkan__renderpass_8c_source.html#l00043">vulkan_renderpass_create()</a>, <a class="el" href="vulkan__swapchain_8c_source.html#l00061">vulkan_swapchain_create()</a>, <a class="el" href="math__types_8h_source.html#l00036">vec2_u::x</a>, <a class="el" href="math__types_8h_source.html#l00068">vec3_u::x</a>, <a class="el" href="math__types_8h_source.html#l00040">vec2_u::y</a>, and <a class="el" href="math__types_8h_source.html#l00072">vec3_u::y</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>.</p>
 
@@ -747,9 +758,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00424">424</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00440">440</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00040">cached_framebuffer_height</a>, <a class="el" href="vulkan__backend_8c_source.html#l00037">cached_framebuffer_width</a>, <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, and <a class="el" href="logger_8h_source.html#l00196">KINFO</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00041">cached_framebuffer_height</a>, <a class="el" href="vulkan__backend_8c_source.html#l00038">cached_framebuffer_width</a>, <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, and <a class="el" href="logger_8h_source.html#l00196">KINFO</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>.</p>
 
@@ -780,9 +791,103 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00327">327</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00343">343</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="darray_8h_source.html#l00170">darray_destroy</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00057">vulkan_buffer_destroy()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00040">vulkan_command_buffer_free()</a>, <a class="el" href="vulkan__device_8c_source.html#l00258">vulkan_device_destroy()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00031">vulkan_fence_destroy()</a>, <a class="el" href="vulkan__framebuffer_8c_source.html#l00051">vulkan_framebuffer_destroy()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00153">vulkan_object_shader_destroy()</a>, <a class="el" href="vulkan__renderpass_8c_source.html#l00159">vulkan_renderpass_destroy()</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00098">vulkan_swapchain_destroy()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="darray_8h_source.html#l00170">darray_destroy</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="logger_8h_source.html#l00196">KINFO</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00064">vulkan_buffer_destroy()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00040">vulkan_command_buffer_free()</a>, <a class="el" href="vulkan__device_8c_source.html#l00258">vulkan_device_destroy()</a>, <a class="el" href="vulkan__fence_8c_source.html#l00031">vulkan_fence_destroy()</a>, <a class="el" href="vulkan__framebuffer_8c_source.html#l00051">vulkan_framebuffer_destroy()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00220">vulkan_object_shader_destroy()</a>, <a class="el" href="vulkan__renderpass_8c_source.html#l00159">vulkan_renderpass_destroy()</a>, and <a class="el" href="vulkan__swapchain_8c_source.html#l00098">vulkan_swapchain_destroy()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>.</p>
+
+</div>
+</div>
+<a id="a067715ce2c277cc16f8006041dfdcf3e" name="a067715ce2c277cc16f8006041dfdcf3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a067715ce2c277cc16f8006041dfdcf3e">&#9670;&#160;</a></span>vulkan_renderer_create_texture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vulkan_renderer_create_texture </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td>
+          <td class="paramname"><em>auto_release</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>channel_count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *&#160;</td>
+          <td class="paramname"><em>pixels</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td>
+          <td class="paramname"><em>has_transparency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structtexture.html">texture</a> *&#160;</td>
+          <td class="paramname"><em>out_texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00868">868</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+
+<p class="reference">References <a class="el" href="resource__types_8h_source.html#l00029">texture::channel_count</a>, <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="resource__types_8h_source.html#l00031">texture::has_transparency</a>, <a class="el" href="resource__types_8h_source.html#l00027">texture::height</a>, <a class="el" href="resource__types_8h_source.html#l00035">texture::internal_data</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="kmemory_8c_source.html#l00122">kallocate()</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmemory_8h_source.html#l00056">MEMORY_TAG_TEXTURE</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00017">vulkan_buffer_create()</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00064">vulkan_buffer_destroy()</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00154">vulkan_buffer_load_data()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00089">vulkan_command_buffer_allocate_and_begin_single_use()</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00097">vulkan_command_buffer_end_single_use()</a>, <a class="el" href="vulkan__image_8c_source.html#l00196">vulkan_image_copy_from_buffer()</a>, <a class="el" href="vulkan__image_8c_source.html#l00041">vulkan_image_create()</a>, <a class="el" href="vulkan__image_8c_source.html#l00134">vulkan_image_transition_layout()</a>, <a class="el" href="vulkan__utils_8c_source.html#l00098">vulkan_result_is_success()</a>, <a class="el" href="vulkan__utils_8c_source.html#l00015">vulkan_result_string()</a>, and <a class="el" href="resource__types_8h_source.html#l00025">texture::width</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>.</p>
+
+</div>
+</div>
+<a id="a960741cefcbdc168f758b46407bcc9ec" name="a960741cefcbdc168f758b46407bcc9ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a960741cefcbdc168f758b46407bcc9ec">&#9670;&#160;</a></span>vulkan_renderer_destroy_texture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vulkan_renderer_destroy_texture </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtexture.html">texture</a> *&#160;</td>
+          <td class="paramname"><em>texture</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00983">983</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="resource__types_8h_source.html#l00035">texture::internal_data</a>, <a class="el" href="kmemory_8c_source.html#l00149">kfree()</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="kmemory_8h_source.html#l00056">MEMORY_TAG_TEXTURE</a>, and <a class="el" href="vulkan__image_8c_source.html#l00241">vulkan_image_destroy()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>.</p>
 
@@ -846,9 +951,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00526">526</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__backend_8c_source.html#l00543">543</a> of file <a class="el" href="vulkan__backend_8c_source.html">vulkan_backend.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00187">vulkan_object_shader_update_global_state()</a>, and <a class="el" href="vulkan__object__shader_8c_source.html#l00182">vulkan_object_shader_use()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00262">vulkan_object_shader_update_global_state()</a>, and <a class="el" href="vulkan__object__shader_8c_source.html#l00257">vulkan_object_shader_use()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="renderer__backend_8c_source.html#l00025">renderer_backend_create()</a>.</p>
 
@@ -857,7 +962,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:32:08 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

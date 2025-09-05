@@ -78,6 +78,9 @@ $(function() {
   <div class="headertitle"><div class="title">vulkan_buffer.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Vulkan buffer management interface for the Koru Engine.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;vulkan_types.inl&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for vulkan_buffer.h:</div>
@@ -86,7 +89,7 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="vulkan__buffer_8h__incl.png" border="0" usemap="#aengine_2src_2renderer_2vulkan_2vulkan__buffer_8h" alt=""/></div>
 <map name="aengine_2src_2renderer_2vulkan_2vulkan__buffer_8h" id="aengine_2src_2renderer_2vulkan_2vulkan__buffer_8h">
-<area shape="rect" title=" " alt="" coords="5,5,177,45"/>
+<area shape="rect" title="Vulkan buffer management interface for the Koru Engine." alt="" coords="5,5,177,45"/>
 <area shape="rect" title=" " alt="" coords="27,93,155,119"/>
 <area shape="poly" title=" " alt="" coords="94,46,94,79,89,79,89,46"/>
 </map>
@@ -98,12 +101,12 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="vulkan__buffer_8h__dep__incl.png" border="0" usemap="#aengine_2src_2renderer_2vulkan_2vulkan__buffer_8hdep" alt=""/></div>
 <map name="aengine_2src_2renderer_2vulkan_2vulkan__buffer_8hdep" id="aengine_2src_2renderer_2vulkan_2vulkan__buffer_8hdep">
-<area shape="rect" title=" " alt="" coords="209,5,381,45"/>
-<area shape="rect" href="vulkan__object__shader_8c.html" title=" " alt="" coords="5,93,176,148"/>
+<area shape="rect" title="Vulkan buffer management interface for the Koru Engine." alt="" coords="209,5,381,45"/>
+<area shape="rect" href="vulkan__object__shader_8c.html" title="Implements a Vulkan shader for rendering 3D objects with support for basic lighting and texturing...." alt="" coords="5,93,176,148"/>
 <area shape="poly" title=" " alt="" coords="242,53,149,96,147,91,240,49"/>
 <area shape="rect" href="vulkan__backend_8c.html" title="Implementation of the Vulkan renderer backend." alt="" coords="201,101,389,141"/>
 <area shape="poly" title=" " alt="" coords="297,59,297,101,292,101,292,59"/>
-<area shape="rect" href="vulkan__buffer_8c.html" title=" " alt="" coords="413,101,584,141"/>
+<area shape="rect" href="vulkan__buffer_8c.html" title="Implements Vulkan buffer management functions for the Koru Engine." alt="" coords="413,101,584,141"/>
 <area shape="poly" title=" " alt="" coords="350,49,459,98,456,103,347,54"/>
 </map>
 </div>
@@ -113,19 +116,89 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:adc1253645b021b8c8dd0ff5f001c1668" id="r_adc1253645b021b8c8dd0ff5f001c1668"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__buffer_8h.html#adc1253645b021b8c8dd0ff5f001c1668">vulkan_buffer_create</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, VkBufferUsageFlagBits usage, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> memory_property_flags, <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> bind_on_create, vulkan_buffer *out_buffer)</td></tr>
+<tr class="memdesc:adc1253645b021b8c8dd0ff5f001c1668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Vulkan buffer with the specified parameters. The buffer can be optionally bound to memory upon creation.  <br /></td></tr>
 <tr class="separator:adc1253645b021b8c8dd0ff5f001c1668"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0777c036a5cdb692aa0fd21fd1df2adc" id="r_a0777c036a5cdb692aa0fd21fd1df2adc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__buffer_8h.html#a0777c036a5cdb692aa0fd21fd1df2adc">vulkan_buffer_destroy</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer *buffer)</td></tr>
+<tr class="memdesc:a0777c036a5cdb692aa0fd21fd1df2adc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a Vulkan buffer and frees its associated memory. Must be called before destroying the Vulkan device or context.  <br /></td></tr>
 <tr class="separator:a0777c036a5cdb692aa0fd21fd1df2adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ab2cfc9a303e3f204874a58d9d15f6f" id="r_a1ab2cfc9a303e3f204874a58d9d15f6f"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__buffer_8h.html#a1ab2cfc9a303e3f204874a58d9d15f6f">vulkan_buffer_lock_memory</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer *buffer, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> flags)</td></tr>
+<tr class="memdesc:a1ab2cfc9a303e3f204874a58d9d15f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks a region of the buffer's memory for CPU access. Returns a pointer to the mapped memory region.  <br /></td></tr>
 <tr class="separator:a1ab2cfc9a303e3f204874a58d9d15f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a320b309d7773e97e06f2f5ffb342e712" id="r_a320b309d7773e97e06f2f5ffb342e712"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__buffer_8h.html#a320b309d7773e97e06f2f5ffb342e712">vulkan_buffer_unlock_memory</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer *buffer)</td></tr>
+<tr class="memdesc:a320b309d7773e97e06f2f5ffb342e712"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlocks a previously locked region of the buffer's memory. Must be called after finishing CPU access to the memory.  <br /></td></tr>
 <tr class="separator:a320b309d7773e97e06f2f5ffb342e712"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b2c5ee8d9fbcd29ea73eef9fa5a927" id="r_a21b2c5ee8d9fbcd29ea73eef9fa5a927"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__buffer_8h.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">vulkan_buffer_bind</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer *buffer, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset)</td></tr>
+<tr class="memdesc:a21b2c5ee8d9fbcd29ea73eef9fa5a927"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds the buffer to its allocated memory at the specified offset. Must be called before using the buffer in commands.  <br /></td></tr>
+<tr class="separator:a21b2c5ee8d9fbcd29ea73eef9fa5a927"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74035aeef79e5ffe833042ce00499a64" id="r_a74035aeef79e5ffe833042ce00499a64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__buffer_8h.html#a74035aeef79e5ffe833042ce00499a64">vulkan_buffer_load_data</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer *buffer, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> flags, const void *data)</td></tr>
+<tr class="memdesc:a74035aeef79e5ffe833042ce00499a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads data into the buffer at the specified offset. The buffer must be created with memory properties that allow CPU access.  <br /></td></tr>
 <tr class="separator:a74035aeef79e5ffe833042ce00499a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb4dafb2469273c4c860ba47829e2042" id="r_afb4dafb2469273c4c860ba47829e2042"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__buffer_8h.html#afb4dafb2469273c4c860ba47829e2042">vulkan_buffer_copy_to</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, VkCommandPool pool, VkFence fence, VkQueue queue, VkBuffer source, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> source_offset, VkBuffer dest, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> dest_offset, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size)</td></tr>
+<tr class="memdesc:afb4dafb2469273c4c860ba47829e2042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies data from one buffer to another using a command buffer. Both buffers must be created with appropriate usage flags to allow copying.  <br /></td></tr>
 <tr class="separator:afb4dafb2469273c4c860ba47829e2042"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Vulkan buffer management interface for the Koru Engine. </p>
+<p>This module provides functions to:</p><ul>
+<li>Create and destroy Vulkan buffers</li>
+<li>Lock and unlock buffer memory for CPU access</li>
+<li>Load data into buffers</li>
+<li>Copy data between buffers</li>
+</ul>
+<p>Buffers are used to store vertex data, index data, uniform data, and other GPU resources. Proper management of buffer memory is crucial for performance and correctness in Vulkan applications. </p>
+
+<p class="definition">Definition in file <a class="el" href="vulkan__buffer_8h_source.html">vulkan_buffer.h</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a21b2c5ee8d9fbcd29ea73eef9fa5a927" name="a21b2c5ee8d9fbcd29ea73eef9fa5a927"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21b2c5ee8d9fbcd29ea73eef9fa5a927">&#9670;&#160;</a></span>vulkan_buffer_bind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vulkan_buffer_bind </td>
+          <td>(</td>
+          <td class="paramtype">vulkan_context *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vulkan_buffer *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Binds the buffer to its allocated memory at the specified offset. Must be called before using the buffer in commands. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">buffer</td><td>A pointer to the vulkan_buffer to bind. </td></tr>
+    <tr><td class="paramname">offset</td><td>The byte offset within the memory to bind the buffer to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00140">140</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
+
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__buffer_8c_source.html#l00017">vulkan_buffer_create()</a>.</p>
+
+</div>
+</div>
 <a id="afb4dafb2469273c4c860ba47829e2042" name="afb4dafb2469273c4c860ba47829e2042"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afb4dafb2469273c4c860ba47829e2042">&#9670;&#160;</a></span>vulkan_buffer_copy_to()</h2>
 
@@ -194,11 +267,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00152">152</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
+<p>Copies data from one buffer to another using a command buffer. Both buffers must be created with appropriate usage flags to allow copying. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">pool</td><td>The command pool to allocate the copy command buffer from. </td></tr>
+    <tr><td class="paramname">fence</td><td>A fence to signal when the copy operation is complete. </td></tr>
+    <tr><td class="paramname">queue</td><td>The queue to submit the copy command buffer to. </td></tr>
+    <tr><td class="paramname">source</td><td>The source buffer to copy data from. </td></tr>
+    <tr><td class="paramname">source_offset</td><td>The byte offset within the source buffer to start copying from. </td></tr>
+    <tr><td class="paramname">dest</td><td>The destination buffer to copy data to. </td></tr>
+    <tr><td class="paramname">dest_offset</td><td>The byte offset within the destination buffer to start copying to. </td></tr>
+    <tr><td class="paramname">size</td><td>The size in bytes of the data to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00089">vulkan_command_buffer_allocate_and_begin_single_use()</a>, and <a class="el" href="vulkan__command__buffer_8c_source.html#l00097">vulkan_command_buffer_end_single_use()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00161">161</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00042">upload_data_range()</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00072">vulkan_buffer_resize()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="vulkan__command__buffer_8c_source.html#l00089">vulkan_command_buffer_allocate_and_begin_single_use()</a>, and <a class="el" href="vulkan__command__buffer_8c_source.html#l00097">vulkan_command_buffer_end_single_use()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00043">upload_data_range()</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00081">vulkan_buffer_resize()</a>.</p>
 
 </div>
 </div>
@@ -252,11 +341,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00010">10</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
+<p>Creates a Vulkan buffer with the specified parameters. The buffer can be optionally bound to memory upon creation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">size</td><td>The size of the buffer in bytes. </td></tr>
+    <tr><td class="paramname">usage</td><td>Usage flags indicating how the buffer will be used (e.g., VK_BUFFER_USAGE_VERTEX_BUFFER_BIT). </td></tr>
+    <tr><td class="paramname">memory_property_flags</td><td>Memory property flags indicating how the buffer's memory can be accessed (e.g., VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT). </td></tr>
+    <tr><td class="paramname">bind_on_create</td><td>If True, the buffer will be bound to memory immediately after creation. </td></tr>
+    <tr><td class="paramname">out_buffer</td><td>A pointer to a vulkan_buffer struct to populate with the created buffer's details. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the buffer was created successfully, False otherwise. </dd></dl>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00131">vulkan_buffer_bind()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00017">17</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00816">create_buffers()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00042">upload_data_range()</a>, and <a class="el" href="vulkan__object__shader_8c_source.html#l00020">vulkan_object_shader_create()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00140">vulkan_buffer_bind()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00833">create_buffers()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00043">upload_data_range()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00028">vulkan_object_shader_create()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00868">vulkan_renderer_create_texture()</a>.</p>
 
 </div>
 </div>
@@ -286,11 +389,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00057">57</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
+<p>Destroys a Vulkan buffer and frees its associated memory. Must be called before destroying the Vulkan device or context. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">buffer</td><td>A pointer to the vulkan_buffer to destroy. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, and <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00064">64</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00042">upload_data_range()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00153">vulkan_object_shader_destroy()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00327">vulkan_renderer_backend_shutdown()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, and <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00043">upload_data_range()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00220">vulkan_object_shader_destroy()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00343">vulkan_renderer_backend_shutdown()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00868">vulkan_renderer_create_texture()</a>.</p>
 
 </div>
 </div>
@@ -344,11 +456,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00145">145</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
+<p>Loads data into the buffer at the specified offset. The buffer must be created with memory properties that allow CPU access. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">buffer</td><td>A pointer to the vulkan_buffer to load data into. </td></tr>
+    <tr><td class="paramname">offset</td><td>The byte offset within the buffer to start loading data. </td></tr>
+    <tr><td class="paramname">size</td><td>The size in bytes of the data to load. </td></tr>
+    <tr><td class="paramname">flags</td><td>Flags for memory operations (e.g., 0 for default behavior). </td></tr>
+    <tr><td class="paramname">data</td><td>A pointer to the source data to copy into the buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, and <a class="el" href="kmemory_8c_source.html#l00182">kcopy_memory()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00154">154</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00042">upload_data_range()</a>, and <a class="el" href="vulkan__object__shader_8c_source.html#l00187">vulkan_object_shader_update_global_state()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, and <a class="el" href="kmemory_8c_source.html#l00182">kcopy_memory()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00043">upload_data_range()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00262">vulkan_object_shader_update_global_state()</a>, <a class="el" href="vulkan__object__shader_8c_source.html#l00298">vulkan_object_shader_update_object()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00868">vulkan_renderer_create_texture()</a>.</p>
 
 </div>
 </div>
@@ -396,9 +521,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00135">135</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
+<p>Locks a region of the buffer's memory for CPU access. Returns a pointer to the mapped memory region. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">buffer</td><td>A pointer to the vulkan_buffer to lock. </td></tr>
+    <tr><td class="paramname">offset</td><td>The byte offset within the buffer to start locking. </td></tr>
+    <tr><td class="paramname">size</td><td>The size in bytes of the region to lock. </td></tr>
+    <tr><td class="paramname">flags</td><td>Flags for memory mapping (e.g., 0 for default behavior). </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00144">144</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
+
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>.</p>
 
 </div>
 </div>
@@ -428,16 +565,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00141">141</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
+<p>Unlocks a previously locked region of the buffer's memory. Must be called after finishing CPU access to the memory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">buffer</td><td>A pointer to the vulkan_buffer to unlock. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__buffer_8c_source.html#l00150">150</a> of file <a class="el" href="vulkan__buffer_8c_source.html">vulkan_buffer.c</a>.</p>
+
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:32:08 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

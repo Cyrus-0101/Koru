@@ -78,6 +78,9 @@ $(function() {
   <div class="headertitle"><div class="title">vulkan_shader_utils.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Utility functions for Vulkan shader module creation.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;vulkan_types.inl&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for vulkan_shader_utils.h:</div>
@@ -86,7 +89,7 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="vulkan__shader__utils_8h__incl.png" border="0" usemap="#aengine_2src_2renderer_2vulkan_2vulkan__shader__utils_8h" alt=""/></div>
 <map name="aengine_2src_2renderer_2vulkan_2vulkan__shader__utils_8h" id="aengine_2src_2renderer_2vulkan_2vulkan__shader__utils_8h">
-<area shape="rect" title=" " alt="" coords="5,5,172,60"/>
+<area shape="rect" title="Utility functions for Vulkan shader module creation." alt="" coords="5,5,172,60"/>
 <area shape="rect" title=" " alt="" coords="25,108,153,133"/>
 <area shape="poly" title=" " alt="" coords="91,60,91,94,86,94,86,60"/>
 </map>
@@ -98,10 +101,10 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="vulkan__shader__utils_8h__dep__incl.png" border="0" usemap="#aengine_2src_2renderer_2vulkan_2vulkan__shader__utils_8hdep" alt=""/></div>
 <map name="aengine_2src_2renderer_2vulkan_2vulkan__shader__utils_8hdep" id="aengine_2src_2renderer_2vulkan_2vulkan__shader__utils_8hdep">
-<area shape="rect" title=" " alt="" coords="103,5,270,60"/>
-<area shape="rect" href="vulkan__object__shader_8c.html" title=" " alt="" coords="5,108,176,163"/>
+<area shape="rect" title="Utility functions for Vulkan shader module creation." alt="" coords="103,5,270,60"/>
+<area shape="rect" href="vulkan__object__shader_8c.html" title="Implements a Vulkan shader for rendering 3D objects with support for basic lighting and texturing...." alt="" coords="5,108,176,163"/>
 <area shape="poly" title=" " alt="" coords="154,72,118,110,114,106,150,68"/>
-<area shape="rect" href="vulkan__shader__utils_8c.html" title=" " alt="" coords="201,108,367,163"/>
+<area shape="rect" href="vulkan__shader__utils_8c.html" title="Implements utility functions for loading and creating Vulkan shader modules." alt="" coords="201,108,367,163"/>
 <area shape="poly" title=" " alt="" coords="224,68,261,106,257,110,220,72"/>
 </map>
 </div>
@@ -111,9 +114,15 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:abdafeacc190d500bbd72aa141cadf2e5" id="r_abdafeacc190d500bbd72aa141cadf2e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__shader__utils_8h.html#abdafeacc190d500bbd72aa141cadf2e5">create_shader_module</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, const char *name, const char *type_str, VkShaderStageFlagBits shader_stage_flag, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> stage_index, vulkan_shader_stage *shader_stages)</td></tr>
+<tr class="memdesc:abdafeacc190d500bbd72aa141cadf2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Vulkan shader module from a SPIR-V binary file.  <br /></td></tr>
 <tr class="separator:abdafeacc190d500bbd72aa141cadf2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Utility functions for Vulkan shader module creation. </p>
+<p>This module provides functions to load SPIR-V shader binaries from files, create Vulkan shader modules, and set up shader stage info for pipeline creation. It supports multiple shader stages such as vertex and fragment shaders. </p>
+
+<p class="definition">Definition in file <a class="el" href="vulkan__shader__utils_8h_source.html">vulkan_shader_utils.h</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="abdafeacc190d500bbd72aa141cadf2e5" name="abdafeacc190d500bbd72aa141cadf2e5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abdafeacc190d500bbd72aa141cadf2e5">&#9670;&#160;</a></span>create_shader_module()</h2>
 
@@ -164,18 +173,33 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="vulkan__shader__utils_8c_source.html#l00009">9</a> of file <a class="el" href="vulkan__shader__utils_8c_source.html">vulkan_shader_utils.c</a>.</p>
+<p>Creates a Vulkan shader module from a SPIR-V binary file. </p>
+<p>This function loads the specified SPIR-V file, creates a VkShaderModule, and populates the corresponding vulkan_shader_stage structure with creation info and stage info for pipeline use.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">name</td><td>The base name of the shader (without extension). </td></tr>
+    <tr><td class="paramname">type_str</td><td>The shader type string (e.g., "vert", "frag"). </td></tr>
+    <tr><td class="paramname">shader_stage_flag</td><td>The VkShaderStageFlagBits indicating the shader stage. </td></tr>
+    <tr><td class="paramname">stage_index</td><td>The index in the shader_stages array to populate. </td></tr>
+    <tr><td class="paramname">shader_stages</td><td>An array of vulkan_shader_stage to hold created stages. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the shader module was created successfully, False otherwise. </dd></dl>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="filesystem_8h_source.html#l00024">FILE_MODE_READ</a>, <a class="el" href="filesystem_8c_source.html#l00044">filesystem_close()</a>, <a class="el" href="filesystem_8c_source.html#l00015">filesystem_open()</a>, <a class="el" href="filesystem_8c_source.html#l00092">filesystem_read_all_bytes()</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmemory_8c_source.html#l00149">kfree()</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="kmemory_8h_source.html#l00047">MEMORY_TAG_STRING</a>, <a class="el" href="kstring_8c_source.html#l00041">string_format()</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__shader__utils_8c_source.html#l00017">17</a> of file <a class="el" href="vulkan__shader__utils_8c_source.html">vulkan_shader_utils.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__object__shader_8c_source.html#l00020">vulkan_object_shader_create()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="filesystem_8h_source.html#l00033">FILE_MODE_READ</a>, <a class="el" href="filesystem_8c_source.html#l00052">filesystem_close()</a>, <a class="el" href="filesystem_8c_source.html#l00023">filesystem_open()</a>, <a class="el" href="filesystem_8c_source.html#l00100">filesystem_read_all_bytes()</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmemory_8c_source.html#l00149">kfree()</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="kmemory_8h_source.html#l00047">MEMORY_TAG_STRING</a>, <a class="el" href="kstring_8c_source.html#l00041">string_format()</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__object__shader_8c_source.html#l00028">vulkan_object_shader_create()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:32:08 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

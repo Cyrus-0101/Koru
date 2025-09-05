@@ -12,7 +12,7 @@ Collaboration diagram for renderer\+\_\+system\+\_\+state\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=209pt]{structrenderer__system__state__coll__graph}
+\includegraphics[width=250pt]{structrenderer__system__state__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Data Fields}
@@ -21,13 +21,17 @@ Collaboration diagram for renderer\+\_\+system\+\_\+state\+:
 renderer\+\_\+backend \mbox{\hyperlink{structrenderer__system__state_a52c3666e5bca364ff89ff93792576649}{backend}}
 \begin{DoxyCompactList}\small\item\em Pointer to the platform-\/specific state. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} \mbox{\hyperlink{structrenderer__system__state_ac3adbc6ca69f6dd465396ce8eab970f4}{projection}}
-\item 
+\begin{DoxyCompactList}\small\item\em The projection matrix used for rendering. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} \mbox{\hyperlink{structrenderer__system__state_a5ab9382c2529098371f0471a0fc86f62}{view}}
-\item 
+\begin{DoxyCompactList}\small\item\em The view matrix used for rendering. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{structrenderer__system__state_ada2e7206a4fa1f531ef5c9f2c2d63884}{near\+\_\+clip}}
-\item 
+\begin{DoxyCompactList}\small\item\em Near clipping plane distance. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \mbox{\hyperlink{structrenderer__system__state_a61ee40d959ec115ad343a2a029e308d2}{far\+\_\+clip}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Far clipping plane distance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtexture}{texture}} \mbox{\hyperlink{structrenderer__system__state_a384a5d9789aa644e55fe9cadd4b1104b}{default\+\_\+texture}}
+\begin{DoxyCompactList}\small\item\em The texture used. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtexture}{texture}} \mbox{\hyperlink{structrenderer__system__state_a01ba409121483f7b02e5b9d864293c47}{test\+\_\+diffuse}}
+\begin{DoxyCompactList}\small\item\em A test texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -35,7 +39,7 @@ Represents the state of the rendering system.
 
 Contains the current rendering backend and its associated state. 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00024}{24}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00040}{40}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
@@ -52,11 +56,29 @@ Pointer to the platform-\/specific state.
 
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00028}{28}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00044}{44}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00102}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00147}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00119}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00085}{renderer\+\_\+system\+\_\+shutdown()}}.
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00325}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00411}{renderer\+\_\+create\+\_\+texture()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00423}{renderer\+\_\+destroy\+\_\+texture()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00370}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00342}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00352}{renderer\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00219}{renderer\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00300}{renderer\+\_\+system\+\_\+shutdown()}}.
+
+\Hypertarget{structrenderer__system__state_a384a5d9789aa644e55fe9cadd4b1104b}\label{structrenderer__system__state_a384a5d9789aa644e55fe9cadd4b1104b} 
+\index{renderer\_system\_state@{renderer\_system\_state}!default\_texture@{default\_texture}}
+\index{default\_texture@{default\_texture}!renderer\_system\_state@{renderer\_system\_state}}
+\doxysubsubsection{\texorpdfstring{default\_texture}{default\_texture}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtexture}{texture}} renderer\+\_\+system\+\_\+state\+::default\+\_\+texture}
+
+
+
+The texture used. 
+
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00069}{69}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00219}{renderer\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00300}{renderer\+\_\+system\+\_\+shutdown()}}.
 
 \Hypertarget{structrenderer__system__state_a61ee40d959ec115ad343a2a029e308d2}\label{structrenderer__system__state_a61ee40d959ec115ad343a2a029e308d2} 
 \index{renderer\_system\_state@{renderer\_system\_state}!far\_clip@{far\_clip}}
@@ -66,11 +88,15 @@ Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00102}{renderer\+\_
 
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{36}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Far clipping plane distance. 
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00064}{64}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00352}{renderer\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00219}{renderer\+\_\+system\+\_\+initialize()}}.
 
 \Hypertarget{structrenderer__system__state_ada2e7206a4fa1f531ef5c9f2c2d63884}\label{structrenderer__system__state_ada2e7206a4fa1f531ef5c9f2c2d63884} 
 \index{renderer\_system\_state@{renderer\_system\_state}!near\_clip@{near\_clip}}
@@ -80,11 +106,15 @@ Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_
 
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00034}{34}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Near clipping plane distance. 
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00059}{59}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00352}{renderer\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00219}{renderer\+\_\+system\+\_\+initialize()}}.
 
 \Hypertarget{structrenderer__system__state_ac3adbc6ca69f6dd465396ce8eab970f4}\label{structrenderer__system__state_ac3adbc6ca69f6dd465396ce8eab970f4} 
 \index{renderer\_system\_state@{renderer\_system\_state}!projection@{projection}}
@@ -94,11 +124,33 @@ Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_
 
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00030}{30}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+The projection matrix used for rendering. 
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00147}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00129}{renderer\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00049}{49}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00370}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00352}{renderer\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00219}{renderer\+\_\+system\+\_\+initialize()}}.
+
+\Hypertarget{structrenderer__system__state_a01ba409121483f7b02e5b9d864293c47}\label{structrenderer__system__state_a01ba409121483f7b02e5b9d864293c47} 
+\index{renderer\_system\_state@{renderer\_system\_state}!test\_diffuse@{test\_diffuse}}
+\index{test\_diffuse@{test\_diffuse}!renderer\_system\_state@{renderer\_system\_state}}
+\doxysubsubsection{\texorpdfstring{test\_diffuse}{test\_diffuse}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtexture}{texture}} renderer\+\_\+system\+\_\+state\+::test\+\_\+diffuse}
+
+
+
+A test texture. 
+
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00075}{75}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00202}{event\+\_\+on\+\_\+debug\+\_\+event()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00370}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00219}{renderer\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00300}{renderer\+\_\+system\+\_\+shutdown()}}.
 
 \Hypertarget{structrenderer__system__state_a5ab9382c2529098371f0471a0fc86f62}\label{structrenderer__system__state_a5ab9382c2529098371f0471a0fc86f62} 
 \index{renderer\_system\_state@{renderer\_system\_state}!view@{view}}
@@ -108,11 +160,15 @@ Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00147}{renderer\+\_
 
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00032}{32}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+The view matrix used for rendering. 
 
 
 
-Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00147}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00172}{renderer\+\_\+set\+\_\+view()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+initialize()}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00054}{54}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00370}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00407}{renderer\+\_\+set\+\_\+view()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00219}{renderer\+\_\+system\+\_\+initialize()}}.
 
 
 

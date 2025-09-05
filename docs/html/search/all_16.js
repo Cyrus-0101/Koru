@@ -1,7 +1,7 @@
 var searchData=
 [
   ['main_0',['main',['../entry_8h.html#a840291bc02cba5474a4cb46a9b9566fe',1,'entry.h']]],
-  ['management_20strong_1',['3. &lt;strong&gt;Resource Management&lt;/strong&gt;',['../index.html#autotoc_md10',1,'']]],
+  ['management_20strong_1',['3. &lt;strong&gt;Resource Management&lt;/strong&gt;',['../index.html#autotoc_md11',1,'']]],
   ['mat4_2',['mat4',['../math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30',1,'math_types.h']]],
   ['mat4_5fbackward_3',['mat4_backward',['../kmath_8h.html#a5462f2644541bc3a7a600ca6a036b40c',1,'kmath.h']]],
   ['mat4_5fdown_4',['mat4_down',['../kmath_8h.html#a928424d34db0f688d8ae97f779062326',1,'kmath.h']]],

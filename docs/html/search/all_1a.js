@@ -13,7 +13,7 @@ var searchData=
   ['quat_5fslerp_10',['quat_slerp',['../kmath_8h.html#aef737c7e466f76a8e93d4a8ee72d9b3a',1,'kmath.h']]],
   ['quat_5fto_5fmat4_11',['quat_to_mat4',['../kmath_8h.html#ac84936abc187f178a2228f699a5b5a9d',1,'kmath.h']]],
   ['quat_5fto_5frotation_5fmatrix_12',['quat_to_rotation_matrix',['../kmath_8h.html#a70c81ca5e2bcb020031dc593c9969609',1,'kmath.h']]],
-  ['query_20physical_20devices_13',['3. 🔍 Query Physical Devices',['../index.html#autotoc_md43',1,'']]],
-  ['query_20swapchain_20support_14',['6. 🔄 Query Swapchain Support',['../index.html#autotoc_md49',1,'']]],
-  ['queues_15',['5. ⏱ Get Queues',['../index.html#autotoc_md47',1,'']]]
+  ['query_20physical_20devices_13',['3. 🔍 Query Physical Devices',['../index.html#autotoc_md45',1,'']]],
+  ['query_20swapchain_20support_14',['6. 🔄 Query Swapchain Support',['../index.html#autotoc_md51',1,'']]],
+  ['queues_15',['5. ⏱ Get Queues',['../index.html#autotoc_md49',1,'']]]
 ];

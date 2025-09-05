@@ -6,13 +6,13 @@ Implementation of the testbed game logic.
 
 
 {\ttfamily \#include "{}game.\+h"{}}\newline
+{\ttfamily \#include $<$core/event.\+h$>$}\newline
 {\ttfamily \#include "{}core/input.\+h"{}}\newline
 {\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
 {\ttfamily \#include $<$core/logger.\+h$>$}\newline
 {\ttfamily \#include $<$math/kmath.\+h$>$}\newline
 {\ttfamily \#include $<$renderer/renderer\+\_\+frontend.\+h$>$}\newline
-Include dependency graph for game.\+c\+:
-\nopagebreak
+Include dependency graph for game.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -64,7 +64,7 @@ Definition in file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00040}{40}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00041}{41}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
@@ -72,7 +72,7 @@ References \mbox{\hyperlink{game_8h_source_l00046}{game\+\_\+state\+::camera\+\_
 
 
 
-Referenced by \mbox{\hyperlink{game_8c_source_l00093}{game\+\_\+update()}}.
+Referenced by \mbox{\hyperlink{game_8c_source_l00094}{game\+\_\+update()}}.
 
 \Hypertarget{game_8c_a0fb9410089eee00294c7bc231e8b23b3}\label{game_8c_a0fb9410089eee00294c7bc231e8b23b3} 
 \index{game.c@{game.c}!camera\_yaw@{camera\_yaw}}
@@ -82,7 +82,7 @@ Referenced by \mbox{\hyperlink{game_8c_source_l00093}{game\+\_\+update()}}.
 
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00050}{50}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00051}{51}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
@@ -90,7 +90,7 @@ References \mbox{\hyperlink{game_8h_source_l00046}{game\+\_\+state\+::camera\+\_
 
 
 
-Referenced by \mbox{\hyperlink{game_8c_source_l00093}{game\+\_\+update()}}.
+Referenced by \mbox{\hyperlink{game_8c_source_l00094}{game\+\_\+update()}}.
 
 \Hypertarget{game_8c_ab56d8511d5b55e40d88999e59fe8084e}\label{game_8c_ab56d8511d5b55e40d88999e59fe8084e} 
 \index{game.c@{game.c}!game\_initialize@{game\_initialize}}
@@ -121,7 +121,7 @@ True if initialization succeeded; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00066}{66}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00067}{67}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
@@ -161,7 +161,7 @@ Currently does nothing, but should be extended to\+:
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00198}{198}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00209}{209}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
@@ -198,7 +198,7 @@ True if rendering succeeded; False on unrecoverable error.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00182}{182}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00193}{193}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
@@ -239,11 +239,11 @@ True if update succeeded; False to request application exit.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00093}{93}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00094}{94}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
-References \mbox{\hyperlink{game_8c_source_l00040}{camera\+\_\+pitch()}}, \mbox{\hyperlink{game_8h_source_l00041}{game\+\_\+state\+::camera\+\_\+position}}, \mbox{\hyperlink{game_8h_source_l00048}{game\+\_\+state\+::camera\+\_\+view\+\_\+dirty}}, \mbox{\hyperlink{game_8c_source_l00050}{camera\+\_\+yaw()}}, \mbox{\hyperlink{kmemory_8c_source_l00244}{get\+\_\+memory\+\_\+alloc\+\_\+count()}}, \mbox{\hyperlink{input_8c_source_l00241}{input\+\_\+is\+\_\+key\+\_\+down()}}, \mbox{\hyperlink{input_8c_source_l00284}{input\+\_\+was\+\_\+key\+\_\+up()}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{kmath_8h_source_l01206}{mat4\+\_\+backward()}}, \mbox{\hyperlink{kmath_8h_source_l01191}{mat4\+\_\+forward()}}, \mbox{\hyperlink{kmath_8h_source_l01251}{mat4\+\_\+left()}}, \mbox{\hyperlink{kmath_8h_source_l01266}{mat4\+\_\+right()}}, \mbox{\hyperlink{game_8c_source_l00028}{recalculate\+\_\+view\+\_\+matrix()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00172}{renderer\+\_\+set\+\_\+view()}}, \mbox{\hyperlink{game__types_8h_source_l00064}{game\+::state}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{kmath_8h_source_l00443}{vec3\+\_\+add()}}, \mbox{\hyperlink{kmath_8h_source_l00589}{vec3\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00531}{vec3\+\_\+normalize()}}, \mbox{\hyperlink{kmath_8h_source_l00383}{vec3\+\_\+zero()}}, \mbox{\hyperlink{game_8h_source_l00036}{game\+\_\+state\+::view}}, \mbox{\hyperlink{math__types_8h_source_l00068}{vec3\+\_\+u\+::x}}, \mbox{\hyperlink{math__types_8h_source_l00072}{vec3\+\_\+u\+::y}}, and \mbox{\hyperlink{math__types_8h_source_l00076}{vec3\+\_\+u\+::z}}.
+References \mbox{\hyperlink{game_8c_source_l00041}{camera\+\_\+pitch()}}, \mbox{\hyperlink{game_8h_source_l00041}{game\+\_\+state\+::camera\+\_\+position}}, \mbox{\hyperlink{game_8h_source_l00048}{game\+\_\+state\+::camera\+\_\+view\+\_\+dirty}}, \mbox{\hyperlink{game_8c_source_l00051}{camera\+\_\+yaw()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{event_8h_source_l00222}{EVENT\+\_\+\+CODE\+\_\+\+DEBUG0}}, \mbox{\hyperlink{event_8c_source_l00150}{event\+\_\+fire()}}, \mbox{\hyperlink{kmemory_8c_source_l00244}{get\+\_\+memory\+\_\+alloc\+\_\+count()}}, \mbox{\hyperlink{input_8c_source_l00241}{input\+\_\+is\+\_\+key\+\_\+down()}}, \mbox{\hyperlink{input_8c_source_l00254}{input\+\_\+is\+\_\+key\+\_\+up()}}, \mbox{\hyperlink{input_8c_source_l00269}{input\+\_\+was\+\_\+key\+\_\+down()}}, \mbox{\hyperlink{input_8c_source_l00284}{input\+\_\+was\+\_\+key\+\_\+up()}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{kmath_8h_source_l01206}{mat4\+\_\+backward()}}, \mbox{\hyperlink{kmath_8h_source_l01191}{mat4\+\_\+forward()}}, \mbox{\hyperlink{kmath_8h_source_l01251}{mat4\+\_\+left()}}, \mbox{\hyperlink{kmath_8h_source_l01266}{mat4\+\_\+right()}}, \mbox{\hyperlink{game_8c_source_l00029}{recalculate\+\_\+view\+\_\+matrix()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00407}{renderer\+\_\+set\+\_\+view()}}, \mbox{\hyperlink{game__types_8h_source_l00064}{game\+::state}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{kmath_8h_source_l00443}{vec3\+\_\+add()}}, \mbox{\hyperlink{kmath_8h_source_l00589}{vec3\+\_\+compare()}}, \mbox{\hyperlink{kmath_8h_source_l00531}{vec3\+\_\+normalize()}}, \mbox{\hyperlink{kmath_8h_source_l00383}{vec3\+\_\+zero()}}, \mbox{\hyperlink{game_8h_source_l00036}{game\+\_\+state\+::view}}, \mbox{\hyperlink{math__types_8h_source_l00068}{vec3\+\_\+u\+::x}}, \mbox{\hyperlink{math__types_8h_source_l00072}{vec3\+\_\+u\+::y}}, and \mbox{\hyperlink{math__types_8h_source_l00076}{vec3\+\_\+u\+::z}}.
 
 
 
@@ -257,7 +257,7 @@ Referenced by \mbox{\hyperlink{entry_8c_source_l00020}{create\+\_\+game()}}.
 
 
 
-Definition at line \mbox{\hyperlink{game_8c_source_l00028}{28}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
+Definition at line \mbox{\hyperlink{game_8c_source_l00029}{29}} of file \mbox{\hyperlink{game_8c_source}{game.\+c}}.
 
 
 
@@ -265,5 +265,5 @@ References \mbox{\hyperlink{game_8h_source_l00046}{game\+\_\+state\+::camera\+\_
 
 
 
-Referenced by \mbox{\hyperlink{game_8c_source_l00093}{game\+\_\+update()}}.
+Referenced by \mbox{\hyperlink{game_8c_source_l00094}{game\+\_\+update()}}.
 
