@@ -1,5 +1,6 @@
 #include "game.h"
 
+#include <core/event.h>
 #include "core/input.h"
 #include "core/kmemory.h"
 #include <core/logger.h>
@@ -98,6 +99,16 @@ b8 game_update(game* game_inst, f32 delta_time) {
     if (input_is_key_down('M') && input_was_key_up('M')) {
         KDEBUG("Memory Allocations: %llu (%llu this frame)", alloc_count, alloc_count - prev_alloc_count);
     }
+
+    // TODO: temp
+    if (input_is_key_up('T') && input_was_key_down('T')) {
+        KDEBUG("Swapping texture!");
+        event_context context = {};
+
+        event_fire(EVENT_CODE_DEBUG0, game_inst, context);
+    }
+    // TODO: end temp
+
     game_state* state = (game_state*)game_inst->state;
 
     // HACKY WAY OF MOVING CAMERA AROUND
