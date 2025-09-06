@@ -618,14 +618,14 @@ typedef struct vulkan_pipeline {
 } vulkan_pipeline;
 
 /**
- * @struct vulkan_object_shader
+ * @struct vulkan_material_shader
  * @brief Represents the object shader used for rendering 3D objects.
  *
  * Contains:
  * - Shader stages (vertex, fragment)
  * - Pipeline used for rendering
  */
-typedef struct vulkan_object_shader {
+typedef struct vulkan_material_shader {
     /**
      * @brief Number of shader stages in this object shader.
      *
@@ -674,20 +674,53 @@ typedef struct vulkan_object_shader {
      */
     vulkan_buffer global_uniform_buffer;
 
+    /**
+     * @brief Descriptor pool used for allocating object-specific descriptor sets.
+     *
+     * This pool manages memory for descriptor sets that hold per-object resources,
+     * such as model matrices and material properties.
+     */
     VkDescriptorPool object_descriptor_pool;
 
+    /**
+     * @brief Layout for the object-specific descriptor set.
+     *
+     * Defines the structure of the descriptor set used for per-object uniform data.
+     * Typically includes bindings for model matrices and material properties.
+     */
     VkDescriptorSetLayout object_descriptor_set_layout;
 
-    // Object Uniform Buffers
+    /**
+     * @brief Buffer used for per-object uniform data.
+     *
+     * This buffer holds the model matrices for individual objects and is updated as needed.
+     * It is bound to the object descriptor sets for use in shaders.
+     */
     vulkan_buffer object_uniform_buffer;
 
     // TODO: Manage a free list of some kind here
+    /**
+     * @brief Index for tracking the next available object uniform buffer slot.
+     *
+     * This index is used to allocate and manage per-object uniform data within the object uniform buffer.
+     * It helps in efficiently reusing buffer space for multiple objects.
+     */
     u32 object_uniform_buffer_index;
 
     // TODO: Make dynamic
+    /**
+     * @brief Array of object states, one per possible object.
+     *
+     * Each state contains descriptor sets and tracking info for individual objects.
+     * The size is defined by VULKAN_OBJECT_MAX_OBJECT_COUNT.
+     */
     vulkan_object_shader_object_state object_states[VULKAN_OBJECT_MAX_OBJECT_COUNT];
 
-    // Pointers to default textures.
+    /**
+     * @brief Pointer to the default diffuse texture used when no texture is assigned.
+     *
+     * This texture is used as a fallback to ensure that objects always have a valid texture.
+     */
     texture* default_diffuse;
 
     /**
@@ -696,7 +729,7 @@ typedef struct vulkan_object_shader {
      * This pipeline is created from the shader stages and used for drawing 3D objects.
      */
     vulkan_pipeline pipeline;
-} vulkan_object_shader;
+} vulkan_material_shader;
 
 /**
  * @struct vulkan_context
@@ -843,7 +876,7 @@ typedef struct vulkan_context {
      *
      * Contains shader stages and the pipeline used for rendering.
      */
-    vulkan_object_shader object_shader;
+    vulkan_material_shader material_shader;
 
     /**
      * @brief Offset in bytes for the vertex buffer used for geometry data.
