@@ -82,6 +82,11 @@ $(function() {
 🧠 What Is Koru?</h1>
 <p>Koru is a <b>C99-based game engine</b> focused on performance, portability, and modularity. It's ideal for developers who want fine-grained control over rendering, input, memory, and platform-specific functionality without the overhead of high-level abstractions.</p>
 <h2><a class="anchor" id="autotoc_md5"></a>
+External libs (/engine/src/vendor/)</h2>
+<ol type="1">
+<li>stb-image.h - From <a href="https://github.com/nothings/stb">STB by Sean Barrett</a> - Lightweight way to handle and load images</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md6"></a>
 🚀 Features:</h2>
 <ul>
 <li>Written entirely in <b>C99</b> – minimal dependencies</li>
@@ -91,10 +96,10 @@ $(function() {
 <li>Custom <b>memory allocators</b>, <b>logging</b>, <b>assertions</b>, and <b>data structures</b> etc</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 🖼 Architecture</h1>
 <p>The high-level architecture of Koru is divided into four main layers:</p>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 1. &lt;strong&gt;Platform Layer&lt;/strong&gt;</h2>
 <p>Handles OS-specific functionality:</p>
 <ul>
@@ -105,7 +110,7 @@ $(function() {
 <li><b>Memory Management</b>: Allocates and frees memory efficiently.</li>
 <li><b>Renderer API Extensions</b>: Integrates with Vulkan for rendering.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 2. &lt;strong&gt;Core&lt;/strong&gt;</h2>
 <p>Provides fundamental utilities and services:</p>
 <ul>
@@ -122,7 +127,7 @@ $(function() {
 <li><b>String Library</b>: String manipulation utilities.</li>
 <li><b>Random Number Generator (RNG)</b>: Generates random numbers for simulations and AI.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 3. &lt;strong&gt;Resource Management&lt;/strong&gt;</h2>
 <p>Manages various assets:</p>
 <ul>
@@ -132,7 +137,7 @@ $(function() {
 <li><b>Animations</b>: Skeletal animations and timeline systems.</li>
 <li><b>World Maps</b>: Terrain and level data management.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 4. &lt;strong&gt;Application Layer&lt;/strong&gt;</h2>
 <p>Contains higher-level systems:</p>
 <ul>
@@ -142,10 +147,10 @@ $(function() {
 <li><b>Others</b>: Animation/timelines, event system, ECS, state machines, collision/physics.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md13"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 📋 Feature List</h1>
 <p>Here’s a summary of the features to be implemented in v0.1:</p>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Core Features</h2>
 <ul>
 <li><b>Lightweight build system</b>: Simple scripts for compiling on Windows and Linux.</li>
@@ -171,7 +176,7 @@ Core Features</h2>
 <li><b>Profiling/Debugging utilities</b>: Tools for measuring performance and identifying bottlenecks.</li>
 <li>**"Scripting" support via hot reloading**: Experimental support for scripting through hot-reloading mechanisms.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 Planned Features</h2>
 <ul>
 <li>Mobile and console support</li>
@@ -181,7 +186,7 @@ Planned Features</h2>
 <li>Improved asset pipeline</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md18"></a>
 🎨 Visuals</h1>
 <p>Check out the diagrams included in the <code>assets/</code> folder to understand how everything fits together:</p>
 <table class="markdownTable">
@@ -195,18 +200,34 @@ Planned Features</h2>
 <td class="markdownTableBodyNone"><img src="assets/Koru%20v0.1%20Feature%20List.png" alt="Feature List v0.1" class="inline"/>   </td><td class="markdownTableBodyNone">Summary of current capabilities and roadmap   </td></tr>
 </table>
 <hr  />
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md20"></a>
 📁 Project Structure</h1>
 <div class="fragment"><div class="line">.</div>
 <div class="line">├── assets</div>
-<div class="line">│   ├── Koru Engine Architecture.png        # High-level system architecture diagram</div>
-<div class="line">│   ├── Koru Project Structure.png          # Visual representation of file organization</div>
-<div class="line">│   └── Koru v0.1 Feature List.png          # Summary of current features and roadmap</div>
+<div class="line">│   ├── Koru Engine Architecture.png</div>
+<div class="line">│   ├── Koru Project Structure.png</div>
+<div class="line">│   ├── Koru v0.1 Feature List.png</div>
+<div class="line">│   └── shaders</div>
+<div class="line">│       ├── Builtin.ObjectShader.frag.glsl</div>
+<div class="line">│       └── Builtin.ObjectShader.vert.glsl</div>
 <div class="line">├── bin</div>
-<div class="line">│   ├── libengine.so                        # Compiled engine shared library (Linux)</div>
-<div class="line">│   └── testbed                             # Testbed application binary (Linux)</div>
-<div class="line">├── build-all.bat                           # Windows: Runs all builds sequentially</div>
-<div class="line">├── build-all.sh                            # Linux: Runs all builds sequentially</div>
+<div class="line">│   ├── assets</div>
+<div class="line">│   │   ├── Koru Engine Architecture.png</div>
+<div class="line">│   │   ├── Koru Project Structure.png</div>
+<div class="line">│   │   ├── Koru v0.1 Feature List.png</div>
+<div class="line">│   │   └── shaders</div>
+<div class="line">│   │       ├── Builtin.ObjectShader.frag.glsl</div>
+<div class="line">│   │       ├── Builtin.ObjectShader.frag.spv</div>
+<div class="line">│   │       ├── Builtin.ObjectShader.vert.glsl</div>
+<div class="line">│   │       └── Builtin.ObjectShader.vert.spv</div>
+<div class="line">│   ├── console.log</div>
+<div class="line">│   ├── libengine.so</div>
+<div class="line">│   ├── testbed</div>
+<div class="line">│   └── tests</div>
+<div class="line">├── build-all.bat</div>
+<div class="line">├── build-all.sh</div>
+<div class="line">├── clean-all.bat</div>
+<div class="line">├── clean-all.sh</div>
 <div class="line">├── Doxyfile                                # Configuration for generating API documentation with Doxygen</div>
 <div class="line">├── engine</div>
 <div class="line">│   ├── build.bat                           # Windows: Builds engine DLL</div>
@@ -219,32 +240,103 @@ Planned Features</h2>
 <div class="line">│       │   ├── application.c               # Application lifecycle implementation (init/run/shutdown)</div>
 <div class="line">│       │   ├── application.h               # Public interface for the application system</div>
 <div class="line">│       │   ├── asserts.h                   # Custom assertion macros and debugging utilities</div>
+<div class="line">│       │   ├── clock.c</div>
+<div class="line">│       │   ├── clock.h</div>
 <div class="line">│       │   ├── event.c                     # Event system implementation (register/unregister/fire)</div>
 <div class="line">│       │   ├── event.h                     # Public interface for event handling system</div>
+<div class="line">│       │   ├── input.c</div>
+<div class="line">│       │   ├── input.h</div>
 <div class="line">│       │   ├── kmemory.c                   # Memory allocation system with tagging support</div>
 <div class="line">│       │   ├── kmemory.h                   # Interface for tagged memory management</div>
+<div class="line">│       │   ├── kstring.c</div>
+<div class="line">│       │   ├── kstring.h</div>
 <div class="line">│       │   ├── logger.c                    # Logging system with color-coded output</div>
-<div class="line">│       │   └── logger.h                   # Public interface for logging module</div>
+<div class="line">│       │   └── logger.h                    # Public interface for logging module</div>
 <div class="line">│       ├── defines.h                       # Common type definitions, macros, and platform detection</div>
 <div class="line">│       ├── entry.h                         # Entry point interface; declares create_game()</div>
 <div class="line">│       ├── game_types.h                    # Game-related types used across engine and game logic</div>
-<div class="line">│       └── platform</div>
-<div class="line">│           ├── platform.h                 # Platform abstraction layer interface</div>
-<div class="line">│           ├── platform_linux.c           # Linux-specific implementation of platform functions</div>
-<div class="line">│           └── platform_win32.c           # Windows-specific implementation of platform functions</div>
+<div class="line">│       ├── math</div>
+<div class="line">│       │   ├── kmath.c</div>
+<div class="line">│       │   ├── kmath.h</div>
+<div class="line">│       │   └── math_types.h</div>
+<div class="line">│       ├── memory</div>
+<div class="line">│       │   ├── linear_allocator.c</div>
+<div class="line">│       │   └── linear_allocator.h</div>
+<div class="line">│       ├── platform</div>
+<div class="line">│       │   ├── filesystem.c</div>
+<div class="line">│       │   ├── filesystem.h</div>
+<div class="line">│       │   ├── platform_android.c</div>
+<div class="line">│       |   ├── platform.h                 # Platform abstraction layer interface</div>
+<div class="line">│       │   ├── platform_ios.c</div>
+<div class="line">│       │   ├── platform_linux.c           # Linux-specific implementation of platform functions</div>
+<div class="line">│       │   ├── platform_macos.c</div>
+<div class="line">│       │   └── platform_win32.c           # Windows-specific implementation of platform functions</div>
+<div class="line">│       └── renderer</div>
+<div class="line">│           ├── renderer_backend.c</div>
+<div class="line">│           ├── renderer_backend.h</div>
+<div class="line">│           ├── renderer_frontend.c</div>
+<div class="line">│           ├── renderer_frontend.h</div>
+<div class="line">│           ├── renderer_types.inl</div>
+<div class="line">│           └── vulkan</div>
+<div class="line">│               ├── shaders</div>
+<div class="line">│               │   ├── vulkan_object_shader.c</div>
+<div class="line">│               │   └── vulkan_object_shader.h</div>
+<div class="line">│               ├── vulkan_backend.c</div>
+<div class="line">│               ├── vulkan_backend.h</div>
+<div class="line">│               ├── vulkan_buffer.c</div>
+<div class="line">│               ├── vulkan_buffer.h</div>
+<div class="line">│               ├── vulkan_command_buffer.c</div>
+<div class="line">│               ├── vulkan_command_buffer.h</div>
+<div class="line">│               ├── vulkan_device.c</div>
+<div class="line">│               ├── vulkan_device.h</div>
+<div class="line">│               ├── vulkan_fence.c</div>
+<div class="line">│               ├── vulkan_fence.h</div>
+<div class="line">│               ├── vulkan_framebuffer.c</div>
+<div class="line">│               ├── vulkan_framebuffer.h</div>
+<div class="line">│               ├── vulkan_image.c</div>
+<div class="line">│               ├── vulkan_image.h</div>
+<div class="line">│               ├── vulkan_pipeline.c</div>
+<div class="line">│               ├── vulkan_pipeline.h</div>
+<div class="line">│               ├── vulkan_platform.h</div>
+<div class="line">│               ├── vulkan_renderpass.c</div>
+<div class="line">│               ├── vulkan_renderpass.h</div>
+<div class="line">│               ├── vulkan_shader_utils.c</div>
+<div class="line">│               ├── vulkan_shader_utils.h</div>
+<div class="line">│               ├── vulkan_swapchain.c</div>
+<div class="line">│               ├── vulkan_swapchain.h</div>
+<div class="line">│               ├── vulkan_types.inl</div>
+<div class="line">│               ├── vulkan_utils.c</div>
+<div class="line">│               └── vulkan_utils.h</div>
 <div class="line">├── LICENSE                                 # MIT License file</div>
+<div class="line">├── Makefile.engine.linux.mak</div>
+<div class="line">├── Makefile.engine.windows.mak</div>
+<div class="line">├── Makefile.testbed.linux.mak</div>
+<div class="line">├── Makefile.testbed.windows.mak</div>
+<div class="line">├── post-build.bat</div>
+<div class="line">├── post-build.sh</div>
 <div class="line">├── README.md                               # This file - main project overview and guide</div>
-<div class="line">├── test</div>
-<div class="line">│   └── platform                           # Unit tests for platform module</div>
 <div class="line">├── testbed</div>
-<div class="line">    ├── build.bat                           # Windows: Builds testbed application</div>
-<div class="line">    ├── build.sh                            # Linux: Builds testbed application</div>
+<div class="line">|   ├── build.bat                           # Windows: Builds testbed application</div>
+<div class="line">|   ├── build.sh                            # Linux: Builds testbed application</div>
+<div class="line">|   └── src</div>
+<div class="line">|       ├── entry.c                         # Entry point for testbed app; implements create_game()</div>
+<div class="line">|       ├── game.c                          # Testbed game logic (initialize/update/render stubs)</div>
+<div class="line">|       └── game.h                          # Interface for testbed game implementation</div>
+<div class="line">└── tests</div>
+<div class="line">    ├── build.bat</div>
+<div class="line">    ├── build.sh</div>
 <div class="line">    └── src</div>
-<div class="line">        ├── entry.c                         # Entry point for testbed app; implements create_game()</div>
-<div class="line">        ├── game.c                          # Testbed game logic (initialize/update/render stubs)</div>
-<div class="line">        └── game.h                          # Interface for testbed game implementation</div>
+<div class="line">        ├── expect.h</div>
+<div class="line">        ├── main.c</div>
+<div class="line">        ├── memory</div>
+<div class="line">        │   ├── linear_allocator_tests.c</div>
+<div class="line">        │   └── linear_allocator_tests.h</div>
+<div class="line">        ├── test_manager.c</div>
+<div class="line">        └── test_manager.h</div>
+<div class="line"> </div>
+<div class="line">37 directories, 176 files   </div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md22"></a>
 ⚙️ Build Scripts/Instructions</h1>
 <p>Check tasks.json for sequence:</p>
 <table class="markdownTable">
@@ -263,7 +355,7 @@ Planned Features</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>build-all.bat</code>   </td><td class="markdownTableBodyNone">Runs all Windows builds sequentially   </td><td class="markdownTableBodyNone">Same as above but for Windows   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md22"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 Linux</h2>
 <p>Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run the engine)</p>
 <div class="fragment"><div class="line"># Give execution permissions</div>
@@ -276,7 +368,7 @@ Linux</h2>
 <li><code>libengine.so</code> – The engine shared library</li>
 <li><code>testbed</code> – The testbed executable</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 Windows</h2>
 <p>Ensure:</p>
 <ul>
@@ -286,13 +378,17 @@ Windows</h2>
 </ul>
 <p>Then run:</p>
 <div class="fragment"><div class="line">build-all.bat</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md25"></a>
+Building Docs</h1>
+<p>To generate our Doxygen documentation, run:</p>
+<div class="fragment"><div class="line">doxygen Doxyfile</div>
 </div><!-- fragment --><p>Output files:</p>
 <ul>
 <li><code>bin\engine.dll</code></li>
 <li><code>bin\testbed.exe</code></li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md25"></a>
+<h1><a class="anchor" id="autotoc_md27"></a>
 🔮 Roadmap</h1>
 <p>Plans to expand Koru include:</p>
 <ul>
@@ -330,7 +426,7 @@ Windows</h2>
 </li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md27"></a>
+<h1><a class="anchor" id="autotoc_md29"></a>
 💡 Want to Help?</h1>
 <p>Contributions are welcome! Whether you're interested in:</p>
 <ul>
@@ -341,7 +437,7 @@ Windows</h2>
 </ul>
 <p>Feel free to open an issue or PR!</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md29"></a>
+<h1><a class="anchor" id="autotoc_md31"></a>
 📄 License</h1>
 <p>This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.</p>
 <div class="fragment"><div class="line">## 🚀 Next Steps</div>
@@ -353,7 +449,7 @@ Windows</h2>
 <div class="line">- ✅ A **Code of Conduct** (`CODE_OF_CONDUCT.md`)</div>
 <div class="line">- ✅ GitHub Actions for CI builds (optional)</div>
 </div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md31"></a>
+<h1><a class="anchor" id="autotoc_md33"></a>
 🎮 Koru Engine – Rendering System (Vulkan)</h1>
 <blockquote class="doxtable">
 <p>&zwj;<em>A deep dive into how Koru sets up its Vulkan-based rendering system — from instance creation to frame submission.</em> </p>
@@ -369,12 +465,12 @@ Windows</h2>
 </ul>
 <p>This guide assumes some basic knowledge of C and Vulkan concepts. If you're new to Vulkan, this will help understand what’s happening behind the scenes as you run the testbed.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md35"></a>
 🧠 Why Use Vulkan?</h2>
 <p>Vulkan gives developers <b>explicit control over GPU operations</b>. It allows fine-grained access to queues, memory, and rendering pipelines — which is great for performance, but comes at the cost of complexity.</p>
 <p>Koru abstracts much of that complexity using a <b>modular architecture</b>, allowing you to build a rendering system step-by-step without needing to manage everything manually every time.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md35"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 📦 High-Level Architecture (Render Layer)</h2>
 <div class="fragment"><div class="line">+------------------+</div>
 <div class="line">|   Application    |</div>
@@ -432,11 +528,11 @@ Windows</h2>
 <div class="line">+------------------+</div>
 </div><!-- fragment --><p>This shows how each module fits into the overall rendering flow.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md37"></a>
+<h2><a class="anchor" id="autotoc_md39"></a>
 🛠️ The Full Rendering Setup Process</h2>
 <p>Let’s walk through <b>each stage of the rendering setup process</b>, with real code examples from the engine.</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md39"></a>
+<h3><a class="anchor" id="autotoc_md41"></a>
 1. 🧱 Create Vulkan Instance</h3>
 <p>The first thing to do is creating a <b>VkInstance</b> — this connects the app to the Vulkan library.</p>
 <div class="fragment"><div class="line"><span class="comment">// From vulkan_renderer_backend_initialize()</span></div>
@@ -467,11 +563,11 @@ Windows</h2>
 <div class="ttc" id="adarray_8h_html_a7ad89931e6589fa09b83ea99de2b32e6"><div class="ttname"><a href="darray_8h.html#a7ad89931e6589fa09b83ea99de2b32e6">darray_push</a></div><div class="ttdeci">#define darray_push(array, value)</div><div class="ttdoc">Adds an element to the end of the array.</div><div class="ttdef"><b>Definition</b> <a href="darray_8h_source.html#l00182">darray.h:182</a></div></div>
 <div class="ttc" id="adarray_8h_html_aa556263c163ffb9f29b40b29b7b25165"><div class="ttname"><a href="darray_8h.html#aa556263c163ffb9f29b40b29b7b25165">darray_length</a></div><div class="ttdeci">#define darray_length(array)</div><div class="ttdoc">Gets the current length (number of elements) in the array.</div><div class="ttdef"><b>Definition</b> <a href="darray_8h_source.html#l00258">darray.h:258</a></div></div>
 <div class="ttc" id="adarray_8h_html_ab9d093e09b642e0d480a7ae82bad3af5"><div class="ttname"><a href="darray_8h.html#ab9d093e09b642e0d480a7ae82bad3af5">darray_create</a></div><div class="ttdeci">#define darray_create(type)</div><div class="ttdoc">Creates a dynamic array with default capacity for a specific type.</div><div class="ttdef"><b>Definition</b> <a href="darray_8h_source.html#l00148">darray.h:148</a></div></div>
-<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00034">vulkan_backend.c:34</a></div></div>
+<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00035">vulkan_backend.c:35</a></div></div>
 <div class="ttc" id="avulkan__platform_8h_html_ac6f33d791e5445db00300cfd71d88702"><div class="ttname"><a href="vulkan__platform_8h.html#ac6f33d791e5445db00300cfd71d88702">platform_get_required_extension_names</a></div><div class="ttdeci">void platform_get_required_extension_names(const char ***names_darray)</div><div class="ttdoc">Appends the names of required Vulkan instance extensions for the current platform.</div></div>
 </div><!-- fragment --><p>✅ This creates the <b>main connection to Vulkan</b>, enabling extensions and validation layers.</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md41"></a>
+<h3><a class="anchor" id="autotoc_md43"></a>
 2. 🖥 Create Window Surface</h3>
 <p>Next, to create a <b>surface</b> — this is what connects the window to the GPU.</p>
 <p>In Linux:</p>
@@ -488,7 +584,7 @@ Windows</h2>
 </div><!-- fragment --><p>In Windows: The engine uses <code>vkCreateWin32SurfaceKHR()</code> instead.</p>
 <p>✅ A surface is essential because it defines where rendered frames go usually the screen or a window.</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md43"></a>
+<h3><a class="anchor" id="autotoc_md45"></a>
 3. 🔍 Query Physical Devices</h3>
 <p>Once an instance and a surface are ready, query available GPUs:</p>
 <div class="fragment"><div class="line"><span class="comment">// vulkan_device.c</span></div>
@@ -520,8 +616,8 @@ Windows</h2>
 <div class="line">        &amp;swapchain_support);</div>
 <div class="line">}</div>
 <div class="ttc" id="adefines_8h_html_a3a58feb08f4f45ee137ec358217c3270"><div class="ttname"><a href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a></div><div class="ttdeci">_Bool b8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00055">defines.h:55</a></div></div>
-<div class="ttc" id="astructvulkan__physical__device__queue__family__info_html"><div class="ttname"><a href="structvulkan__physical__device__queue__family__info.html">vulkan_physical_device_queue_family_info</a></div><div class="ttdoc">Stores indices of queue families for a physical device.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00074">vulkan_device.c:74</a></div></div>
-<div class="ttc" id="avulkan__device_8c_html_aa53d88ed2ed351537ad6b3f6ff109f7c"><div class="ttname"><a href="vulkan__device_8c.html#aa53d88ed2ed351537ad6b3f6ff109f7c">physical_device_meets_requirements</a></div><div class="ttdeci">b8 physical_device_meets_requirements(VkPhysicalDevice device, VkSurfaceKHR surface, const VkPhysicalDeviceProperties *properties, const VkPhysicalDeviceFeatures *features, const vulkan_physical_device_requirements *requirements, vulkan_physical_device_queue_family_info *out_queue_family_info, vulkan_swapchain_support_info *out_swapchain_support)</div><div class="ttdoc">Checks whether the given physical device meets all specified requirements.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00508">vulkan_device.c:508</a></div></div>
+<div class="ttc" id="astructvulkan__physical__device__queue__family__info_html"><div class="ttname"><a href="structvulkan__physical__device__queue__family__info.html">vulkan_physical_device_queue_family_info</a></div><div class="ttdoc">Stores indices of queue families for a physical device.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00073">vulkan_device.c:73</a></div></div>
+<div class="ttc" id="avulkan__device_8c_html_aa53d88ed2ed351537ad6b3f6ff109f7c"><div class="ttname"><a href="vulkan__device_8c.html#aa53d88ed2ed351537ad6b3f6ff109f7c">physical_device_meets_requirements</a></div><div class="ttdeci">b8 physical_device_meets_requirements(VkPhysicalDevice device, VkSurfaceKHR surface, const VkPhysicalDeviceProperties *properties, const VkPhysicalDeviceFeatures *features, const vulkan_physical_device_requirements *requirements, vulkan_physical_device_queue_family_info *out_queue_family_info, vulkan_swapchain_support_info *out_swapchain_support)</div><div class="ttdoc">Checks whether the given physical device meets all specified requirements.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00520">vulkan_device.c:520</a></div></div>
 </div><!-- fragment --><p>🔍 Requirements include:</p><ul>
 <li>Graphics/Compute/Present/Transfer queues</li>
 <li>Extensions like <code>VK_KHR_SWAPCHAIN_EXTENSION_NAME</code></li>
@@ -529,7 +625,7 @@ Windows</h2>
 <li>Prefer discrete GPU (optional)</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md45"></a>
+<h3><a class="anchor" id="autotoc_md47"></a>
 4. 🔄 Create Logical Device</h3>
 <p>After selecting a suitable physical device, create a <b>logical device</b> to interface with the GPU.</p>
 <div class="fragment"><div class="line"><span class="comment">// vulkan_device.c</span></div>
@@ -562,7 +658,7 @@ Windows</h2>
 <div class="line">VK_CHECK(vkCreateDevice(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.physical_device, &amp;device_create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device));</div>
 </div><!-- fragment --><p>✅ This creates a way to submit commands to the GPU.</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md47"></a>
+<h3><a class="anchor" id="autotoc_md49"></a>
 5. ⏱ Get Queues</h3>
 <p>Once the device is created, get handles to the actual queues:</p>
 <div class="fragment"><div class="line">vkGetDeviceQueue(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue_index, 0, &amp;<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue);</div>
@@ -573,7 +669,7 @@ Windows</h2>
 <li>Copy data (<code>transfer_queue</code>)</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md49"></a>
+<h3><a class="anchor" id="autotoc_md51"></a>
 6. 🔄 Query Swapchain Support</h3>
 <p>Before creating a swapchain, check what formats and modes are supported:</p>
 <div class="fragment"><div class="line"><span class="comment">// vulkan_device.c</span></div>
@@ -582,10 +678,10 @@ Windows</h2>
 <div class="line">    vkGetPhysicalDeviceSurfaceFormatsKHR(device, surface, &amp;out_support-&gt;format_count, 0);</div>
 <div class="line">    vkGetPhysicalDeviceSurfacePresentModesKHR(device, surface, &amp;out_support-&gt;present_mode_count, 0);</div>
 <div class="line">}</div>
-<div class="ttc" id="avulkan__device_8c_html_ac4eb42eebcc937d35197f1b899668021"><div class="ttname"><a href="vulkan__device_8c.html#ac4eb42eebcc937d35197f1b899668021">vulkan_device_query_swapchain_support</a></div><div class="ttdeci">void vulkan_device_query_swapchain_support(VkPhysicalDevice physical_device, VkSurfaceKHR surface, vulkan_swapchain_support_info *out_support_info)</div><div class="ttdoc">Queries swapchain support details for a given physical device and surface.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00322">vulkan_device.c:322</a></div></div>
+<div class="ttc" id="avulkan__device_8c_html_ac4eb42eebcc937d35197f1b899668021"><div class="ttname"><a href="vulkan__device_8c.html#ac4eb42eebcc937d35197f1b899668021">vulkan_device_query_swapchain_support</a></div><div class="ttdeci">void vulkan_device_query_swapchain_support(VkPhysicalDevice physical_device, VkSurfaceKHR surface, vulkan_swapchain_support_info *out_support_info)</div><div class="ttdoc">Queries swapchain support details for a given physical device and surface.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00321">vulkan_device.c:321</a></div></div>
 </div><!-- fragment --><p>This helps choose the best image format and presentation mode.</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md51"></a>
+<h3><a class="anchor" id="autotoc_md53"></a>
 7. 🔁 Create Swapchain</h3>
 <p>Now create the swapchain based on what the device supports:</p>
 <div class="fragment"><div class="line"><span class="comment">// vulkan_swapchain.c</span></div>
@@ -616,7 +712,7 @@ Windows</h2>
 </ul>
 <p>This avoids tearing and ensures smooth rendering.</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md53"></a>
+<h3><a class="anchor" id="autotoc_md55"></a>
 8. 🖼 Create Image Views</h3>
 <p>Each image in the swapchain needs a <b>view</b> so the GPU can interpret it:</p>
 <div class="fragment"><div class="line"><span class="keywordflow">for</span> (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> i = 0; i &lt; swapchain-&gt;image_count; ++i) {</div>
@@ -634,7 +730,7 @@ Windows</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>🖼 Each image view wraps a raw <code>VkImage</code>, defining how it's accessed (e.g., color attachment, depth buffer).</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md55"></a>
+<h3><a class="anchor" id="autotoc_md57"></a>
 9. 🧊 Detect Depth Format</h3>
 <p>For depth testing, a compatible depth format is needed:</p>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="vulkan__device_8c.html#a4af4291b3e9e0fc739c88bde97d74693">vulkan_device_detect_depth_format</a>(vulkan_device* device) {</div>
@@ -661,10 +757,10 @@ Windows</h2>
 <div class="ttc" id="adefines_8h_html_ad758b7a5c3f18ed79d2fcd23d9f16357"><div class="ttname"><a href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a></div><div class="ttdeci">unsigned long long u64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00026">defines.h:26</a></div></div>
 <div class="ttc" id="adefines_8h_html_add3ca9eefe3b5b754426f51d3043e579"><div class="ttname"><a href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a></div><div class="ttdeci">#define True</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00120">defines.h:120</a></div></div>
 <div class="ttc" id="alogger_8h_html_a473bb2cc3b3bf3c93084eeca6cb19132"><div class="ttname"><a href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a></div><div class="ttdeci">#define KERROR(message,...)</div><div class="ttdoc">Logs an error-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00165">logger.h:165</a></div></div>
-<div class="ttc" id="avulkan__device_8c_html_a4af4291b3e9e0fc739c88bde97d74693"><div class="ttname"><a href="vulkan__device_8c.html#a4af4291b3e9e0fc739c88bde97d74693">vulkan_device_detect_depth_format</a></div><div class="ttdeci">b8 vulkan_device_detect_depth_format(vulkan_device *device)</div><div class="ttdoc">Detects and selects a suitable depth/stencil format for the given device.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00368">vulkan_device.c:368</a></div></div>
+<div class="ttc" id="avulkan__device_8c_html_a4af4291b3e9e0fc739c88bde97d74693"><div class="ttname"><a href="vulkan__device_8c.html#a4af4291b3e9e0fc739c88bde97d74693">vulkan_device_detect_depth_format</a></div><div class="ttdeci">b8 vulkan_device_detect_depth_format(vulkan_device *device)</div><div class="ttdoc">Detects and selects a suitable depth/stencil format for the given device.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__device_8c_source.html#l00367">vulkan_device.c:367</a></div></div>
 </div><!-- fragment --><p>🧃 Once selected, create a depth/stencil image and its view.</p>
 <hr  />
-<h3><a class="anchor" id="autotoc_md57"></a>
+<h3><a class="anchor" id="autotoc_md59"></a>
 10. 🎨 Create Render Pass</h3>
 <p>The render pass defines how rendering works — what attachments to use, how they behave, and what subpasses exist.</p>
 <div class="fragment"><div class="line"><span class="comment">// vulkan_renderpass.c</span></div>
@@ -702,7 +798,7 @@ Windows</h2>
 <li>What layout transitions happen between steps</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md59"></a>
+<h3><a class="anchor" id="autotoc_md61"></a>
 11. 🖼 Create Framebuffers</h3>
 <p>Framebuffers combine images and render passes:</p>
 <div class="fragment"><div class="line">VkFramebufferCreateInfo fb_info = {VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO};</div>
@@ -720,7 +816,7 @@ Windows</h2>
 <li>The render pass that defines how to use them</li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md61"></a>
+<h3><a class="anchor" id="autotoc_md63"></a>
 12. 🗂 Command Buffers and Submission</h3>
 <p>Command buffers store drawing commands:</p>
 <div class="fragment"><div class="line"><span class="comment">// Begin command recording</span></div>
@@ -746,7 +842,7 @@ Windows</h2>
 <div class="line"> </div>
 <div class="line">VkResult result = vkQueuePresentKHR(present_queue, &amp;present_info);</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md63"></a>
+<h2><a class="anchor" id="autotoc_md65"></a>
 🧩 Diagram: Full Rendering Flow</h2>
 <div class="fragment"><div class="line">+-------------------+</div>
 <div class="line">|   Application     |</div>
@@ -875,9 +971,9 @@ Windows</h2>
 <div class="line">+-------------------+</div>
 </div><!-- fragment --><p>This is the full <b>rendering loop</b> that happens every frame.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md65"></a>
+<h2><a class="anchor" id="autotoc_md67"></a>
 🧰 Key Structures Used</h2>
-<h3><a class="anchor" id="autotoc_md66"></a>
+<h3><a class="anchor" id="autotoc_md68"></a>
 &lt;tt&gt;vulkan_context&lt;/tt&gt;</h3>
 <p>Tracks global Vulkan state: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>vulkan_context {</div>
 <div class="line">    VkInstance instance;</div>
@@ -891,8 +987,8 @@ Windows</h2>
 <div class="line">    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> (*<a class="code hl_function" href="vulkan__backend_8c.html#aada43db2d3a25f12c6511695c5d74d0a">find_memory_index</a>)(...);</div>
 <div class="line">} vulkan_context;</div>
 <div class="ttc" id="adefines_8h_html_a9e3ad5f8e752f01d926ce122d5a5285e"><div class="ttname"><a href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a></div><div class="ttdeci">signed int i32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00037">defines.h:37</a></div></div>
-<div class="ttc" id="avulkan__backend_8c_html_aada43db2d3a25f12c6511695c5d74d0a"><div class="ttname"><a href="vulkan__backend_8c.html#aada43db2d3a25f12c6511695c5d74d0a">find_memory_index</a></div><div class="ttdeci">i32 find_memory_index(u32 type_filter, u32 property_flags)</div><div class="ttdoc">Finds a suitable memory type index that satisfies the given constraints.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00676">vulkan_backend.c:676</a></div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md67"></a>
+<div class="ttc" id="avulkan__backend_8c_html_aada43db2d3a25f12c6511695c5d74d0a"><div class="ttname"><a href="vulkan__backend_8c.html#aada43db2d3a25f12c6511695c5d74d0a">find_memory_index</a></div><div class="ttdeci">i32 find_memory_index(u32 type_filter, u32 property_flags)</div><div class="ttdoc">Finds a suitable memory type index that satisfies the given constraints.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00693">vulkan_backend.c:693</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md69"></a>
 &lt;tt&gt;vulkan_device&lt;/tt&gt;</h3>
 <p>Holds physical/logical device and queue info: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>vulkan_device {</div>
 <div class="line">    VkPhysicalDevice physical_device;</div>
@@ -909,7 +1005,7 @@ Windows</h2>
 <div class="line">    VkPhysicalDeviceMemoryProperties memory;</div>
 <div class="line">    VkFormat depth_format;</div>
 <div class="line">} vulkan_device;</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md68"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md70"></a>
 &lt;tt&gt;vulkan_swapchain&lt;/tt&gt;</h3>
 <p>Manages images and depth buffer: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>vulkan_swapchain {</div>
 <div class="line">    VkSurfaceFormatKHR image_format;</div>
@@ -921,7 +1017,7 @@ Windows</h2>
 <div class="line">    vulkan_image depth_attachment;</div>
 <div class="line">} vulkan_swapchain;</div>
 <div class="ttc" id="adefines_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00017">defines.h:17</a></div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md69"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md71"></a>
 &lt;tt&gt;vulkan_renderpass&lt;/tt&gt;</h3>
 <p>Defines clear values and viewport settings: </p><div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>vulkan_renderpass {</div>
 <div class="line">    VkRenderPass handle;</div>
@@ -932,7 +1028,7 @@ Windows</h2>
 <div class="line">    <a class="code hl_typedef" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> scissor_x, scissor_y, scissor_w, scissor_h;</div>
 <div class="line">} vulkan_renderpass;</div>
 </div><!-- fragment --><hr  />
-<h2><a class="anchor" id="autotoc_md71"></a>
+<h2><a class="anchor" id="autotoc_md73"></a>
 💡 Why All This Is Needed</h2>
 <p>Vulkan is explicit by design. Every operation must be described precisely. Here's why each part matters:</p>
 <table class="markdownTable">
@@ -962,7 +1058,7 @@ Windows</h2>
 <td class="markdownTableBodyNone"><b>Command Buffers</b>   </td><td class="markdownTableBodyNone">Store GPU commands to execute later   </td></tr>
 </table>
 <hr  />
-<h2><a class="anchor" id="autotoc_md73"></a>
+<h2><a class="anchor" id="autotoc_md75"></a>
 🧱 Summary Table</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -985,7 +1081,7 @@ Windows</h2>
 <td class="markdownTableBodyNone"><code><a class="el" href="vulkan__swapchain_8c.html#a401617aff019b05a923dcda96f83c958" title="Presents the rendered image at the given index to the screen.">vulkan_swapchain_present()</a></code>   </td><td class="markdownTableBodyNone">Presents the final image to the screen   </td></tr>
 </table>
 <hr  />
-<h2><a class="anchor" id="autotoc_md75"></a>
+<h2><a class="anchor" id="autotoc_md77"></a>
 🧪 Bonus: Sample Code for Acquiring an Image</h2>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="vulkan__swapchain_8c.html#a559f69815dfb6ccb3a6776516d9025b7">vulkan_swapchain_acquire_next_image_index</a>(...) {</div>
 <div class="line">    VkResult result = vkAcquireNextImageKHR(</div>
@@ -1011,9 +1107,9 @@ Windows</h2>
 <div class="ttc" id="avulkan__swapchain_8c_html_a559f69815dfb6ccb3a6776516d9025b7"><div class="ttname"><a href="vulkan__swapchain_8c.html#a559f69815dfb6ccb3a6776516d9025b7">vulkan_swapchain_acquire_next_image_index</a></div><div class="ttdeci">b8 vulkan_swapchain_acquire_next_image_index(vulkan_context *context, vulkan_swapchain *swapchain, u64 timeout_ns, VkSemaphore image_available_semaphore, VkFence fence, u32 *out_image_index)</div><div class="ttdoc">Acquires the index of the next available image from the swapchain.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__swapchain_8c_source.html#l00118">vulkan_swapchain.c:118</a></div></div>
 </div><!-- fragment --><p>This function gets the next image from the swapchain — and triggers recreation if needed.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md77"></a>
+<h2><a class="anchor" id="autotoc_md79"></a>
 🚫 Common Errors and Fixes</h2>
-<h3><a class="anchor" id="autotoc_md78"></a>
+<h3><a class="anchor" id="autotoc_md80"></a>
 ❌ &lt;tt&gt;VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_EXT&lt;/tt&gt;: No cache file</h3>
 <p>Not critical — just means the shader cache doesn't exist yet.</p>
 <hr  />
@@ -1021,7 +1117,7 @@ Windows</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:22 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:35:51 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

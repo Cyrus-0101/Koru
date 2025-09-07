@@ -19,95 +19,188 @@
 \DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{defines_8h_ac6baccc379c73d4e641ef847dbb08fa2}{b32}}\ create\_view,}
 \DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00051}00051\ \ \ \ \ VkImageAspectFlags\ view\_aspect\_flags,}
 \DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00052}00052\ \ \ \ \ vulkan\_image*\ out\_image)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00053}00053\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00054}00054\ \ \ \ \ \textcolor{comment}{//\ Copy\ params\ to\ output\ structure}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00055}00055\ \ \ \ \ out\_image-\/>width\ =\ width;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00056}00056\ \ \ \ \ out\_image-\/>height\ =\ height;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00057}00057\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ Set\ up\ image\ creation\ info}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00059}00059\ \ \ \ \ VkImageCreateInfo\ image\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_IMAGE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00060}00060\ \ \ \ \ image\_create\_info.imageType\ =\ VK\_IMAGE\_TYPE\_2D;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00061}00061\ \ \ \ \ image\_create\_info.extent.width\ =\ width;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00062}00062\ \ \ \ \ image\_create\_info.extent.height\ =\ height;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00063}00063\ \ \ \ \ image\_create\_info.extent.depth\ =\ 1;\ \ \textcolor{comment}{//\ TODO:\ Support\ configurable\ depth\ (e.g.,\ 3D\ textures\ or\ volume\ data)}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00064}00064\ \ \ \ \ image\_create\_info.mipLevels\ =\ 4;\ \ \ \ \textcolor{comment}{//\ TODO:\ Add\ support\ for\ mip\ mapping\ and\ make\ this\ configurable}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00065}00065\ \ \ \ \ image\_create\_info.arrayLayers\ =\ 1;\ \ \ \textcolor{comment}{//\ TODO:\ Support\ array\ layers\ for\ texture\ arrays}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00066}00066\ \ \ \ \ image\_create\_info.format\ =\ format;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00067}00067\ \ \ \ \ image\_create\_info.tiling\ =\ tiling;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00068}00068\ \ \ \ \ image\_create\_info.initialLayout\ =\ VK\_IMAGE\_LAYOUT\_UNDEFINED;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00069}00069\ \ \ \ \ image\_create\_info.usage\ =\ usage;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00070}00070\ \ \ \ \ image\_create\_info.samples\ =\ VK\_SAMPLE\_COUNT\_1\_BIT;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Configurable\ MSAA\ sample\ count}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00071}00071\ \ \ \ \ image\_create\_info.sharingMode\ =\ VK\_SHARING\_MODE\_EXCLUSIVE;\ \ \textcolor{comment}{//\ TODO:\ Make\ sharing\ mode\ configurable}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00072}00072\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ image}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00074}00074\ \ \ \ \ VK\_CHECK(vkCreateImage(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&image\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&out\_image-\/>handle));}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00075}00075\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00076}00076\ \ \ \ \ \textcolor{comment}{//\ Query\ memory\ requirements\ for\ the\ created\ image}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00077}00077\ \ \ \ \ VkMemoryRequirements\ memory\_requirements;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00078}00078\ \ \ \ \ vkGetImageMemoryRequirements(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ out\_image-\/>handle,\ \&memory\_requirements);}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00079}00079\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00080}00080\ \ \ \ \ \textcolor{comment}{//\ Find\ suitable\ memory\ type}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00081}00081\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ memory\_type\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>find\_memory\_index(memory\_requirements.memoryTypeBits,\ memory\_flags);}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (memory\_type\ ==\ -\/1)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Required\ memory\ type\ not\ found.\ Image\ not\ valid."{}});}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00084}00084\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00085}00085\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00086}00086\ \ \ \ \ \textcolor{comment}{//\ Allocate\ device\ memory\ for\ the\ image}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00087}00087\ \ \ \ \ VkMemoryAllocateInfo\ memory\_allocate\_info\ =\ \{VK\_STRUCTURE\_TYPE\_MEMORY\_ALLOCATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00088}00088\ \ \ \ \ memory\_allocate\_info.allocationSize\ =\ memory\_requirements.size;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00089}00089\ \ \ \ \ memory\_allocate\_info.memoryTypeIndex\ =\ memory\_type;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00090}00090\ \ \ \ \ VK\_CHECK(vkAllocateMemory(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&memory\_allocate\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&out\_image-\/>memory));}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00091}00091\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00092}00092\ \ \ \ \ \textcolor{comment}{//\ Bind\ allocated\ memory\ to\ the\ image\ handle}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00093}00093\ \ \ \ \ VK\_CHECK(vkBindImageMemory(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ out\_image-\/>handle,\ out\_image-\/>memory,\ 0));\ \ \textcolor{comment}{//\ TODO:\ Make\ offset\ configurable}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00094}00094\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00095}00095\ \ \ \ \ \textcolor{comment}{//\ Optionally\ create\ an\ image\ view}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00096}00096\ \ \ \ \ \textcolor{keywordflow}{if}\ (create\_view)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00097}00097\ \ \ \ \ \ \ \ \ out\_image-\/>view\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00098}00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}{vulkan\_image\_view\_create}}(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ format,\ out\_image,\ view\_aspect\_flags);}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00099}00099\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00100}00100\ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00101}00101\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00113}\mbox{\hyperlink{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}{00113}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}{vulkan\_image\_view\_create}}(}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00114}00114\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00115}00115\ \ \ \ \ VkFormat\ format,}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00116}00116\ \ \ \ \ vulkan\_image*\ image,}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00117}00117\ \ \ \ \ VkImageAspectFlags\ aspect\_flags)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00118}00118\ \ \ \ \ \textcolor{comment}{//\ Set\ up\ image\ view\ creation\ info}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00119}00119\ \ \ \ \ VkImageViewCreateInfo\ view\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_IMAGE\_VIEW\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00120}00120\ \ \ \ \ view\_create\_info.image\ =\ image-\/>handle;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00121}00121\ \ \ \ \ view\_create\_info.viewType\ =\ VK\_IMAGE\_VIEW\_TYPE\_2D;\ \ \textcolor{comment}{//\ TODO:\ Allow\ configuration\ for\ 1D/3D\ or\ cube\ maps}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00122}00122\ \ \ \ \ view\_create\_info.format\ =\ format;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00123}00123\ \ \ \ \ view\_create\_info.subresourceRange.aspectMask\ =\ aspect\_flags;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00124}00124\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00125}00125\ \ \ \ \ \textcolor{comment}{//\ Subresource\ range\ defaults}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00126}00126\ \ \ \ \ view\_create\_info.subresourceRange.baseMipLevel\ =\ 0;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Configurable\ mipmap\ level}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00127}00127\ \ \ \ \ view\_create\_info.subresourceRange.levelCount\ =\ 1;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00128}00128\ \ \ \ \ view\_create\_info.subresourceRange.baseArrayLayer\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00129}00129\ \ \ \ \ view\_create\_info.subresourceRange.layerCount\ =\ 1;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00130}00130\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00131}00131\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ image\ view}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00132}00132\ \ \ \ \ VK\_CHECK(vkCreateImageView(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&view\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&image-\/>view));}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00133}00133\ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00134}00134\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00148}\mbox{\hyperlink{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a}{00148}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a}{vulkan\_image\_destroy}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_image*\ image)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00149}00149\ \ \ \ \ \textcolor{comment}{//\ Destroy\ image\ view\ first}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00150}00150\ \ \ \ \ \textcolor{keywordflow}{if}\ (image-\/>view)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ vkDestroyImageView(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ image-\/>view,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00152}00152\ \ \ \ \ \ \ \ \ image-\/>view\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00153}00153\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00154}00154\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00155}00155\ \ \ \ \ \textcolor{comment}{//\ Free\ image\ memory}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00156}00156\ \ \ \ \ \textcolor{keywordflow}{if}\ (image-\/>memory)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00157}00157\ \ \ \ \ \ \ \ \ vkFreeMemory(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ image-\/>memory,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00158}00158\ \ \ \ \ \ \ \ \ image-\/>memory\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00159}00159\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00160}00160\ }
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00161}00161\ \ \ \ \ \textcolor{comment}{//\ Destroy\ image\ handle\ last}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00162}00162\ \ \ \ \ \textcolor{keywordflow}{if}\ (image-\/>handle)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00163}00163\ \ \ \ \ \ \ \ \ vkDestroyImage(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ image-\/>handle,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00164}00164\ \ \ \ \ \ \ \ \ image-\/>handle\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00165}00165\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00166}00166\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//\ Copy\ params\ to\ output\ structure}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00054}00054\ \ \ \ \ out\_image-\/>width\ =\ width;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00055}00055\ \ \ \ \ out\_image-\/>height\ =\ height;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ Set\ up\ image\ creation\ info}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00058}00058\ \ \ \ \ VkImageCreateInfo\ image\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_IMAGE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00059}00059\ \ \ \ \ image\_create\_info.imageType\ =\ VK\_IMAGE\_TYPE\_2D;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00060}00060\ \ \ \ \ image\_create\_info.extent.width\ =\ width;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00061}00061\ \ \ \ \ image\_create\_info.extent.height\ =\ height;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00062}00062\ \ \ \ \ image\_create\_info.extent.depth\ =\ 1;\ \ \textcolor{comment}{//\ TODO:\ Support\ configurable\ depth\ (e.g.,\ 3D\ textures\ or\ volume\ data)}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00063}00063\ \ \ \ \ image\_create\_info.mipLevels\ =\ 4;\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Add\ support\ for\ mip\ mapping\ and\ make\ this\ configurable}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00064}00064\ \ \ \ \ image\_create\_info.arrayLayers\ =\ 1;\ \ \ \textcolor{comment}{//\ TODO:\ Support\ array\ layers\ for\ texture\ arrays}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00065}00065\ \ \ \ \ image\_create\_info.format\ =\ format;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00066}00066\ \ \ \ \ image\_create\_info.tiling\ =\ tiling;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00067}00067\ \ \ \ \ image\_create\_info.initialLayout\ =\ VK\_IMAGE\_LAYOUT\_UNDEFINED;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00068}00068\ \ \ \ \ image\_create\_info.usage\ =\ usage;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00069}00069\ \ \ \ \ image\_create\_info.samples\ =\ VK\_SAMPLE\_COUNT\_1\_BIT;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Configurable\ MSAA\ sample\ count}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00070}00070\ \ \ \ \ image\_create\_info.sharingMode\ =\ VK\_SHARING\_MODE\_EXCLUSIVE;\ \ \textcolor{comment}{//\ TODO:\ Make\ sharing\ mode\ configurable}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ image}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00073}00073\ \ \ \ \ VK\_CHECK(vkCreateImage(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&image\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&out\_image-\/>handle));}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ Query\ memory\ requirements\ for\ the\ created\ image}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00076}00076\ \ \ \ \ VkMemoryRequirements\ memory\_requirements;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00077}00077\ \ \ \ \ vkGetImageMemoryRequirements(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ out\_image-\/>handle,\ \&memory\_requirements);}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//\ Find\ suitable\ memory\ type}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ memory\_type\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>find\_memory\_index(memory\_requirements.memoryTypeBits,\ memory\_flags);}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (memory\_type\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Required\ memory\ type\ not\ found.\ Image\ not\ valid."{}});}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00085}00085\ \ \ \ \ \textcolor{comment}{//\ Allocate\ device\ memory\ for\ the\ image}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00086}00086\ \ \ \ \ VkMemoryAllocateInfo\ memory\_allocate\_info\ =\ \{VK\_STRUCTURE\_TYPE\_MEMORY\_ALLOCATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00087}00087\ \ \ \ \ memory\_allocate\_info.allocationSize\ =\ memory\_requirements.size;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00088}00088\ \ \ \ \ memory\_allocate\_info.memoryTypeIndex\ =\ memory\_type;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00089}00089\ \ \ \ \ VK\_CHECK(vkAllocateMemory(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&memory\_allocate\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&out\_image-\/>memory));}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00091}00091\ \ \ \ \ \textcolor{comment}{//\ Bind\ allocated\ memory\ to\ the\ image\ handle}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00092}00092\ \ \ \ \ VK\_CHECK(vkBindImageMemory(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ out\_image-\/>handle,\ out\_image-\/>memory,\ 0));\ \ \textcolor{comment}{//\ TODO:\ Make\ offset\ configurable}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\ Optionally\ create\ an\ image\ view}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (create\_view)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ out\_image-\/>view\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00097}00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}{vulkan\_image\_view\_create}}(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ format,\ out\_image,\ view\_aspect\_flags);}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00099}00099\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00112}\mbox{\hyperlink{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}{00112}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}{vulkan\_image\_view\_create}}(}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00113}00113\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00114}00114\ \ \ \ \ VkFormat\ format,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00115}00115\ \ \ \ \ vulkan\_image*\ image,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00116}00116\ \ \ \ \ VkImageAspectFlags\ aspect\_flags)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00117}00117\ \ \ \ \ \textcolor{comment}{//\ Set\ up\ image\ view\ creation\ info}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00118}00118\ \ \ \ \ VkImageViewCreateInfo\ view\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_IMAGE\_VIEW\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00119}00119\ \ \ \ \ view\_create\_info.image\ =\ image-\/>handle;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00120}00120\ \ \ \ \ view\_create\_info.viewType\ =\ VK\_IMAGE\_VIEW\_TYPE\_2D;\ \ \textcolor{comment}{//\ TODO:\ Allow\ configuration\ for\ 1D/3D\ or\ cube\ maps}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00121}00121\ \ \ \ \ view\_create\_info.format\ =\ format;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00122}00122\ \ \ \ \ view\_create\_info.subresourceRange.aspectMask\ =\ aspect\_flags;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00124}00124\ \ \ \ \ \textcolor{comment}{//\ Subresource\ range\ defaults}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00125}00125\ \ \ \ \ view\_create\_info.subresourceRange.baseMipLevel\ =\ 0;\ \ \textcolor{comment}{//\ TODO:\ Configurable\ mipmap\ level}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00126}00126\ \ \ \ \ view\_create\_info.subresourceRange.levelCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00127}00127\ \ \ \ \ view\_create\_info.subresourceRange.baseArrayLayer\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00128}00128\ \ \ \ \ view\_create\_info.subresourceRange.layerCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00130}00130\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ image\ view}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00131}00131\ \ \ \ \ VK\_CHECK(vkCreateImageView(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&view\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&image-\/>view));}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00132}00132\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00134}\mbox{\hyperlink{vulkan__image_8c_a00633d75f04d5a01f8e308fc286d1fee}{00134}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__image_8c_a00633d75f04d5a01f8e308fc286d1fee}{vulkan\_image\_transition\_layout}}(}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00135}00135\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00136}00136\ \ \ \ \ vulkan\_command\_buffer*\ command\_buffer,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00137}00137\ \ \ \ \ vulkan\_image*\ image,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00138}00138\ \ \ \ \ VkFormat\ format,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00139}00139\ \ \ \ \ VkImageLayout\ old\_layout,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00140}00140\ \ \ \ \ VkImageLayout\ new\_layout)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00141}00141\ \ \ \ \ VkImageMemoryBarrier\ barrier\ =\ \{VK\_STRUCTURE\_TYPE\_IMAGE\_MEMORY\_BARRIER\};}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00143}00143\ \ \ \ \ barrier.oldLayout\ =\ old\_layout;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00144}00144\ \ \ \ \ barrier.newLayout\ =\ new\_layout;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00146}00146\ \ \ \ \ barrier.srcQueueFamilyIndex\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00147}00147\ \ \ \ \ barrier.dstQueueFamilyIndex\ =\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.graphics\_queue\_index;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00149}00149\ \ \ \ \ barrier.image\ =\ image-\/>handle;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00151}00151\ \ \ \ \ barrier.subresourceRange.aspectMask\ =\ VK\_IMAGE\_ASPECT\_COLOR\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00152}00152\ \ \ \ \ barrier.subresourceRange.baseMipLevel\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00153}00153\ \ \ \ \ barrier.subresourceRange.levelCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00154}00154\ \ \ \ \ barrier.subresourceRange.baseArrayLayer\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00155}00155\ \ \ \ \ barrier.subresourceRange.layerCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00157}00157\ \ \ \ \ VkPipelineStageFlags\ source\_stage;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00158}00158\ \ \ \ \ VkPipelineStageFlags\ dest\_stage;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00160}00160\ \ \ \ \ \textcolor{comment}{//\ Don't\ care\ about\ the\ old\ layout\ -\/\ transition\ to\ optimal\ layout\ (for\ the\ underlying\ implementation).}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00161}00161\ \ \ \ \ \textcolor{keywordflow}{if}\ (old\_layout\ ==\ VK\_IMAGE\_LAYOUT\_UNDEFINED\ \&\&\ new\_layout\ ==\ VK\_IMAGE\_LAYOUT\_TRANSFER\_DST\_OPTIMAL)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00162}00162\ \ \ \ \ \ \ \ \ barrier.srcAccessMask\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00164}00164\ \ \ \ \ \ \ \ \ barrier.dstAccessMask\ =\ VK\_ACCESS\_TRANSFER\_WRITE\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ care\ what\ stage\ the\ pipeline\ is\ in\ at\ the\ start.}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00167}00167\ \ \ \ \ \ \ \ \ source\_stage\ =\ VK\_PIPELINE\_STAGE\_TOP\_OF\_PIPE\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Used\ for\ copying}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00170}00170\ \ \ \ \ \ \ \ \ dest\_stage\ =\ VK\_PIPELINE\_STAGE\_TRANSFER\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00171}00171\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (old\_layout\ ==\ VK\_IMAGE\_LAYOUT\_TRANSFER\_DST\_OPTIMAL\ \&\&\ new\_layout\ ==\ VK\_IMAGE\_LAYOUT\_SHADER\_READ\_ONLY\_OPTIMAL)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transitioning\ from\ a\ transfer\ destination\ layout\ to\ a\ shader-\/readonly\ layout.}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00173}00173\ \ \ \ \ \ \ \ \ barrier.srcAccessMask\ =\ VK\_ACCESS\_TRANSFER\_WRITE\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00174}00174\ \ \ \ \ \ \ \ \ barrier.dstAccessMask\ =\ VK\_ACCESS\_SHADER\_READ\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ From\ a\ copying\ stage\ to...}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00177}00177\ \ \ \ \ \ \ \ \ source\_stage\ =\ VK\_PIPELINE\_STAGE\_TRANSFER\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00179}00179\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ fragment\ stage.}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00180}00180\ \ \ \ \ \ \ \ \ dest\_stage\ =\ VK\_PIPELINE\_STAGE\_FRAGMENT\_SHADER\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00181}00181\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00182}00182\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a8eb60bd7b3dfc5cadc7364b06ce7bd07}{KFATAL}}(\textcolor{stringliteral}{"{}unsupported\ layout\ transition!"{}});}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00185}00185\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00187}00187\ \ \ \ \ vkCmdPipelineBarrier(}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00188}00188\ \ \ \ \ \ \ \ \ command\_buffer-\/>handle,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00189}00189\ \ \ \ \ \ \ \ \ source\_stage,\ dest\_stage,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00190}00190\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ 0,\ 0,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00192}00192\ \ \ \ \ \ \ \ \ 0,\ 0,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00193}00193\ \ \ \ \ \ \ \ \ 1,\ \&barrier);}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00194}00194\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00196}\mbox{\hyperlink{vulkan__image_8c_a271f9cd1a0b2aa94e6f0f48ad684a610}{00196}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__image_8c_a271f9cd1a0b2aa94e6f0f48ad684a610}{vulkan\_image\_copy\_from\_buffer}}(}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00197}00197\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00198}00198\ \ \ \ \ vulkan\_image*\ image,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00199}00199\ \ \ \ \ VkBuffer\ buffer,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00200}00200\ \ \ \ \ vulkan\_command\_buffer*\ command\_buffer)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00201}00201\ \ \ \ \ \textcolor{comment}{//\ Region\ to\ copy}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00202}00202\ \ \ \ \ VkBufferImageCopy\ region;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00204}00204\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\_memory}}(\&region,\ \textcolor{keyword}{sizeof}(VkBufferImageCopy));}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00206}00206\ \ \ \ \ region.bufferOffset\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00207}00207\ \ \ \ \ region.bufferRowLength\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00208}00208\ \ \ \ \ region.bufferImageHeight\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00210}00210\ \ \ \ \ region.imageSubresource.aspectMask\ =\ VK\_IMAGE\_ASPECT\_COLOR\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00211}00211\ \ \ \ \ region.imageSubresource.mipLevel\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00212}00212\ \ \ \ \ region.imageSubresource.baseArrayLayer\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00213}00213\ \ \ \ \ region.imageSubresource.layerCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00215}00215\ \ \ \ \ region.imageExtent.width\ =\ image-\/>width;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00216}00216\ \ \ \ \ region.imageExtent.height\ =\ image-\/>height;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00217}00217\ \ \ \ \ region.imageExtent.depth\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00219}00219\ \ \ \ \ vkCmdCopyBufferToImage(}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00220}00220\ \ \ \ \ \ \ \ \ command\_buffer-\/>handle,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00221}00221\ \ \ \ \ \ \ \ \ buffer,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ image-\/>handle,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ VK\_IMAGE\_LAYOUT\_TRANSFER\_DST\_OPTIMAL,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00224}00224\ \ \ \ \ \ \ \ \ 1,}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00225}00225\ \ \ \ \ \ \ \ \ \&region);}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00226}00226\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00241}\mbox{\hyperlink{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a}{00241}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a}{vulkan\_image\_destroy}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_image*\ image)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00242}00242\ \ \ \ \ \textcolor{comment}{//\ Destroy\ image\ view\ first}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00243}00243\ \ \ \ \ \textcolor{keywordflow}{if}\ (image-\/>view)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00244}00244\ \ \ \ \ \ \ \ \ vkDestroyImageView(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ image-\/>view,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00245}00245\ \ \ \ \ \ \ \ \ image-\/>view\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00246}00246\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00248}00248\ \ \ \ \ \textcolor{comment}{//\ Free\ image\ memory}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00249}00249\ \ \ \ \ \textcolor{keywordflow}{if}\ (image-\/>memory)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00250}00250\ \ \ \ \ \ \ \ \ vkFreeMemory(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ image-\/>memory,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00251}00251\ \ \ \ \ \ \ \ \ image-\/>memory\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00252}00252\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00254}00254\ \ \ \ \ \textcolor{comment}{//\ Destroy\ image\ handle\ last}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00255}00255\ \ \ \ \ \textcolor{keywordflow}{if}\ (image-\/>handle)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00256}00256\ \ \ \ \ \ \ \ \ vkDestroyImage(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ image-\/>handle,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ image-\/>handle\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00258}00258\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__image_8c_source_l00259}00259\ \}}
 
 \end{DoxyCode}

@@ -1,7 +1,9 @@
 #pragma once
 
 #include "renderer/renderer_backend.h"
+#include "resources/resource_types.h"
 #include "vulkan_types.inl"
+
 /**
  * @file vulkan_backend.h
  * @brief Public interface for the Vulkan renderer backend implementation.
@@ -132,7 +134,7 @@ void upload_data_range(vulkan_context* context,
                        vulkan_buffer* buffer,
                        u64 offset,
                        u64 size,
-                       const void* data);
+                       void* data);
 
 /**
  * @brief Initializes the Vulkan renderer backend.
@@ -209,4 +211,8 @@ void vulkan_renderer_update_global_state(mat4 projection, mat4 view, vec3 view_p
  * @param model The model matrix for the object.
  * @return void
  */
-void vulkan_backend_update_object(mat4 model);
+void vulkan_backend_update_object(geometry_render_data data);
+
+void vulkan_renderer_create_texture(const char* name, b8 auto_release, i32 width, i32 height, i32 channel_count, const u8* pixels, b8 has_transparency, texture* out_texture);
+
+void vulkan_renderer_destroy_texture(texture* texture);

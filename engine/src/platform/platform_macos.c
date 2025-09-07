@@ -1,5 +1,17 @@
 #include <platform/platform.h>
 
+/**
+ * @file platform_macos.c
+ *
+ * @brief macOS-specific implementation of the platform abstraction layer.
+ * Implements all platform-dependent functionality for macOS including:
+ * - Window creation and event handling
+ * - Input device polling (keyboard, mouse)
+ * - Memory allocation and manipulation
+ * - Timing and sleep functions
+ * Uses GLFW for windowing and input handling.
+ */
+
 #if KPLATFORM_APPLE
 
 #include "containers/darray.h"

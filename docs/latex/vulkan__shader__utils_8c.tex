@@ -1,12 +1,16 @@
 \doxysection{engine/src/renderer/vulkan/vulkan\+\_\+shader\+\_\+utils.c File Reference}
 \hypertarget{vulkan__shader__utils_8c}{}\label{vulkan__shader__utils_8c}\index{engine/src/renderer/vulkan/vulkan\_shader\_utils.c@{engine/src/renderer/vulkan/vulkan\_shader\_utils.c}}
+
+
+Implements utility functions for loading and creating Vulkan shader modules.  
+
+
 {\ttfamily \#include "{}vulkan\+\_\+shader\+\_\+utils.\+h"{}}\newline
 {\ttfamily \#include "{}core/kstring.\+h"{}}\newline
 {\ttfamily \#include "{}core/logger.\+h"{}}\newline
 {\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
 {\ttfamily \#include "{}platform/filesystem.\+h"{}}\newline
-Include dependency graph for vulkan\+\_\+shader\+\_\+utils.\+c\+:
-\nopagebreak
+Include dependency graph for vulkan\+\_\+shader\+\_\+utils.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -17,7 +21,16 @@ Include dependency graph for vulkan\+\_\+shader\+\_\+utils.\+c\+:
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__shader__utils_8c_abdafeacc190d500bbd72aa141cadf2e5}{create\+\_\+shader\+\_\+module}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}type\+\_\+str, Vk\+Shader\+Stage\+Flag\+Bits shader\+\_\+stage\+\_\+flag, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} stage\+\_\+index, vulkan\+\_\+shader\+\_\+stage \texorpdfstring{$\ast$}{*}shader\+\_\+stages)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a Vulkan shader module from a SPIR-\/V binary file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements utility functions for loading and creating Vulkan shader modules. 
+
+This module provides functions to load SPIR-\/V shader binaries from files, create Vulkan shader modules, and set up pipeline shader stage info structures. 
+
+Definition in file \mbox{\hyperlink{vulkan__shader__utils_8c_source}{vulkan\+\_\+shader\+\_\+utils.\+c}}.
+
 
 
 \doxysubsection{Function Documentation}
@@ -29,13 +42,37 @@ Include dependency graph for vulkan\+\_\+shader\+\_\+utils.\+c\+:
 
 
 
-Definition at line \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00009}{9}} of file \mbox{\hyperlink{vulkan__shader__utils_8c_source}{vulkan\+\_\+shader\+\_\+utils.\+c}}.
+Creates a Vulkan shader module from a SPIR-\/V binary file. 
+
+This function loads the specified SPIR-\/V file, creates a Vk\+Shader\+Module, and populates the corresponding vulkan\+\_\+shader\+\_\+stage structure with creation info and stage info for pipeline use.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em name} & The base name of the shader (without extension). \\
+\hline
+{\em type\+\_\+str} & The shader type string (e.\+g., "{}vert"{}, "{}frag"{}). \\
+\hline
+{\em shader\+\_\+stage\+\_\+flag} & The Vk\+Shader\+Stage\+Flag\+Bits indicating the shader stage. \\
+\hline
+{\em stage\+\_\+index} & The index in the shader\+\_\+stages array to populate. \\
+\hline
+{\em shader\+\_\+stages} & An array of vulkan\+\_\+shader\+\_\+stage to hold created stages. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the shader module was created successfully, False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{17}} of file \mbox{\hyperlink{vulkan__shader__utils_8c_source}{vulkan\+\_\+shader\+\_\+utils.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00024}{FILE\+\_\+\+MODE\+\_\+\+READ}}, \mbox{\hyperlink{filesystem_8c_source_l00044}{filesystem\+\_\+close()}}, \mbox{\hyperlink{filesystem_8c_source_l00015}{filesystem\+\_\+open()}}, \mbox{\hyperlink{filesystem_8c_source_l00092}{filesystem\+\_\+read\+\_\+all\+\_\+bytes()}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kfree()}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, \mbox{\hyperlink{kstring_8c_source_l00041}{string\+\_\+format()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00033}{FILE\+\_\+\+MODE\+\_\+\+READ}}, \mbox{\hyperlink{filesystem_8c_source_l00052}{filesystem\+\_\+close()}}, \mbox{\hyperlink{filesystem_8c_source_l00023}{filesystem\+\_\+open()}}, \mbox{\hyperlink{filesystem_8c_source_l00100}{filesystem\+\_\+read\+\_\+all\+\_\+bytes()}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kfree()}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, \mbox{\hyperlink{kstring_8c_source_l00041}{string\+\_\+format()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__object__shader_8c_source_l00020}{vulkan\+\_\+object\+\_\+shader\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{vulkan__object__shader_8c_source_l00028}{vulkan\+\_\+object\+\_\+shader\+\_\+create()}}.
 

@@ -101,11 +101,13 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="vulkan__image_8h__dep__incl.png" border="0" usemap="#aengine_2src_2renderer_2vulkan_2vulkan__image_8hdep" alt=""/></div>
 <map name="aengine_2src_2renderer_2vulkan_2vulkan__image_8hdep" id="aengine_2src_2renderer_2vulkan_2vulkan__image_8hdep">
-<area shape="rect" title="Image management utilities for the Koru Engine&#39;s Vulkan renderer." alt="" coords="111,5,287,45"/>
-<area shape="rect" href="vulkan__image_8c.html" title="Implementation of Vulkan image management utilities." alt="" coords="5,93,180,133"/>
-<area shape="poly" title=" " alt="" coords="167,56,118,95,115,91,163,52"/>
-<area shape="rect" href="vulkan__swapchain_8c.html" title="Implementation of Vulkan swapchain creation, recreation, and destruction." alt="" coords="205,93,407,133"/>
-<area shape="poly" title=" " alt="" coords="235,52,284,91,281,95,232,56"/>
+<area shape="rect" title="Image management utilities for the Koru Engine&#39;s Vulkan renderer." alt="" coords="217,5,393,45"/>
+<area shape="rect" href="vulkan__backend_8c.html" title="Implementation of the Vulkan renderer backend." alt="" coords="5,93,193,133"/>
+<area shape="poly" title=" " alt="" coords="248,53,145,96,143,91,246,48"/>
+<area shape="rect" href="vulkan__image_8c.html" title="Implementation of Vulkan image management utilities." alt="" coords="217,93,392,133"/>
+<area shape="poly" title=" " alt="" coords="307,59,307,93,302,93,302,59"/>
+<area shape="rect" href="vulkan__swapchain_8c.html" title="Implementation of Vulkan swapchain creation, recreation, and destruction." alt="" coords="417,93,619,133"/>
+<area shape="poly" title=" " alt="" coords="365,48,472,91,470,96,363,53"/>
 </map>
 </div>
 </div>
@@ -122,6 +124,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a7d1140c936aeeadb57f27f293db7674a" id="r_a7d1140c936aeeadb57f27f293db7674a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__image_8h.html#a7d1140c936aeeadb57f27f293db7674a">vulkan_image_destroy</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_image *image)</td></tr>
 <tr class="memdesc:a7d1140c936aeeadb57f27f293db7674a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a Vulkan image and its associated resources.  <br /></td></tr>
 <tr class="separator:a7d1140c936aeeadb57f27f293db7674a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00633d75f04d5a01f8e308fc286d1fee" id="r_a00633d75f04d5a01f8e308fc286d1fee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__image_8h.html#a00633d75f04d5a01f8e308fc286d1fee">vulkan_image_transition_layout</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_command_buffer *command_buffer, vulkan_image *image, VkFormat format, VkImageLayout old_layout, VkImageLayout new_layout)</td></tr>
+<tr class="memdesc:a00633d75f04d5a01f8e308fc286d1fee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transitions a Vulkan image from one layout to another.  <br /></td></tr>
+<tr class="separator:a00633d75f04d5a01f8e308fc286d1fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a271f9cd1a0b2aa94e6f0f48ad684a610" id="r_a271f9cd1a0b2aa94e6f0f48ad684a610"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__image_8h.html#a271f9cd1a0b2aa94e6f0f48ad684a610">vulkan_image_copy_from_buffer</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_image *image, VkBuffer buffer, vulkan_command_buffer *command_buffer)</td></tr>
+<tr class="memdesc:a271f9cd1a0b2aa94e6f0f48ad684a610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies data from a buffer to a Vulkan image.  <br /></td></tr>
+<tr class="separator:a271f9cd1a0b2aa94e6f0f48ad684a610"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Image management utilities for the Koru Engine's Vulkan renderer. </p>
@@ -134,6 +142,64 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="vulkan__image_8h_source.html">vulkan_image.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a271f9cd1a0b2aa94e6f0f48ad684a610" name="a271f9cd1a0b2aa94e6f0f48ad684a610"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271f9cd1a0b2aa94e6f0f48ad684a610">&#9670;&#160;</a></span>vulkan_image_copy_from_buffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vulkan_image_copy_from_buffer </td>
+          <td>(</td>
+          <td class="paramtype">vulkan_context *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vulkan_image *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VkBuffer&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vulkan_command_buffer *&#160;</td>
+          <td class="paramname"><em>command_buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies data from a buffer to a Vulkan image. </p>
+<p>Used for uploading texture data or other image content from CPU-visible buffers.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">image</td><td>A pointer to the destination vulkan_image. </td></tr>
+    <tr><td class="paramname">buffer</td><td>The source VkBuffer containing the data to copy. </td></tr>
+    <tr><td class="paramname">command_buffer</td><td>A command buffer to record the copy operation into. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="vulkan__image_8c_source.html#l00196">196</a> of file <a class="el" href="vulkan__image_8c_source.html">vulkan_image.c</a>.</p>
+
+<p class="reference">References <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00868">vulkan_renderer_create_texture()</a>.</p>
+
+</div>
+</div>
 <a id="ae8efa06d320d8156f69f0c8352f37340" name="ae8efa06d320d8156f69f0c8352f37340"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8efa06d320d8156f69f0c8352f37340">&#9670;&#160;</a></span>vulkan_image_create()</h2>
 
@@ -262,9 +328,9 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="vulkan__image_8c_source.html#l00041">41</a> of file <a class="el" href="vulkan__image_8c_source.html">vulkan_image.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, and <a class="el" href="vulkan__image_8c_source.html#l00113">vulkan_image_view_create()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, and <a class="el" href="vulkan__image_8c_source.html#l00112">vulkan_image_view_create()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00200">create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00200">create()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00868">vulkan_renderer_create_texture()</a>.</p>
 
 </div>
 </div>
@@ -305,6 +371,8 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
     <tr><td class="paramname">image</td><td>A pointer to the vulkan_image to destroy.</td></tr>
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">image</td><td>A pointer to the vulkan_image to destroy.</td></tr>
   </table>
   </dd>
 </dl>
@@ -317,16 +385,91 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">image</td><td>A pointer to the vulkan_image to destroy.</td></tr>
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
     <tr><td class="paramname">image</td><td>A pointer to the vulkan_image to destroy. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__image_8c_source.html#l00148">148</a> of file <a class="el" href="vulkan__image_8c_source.html">vulkan_image.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__image_8c_source.html#l00241">241</a> of file <a class="el" href="vulkan__image_8c_source.html">vulkan_image.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00351">destroy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__swapchain_8c_source.html#l00351">destroy()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00983">vulkan_renderer_destroy_texture()</a>.</p>
+
+</div>
+</div>
+<a id="a00633d75f04d5a01f8e308fc286d1fee" name="a00633d75f04d5a01f8e308fc286d1fee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00633d75f04d5a01f8e308fc286d1fee">&#9670;&#160;</a></span>vulkan_image_transition_layout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vulkan_image_transition_layout </td>
+          <td>(</td>
+          <td class="paramtype">vulkan_context *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vulkan_command_buffer *&#160;</td>
+          <td class="paramname"><em>command_buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vulkan_image *&#160;</td>
+          <td class="paramname"><em>image</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VkFormat&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VkImageLayout&#160;</td>
+          <td class="paramname"><em>old_layout</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VkImageLayout&#160;</td>
+          <td class="paramname"><em>new_layout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transitions a Vulkan image from one layout to another. </p>
+<p>Image layout transitions are required when changing how an image is used, such as transitioning from undefined to a color attachment layout before rendering, or from a color attachment to shader read-only for sampling in a shader.</p>
+<p>This function records the necessary pipeline barrier into the provided command buffer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>A pointer to the active Vulkan context. </td></tr>
+    <tr><td class="paramname">command_buffer</td><td>A pointer to the command buffer to record the transition into. </td></tr>
+    <tr><td class="paramname">image</td><td>A pointer to the vulkan_image to transition. </td></tr>
+    <tr><td class="paramname">format</td><td>Format of the image (used for depth/stencil aspects). </td></tr>
+    <tr><td class="paramname">old_layout</td><td>The current layout of the image. </td></tr>
+    <tr><td class="paramname">new_layout</td><td>The desired layout of the image. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="vulkan__image_8c_source.html#l00134">134</a> of file <a class="el" href="vulkan__image_8c_source.html">vulkan_image.c</a>.</p>
+
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, and <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00868">vulkan_renderer_create_texture()</a>.</p>
 
 </div>
 </div>
@@ -395,9 +538,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__image_8c_source.html#l00113">113</a> of file <a class="el" href="vulkan__image_8c_source.html">vulkan_image.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__image_8c_source.html#l00112">112</a> of file <a class="el" href="vulkan__image_8c_source.html">vulkan_image.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00034">context</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="vulkan__image_8c_source.html#l00041">vulkan_image_create()</a>.</p>
 
@@ -406,7 +549,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:35:51 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

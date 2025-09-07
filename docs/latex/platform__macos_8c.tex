@@ -1,5 +1,10 @@
 \doxysection{engine/src/platform/platform\+\_\+macos.c File Reference}
 \hypertarget{platform__macos_8c}{}\label{platform__macos_8c}\index{engine/src/platform/platform\_macos.c@{engine/src/platform/platform\_macos.c}}
+
+
+mac\+OS-\/specific implementation of the platform abstraction layer. Implements all platform-\/dependent functionality for mac\+OS including\+:  
+
+
 {\ttfamily \#include $<$platform/platform.\+h$>$}\newline
 Include dependency graph for platform\+\_\+macos.\+c\+:\nopagebreak
 \begin{figure}[H]
@@ -8,3 +13,18 @@ Include dependency graph for platform\+\_\+macos.\+c\+:\nopagebreak
 \includegraphics[width=193pt]{platform__macos_8c__incl}
 \end{center}
 \end{figure}
+
+
+\doxysubsection{Detailed Description}
+mac\+OS-\/specific implementation of the platform abstraction layer. Implements all platform-\/dependent functionality for mac\+OS including\+: 
+
+
+\begin{DoxyItemize}
+\item Window creation and event handling
+\item Input device polling (keyboard, mouse)
+\item Memory allocation and manipulation
+\item Timing and sleep functions Uses GLFW for windowing and input handling. 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{platform__macos_8c_source}{platform\+\_\+macos.\+c}}.
+

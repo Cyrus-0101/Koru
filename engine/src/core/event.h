@@ -39,7 +39,7 @@ typedef struct event_context {
         i64 i64[2];
         // Unsigned 64-bit integers
         u64 u64[2];
-        // 64-bit floating-point values 
+        // 64-bit floating-point values
         f64 f64[2];
 
         // Signed 32-bit integers
@@ -49,11 +49,10 @@ typedef struct event_context {
         // 32-bit floating-point values
         f32 f32[4];
 
-
         // Signed 16-bit integers
         i16 i16[8];
         // Unsigned 16-bit integers
-        u16 u16[8];  
+        u16 u16[8];
 
         // Signed 8-bit integers
         i8 i8[16];
@@ -219,6 +218,16 @@ typedef enum system_event_code {
      * ```
      */
     EVENT_CODE_RESIZED = 0x08,
+
+    EVENT_CODE_DEBUG0 = 0x10,
+
+    EVENT_CODE_DEBUG1 = 0x11,
+
+    EVENT_CODE_DEBUG2 = 0x12,
+
+    EVENT_CODE_DEBUG3 = 0x13,
+
+    EVENT_CODE_DEBUG4 = 0x14,
 
     /**
      * @brief Maximum valid system event code.

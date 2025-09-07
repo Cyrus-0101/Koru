@@ -82,6 +82,7 @@ $(function() {
 <p>Implementation of the testbed game logic.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="game_8h_source.html">game.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="event_8h_source.html">core/event.h</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="input_8h_source.html">core/input.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="kmemory_8h_source.html">core/kmemory.h</a>&quot;</code><br />
 <code>#include &lt;<a class="el" href="logger_8h_source.html">core/logger.h</a>&gt;</code><br />
@@ -94,37 +95,40 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="game_8c__incl.png" border="0" usemap="#atestbed_2src_2game_8c" alt=""/></div>
 <map name="atestbed_2src_2game_8c" id="atestbed_2src_2game_8c">
-<area shape="rect" title="Implementation of the testbed game logic." alt="" coords="419,5,566,31"/>
-<area shape="rect" href="game_8h.html" title="Interface for the testbed game implementation." alt="" coords="127,79,197,104"/>
-<area shape="poly" title=" " alt="" coords="440,33,211,82,210,77,439,28"/>
-<area shape="rect" href="input_8h.html" title="Input system interface for handling keyboard and mouse events." alt="" coords="266,225,365,251"/>
-<area shape="poly" title=" " alt="" coords="456,33,416,52,396,65,379,80,356,112,340,148,322,213,317,211,335,146,352,110,375,77,393,61,413,47,454,28"/>
-<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="440,152,567,177"/>
-<area shape="poly" title=" " alt="" coords="501,30,510,52,518,78,519,110,514,139,509,138,514,110,513,79,505,53,496,32"/>
-<area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="533,225,639,251"/>
-<area shape="poly" title=" " alt="" coords="505,29,544,79,565,114,581,151,587,182,589,211,584,211,582,183,576,153,560,116,539,82,501,32"/>
-<area shape="rect" href="kmath_8h.html" title="Core mathematical operations and constants for the Koru engine." alt="" coords="389,79,503,104"/>
-<area shape="poly" title=" " alt="" coords="487,32,463,69,459,66,483,30"/>
-<area shape="rect" href="renderer__frontend_8h.html" title="Frontend interface for the rendering system." alt="" coords="642,79,853,104"/>
-<area shape="poly" title=" " alt="" coords="534,28,694,72,693,78,533,33"/>
-<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="275,299,356,324"/>
-<area shape="poly" title=" " alt="" coords="127,98,98,104,67,115,39,131,16,153,9,174,9,200,16,227,29,249,45,260,68,270,129,285,198,296,261,303,261,309,197,302,128,291,66,275,42,264,25,252,11,229,4,201,4,173,12,151,36,126,65,110,97,99,126,93"/>
-<area shape="rect" href="game__types_8h.html" title="Game&#45;related types and structures used across the engine." alt="" coords="26,152,141,177"/>
-<area shape="poly" title=" " alt="" coords="151,106,108,145,104,141,148,102"/>
-<area shape="rect" href="math__types_8h.html" title="Core mathematical types used throughout the Koru engine." alt="" coords="165,152,314,177"/>
-<area shape="poly" title=" " alt="" coords="176,102,218,141,215,144,173,106"/>
-<area shape="rect" href="application_8h.html" title="Public interface for the core application system." alt="" coords="39,225,178,251"/>
-<area shape="poly" title=" " alt="" coords="90,177,103,212,98,213,85,179"/>
-<area shape="poly" title=" " alt="" coords="143,248,270,292,268,297,141,253"/>
-<area shape="poly" title=" " alt="" coords="242,177,245,211,256,249,271,270,290,288,286,292,267,274,252,252,239,212,237,178"/>
-<area shape="poly" title=" " alt="" coords="318,251,318,285,313,285,313,251"/>
-<area shape="poly" title=" " alt="" coords="496,179,465,214,422,253,388,276,354,295,351,290,385,271,419,249,461,210,492,176"/>
-<area shape="poly" title=" " alt="" coords="543,253,370,299,368,293,542,248"/>
-<area shape="poly" title=" " alt="" coords="445,105,422,170,403,212,379,252,343,292,339,288,375,249,398,209,417,168,440,103"/>
-<area shape="poly" title=" " alt="" coords="414,107,287,150,285,145,412,101"/>
-<area shape="poly" title=" " alt="" coords="458,103,488,139,483,143,453,106"/>
-<area shape="rect" title=" " alt="" coords="677,152,817,177"/>
-<area shape="poly" title=" " alt="" coords="750,104,750,138,745,138,745,104"/>
+<area shape="rect" title="Implementation of the testbed game logic." alt="" coords="497,5,644,31"/>
+<area shape="rect" href="game_8h.html" title="Interface for the testbed game implementation." alt="" coords="143,79,214,104"/>
+<area shape="poly" title=" " alt="" coords="503,33,234,81,229,82,228,77,233,76,502,28"/>
+<area shape="rect" href="event_8h.html" title="Event system for inter&#45;component communication." alt="" coords="219,225,322,251"/>
+<area shape="poly" title=" " alt="" coords="499,33,443,48,382,72,325,107,301,128,280,153,273,167,269,182,269,212,264,211,264,181,268,165,275,151,297,125,322,102,380,67,441,43,498,28"/>
+<area shape="rect" href="input_8h.html" title="Input system interface for handling keyboard and mouse events." alt="" coords="397,225,496,251"/>
+<area shape="poly" title=" " alt="" coords="554,33,528,53,503,80,485,114,471,149,454,212,449,211,466,148,480,111,499,77,524,49,551,29"/>
+<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="571,152,698,177"/>
+<area shape="poly" title=" " alt="" coords="594,29,620,49,642,78,649,109,645,139,640,138,643,109,638,80,617,52,590,33"/>
+<area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="664,225,771,251"/>
+<area shape="poly" title=" " alt="" coords="596,29,630,49,665,77,694,110,712,151,719,182,721,211,715,212,713,183,707,153,689,113,661,81,627,53,593,33"/>
+<area shape="rect" href="kmath_8h.html" title="Core mathematical operations and constants for the Koru engine." alt="" coords="513,79,628,104"/>
+<area shape="poly" title=" " alt="" coords="573,31,573,65,568,65,568,31"/>
+<area shape="rect" href="renderer__frontend_8h.html" title="Frontend interface for the rendering system." alt="" coords="773,79,984,104"/>
+<area shape="poly" title=" " alt="" coords="621,28,816,73,815,78,620,33"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="362,299,443,324"/>
+<area shape="poly" title=" " alt="" coords="180,105,178,133,179,172,188,213,197,232,209,249,239,274,275,290,313,301,348,306,348,311,312,306,273,295,236,278,205,252,192,235,183,215,174,173,172,133,174,104"/>
+<area shape="rect" href="game__types_8h.html" title="Game&#45;related types and structures used across the engine." alt="" coords="24,152,139,177"/>
+<area shape="poly" title=" " alt="" coords="165,106,110,146,107,141,161,102"/>
+<area shape="rect" href="math__types_8h.html" title="Core mathematical types used throughout the Koru engine." alt="" coords="289,152,439,177"/>
+<area shape="poly" title=" " alt="" coords="209,102,322,145,320,149,207,107"/>
+<area shape="rect" href="application_8h.html" title="Public interface for the core application system." alt="" coords="5,225,144,251"/>
+<area shape="poly" title=" " alt="" coords="83,178,80,212,74,212,78,177"/>
+<area shape="poly" title=" " alt="" coords="128,248,349,296,348,301,127,253"/>
+<area shape="poly" title=" " alt="" coords="369,177,388,250,398,285,393,286,383,251,364,178"/>
+<area shape="poly" title=" " alt="" coords="293,248,370,290,368,294,291,253"/>
+<area shape="poly" title=" " alt="" coords="442,252,419,288,415,286,437,250"/>
+<area shape="poly" title=" " alt="" coords="628,179,598,215,554,253,506,279,458,297,456,292,503,274,550,248,594,211,624,176"/>
+<area shape="poly" title=" " alt="" coords="667,253,457,300,456,295,666,248"/>
+<area shape="poly" title=" " alt="" coords="571,105,554,172,536,214,510,252,481,277,449,295,446,291,478,273,506,249,531,211,549,170,566,104"/>
+<area shape="poly" title=" " alt="" coords="538,107,411,150,410,145,537,101"/>
+<area shape="poly" title=" " alt="" coords="583,103,617,140,613,144,579,106"/>
+<area shape="rect" title=" " alt="" coords="809,152,949,177"/>
+<area shape="poly" title=" " alt="" coords="881,104,881,138,876,138,876,104"/>
 </map>
 </div>
 </div>
@@ -189,11 +193,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00040">40</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00041">41</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 <p class="reference">References <a class="el" href="game_8h_source.html#l00046">game_state::camera_euler</a>, <a class="el" href="game_8h_source.html#l00048">game_state::camera_view_dirty</a>, <a class="el" href="kmath_8h_source.html#l01537">deg_to_rad()</a>, <a class="el" href="defines_8h_source.html#l00295">KCLAMP</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="math__types_8h_source.html#l00068">vec3_u::x</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00093">game_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00094">game_update()</a>.</p>
 
 </div>
 </div>
@@ -223,11 +227,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00050">50</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00051">51</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 <p class="reference">References <a class="el" href="game_8h_source.html#l00046">game_state::camera_euler</a>, <a class="el" href="game_8h_source.html#l00048">game_state::camera_view_dirty</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="math__types_8h_source.html#l00072">vec3_u::y</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00093">game_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00094">game_update()</a>.</p>
 
 </div>
 </div>
@@ -262,7 +266,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if initialization succeeded; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00066">66</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00067">67</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 <p class="reference">References <a class="el" href="game_8h_source.html#l00046">game_state::camera_euler</a>, <a class="el" href="game_8h_source.html#l00041">game_state::camera_position</a>, <a class="el" href="game_8h_source.html#l00048">game_state::camera_view_dirty</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="kmath_8h_source.html#l01027">mat4_inverse()</a>, <a class="el" href="kmath_8h_source.html#l01091">mat4_translation()</a>, <a class="el" href="game__types_8h_source.html#l00064">game::state</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="kmath_8h_source.html#l00383">vec3_zero()</a>, and <a class="el" href="game_8h_source.html#l00036">game_state::view</a>.</p>
 
@@ -318,7 +322,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00198">198</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00209">209</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8c_source.html#l00020">create_game()</a>.</p>
 
@@ -366,7 +370,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if rendering succeeded; False on unrecoverable error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00182">182</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00193">193</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 <p class="reference">References <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
@@ -416,9 +420,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if update succeeded; False to request application exit. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00093">93</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00094">94</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
-<p class="reference">References <a class="el" href="game_8c_source.html#l00040">camera_pitch()</a>, <a class="el" href="game_8h_source.html#l00041">game_state::camera_position</a>, <a class="el" href="game_8h_source.html#l00048">game_state::camera_view_dirty</a>, <a class="el" href="game_8c_source.html#l00050">camera_yaw()</a>, <a class="el" href="kmemory_8c_source.html#l00244">get_memory_alloc_count()</a>, <a class="el" href="input_8c_source.html#l00241">input_is_key_down()</a>, <a class="el" href="input_8c_source.html#l00284">input_was_key_up()</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="kmath_8h_source.html#l01206">mat4_backward()</a>, <a class="el" href="kmath_8h_source.html#l01191">mat4_forward()</a>, <a class="el" href="kmath_8h_source.html#l01251">mat4_left()</a>, <a class="el" href="kmath_8h_source.html#l01266">mat4_right()</a>, <a class="el" href="game_8c_source.html#l00028">recalculate_view_matrix()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00172">renderer_set_view()</a>, <a class="el" href="game__types_8h_source.html#l00064">game::state</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="kmath_8h_source.html#l00443">vec3_add()</a>, <a class="el" href="kmath_8h_source.html#l00589">vec3_compare()</a>, <a class="el" href="kmath_8h_source.html#l00531">vec3_normalize()</a>, <a class="el" href="kmath_8h_source.html#l00383">vec3_zero()</a>, <a class="el" href="game_8h_source.html#l00036">game_state::view</a>, <a class="el" href="math__types_8h_source.html#l00068">vec3_u::x</a>, <a class="el" href="math__types_8h_source.html#l00072">vec3_u::y</a>, and <a class="el" href="math__types_8h_source.html#l00076">vec3_u::z</a>.</p>
+<p class="reference">References <a class="el" href="game_8c_source.html#l00041">camera_pitch()</a>, <a class="el" href="game_8h_source.html#l00041">game_state::camera_position</a>, <a class="el" href="game_8h_source.html#l00048">game_state::camera_view_dirty</a>, <a class="el" href="game_8c_source.html#l00051">camera_yaw()</a>, <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="event_8h_source.html#l00222">EVENT_CODE_DEBUG0</a>, <a class="el" href="event_8c_source.html#l00150">event_fire()</a>, <a class="el" href="kmemory_8c_source.html#l00244">get_memory_alloc_count()</a>, <a class="el" href="input_8c_source.html#l00241">input_is_key_down()</a>, <a class="el" href="input_8c_source.html#l00254">input_is_key_up()</a>, <a class="el" href="input_8c_source.html#l00269">input_was_key_down()</a>, <a class="el" href="input_8c_source.html#l00284">input_was_key_up()</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="kmath_8h_source.html#l01206">mat4_backward()</a>, <a class="el" href="kmath_8h_source.html#l01191">mat4_forward()</a>, <a class="el" href="kmath_8h_source.html#l01251">mat4_left()</a>, <a class="el" href="kmath_8h_source.html#l01266">mat4_right()</a>, <a class="el" href="game_8c_source.html#l00029">recalculate_view_matrix()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00407">renderer_set_view()</a>, <a class="el" href="game__types_8h_source.html#l00064">game::state</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="kmath_8h_source.html#l00443">vec3_add()</a>, <a class="el" href="kmath_8h_source.html#l00589">vec3_compare()</a>, <a class="el" href="kmath_8h_source.html#l00531">vec3_normalize()</a>, <a class="el" href="kmath_8h_source.html#l00383">vec3_zero()</a>, <a class="el" href="game_8h_source.html#l00036">game_state::view</a>, <a class="el" href="math__types_8h_source.html#l00068">vec3_u::x</a>, <a class="el" href="math__types_8h_source.html#l00072">vec3_u::y</a>, and <a class="el" href="math__types_8h_source.html#l00076">vec3_u::z</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="entry_8c_source.html#l00020">create_game()</a>.</p>
 
@@ -440,18 +444,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00028">28</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game_8c_source.html#l00029">29</a> of file <a class="el" href="game_8c_source.html">game.c</a>.</p>
 
 <p class="reference">References <a class="el" href="game_8h_source.html#l00046">game_state::camera_euler</a>, <a class="el" href="game_8h_source.html#l00041">game_state::camera_position</a>, <a class="el" href="game_8h_source.html#l00048">game_state::camera_view_dirty</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kmath_8h_source.html#l01176">mat4_euler_xyz()</a>, <a class="el" href="kmath_8h_source.html#l01027">mat4_inverse()</a>, <a class="el" href="kmath_8h_source.html#l00883">mat4_mul()</a>, <a class="el" href="kmath_8h_source.html#l01091">mat4_translation()</a>, <a class="el" href="game_8h_source.html#l00036">game_state::view</a>, <a class="el" href="math__types_8h_source.html#l00068">vec3_u::x</a>, <a class="el" href="math__types_8h_source.html#l00072">vec3_u::y</a>, and <a class="el" href="math__types_8h_source.html#l00076">vec3_u::z</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00093">game_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="game_8c_source.html#l00094">game_update()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:35:51 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

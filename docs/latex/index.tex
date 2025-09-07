@@ -10,7 +10,11 @@ Koru is designed to be fast, portable, and easy to extend — providing a low-\/
 
 \DoxyHorRuler{0}
 \hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{🧠 What Is Koru?}{🧠 What Is Koru?}}\label{index_autotoc_md4}
-Koru is a {\bfseries{C99-\/based game engine}} focused on performance, portability, and modularity. It\textquotesingle{}s ideal for developers who want fine-\/grained control over rendering, input, memory, and platform-\/specific functionality without the overhead of high-\/level abstractions.\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{🚀 Features\+:}{🚀 Features:}}\label{index_autotoc_md5}
+Koru is a {\bfseries{C99-\/based game engine}} focused on performance, portability, and modularity. It\textquotesingle{}s ideal for developers who want fine-\/grained control over rendering, input, memory, and platform-\/specific functionality without the overhead of high-\/level abstractions.\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{External libs (/engine/src/vendor/)}{External libs (/engine/src/vendor/)}}\label{index_autotoc_md5}
+
+\begin{DoxyEnumerate}
+\item stb-\/image.\+h -\/ From \href{https://github.com/nothings/stb}{\texttt{ STB by Sean Barrett}} -\/ Lightweight way to handle and load images
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{🚀 Features\+:}{🚀 Features:}}\label{index_autotoc_md6}
 
 \begin{DoxyItemize}
 \item Written entirely in {\bfseries{C99}} – minimal dependencies
@@ -21,8 +25,8 @@ Koru is a {\bfseries{C99-\/based game engine}} focused on performance, portabili
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md7}{}\doxysection{\texorpdfstring{🖼 Architecture}{🖼 Architecture}}\label{index_autotoc_md7}
-The high-\/level architecture of Koru is divided into four main layers\+:\hypertarget{index_autotoc_md8}{}\doxysubsection{\texorpdfstring{1. $<$strong$>$\+Platform Layer$<$/strong$>$}{1. <strong>Platform Layer</strong>}}\label{index_autotoc_md8}
+\hypertarget{index_autotoc_md8}{}\doxysection{\texorpdfstring{🖼 Architecture}{🖼 Architecture}}\label{index_autotoc_md8}
+The high-\/level architecture of Koru is divided into four main layers\+:\hypertarget{index_autotoc_md9}{}\doxysubsection{\texorpdfstring{1. $<$strong$>$\+Platform Layer$<$/strong$>$}{1. <strong>Platform Layer</strong>}}\label{index_autotoc_md9}
 Handles OS-\/specific functionality\+:
 
 
@@ -33,7 +37,7 @@ Handles OS-\/specific functionality\+:
 \item {\bfseries{Console Output}}\+: Handles logging and debugging output.
 \item {\bfseries{Memory Management}}\+: Allocates and frees memory efficiently.
 \item {\bfseries{Renderer API Extensions}}\+: Integrates with Vulkan for rendering.
-\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysubsection{\texorpdfstring{2. $<$strong$>$\+Core$<$/strong$>$}{2. <strong>Core</strong>}}\label{index_autotoc_md9}
+\end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{2. $<$strong$>$\+Core$<$/strong$>$}{2. <strong>Core</strong>}}\label{index_autotoc_md10}
 Provides fundamental utilities and services\+:
 
 
@@ -50,7 +54,7 @@ Provides fundamental utilities and services\+:
 \item {\bfseries{Localization}}\+: Supports internationalization.
 \item {\bfseries{String Library}}\+: String manipulation utilities.
 \item {\bfseries{Random Number Generator (RNG)}}\+: Generates random numbers for simulations and AI.
-\end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{3. $<$strong$>$\+Resource Management$<$/strong$>$}{3. <strong>Resource Management</strong>}}\label{index_autotoc_md10}
+\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{3. $<$strong$>$\+Resource Management$<$/strong$>$}{3. <strong>Resource Management</strong>}}\label{index_autotoc_md11}
 Manages various assets\+:
 
 
@@ -60,7 +64,7 @@ Manages various assets\+:
 \item {\bfseries{Meshes}}\+: 3D model loading and processing.
 \item {\bfseries{Animations}}\+: Skeletal animations and timeline systems.
 \item {\bfseries{World Maps}}\+: Terrain and level data management.
-\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{4. $<$strong$>$\+Application Layer$<$/strong$>$}{4. <strong>Application Layer</strong>}}\label{index_autotoc_md11}
+\end{DoxyItemize}\hypertarget{index_autotoc_md12}{}\doxysubsection{\texorpdfstring{4. $<$strong$>$\+Application Layer$<$/strong$>$}{4. <strong>Application Layer</strong>}}\label{index_autotoc_md12}
 Contains higher-\/level systems\+:
 
 
@@ -72,8 +76,8 @@ Contains higher-\/level systems\+:
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md13}{}\doxysection{\texorpdfstring{📋 Feature List}{📋 Feature List}}\label{index_autotoc_md13}
-Here’s a summary of the features to be implemented in v0.\+1\+:\hypertarget{index_autotoc_md14}{}\doxysubsection{\texorpdfstring{Core Features}{Core Features}}\label{index_autotoc_md14}
+\hypertarget{index_autotoc_md14}{}\doxysection{\texorpdfstring{📋 Feature List}{📋 Feature List}}\label{index_autotoc_md14}
+Here’s a summary of the features to be implemented in v0.\+1\+:\hypertarget{index_autotoc_md15}{}\doxysubsection{\texorpdfstring{Core Features}{Core Features}}\label{index_autotoc_md15}
 
 \begin{DoxyItemize}
 \item {\bfseries{Lightweight build system}}\+: Simple scripts for compiling on Windows and Linux.
@@ -98,7 +102,7 @@ Here’s a summary of the features to be implemented in v0.\+1\+:\hypertarget{in
 \item {\bfseries{Scenegraph/\+ECS}}\+: Hierarchical scene management and entity-\/component-\/system architecture.
 \item {\bfseries{Profiling/\+Debugging utilities}}\+: Tools for measuring performance and identifying bottlenecks.
 \item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}"{}\+Scripting"{} support via hot reloading\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: Experimental support for scripting through hot-\/reloading mechanisms.
-\end{DoxyItemize}\hypertarget{index_autotoc_md15}{}\doxysubsection{\texorpdfstring{Planned Features}{Planned Features}}\label{index_autotoc_md15}
+\end{DoxyItemize}\hypertarget{index_autotoc_md16}{}\doxysubsection{\texorpdfstring{Planned Features}{Planned Features}}\label{index_autotoc_md16}
 
 \begin{DoxyItemize}
 \item Mobile and console support
@@ -109,7 +113,7 @@ Here’s a summary of the features to be implemented in v0.\+1\+:\hypertarget{in
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md17}{}\doxysection{\texorpdfstring{🎨 Visuals}{🎨 Visuals}}\label{index_autotoc_md17}
+\hypertarget{index_autotoc_md18}{}\doxysection{\texorpdfstring{🎨 Visuals}{🎨 Visuals}}\label{index_autotoc_md18}
 Check out the diagrams included in the {\ttfamily assets/} folder to understand how everything fits together\+:
 
 \tabulinesep=1mm
@@ -129,19 +133,35 @@ Check out the diagrams included in the {\ttfamily assets/} folder to understand 
 
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md19}{}\doxysection{\texorpdfstring{📁 Project Structure}{📁 Project Structure}}\label{index_autotoc_md19}
+\hypertarget{index_autotoc_md20}{}\doxysection{\texorpdfstring{📁 Project Structure}{📁 Project Structure}}\label{index_autotoc_md20}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{.}
 \DoxyCodeLine{├──\ assets}
-\DoxyCodeLine{│\ \ \ ├──\ Koru\ Engine\ Architecture.png\ \ \ \ \ \ \ \ \#\ High-\/level\ system\ architecture\ diagram}
-\DoxyCodeLine{│\ \ \ ├──\ Koru\ Project\ Structure.png\ \ \ \ \ \ \ \ \ \ \#\ Visual\ representation\ of\ file\ organization}
-\DoxyCodeLine{│\ \ \ └──\ Koru\ v0.1\ Feature\ List.png\ \ \ \ \ \ \ \ \ \ \#\ Summary\ of\ current\ features\ and\ roadmap}
+\DoxyCodeLine{│\ \ \ ├──\ Koru\ Engine\ Architecture.png}
+\DoxyCodeLine{│\ \ \ ├──\ Koru\ Project\ Structure.png}
+\DoxyCodeLine{│\ \ \ ├──\ Koru\ v0.1\ Feature\ List.png}
+\DoxyCodeLine{│\ \ \ └──\ shaders}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ Builtin.ObjectShader.frag.glsl}
+\DoxyCodeLine{│\ \ \ \ \ \ \ └──\ Builtin.ObjectShader.vert.glsl}
 \DoxyCodeLine{├──\ bin}
-\DoxyCodeLine{│\ \ \ ├──\ libengine.so\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Compiled\ engine\ shared\ library\ (Linux)}
-\DoxyCodeLine{│\ \ \ └──\ testbed\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Testbed\ application\ binary\ (Linux)}
-\DoxyCodeLine{├──\ build-\/all.bat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Windows:\ Runs\ all\ builds\ sequentially}
-\DoxyCodeLine{├──\ build-\/all.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Linux:\ Runs\ all\ builds\ sequentially}
+\DoxyCodeLine{│\ \ \ ├──\ assets}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ Koru\ Engine\ Architecture.png}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ Koru\ Project\ Structure.png}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ Koru\ v0.1\ Feature\ List.png}
+\DoxyCodeLine{│\ \ \ │\ \ \ └──\ shaders}
+\DoxyCodeLine{│\ \ \ │\ \ \ \ \ \ \ ├──\ Builtin.ObjectShader.frag.glsl}
+\DoxyCodeLine{│\ \ \ │\ \ \ \ \ \ \ ├──\ Builtin.ObjectShader.frag.spv}
+\DoxyCodeLine{│\ \ \ │\ \ \ \ \ \ \ ├──\ Builtin.ObjectShader.vert.glsl}
+\DoxyCodeLine{│\ \ \ │\ \ \ \ \ \ \ └──\ Builtin.ObjectShader.vert.spv}
+\DoxyCodeLine{│\ \ \ ├──\ console.log}
+\DoxyCodeLine{│\ \ \ ├──\ libengine.so}
+\DoxyCodeLine{│\ \ \ ├──\ testbed}
+\DoxyCodeLine{│\ \ \ └──\ tests}
+\DoxyCodeLine{├──\ build-\/all.bat}
+\DoxyCodeLine{├──\ build-\/all.sh}
+\DoxyCodeLine{├──\ clean-\/all.bat}
+\DoxyCodeLine{├──\ clean-\/all.sh}
 \DoxyCodeLine{├──\ Doxyfile\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Configuration\ for\ generating\ API\ documentation\ with\ Doxygen}
 \DoxyCodeLine{├──\ engine}
 \DoxyCodeLine{│\ \ \ ├──\ build.bat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Windows:\ Builds\ engine\ DLL}
@@ -154,36 +174,107 @@ Check out the diagrams included in the {\ttfamily assets/} folder to understand 
 \DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ application.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Application\ lifecycle\ implementation\ (init/run/shutdown)}
 \DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ application.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Public\ interface\ for\ the\ application\ system}
 \DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ asserts.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Custom\ assertion\ macros\ and\ debugging\ utilities}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ clock.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ clock.h}
 \DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ event.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Event\ system\ implementation\ (register/unregister/fire)}
 \DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ event.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Public\ interface\ for\ event\ handling\ system}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ input.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ input.h}
 \DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kmemory.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Memory\ allocation\ system\ with\ tagging\ support}
 \DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kmemory.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Interface\ for\ tagged\ memory\ management}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kstring.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kstring.h}
 \DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ logger.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Logging\ system\ with\ color-\/coded\ output}
-\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ logger.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Public\ interface\ for\ logging\ module}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ logger.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Public\ interface\ for\ logging\ module}
 \DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ defines.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Common\ type\ definitions,\ macros,\ and\ platform\ detection}
 \DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ entry.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Entry\ point\ interface;\ declares\ create\_game()}
 \DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ game\_types.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Game-\/related\ types\ used\ across\ engine\ and\ game\ logic}
-\DoxyCodeLine{│\ \ \ \ \ \ \ └──\ platform}
-\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ platform.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Platform\ abstraction\ layer\ interface}
-\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ platform\_linux.c\ \ \ \ \ \ \ \ \ \ \ \#\ Linux-\/specific\ implementation\ of\ platform\ functions}
-\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ └──\ platform\_win32.c\ \ \ \ \ \ \ \ \ \ \ \#\ Windows-\/specific\ implementation\ of\ platform\ functions}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ math}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kmath.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kmath.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ math\_types.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ memory}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ linear\_allocator.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ linear\_allocator.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ platform}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ filesystem.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ filesystem.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ platform\_android.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ |\ \ \ ├──\ platform.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Platform\ abstraction\ layer\ interface}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ platform\_ios.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ platform\_linux.c\ \ \ \ \ \ \ \ \ \ \ \#\ Linux-\/specific\ implementation\ of\ platform\ functions}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ platform\_macos.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ platform\_win32.c\ \ \ \ \ \ \ \ \ \ \ \#\ Windows-\/specific\ implementation\ of\ platform\ functions}
+\DoxyCodeLine{│\ \ \ \ \ \ \ └──\ renderer}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_backend.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_backend.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_frontend.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_frontend.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_types.inl}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ └──\ vulkan}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ shaders}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ ├──\ vulkan\_object\_shader.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ └──\ vulkan\_object\_shader.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_backend.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_backend.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_buffer.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_buffer.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_command\_buffer.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_command\_buffer.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_device.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_device.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_fence.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_fence.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_framebuffer.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_framebuffer.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_image.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_image.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_pipeline.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_pipeline.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_platform.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_renderpass.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_renderpass.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_shader\_utils.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_shader\_utils.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_swapchain.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_swapchain.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_types.inl}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_utils.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └──\ vulkan\_utils.h}
 \DoxyCodeLine{├──\ LICENSE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ MIT\ License\ file}
+\DoxyCodeLine{├──\ Makefile.engine.linux.mak}
+\DoxyCodeLine{├──\ Makefile.engine.windows.mak}
+\DoxyCodeLine{├──\ Makefile.testbed.linux.mak}
+\DoxyCodeLine{├──\ Makefile.testbed.windows.mak}
+\DoxyCodeLine{├──\ post-\/build.bat}
+\DoxyCodeLine{├──\ post-\/build.sh}
 \DoxyCodeLine{├──\ README.md\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ This\ file\ -\/\ main\ project\ overview\ and\ guide}
-\DoxyCodeLine{├──\ test}
-\DoxyCodeLine{│\ \ \ └──\ platform\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Unit\ tests\ for\ platform\ module}
 \DoxyCodeLine{├──\ testbed}
-\DoxyCodeLine{\ \ \ \ ├──\ build.bat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Windows:\ Builds\ testbed\ application}
-\DoxyCodeLine{\ \ \ \ ├──\ build.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Linux:\ Builds\ testbed\ application}
+\DoxyCodeLine{|\ \ \ ├──\ build.bat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Windows:\ Builds\ testbed\ application}
+\DoxyCodeLine{|\ \ \ ├──\ build.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Linux:\ Builds\ testbed\ application}
+\DoxyCodeLine{|\ \ \ └──\ src}
+\DoxyCodeLine{|\ \ \ \ \ \ \ ├──\ entry.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Entry\ point\ for\ testbed\ app;\ implements\ create\_game()}
+\DoxyCodeLine{|\ \ \ \ \ \ \ ├──\ game.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Testbed\ game\ logic\ (initialize/update/render\ stubs)}
+\DoxyCodeLine{|\ \ \ \ \ \ \ └──\ game.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Interface\ for\ testbed\ game\ implementation}
+\DoxyCodeLine{└──\ tests}
+\DoxyCodeLine{\ \ \ \ ├──\ build.bat}
+\DoxyCodeLine{\ \ \ \ ├──\ build.sh}
 \DoxyCodeLine{\ \ \ \ └──\ src}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ entry.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Entry\ point\ for\ testbed\ app;\ implements\ create\_game()}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ game.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Testbed\ game\ logic\ (initialize/update/render\ stubs)}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ └──\ game.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Interface\ for\ testbed\ game\ implementation}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ expect.h}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ main.c}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ memory}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ │\ \ \ ├──\ linear\_allocator\_tests.c}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ │\ \ \ └──\ linear\_allocator\_tests.h}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ test\_manager.c}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ └──\ test\_manager.h}
+\DoxyCodeLine{}
+\DoxyCodeLine{37\ directories,\ 176\ files\ \ \ }
 
 \end{DoxyCode}
 
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md21}{}\doxysection{\texorpdfstring{⚙️ Build Scripts/\+Instructions}{⚙️ Build Scripts/Instructions}}\label{index_autotoc_md21}
+\hypertarget{index_autotoc_md22}{}\doxysection{\texorpdfstring{⚙️ Build Scripts/\+Instructions}{⚙️ Build Scripts/Instructions}}\label{index_autotoc_md22}
 Check tasks.\+json for sequence\+:
 
 \tabulinesep=1mm
@@ -203,7 +294,7 @@ Check tasks.\+json for sequence\+:
 {\ttfamily build-\/all.\+sh}   &Runs all Linux builds sequentially   &Checks for errors    \\\cline{1-3}
 {\ttfamily build-\/all.\+bat}   &Runs all Windows builds sequentially   &Same as above but for Windows   \\\cline{1-3}
 \end{longtabu}
-\hypertarget{index_autotoc_md22}{}\doxysubsection{\texorpdfstring{Linux}{Linux}}\label{index_autotoc_md22}
+\hypertarget{index_autotoc_md23}{}\doxysubsection{\texorpdfstring{Linux}{Linux}}\label{index_autotoc_md23}
 Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run the engine)
 
 
@@ -223,7 +314,7 @@ The output will be placed in {\ttfamily bin/}\+:
 \begin{DoxyItemize}
 \item {\ttfamily libengine.\+so} – The engine shared library
 \item {\ttfamily testbed} – The testbed executable
-\end{DoxyItemize}\hypertarget{index_autotoc_md23}{}\doxysubsection{\texorpdfstring{Windows}{Windows}}\label{index_autotoc_md23}
+\end{DoxyItemize}\hypertarget{index_autotoc_md24}{}\doxysubsection{\texorpdfstring{Windows}{Windows}}\label{index_autotoc_md24}
 Ensure\+:
 
 
@@ -240,6 +331,14 @@ Then run\+:
 \DoxyCodeLine{build-\/all.bat}
 
 \end{DoxyCode}
+\hypertarget{index_autotoc_md25}{}\doxysection{\texorpdfstring{Building Docs}{Building Docs}}\label{index_autotoc_md25}
+To generate our Doxygen documentation, run\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{doxygen\ Doxyfile}
+
+\end{DoxyCode}
 
 
 Output files\+:
@@ -251,7 +350,7 @@ Output files\+:
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md25}{}\doxysection{\texorpdfstring{🔮 Roadmap}{🔮 Roadmap}}\label{index_autotoc_md25}
+\hypertarget{index_autotoc_md27}{}\doxysection{\texorpdfstring{🔮 Roadmap}{🔮 Roadmap}}\label{index_autotoc_md27}
 Plans to expand Koru include\+:
 
 
@@ -291,7 +390,7 @@ Plans to expand Koru include\+:
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md27}{}\doxysection{\texorpdfstring{💡 Want to Help?}{💡 Want to Help?}}\label{index_autotoc_md27}
+\hypertarget{index_autotoc_md29}{}\doxysection{\texorpdfstring{💡 Want to Help?}{💡 Want to Help?}}\label{index_autotoc_md29}
 Contributions are welcome! Whether you\textquotesingle{}re interested in\+:
 
 
@@ -305,7 +404,7 @@ Contributions are welcome! Whether you\textquotesingle{}re interested in\+:
 Feel free to open an issue or PR!
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md29}{}\doxysection{\texorpdfstring{📄 License}{📄 License}}\label{index_autotoc_md29}
+\hypertarget{index_autotoc_md31}{}\doxysection{\texorpdfstring{📄 License}{📄 License}}\label{index_autotoc_md31}
 This project is licensed under the MIT License – see the \mbox{[}LICENSE\mbox{]}(LICENSE) file for details.
 
 
@@ -323,7 +422,7 @@ This project is licensed under the MIT License – see the \mbox{[}LICENSE\mbox{
 
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md31}{}\doxysection{\texorpdfstring{🎮 Koru Engine – Rendering System (\+Vulkan)}{🎮 Koru Engine – Rendering System (Vulkan)}}\label{index_autotoc_md31}
+\hypertarget{index_autotoc_md33}{}\doxysection{\texorpdfstring{🎮 Koru Engine – Rendering System (\+Vulkan)}{🎮 Koru Engine – Rendering System (Vulkan)}}\label{index_autotoc_md33}
 \begin{quote}
 {\itshape A deep dive into how Koru sets up its Vulkan-\/based rendering system — from instance creation to frame submission.} \end{quote}
 Koru is a {\bfseries{low-\/level game engine}} written in C99 that uses the {\bfseries{Vulkan graphics API}} for rendering. This document explains the {\bfseries{entire rendering pipeline setup}} used in Koru, including\+:
@@ -340,13 +439,13 @@ Koru is a {\bfseries{low-\/level game engine}} written in C99 that uses the {\bf
 This guide assumes some basic knowledge of C and Vulkan concepts. If you\textquotesingle{}re new to Vulkan, this will help understand what’s happening behind the scenes as you run the testbed.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md33}{}\doxysubsection{\texorpdfstring{🧠 Why Use Vulkan?}{🧠 Why Use Vulkan?}}\label{index_autotoc_md33}
+\hypertarget{index_autotoc_md35}{}\doxysubsection{\texorpdfstring{🧠 Why Use Vulkan?}{🧠 Why Use Vulkan?}}\label{index_autotoc_md35}
 Vulkan gives developers {\bfseries{explicit control over GPU operations}}. It allows fine-\/grained access to queues, memory, and rendering pipelines — which is great for performance, but comes at the cost of complexity.
 
 Koru abstracts much of that complexity using a {\bfseries{modular architecture}}, allowing you to build a rendering system step-\/by-\/step without needing to manage everything manually every time.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md35}{}\doxysubsection{\texorpdfstring{📦 High-\/\+Level Architecture (\+Render Layer)}{📦 High-Level Architecture (Render Layer)}}\label{index_autotoc_md35}
+\hypertarget{index_autotoc_md37}{}\doxysubsection{\texorpdfstring{📦 High-\/\+Level Architecture (\+Render Layer)}{📦 High-Level Architecture (Render Layer)}}\label{index_autotoc_md37}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
@@ -410,11 +509,11 @@ Koru abstracts much of that complexity using a {\bfseries{modular architecture}}
 This shows how each module fits into the overall rendering flow.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md37}{}\doxysubsection{\texorpdfstring{🛠️ The Full Rendering Setup Process}{🛠️ The Full Rendering Setup Process}}\label{index_autotoc_md37}
+\hypertarget{index_autotoc_md39}{}\doxysubsection{\texorpdfstring{🛠️ The Full Rendering Setup Process}{🛠️ The Full Rendering Setup Process}}\label{index_autotoc_md39}
 Let’s walk through {\bfseries{each stage of the rendering setup process}}, with real code examples from the engine.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md39}{}\doxysubsubsection{\texorpdfstring{1. 🧱 Create Vulkan Instance}{1. 🧱 Create Vulkan Instance}}\label{index_autotoc_md39}
+\hypertarget{index_autotoc_md41}{}\doxysubsubsection{\texorpdfstring{1. 🧱 Create Vulkan Instance}{1. 🧱 Create Vulkan Instance}}\label{index_autotoc_md41}
 The first thing to do is creating a {\bfseries{Vk\+Instance}} — this connects the app to the Vulkan library.
 
 
@@ -451,7 +550,7 @@ The first thing to do is creating a {\bfseries{Vk\+Instance}} — this connects 
 ✅ This creates the {\bfseries{main connection to Vulkan}}, enabling extensions and validation layers.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md41}{}\doxysubsubsection{\texorpdfstring{2. 🖥 Create Window Surface}{2. 🖥 Create Window Surface}}\label{index_autotoc_md41}
+\hypertarget{index_autotoc_md43}{}\doxysubsubsection{\texorpdfstring{2. 🖥 Create Window Surface}{2. 🖥 Create Window Surface}}\label{index_autotoc_md43}
 Next, to create a {\bfseries{surface}} — this is what connects the window to the GPU.
 
 In Linux\+:
@@ -477,7 +576,7 @@ In Windows\+: The engine uses {\ttfamily vk\+Create\+Win32\+Surface\+KHR()} inst
 ✅ A surface is essential because it defines where rendered frames go usually the screen or a window.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md43}{}\doxysubsubsection{\texorpdfstring{3. 🔍 Query Physical Devices}{3. 🔍 Query Physical Devices}}\label{index_autotoc_md43}
+\hypertarget{index_autotoc_md45}{}\doxysubsubsection{\texorpdfstring{3. 🔍 Query Physical Devices}{3. 🔍 Query Physical Devices}}\label{index_autotoc_md45}
 Once an instance and a surface are ready, query available GPUs\+:
 
 
@@ -529,7 +628,7 @@ Then select one that meets requirements\+:
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md45}{}\doxysubsubsection{\texorpdfstring{4. 🔄 Create Logical Device}{4. 🔄 Create Logical Device}}\label{index_autotoc_md45}
+\hypertarget{index_autotoc_md47}{}\doxysubsubsection{\texorpdfstring{4. 🔄 Create Logical Device}{4. 🔄 Create Logical Device}}\label{index_autotoc_md47}
 After selecting a suitable physical device, create a {\bfseries{logical device}} to interface with the GPU.
 
 
@@ -582,7 +681,7 @@ Finally, create the logical device\+:
 ✅ This creates a way to submit commands to the GPU.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md47}{}\doxysubsubsection{\texorpdfstring{5. ⏱ Get Queues}{5. ⏱ Get Queues}}\label{index_autotoc_md47}
+\hypertarget{index_autotoc_md49}{}\doxysubsubsection{\texorpdfstring{5. ⏱ Get Queues}{5. ⏱ Get Queues}}\label{index_autotoc_md49}
 Once the device is created, get handles to the actual queues\+:
 
 
@@ -601,7 +700,7 @@ These are used later to\+:
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md49}{}\doxysubsubsection{\texorpdfstring{6. 🔄 Query Swapchain Support}{6. 🔄 Query Swapchain Support}}\label{index_autotoc_md49}
+\hypertarget{index_autotoc_md51}{}\doxysubsubsection{\texorpdfstring{6. 🔄 Query Swapchain Support}{6. 🔄 Query Swapchain Support}}\label{index_autotoc_md51}
 Before creating a swapchain, check what formats and modes are supported\+:
 
 
@@ -619,7 +718,7 @@ Before creating a swapchain, check what formats and modes are supported\+:
 This helps choose the best image format and presentation mode.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md51}{}\doxysubsubsection{\texorpdfstring{7. 🔁 Create Swapchain}{7. 🔁 Create Swapchain}}\label{index_autotoc_md51}
+\hypertarget{index_autotoc_md53}{}\doxysubsubsection{\texorpdfstring{7. 🔁 Create Swapchain}{7. 🔁 Create Swapchain}}\label{index_autotoc_md53}
 Now create the swapchain based on what the device supports\+:
 
 
@@ -659,7 +758,7 @@ Now create the swapchain based on what the device supports\+:
 This avoids tearing and ensures smooth rendering.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md53}{}\doxysubsubsection{\texorpdfstring{8. 🖼 Create Image Views}{8. 🖼 Create Image Views}}\label{index_autotoc_md53}
+\hypertarget{index_autotoc_md55}{}\doxysubsubsection{\texorpdfstring{8. 🖼 Create Image Views}{8. 🖼 Create Image Views}}\label{index_autotoc_md55}
 Each image in the swapchain needs a {\bfseries{view}} so the GPU can interpret it\+:
 
 
@@ -684,7 +783,7 @@ Each image in the swapchain needs a {\bfseries{view}} so the GPU can interpret i
 🖼 Each image view wraps a raw {\ttfamily Vk\+Image}, defining how it\textquotesingle{}s accessed (e.\+g., color attachment, depth buffer).
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md55}{}\doxysubsubsection{\texorpdfstring{9. 🧊 Detect Depth Format}{9. 🧊 Detect Depth Format}}\label{index_autotoc_md55}
+\hypertarget{index_autotoc_md57}{}\doxysubsubsection{\texorpdfstring{9. 🧊 Detect Depth Format}{9. 🧊 Detect Depth Format}}\label{index_autotoc_md57}
 For depth testing, a compatible depth format is needed\+:
 
 
@@ -716,7 +815,7 @@ For depth testing, a compatible depth format is needed\+:
 🧃 Once selected, create a depth/stencil image and its view.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md57}{}\doxysubsubsection{\texorpdfstring{10. 🎨 Create Render Pass}{10. 🎨 Create Render Pass}}\label{index_autotoc_md57}
+\hypertarget{index_autotoc_md59}{}\doxysubsubsection{\texorpdfstring{10. 🎨 Create Render Pass}{10. 🎨 Create Render Pass}}\label{index_autotoc_md59}
 The render pass defines how rendering works — what attachments to use, how they behave, and what subpasses exist.
 
 
@@ -762,7 +861,7 @@ The render pass defines how rendering works — what attachments to use, how the
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md59}{}\doxysubsubsection{\texorpdfstring{11. 🖼 Create Framebuffers}{11. 🖼 Create Framebuffers}}\label{index_autotoc_md59}
+\hypertarget{index_autotoc_md61}{}\doxysubsubsection{\texorpdfstring{11. 🖼 Create Framebuffers}{11. 🖼 Create Framebuffers}}\label{index_autotoc_md61}
 Framebuffers combine images and render passes\+:
 
 
@@ -788,7 +887,7 @@ Framebuffers combine images and render passes\+:
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md61}{}\doxysubsubsection{\texorpdfstring{12. 🗂 Command Buffers and Submission}{12. 🗂 Command Buffers and Submission}}\label{index_autotoc_md61}
+\hypertarget{index_autotoc_md63}{}\doxysubsubsection{\texorpdfstring{12. 🗂 Command Buffers and Submission}{12. 🗂 Command Buffers and Submission}}\label{index_autotoc_md63}
 Command buffers store drawing commands\+:
 
 
@@ -834,7 +933,7 @@ And finally present\+:
 
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md63}{}\doxysubsection{\texorpdfstring{🧩 Diagram\+: Full Rendering Flow}{🧩 Diagram: Full Rendering Flow}}\label{index_autotoc_md63}
+\hypertarget{index_autotoc_md65}{}\doxysubsection{\texorpdfstring{🧩 Diagram\+: Full Rendering Flow}{🧩 Diagram: Full Rendering Flow}}\label{index_autotoc_md65}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
@@ -969,8 +1068,8 @@ And finally present\+:
 This is the full {\bfseries{rendering loop}} that happens every frame.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md65}{}\doxysubsection{\texorpdfstring{🧰 Key Structures Used}{🧰 Key Structures Used}}\label{index_autotoc_md65}
-\hypertarget{index_autotoc_md66}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+context$<$/tt$>$}{<tt>vulkan\_context</tt>}}\label{index_autotoc_md66}
+\hypertarget{index_autotoc_md67}{}\doxysubsection{\texorpdfstring{🧰 Key Structures Used}{🧰 Key Structures Used}}\label{index_autotoc_md67}
+\hypertarget{index_autotoc_md68}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+context$<$/tt$>$}{<tt>vulkan\_context</tt>}}\label{index_autotoc_md68}
 Tracks global Vulkan state\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_context\ \{}
@@ -986,7 +1085,7 @@ Tracks global Vulkan state\+:
 \DoxyCodeLine{\}\ vulkan\_context;}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md67}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+device$<$/tt$>$}{<tt>vulkan\_device</tt>}}\label{index_autotoc_md67}
+\hypertarget{index_autotoc_md69}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+device$<$/tt$>$}{<tt>vulkan\_device</tt>}}\label{index_autotoc_md69}
 Holds physical/logical device and queue info\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_device\ \{}
@@ -1006,7 +1105,7 @@ Holds physical/logical device and queue info\+:
 \DoxyCodeLine{\}\ vulkan\_device;}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md68}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+swapchain$<$/tt$>$}{<tt>vulkan\_swapchain</tt>}}\label{index_autotoc_md68}
+\hypertarget{index_autotoc_md70}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+swapchain$<$/tt$>$}{<tt>vulkan\_swapchain</tt>}}\label{index_autotoc_md70}
 Manages images and depth buffer\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_swapchain\ \{}
@@ -1020,7 +1119,7 @@ Manages images and depth buffer\+:
 \DoxyCodeLine{\}\ vulkan\_swapchain;}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md69}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+renderpass$<$/tt$>$}{<tt>vulkan\_renderpass</tt>}}\label{index_autotoc_md69}
+\hypertarget{index_autotoc_md71}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+renderpass$<$/tt$>$}{<tt>vulkan\_renderpass</tt>}}\label{index_autotoc_md71}
 Defines clear values and viewport settings\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_renderpass\ \{}
@@ -1036,7 +1135,7 @@ Defines clear values and viewport settings\+:
 
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md71}{}\doxysubsection{\texorpdfstring{💡 Why All This Is Needed}{💡 Why All This Is Needed}}\label{index_autotoc_md71}
+\hypertarget{index_autotoc_md73}{}\doxysubsection{\texorpdfstring{💡 Why All This Is Needed}{💡 Why All This Is Needed}}\label{index_autotoc_md73}
 Vulkan is explicit by design. Every operation must be described precisely. Here\textquotesingle{}s why each part matters\+:
 
 \tabulinesep=1mm
@@ -1064,7 +1163,7 @@ Vulkan is explicit by design. Every operation must be described precisely. Here\
 
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md73}{}\doxysubsection{\texorpdfstring{🧱 Summary Table}{🧱 Summary Table}}\label{index_autotoc_md73}
+\hypertarget{index_autotoc_md75}{}\doxysubsection{\texorpdfstring{🧱 Summary Table}{🧱 Summary Table}}\label{index_autotoc_md75}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
 \hline
@@ -1087,7 +1186,7 @@ Vulkan is explicit by design. Every operation must be described precisely. Here\
 
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md75}{}\doxysubsection{\texorpdfstring{🧪 Bonus\+: Sample Code for Acquiring an Image}{🧪 Bonus: Sample Code for Acquiring an Image}}\label{index_autotoc_md75}
+\hypertarget{index_autotoc_md77}{}\doxysubsection{\texorpdfstring{🧪 Bonus\+: Sample Code for Acquiring an Image}{🧪 Bonus: Sample Code for Acquiring an Image}}\label{index_autotoc_md77}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__swapchain_8c_a559f69815dfb6ccb3a6776516d9025b7}{vulkan\_swapchain\_acquire\_next\_image\_index}}(...)\ \{}
@@ -1116,8 +1215,8 @@ Vulkan is explicit by design. Every operation must be described precisely. Here\
 This function gets the next image from the swapchain — and triggers recreation if needed.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md77}{}\doxysubsection{\texorpdfstring{🚫 Common Errors and Fixes}{🚫 Common Errors and Fixes}}\label{index_autotoc_md77}
-\hypertarget{index_autotoc_md78}{}\doxysubsubsection{\texorpdfstring{❌ $<$tt$>$\+VK\+\_\+\+DEBUG\+\_\+\+UTILS\+\_\+\+MESSAGE\+\_\+\+SEVERITY\+\_\+\+WARNING\+\_\+\+EXT$<$/tt$>$\+: No cache file}{❌ <tt>VK\_DEBUG\_UTILS\_MESSAGE\_SEVERITY\_WARNING\_EXT</tt>: No cache file}}\label{index_autotoc_md78}
+\hypertarget{index_autotoc_md79}{}\doxysubsection{\texorpdfstring{🚫 Common Errors and Fixes}{🚫 Common Errors and Fixes}}\label{index_autotoc_md79}
+\hypertarget{index_autotoc_md80}{}\doxysubsubsection{\texorpdfstring{❌ $<$tt$>$\+VK\+\_\+\+DEBUG\+\_\+\+UTILS\+\_\+\+MESSAGE\+\_\+\+SEVERITY\+\_\+\+WARNING\+\_\+\+EXT$<$/tt$>$\+: No cache file}{❌ <tt>VK\_DEBUG\_UTILS\_MESSAGE\_SEVERITY\_WARNING\_EXT</tt>: No cache file}}\label{index_autotoc_md80}
 Not critical — just means the shader cache doesn\textquotesingle{}t exist yet.
 
 \DoxyHorRuler{0}

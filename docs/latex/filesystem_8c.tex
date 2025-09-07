@@ -1,13 +1,17 @@
 \doxysection{engine/src/platform/filesystem.c File Reference}
 \hypertarget{filesystem_8c}{}\label{filesystem_8c}\index{engine/src/platform/filesystem.c@{engine/src/platform/filesystem.c}}
+
+
+Implements a simple cross-\/platform filesystem abstraction layer. This module allows for basic file operations such as checking for file existence, opening, reading, writing, and closing files.  
+
+
 {\ttfamily \#include "{}filesystem.\+h"{}}\newline
 {\ttfamily \#include "{}core/logger.\+h"{}}\newline
 {\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$sys/stat.\+h$>$}\newline
-Include dependency graph for filesystem.\+c\+:
-\nopagebreak
+Include dependency graph for filesystem.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,6 +39,15 @@ void \mbox{\hyperlink{filesystem_8c_aeb2523bb568e1ae441a69c05c80d7ed3}{filesyste
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Implements a simple cross-\/platform filesystem abstraction layer. This module allows for basic file operations such as checking for file existence, opening, reading, writing, and closing files. 
+
+
+
+Definition in file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+
+
+
 \doxysubsection{Function Documentation}
 \Hypertarget{filesystem_8c_aeb2523bb568e1ae441a69c05c80d7ed3}\label{filesystem_8c_aeb2523bb568e1ae441a69c05c80d7ed3} 
 \index{filesystem.c@{filesystem.c}!filesystem\_close@{filesystem\_close}}
@@ -49,15 +62,15 @@ Closes the provided handle to a file.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00044}{44}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00052}{52}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{filesystem_8h_source_l00014}{file\+\_\+handle\+::is\+\_\+valid}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00021}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{filesystem_8h_source_l00023}{file\+\_\+handle\+::is\+\_\+valid}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00009}{create\+\_\+shader\+\_\+module()}}.
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}.
 
 \Hypertarget{filesystem_8c_a8cd6ab79b79fc3022c2ff3478cce2377}\label{filesystem_8c_a8cd6ab79b79fc3022c2ff3478cce2377} 
 \index{filesystem.c@{filesystem.c}!filesystem\_exists@{filesystem\_exists}}
@@ -75,7 +88,7 @@ True if exists; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00010}{10}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00018}{18}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 \Hypertarget{filesystem_8c_a86cbb9441406d6469d0216cd372c9125}\label{filesystem_8c_a86cbb9441406d6469d0216cd372c9125} 
 \index{filesystem.c@{filesystem.c}!filesystem\_open@{filesystem\_open}}
@@ -99,15 +112,15 @@ True if opened successfully; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00015}{15}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00023}{23}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00024}{FILE\+\_\+\+MODE\+\_\+\+READ}}, \mbox{\hyperlink{filesystem_8h_source_l00026}{FILE\+\_\+\+MODE\+\_\+\+WRITE}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{filesystem_8h_source_l00014}{file\+\_\+handle\+::is\+\_\+valid}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00033}{FILE\+\_\+\+MODE\+\_\+\+READ}}, \mbox{\hyperlink{filesystem_8h_source_l00035}{FILE\+\_\+\+MODE\+\_\+\+WRITE}}, \mbox{\hyperlink{filesystem_8h_source_l00021}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{filesystem_8h_source_l00023}{file\+\_\+handle\+::is\+\_\+valid}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00009}{create\+\_\+shader\+\_\+module()}}, and \mbox{\hyperlink{logger_8c_source_l00064}{initialize\+\_\+logging()}}.
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}, and \mbox{\hyperlink{logger_8c_source_l00064}{initialize\+\_\+logging()}}.
 
 \Hypertarget{filesystem_8c_a7f5e779e0edfba42ff99dac4ed951729}\label{filesystem_8c_a7f5e779e0edfba42ff99dac4ed951729} 
 \index{filesystem.c@{filesystem.c}!filesystem\_read@{filesystem\_read}}
@@ -131,11 +144,11 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00081}{81}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00089}{89}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00021}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 \Hypertarget{filesystem_8c_ab7a1923de3588dc8ae02e9a5cdda2378}\label{filesystem_8c_ab7a1923de3588dc8ae02e9a5cdda2378} 
 \index{filesystem.c@{filesystem.c}!filesystem\_read\_all\_bytes@{filesystem\_read\_all\_bytes}}
@@ -157,15 +170,15 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00092}{92}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00100}{100}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00021}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00009}{create\+\_\+shader\+\_\+module()}}.
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}.
 
 \Hypertarget{filesystem_8c_a4142bfd1fcef32c630016d0716875c83}\label{filesystem_8c_a4142bfd1fcef32c630016d0716875c83} 
 \index{filesystem.c@{filesystem.c}!filesystem\_read\_line@{filesystem\_read\_line}}
@@ -185,11 +198,11 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00052}{52}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00060}{60}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00021}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 \Hypertarget{filesystem_8c_a6c1efae6bddf1748d47fdc18bdd8fd18}\label{filesystem_8c_a6c1efae6bddf1748d47fdc18bdd8fd18} 
 \index{filesystem.c@{filesystem.c}!filesystem\_write@{filesystem\_write}}
@@ -213,11 +226,11 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00109}{109}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00117}{117}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00021}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
@@ -242,9 +255,9 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00066}{66}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00074}{74}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, and \mbox{\hyperlink{filesystem_8h_source_l00012}{file\+\_\+handle\+::handle}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, and \mbox{\hyperlink{filesystem_8h_source_l00021}{file\+\_\+handle\+::handle}}.
 

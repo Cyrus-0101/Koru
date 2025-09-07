@@ -1,0 +1,139 @@
+\doxysection{texture Struct Reference}
+\hypertarget{structtexture}{}\label{structtexture}\index{texture@{texture}}
+
+
+Represents a texture resource.  
+
+
+
+
+{\ttfamily \#include $<$resource\+\_\+types.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structtexture_a80d0e2a9d244ce65a29cb87e5db5c695}{id}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structtexture_ae54857884dad86252f0615066be9990f}{width}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structtexture_ab135b895ef0f58fde3dfbdf840692e2d}{height}}
+\item 
+\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} \mbox{\hyperlink{structtexture_ae00b4c6fc1add9e080a13fff260c01ca}{channel\+\_\+count}}
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{structtexture_ab9b61470d021bc2e7d8a4ee544f4ffe6}{has\+\_\+transparency}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structtexture_a86f5c2a9138ae4004bf1528c5365def0}{generation}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structtexture_a2a635d43b6e8cde4581d47b1f3945677}{internal\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a texture resource. 
+
+Contains metadata about the texture such as dimensions, channel count, transparency, and a pointer to internal data used by the rendering backend. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00021}{21}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structtexture_ae00b4c6fc1add9e080a13fff260c01ca}\label{structtexture_ae00b4c6fc1add9e080a13fff260c01ca} 
+\index{texture@{texture}!channel\_count@{channel\_count}}
+\index{channel\_count@{channel\_count}!texture@{texture}}
+\doxysubsubsection{\texorpdfstring{channel\_count}{channel\_count}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} texture\+::channel\+\_\+count}
+
+Number of color channels in the texture (e.\+g., 3 for RGB, 4 for RGBA). 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00029}{29}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00105}{load\+\_\+texture()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture()}}.
+
+\Hypertarget{structtexture_a86f5c2a9138ae4004bf1528c5365def0}\label{structtexture_a86f5c2a9138ae4004bf1528c5365def0} 
+\index{texture@{texture}!generation@{generation}}
+\index{generation@{generation}!texture@{texture}}
+\doxysubsubsection{\texorpdfstring{generation}{generation}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} texture\+::generation}
+
+Internal data pointer for backend-\/specific texture representation. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00033}{33}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00090}{create\+\_\+texture()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00105}{load\+\_\+texture()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00219}{renderer\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{vulkan__object__shader_8c_source_l00298}{vulkan\+\_\+object\+\_\+shader\+\_\+update\+\_\+object()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture()}}.
+
+\Hypertarget{structtexture_ab9b61470d021bc2e7d8a4ee544f4ffe6}\label{structtexture_ab9b61470d021bc2e7d8a4ee544f4ffe6} 
+\index{texture@{texture}!has\_transparency@{has\_transparency}}
+\index{has\_transparency@{has\_transparency}!texture@{texture}}
+\doxysubsubsection{\texorpdfstring{has\_transparency}{has\_transparency}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} texture\+::has\+\_\+transparency}
+
+Indicates if the texture has an alpha channel for transparency. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00031}{31}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture()}}.
+
+\Hypertarget{structtexture_ab135b895ef0f58fde3dfbdf840692e2d}\label{structtexture_ab135b895ef0f58fde3dfbdf840692e2d} 
+\index{texture@{texture}!height@{height}}
+\index{height@{height}!texture@{texture}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} texture\+::height}
+
+Height of the texture in pixels. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00027}{27}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00105}{load\+\_\+texture()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture()}}.
+
+\Hypertarget{structtexture_a80d0e2a9d244ce65a29cb87e5db5c695}\label{structtexture_a80d0e2a9d244ce65a29cb87e5db5c695} 
+\index{texture@{texture}!id@{id}}
+\index{id@{id}!texture@{texture}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} texture\+::id}
+
+Unique identifier for the texture resource. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00023}{23}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+\Hypertarget{structtexture_a2a635d43b6e8cde4581d47b1f3945677}\label{structtexture_a2a635d43b6e8cde4581d47b1f3945677} 
+\index{texture@{texture}!internal\_data@{internal\_data}}
+\index{internal\_data@{internal\_data}!texture@{texture}}
+\doxysubsubsection{\texorpdfstring{internal\_data}{internal\_data}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} texture\+::internal\+\_\+data}
+
+Pointer to backend-\/specific internal data (e.\+g., Vulkan image and view). 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00035}{35}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__object__shader_8c_source_l00298}{vulkan\+\_\+object\+\_\+shader\+\_\+update\+\_\+object()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00983}{vulkan\+\_\+renderer\+\_\+destroy\+\_\+texture()}}.
+
+\Hypertarget{structtexture_ae54857884dad86252f0615066be9990f}\label{structtexture_ae54857884dad86252f0615066be9990f} 
+\index{texture@{texture}!width@{width}}
+\index{width@{width}!texture@{texture}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} texture\+::width}
+
+Width of the texture in pixels. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00025}{25}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00105}{load\+\_\+texture()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/resources/\mbox{\hyperlink{resource__types_8h}{resource\+\_\+types.\+h}}\end{DoxyCompactItemize}

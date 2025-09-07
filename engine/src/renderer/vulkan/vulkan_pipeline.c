@@ -4,6 +4,16 @@
 #include "vulkan_pipeline.h"
 #include "vulkan_utils.h"
 
+/**
+ * @file vulkan_pipeline.c
+ * @brief Implements Vulkan pipeline creation and management functions for the Koru Engine.
+ *
+ * This module provides functions to create, destroy, and bind Vulkan graphics pipelines.
+ * It handles the configuration of various pipeline states including shader stages,
+ * vertex input, input assembly, viewport, rasterization, multisampling, depth/stencil,
+ * color blending, and dynamic states.
+ */
+
 #define DYNAMIC_STATE_COUNT 3
 
 b8 vulkan_graphics_pipeline_create(

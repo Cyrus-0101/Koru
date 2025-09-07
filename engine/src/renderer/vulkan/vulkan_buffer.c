@@ -5,7 +5,14 @@
 #include "vulkan_device.h"
 #include "vulkan_utils.h"
 
-void vulkan_buffer_bind(vulkan_context* context, vulkan_buffer* buffer, u64 offset);
+/**
+ * @file vulkan_buffer.c
+ * @brief Implements Vulkan buffer management functions for the Koru Engine.
+ *
+ * This module provides functions to create, destroy, resize, bind, lock,
+ * unlock, and copy data to/from Vulkan buffers. It handles memory allocation
+ * and binding for buffers used in rendering operations.
+ */
 
 b8 vulkan_buffer_create(
     vulkan_context* context,
@@ -60,10 +67,12 @@ void vulkan_buffer_destroy(vulkan_context* context, vulkan_buffer* buffer) {
         vkFreeMemory(context->device.logical_device, buffer->memory, context->allocator);
         buffer->memory = 0;
     }
+
     if (buffer->handle) {
         vkDestroyBuffer(context->device.logical_device, buffer->handle, context->allocator);
         buffer->handle = 0;
     }
+
     buffer->total_size = 0;
     buffer->usage = 0;
     buffer->is_locked = False;

@@ -17,9 +17,9 @@
  * - Create a logical device with necessary queues
  */
 
-///>  Forward declarations
 /**
  * @struct vulkan_physical_device_requirements
+ *
  * @brief Describes required features of a physical device.
  *
  * Used during device selection to filter out unsuitable GPUs.
@@ -399,7 +399,7 @@ b8 select_physical_device(vulkan_context* context) {
         KFATAL("No devices which support Vulkan were found.");
         return False;
     }
-        
+
     VkPhysicalDevice physical_devices[MAX_DEVICE_COUNT];
     VK_CHECK(vkEnumeratePhysicalDevices(context->instance, &physical_device_count, physical_devices));
 
@@ -412,6 +412,18 @@ b8 select_physical_device(vulkan_context* context) {
 
         VkPhysicalDeviceMemoryProperties memory;
         vkGetPhysicalDeviceMemoryProperties(physical_devices[i], &memory);
+
+        // Check if device supports local/host visible combo
+        b8 supports_device_local_host_visible = False;
+
+        for (u32 i = 0; i < memory.memoryTypeCount; ++i) {
+            // Check each memory type to see if its bit is set to 1.
+            if (((memory.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT) != 0) &&
+                ((memory.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT) != 0)) {
+                supports_device_local_host_visible = True;
+                break;
+            }
+        }
 
         // TODO: These requirements should probably be driven by engine
         // configuration.
@@ -491,6 +503,7 @@ b8 select_physical_device(vulkan_context* context) {
             context->device.properties = properties;
             context->device.features = features;
             context->device.memory = memory;
+            context->device.supports_device_local_host_visible = supports_device_local_host_visible;
             break;
         }
     }

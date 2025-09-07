@@ -8,172 +8,172 @@
 \DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vulkan__pipeline_8h}{vulkan\_pipeline.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vulkan__utils_8h}{vulkan\_utils.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00006}00006\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00007}\mbox{\hyperlink{vulkan__pipeline_8c_a29ba53a9acf819ee81b0571b1a1f3869}{00007}}\ \textcolor{preprocessor}{\#define\ DYNAMIC\_STATE\_COUNT\ 3}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00008}00008\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00009}\mbox{\hyperlink{vulkan__pipeline_8c_abdf5e478e09b63d874660770b71bbf29}{00009}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__pipeline_8c_abdf5e478e09b63d874660770b71bbf29}{vulkan\_graphics\_pipeline\_create}}(}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00010}00010\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00011}00011\ \ \ \ \ vulkan\_renderpass*\ renderpass,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ attribute\_count,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00013}00013\ \ \ \ \ VkVertexInputAttributeDescription*\ attributes,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00014}00014\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ descriptor\_set\_layout\_count,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00015}00015\ \ \ \ \ VkDescriptorSetLayout*\ descriptor\_set\_layouts,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ stage\_count,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00017}00017\ \ \ \ \ VkPipelineShaderStageCreateInfo*\ stages,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00018}00018\ \ \ \ \ VkViewport\ viewport,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00019}00019\ \ \ \ \ VkRect2D\ scissor,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ is\_wireframe,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00021}00021\ \ \ \ \ vulkan\_pipeline*\ out\_pipeline)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ Viewport\ state}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00023}00023\ \ \ \ \ VkPipelineViewportStateCreateInfo\ viewport\_state\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_VIEWPORT\_STATE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00024}00024\ \ \ \ \ viewport\_state.viewportCount\ =\ 1;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00025}00025\ \ \ \ \ viewport\_state.pViewports\ =\ \&viewport;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00026}00026\ \ \ \ \ viewport\_state.scissorCount\ =\ 1;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00027}00027\ \ \ \ \ viewport\_state.pScissors\ =\ \&scissor;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00028}00028\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Rasterizer}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00030}00030\ \ \ \ \ VkPipelineRasterizationStateCreateInfo\ rasterizer\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_RASTERIZATION\_STATE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00031}00031\ \ \ \ \ rasterizer\_create\_info.depthClampEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00032}00032\ \ \ \ \ rasterizer\_create\_info.rasterizerDiscardEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00033}00033\ \ \ \ \ rasterizer\_create\_info.polygonMode\ =\ is\_wireframe\ ?\ VK\_POLYGON\_MODE\_LINE\ :\ VK\_POLYGON\_MODE\_FILL;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00034}00034\ \ \ \ \ rasterizer\_create\_info.lineWidth\ =\ 1.0f;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00035}00035\ \ \ \ \ rasterizer\_create\_info.cullMode\ =\ VK\_CULL\_MODE\_BACK\_BIT;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00036}00036\ \ \ \ \ rasterizer\_create\_info.frontFace\ =\ VK\_FRONT\_FACE\_COUNTER\_CLOCKWISE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00037}00037\ \ \ \ \ rasterizer\_create\_info.depthBiasEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00038}00038\ \ \ \ \ rasterizer\_create\_info.depthBiasConstantFactor\ =\ 0.0f;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00039}00039\ \ \ \ \ rasterizer\_create\_info.depthBiasClamp\ =\ 0.0f;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00040}00040\ \ \ \ \ rasterizer\_create\_info.depthBiasSlopeFactor\ =\ 0.0f;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00041}00041\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ Multisampling}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00043}00043\ \ \ \ \ VkPipelineMultisampleStateCreateInfo\ multisampling\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_MULTISAMPLE\_STATE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00044}00044\ \ \ \ \ multisampling\_create\_info.sampleShadingEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00045}00045\ \ \ \ \ multisampling\_create\_info.rasterizationSamples\ =\ VK\_SAMPLE\_COUNT\_1\_BIT;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00046}00046\ \ \ \ \ multisampling\_create\_info.minSampleShading\ =\ 1.0f;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00047}00047\ \ \ \ \ multisampling\_create\_info.pSampleMask\ =\ NULL;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00048}00048\ \ \ \ \ multisampling\_create\_info.alphaToCoverageEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00049}00049\ \ \ \ \ multisampling\_create\_info.alphaToOneEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00050}00050\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00051}00051\ \ \ \ \ \textcolor{comment}{//\ Depth\ and\ Stencil\ Testing}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00052}00052\ \ \ \ \ VkPipelineDepthStencilStateCreateInfo\ depth\_stencil\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_DEPTH\_STENCIL\_STATE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00053}00053\ \ \ \ \ depth\_stencil.depthTestEnable\ =\ VK\_TRUE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00054}00054\ \ \ \ \ depth\_stencil.depthWriteEnable\ =\ VK\_TRUE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00055}00055\ \ \ \ \ depth\_stencil.depthCompareOp\ =\ VK\_COMPARE\_OP\_LESS;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00056}00056\ \ \ \ \ depth\_stencil.depthBoundsTestEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00057}00057\ \ \ \ \ depth\_stencil.stencilTestEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00058}00058\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00059}00059\ \ \ \ \ VkPipelineColorBlendAttachmentState\ color\_blend\_attachment\_state\ =\ \{\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00060}00060\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\_memory}}(\&color\_blend\_attachment\_state,\ \textcolor{keyword}{sizeof}(VkPipelineColorBlendAttachmentState));}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00061}00061\ \ \ \ \ color\_blend\_attachment\_state.blendEnable\ =\ VK\_TRUE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00062}00062\ \ \ \ \ color\_blend\_attachment\_state.srcColorBlendFactor\ =\ VK\_BLEND\_FACTOR\_SRC\_ALPHA;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00063}00063\ \ \ \ \ color\_blend\_attachment\_state.dstColorBlendFactor\ =\ VK\_BLEND\_FACTOR\_ONE\_MINUS\_SRC\_ALPHA;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00064}00064\ \ \ \ \ color\_blend\_attachment\_state.colorBlendOp\ =\ VK\_BLEND\_OP\_ADD;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00065}00065\ \ \ \ \ color\_blend\_attachment\_state.srcAlphaBlendFactor\ =\ VK\_BLEND\_FACTOR\_SRC\_ALPHA;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00066}00066\ \ \ \ \ color\_blend\_attachment\_state.dstAlphaBlendFactor\ =\ VK\_BLEND\_FACTOR\_ONE\_MINUS\_SRC\_ALPHA;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00067}00067\ \ \ \ \ color\_blend\_attachment\_state.alphaBlendOp\ =\ VK\_BLEND\_OP\_ADD;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00068}00068\ \ \ \ \ color\_blend\_attachment\_state.colorWriteMask\ =\ VK\_COLOR\_COMPONENT\_R\_BIT\ |\ VK\_COLOR\_COMPONENT\_G\_BIT\ |\ VK\_COLOR\_COMPONENT\_B\_BIT\ |\ VK\_COLOR\_COMPONENT\_A\_BIT;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00069}00069\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00070}00070\ \ \ \ \ VkPipelineColorBlendStateCreateInfo\ color\_blend\_state\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_COLOR\_BLEND\_STATE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00071}00071\ \ \ \ \ color\_blend\_state\_create\_info.logicOpEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00072}00072\ \ \ \ \ color\_blend\_state\_create\_info.logicOp\ =\ VK\_LOGIC\_OP\_COPY;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00073}00073\ \ \ \ \ color\_blend\_state\_create\_info.attachmentCount\ =\ 1;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00074}00074\ \ \ \ \ color\_blend\_state\_create\_info.pAttachments\ =\ \&color\_blend\_attachment\_state;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00075}00075\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00076}00076\ \ \ \ \ \textcolor{comment}{//\ Dynamic\ state}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00077}00077\ \ \ \ \ VkDynamicState\ dynamic\_states[\mbox{\hyperlink{vulkan__pipeline_8c_a29ba53a9acf819ee81b0571b1a1f3869}{DYNAMIC\_STATE\_COUNT}}]\ =\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ VK\_DYNAMIC\_STATE\_VIEWPORT,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ VK\_DYNAMIC\_STATE\_SCISSOR,}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00080}00080\ \ \ \ \ \ \ \ \ VK\_DYNAMIC\_STATE\_LINE\_WIDTH\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00081}00081\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00082}00082\ \ \ \ \ \textcolor{comment}{//\ Dynamic\ state\ create\ info}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00083}00083\ \ \ \ \ VkPipelineDynamicStateCreateInfo\ dynamic\_state\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_DYNAMIC\_STATE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00084}00084\ \ \ \ \ dynamic\_state\_create\_info.dynamicStateCount\ =\ \mbox{\hyperlink{vulkan__pipeline_8c_a29ba53a9acf819ee81b0571b1a1f3869}{DYNAMIC\_STATE\_COUNT}};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00085}00085\ \ \ \ \ dynamic\_state\_create\_info.pDynamicStates\ =\ dynamic\_states;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00086}00086\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//\ Vertex\ input\ state}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00088}00088\ \ \ \ \ VkVertexInputBindingDescription\ binding\_description\ =\ \{\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00089}00089\ \ \ \ \ binding\_description.binding\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Binding\ index}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00090}00090\ \ \ \ \ binding\_description.stride\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structvertex__3d}{vertex\_3d}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Size\ of\ each\ vertex\ attribute}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00091}00091\ \ \ \ \ binding\_description.inputRate\ =\ VK\_VERTEX\_INPUT\_RATE\_VERTEX;\ \ \textcolor{comment}{//\ Move\ to\ next\ data\ entry\ per\ vertex}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00092}00092\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00093}00093\ \ \ \ \ \textcolor{comment}{//\ Attributes}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00094}00094\ \ \ \ \ VkPipelineVertexInputStateCreateInfo\ vertex\_input\_state\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_VERTEX\_INPUT\_STATE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00095}00095\ \ \ \ \ vertex\_input\_state\_create\_info.vertexBindingDescriptionCount\ =\ 1;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00096}00096\ \ \ \ \ vertex\_input\_state\_create\_info.pVertexBindingDescriptions\ =\ \&binding\_description;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00097}00097\ \ \ \ \ vertex\_input\_state\_create\_info.vertexAttributeDescriptionCount\ =\ attribute\_count;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00098}00098\ \ \ \ \ vertex\_input\_state\_create\_info.pVertexAttributeDescriptions\ =\ attributes;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00099}00099\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00100}00100\ \ \ \ \ \textcolor{comment}{//\ Input\ Assembly}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00101}00101\ \ \ \ \ VkPipelineInputAssemblyStateCreateInfo\ input\_assembly\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_INPUT\_ASSEMBLY\_STATE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00102}00102\ \ \ \ \ input\_assembly.topology\ =\ VK\_PRIMITIVE\_TOPOLOGY\_TRIANGLE\_LIST;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00103}00103\ \ \ \ \ input\_assembly.primitiveRestartEnable\ =\ VK\_FALSE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00104}00104\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00105}00105\ \ \ \ \ \textcolor{comment}{//\ Pipeline\ layout}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00106}00106\ \ \ \ \ VkPipelineLayoutCreateInfo\ pipeline\_layout\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_LAYOUT\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00107}00107\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00108}00108\ \ \ \ \ \textcolor{comment}{//\ Push\ Constant}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00109}00109\ \ \ \ \ VkPushConstantRange\ push\_constant;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00110}00110\ \ \ \ \ push\_constant.stageFlags\ =\ VK\_SHADER\_STAGE\_VERTEX\_BIT;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00111}00111\ \ \ \ \ push\_constant.offset\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}})\ *\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00112}00112\ \ \ \ \ push\_constant.size\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}})\ *\ 2;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00113}00113\ \ \ \ \ pipeline\_layout\_create\_info.pushConstantRangeCount\ =\ 1;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00114}00114\ \ \ \ \ pipeline\_layout\_create\_info.pPushConstantRanges\ =\ \&push\_constant;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00115}00115\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00116}00116\ \ \ \ \ \textcolor{comment}{//\ Descriptor\ set\ layouts}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00117}00117\ \ \ \ \ pipeline\_layout\_create\_info.setLayoutCount\ =\ descriptor\_set\_layout\_count;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00118}00118\ \ \ \ \ pipeline\_layout\_create\_info.pSetLayouts\ =\ descriptor\_set\_layouts;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00119}00119\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00120}00120\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ pipeline\ layout}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00121}00121\ \ \ \ \ VK\_CHECK(vkCreatePipelineLayout(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&pipeline\_layout\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&out\_pipeline-\/>pipeline\_layout));}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00122}00122\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00123}00123\ \ \ \ \ \textcolor{comment}{//\ Pipeline\ creation\ info}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00124}00124\ \ \ \ \ VkGraphicsPipelineCreateInfo\ pipeline\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_GRAPHICS\_PIPELINE\_CREATE\_INFO\};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00125}00125\ \ \ \ \ pipeline\_create\_info.stageCount\ =\ stage\_count;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00126}00126\ \ \ \ \ pipeline\_create\_info.pStages\ =\ stages;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00127}00127\ \ \ \ \ pipeline\_create\_info.pVertexInputState\ =\ \&vertex\_input\_state\_create\_info;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00128}00128\ \ \ \ \ pipeline\_create\_info.pInputAssemblyState\ =\ \&input\_assembly;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00017}\mbox{\hyperlink{vulkan__pipeline_8c_a29ba53a9acf819ee81b0571b1a1f3869}{00017}}\ \textcolor{preprocessor}{\#define\ DYNAMIC\_STATE\_COUNT\ 3}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00019}\mbox{\hyperlink{vulkan__pipeline_8c_abdf5e478e09b63d874660770b71bbf29}{00019}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__pipeline_8c_abdf5e478e09b63d874660770b71bbf29}{vulkan\_graphics\_pipeline\_create}}(}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00020}00020\ \ \ \ \ vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00021}00021\ \ \ \ \ vulkan\_renderpass*\ renderpass,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00022}00022\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ attribute\_count,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00023}00023\ \ \ \ \ VkVertexInputAttributeDescription*\ attributes,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00024}00024\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ descriptor\_set\_layout\_count,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00025}00025\ \ \ \ \ VkDescriptorSetLayout*\ descriptor\_set\_layouts,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ stage\_count,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00027}00027\ \ \ \ \ VkPipelineShaderStageCreateInfo*\ stages,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00028}00028\ \ \ \ \ VkViewport\ viewport,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00029}00029\ \ \ \ \ VkRect2D\ scissor,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ is\_wireframe,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00031}00031\ \ \ \ \ vulkan\_pipeline*\ out\_pipeline)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ Viewport\ state}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00033}00033\ \ \ \ \ VkPipelineViewportStateCreateInfo\ viewport\_state\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_VIEWPORT\_STATE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00034}00034\ \ \ \ \ viewport\_state.viewportCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00035}00035\ \ \ \ \ viewport\_state.pViewports\ =\ \&viewport;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00036}00036\ \ \ \ \ viewport\_state.scissorCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00037}00037\ \ \ \ \ viewport\_state.pScissors\ =\ \&scissor;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ Rasterizer}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00040}00040\ \ \ \ \ VkPipelineRasterizationStateCreateInfo\ rasterizer\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_RASTERIZATION\_STATE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00041}00041\ \ \ \ \ rasterizer\_create\_info.depthClampEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00042}00042\ \ \ \ \ rasterizer\_create\_info.rasterizerDiscardEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00043}00043\ \ \ \ \ rasterizer\_create\_info.polygonMode\ =\ is\_wireframe\ ?\ VK\_POLYGON\_MODE\_LINE\ :\ VK\_POLYGON\_MODE\_FILL;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00044}00044\ \ \ \ \ rasterizer\_create\_info.lineWidth\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00045}00045\ \ \ \ \ rasterizer\_create\_info.cullMode\ =\ VK\_CULL\_MODE\_BACK\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00046}00046\ \ \ \ \ rasterizer\_create\_info.frontFace\ =\ VK\_FRONT\_FACE\_COUNTER\_CLOCKWISE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00047}00047\ \ \ \ \ rasterizer\_create\_info.depthBiasEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00048}00048\ \ \ \ \ rasterizer\_create\_info.depthBiasConstantFactor\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00049}00049\ \ \ \ \ rasterizer\_create\_info.depthBiasClamp\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00050}00050\ \ \ \ \ rasterizer\_create\_info.depthBiasSlopeFactor\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//\ Multisampling}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00053}00053\ \ \ \ \ VkPipelineMultisampleStateCreateInfo\ multisampling\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_MULTISAMPLE\_STATE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00054}00054\ \ \ \ \ multisampling\_create\_info.sampleShadingEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00055}00055\ \ \ \ \ multisampling\_create\_info.rasterizationSamples\ =\ VK\_SAMPLE\_COUNT\_1\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00056}00056\ \ \ \ \ multisampling\_create\_info.minSampleShading\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00057}00057\ \ \ \ \ multisampling\_create\_info.pSampleMask\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00058}00058\ \ \ \ \ multisampling\_create\_info.alphaToCoverageEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00059}00059\ \ \ \ \ multisampling\_create\_info.alphaToOneEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00061}00061\ \ \ \ \ \textcolor{comment}{//\ Depth\ and\ Stencil\ Testing}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00062}00062\ \ \ \ \ VkPipelineDepthStencilStateCreateInfo\ depth\_stencil\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_DEPTH\_STENCIL\_STATE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00063}00063\ \ \ \ \ depth\_stencil.depthTestEnable\ =\ VK\_TRUE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00064}00064\ \ \ \ \ depth\_stencil.depthWriteEnable\ =\ VK\_TRUE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00065}00065\ \ \ \ \ depth\_stencil.depthCompareOp\ =\ VK\_COMPARE\_OP\_LESS;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00066}00066\ \ \ \ \ depth\_stencil.depthBoundsTestEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00067}00067\ \ \ \ \ depth\_stencil.stencilTestEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00069}00069\ \ \ \ \ VkPipelineColorBlendAttachmentState\ color\_blend\_attachment\_state\ =\ \{\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00070}00070\ \ \ \ \ \mbox{\hyperlink{kmemory_8c_aa7107b9ccb0c0358906c79d3dbe398d5}{kzero\_memory}}(\&color\_blend\_attachment\_state,\ \textcolor{keyword}{sizeof}(VkPipelineColorBlendAttachmentState));}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00071}00071\ \ \ \ \ color\_blend\_attachment\_state.blendEnable\ =\ VK\_TRUE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00072}00072\ \ \ \ \ color\_blend\_attachment\_state.srcColorBlendFactor\ =\ VK\_BLEND\_FACTOR\_SRC\_ALPHA;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00073}00073\ \ \ \ \ color\_blend\_attachment\_state.dstColorBlendFactor\ =\ VK\_BLEND\_FACTOR\_ONE\_MINUS\_SRC\_ALPHA;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00074}00074\ \ \ \ \ color\_blend\_attachment\_state.colorBlendOp\ =\ VK\_BLEND\_OP\_ADD;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00075}00075\ \ \ \ \ color\_blend\_attachment\_state.srcAlphaBlendFactor\ =\ VK\_BLEND\_FACTOR\_SRC\_ALPHA;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00076}00076\ \ \ \ \ color\_blend\_attachment\_state.dstAlphaBlendFactor\ =\ VK\_BLEND\_FACTOR\_ONE\_MINUS\_SRC\_ALPHA;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00077}00077\ \ \ \ \ color\_blend\_attachment\_state.alphaBlendOp\ =\ VK\_BLEND\_OP\_ADD;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00078}00078\ \ \ \ \ color\_blend\_attachment\_state.colorWriteMask\ =\ VK\_COLOR\_COMPONENT\_R\_BIT\ |\ VK\_COLOR\_COMPONENT\_G\_BIT\ |\ VK\_COLOR\_COMPONENT\_B\_BIT\ |\ VK\_COLOR\_COMPONENT\_A\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00080}00080\ \ \ \ \ VkPipelineColorBlendStateCreateInfo\ color\_blend\_state\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_COLOR\_BLEND\_STATE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00081}00081\ \ \ \ \ color\_blend\_state\_create\_info.logicOpEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00082}00082\ \ \ \ \ color\_blend\_state\_create\_info.logicOp\ =\ VK\_LOGIC\_OP\_COPY;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00083}00083\ \ \ \ \ color\_blend\_state\_create\_info.attachmentCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00084}00084\ \ \ \ \ color\_blend\_state\_create\_info.pAttachments\ =\ \&color\_blend\_attachment\_state;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00086}00086\ \ \ \ \ \textcolor{comment}{//\ Dynamic\ state}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00087}00087\ \ \ \ \ VkDynamicState\ dynamic\_states[\mbox{\hyperlink{vulkan__pipeline_8c_a29ba53a9acf819ee81b0571b1a1f3869}{DYNAMIC\_STATE\_COUNT}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00088}00088\ \ \ \ \ \ \ \ \ VK\_DYNAMIC\_STATE\_VIEWPORT,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00089}00089\ \ \ \ \ \ \ \ \ VK\_DYNAMIC\_STATE\_SCISSOR,}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ VK\_DYNAMIC\_STATE\_LINE\_WIDTH\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00092}00092\ \ \ \ \ \textcolor{comment}{//\ Dynamic\ state\ create\ info}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00093}00093\ \ \ \ \ VkPipelineDynamicStateCreateInfo\ dynamic\_state\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_DYNAMIC\_STATE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00094}00094\ \ \ \ \ dynamic\_state\_create\_info.dynamicStateCount\ =\ \mbox{\hyperlink{vulkan__pipeline_8c_a29ba53a9acf819ee81b0571b1a1f3869}{DYNAMIC\_STATE\_COUNT}};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00095}00095\ \ \ \ \ dynamic\_state\_create\_info.pDynamicStates\ =\ dynamic\_states;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//\ Vertex\ input\ state}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00098}00098\ \ \ \ \ VkVertexInputBindingDescription\ binding\_description\ =\ \{\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00099}00099\ \ \ \ \ binding\_description.binding\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Binding\ index}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00100}00100\ \ \ \ \ binding\_description.stride\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structvertex__3d}{vertex\_3d}});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Size\ of\ each\ vertex\ attribute}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00101}00101\ \ \ \ \ binding\_description.inputRate\ =\ VK\_VERTEX\_INPUT\_RATE\_VERTEX;\ \ \textcolor{comment}{//\ Move\ to\ next\ data\ entry\ per\ vertex}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00103}00103\ \ \ \ \ \textcolor{comment}{//\ Attributes}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00104}00104\ \ \ \ \ VkPipelineVertexInputStateCreateInfo\ vertex\_input\_state\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_VERTEX\_INPUT\_STATE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00105}00105\ \ \ \ \ vertex\_input\_state\_create\_info.vertexBindingDescriptionCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00106}00106\ \ \ \ \ vertex\_input\_state\_create\_info.pVertexBindingDescriptions\ =\ \&binding\_description;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00107}00107\ \ \ \ \ vertex\_input\_state\_create\_info.vertexAttributeDescriptionCount\ =\ attribute\_count;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00108}00108\ \ \ \ \ vertex\_input\_state\_create\_info.pVertexAttributeDescriptions\ =\ attributes;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00110}00110\ \ \ \ \ \textcolor{comment}{//\ Input\ Assembly}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00111}00111\ \ \ \ \ VkPipelineInputAssemblyStateCreateInfo\ input\_assembly\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_INPUT\_ASSEMBLY\_STATE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00112}00112\ \ \ \ \ input\_assembly.topology\ =\ VK\_PRIMITIVE\_TOPOLOGY\_TRIANGLE\_LIST;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00113}00113\ \ \ \ \ input\_assembly.primitiveRestartEnable\ =\ VK\_FALSE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00115}00115\ \ \ \ \ \textcolor{comment}{//\ Pipeline\ layout}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00116}00116\ \ \ \ \ VkPipelineLayoutCreateInfo\ pipeline\_layout\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PIPELINE\_LAYOUT\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00118}00118\ \ \ \ \ \textcolor{comment}{//\ Push\ Constant}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00119}00119\ \ \ \ \ VkPushConstantRange\ push\_constant;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00120}00120\ \ \ \ \ push\_constant.stageFlags\ =\ VK\_SHADER\_STAGE\_VERTEX\_BIT;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00121}00121\ \ \ \ \ push\_constant.offset\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}})\ *\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00122}00122\ \ \ \ \ push\_constant.size\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}})\ *\ 2;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00123}00123\ \ \ \ \ pipeline\_layout\_create\_info.pushConstantRangeCount\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00124}00124\ \ \ \ \ pipeline\_layout\_create\_info.pPushConstantRanges\ =\ \&push\_constant;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00126}00126\ \ \ \ \ \textcolor{comment}{//\ Descriptor\ set\ layouts}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00127}00127\ \ \ \ \ pipeline\_layout\_create\_info.setLayoutCount\ =\ descriptor\_set\_layout\_count;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00128}00128\ \ \ \ \ pipeline\_layout\_create\_info.pSetLayouts\ =\ descriptor\_set\_layouts;}
 \DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00129}00129\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00130}00130\ \ \ \ \ pipeline\_create\_info.pViewportState\ =\ \&viewport\_state;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00131}00131\ \ \ \ \ pipeline\_create\_info.pRasterizationState\ =\ \&rasterizer\_create\_info;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00132}00132\ \ \ \ \ pipeline\_create\_info.pMultisampleState\ =\ \&multisampling\_create\_info;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00133}00133\ \ \ \ \ pipeline\_create\_info.pDepthStencilState\ =\ \&depth\_stencil;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00134}00134\ \ \ \ \ pipeline\_create\_info.pColorBlendState\ =\ \&color\_blend\_state\_create\_info;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00135}00135\ \ \ \ \ pipeline\_create\_info.pDynamicState\ =\ \&dynamic\_state\_create\_info;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00136}00136\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00137}00137\ \ \ \ \ pipeline\_create\_info.layout\ =\ out\_pipeline-\/>pipeline\_layout;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00138}00138\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00139}00139\ \ \ \ \ pipeline\_create\_info.renderPass\ =\ renderpass-\/>handle;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00140}00140\ \ \ \ \ pipeline\_create\_info.subpass\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00141}00141\ \ \ \ \ pipeline\_create\_info.basePipelineHandle\ =\ VK\_NULL\_HANDLE;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00142}00142\ \ \ \ \ pipeline\_create\_info.basePipelineIndex\ =\ -\/1;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00143}00143\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00144}00144\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ graphics\ pipeline}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00145}00145\ \ \ \ \ VkResult\ result\ =\ vkCreateGraphicsPipelines(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ VK\_NULL\_HANDLE,\ 1,\ \&pipeline\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&out\_pipeline-\/>handle);}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00130}00130\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ pipeline\ layout}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00131}00131\ \ \ \ \ VK\_CHECK(vkCreatePipelineLayout(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ \&pipeline\_layout\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&out\_pipeline-\/>pipeline\_layout));}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ Pipeline\ creation\ info}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00134}00134\ \ \ \ \ VkGraphicsPipelineCreateInfo\ pipeline\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_GRAPHICS\_PIPELINE\_CREATE\_INFO\};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00135}00135\ \ \ \ \ pipeline\_create\_info.stageCount\ =\ stage\_count;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00136}00136\ \ \ \ \ pipeline\_create\_info.pStages\ =\ stages;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00137}00137\ \ \ \ \ pipeline\_create\_info.pVertexInputState\ =\ \&vertex\_input\_state\_create\_info;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00138}00138\ \ \ \ \ pipeline\_create\_info.pInputAssemblyState\ =\ \&input\_assembly;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00140}00140\ \ \ \ \ pipeline\_create\_info.pViewportState\ =\ \&viewport\_state;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00141}00141\ \ \ \ \ pipeline\_create\_info.pRasterizationState\ =\ \&rasterizer\_create\_info;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00142}00142\ \ \ \ \ pipeline\_create\_info.pMultisampleState\ =\ \&multisampling\_create\_info;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00143}00143\ \ \ \ \ pipeline\_create\_info.pDepthStencilState\ =\ \&depth\_stencil;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00144}00144\ \ \ \ \ pipeline\_create\_info.pColorBlendState\ =\ \&color\_blend\_state\_create\_info;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00145}00145\ \ \ \ \ pipeline\_create\_info.pDynamicState\ =\ \&dynamic\_state\_create\_info;}
 \DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00146}00146\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan__utils_8c_ad8a757bc800267c37b75303b1a8b0f63}{vulkan\_result\_is\_success}}(result))\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Vulkan\ graphics\ pipeline\ created\ successfully."{}});}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00150}00150\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00151}00151\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00152}00152\ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}vkCreateGraphicsPipelines()\ -\/\ Failed\ to\ create\ Vulkan\ graphics\ pipeline:\ \%s"{}},\ \mbox{\hyperlink{vulkan__utils_8c_a7c6284088860932a8a66b8153b4bc0a4}{vulkan\_result\_string}}(result,\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}}));}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00153}00153\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00154}00154\ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00155}00155\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00156}\mbox{\hyperlink{vulkan__pipeline_8c_a283ba7cf0fba53e13fd56f7e2b472145}{00156}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__pipeline_8c_a283ba7cf0fba53e13fd56f7e2b472145}{vulkan\_pipeline\_destroy}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_pipeline*\ pipeline)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00157}00157\ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Destroying\ Vulkan\ pipeline\ \%p"{}},\ pipeline-\/>handle);}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{if}\ (pipeline)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destroy\ Pipeline}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pipeline-\/>handle)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ vkDestroyPipeline(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ pipeline-\/>handle,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ pipeline-\/>handle\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00163}00163\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00164}00164\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destroy\ Pipeline\ Layout}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pipeline-\/>pipeline\_layout)\ \{}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ vkDestroyPipelineLayout(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ pipeline-\/>pipeline\_layout,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ pipeline-\/>pipeline\_layout\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00169}00169\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00170}00170\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00171}00171\ \}}
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00172}00172\ }
-\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00173}\mbox{\hyperlink{vulkan__pipeline_8c_a9db9bf776b663de8df2847b1493319e6}{00173}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__pipeline_8c_a9db9bf776b663de8df2847b1493319e6}{vulkan\_pipeline\_bind}}(vulkan\_command\_buffer*\ command\_buffer,\ VkPipelineBindPoint\ bind\_point,\ vulkan\_pipeline*\ pipeline)\ \{\}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00147}00147\ \ \ \ \ pipeline\_create\_info.layout\ =\ out\_pipeline-\/>pipeline\_layout;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00149}00149\ \ \ \ \ pipeline\_create\_info.renderPass\ =\ renderpass-\/>handle;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00150}00150\ \ \ \ \ pipeline\_create\_info.subpass\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00151}00151\ \ \ \ \ pipeline\_create\_info.basePipelineHandle\ =\ VK\_NULL\_HANDLE;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00152}00152\ \ \ \ \ pipeline\_create\_info.basePipelineIndex\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00154}00154\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ graphics\ pipeline}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00155}00155\ \ \ \ \ VkResult\ result\ =\ vkCreateGraphicsPipelines(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ VK\_NULL\_HANDLE,\ 1,\ \&pipeline\_create\_info,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator,\ \&out\_pipeline-\/>handle);}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00157}00157\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vulkan__utils_8c_ad8a757bc800267c37b75303b1a8b0f63}{vulkan\_result\_is\_success}}(result))\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00158}00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Vulkan\ graphics\ pipeline\ created\ successfully."{}});}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00160}00160\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00162}00162\ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}vkCreateGraphicsPipelines()\ -\/\ Failed\ to\ create\ Vulkan\ graphics\ pipeline:\ \%s"{}},\ \mbox{\hyperlink{vulkan__utils_8c_a7c6284088860932a8a66b8153b4bc0a4}{vulkan\_result\_string}}(result,\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}}));}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00163}00163\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00164}00164\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00166}\mbox{\hyperlink{vulkan__pipeline_8c_a283ba7cf0fba53e13fd56f7e2b472145}{00166}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__pipeline_8c_a283ba7cf0fba53e13fd56f7e2b472145}{vulkan\_pipeline\_destroy}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},\ vulkan\_pipeline*\ pipeline)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00167}00167\ \ \ \ \ \mbox{\hyperlink{logger_8h_a23768ad708f2a648844bd09e15e52d1c}{KDEBUG}}(\textcolor{stringliteral}{"{}Destroying\ Vulkan\ pipeline\ \%p"{}},\ pipeline-\/>handle);}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00168}00168\ \ \ \ \ \textcolor{keywordflow}{if}\ (pipeline)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destroy\ Pipeline}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pipeline-\/>handle)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ vkDestroyPipeline(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ pipeline-\/>handle,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ pipeline-\/>handle\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00173}00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destroy\ Pipeline\ Layout}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pipeline-\/>pipeline\_layout)\ \{}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ vkDestroyPipelineLayout(\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>device.logical\_device,\ pipeline-\/>pipeline\_layout,\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}-\/>allocator);}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ pipeline-\/>pipeline\_layout\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00179}00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00180}00180\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00181}00181\ \}}
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{vulkan__pipeline_8c_source_l00183}\mbox{\hyperlink{vulkan__pipeline_8c_a9db9bf776b663de8df2847b1493319e6}{00183}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__pipeline_8c_a9db9bf776b663de8df2847b1493319e6}{vulkan\_pipeline\_bind}}(vulkan\_command\_buffer*\ command\_buffer,\ VkPipelineBindPoint\ bind\_point,\ vulkan\_pipeline*\ pipeline)\ \{\}}
 
 \end{DoxyCode}

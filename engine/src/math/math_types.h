@@ -173,4 +173,6 @@ typedef union mat4_u {
  */
 typedef struct vertex_3d {
     vec3 position;  ///< Vertex position in 3D space
+
+    vec2 texcoord;
 } vertex_3d;

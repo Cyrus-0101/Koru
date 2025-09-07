@@ -23,6 +23,10 @@ void \mbox{\hyperlink{vulkan__image_8c_ae8efa06d320d8156f69f0c8352f37340}{vulkan
 \begin{DoxyCompactList}\small\item\em Creates and allocates a new Vulkan image with the specified properties. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}{vulkan\+\_\+image\+\_\+view\+\_\+create}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Format format, vulkan\+\_\+image \texorpdfstring{$\ast$}{*}image, Vk\+Image\+Aspect\+Flags aspect\+\_\+flags)
 \begin{DoxyCompactList}\small\item\em Creates an image view for the given image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__image_8c_a00633d75f04d5a01f8e308fc286d1fee}{vulkan\+\_\+image\+\_\+transition\+\_\+layout}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer, vulkan\+\_\+image \texorpdfstring{$\ast$}{*}image, Vk\+Format format, Vk\+Image\+Layout old\+\_\+layout, Vk\+Image\+Layout new\+\_\+layout)
+\begin{DoxyCompactList}\small\item\em Transitions a Vulkan image from one layout to another. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__image_8c_a271f9cd1a0b2aa94e6f0f48ad684a610}{vulkan\+\_\+image\+\_\+copy\+\_\+from\+\_\+buffer}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+image \texorpdfstring{$\ast$}{*}image, Vk\+Buffer buffer, vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}command\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Copies data from a buffer to a Vulkan image. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a}{vulkan\+\_\+image\+\_\+destroy}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, vulkan\+\_\+image \texorpdfstring{$\ast$}{*}image)
 \begin{DoxyCompactList}\small\item\em Destroys a Vulkan image and its associated resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -49,6 +53,41 @@ Definition in file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\
 
 
 \doxysubsection{Function Documentation}
+\Hypertarget{vulkan__image_8c_a271f9cd1a0b2aa94e6f0f48ad684a610}\label{vulkan__image_8c_a271f9cd1a0b2aa94e6f0f48ad684a610} 
+\index{vulkan\_image.c@{vulkan\_image.c}!vulkan\_image\_copy\_from\_buffer@{vulkan\_image\_copy\_from\_buffer}}
+\index{vulkan\_image\_copy\_from\_buffer@{vulkan\_image\_copy\_from\_buffer}!vulkan\_image.c@{vulkan\_image.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_image\_copy\_from\_buffer()}{vulkan\_image\_copy\_from\_buffer()}}
+{\footnotesize\ttfamily void vulkan\+\_\+image\+\_\+copy\+\_\+from\+\_\+buffer (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+image \texorpdfstring{$\ast$}{*}}]{image,  }\item[{Vk\+Buffer}]{buffer,  }\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Copies data from a buffer to a Vulkan image. 
+
+Used for uploading texture data or other image content from CPU-\/visible buffers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em image} & A pointer to the destination vulkan\+\_\+image. \\
+\hline
+{\em buffer} & The source Vk\+Buffer containing the data to copy. \\
+\hline
+{\em command\+\_\+buffer} & A command buffer to record the copy operation into. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00196}{196}} of file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
+
+
+
+References \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture()}}.
+
 \Hypertarget{vulkan__image_8c_ae8efa06d320d8156f69f0c8352f37340}\label{vulkan__image_8c_ae8efa06d320d8156f69f0c8352f37340} 
 \index{vulkan\_image.c@{vulkan\_image.c}!vulkan\_image\_create@{vulkan\_image\_create}}
 \index{vulkan\_image\_create@{vulkan\_image\_create}!vulkan\_image.c@{vulkan\_image.c}}
@@ -99,11 +138,11 @@ Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00041}{41}} of file
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00113}{vulkan\+\_\+image\+\_\+view\+\_\+create()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00112}{vulkan\+\_\+image\+\_\+view\+\_\+create()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00200}{create()}}.
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00200}{create()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture()}}.
 
 \Hypertarget{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a}\label{vulkan__image_8c_a7d1140c936aeeadb57f27f293db7674a} 
 \index{vulkan\_image.c@{vulkan\_image.c}!vulkan\_image\_destroy@{vulkan\_image\_destroy}}
@@ -128,20 +167,65 @@ Must be called before destroying the logical device.
 \begin{DoxyParams}{Parameters}
 {\em context} & A pointer to the active Vulkan context. \\
 \hline
+{\em image} & A pointer to the vulkan\+\_\+image to destroy.\\
+\hline
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
 {\em image} & A pointer to the vulkan\+\_\+image to destroy. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00148}{148}} of file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00241}{241}} of file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00351}{destroy()}}.
+Referenced by \mbox{\hyperlink{vulkan__swapchain_8c_source_l00351}{destroy()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00983}{vulkan\+\_\+renderer\+\_\+destroy\+\_\+texture()}}.
+
+\Hypertarget{vulkan__image_8c_a00633d75f04d5a01f8e308fc286d1fee}\label{vulkan__image_8c_a00633d75f04d5a01f8e308fc286d1fee} 
+\index{vulkan\_image.c@{vulkan\_image.c}!vulkan\_image\_transition\_layout@{vulkan\_image\_transition\_layout}}
+\index{vulkan\_image\_transition\_layout@{vulkan\_image\_transition\_layout}!vulkan\_image.c@{vulkan\_image.c}}
+\doxysubsubsection{\texorpdfstring{vulkan\_image\_transition\_layout()}{vulkan\_image\_transition\_layout()}}
+{\footnotesize\ttfamily void vulkan\+\_\+image\+\_\+transition\+\_\+layout (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{vulkan\+\_\+command\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{command\+\_\+buffer,  }\item[{vulkan\+\_\+image \texorpdfstring{$\ast$}{*}}]{image,  }\item[{Vk\+Format}]{format,  }\item[{Vk\+Image\+Layout}]{old\+\_\+layout,  }\item[{Vk\+Image\+Layout}]{new\+\_\+layout }\end{DoxyParamCaption})}
+
+
+
+Transitions a Vulkan image from one layout to another. 
+
+Image layout transitions are required when changing how an image is used, such as transitioning from undefined to a color attachment layout before rendering, or from a color attachment to shader read-\/only for sampling in a shader.
+
+This function records the necessary pipeline barrier into the provided command buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & A pointer to the active Vulkan context. \\
+\hline
+{\em command\+\_\+buffer} & A pointer to the command buffer to record the transition into. \\
+\hline
+{\em image} & A pointer to the vulkan\+\_\+image to transition. \\
+\hline
+{\em format} & Format of the image (used for depth/stencil aspects). \\
+\hline
+{\em old\+\_\+layout} & The current layout of the image. \\
+\hline
+{\em new\+\_\+layout} & The desired layout of the image. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00134}{134}} of file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, and \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}.
+
+
+
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture()}}.
 
 \Hypertarget{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41}\label{vulkan__image_8c_acac51c2be133dd1ff4bf11dbb613bf41} 
 \index{vulkan\_image.c@{vulkan\_image.c}!vulkan\_image\_view\_create@{vulkan\_image\_view\_create}}
@@ -170,11 +254,11 @@ Image views define how the image is accessed (e.\+g., as a color attachment, sam
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00113}{113}} of file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__image_8c_source_l00112}{112}} of file \mbox{\hyperlink{vulkan__image_8c_source}{vulkan\+\_\+image.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00034}{context}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}.
 
 
 

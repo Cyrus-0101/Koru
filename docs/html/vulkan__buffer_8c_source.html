@@ -88,191 +88,191 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="vulkan__device_8h.html">vulkan_device.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="vulkan__utils_8h.html">vulkan_utils.h</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">vulkan_buffer_bind</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset);</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="foldopen" id="foldopen00010" data-start="{" data-end="}">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#adc1253645b021b8c8dd0ff5f001c1668">   10</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="vulkan__buffer_8c.html#adc1253645b021b8c8dd0ff5f001c1668">vulkan_buffer_create</a>(</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size,</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    VkBufferUsageFlagBits usage,</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> memory_property_flags,</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> bind_on_create,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    vulkan_buffer* out_buffer) {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_function" href="kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5">kzero_memory</a>(out_buffer, <span class="keyword">sizeof</span>(vulkan_buffer));</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    out_buffer-&gt;total_size = size;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    out_buffer-&gt;usage = usage;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    out_buffer-&gt;memory_property_flags = memory_property_flags;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    VkBufferCreateInfo buffer_info = {VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO};</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    buffer_info.size = size;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    buffer_info.usage = usage;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    buffer_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;  <span class="comment">// Note: Only used in one queue family for now</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    VK_CHECK(vkCreateBuffer(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;buffer_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;out_buffer-&gt;handle));</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#adc1253645b021b8c8dd0ff5f001c1668">   17</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="vulkan__buffer_8c.html#adc1253645b021b8c8dd0ff5f001c1668">vulkan_buffer_create</a>(</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    VkBufferUsageFlagBits usage,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> memory_property_flags,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> bind_on_create,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    vulkan_buffer* out_buffer) {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_function" href="kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5">kzero_memory</a>(out_buffer, <span class="keyword">sizeof</span>(vulkan_buffer));</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    out_buffer-&gt;total_size = size;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    out_buffer-&gt;usage = usage;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    out_buffer-&gt;memory_property_flags = memory_property_flags;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    VkMemoryRequirements requirements;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    vkGetBufferMemoryRequirements(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, out_buffer-&gt;handle, &amp;requirements);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    out_buffer-&gt;memory_index = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;find_memory_index(requirements.memoryTypeBits, memory_property_flags);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">if</span> (out_buffer-&gt;memory_index == -1) {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;Failed to create vulkan buffer: No suitable memory type index was found!&quot;</span>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// Allocate the memory info</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    VkMemoryAllocateInfo allocate_info = {VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO};</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    allocate_info.allocationSize = requirements.size;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    allocate_info.memoryTypeIndex = (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a>)out_buffer-&gt;memory_index;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// Allocate the memory</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    VkResult result = vkAllocateMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;allocate_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;out_buffer-&gt;memory);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">if</span> (result != VK_SUCCESS) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;Unable to create vulkan buffer because the required memory allocation failed. Error: i%&quot;</span>, result);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    VkBufferCreateInfo buffer_info = {VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    buffer_info.size = size;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    buffer_info.usage = usage;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    buffer_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;  <span class="comment">// Note: Only used in one queue family for now</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    VK_CHECK(vkCreateBuffer(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;buffer_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;out_buffer-&gt;handle));</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    VkMemoryRequirements requirements;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    vkGetBufferMemoryRequirements(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, out_buffer-&gt;handle, &amp;requirements);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    out_buffer-&gt;memory_index = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;find_memory_index(requirements.memoryTypeBits, memory_property_flags);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">if</span> (out_buffer-&gt;memory_index == -1) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;Failed to create vulkan buffer: No suitable memory type index was found!&quot;</span>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// Allocate the memory info</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    VkMemoryAllocateInfo allocate_info = {VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO};</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    allocate_info.allocationSize = requirements.size;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    allocate_info.memoryTypeIndex = (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a>)out_buffer-&gt;memory_index;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">if</span> (bind_on_create) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <a class="code hl_function" href="vulkan__buffer_8c.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">vulkan_buffer_bind</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, out_buffer, 0);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
-</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// Allocate the memory</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    VkResult result = vkAllocateMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;allocate_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;out_buffer-&gt;memory);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">if</span> (result != VK_SUCCESS) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;Unable to create vulkan buffer because the required memory allocation failed. Error: i%&quot;</span>, result);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a0777c036a5cdb692aa0fd21fd1df2adc">   57</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#a0777c036a5cdb692aa0fd21fd1df2adc">vulkan_buffer_destroy</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer) {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_define" href="logger_8h.html#a23768ad708f2a648844bd09e15e52d1c">KDEBUG</a>(<span class="stringliteral">&quot;Destroying vulkan buffer %p&quot;</span>, buffer-&gt;handle);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">if</span> (buffer-&gt;memory) {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        vkFreeMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        buffer-&gt;memory = 0;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">if</span> (buffer-&gt;handle) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        vkDestroyBuffer(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;handle, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        buffer-&gt;handle = 0;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    buffer-&gt;total_size = 0;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    buffer-&gt;usage = 0;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    buffer-&gt;is_locked = <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">if</span> (bind_on_create) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_function" href="vulkan__buffer_8c.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">vulkan_buffer_bind</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, out_buffer, 0);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
 </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#afbbdca32215c9687f38dc62bcb58a779">   72</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="vulkan__buffer_8c.html#afbbdca32215c9687f38dc62bcb58a779">vulkan_buffer_resize</a>(</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> new_size,</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    vulkan_buffer* buffer,</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    VkQueue queue,</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    VkCommandPool pool) {</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// Create new buffer.</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    VkBufferCreateInfo buffer_info = {VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO};</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    buffer_info.size = new_size;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    buffer_info.usage = buffer-&gt;usage;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    buffer_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;  <span class="comment">// NOTE: Only used in one queue.</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    VkBuffer new_buffer;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    VK_CHECK(vkCreateBuffer(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;buffer_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;new_buffer));</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// Gather memory requirements.</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    VkMemoryRequirements requirements;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    vkGetBufferMemoryRequirements(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, new_buffer, &amp;requirements);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// Allocate memory info</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    VkMemoryAllocateInfo allocate_info = {VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO};</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    allocate_info.allocationSize = requirements.size;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    allocate_info.memoryTypeIndex = (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a>)buffer-&gt;memory_index;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a0777c036a5cdb692aa0fd21fd1df2adc">   64</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#a0777c036a5cdb692aa0fd21fd1df2adc">vulkan_buffer_destroy</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_define" href="logger_8h.html#a23768ad708f2a648844bd09e15e52d1c">KDEBUG</a>(<span class="stringliteral">&quot;Destroying vulkan buffer %p&quot;</span>, buffer-&gt;handle);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">if</span> (buffer-&gt;memory) {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        vkFreeMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        buffer-&gt;memory = 0;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">if</span> (buffer-&gt;handle) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        vkDestroyBuffer(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;handle, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        buffer-&gt;handle = 0;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    buffer-&gt;total_size = 0;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    buffer-&gt;usage = 0;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    buffer-&gt;is_locked = <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#afbbdca32215c9687f38dc62bcb58a779">   81</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="vulkan__buffer_8c.html#afbbdca32215c9687f38dc62bcb58a779">vulkan_buffer_resize</a>(</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> new_size,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    vulkan_buffer* buffer,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    VkQueue queue,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    VkCommandPool pool) {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// Create new buffer.</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    VkBufferCreateInfo buffer_info = {VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO};</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    buffer_info.size = new_size;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    buffer_info.usage = buffer-&gt;usage;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    buffer_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;  <span class="comment">// NOTE: Only used in one queue.</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    VkBuffer new_buffer;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    VK_CHECK(vkCreateBuffer(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;buffer_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;new_buffer));</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// Allocate the memory.</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    VkDeviceMemory new_memory;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    VkResult result = vkAllocateMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;allocate_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;new_memory);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">if</span> (result != VK_SUCCESS) {</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;Unable to resize vulkan buffer because the required memory allocation failed. Error: %i&quot;</span>, result);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// Bind the new buffer&#39;s memory</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    VK_CHECK(vkBindBufferMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, new_buffer, new_memory, 0));</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// Copy over the data</span></div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_function" href="vulkan__buffer_8c.html#afb4dafb2469273c4c860ba47829e2042">vulkan_buffer_copy_to</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, pool, 0, queue, buffer-&gt;handle, 0, new_buffer, 0, buffer-&gt;total_size);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// Make sure anything potentially using these is finished.</span></div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    vkDeviceWaitIdle(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// Gather memory requirements.</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    VkMemoryRequirements requirements;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    vkGetBufferMemoryRequirements(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, new_buffer, &amp;requirements);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// Allocate memory info</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    VkMemoryAllocateInfo allocate_info = {VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO};</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    allocate_info.allocationSize = requirements.size;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    allocate_info.memoryTypeIndex = (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a>)buffer-&gt;memory_index;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="comment">// Allocate the memory.</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    VkDeviceMemory new_memory;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    VkResult result = vkAllocateMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;allocate_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;new_memory);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordflow">if</span> (result != VK_SUCCESS) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;Unable to resize vulkan buffer because the required memory allocation failed. Error: %i&quot;</span>, result);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// Destroy the old</span></div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">if</span> (buffer-&gt;memory) {</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        vkFreeMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        buffer-&gt;memory = 0;</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">if</span> (buffer-&gt;handle) {</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        vkDestroyBuffer(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;handle, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        buffer-&gt;handle = 0;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="comment">// Set new properties</span></div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    buffer-&gt;total_size = new_size;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    buffer-&gt;memory = new_memory;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    buffer-&gt;handle = new_buffer;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// Bind the new buffer&#39;s memory</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    VK_CHECK(vkBindBufferMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, new_buffer, new_memory, 0));</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// Copy over the data</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <a class="code hl_function" href="vulkan__buffer_8c.html#afb4dafb2469273c4c860ba47829e2042">vulkan_buffer_copy_to</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, pool, 0, queue, buffer-&gt;handle, 0, new_buffer, 0, buffer-&gt;total_size);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// Make sure anything potentially using these is finished.</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    vkDeviceWaitIdle(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// Destroy the old</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">if</span> (buffer-&gt;memory) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        vkFreeMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        buffer-&gt;memory = 0;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordflow">if</span> (buffer-&gt;handle) {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        vkDestroyBuffer(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;handle, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        buffer-&gt;handle = 0;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// Set new properties</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    buffer-&gt;total_size = new_size;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    buffer-&gt;memory = new_memory;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    buffer-&gt;handle = new_buffer;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#add3ca9eefe3b5b754426f51d3043e579">True</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>}</div>
 </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="foldopen" id="foldopen00131" data-start="{" data-end="}">
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">  131</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">vulkan_buffer_bind</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset) {</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    VK_CHECK(vkBindBufferMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;handle, buffer-&gt;memory, offset));</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>}</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="foldopen" id="foldopen00140" data-start="{" data-end="}">
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">  140</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">vulkan_buffer_bind</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset) {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    VK_CHECK(vkBindBufferMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;handle, buffer-&gt;memory, offset));</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
 </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="foldopen" id="foldopen00135" data-start="{" data-end="}">
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a1ab2cfc9a303e3f204874a58d9d15f6f">  135</a></span><span class="keywordtype">void</span>* <a class="code hl_function" href="vulkan__buffer_8c.html#a1ab2cfc9a303e3f204874a58d9d15f6f">vulkan_buffer_lock_memory</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> flags) {</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">void</span>* data;</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    VK_CHECK(vkMapMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory, offset, size, flags, &amp;data));</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">return</span> data;</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>}</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a1ab2cfc9a303e3f204874a58d9d15f6f">  144</a></span><span class="keywordtype">void</span>* <a class="code hl_function" href="vulkan__buffer_8c.html#a1ab2cfc9a303e3f204874a58d9d15f6f">vulkan_buffer_lock_memory</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> flags) {</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">void</span>* data;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    VK_CHECK(vkMapMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory, offset, size, flags, &amp;data));</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordflow">return</span> data;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>}</div>
 </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="foldopen" id="foldopen00141" data-start="{" data-end="}">
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a320b309d7773e97e06f2f5ffb342e712">  141</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#a320b309d7773e97e06f2f5ffb342e712">vulkan_buffer_unlock_memory</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer) {</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    vkUnmapMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory);</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>}</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="foldopen" id="foldopen00150" data-start="{" data-end="}">
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a320b309d7773e97e06f2f5ffb342e712">  150</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#a320b309d7773e97e06f2f5ffb342e712">vulkan_buffer_unlock_memory</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer) {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    vkUnmapMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>}</div>
 </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="foldopen" id="foldopen00145" data-start="{" data-end="}">
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a74035aeef79e5ffe833042ce00499a64">  145</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#a74035aeef79e5ffe833042ce00499a64">vulkan_buffer_load_data</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> flags, <span class="keyword">const</span> <span class="keywordtype">void</span>* data) {</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">void</span>* data_ptr;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    VK_CHECK(vkMapMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory, offset, size, flags, &amp;data_ptr));</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_function" href="kmemory_8c.html#a433c653469c55bd95b8b80b801bcc426">kcopy_memory</a>(data_ptr, data, size);</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    vkUnmapMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory);</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>}</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="foldopen" id="foldopen00154" data-start="{" data-end="}">
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#a74035aeef79e5ffe833042ce00499a64">  154</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#a74035aeef79e5ffe833042ce00499a64">vulkan_buffer_load_data</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_buffer* buffer, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> offset, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size, <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> flags, <span class="keyword">const</span> <span class="keywordtype">void</span>* data) {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">void</span>* data_ptr;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    VK_CHECK(vkMapMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory, offset, size, flags, &amp;data_ptr));</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <a class="code hl_function" href="kmemory_8c.html#a433c653469c55bd95b8b80b801bcc426">kcopy_memory</a>(data_ptr, data, size);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    vkUnmapMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, buffer-&gt;memory);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>}</div>
 </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
-<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#afb4dafb2469273c4c860ba47829e2042">  152</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#afb4dafb2469273c4c860ba47829e2042">vulkan_buffer_copy_to</a>(</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    VkCommandPool pool,</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    VkFence fence,</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    VkQueue queue,</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    VkBuffer source,</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> source_offset,</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    VkBuffer dest,</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> dest_offset,</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    vkQueueWaitIdle(queue);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="comment">// Create a one-time-use command buffer.</span></div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    vulkan_command_buffer temp_command_buffer;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <a class="code hl_function" href="vulkan__command__buffer_8c.html#a9e829f593db51d6e99e6030a68e07976">vulkan_command_buffer_allocate_and_begin_single_use</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, pool, &amp;temp_command_buffer);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// Prepare the copy command and add it to the command buffer.</span></div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    VkBufferCopy copy_region;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    copy_region.srcOffset = source_offset;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    copy_region.dstOffset = dest_offset;</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    copy_region.size = size;</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    vkCmdCopyBuffer(temp_command_buffer.handle, source, dest, 1, &amp;copy_region);</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// Submit the buffer for execution and wait for it to complete.</span></div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <a class="code hl_function" href="vulkan__command__buffer_8c.html#aa8a73bb91861b477161430027abfdb54">vulkan_command_buffer_end_single_use</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, pool, &amp;temp_command_buffer, queue);</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="foldopen" id="foldopen00161" data-start="{" data-end="}">
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="vulkan__buffer_8c.html#afb4dafb2469273c4c860ba47829e2042">  161</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__buffer_8c.html#afb4dafb2469273c4c860ba47829e2042">vulkan_buffer_copy_to</a>(</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    VkCommandPool pool,</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    VkFence fence,</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    VkQueue queue,</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    VkBuffer source,</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> source_offset,</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    VkBuffer dest,</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> dest_offset,</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> size) {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    vkQueueWaitIdle(queue);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// Create a one-time-use command buffer.</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    vulkan_command_buffer temp_command_buffer;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <a class="code hl_function" href="vulkan__command__buffer_8c.html#a9e829f593db51d6e99e6030a68e07976">vulkan_command_buffer_allocate_and_begin_single_use</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, pool, &amp;temp_command_buffer);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="comment">// Prepare the copy command and add it to the command buffer.</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    VkBufferCopy copy_region;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    copy_region.srcOffset = source_offset;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    copy_region.dstOffset = dest_offset;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    copy_region.size = size;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    vkCmdCopyBuffer(temp_command_buffer.handle, source, dest, 1, &amp;copy_region);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">// Submit the buffer for execution and wait for it to complete.</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <a class="code hl_function" href="vulkan__command__buffer_8c.html#aa8a73bb91861b477161430027abfdb54">vulkan_command_buffer_end_single_use</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, pool, &amp;temp_command_buffer, queue);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
 </div>
 <div class="ttc" id="adefines_8h_html_a10e94b422ef0c20dcdec20d31a1f5049"><div class="ttname"><a href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a></div><div class="ttdeci">unsigned int u32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00023">defines.h:23</a></div></div>
 <div class="ttc" id="adefines_8h_html_a306ebd41c0cd1303b1372c6153f0caf8"><div class="ttname"><a href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></div><div class="ttdeci">#define False</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00122">defines.h:122</a></div></div>
@@ -285,16 +285,16 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="alogger_8h_html"><div class="ttname"><a href="logger_8h.html">logger.h</a></div><div class="ttdoc">Public interface for the logging system.</div></div>
 <div class="ttc" id="alogger_8h_html_a23768ad708f2a648844bd09e15e52d1c"><div class="ttname"><a href="logger_8h.html#a23768ad708f2a648844bd09e15e52d1c">KDEBUG</a></div><div class="ttdeci">#define KDEBUG(message,...)</div><div class="ttdoc">Logs a debug-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00213">logger.h:213</a></div></div>
 <div class="ttc" id="alogger_8h_html_a473bb2cc3b3bf3c93084eeca6cb19132"><div class="ttname"><a href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a></div><div class="ttdeci">#define KERROR(message,...)</div><div class="ttdoc">Logs an error-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00165">logger.h:165</a></div></div>
-<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00034">vulkan_backend.c:34</a></div></div>
-<div class="ttc" id="avulkan__buffer_8c_html_a0777c036a5cdb692aa0fd21fd1df2adc"><div class="ttname"><a href="vulkan__buffer_8c.html#a0777c036a5cdb692aa0fd21fd1df2adc">vulkan_buffer_destroy</a></div><div class="ttdeci">void vulkan_buffer_destroy(vulkan_context *context, vulkan_buffer *buffer)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00057">vulkan_buffer.c:57</a></div></div>
-<div class="ttc" id="avulkan__buffer_8c_html_a1ab2cfc9a303e3f204874a58d9d15f6f"><div class="ttname"><a href="vulkan__buffer_8c.html#a1ab2cfc9a303e3f204874a58d9d15f6f">vulkan_buffer_lock_memory</a></div><div class="ttdeci">void * vulkan_buffer_lock_memory(vulkan_context *context, vulkan_buffer *buffer, u64 offset, u64 size, u32 flags)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00135">vulkan_buffer.c:135</a></div></div>
-<div class="ttc" id="avulkan__buffer_8c_html_a21b2c5ee8d9fbcd29ea73eef9fa5a927"><div class="ttname"><a href="vulkan__buffer_8c.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">vulkan_buffer_bind</a></div><div class="ttdeci">void vulkan_buffer_bind(vulkan_context *context, vulkan_buffer *buffer, u64 offset)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00131">vulkan_buffer.c:131</a></div></div>
-<div class="ttc" id="avulkan__buffer_8c_html_a320b309d7773e97e06f2f5ffb342e712"><div class="ttname"><a href="vulkan__buffer_8c.html#a320b309d7773e97e06f2f5ffb342e712">vulkan_buffer_unlock_memory</a></div><div class="ttdeci">void vulkan_buffer_unlock_memory(vulkan_context *context, vulkan_buffer *buffer)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00141">vulkan_buffer.c:141</a></div></div>
-<div class="ttc" id="avulkan__buffer_8c_html_a74035aeef79e5ffe833042ce00499a64"><div class="ttname"><a href="vulkan__buffer_8c.html#a74035aeef79e5ffe833042ce00499a64">vulkan_buffer_load_data</a></div><div class="ttdeci">void vulkan_buffer_load_data(vulkan_context *context, vulkan_buffer *buffer, u64 offset, u64 size, u32 flags, const void *data)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00145">vulkan_buffer.c:145</a></div></div>
-<div class="ttc" id="avulkan__buffer_8c_html_adc1253645b021b8c8dd0ff5f001c1668"><div class="ttname"><a href="vulkan__buffer_8c.html#adc1253645b021b8c8dd0ff5f001c1668">vulkan_buffer_create</a></div><div class="ttdeci">b8 vulkan_buffer_create(vulkan_context *context, u64 size, VkBufferUsageFlagBits usage, u32 memory_property_flags, b8 bind_on_create, vulkan_buffer *out_buffer)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00010">vulkan_buffer.c:10</a></div></div>
-<div class="ttc" id="avulkan__buffer_8c_html_afb4dafb2469273c4c860ba47829e2042"><div class="ttname"><a href="vulkan__buffer_8c.html#afb4dafb2469273c4c860ba47829e2042">vulkan_buffer_copy_to</a></div><div class="ttdeci">void vulkan_buffer_copy_to(vulkan_context *context, VkCommandPool pool, VkFence fence, VkQueue queue, VkBuffer source, u64 source_offset, VkBuffer dest, u64 dest_offset, u64 size)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00152">vulkan_buffer.c:152</a></div></div>
-<div class="ttc" id="avulkan__buffer_8c_html_afbbdca32215c9687f38dc62bcb58a779"><div class="ttname"><a href="vulkan__buffer_8c.html#afbbdca32215c9687f38dc62bcb58a779">vulkan_buffer_resize</a></div><div class="ttdeci">b8 vulkan_buffer_resize(vulkan_context *context, u64 new_size, vulkan_buffer *buffer, VkQueue queue, VkCommandPool pool)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00072">vulkan_buffer.c:72</a></div></div>
-<div class="ttc" id="avulkan__buffer_8h_html"><div class="ttname"><a href="vulkan__buffer_8h.html">vulkan_buffer.h</a></div></div>
+<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00035">vulkan_backend.c:35</a></div></div>
+<div class="ttc" id="avulkan__buffer_8c_html_a0777c036a5cdb692aa0fd21fd1df2adc"><div class="ttname"><a href="vulkan__buffer_8c.html#a0777c036a5cdb692aa0fd21fd1df2adc">vulkan_buffer_destroy</a></div><div class="ttdeci">void vulkan_buffer_destroy(vulkan_context *context, vulkan_buffer *buffer)</div><div class="ttdoc">Destroys a Vulkan buffer and frees its associated memory. Must be called before destroying the Vulkan...</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00064">vulkan_buffer.c:64</a></div></div>
+<div class="ttc" id="avulkan__buffer_8c_html_a1ab2cfc9a303e3f204874a58d9d15f6f"><div class="ttname"><a href="vulkan__buffer_8c.html#a1ab2cfc9a303e3f204874a58d9d15f6f">vulkan_buffer_lock_memory</a></div><div class="ttdeci">void * vulkan_buffer_lock_memory(vulkan_context *context, vulkan_buffer *buffer, u64 offset, u64 size, u32 flags)</div><div class="ttdoc">Locks a region of the buffer's memory for CPU access. Returns a pointer to the mapped memory region.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00144">vulkan_buffer.c:144</a></div></div>
+<div class="ttc" id="avulkan__buffer_8c_html_a21b2c5ee8d9fbcd29ea73eef9fa5a927"><div class="ttname"><a href="vulkan__buffer_8c.html#a21b2c5ee8d9fbcd29ea73eef9fa5a927">vulkan_buffer_bind</a></div><div class="ttdeci">void vulkan_buffer_bind(vulkan_context *context, vulkan_buffer *buffer, u64 offset)</div><div class="ttdoc">Binds the buffer to its allocated memory at the specified offset. Must be called before using the buf...</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00140">vulkan_buffer.c:140</a></div></div>
+<div class="ttc" id="avulkan__buffer_8c_html_a320b309d7773e97e06f2f5ffb342e712"><div class="ttname"><a href="vulkan__buffer_8c.html#a320b309d7773e97e06f2f5ffb342e712">vulkan_buffer_unlock_memory</a></div><div class="ttdeci">void vulkan_buffer_unlock_memory(vulkan_context *context, vulkan_buffer *buffer)</div><div class="ttdoc">Unlocks a previously locked region of the buffer's memory. Must be called after finishing CPU access ...</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00150">vulkan_buffer.c:150</a></div></div>
+<div class="ttc" id="avulkan__buffer_8c_html_a74035aeef79e5ffe833042ce00499a64"><div class="ttname"><a href="vulkan__buffer_8c.html#a74035aeef79e5ffe833042ce00499a64">vulkan_buffer_load_data</a></div><div class="ttdeci">void vulkan_buffer_load_data(vulkan_context *context, vulkan_buffer *buffer, u64 offset, u64 size, u32 flags, const void *data)</div><div class="ttdoc">Loads data into the buffer at the specified offset. The buffer must be created with memory properties...</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00154">vulkan_buffer.c:154</a></div></div>
+<div class="ttc" id="avulkan__buffer_8c_html_adc1253645b021b8c8dd0ff5f001c1668"><div class="ttname"><a href="vulkan__buffer_8c.html#adc1253645b021b8c8dd0ff5f001c1668">vulkan_buffer_create</a></div><div class="ttdeci">b8 vulkan_buffer_create(vulkan_context *context, u64 size, VkBufferUsageFlagBits usage, u32 memory_property_flags, b8 bind_on_create, vulkan_buffer *out_buffer)</div><div class="ttdoc">Creates a Vulkan buffer with the specified parameters. The buffer can be optionally bound to memory u...</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00017">vulkan_buffer.c:17</a></div></div>
+<div class="ttc" id="avulkan__buffer_8c_html_afb4dafb2469273c4c860ba47829e2042"><div class="ttname"><a href="vulkan__buffer_8c.html#afb4dafb2469273c4c860ba47829e2042">vulkan_buffer_copy_to</a></div><div class="ttdeci">void vulkan_buffer_copy_to(vulkan_context *context, VkCommandPool pool, VkFence fence, VkQueue queue, VkBuffer source, u64 source_offset, VkBuffer dest, u64 dest_offset, u64 size)</div><div class="ttdoc">Copies data from one buffer to another using a command buffer. Both buffers must be created with appr...</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00161">vulkan_buffer.c:161</a></div></div>
+<div class="ttc" id="avulkan__buffer_8c_html_afbbdca32215c9687f38dc62bcb58a779"><div class="ttname"><a href="vulkan__buffer_8c.html#afbbdca32215c9687f38dc62bcb58a779">vulkan_buffer_resize</a></div><div class="ttdeci">b8 vulkan_buffer_resize(vulkan_context *context, u64 new_size, vulkan_buffer *buffer, VkQueue queue, VkCommandPool pool)</div><div class="ttdef"><b>Definition</b> <a href="vulkan__buffer_8c_source.html#l00081">vulkan_buffer.c:81</a></div></div>
+<div class="ttc" id="avulkan__buffer_8h_html"><div class="ttname"><a href="vulkan__buffer_8h.html">vulkan_buffer.h</a></div><div class="ttdoc">Vulkan buffer management interface for the Koru Engine.</div></div>
 <div class="ttc" id="avulkan__command__buffer_8c_html_a9e829f593db51d6e99e6030a68e07976"><div class="ttname"><a href="vulkan__command__buffer_8c.html#a9e829f593db51d6e99e6030a68e07976">vulkan_command_buffer_allocate_and_begin_single_use</a></div><div class="ttdeci">void vulkan_command_buffer_allocate_and_begin_single_use(vulkan_context *context, VkCommandPool pool, vulkan_command_buffer *out_command_buffer)</div><div class="ttdoc">Allocates and begins recording a single-use command buffer.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__command__buffer_8c_source.html#l00089">vulkan_command_buffer.c:89</a></div></div>
 <div class="ttc" id="avulkan__command__buffer_8c_html_aa8a73bb91861b477161430027abfdb54"><div class="ttname"><a href="vulkan__command__buffer_8c.html#aa8a73bb91861b477161430027abfdb54">vulkan_command_buffer_end_single_use</a></div><div class="ttdeci">void vulkan_command_buffer_end_single_use(vulkan_context *context, VkCommandPool pool, vulkan_command_buffer *command_buffer, VkQueue queue)</div><div class="ttdoc">Ends and submits a single-use command buffer.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__command__buffer_8c_source.html#l00097">vulkan_command_buffer.c:97</a></div></div>
 <div class="ttc" id="avulkan__command__buffer_8h_html"><div class="ttname"><a href="vulkan__command__buffer_8h.html">vulkan_command_buffer.h</a></div><div class="ttdoc">Vulkan command buffer management interface for the Koru Engine.</div></div>
@@ -303,7 +303,7 @@ $(document).ready(function() { init_codefold(0); });
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:35:50 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

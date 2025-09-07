@@ -99,117 +99,218 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_typedef" href="defines_8h.html#ac6baccc379c73d4e641ef847dbb08fa2">b32</a> create_view,</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    VkImageAspectFlags view_aspect_flags,</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    vulkan_image* out_image) {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// Copy params to output structure</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    out_image-&gt;width = width;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    out_image-&gt;height = height;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// Set up image creation info</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    VkImageCreateInfo image_create_info = {VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO};</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    image_create_info.imageType = VK_IMAGE_TYPE_2D;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    image_create_info.extent.width = width;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    image_create_info.extent.height = height;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    image_create_info.extent.depth = 1;  <span class="comment">// TODO: Support configurable depth (e.g., 3D textures or volume data)</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    image_create_info.mipLevels = 4;    <span class="comment">// TODO: Add support for mip mapping and make this configurable</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    image_create_info.arrayLayers = 1;   <span class="comment">// TODO: Support array layers for texture arrays</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    image_create_info.format = format;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    image_create_info.tiling = tiling;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    image_create_info.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    image_create_info.usage = usage;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    image_create_info.samples = VK_SAMPLE_COUNT_1_BIT;          <span class="comment">// TODO: Configurable MSAA sample count</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    image_create_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;  <span class="comment">// TODO: Make sharing mode configurable</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// Create the image</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    VK_CHECK(vkCreateImage(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;image_create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;out_image-&gt;handle));</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// Query memory requirements for the created image</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    VkMemoryRequirements memory_requirements;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    vkGetImageMemoryRequirements(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, out_image-&gt;handle, &amp;memory_requirements);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// Find suitable memory type</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> memory_type = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;find_memory_index(memory_requirements.memoryTypeBits, memory_flags);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">if</span> (memory_type == -1) {</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;Required memory type not found. Image not valid.&quot;</span>);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="comment">// Allocate device memory for the image</span></div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    VkMemoryAllocateInfo memory_allocate_info = {VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO};</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    memory_allocate_info.allocationSize = memory_requirements.size;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    memory_allocate_info.memoryTypeIndex = memory_type;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    VK_CHECK(vkAllocateMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;memory_allocate_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;out_image-&gt;memory));</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// Bind allocated memory to the image handle</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    VK_CHECK(vkBindImageMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, out_image-&gt;handle, out_image-&gt;memory, 0));  <span class="comment">// TODO: Make offset configurable</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">// Optionally create an image view</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">if</span> (create_view) {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        out_image-&gt;view = 0;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <a class="code hl_function" href="vulkan__image_8c.html#acac51c2be133dd1ff4bf11dbb613bf41">vulkan_image_view_create</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, format, out_image, view_aspect_flags);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// Copy params to output structure</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    out_image-&gt;width = width;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    out_image-&gt;height = height;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// Set up image creation info</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    VkImageCreateInfo image_create_info = {VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO};</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    image_create_info.imageType = VK_IMAGE_TYPE_2D;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    image_create_info.extent.width = width;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    image_create_info.extent.height = height;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    image_create_info.extent.depth = 1;  <span class="comment">// TODO: Support configurable depth (e.g., 3D textures or volume data)</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    image_create_info.mipLevels = 4;     <span class="comment">// TODO: Add support for mip mapping and make this configurable</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    image_create_info.arrayLayers = 1;   <span class="comment">// TODO: Support array layers for texture arrays</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    image_create_info.format = format;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    image_create_info.tiling = tiling;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    image_create_info.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    image_create_info.usage = usage;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    image_create_info.samples = VK_SAMPLE_COUNT_1_BIT;          <span class="comment">// TODO: Configurable MSAA sample count</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    image_create_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;  <span class="comment">// TODO: Make sharing mode configurable</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// Create the image</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    VK_CHECK(vkCreateImage(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;image_create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;out_image-&gt;handle));</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// Query memory requirements for the created image</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    VkMemoryRequirements memory_requirements;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    vkGetImageMemoryRequirements(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, out_image-&gt;handle, &amp;memory_requirements);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// Find suitable memory type</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> memory_type = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;find_memory_index(memory_requirements.memoryTypeBits, memory_flags);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">if</span> (memory_type == -1) {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <a class="code hl_define" href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a>(<span class="stringliteral">&quot;Required memory type not found. Image not valid.&quot;</span>);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// Allocate device memory for the image</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    VkMemoryAllocateInfo memory_allocate_info = {VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    memory_allocate_info.allocationSize = memory_requirements.size;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    memory_allocate_info.memoryTypeIndex = memory_type;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    VK_CHECK(vkAllocateMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;memory_allocate_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;out_image-&gt;memory));</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// Bind allocated memory to the image handle</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    VK_CHECK(vkBindImageMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, out_image-&gt;handle, out_image-&gt;memory, 0));  <span class="comment">// TODO: Make offset configurable</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// Optionally create an image view</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">if</span> (create_view) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        out_image-&gt;view = 0;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <a class="code hl_function" href="vulkan__image_8c.html#acac51c2be133dd1ff4bf11dbb613bf41">vulkan_image_view_create</a>(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, format, out_image, view_aspect_flags);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>}</div>
 </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="foldopen" id="foldopen00113" data-start="{" data-end="}">
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="vulkan__image_8c.html#acac51c2be133dd1ff4bf11dbb613bf41">  113</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__image_8c.html#acac51c2be133dd1ff4bf11dbb613bf41">vulkan_image_view_create</a>(</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    VkFormat format,</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    vulkan_image* image,</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    VkImageAspectFlags aspect_flags) {</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// Set up image view creation info</span></div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    VkImageViewCreateInfo view_create_info = {VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO};</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    view_create_info.image = image-&gt;handle;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    view_create_info.viewType = VK_IMAGE_VIEW_TYPE_2D;  <span class="comment">// TODO: Allow configuration for 1D/3D or cube maps</span></div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    view_create_info.format = format;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    view_create_info.subresourceRange.aspectMask = aspect_flags;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="comment">// Subresource range defaults</span></div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    view_create_info.subresourceRange.baseMipLevel = 0;         <span class="comment">// TODO: Configurable mipmap level</span></div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    view_create_info.subresourceRange.levelCount = 1;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    view_create_info.subresourceRange.baseArrayLayer = 0;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    view_create_info.subresourceRange.layerCount = 1;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">// Create the image view</span></div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    VK_CHECK(vkCreateImageView(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;view_create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;image-&gt;view));</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>}</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="foldopen" id="foldopen00112" data-start="{" data-end="}">
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="vulkan__image_8c.html#acac51c2be133dd1ff4bf11dbb613bf41">  112</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__image_8c.html#acac51c2be133dd1ff4bf11dbb613bf41">vulkan_image_view_create</a>(</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    VkFormat format,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    vulkan_image* image,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    VkImageAspectFlags aspect_flags) {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// Set up image view creation info</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    VkImageViewCreateInfo view_create_info = {VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO};</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    view_create_info.image = image-&gt;handle;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    view_create_info.viewType = VK_IMAGE_VIEW_TYPE_2D;  <span class="comment">// TODO: Allow configuration for 1D/3D or cube maps</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    view_create_info.format = format;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    view_create_info.subresourceRange.aspectMask = aspect_flags;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// Subresource range defaults</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    view_create_info.subresourceRange.baseMipLevel = 0;  <span class="comment">// TODO: Configurable mipmap level</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    view_create_info.subresourceRange.levelCount = 1;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    view_create_info.subresourceRange.baseArrayLayer = 0;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    view_create_info.subresourceRange.layerCount = 1;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// Create the image view</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    VK_CHECK(vkCreateImageView(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, &amp;view_create_info, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator, &amp;image-&gt;view));</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}</div>
 </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="foldopen" id="foldopen00148" data-start="{" data-end="}">
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="vulkan__image_8c.html#a7d1140c936aeeadb57f27f293db7674a">  148</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__image_8c.html#a7d1140c936aeeadb57f27f293db7674a">vulkan_image_destroy</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_image* image) {</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// Destroy image view first</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordflow">if</span> (image-&gt;view) {</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        vkDestroyImageView(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, image-&gt;view, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        image-&gt;view = 0;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="comment">// Free image memory</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordflow">if</span> (image-&gt;memory) {</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        vkFreeMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, image-&gt;memory, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        image-&gt;memory = 0;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="comment">// Destroy image handle last</span></div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">if</span> (image-&gt;handle) {</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        vkDestroyImage(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, image-&gt;handle, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        image-&gt;handle = 0;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>}</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="foldopen" id="foldopen00134" data-start="{" data-end="}">
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="vulkan__image_8c.html#a00633d75f04d5a01f8e308fc286d1fee">  134</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__image_8c.html#a00633d75f04d5a01f8e308fc286d1fee">vulkan_image_transition_layout</a>(</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    vulkan_command_buffer* command_buffer,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    vulkan_image* image,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    VkFormat format,</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    VkImageLayout old_layout,</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    VkImageLayout new_layout) {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    VkImageMemoryBarrier barrier = {VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    barrier.oldLayout = old_layout;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    barrier.newLayout = new_layout;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    barrier.srcQueueFamilyIndex = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue_index;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    barrier.dstQueueFamilyIndex = <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.graphics_queue_index;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    barrier.image = image-&gt;handle;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    barrier.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    barrier.subresourceRange.baseMipLevel = 0;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    barrier.subresourceRange.levelCount = 1;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    barrier.subresourceRange.baseArrayLayer = 0;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    barrier.subresourceRange.layerCount = 1;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    VkPipelineStageFlags source_stage;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    VkPipelineStageFlags dest_stage;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">// Don&#39;t care about the old layout - transition to optimal layout (for the underlying implementation).</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordflow">if</span> (old_layout == VK_IMAGE_LAYOUT_UNDEFINED &amp;&amp; new_layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL) {</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        barrier.srcAccessMask = 0;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        barrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="comment">// Don&#39;t care what stage the pipeline is in at the start.</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        source_stage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="comment">// Used for copying</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        dest_stage = VK_PIPELINE_STAGE_TRANSFER_BIT;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (old_layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL &amp;&amp; new_layout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL) {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="comment">// Transitioning from a transfer destination layout to a shader-readonly layout.</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        barrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="comment">// From a copying stage to...</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        source_stage = VK_PIPELINE_STAGE_TRANSFER_BIT;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <span class="comment">// The fragment stage.</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        dest_stage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <a class="code hl_define" href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a>(<span class="stringliteral">&quot;unsupported layout transition!&quot;</span>);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    }</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    vkCmdPipelineBarrier(</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        command_buffer-&gt;handle,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        source_stage, dest_stage,</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        0,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        0, 0,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        0, 0,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        1, &amp;barrier);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>}</div>
+</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="foldopen" id="foldopen00196" data-start="{" data-end="}">
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="vulkan__image_8c.html#a271f9cd1a0b2aa94e6f0f48ad684a610">  196</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__image_8c.html#a271f9cd1a0b2aa94e6f0f48ad684a610">vulkan_image_copy_from_buffer</a>(</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>,</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    vulkan_image* image,</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    VkBuffer buffer,</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    vulkan_command_buffer* command_buffer) {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// Region to copy</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    VkBufferImageCopy region;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <a class="code hl_function" href="kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5">kzero_memory</a>(&amp;region, <span class="keyword">sizeof</span>(VkBufferImageCopy));</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    region.bufferOffset = 0;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    region.bufferRowLength = 0;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    region.bufferImageHeight = 0;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    region.imageSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    region.imageSubresource.mipLevel = 0;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    region.imageSubresource.baseArrayLayer = 0;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    region.imageSubresource.layerCount = 1;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    region.imageExtent.width = image-&gt;width;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    region.imageExtent.height = image-&gt;height;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    region.imageExtent.depth = 1;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    vkCmdCopyBufferToImage(</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        command_buffer-&gt;handle,</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        buffer,</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        image-&gt;handle,</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        1,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        &amp;region);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>}</div>
+</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="foldopen" id="foldopen00241" data-start="{" data-end="}">
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="vulkan__image_8c.html#a7d1140c936aeeadb57f27f293db7674a">  241</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vulkan__image_8c.html#a7d1140c936aeeadb57f27f293db7674a">vulkan_image_destroy</a>(vulkan_context* <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, vulkan_image* image) {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="comment">// Destroy image view first</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keywordflow">if</span> (image-&gt;view) {</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        vkDestroyImageView(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, image-&gt;view, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        image-&gt;view = 0;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="comment">// Free image memory</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keywordflow">if</span> (image-&gt;memory) {</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        vkFreeMemory(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, image-&gt;memory, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        image-&gt;memory = 0;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    }</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="comment">// Destroy image handle last</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keywordflow">if</span> (image-&gt;handle) {</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        vkDestroyImage(<a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;device.logical_device, image-&gt;handle, <a class="code hl_variable" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>-&gt;allocator);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        image-&gt;handle = 0;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>}</div>
 </div>
 <div class="ttc" id="adefines_8h_html_a10e94b422ef0c20dcdec20d31a1f5049"><div class="ttname"><a href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a></div><div class="ttdeci">unsigned int u32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00023">defines.h:23</a></div></div>
 <div class="ttc" id="adefines_8h_html_a9e3ad5f8e752f01d926ce122d5a5285e"><div class="ttname"><a href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a></div><div class="ttdeci">signed int i32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00037">defines.h:37</a></div></div>
 <div class="ttc" id="adefines_8h_html_ac6baccc379c73d4e641ef847dbb08fa2"><div class="ttname"><a href="defines_8h.html#ac6baccc379c73d4e641ef847dbb08fa2">b32</a></div><div class="ttdeci">int b32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00053">defines.h:53</a></div></div>
+<div class="ttc" id="akmemory_8c_html_aa7107b9ccb0c0358906c79d3dbe398d5"><div class="ttname"><a href="kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5">kzero_memory</a></div><div class="ttdeci">void * kzero_memory(void *block, u64 size)</div><div class="ttdoc">Fills the provided memory block with zeros.</div><div class="ttdef"><b>Definition</b> <a href="kmemory_8c_source.html#l00170">kmemory.c:170</a></div></div>
 <div class="ttc" id="akmemory_8h_html"><div class="ttname"><a href="kmemory_8h.html">kmemory.h</a></div><div class="ttdoc">Memory allocation system with tagging and tracking.</div></div>
 <div class="ttc" id="alogger_8h_html"><div class="ttname"><a href="logger_8h.html">logger.h</a></div><div class="ttdoc">Public interface for the logging system.</div></div>
 <div class="ttc" id="alogger_8h_html_a473bb2cc3b3bf3c93084eeca6cb19132"><div class="ttname"><a href="logger_8h.html#a473bb2cc3b3bf3c93084eeca6cb19132">KERROR</a></div><div class="ttdeci">#define KERROR(message,...)</div><div class="ttdoc">Logs an error-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00165">logger.h:165</a></div></div>
-<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00034">vulkan_backend.c:34</a></div></div>
+<div class="ttc" id="alogger_8h_html_a8eb60bd7b3dfc5cadc7364b06ce7bd07"><div class="ttname"><a href="logger_8h.html#a8eb60bd7b3dfc5cadc7364b06ce7bd07">KFATAL</a></div><div class="ttdeci">#define KFATAL(message,...)</div><div class="ttdoc">Logs a fatal-level message.</div><div class="ttdef"><b>Definition</b> <a href="logger_8h_source.html#l00152">logger.h:152</a></div></div>
+<div class="ttc" id="avulkan__backend_8c_html_a171b208055a0eb2eeace24e130f74bc9"><div class="ttname"><a href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a></div><div class="ttdeci">static vulkan_context context</div><div class="ttdef"><b>Definition</b> <a href="vulkan__backend_8c_source.html#l00035">vulkan_backend.c:35</a></div></div>
 <div class="ttc" id="avulkan__device_8h_html"><div class="ttname"><a href="vulkan__device_8h.html">vulkan_device.h</a></div><div class="ttdoc">Vulkan device management interface.</div></div>
-<div class="ttc" id="avulkan__image_8c_html_a7d1140c936aeeadb57f27f293db7674a"><div class="ttname"><a href="vulkan__image_8c.html#a7d1140c936aeeadb57f27f293db7674a">vulkan_image_destroy</a></div><div class="ttdeci">void vulkan_image_destroy(vulkan_context *context, vulkan_image *image)</div><div class="ttdoc">Destroys a Vulkan image and its associated resources.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__image_8c_source.html#l00148">vulkan_image.c:148</a></div></div>
-<div class="ttc" id="avulkan__image_8c_html_acac51c2be133dd1ff4bf11dbb613bf41"><div class="ttname"><a href="vulkan__image_8c.html#acac51c2be133dd1ff4bf11dbb613bf41">vulkan_image_view_create</a></div><div class="ttdeci">void vulkan_image_view_create(vulkan_context *context, VkFormat format, vulkan_image *image, VkImageAspectFlags aspect_flags)</div><div class="ttdoc">Creates an image view for the given image.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__image_8c_source.html#l00113">vulkan_image.c:113</a></div></div>
+<div class="ttc" id="avulkan__image_8c_html_a00633d75f04d5a01f8e308fc286d1fee"><div class="ttname"><a href="vulkan__image_8c.html#a00633d75f04d5a01f8e308fc286d1fee">vulkan_image_transition_layout</a></div><div class="ttdeci">void vulkan_image_transition_layout(vulkan_context *context, vulkan_command_buffer *command_buffer, vulkan_image *image, VkFormat format, VkImageLayout old_layout, VkImageLayout new_layout)</div><div class="ttdoc">Transitions a Vulkan image from one layout to another.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__image_8c_source.html#l00134">vulkan_image.c:134</a></div></div>
+<div class="ttc" id="avulkan__image_8c_html_a271f9cd1a0b2aa94e6f0f48ad684a610"><div class="ttname"><a href="vulkan__image_8c.html#a271f9cd1a0b2aa94e6f0f48ad684a610">vulkan_image_copy_from_buffer</a></div><div class="ttdeci">void vulkan_image_copy_from_buffer(vulkan_context *context, vulkan_image *image, VkBuffer buffer, vulkan_command_buffer *command_buffer)</div><div class="ttdoc">Copies data from a buffer to a Vulkan image.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__image_8c_source.html#l00196">vulkan_image.c:196</a></div></div>
+<div class="ttc" id="avulkan__image_8c_html_a7d1140c936aeeadb57f27f293db7674a"><div class="ttname"><a href="vulkan__image_8c.html#a7d1140c936aeeadb57f27f293db7674a">vulkan_image_destroy</a></div><div class="ttdeci">void vulkan_image_destroy(vulkan_context *context, vulkan_image *image)</div><div class="ttdoc">Destroys a Vulkan image and its associated resources.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__image_8c_source.html#l00241">vulkan_image.c:241</a></div></div>
+<div class="ttc" id="avulkan__image_8c_html_acac51c2be133dd1ff4bf11dbb613bf41"><div class="ttname"><a href="vulkan__image_8c.html#acac51c2be133dd1ff4bf11dbb613bf41">vulkan_image_view_create</a></div><div class="ttdeci">void vulkan_image_view_create(vulkan_context *context, VkFormat format, vulkan_image *image, VkImageAspectFlags aspect_flags)</div><div class="ttdoc">Creates an image view for the given image.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__image_8c_source.html#l00112">vulkan_image.c:112</a></div></div>
 <div class="ttc" id="avulkan__image_8c_html_ae8efa06d320d8156f69f0c8352f37340"><div class="ttname"><a href="vulkan__image_8c.html#ae8efa06d320d8156f69f0c8352f37340">vulkan_image_create</a></div><div class="ttdeci">void vulkan_image_create(vulkan_context *context, VkImageType image_type, u32 width, u32 height, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags memory_flags, b32 create_view, VkImageAspectFlags view_aspect_flags, vulkan_image *out_image)</div><div class="ttdoc">Creates and allocates a new Vulkan image with the specified properties.</div><div class="ttdef"><b>Definition</b> <a href="vulkan__image_8c_source.html#l00041">vulkan_image.c:41</a></div></div>
 <div class="ttc" id="avulkan__image_8h_html"><div class="ttname"><a href="vulkan__image_8h.html">vulkan_image.h</a></div><div class="ttdoc">Image management utilities for the Koru Engine's Vulkan renderer.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 1 2025 19:58:21 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Sep 6 2025 00:35:50 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

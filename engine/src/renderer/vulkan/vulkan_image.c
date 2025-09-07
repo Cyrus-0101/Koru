@@ -50,7 +50,6 @@ void vulkan_image_create(
     b32 create_view,
     VkImageAspectFlags view_aspect_flags,
     vulkan_image* out_image) {
-
     // Copy params to output structure
     out_image->width = width;
     out_image->height = height;
@@ -61,7 +60,7 @@ void vulkan_image_create(
     image_create_info.extent.width = width;
     image_create_info.extent.height = height;
     image_create_info.extent.depth = 1;  // TODO: Support configurable depth (e.g., 3D textures or volume data)
-    image_create_info.mipLevels = 4;    // TODO: Add support for mip mapping and make this configurable
+    image_create_info.mipLevels = 4;     // TODO: Add support for mip mapping and make this configurable
     image_create_info.arrayLayers = 1;   // TODO: Support array layers for texture arrays
     image_create_info.format = format;
     image_create_info.tiling = tiling;
@@ -123,13 +122,107 @@ void vulkan_image_view_create(
     view_create_info.subresourceRange.aspectMask = aspect_flags;
 
     // Subresource range defaults
-    view_create_info.subresourceRange.baseMipLevel = 0;         // TODO: Configurable mipmap level
+    view_create_info.subresourceRange.baseMipLevel = 0;  // TODO: Configurable mipmap level
     view_create_info.subresourceRange.levelCount = 1;
     view_create_info.subresourceRange.baseArrayLayer = 0;
     view_create_info.subresourceRange.layerCount = 1;
 
     // Create the image view
     VK_CHECK(vkCreateImageView(context->device.logical_device, &view_create_info, context->allocator, &image->view));
+}
+
+void vulkan_image_transition_layout(
+    vulkan_context* context,
+    vulkan_command_buffer* command_buffer,
+    vulkan_image* image,
+    VkFormat format,
+    VkImageLayout old_layout,
+    VkImageLayout new_layout) {
+    VkImageMemoryBarrier barrier = {VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};
+
+    barrier.oldLayout = old_layout;
+    barrier.newLayout = new_layout;
+
+    barrier.srcQueueFamilyIndex = context->device.graphics_queue_index;
+    barrier.dstQueueFamilyIndex = context->device.graphics_queue_index;
+
+    barrier.image = image->handle;
+
+    barrier.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    barrier.subresourceRange.baseMipLevel = 0;
+    barrier.subresourceRange.levelCount = 1;
+    barrier.subresourceRange.baseArrayLayer = 0;
+    barrier.subresourceRange.layerCount = 1;
+
+    VkPipelineStageFlags source_stage;
+    VkPipelineStageFlags dest_stage;
+
+    // Don't care about the old layout - transition to optimal layout (for the underlying implementation).
+    if (old_layout == VK_IMAGE_LAYOUT_UNDEFINED && new_layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL) {
+        barrier.srcAccessMask = 0;
+
+        barrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+
+        // Don't care what stage the pipeline is in at the start.
+        source_stage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
+
+        // Used for copying
+        dest_stage = VK_PIPELINE_STAGE_TRANSFER_BIT;
+    } else if (old_layout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL && new_layout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL) {
+        // Transitioning from a transfer destination layout to a shader-readonly layout.
+        barrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+        barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
+
+        // From a copying stage to...
+        source_stage = VK_PIPELINE_STAGE_TRANSFER_BIT;
+
+        // The fragment stage.
+        dest_stage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
+    } else {
+        KFATAL("unsupported layout transition!");
+
+        return;
+    }
+
+    vkCmdPipelineBarrier(
+        command_buffer->handle,
+        source_stage, dest_stage,
+        0,
+        0, 0,
+        0, 0,
+        1, &barrier);
+}
+
+void vulkan_image_copy_from_buffer(
+    vulkan_context* context,
+    vulkan_image* image,
+    VkBuffer buffer,
+    vulkan_command_buffer* command_buffer) {
+    // Region to copy
+    VkBufferImageCopy region;
+
+    kzero_memory(&region, sizeof(VkBufferImageCopy));
+
+    region.bufferOffset = 0;
+    region.bufferRowLength = 0;
+    region.bufferImageHeight = 0;
+
+    region.imageSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    region.imageSubresource.mipLevel = 0;
+    region.imageSubresource.baseArrayLayer = 0;
+    region.imageSubresource.layerCount = 1;
+
+    region.imageExtent.width = image->width;
+    region.imageExtent.height = image->height;
+    region.imageExtent.depth = 1;
+
+    vkCmdCopyBufferToImage(
+        command_buffer->handle,
+        buffer,
+        image->handle,
+        VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+        1,
+        &region);
 }
 
 /**

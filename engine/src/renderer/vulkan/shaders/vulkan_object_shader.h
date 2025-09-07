@@ -23,7 +23,7 @@
  * @param out_shader Pointer to the vulkan_object_shader structure to be initialized.
  * @return True if the shader was created successfully; otherwise False.
  */
-b8 vulkan_object_shader_create(vulkan_context* context, vulkan_object_shader* out_shader);
+b8 vulkan_object_shader_create(vulkan_context* context, texture* default_diffuse, vulkan_object_shader* out_shader);
 
 /**
  * @brief Destroys a Vulkan object shader and frees associated resources.
@@ -56,7 +56,7 @@ void vulkan_object_shader_use(vulkan_context* context, struct vulkan_object_shad
  * @param context The Vulkan context containing command buffers and frame information.
  * @param shader Pointer to the vulkan_object_shader structure whose global state is to be updated.
  */
-void vulkan_object_shader_update_global_state(vulkan_context* context, struct vulkan_object_shader* shader);
+void vulkan_object_shader_update_global_state(vulkan_context* context, struct vulkan_object_shader* shader, f32 delta_time);
 
 /**
  * @brief Updates the model matrix for a specific object in the Vulkan object shader.
@@ -68,4 +68,29 @@ void vulkan_object_shader_update_global_state(vulkan_context* context, struct vu
  * @param shader Pointer to the vulkan_object_shader structure whose object state is to be updated.
  * @param model The model transformation matrix for the object.
  */
-void vulkan_object_shader_update_object(vulkan_context* context, struct vulkan_object_shader* shader, mat4 model);
+void vulkan_object_shader_update_object(vulkan_context* context, struct vulkan_object_shader* shader, geometry_render_data data);
+
+/**
+ * @brief Acquires resources for rendering a new object with the Vulkan object shader.
+ *
+ * This function allocates a new object ID and initializes its descriptor sets
+ * for use in rendering. It manages a free list of object states to track resource usage.
+ *
+ * @param context The Vulkan context containing device and swapchain information.
+ * @param shader Pointer to the vulkan_object_shader structure from which to acquire resources.
+ * @param out_object_id Pointer to store the acquired object ID.
+ * @return True if resources were successfully acquired; otherwise False.
+ */
+b8 vulkan_object_shader_acquire_resources(vulkan_context* context, struct vulkan_object_shader* shader, u32* out_object_id);
+
+/**
+ * @brief Releases resources associated with a specific object ID in the Vulkan object shader.
+ *
+ * This function frees the descriptor sets and resets the state for the given object ID,
+ * allowing its resources to be reused for future objects. It manages the free list of object states.
+ *
+ * @param context The Vulkan context containing device information.
+ * @param shader Pointer to the vulkan_object_shader structure from which to release resources.
+ * @param object_id The object ID whose resources are to be released.
+ */
+void vulkan_object_shader_release_resources(vulkan_context* context, struct vulkan_object_shader* shader, u32 object_id);
