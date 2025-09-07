@@ -5,7 +5,7 @@
 
 /**
  *
- * @file vulkan_object_shader.h
+ * @file vulkan_material_shader.h
  *
  * @brief Header for the Vulkan object shader implementation.
  *
@@ -20,10 +20,10 @@
  * and graphics pipeline needed for rendering objects in a Vulkan context.
  *
  * @param context The Vulkan context containing device and swapchain information.
- * @param out_shader Pointer to the vulkan_object_shader structure to be initialized.
+ * @param out_shader Pointer to the vulkan_material_shader structure to be initialized.
  * @return True if the shader was created successfully; otherwise False.
  */
-b8 vulkan_object_shader_create(vulkan_context* context, texture* default_diffuse, vulkan_object_shader* out_shader);
+b8 vulkan_material_shader_create(vulkan_context* context, vulkan_material_shader* out_shader);
 
 /**
  * @brief Destroys a Vulkan object shader and frees associated resources.
@@ -32,9 +32,9 @@ b8 vulkan_object_shader_create(vulkan_context* context, texture* default_diffuse
  * including shader modules, descriptor sets, uniform buffers, and the graphics pipeline.
  *
  * @param context The Vulkan context containing device information.
- * @param shader Pointer to the vulkan_object_shader structure to be destroyed.
+ * @param shader Pointer to the vulkan_material_shader structure to be destroyed.
  */
-void vulkan_object_shader_destroy(vulkan_context* context, struct vulkan_object_shader* shader);
+void vulkan_material_shader_destroy(vulkan_context* context, struct vulkan_material_shader* shader);
 
 /**
  * @brief Binds the Vulkan object shader's pipeline for rendering.
@@ -43,9 +43,9 @@ void vulkan_object_shader_destroy(vulkan_context* context, struct vulkan_object_
  * to the command buffer for the current frame, preparing it for drawing operations.
  *
  * @param context The Vulkan context containing command buffers and frame information.
- * @param shader Pointer to the vulkan_object_shader structure whose pipeline is to be bound.
+ * @param shader Pointer to the vulkan_material_shader structure whose pipeline is to be bound.
  */
-void vulkan_object_shader_use(vulkan_context* context, struct vulkan_object_shader* shader);
+void vulkan_material_shader_use(vulkan_context* context, struct vulkan_material_shader* shader);
 
 /**
  * @brief Updates the global uniform state for the Vulkan object shader.
@@ -54,9 +54,9 @@ void vulkan_object_shader_use(vulkan_context* context, struct vulkan_object_shad
  * projection and view matrices, and binds the appropriate descriptor set for the current frame.
  *
  * @param context The Vulkan context containing command buffers and frame information.
- * @param shader Pointer to the vulkan_object_shader structure whose global state is to be updated.
+ * @param shader Pointer to the vulkan_material_shader structure whose global state is to be updated.
  */
-void vulkan_object_shader_update_global_state(vulkan_context* context, struct vulkan_object_shader* shader, f32 delta_time);
+void vulkan_material_shader_update_global_state(vulkan_context* context, struct vulkan_material_shader* shader, f32 delta_time);
 
 /**
  * @brief Updates the model matrix for a specific object in the Vulkan object shader.
@@ -65,10 +65,10 @@ void vulkan_object_shader_update_global_state(vulkan_context* context, struct vu
  * for a specific object being rendered, allowing for efficient per-object transformations.
  *
  * @param context The Vulkan context containing command buffers and frame information.
- * @param shader Pointer to the vulkan_object_shader structure whose object state is to be updated.
+ * @param shader Pointer to the vulkan_material_shader structure whose object state is to be updated.
  * @param model The model transformation matrix for the object.
  */
-void vulkan_object_shader_update_object(vulkan_context* context, struct vulkan_object_shader* shader, geometry_render_data data);
+void vulkan_material_shader_update_object(vulkan_context* context, struct vulkan_material_shader* shader, geometry_render_data data);
 
 /**
  * @brief Acquires resources for rendering a new object with the Vulkan object shader.
@@ -77,11 +77,11 @@ void vulkan_object_shader_update_object(vulkan_context* context, struct vulkan_o
  * for use in rendering. It manages a free list of object states to track resource usage.
  *
  * @param context The Vulkan context containing device and swapchain information.
- * @param shader Pointer to the vulkan_object_shader structure from which to acquire resources.
- * @param out_object_id Pointer to store the acquired object ID.
+ * @param shader Pointer to the vulkan_material_shader structure from which to acquire resources.
+ * @param out_material_id Pointer to store the acquired object ID.
  * @return True if resources were successfully acquired; otherwise False.
  */
-b8 vulkan_object_shader_acquire_resources(vulkan_context* context, struct vulkan_object_shader* shader, u32* out_object_id);
+b8 vulkan_material_shader_acquire_resources(vulkan_context* context, struct vulkan_material_shader* shader, u32* out_material_id);
 
 /**
  * @brief Releases resources associated with a specific object ID in the Vulkan object shader.
@@ -90,7 +90,7 @@ b8 vulkan_object_shader_acquire_resources(vulkan_context* context, struct vulkan
  * allowing its resources to be reused for future objects. It manages the free list of object states.
  *
  * @param context The Vulkan context containing device information.
- * @param shader Pointer to the vulkan_object_shader structure from which to release resources.
+ * @param shader Pointer to the vulkan_material_shader structure from which to release resources.
  * @param object_id The object ID whose resources are to be released.
  */
-void vulkan_object_shader_release_resources(vulkan_context* context, struct vulkan_object_shader* shader, u32 object_id);
+void vulkan_material_shader_release_resources(vulkan_context* context, struct vulkan_material_shader* shader, u32 object_id);

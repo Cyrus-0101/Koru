@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifndef _MSC_VER
+#include <strings.h>  // for strcasecmp on GCC/Clang
+#endif
 
 /**
  * @file kstring.c
@@ -36,6 +39,14 @@ char* string_duplicate(const char* str) {
 
 b8 strings_equal(const char* str0, const char* str1) {
     return strcmp(str0, str1) == 0;
+}
+
+b8 strings_equali(const char* str0, const char* str1) {
+#if defined(__GNUC__)
+    return strcasecmp(str0, str1) == 0;
+#elif defined(_MSC_VER)
+    return _stricmp(str0, str1) == 0;
+#endif
 }
 
 i32 string_format(char* dest, const char* format, ...) {

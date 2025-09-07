@@ -1,0 +1,112 @@
+\doxysection{texture\+\_\+system\+\_\+state Struct Reference}
+\hypertarget{structtexture__system__state}{}\label{structtexture__system__state}\index{texture\_system\_state@{texture\_system\_state}}
+
+
+Collaboration diagram for texture\+\_\+system\+\_\+state\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structtexture__system__state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structtexture__system__config}{texture\+\_\+system\+\_\+config}} \mbox{\hyperlink{structtexture__system__state_ab49841c80f2afce16b83e0dd298770e1}{config}}
+\begin{DoxyCompactList}\small\item\em Configuration for the texture system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtexture}{texture}} \mbox{\hyperlink{structtexture__system__state_a9a672af939129176dff6e9fb08f1a74d}{default\+\_\+texture}}
+\begin{DoxyCompactList}\small\item\em Default texture used when no other texture is available. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtexture}{texture}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structtexture__system__state_a9326ee4cbc1a21168ffb82171484cbfb}{registered\+\_\+textures}}
+\begin{DoxyCompactList}\small\item\em Array of registered textures. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhashtable}{hashtable}} \mbox{\hyperlink{structtexture__system__state_aff3a2130097a5a4f7dc7b5e37b15a007}{registered\+\_\+texture\+\_\+table}}
+\begin{DoxyCompactList}\small\item\em Hashtable for quick texture lookups by name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00033}{33}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structtexture__system__state_ab49841c80f2afce16b83e0dd298770e1}\label{structtexture__system__state_ab49841c80f2afce16b83e0dd298770e1} 
+\index{texture\_system\_state@{texture\_system\_state}!config@{config}}
+\index{config@{config}!texture\_system\_state@{texture\_system\_state}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtexture__system__config}{texture\+\_\+system\+\_\+config}} texture\+\_\+system\+\_\+state\+::config}
+
+
+
+Configuration for the texture system. 
+
+Contains settings such as the maximum number of textures that can be managed. 
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00039}{39}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{texture__system_8c_source_l00147}{texture\+\_\+system\+\_\+shutdown()}}.
+
+\Hypertarget{structtexture__system__state_a9a672af939129176dff6e9fb08f1a74d}\label{structtexture__system__state_a9a672af939129176dff6e9fb08f1a74d} 
+\index{texture\_system\_state@{texture\_system\_state}!default\_texture@{default\_texture}}
+\index{default\_texture@{default\_texture}!texture\_system\_state@{texture\_system\_state}}
+\doxysubsubsection{\texorpdfstring{default\_texture}{default\_texture}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtexture}{texture}} texture\+\_\+system\+\_\+state\+::default\+\_\+texture}
+
+
+
+Default texture used when no other texture is available. 
+
+This texture is used as a fallback to ensure that objects always have a valid texture. 
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00045}{45}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00266}{create\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{texture__system_8c_source_l00302}{destroy\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, and \mbox{\hyperlink{texture__system_8c_source_l00257}{texture\+\_\+system\+\_\+get\+\_\+default\+\_\+texture()}}.
+
+\Hypertarget{structtexture__system__state_aff3a2130097a5a4f7dc7b5e37b15a007}\label{structtexture__system__state_aff3a2130097a5a4f7dc7b5e37b15a007} 
+\index{texture\_system\_state@{texture\_system\_state}!registered\_texture\_table@{registered\_texture\_table}}
+\index{registered\_texture\_table@{registered\_texture\_table}!texture\_system\_state@{texture\_system\_state}}
+\doxysubsubsection{\texorpdfstring{registered\_texture\_table}{registered\_texture\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhashtable}{hashtable}} texture\+\_\+system\+\_\+state\+::registered\+\_\+texture\+\_\+table}
+
+
+
+Hashtable for quick texture lookups by name. 
+
+This hashtable maps texture names to their corresponding texture references, allowing for efficient retrieval of textures by name. 
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00063}{63}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}.
+
+\Hypertarget{structtexture__system__state_a9326ee4cbc1a21168ffb82171484cbfb}\label{structtexture__system__state_a9326ee4cbc1a21168ffb82171484cbfb} 
+\index{texture\_system\_state@{texture\_system\_state}!registered\_textures@{registered\_textures}}
+\index{registered\_textures@{registered\_textures}!texture\_system\_state@{texture\_system\_state}}
+\doxysubsubsection{\texorpdfstring{registered\_textures}{registered\_textures}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtexture}{texture}}\texorpdfstring{$\ast$}{*} texture\+\_\+system\+\_\+state\+::registered\+\_\+textures}
+
+
+
+Array of registered textures. 
+
+This array holds all textures that have been loaded into the system.
+
+NOTE\+: This is a fixed-\/size array, so it should be initialized with the maximum number of textures defined in the configuration. 
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00055}{55}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}, and \mbox{\hyperlink{texture__system_8c_source_l00147}{texture\+\_\+system\+\_\+shutdown()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/systems/\mbox{\hyperlink{texture__system_8c}{texture\+\_\+system.\+c}}\end{DoxyCompactItemize}

@@ -1,0 +1,33 @@
+\doxysection{hashtable.\+h}
+\hypertarget{hashtable_8h_source}{}\label{hashtable_8h_source}\index{engine/src/containers/hashtable.h@{engine/src/containers/hashtable.h}}
+\mbox{\hyperlink{hashtable_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defines_8h}{defines.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00029}\mbox{\hyperlink{structhashtable}{00029}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhashtable}{hashtable}}\ \{}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00031}\mbox{\hyperlink{structhashtable_a18488633dba80321993a88bc601c8943}{00031}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ \mbox{\hyperlink{structhashtable_a18488633dba80321993a88bc601c8943}{element\_size}};}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00034}\mbox{\hyperlink{structhashtable_a1b44861e441db05bd6d47522cf876cf9}{00034}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ \mbox{\hyperlink{structhashtable_a1b44861e441db05bd6d47522cf876cf9}{element\_count}};}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00037}\mbox{\hyperlink{structhashtable_acc947a484d362df13228531615d5a20e}{00037}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{structhashtable_acc947a484d362df13228531615d5a20e}{is\_pointer\_type}};}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00040}\mbox{\hyperlink{structhashtable_abfb60fec5707b73ae4c7a942d5010bc5}{00040}}\ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{structhashtable_abfb60fec5707b73ae4c7a942d5010bc5}{memory}};}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00041}\mbox{\hyperlink{hashtable_8h_a70220a04ca914ec91d54260b4608234a}{00041}}\ \}\ \mbox{\hyperlink{structhashtable}{hashtable}};}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00052}00052\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{hashtable_8h_a9ae8fa47b0e55edfb2b93cf02bb72d7e}{hashtable\_create}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ element\_size,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ element\_count,\ \textcolor{keywordtype}{void}*\ memory,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ is\_pointer\_type,\ \mbox{\hyperlink{structhashtable}{hashtable}}*\ out\_hashtable);}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00059}00059\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{hashtable_8h_ae3e85997276b1152d2c62fa2694e1c14}{hashtable\_destroy}}(\mbox{\hyperlink{structhashtable}{hashtable}}*\ table);}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00070}00070\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{hashtable_8h_aa34d99cd3721459425c8fdb5b862eecf}{hashtable\_set}}(\mbox{\hyperlink{structhashtable}{hashtable}}*\ table,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keywordtype}{void}*\ value);}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00081}00081\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{hashtable_8h_a0f8dffa45ec24f5df3010d7331991832}{hashtable\_set\_ptr}}(\mbox{\hyperlink{structhashtable}{hashtable}}*\ table,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keywordtype}{void}**\ value);}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00092}00092\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{hashtable_8h_a47e12a32fbf7a084ee50e4e8487e633e}{hashtable\_get}}(\mbox{\hyperlink{structhashtable}{hashtable}}*\ table,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keywordtype}{void}*\ out\_value);}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00103}00103\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{hashtable_8h_ac8ad4fa00bd9c27020f80fc7915c1027}{hashtable\_get\_ptr}}(\mbox{\hyperlink{structhashtable}{hashtable}}*\ table,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keywordtype}{void}**\ out\_value);}
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{hashtable_8h_source_l00115}00115\ \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}}\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{hashtable_8h_aabd8636ef85a85ef64376156670d44b1}{hashtable\_fill}}(\mbox{\hyperlink{structhashtable}{hashtable}}*\ table,\ \textcolor{keywordtype}{void}*\ value);}
+
+\end{DoxyCode}

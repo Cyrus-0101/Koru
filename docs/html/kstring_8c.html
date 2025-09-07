@@ -86,6 +86,7 @@ $(function() {
 <code>#include &lt;stdarg.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;strings.h&gt;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for kstring.c:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -93,17 +94,19 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="kstring_8c__incl.png" border="0" usemap="#aengine_2src_2core_2kstring_8c" alt=""/></div>
 <map name="aengine_2src_2core_2kstring_8c" id="aengine_2src_2core_2kstring_8c">
-<area shape="rect" title="Implementation of lightweight string utility functions." alt="" coords="238,5,419,31"/>
+<area shape="rect" title="Implementation of lightweight string utility functions." alt="" coords="285,5,466,31"/>
 <area shape="rect" href="kstring_8h.html" title="Lightweight string utility library." alt="" coords="5,79,116,104"/>
-<area shape="poly" title=" " alt="" coords="286,33,118,78,116,73,285,28"/>
+<area shape="poly" title=" " alt="" coords="325,33,125,78,124,73,324,28"/>
 <area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="140,79,267,104"/>
-<area shape="poly" title=" " alt="" coords="310,33,237,74,234,69,307,28"/>
+<area shape="poly" title=" " alt="" coords="349,33,245,76,243,71,347,28"/>
 <area shape="rect" title=" " alt="" coords="291,79,366,104"/>
-<area shape="poly" title=" " alt="" coords="331,31,331,65,326,65,326,31"/>
+<area shape="poly" title=" " alt="" coords="370,32,346,69,342,66,365,30"/>
 <area shape="rect" title=" " alt="" coords="390,79,457,104"/>
-<area shape="poly" title=" " alt="" coords="345,29,398,68,395,72,342,33"/>
+<area shape="poly" title=" " alt="" coords="385,30,410,66,406,69,381,33"/>
 <area shape="rect" title=" " alt="" coords="481,79,552,104"/>
-<area shape="poly" title=" " alt="" coords="360,28,474,71,472,76,358,33"/>
+<area shape="poly" title=" " alt="" coords="399,28,483,70,480,75,397,33"/>
+<area shape="rect" title=" " alt="" coords="576,79,655,104"/>
+<area shape="poly" title=" " alt="" coords="415,28,564,72,562,77,413,33"/>
 <area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="91,152,172,177"/>
 <area shape="poly" title=" " alt="" coords="74,102,112,140,108,144,70,106"/>
 <area shape="poly" title=" " alt="" coords="193,106,155,144,151,140,190,102"/>
@@ -123,6 +126,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a4088fb073177638c470fee72f8f2180a" id="r_a4088fb073177638c470fee72f8f2180a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a4088fb073177638c470fee72f8f2180a">strings_equal</a> (const char *str0, const char *str1)</td></tr>
 <tr class="memdesc:a4088fb073177638c470fee72f8f2180a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two null-terminated strings for equality (case-sensitive).  <br /></td></tr>
 <tr class="separator:a4088fb073177638c470fee72f8f2180a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d4ca6df7122ffd452146b023195c4c9" id="r_a8d4ca6df7122ffd452146b023195c4c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a8d4ca6df7122ffd452146b023195c4c9">strings_equali</a> (const char *str0, const char *str1)</td></tr>
+<tr class="memdesc:a8d4ca6df7122ffd452146b023195c4c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two null-terminated strings for equality (case-insensitive).  <br /></td></tr>
+<tr class="separator:a8d4ca6df7122ffd452146b023195c4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86babd936b82eaf4229e77406968f74d" id="r_a86babd936b82eaf4229e77406968f74d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a86babd936b82eaf4229e77406968f74d">string_format</a> (char *dest, const char *format,...)</td></tr>
 <tr class="memdesc:a86babd936b82eaf4229e77406968f74d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs string formatting against the given format string and parameters. NOTE: that this performs a dynamic allocation and should be freed by the caller.  <br /></td></tr>
 <tr class="separator:a86babd936b82eaf4229e77406968f74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,9 +173,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A newly allocated copy of the input string. Caller must free using <code><a class="el" href="kmemory_8c.html#a49e85a536f69ab06ccc689d5701450dc" title="Frees a previously allocated memory block.">kfree()</a></code> or <code>string_free()</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00027">27</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00030">30</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">References <a class="el" href="kmemory_8c_source.html#l00122">kallocate()</a>, <a class="el" href="kmemory_8c_source.html#l00182">kcopy_memory()</a>, <a class="el" href="kmemory_8h_source.html#l00047">MEMORY_TAG_STRING</a>, and <a class="el" href="kstring_8c_source.html#l00023">string_length()</a>.</p>
+<p class="reference">References <a class="el" href="kmemory_8c_source.html#l00122">kallocate()</a>, <a class="el" href="kmemory_8c_source.html#l00182">kcopy_memory()</a>, <a class="el" href="kmemory_8h_source.html#l00047">MEMORY_TAG_STRING</a>, and <a class="el" href="kstring_8c_source.html#l00026">string_length()</a>.</p>
 
 </div>
 </div>
@@ -215,11 +221,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The newly-formatted string (dynamically allocated). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00041">41</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00052">52</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">References <a class="el" href="kstring_8c_source.html#l00052">string_format_v()</a>.</p>
+<p class="reference">References <a class="el" href="kstring_8c_source.html#l00063">string_format_v()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__shader__utils_8c_source.html#l00017">create_shader_module()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00105">load_texture()</a>, and <a class="el" href="logger_8c_source.html#l00095">log_output()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__shader__utils_8c_source.html#l00017">create_shader_module()</a>, <a class="el" href="texture__system_8c_source.html#l00308">load_texture()</a>, and <a class="el" href="logger_8c_source.html#l00095">log_output()</a>.</p>
 
 </div>
 </div>
@@ -265,11 +271,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The newly-formatted string (dynamically allocated). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00052">52</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00063">63</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
 <p class="reference">References <a class="el" href="kmemory_8c_source.html#l00182">kcopy_memory()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00095">log_output()</a>, and <a class="el" href="kstring_8c_source.html#l00041">string_format()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00095">log_output()</a>, and <a class="el" href="kstring_8c_source.html#l00052">string_format()</a>.</p>
 
 </div>
 </div>
@@ -299,9 +305,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of characters in the string (excluding the null terminator). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00023">23</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00026">26</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00050">append_to_log_file()</a>, and <a class="el" href="kstring_8c_source.html#l00027">string_duplicate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00050">append_to_log_file()</a>, and <a class="el" href="kstring_8c_source.html#l00030">string_duplicate()</a>.</p>
 
 </div>
 </div>
@@ -342,16 +348,59 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if both strings are identical; False otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00037">37</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00040">40</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__device_8c_source.html#l00520">physical_device_meets_requirements()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__device_8c_source.html#l00521">physical_device_meets_requirements()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
+
+</div>
+</div>
+<a id="a8d4ca6df7122ffd452146b023195c4c9" name="a8d4ca6df7122ffd452146b023195c4c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d4ca6df7122ffd452146b023195c4c9">&#9670;&#160;</a></span>strings_equali()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> strings_equali </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares two null-terminated strings for equality (case-insensitive). </p>
+<p>This function performs a character-by-character comparison of two strings, ignoring case differences.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str0</td><td>First string to compare. </td></tr>
+    <tr><td class="paramname">str1</td><td>Second string to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if both strings are identical (case-insensitive); False otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00044">44</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00163">texture_system_acquire()</a>, and <a class="el" href="texture__system_8c_source.html#l00219">texture_system_release()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 6 2025 00:35:51 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sun Sep 7 2025 09:32:39 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

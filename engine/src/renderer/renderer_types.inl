@@ -112,11 +112,6 @@ typedef struct renderer_backend {
     struct platform_state* plat_state;
 
     /**
-     * @brief The default texture used.
-     */
-    texture* default_diffuse;
-
-    /**
      * @brief The current frame number (useful for synchronization or debugging).
      */
     u64 frame_number;
@@ -190,7 +185,6 @@ typedef struct renderer_backend {
 
     void (*create_texture)(
         const char* name,
-        b8 auto_release,
         i32 width,
         i32 height,
         i32 channel_count,

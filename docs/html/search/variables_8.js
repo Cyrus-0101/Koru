@@ -9,7 +9,8 @@ var searchData=
   ['input_5fsystem_5fmemory_5frequirement_6',['input_system_memory_requirement',['../structapplication__state.html#a2a9175d2ced90985c4c30c8c75857cd9',1,'application_state']]],
   ['input_5fsystem_5fstate_7',['input_system_state',['../structapplication__state.html#a7949e6624c3ebfad501d54da232cc65b',1,'application_state']]],
   ['internal_5fdata_8',['internal_data',['../structtexture.html#a2a635d43b6e8cde4581d47b1f3945677',1,'texture']]],
-  ['is_5frunning_9',['is_running',['../structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde',1,'application_state']]],
-  ['is_5fsuspended_10',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]],
-  ['is_5fvalid_11',['is_valid',['../structfile__handle.html#a35a655c6d44306eb8d36f3e313822d7d',1,'file_handle']]]
+  ['is_5fpointer_5ftype_9',['is_pointer_type',['../structhashtable.html#acc947a484d362df13228531615d5a20e',1,'hashtable']]],
+  ['is_5frunning_10',['is_running',['../structapplication__state.html#a7c10d54c29174a16313dfc1992ccabde',1,'application_state']]],
+  ['is_5fsuspended_11',['is_suspended',['../structapplication__state.html#a4e7125d95754ef0c0166479931eafcd1',1,'application_state']]],
+  ['is_5fvalid_12',['is_valid',['../structfile__handle.html#a35a655c6d44306eb8d36f3e313822d7d',1,'file_handle']]]
 ];

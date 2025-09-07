@@ -10,7 +10,7 @@ var searchData=
   ['start_5ftime_7',['start_time',['../structclock.html#a139887730e22bc3797ec70e49a6b9e6d',1,'clock']]],
   ['start_5fwidth_8',['start_width',['../structapplication__config.html#a0fc9a6f3ed272fd04205fba11bb6545a',1,'application_config']]],
   ['state_9',['state',['../structgame.html#aa77684f4c43b2aafcaa57421159f5d03',1,'game']]],
-  ['state_5fptr_10',['state_ptr',['../event_8c.html#a8dc4a58304f35c6161d98770d856890f',1,'state_ptr:&#160;event.c'],['../input_8c.html#a19e7998236f8f4d24cc81e5c16c9ca94',1,'state_ptr:&#160;input.c'],['../kmemory_8c.html#a9ec72ff269f63629893b7760ea47662e',1,'state_ptr:&#160;kmemory.c'],['../logger_8c.html#a78fb062cf70ff40ec53ede87b44ebb48',1,'state_ptr:&#160;logger.c'],['../renderer__frontend_8c.html#aee022f3b82c40f95de6b2773066454fc',1,'state_ptr:&#160;renderer_frontend.c']]],
+  ['state_5fptr_10',['state_ptr',['../event_8c.html#a8dc4a58304f35c6161d98770d856890f',1,'state_ptr:&#160;event.c'],['../input_8c.html#a19e7998236f8f4d24cc81e5c16c9ca94',1,'state_ptr:&#160;input.c'],['../kmemory_8c.html#a9ec72ff269f63629893b7760ea47662e',1,'state_ptr:&#160;kmemory.c'],['../logger_8c.html#a78fb062cf70ff40ec53ede87b44ebb48',1,'state_ptr:&#160;logger.c'],['../renderer__frontend_8c.html#aee022f3b82c40f95de6b2773066454fc',1,'state_ptr:&#160;renderer_frontend.c'],['../texture__system_8c.html#ada3f0bd8c57aee084f5fe4fb4025cacf',1,'state_ptr:&#160;texture_system.c']]],
   ['stats_11',['stats',['../structmemory__system__state.html#a531467e3ef52d68219f7def5e3302433',1,'memory_system_state']]],
   ['systems_5fallocator_12',['systems_allocator',['../structapplication__state.html#a213ee353f6a3fbc499d583c79f369b9a',1,'application_state']]]
 ];

@@ -47,6 +47,17 @@ KAPI char* string_duplicate(const char* str);
 KAPI b8 strings_equal(const char* str0, const char* str1);
 
 /**
+ * @brief Compares two null-terminated strings for equality (case-insensitive).
+ *
+ * This function performs a character-by-character comparison of two strings, ignoring case differences.
+ *
+ * @param str0 First string to compare.
+ * @param str1 Second string to compare.
+ * @return True if both strings are identical (case-insensitive); False otherwise.
+ */
+KAPI b8 strings_equali(const char* str0, const char* str1);
+
+/**
  * @brief Performs string formatting against the given format string and parameters.
  * NOTE: that this performs a dynamic allocation and should be freed by the caller.
  *

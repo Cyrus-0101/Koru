@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['linear_5fallocator_0',['linear_allocator',['../linear__allocator_8h.html#a7302d19cddae04a62c3ab45926f9722d',1,'linear_allocator.h']]],
-  ['log_5flevel_1',['log_level',['../logger_8h.html#a073554067a9aac1790a5744efd4c22c6',1,'logger.h']]],
-  ['logger_5fsystem_5fstate_2',['logger_system_state',['../logger_8c.html#ae29328f40e5eace9aeffeebfc1b93c09',1,'logger.c']]]
+  ['keyboard_5fstate_0',['keyboard_state',['../input_8c.html#a3eda7f0cade2331516e6a139c62b81c3',1,'input.c']]],
+  ['keys_1',['keys',['../input_8h.html#ae6367ba100b3406998db932c9fe0b0d3',1,'input.h']]],
+  ['krange_2',['krange',['../defines_8h.html#a0d37ef0b1a77903e7698337d2594035e',1,'defines.h']]]
 ];
