@@ -16,7 +16,7 @@ var searchData=
   ['linux_13',['Linux',['../index.html#autotoc_md23',1,'']]],
   ['list_14',['📋 Feature List',['../index.html#autotoc_md14',1,'']]],
   ['listener_15',['listener',['../structregistered__event.html#a8baaf13de842035b82f17465e592fe19',1,'registered_event']]],
-  ['load_5ftexture_16',['load_texture',['../renderer__frontend_8c.html#ac691176afc7122b609671e77b157ae2f',1,'renderer_frontend.c']]],
+  ['load_5ftexture_16',['load_texture',['../texture__system_8c.html#ac691176afc7122b609671e77b157ae2f',1,'texture_system.c']]],
   ['log_5fdebug_5fenabled_17',['LOG_DEBUG_ENABLED',['../logger_8h.html#aebce09616e526858093c3252925bffe2',1,'logger.h']]],
   ['log_5ffile_5fhandle_18',['log_file_handle',['../structlogger__system__state.html#a66629ccd00019affb3b5e1b2a2a6977d',1,'logger_system_state']]],
   ['log_5finfo_5fenabled_19',['LOG_INFO_ENABLED',['../logger_8h.html#a4690d76db76927ae412ba4860e008b16',1,'logger.h']]],

@@ -1,0 +1,91 @@
+\doxysection{texture\+\_\+reference Struct Reference}
+\hypertarget{structtexture__reference}{}\label{structtexture__reference}\index{texture\_reference@{texture\_reference}}
+
+
+Reference to a texture in the system.  
+
+
+
+
+{\ttfamily \#include $<$texture\+\_\+system.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structtexture__reference_a2d5873d56c724c778ec3df1fe13be8da}{reference\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Number of references to this texture. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structtexture__reference_a9389753163a58129a40b914b43d6addf}{handle}}
+\begin{DoxyCompactList}\small\item\em Handle to the texture in the registered textures array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{structtexture__reference_a45e8f00d28d2e0caa1bdd185b564fb99}{auto\+\_\+release}}
+\begin{DoxyCompactList}\small\item\em Auto-\/release flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Reference to a texture in the system. 
+
+This structure is used to manage the lifetime and reference counting of textures. It contains the handle to the texture, its reference count, and whether it should be automatically released when no longer needed. 
+
+Definition at line \mbox{\hyperlink{texture__system_8h_source_l00036}{36}} of file \mbox{\hyperlink{texture__system_8h_source}{texture\+\_\+system.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structtexture__reference_a45e8f00d28d2e0caa1bdd185b564fb99}\label{structtexture__reference_a45e8f00d28d2e0caa1bdd185b564fb99} 
+\index{texture\_reference@{texture\_reference}!auto\_release@{auto\_release}}
+\index{auto\_release@{auto\_release}!texture\_reference@{texture\_reference}}
+\doxysubsubsection{\texorpdfstring{auto\_release}{auto\_release}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} texture\+\_\+reference\+::auto\+\_\+release}
+
+
+
+Auto-\/release flag. 
+
+
+
+Definition at line \mbox{\hyperlink{texture__system_8h_source_l00050}{50}} of file \mbox{\hyperlink{texture__system_8h_source}{texture\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}.
+
+\Hypertarget{structtexture__reference_a9389753163a58129a40b914b43d6addf}\label{structtexture__reference_a9389753163a58129a40b914b43d6addf} 
+\index{texture\_reference@{texture\_reference}!handle@{handle}}
+\index{handle@{handle}!texture\_reference@{texture\_reference}}
+\doxysubsubsection{\texorpdfstring{handle}{handle}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} texture\+\_\+reference\+::handle}
+
+
+
+Handle to the texture in the registered textures array. 
+
+
+
+Definition at line \mbox{\hyperlink{texture__system_8h_source_l00045}{45}} of file \mbox{\hyperlink{texture__system_8h_source}{texture\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}.
+
+\Hypertarget{structtexture__reference_a2d5873d56c724c778ec3df1fe13be8da}\label{structtexture__reference_a2d5873d56c724c778ec3df1fe13be8da} 
+\index{texture\_reference@{texture\_reference}!reference\_count@{reference\_count}}
+\index{reference\_count@{reference\_count}!texture\_reference@{texture\_reference}}
+\doxysubsubsection{\texorpdfstring{reference\_count}{reference\_count}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} texture\+\_\+reference\+::reference\+\_\+count}
+
+
+
+Number of references to this texture. 
+
+
+
+Definition at line \mbox{\hyperlink{texture__system_8h_source_l00040}{40}} of file \mbox{\hyperlink{texture__system_8h_source}{texture\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/systems/\mbox{\hyperlink{texture__system_8h}{texture\+\_\+system.\+h}}\end{DoxyCompactItemize}

@@ -8,7 +8,7 @@ var searchData=
   ['buffers_20and_20submission_5',['12. 🗂 Command Buffers and Submission',['../index.html#autotoc_md63',1,'']]],
   ['build_20scripts_20instructions_6',['⚙️ Build Scripts/Instructions',['../index.html#autotoc_md22',1,'']]],
   ['building_20docs_7',['Building Docs',['../index.html#autotoc_md25',1,'']]],
-  ['builtin_5fshader_5fname_5fobject_8',['BUILTIN_SHADER_NAME_OBJECT',['../vulkan__object__shader_8c.html#a595546cab33d786103a1329d05623bf8',1,'vulkan_object_shader.c']]],
+  ['builtin_5fshader_5fname_5fobject_8',['BUILTIN_SHADER_NAME_OBJECT',['../vulkan__material__shader_8c.html#a595546cab33d786103a1329d05623bf8',1,'vulkan_material_shader.c']]],
   ['button_5fleft_9',['BUTTON_LEFT',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836a55dc0d53615e28ee8af66827bee48e4e',1,'input.h']]],
   ['button_5fmax_5fbuttons_10',['BUTTON_MAX_BUTTONS',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836aec454ba81b583c1f98717cd9372683a7',1,'input.h']]],
   ['button_5fmiddle_11',['BUTTON_MIDDLE',['../input_8h.html#a3e08a16703943b810da7b8b2a915c836adc5b6dc06792e0f36a19c74e9c77c6fb',1,'input.h']]],

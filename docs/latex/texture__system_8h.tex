@@ -1,0 +1,259 @@
+\doxysection{engine/src/systems/texture\+\_\+system.h File Reference}
+\hypertarget{texture__system_8h}{}\label{texture__system_8h}\index{engine/src/systems/texture\_system.h@{engine/src/systems/texture\_system.h}}
+
+
+Texture management system.  
+
+
+{\ttfamily \#include "{}renderer/renderer\+\_\+types.\+inl"{}}\newline
+Include dependency graph for texture\+\_\+system.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{texture__system_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{texture__system_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtexture__reference}{texture\+\_\+reference}}
+\begin{DoxyCompactList}\small\item\em Reference to a texture in the system. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structtexture__system__config}{texture\+\_\+system\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Configuration for the texture system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{texture__system_8h_aa5d57505677b0f7a33597825053c0749}{DEFAULT\+\_\+\+TEXTURE\+\_\+\+NAME}}~"{}default"{}
+\begin{DoxyCompactList}\small\item\em Default texture name used when a requested texture is not found. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structtexture__reference}{texture\+\_\+reference}} \mbox{\hyperlink{texture__system_8h_a4c78ef19e89034adaf2203a53ccf1fec}{texture\+\_\+reference}}
+\item 
+typedef struct \mbox{\hyperlink{structtexture__system__config}{texture\+\_\+system\+\_\+config}} \mbox{\hyperlink{texture__system_8h_a6443d7244e90043250cd59f9179be5e9}{texture\+\_\+system\+\_\+config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{texture__system_8h_a5311316a2adfccd1ecadf29aea704cf0}{texture\+\_\+system\+\_\+initialize}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}memory\+\_\+requirement, void \texorpdfstring{$\ast$}{*}state, \mbox{\hyperlink{structtexture__system__config}{texture\+\_\+system\+\_\+config}} config)
+\begin{DoxyCompactList}\small\item\em Initializes the texture system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{texture__system_8h_a3170cfd4c3f2bbf15a69e6a965a39a03}{texture\+\_\+system\+\_\+shutdown}} (void \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Shuts down the texture system, freeing all resources. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtexture}{texture}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{texture__system_8h_a94229d7d8c2e06fabb2d9e3c2296599e}{texture\+\_\+system\+\_\+acquire}} (const char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} auto\+\_\+release)
+\begin{DoxyCompactList}\small\item\em Acquires a texture by name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{texture__system_8h_ab454daecfb4133cbca5559dd84db3ac4}{texture\+\_\+system\+\_\+release}} (const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Releases a texture by name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtexture}{texture}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{texture__system_8h_ae9e13f5483fd272b9430ca11719164e4}{texture\+\_\+system\+\_\+get\+\_\+default\+\_\+texture}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the default texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Texture management system. 
+
+This module provides functionality to manage texture resources within the engine. It supports loading, acquiring, and releasing textures, as well as automatic cleanup of unused resources.
+
+Usage\+:
+\begin{DoxyItemize}
+\item Initialize the texture system with {\ttfamily \doxylink{texture__system_8h_a5311316a2adfccd1ecadf29aea704cf0}{texture\+\_\+system\+\_\+initialize()}}, providing configuration options.
+\item Acquire textures by name using {\ttfamily \doxylink{texture__system_8h_a94229d7d8c2e06fabb2d9e3c2296599e}{texture\+\_\+system\+\_\+acquire()}}. If the texture is not already loaded, it will be loaded from disk.
+\item Release textures using {\ttfamily \doxylink{texture__system_8h_ab454daecfb4133cbca5559dd84db3ac4}{texture\+\_\+system\+\_\+release()}}. If a texture was marked for auto-\/release, it will be freed when no longer in use.
+\item Shutdown the texture system with {\ttfamily \doxylink{texture__system_8h_a3170cfd4c3f2bbf15a69e6a965a39a03}{texture\+\_\+system\+\_\+shutdown()}} to free all resources. 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{texture__system_8h_source}{texture\+\_\+system.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{texture__system_8h_aa5d57505677b0f7a33597825053c0749}\label{texture__system_8h_aa5d57505677b0f7a33597825053c0749} 
+\index{texture\_system.h@{texture\_system.h}!DEFAULT\_TEXTURE\_NAME@{DEFAULT\_TEXTURE\_NAME}}
+\index{DEFAULT\_TEXTURE\_NAME@{DEFAULT\_TEXTURE\_NAME}!texture\_system.h@{texture\_system.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_TEXTURE\_NAME}{DEFAULT\_TEXTURE\_NAME}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+TEXTURE\+\_\+\+NAME~"{}default"{}}
+
+
+
+Default texture name used when a requested texture is not found. 
+
+
+
+Definition at line \mbox{\hyperlink{texture__system_8h_source_l00025}{25}} of file \mbox{\hyperlink{texture__system_8h_source}{texture\+\_\+system.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{texture__system_8h_a4c78ef19e89034adaf2203a53ccf1fec}\label{texture__system_8h_a4c78ef19e89034adaf2203a53ccf1fec} 
+\index{texture\_system.h@{texture\_system.h}!texture\_reference@{texture\_reference}}
+\index{texture\_reference@{texture\_reference}!texture\_system.h@{texture\_system.h}}
+\doxysubsubsection{\texorpdfstring{texture\_reference}{texture\_reference}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structtexture__reference}{texture\+\_\+reference}} \mbox{\hyperlink{structtexture__reference}{texture\+\_\+reference}}}
+
+\Hypertarget{texture__system_8h_a6443d7244e90043250cd59f9179be5e9}\label{texture__system_8h_a6443d7244e90043250cd59f9179be5e9} 
+\index{texture\_system.h@{texture\_system.h}!texture\_system\_config@{texture\_system\_config}}
+\index{texture\_system\_config@{texture\_system\_config}!texture\_system.h@{texture\_system.h}}
+\doxysubsubsection{\texorpdfstring{texture\_system\_config}{texture\_system\_config}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structtexture__system__config}{texture\+\_\+system\+\_\+config}} \mbox{\hyperlink{structtexture__system__config}{texture\+\_\+system\+\_\+config}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{texture__system_8h_a94229d7d8c2e06fabb2d9e3c2296599e}\label{texture__system_8h_a94229d7d8c2e06fabb2d9e3c2296599e} 
+\index{texture\_system.h@{texture\_system.h}!texture\_system\_acquire@{texture\_system\_acquire}}
+\index{texture\_system\_acquire@{texture\_system\_acquire}!texture\_system.h@{texture\_system.h}}
+\doxysubsubsection{\texorpdfstring{texture\_system\_acquire()}{texture\_system\_acquire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtexture}{texture}} \texorpdfstring{$\ast$}{*} texture\+\_\+system\+\_\+acquire (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name,  }\item[{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}}]{auto\+\_\+release }\end{DoxyParamCaption})}
+
+
+
+Acquires a texture by name. 
+
+If the texture is not already loaded, it will be loaded from disk. If the texture cannot be found, the default texture will be returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the texture to acquire. \\
+\hline
+{\em auto\+\_\+release} & If true, the texture will be automatically released when no longer in use.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the acquired texture, or NULL if acquisition failed. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00163}{163}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{texture__system_8h_source_l00050}{texture\+\_\+reference\+::auto\+\_\+release}}, \mbox{\hyperlink{texture__system_8c_source_l00039}{texture\+\_\+system\+\_\+state\+::config}}, \mbox{\hyperlink{texture__system_8c_source_l00045}{texture\+\_\+system\+\_\+state\+::default\+\_\+texture}}, \mbox{\hyperlink{texture__system_8h_source_l00025}{DEFAULT\+\_\+\+TEXTURE\+\_\+\+NAME}}, \mbox{\hyperlink{texture__system_8h_source_l00045}{texture\+\_\+reference\+::handle}}, \mbox{\hyperlink{hashtable_8c_source_l00120}{hashtable\+\_\+get()}}, \mbox{\hyperlink{hashtable_8c_source_l00083}{hashtable\+\_\+set()}}, \mbox{\hyperlink{resource__types_8h_source_l00023}{texture\+::id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00230}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{texture__system_8c_source_l00308}{load\+\_\+texture()}}, \mbox{\hyperlink{texture__system_8h_source_l00060}{texture\+\_\+system\+\_\+config\+::max\+\_\+texture\+\_\+count}}, \mbox{\hyperlink{texture__system_8h_source_l00040}{texture\+\_\+reference\+::reference\+\_\+count}}, \mbox{\hyperlink{texture__system_8c_source_l00063}{texture\+\_\+system\+\_\+state\+::registered\+\_\+texture\+\_\+table}}, \mbox{\hyperlink{texture__system_8c_source_l00055}{texture\+\_\+system\+\_\+state\+::registered\+\_\+textures}}, \mbox{\hyperlink{texture__system_8c_source_l00096}{state\+\_\+ptr}}, and \mbox{\hyperlink{kstring_8c_source_l00044}{strings\+\_\+equali()}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{event\+\_\+on\+\_\+debug\+\_\+event()}}.
+
+\Hypertarget{texture__system_8h_ae9e13f5483fd272b9430ca11719164e4}\label{texture__system_8h_ae9e13f5483fd272b9430ca11719164e4} 
+\index{texture\_system.h@{texture\_system.h}!texture\_system\_get\_default\_texture@{texture\_system\_get\_default\_texture}}
+\index{texture\_system\_get\_default\_texture@{texture\_system\_get\_default\_texture}!texture\_system.h@{texture\_system.h}}
+\doxysubsubsection{\texorpdfstring{texture\_system\_get\_default\_texture()}{texture\_system\_get\_default\_texture()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtexture}{texture}} \texorpdfstring{$\ast$}{*} texture\+\_\+system\+\_\+get\+\_\+default\+\_\+texture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the default texture. 
+
+The default texture is used when a requested texture cannot be found.
+
+\begin{DoxyReturn}{Returns}
+Pointer to the default texture. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00257}{257}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{texture__system_8c_source_l00045}{texture\+\_\+system\+\_\+state\+::default\+\_\+texture}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, and \mbox{\hyperlink{texture__system_8c_source_l00096}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00204}{renderer\+\_\+draw\+\_\+frame()}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00298}{vulkan\+\_\+material\+\_\+shader\+\_\+update\+\_\+object()}}.
+
+\Hypertarget{texture__system_8h_a5311316a2adfccd1ecadf29aea704cf0}\label{texture__system_8h_a5311316a2adfccd1ecadf29aea704cf0} 
+\index{texture\_system.h@{texture\_system.h}!texture\_system\_initialize@{texture\_system\_initialize}}
+\index{texture\_system\_initialize@{texture\_system\_initialize}!texture\_system.h@{texture\_system.h}}
+\doxysubsubsection{\texorpdfstring{texture\_system\_initialize()}{texture\_system\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} texture\+\_\+system\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{memory\+\_\+requirement,  }\item[{void \texorpdfstring{$\ast$}{*}}]{state,  }\item[{\mbox{\hyperlink{structtexture__system__config}{texture\+\_\+system\+\_\+config}}}]{config }\end{DoxyParamCaption})}
+
+
+
+Initializes the texture system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em memory\+\_\+requirement} & Pointer to store the required memory size for the texture system. \\
+\hline
+{\em state} & Pointer to pre-\/allocated memory for the texture system state. \\
+\hline
+{\em config} & Configuration options for the texture system.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if initialization was successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00098}{98}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{texture__system_8h_source_l00050}{texture\+\_\+reference\+::auto\+\_\+release}}, \mbox{\hyperlink{texture__system_8c_source_l00039}{texture\+\_\+system\+\_\+state\+::config}}, \mbox{\hyperlink{texture__system_8c_source_l00266}{create\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{resource__types_8h_source_l00033}{texture\+::generation}}, \mbox{\hyperlink{texture__system_8h_source_l00045}{texture\+\_\+reference\+::handle}}, \mbox{\hyperlink{hashtable_8c_source_l00054}{hashtable\+\_\+create()}}, \mbox{\hyperlink{hashtable_8c_source_l00158}{hashtable\+\_\+fill()}}, \mbox{\hyperlink{resource__types_8h_source_l00023}{texture\+::id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{texture__system_8h_source_l00060}{texture\+\_\+system\+\_\+config\+::max\+\_\+texture\+\_\+count}}, \mbox{\hyperlink{texture__system_8h_source_l00040}{texture\+\_\+reference\+::reference\+\_\+count}}, \mbox{\hyperlink{texture__system_8c_source_l00063}{texture\+\_\+system\+\_\+state\+::registered\+\_\+texture\+\_\+table}}, \mbox{\hyperlink{texture__system_8c_source_l00055}{texture\+\_\+system\+\_\+state\+::registered\+\_\+textures}}, \mbox{\hyperlink{texture__system_8c_source_l00096}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+
+\Hypertarget{texture__system_8h_ab454daecfb4133cbca5559dd84db3ac4}\label{texture__system_8h_ab454daecfb4133cbca5559dd84db3ac4} 
+\index{texture\_system.h@{texture\_system.h}!texture\_system\_release@{texture\_system\_release}}
+\index{texture\_system\_release@{texture\_system\_release}!texture\_system.h@{texture\_system.h}}
+\doxysubsubsection{\texorpdfstring{texture\_system\_release()}{texture\_system\_release()}}
+{\footnotesize\ttfamily void texture\+\_\+system\+\_\+release (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+
+
+Releases a texture by name. 
+
+If the texture was marked for auto-\/release, it will be freed when no longer in use.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the texture to release. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00219}{219}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{texture__system_8h_source_l00050}{texture\+\_\+reference\+::auto\+\_\+release}}, \mbox{\hyperlink{texture__system_8h_source_l00025}{DEFAULT\+\_\+\+TEXTURE\+\_\+\+NAME}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{resource__types_8h_source_l00033}{texture\+::generation}}, \mbox{\hyperlink{texture__system_8h_source_l00045}{texture\+\_\+reference\+::handle}}, \mbox{\hyperlink{hashtable_8c_source_l00120}{hashtable\+\_\+get()}}, \mbox{\hyperlink{hashtable_8c_source_l00083}{hashtable\+\_\+set()}}, \mbox{\hyperlink{resource__types_8h_source_l00023}{texture\+::id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00230}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{texture__system_8h_source_l00040}{texture\+\_\+reference\+::reference\+\_\+count}}, \mbox{\hyperlink{texture__system_8c_source_l00063}{texture\+\_\+system\+\_\+state\+::registered\+\_\+texture\+\_\+table}}, \mbox{\hyperlink{texture__system_8c_source_l00055}{texture\+\_\+system\+\_\+state\+::registered\+\_\+textures}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00261}{renderer\+\_\+destroy\+\_\+texture()}}, \mbox{\hyperlink{texture__system_8c_source_l00096}{state\+\_\+ptr}}, and \mbox{\hyperlink{kstring_8c_source_l00044}{strings\+\_\+equali()}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{event\+\_\+on\+\_\+debug\+\_\+event()}}.
+
+\Hypertarget{texture__system_8h_a3170cfd4c3f2bbf15a69e6a965a39a03}\label{texture__system_8h_a3170cfd4c3f2bbf15a69e6a965a39a03} 
+\index{texture\_system.h@{texture\_system.h}!texture\_system\_shutdown@{texture\_system\_shutdown}}
+\index{texture\_system\_shutdown@{texture\_system\_shutdown}!texture\_system.h@{texture\_system.h}}
+\doxysubsubsection{\texorpdfstring{texture\_system\_shutdown()}{texture\_system\_shutdown()}}
+{\footnotesize\ttfamily void texture\+\_\+system\+\_\+shutdown (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
+
+
+
+Shuts down the texture system, freeing all resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Pointer to the texture system state to be shut down. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00147}{147}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{texture__system_8c_source_l00039}{texture\+\_\+system\+\_\+state\+::config}}, \mbox{\hyperlink{texture__system_8c_source_l00302}{destroy\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{resource__types_8h_source_l00033}{texture\+::generation}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{texture__system_8h_source_l00060}{texture\+\_\+system\+\_\+config\+::max\+\_\+texture\+\_\+count}}, \mbox{\hyperlink{texture__system_8c_source_l00055}{texture\+\_\+system\+\_\+state\+::registered\+\_\+textures}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00261}{renderer\+\_\+destroy\+\_\+texture()}}, and \mbox{\hyperlink{texture__system_8c_source_l00096}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+

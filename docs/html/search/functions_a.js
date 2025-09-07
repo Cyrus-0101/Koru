@@ -1,23 +1,9 @@
 var searchData=
 [
-  ['main_0',['main',['../entry_8h.html#a840291bc02cba5474a4cb46a9b9566fe',1,'entry.h']]],
-  ['mat4_5fbackward_1',['mat4_backward',['../kmath_8h.html#a5462f2644541bc3a7a600ca6a036b40c',1,'kmath.h']]],
-  ['mat4_5fdown_2',['mat4_down',['../kmath_8h.html#a928424d34db0f688d8ae97f779062326',1,'kmath.h']]],
-  ['mat4_5feuler_5fx_3',['mat4_euler_x',['../kmath_8h.html#a848df656ed8ecaed76f7036c18455809',1,'kmath.h']]],
-  ['mat4_5feuler_5fxyz_4',['mat4_euler_xyz',['../kmath_8h.html#ac5bcb54687a6d3d95078c9f29a7e057d',1,'kmath.h']]],
-  ['mat4_5feuler_5fy_5',['mat4_euler_y',['../kmath_8h.html#a9e917d00193efed2fe4288325cb737e2',1,'kmath.h']]],
-  ['mat4_5feuler_5fz_6',['mat4_euler_z',['../kmath_8h.html#aafeeb5341c5a2734d85d3f0a8c23c64d',1,'kmath.h']]],
-  ['mat4_5fforward_7',['mat4_forward',['../kmath_8h.html#abb2c360e549e1b2cffcb5f6853eddada',1,'kmath.h']]],
-  ['mat4_5fidentity_8',['mat4_identity',['../kmath_8h.html#a2675d196b9d5b9b2c0b72c5f0c2fdf5c',1,'kmath.h']]],
-  ['mat4_5finverse_9',['mat4_inverse',['../kmath_8h.html#a02adc5ee631689aa95583db1b76a3f56',1,'kmath.h']]],
-  ['mat4_5fleft_10',['mat4_left',['../kmath_8h.html#a761e98470ad456f3a58231c2dd6e8169',1,'kmath.h']]],
-  ['mat4_5flook_5fat_11',['mat4_look_at',['../kmath_8h.html#a418ca422b663a75a98608a4ffa4dec90',1,'kmath.h']]],
-  ['mat4_5fmul_12',['mat4_mul',['../kmath_8h.html#a0d06fd21ae39e16bc48de99578328188',1,'kmath.h']]],
-  ['mat4_5forthographic_13',['mat4_orthographic',['../kmath_8h.html#a5b39e299ada558fde3b8d8af028a20df',1,'kmath.h']]],
-  ['mat4_5fperspective_14',['mat4_perspective',['../kmath_8h.html#a30c4e8b0b3a75b70a4a8efb9a51f80ed',1,'kmath.h']]],
-  ['mat4_5fright_15',['mat4_right',['../kmath_8h.html#a447e7a652833758d115184953454a016',1,'kmath.h']]],
-  ['mat4_5fscale_16',['mat4_scale',['../kmath_8h.html#a4b36f4568d28ccdb865d067ff1516f34',1,'kmath.h']]],
-  ['mat4_5ftranslation_17',['mat4_translation',['../kmath_8h.html#a209b073522143126e4b91d7b524b54f8',1,'kmath.h']]],
-  ['mat4_5ftransposed_18',['mat4_transposed',['../kmath_8h.html#aa6eaf974256cb040ca82bf256a1069d8',1,'kmath.h']]],
-  ['mat4_5fup_19',['mat4_up',['../kmath_8h.html#ac9b253d8bb55821c81b4a97b6bf9216a',1,'kmath.h']]]
+  ['linear_5fallocator_5fallocate_0',['linear_allocator_allocate',['../linear__allocator_8c.html#ae35bf045e0f97a4406dbe4df59ad0624',1,'linear_allocator_allocate(linear_allocator *allocator, u64 size):&#160;linear_allocator.c'],['../linear__allocator_8h.html#a251fc4a9830b9102474172fb84ff2898',1,'linear_allocator_allocate(linear_allocator *allocator, u64 size):&#160;linear_allocator.c']]],
+  ['linear_5fallocator_5fcreate_1',['linear_allocator_create',['../linear__allocator_8c.html#a707ac8c1c965d8109c32a9792e9745f3',1,'linear_allocator_create(u64 total_size, void *memory, linear_allocator *out_allocator):&#160;linear_allocator.c'],['../linear__allocator_8h.html#a493211b4086becd537f0cae44cfa24a4',1,'linear_allocator_create(u64 total_size, void *memory, linear_allocator *out_allocator):&#160;linear_allocator.c']]],
+  ['linear_5fallocator_5fdestroy_2',['linear_allocator_destroy',['../linear__allocator_8c.html#a1923cbd73d164e43bb141d95374cae6d',1,'linear_allocator_destroy(linear_allocator *out_allocator):&#160;linear_allocator.c'],['../linear__allocator_8h.html#a26466ec33467a298467e2ff1b1511b10',1,'linear_allocator_destroy(linear_allocator *out_allocator):&#160;linear_allocator.c']]],
+  ['linear_5fallocator_5ffree_5fall_3',['linear_allocator_free_all',['../linear__allocator_8c.html#a92df78f169decacd209ca69c6e1252cd',1,'linear_allocator_free_all(linear_allocator *allocator):&#160;linear_allocator.c'],['../linear__allocator_8h.html#a2e11fb25edcf6bb5f93ed77b66d99d68',1,'linear_allocator_free_all(linear_allocator *allocator):&#160;linear_allocator.c']]],
+  ['load_5ftexture_4',['load_texture',['../texture__system_8c.html#ac691176afc7122b609671e77b157ae2f',1,'texture_system.c']]],
+  ['log_5foutput_5',['log_output',['../logger_8c.html#abdf99acf6ecc4a6fd2277e74ed3fd8c6',1,'log_output(log_level level, const char *message,...):&#160;logger.c'],['../logger_8h.html#a0c968c3f536c566594a9fd2d14dfedfc',1,'log_output(log_level level, const char *message,...):&#160;logger.c']]]
 ];

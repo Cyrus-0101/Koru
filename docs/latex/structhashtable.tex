@@ -1,0 +1,93 @@
+\doxysection{hashtable Struct Reference}
+\hypertarget{structhashtable}{}\label{structhashtable}\index{hashtable@{hashtable}}
+
+
+Represents a simple hashtable structure.  
+
+
+
+
+{\ttfamily \#include $<$hashtable.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structhashtable_a18488633dba80321993a88bc601c8943}{element\+\_\+size}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structhashtable_a1b44861e441db05bd6d47522cf876cf9}{element\+\_\+count}}
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{structhashtable_acc947a484d362df13228531615d5a20e}{is\+\_\+pointer\+\_\+type}}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structhashtable_abfb60fec5707b73ae4c7a942d5010bc5}{memory}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a simple hashtable structure. 
+
+Definition at line \mbox{\hyperlink{hashtable_8h_source_l00029}{29}} of file \mbox{\hyperlink{hashtable_8h_source}{hashtable.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structhashtable_a1b44861e441db05bd6d47522cf876cf9}\label{structhashtable_a1b44861e441db05bd6d47522cf876cf9} 
+\index{hashtable@{hashtable}!element\_count@{element\_count}}
+\index{element\_count@{element\_count}!hashtable@{hashtable}}
+\doxysubsubsection{\texorpdfstring{element\_count}{element\_count}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} hashtable\+::element\+\_\+count}
+
+Maximum number of elements in the hashtable. 
+
+Definition at line \mbox{\hyperlink{hashtable_8h_source_l00034}{34}} of file \mbox{\hyperlink{hashtable_8h_source}{hashtable.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hashtable_8c_source_l00054}{hashtable\+\_\+create()}}, \mbox{\hyperlink{hashtable_8c_source_l00158}{hashtable\+\_\+fill()}}, \mbox{\hyperlink{hashtable_8c_source_l00120}{hashtable\+\_\+get()}}, \mbox{\hyperlink{hashtable_8c_source_l00138}{hashtable\+\_\+get\+\_\+ptr()}}, \mbox{\hyperlink{hashtable_8c_source_l00083}{hashtable\+\_\+set()}}, and \mbox{\hyperlink{hashtable_8c_source_l00101}{hashtable\+\_\+set\+\_\+ptr()}}.
+
+\Hypertarget{structhashtable_a18488633dba80321993a88bc601c8943}\label{structhashtable_a18488633dba80321993a88bc601c8943} 
+\index{hashtable@{hashtable}!element\_size@{element\_size}}
+\index{element\_size@{element\_size}!hashtable@{hashtable}}
+\doxysubsubsection{\texorpdfstring{element\_size}{element\_size}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} hashtable\+::element\+\_\+size}
+
+Size of each element in bytes. 
+
+Definition at line \mbox{\hyperlink{hashtable_8h_source_l00031}{31}} of file \mbox{\hyperlink{hashtable_8h_source}{hashtable.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hashtable_8c_source_l00054}{hashtable\+\_\+create()}}, \mbox{\hyperlink{hashtable_8c_source_l00158}{hashtable\+\_\+fill()}}, \mbox{\hyperlink{hashtable_8c_source_l00120}{hashtable\+\_\+get()}}, and \mbox{\hyperlink{hashtable_8c_source_l00083}{hashtable\+\_\+set()}}.
+
+\Hypertarget{structhashtable_acc947a484d362df13228531615d5a20e}\label{structhashtable_acc947a484d362df13228531615d5a20e} 
+\index{hashtable@{hashtable}!is\_pointer\_type@{is\_pointer\_type}}
+\index{is\_pointer\_type@{is\_pointer\_type}!hashtable@{hashtable}}
+\doxysubsubsection{\texorpdfstring{is\_pointer\_type}{is\_pointer\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} hashtable\+::is\+\_\+pointer\+\_\+type}
+
+Indicates if the hashtable holds pointer types. 
+
+Definition at line \mbox{\hyperlink{hashtable_8h_source_l00037}{37}} of file \mbox{\hyperlink{hashtable_8h_source}{hashtable.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hashtable_8c_source_l00054}{hashtable\+\_\+create()}}, \mbox{\hyperlink{hashtable_8c_source_l00158}{hashtable\+\_\+fill()}}, \mbox{\hyperlink{hashtable_8c_source_l00120}{hashtable\+\_\+get()}}, \mbox{\hyperlink{hashtable_8c_source_l00138}{hashtable\+\_\+get\+\_\+ptr()}}, \mbox{\hyperlink{hashtable_8c_source_l00083}{hashtable\+\_\+set()}}, and \mbox{\hyperlink{hashtable_8c_source_l00101}{hashtable\+\_\+set\+\_\+ptr()}}.
+
+\Hypertarget{structhashtable_abfb60fec5707b73ae4c7a942d5010bc5}\label{structhashtable_abfb60fec5707b73ae4c7a942d5010bc5} 
+\index{hashtable@{hashtable}!memory@{memory}}
+\index{memory@{memory}!hashtable@{hashtable}}
+\doxysubsubsection{\texorpdfstring{memory}{memory}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} hashtable\+::memory}
+
+Pointer to the memory block used for storing elements. 
+
+Definition at line \mbox{\hyperlink{hashtable_8h_source_l00040}{40}} of file \mbox{\hyperlink{hashtable_8h_source}{hashtable.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hashtable_8c_source_l00054}{hashtable\+\_\+create()}}, \mbox{\hyperlink{hashtable_8c_source_l00158}{hashtable\+\_\+fill()}}, \mbox{\hyperlink{hashtable_8c_source_l00120}{hashtable\+\_\+get()}}, \mbox{\hyperlink{hashtable_8c_source_l00138}{hashtable\+\_\+get\+\_\+ptr()}}, \mbox{\hyperlink{hashtable_8c_source_l00083}{hashtable\+\_\+set()}}, and \mbox{\hyperlink{hashtable_8c_source_l00101}{hashtable\+\_\+set\+\_\+ptr()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/containers/\mbox{\hyperlink{hashtable_8h}{hashtable.\+h}}\end{DoxyCompactItemize}

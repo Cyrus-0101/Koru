@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['stbi_5fuc_0',['stbi_uc',['../stb__image_8h.html#a28eb51a1512ce382ee50f20e1d04d50d',1,'stb_image.h']]],
-  ['stbi_5fus_1',['stbi_us',['../stb__image_8h.html#a648037d4c55689328ba08c8f5d293df2',1,'stb_image.h']]],
-  ['system_5fevent_5fcode_2',['system_event_code',['../event_8h.html#aeb3aa7dc1a87db9aae0a5f0b3df676b9',1,'event.h']]]
+  ['range32_0',['range32',['../defines_8h.html#a48a60b69f67a735eb885a52430192253',1,'defines.h']]],
+  ['registered_5fevent_1',['registered_event',['../event_8c.html#aa8b5e9c994ed612f290eb5e1f03624a9',1,'event.c']]],
+  ['renderer_5fsystem_5fstate_2',['renderer_system_state',['../renderer__frontend_8c.html#af1fc62d1de6c2a9c576325feb7f8fc21',1,'renderer_frontend.c']]]
 ];

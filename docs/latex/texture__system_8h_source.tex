@@ -1,0 +1,33 @@
+\doxysection{texture\+\_\+system.\+h}
+\hypertarget{texture__system_8h_source}{}\label{texture__system_8h_source}\index{engine/src/systems/texture\_system.h@{engine/src/systems/texture\_system.h}}
+\mbox{\hyperlink{texture__system_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}renderer/renderer\_types.inl"{}}}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00025}\mbox{\hyperlink{texture__system_8h_aa5d57505677b0f7a33597825053c0749}{00025}}\ \textcolor{preprocessor}{\#define\ DEFAULT\_TEXTURE\_NAME\ "{}default"{}}}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00036}\mbox{\hyperlink{structtexture__reference}{00036}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtexture__reference}{texture\_reference}}\ \{}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00040}\mbox{\hyperlink{structtexture__reference_a2d5873d56c724c778ec3df1fe13be8da}{00040}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ \mbox{\hyperlink{structtexture__reference_a2d5873d56c724c778ec3df1fe13be8da}{reference\_count}};}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00045}\mbox{\hyperlink{structtexture__reference_a9389753163a58129a40b914b43d6addf}{00045}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ \mbox{\hyperlink{structtexture__reference_a9389753163a58129a40b914b43d6addf}{handle}};}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00050}\mbox{\hyperlink{structtexture__reference_a45e8f00d28d2e0caa1bdd185b564fb99}{00050}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{structtexture__reference_a45e8f00d28d2e0caa1bdd185b564fb99}{auto\_release}};}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00051}\mbox{\hyperlink{texture__system_8h_a4c78ef19e89034adaf2203a53ccf1fec}{00051}}\ \}\ \mbox{\hyperlink{structtexture__reference}{texture\_reference}};}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00058}\mbox{\hyperlink{structtexture__system__config}{00058}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtexture__system__config}{texture\_system\_config}}\ \{}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00060}\mbox{\hyperlink{structtexture__system__config_a05af1afa542a4a872f02fa356001effb}{00060}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ \mbox{\hyperlink{structtexture__system__config_a05af1afa542a4a872f02fa356001effb}{max\_texture\_count}};}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00061}\mbox{\hyperlink{texture__system_8h_a6443d7244e90043250cd59f9179be5e9}{00061}}\ \}\ \mbox{\hyperlink{structtexture__system__config}{texture\_system\_config}};}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00072}00072\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{texture__system_8h_a5311316a2adfccd1ecadf29aea704cf0}{texture\_system\_initialize}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ memory\_requirement,\ \textcolor{keywordtype}{void}*\ state,\ \mbox{\hyperlink{structtexture__system__config}{texture\_system\_config}}\ config);}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00079}00079\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{texture__system_8h_a3170cfd4c3f2bbf15a69e6a965a39a03}{texture\_system\_shutdown}}(\textcolor{keywordtype}{void}*\ state);}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00092}00092\ \mbox{\hyperlink{structtexture}{texture}}*\ \mbox{\hyperlink{texture__system_8h_a94229d7d8c2e06fabb2d9e3c2296599e}{texture\_system\_acquire}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ auto\_release);}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00101}00101\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{texture__system_8h_ab454daecfb4133cbca5559dd84db3ac4}{texture\_system\_release}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name);}
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{texture__system_8h_source_l00110}00110\ \mbox{\hyperlink{structtexture}{texture}}*\ \mbox{\hyperlink{texture__system_8h_ae9e13f5483fd272b9430ca11719164e4}{texture\_system\_get\_default\_texture}}();}
+
+\end{DoxyCode}

@@ -10,7 +10,9 @@ Implementation of lightweight string utility functions.
 {\ttfamily \#include $<$stdarg.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
-Include dependency graph for kstring.\+c\+:\nopagebreak
+{\ttfamily \#include $<$strings.\+h$>$}\newline
+Include dependency graph for kstring.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,6 +28,8 @@ char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8c_ae4d2c3111ca8e06cce3
 \begin{DoxyCompactList}\small\item\em Duplicates the given null-\/terminated string into a new heap-\/allocated copy. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_a4088fb073177638c470fee72f8f2180a}{strings\+\_\+equal}} (const char \texorpdfstring{$\ast$}{*}str0, const char \texorpdfstring{$\ast$}{*}str1)
 \begin{DoxyCompactList}\small\item\em Compares two null-\/terminated strings for equality (case-\/sensitive). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_a8d4ca6df7122ffd452146b023195c4c9}{strings\+\_\+equali}} (const char \texorpdfstring{$\ast$}{*}str0, const char \texorpdfstring{$\ast$}{*}str1)
+\begin{DoxyCompactList}\small\item\em Compares two null-\/terminated strings for equality (case-\/insensitive). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{kstring_8c_a86babd936b82eaf4229e77406968f74d}{string\+\_\+format}} (char \texorpdfstring{$\ast$}{*}dest, const char \texorpdfstring{$\ast$}{*}format,...)
 \begin{DoxyCompactList}\small\item\em Performs string formatting against the given format string and parameters. NOTE\+: that this performs a dynamic allocation and should be freed by the caller. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{kstring_8c_a8cae02ae95f76915f2f34954f56f3105}{string\+\_\+format\+\_\+v}} (char \texorpdfstring{$\ast$}{*}dest, const char \texorpdfstring{$\ast$}{*}format, void \texorpdfstring{$\ast$}{*}va\+\_\+listp)
@@ -71,11 +75,11 @@ A newly allocated copy of the input string. Caller must free using {\ttfamily \d
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kstring_8c_source_l00027}{27}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00030}{30}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
 
 
 
-References \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8c_source_l00182}{kcopy\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{kstring_8c_source_l00023}{string\+\_\+length()}}.
+References \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8c_source_l00182}{kcopy\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{kstring_8c_source_l00026}{string\+\_\+length()}}.
 
 \Hypertarget{kstring_8c_a86babd936b82eaf4229e77406968f74d}\label{kstring_8c_a86babd936b82eaf4229e77406968f74d} 
 \index{kstring.c@{kstring.c}!string\_format@{string\_format}}
@@ -99,15 +103,15 @@ The newly-\/formatted string (dynamically allocated).
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kstring_8c_source_l00041}{41}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00052}{52}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
 
 
 
-References \mbox{\hyperlink{kstring_8c_source_l00052}{string\+\_\+format\+\_\+v()}}.
+References \mbox{\hyperlink{kstring_8c_source_l00063}{string\+\_\+format\+\_\+v()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00105}{load\+\_\+texture()}}, and \mbox{\hyperlink{logger_8c_source_l00095}{log\+\_\+output()}}.
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}, \mbox{\hyperlink{texture__system_8c_source_l00308}{load\+\_\+texture()}}, and \mbox{\hyperlink{logger_8c_source_l00095}{log\+\_\+output()}}.
 
 \Hypertarget{kstring_8c_a8cae02ae95f76915f2f34954f56f3105}\label{kstring_8c_a8cae02ae95f76915f2f34954f56f3105} 
 \index{kstring.c@{kstring.c}!string\_format\_v@{string\_format\_v}}
@@ -131,7 +135,7 @@ The newly-\/formatted string (dynamically allocated).
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kstring_8c_source_l00052}{52}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00063}{63}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
 
 
 
@@ -139,7 +143,7 @@ References \mbox{\hyperlink{kmemory_8c_source_l00182}{kcopy\+\_\+memory()}}.
 
 
 
-Referenced by \mbox{\hyperlink{logger_8c_source_l00095}{log\+\_\+output()}}, and \mbox{\hyperlink{kstring_8c_source_l00041}{string\+\_\+format()}}.
+Referenced by \mbox{\hyperlink{logger_8c_source_l00095}{log\+\_\+output()}}, and \mbox{\hyperlink{kstring_8c_source_l00052}{string\+\_\+format()}}.
 
 \Hypertarget{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9}\label{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9} 
 \index{kstring.c@{kstring.c}!string\_length@{string\_length}}
@@ -163,11 +167,11 @@ The number of characters in the string (excluding the null terminator).
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kstring_8c_source_l00023}{23}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00026}{26}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{logger_8c_source_l00050}{append\+\_\+to\+\_\+log\+\_\+file()}}, and \mbox{\hyperlink{kstring_8c_source_l00027}{string\+\_\+duplicate()}}.
+Referenced by \mbox{\hyperlink{logger_8c_source_l00050}{append\+\_\+to\+\_\+log\+\_\+file()}}, and \mbox{\hyperlink{kstring_8c_source_l00030}{string\+\_\+duplicate()}}.
 
 \Hypertarget{kstring_8c_a4088fb073177638c470fee72f8f2180a}\label{kstring_8c_a4088fb073177638c470fee72f8f2180a} 
 \index{kstring.c@{kstring.c}!strings\_equal@{strings\_equal}}
@@ -193,9 +197,39 @@ True if both strings are identical; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{kstring_8c_source_l00037}{37}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00040}{40}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00520}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00521}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+
+\Hypertarget{kstring_8c_a8d4ca6df7122ffd452146b023195c4c9}\label{kstring_8c_a8d4ca6df7122ffd452146b023195c4c9} 
+\index{kstring.c@{kstring.c}!strings\_equali@{strings\_equali}}
+\index{strings\_equali@{strings\_equali}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{strings\_equali()}{strings\_equali()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} strings\+\_\+equali (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str0,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{str1 }\end{DoxyParamCaption})}
+
+
+
+Compares two null-\/terminated strings for equality (case-\/insensitive). 
+
+This function performs a character-\/by-\/character comparison of two strings, ignoring case differences.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str0} & First string to compare. \\
+\hline
+{\em str1} & Second string to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if both strings are identical (case-\/insensitive); False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00044}{44}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, and \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}.
 

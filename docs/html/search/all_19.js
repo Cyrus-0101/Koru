@@ -5,7 +5,7 @@ var searchData=
   ['pfn_5fon_5fevent_2',['PFN_on_event',['../event_8h.html#ac694dc305b9660134b170d9560b0563a',1,'event.h']]],
   ['physical_20devices_3',['3. 🔍 Query Physical Devices',['../index.html#autotoc_md45',1,'']]],
   ['physical_5fdevice_5fmeets_5frequirements_4',['physical_device_meets_requirements',['../vulkan__device_8c.html#aa53d88ed2ed351537ad6b3f6ff109f7c',1,'vulkan_device.c']]],
-  ['pixel_5fcount_5',['PIXEL_COUNT',['../renderer__frontend_8c.html#ab4ed38ca6611a529c6e3120660d457f0',1,'renderer_frontend.c']]],
+  ['pixel_5fcount_5',['PIXEL_COUNT',['../texture__system_8c.html#ab4ed38ca6611a529c6e3120660d457f0',1,'texture_system.c']]],
   ['planned_20features_6',['Planned Features',['../index.html#autotoc_md16',1,'']]],
   ['platform_20layer_20strong_7',['1. &lt;strong&gt;Platform Layer&lt;/strong&gt;',['../index.html#autotoc_md9',1,'']]],
   ['platform_2eh_8',['platform.h',['../platform_8h.html',1,'']]],

@@ -26,5 +26,6 @@ var searchData=
   ['architecture_20render_20layer_23',['📦 High-Level Architecture (Render Layer)',['../index.html#autotoc_md37',1,'']]],
   ['asserts_2eh_24',['asserts.h',['../asserts_8h.html',1,'']]],
   ['attachment_5fdescription_5fcount_25',['ATTACHMENT_DESCRIPTION_COUNT',['../vulkan__renderpass_8c.html#a37321a6dab9f6bb0a8d877e0b15e4fed',1,'vulkan_renderpass.c']]],
-  ['attribute_5fcount_26',['ATTRIBUTE_COUNT',['../vulkan__object__shader_8c.html#a56289c7c829da6e2f4716327dd9352b2',1,'vulkan_object_shader.c']]]
+  ['attribute_5fcount_26',['ATTRIBUTE_COUNT',['../vulkan__material__shader_8c.html#a56289c7c829da6e2f4716327dd9352b2',1,'vulkan_material_shader.c']]],
+  ['auto_5frelease_27',['auto_release',['../structtexture__reference.html#a45e8f00d28d2e0caa1bdd185b564fb99',1,'texture_reference']]]
 ];
