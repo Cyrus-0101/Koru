@@ -90,7 +90,6 @@ void renderer_set_view(mat4 view);
  * a texture object that can be used in rendering operations.
  *
  * @param name Name of the texture (for identification/debugging).
- * @param auto_release Whether the texture should be automatically released when no longer needed.
  * @param width Width of the texture in pixels.
  * @param height Height of the texture in pixels.
  * @param channel_count Number of color channels (e.g., 3 for RGB, 4 for RGBA).
@@ -100,7 +99,6 @@ void renderer_set_view(mat4 view);
  */
 void renderer_create_texture(
     const char* name,
-    b8 auto_release,
     i32 width,
     i32 height,
     i32 channel_count,
