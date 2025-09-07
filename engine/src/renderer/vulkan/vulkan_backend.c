@@ -865,7 +865,7 @@ b8 create_buffers(vulkan_context* context) {
     return True;
 }
 
-void vulkan_renderer_create_texture(const char* name, b8 auto_release, i32 width, i32 height, i32 channel_count, const u8* pixels, b8 has_transparency, texture* out_texture) {
+void vulkan_renderer_create_texture(const char* name, i32 width, i32 height, i32 channel_count, const u8* pixels, b8 has_transparency, texture* out_texture) {
     out_texture->width = width;
     out_texture->height = height;
     out_texture->channel_count = channel_count;
