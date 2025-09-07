@@ -213,6 +213,26 @@ void vulkan_renderer_update_global_state(mat4 projection, mat4 view, vec3 view_p
  */
 void vulkan_backend_update_object(geometry_render_data data);
 
-void vulkan_renderer_create_texture(const char* name, b8 auto_release, i32 width, i32 height, i32 channel_count, const u8* pixels, b8 has_transparency, texture* out_texture);
+/**
+ * @brief Creates a texture in the Vulkan renderer backend.
+ *
+ * This function creates a texture from pixel data and initializes it for use in rendering.
+ *
+ * @param name The name of the texture (for debugging purposes).
+ * @param width The width of the texture in pixels.
+ * @param height The height of the texture in pixels.
+ * @param channel_count The number of channels in the texture (e.g., 4 for RGBA).
+ * @param pixels Pointer to the pixel data to upload to the texture.
+ * @param has_transparency Whether the texture has an alpha channel for transparency.
+ * @param out_texture Pointer to the texture structure to fill with the created texture.
+ */
+void vulkan_renderer_create_texture(const char* name, i32 width, i32 height, i32 channel_count, const u8* pixels, b8 has_transparency, texture* out_texture);
 
+/**
+ * @brief Destroys a texture in the Vulkan renderer backend.
+ *
+ * Cleans up all resources associated with the texture, including Vulkan image and sampler.
+ *
+ * @param texture Pointer to the texture structure to destroy.
+ */
 void vulkan_renderer_destroy_texture(texture* texture);
