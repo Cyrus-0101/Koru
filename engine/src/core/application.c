@@ -137,6 +137,16 @@ typedef struct application_state {
      * @brief Pointer to the renderer system state.
      */
     void* renderer_system_state;
+
+    /**
+     * @brief The total memory requirement for the texture system.
+     */
+    u64 texture_system_memory_requirement;
+
+    /**
+     * @brief Pointer to the texture system state.
+     */
+    void* texture_system_state;
 } application_state;
 
 /**
