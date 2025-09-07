@@ -17,6 +17,8 @@
 typedef struct vulkan_descriptor_state {
     // One per frame
     u32 generations[MAX_FRAMES_IN_FLIGHT];
+
+    u32 ids[MAX_FRAMES_IN_FLIGHT];
 } vulkan_descriptor_state;
 
 typedef struct vulkan_object_shader_object_state {
@@ -715,13 +717,6 @@ typedef struct vulkan_material_shader {
      * The size is defined by VULKAN_OBJECT_MAX_OBJECT_COUNT.
      */
     vulkan_object_shader_object_state object_states[VULKAN_OBJECT_MAX_OBJECT_COUNT];
-
-    /**
-     * @brief Pointer to the default diffuse texture used when no texture is assigned.
-     *
-     * This texture is used as a fallback to ensure that objects always have a valid texture.
-     */
-    texture* default_diffuse;
 
     /**
      * @brief Pipeline used for rendering.
