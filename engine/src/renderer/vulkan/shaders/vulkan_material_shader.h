@@ -23,7 +23,7 @@
  * @param out_shader Pointer to the vulkan_material_shader structure to be initialized.
  * @return True if the shader was created successfully; otherwise False.
  */
-b8 vulkan_material_shader_create(vulkan_context* context, texture* default_diffuse, vulkan_material_shader* out_shader);
+b8 vulkan_material_shader_create(vulkan_context* context, vulkan_material_shader* out_shader);
 
 /**
  * @brief Destroys a Vulkan object shader and frees associated resources.
