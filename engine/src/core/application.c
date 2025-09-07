@@ -70,8 +70,14 @@ typedef struct application_state {
      */
     linear_allocator systems_allocator;
 
+    /**
+     * @brief The total memory requirement for the event system.
+     */
     u64 event_system_memory_requirement;
 
+    /**
+     * @brief Pointer to the event system state.
+     */
     void* event_system_state;
 
     /**
@@ -102,16 +108,34 @@ typedef struct application_state {
      */
     void* logging_system_state;
 
+    /**
+     * @brief The total memory requirement for the input system.
+     */
     u64 input_system_memory_requirement;
 
+    /**
+     * @brief Pointer to the input system state.
+     */
     void* input_system_state;
 
+    /**
+     * @brief The total memory requirement for the platform system.
+     */
     u64 platform_system_memory_requirement;
 
+    /**
+     * @brief Pointer to the platform system state.
+     */
     void* platform_system_state;
 
+    /**
+     * @brief The total memory requirement for the renderer system.
+     */
     u64 renderer_system_memory_requirement;
 
+    /**
+     * @brief Pointer to the renderer system state.
+     */
     void* renderer_system_state;
 } application_state;
 
