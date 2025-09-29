@@ -325,8 +325,8 @@ void vulkan_material_shader_update_object(vulkan_context* context, struct vulkan
     // Load the data into the buffer.
     vulkan_buffer_load_data(context, &shader->object_uniform_buffer, offset, range, 0, &obo);
 
-    // Only do this if the descriptor has not yet been updated.
-    if (object_state->descriptor_states[descriptor_index].generations[image_index] == INVALID_ID) {
+    // Only do this if the descriptor has not yet been updated or if the objeect id is invalid
+    if (object_state->descriptor_states[descriptor_index].generations[image_index] == INVALID_ID || data.object_id != INVALID_ID) {
         VkDescriptorBufferInfo buffer_info;
         buffer_info.buffer = shader->object_uniform_buffer.handle;
         buffer_info.offset = offset;
