@@ -328,12 +328,6 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
         sizeof(u32) * INDEX_COUNT,
         indices);
 
-    u32 object_id = 0;
-    if (!vulkan_material_shader_acquire_resources(&context, &context.material_shader, &object_id)) {
-        KERROR("Failed to acquire resources.");
-        return False;
-    }
-
     // To-DO: End of temporary test code
 
     KINFO("Vulkan renderer initialized successfully.");
@@ -998,4 +992,31 @@ void vulkan_renderer_destroy_texture(struct texture* texture) {
     }
 
     kzero_memory(texture, sizeof(struct texture));
+}
+
+b8 vulkan_renderer_create_material(struct material* material) {
+    if (material) {
+        if (!vulkan_material_shader_acquire_resources(&context, &context.material_shader, material)) {
+            KERROR("vulkan_renderer_create_material - Failed to acquire shader resources.");
+            return False;
+        }
+
+        KTRACE("Renderer: Material created.");
+        return True;
+    }
+
+    KERROR("vulkan_renderer_create_material called with nullptr. Creation failed.");
+    return False;
+}
+
+void vulkan_renderer_destroy_material(struct material* material) {
+    if (material) {
+        if (material->internal_id != INVALID_ID) {
+            vulkan_material_shader_release_resources(&context, &context.material_shader, material);
+        } else {
+            KWARN("vulkan_renderer_destroy_material called with internal_id=INVALID_ID. Nothing was done.");
+        }
+    } else {
+        KWARN("vulkan_renderer_destroy_material called with nullptr. Nothing was done.");
+    }
 }

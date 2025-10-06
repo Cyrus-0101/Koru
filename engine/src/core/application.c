@@ -12,6 +12,7 @@
 
 // Systems
 #include "systems/texture_system.h"
+#include "systems/material_system.h"
 
 /**
  * @file application.c
@@ -150,6 +151,16 @@ typedef struct application_state {
      * @brief Pointer to the texture system state.
      */
     void* texture_system_state;
+
+    /**
+     * @brief The total memory requirement for the material system.
+     */
+    u64 material_system_memory_requirement;
+
+    /**
+     * @brief Pointer to the material system state
+     */
+    void* material_system_state;
 } application_state;
 
 /**
@@ -293,6 +304,18 @@ b8 application_create(game* game_inst) {
         return False;
     }
 
+    // Material system startup
+    material_system_config material_sys_config;
+    material_sys_config.max_material_count = 4096;
+
+    material_system_initialize(&app_state->material_system_memory_requirement, 0, material_sys_config);
+
+    app_state->material_system_state = linear_allocator_allocate(&app_state->systems_allocator, app_state->material_system_memory_requirement);
+    if (!material_system_initialize(&app_state->material_system_memory_requirement, app_state->material_system_state, material_sys_config)) {
+        KFATAL("Failed to initialize material system. Application cannot continue.");
+        return False;
+    }
+
     // Initialize Game
     if (!app_state->game_inst->initialize(app_state->game_inst)) {
         KFATAL("Game failed to initialize");
@@ -406,6 +429,8 @@ b8 application_run() {
     event_unregister(EVENT_CODE_RESIZED, 0, application_on_resized);
 
     input_system_shutdown(app_state->input_system_state);
+
+    material_system_shutdown(app_state->material_system_state);
 
     texture_system_shutdown(app_state->texture_system_state);
 

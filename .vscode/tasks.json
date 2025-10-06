@@ -3,12 +3,10 @@
         {
             "label": "Build All Components",
             "dependsOn": [
-                // "Build GLSL 2 SPV",
+                "Build GLSL 2 SPV",
                 "Build Engine",
                 "Build Testbed",
                 "Build Everything",
-                // "Test Everything",
-                // "Run Tests of Everything"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": []
@@ -70,58 +68,6 @@
         },
         {
             "type": "shell",
-            "label": "Run Tests",
-            "windows": {
-                "command": "${workspaceFolder}/tests/build.bat"
-            },
-            "linux": {
-                "command": "${workspaceFolder}/tests/build.sh"
-            },
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "env": {
-                    "CRITERION_OUTPUTS": "tap,json"
-                }
-            },
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated",
-                "clear": true
-            },
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
-            "label": "Run Test Build",
-            "windows": {
-                "command": "${workspaceFolder}/test/tests"
-            },
-            "linux": {
-                "command": "${workspaceFolder}/test/tests"
-            },
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "env": {
-                    "CRITERION_OUTPUTS": "tap,json"
-                }
-            },
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated",
-                "clear": true
-            },
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
             "label": "Clean Everything",
             "windows": {
                 "command": "${workspaceFolder}\\clean-all.bat",
@@ -150,7 +96,7 @@
         },
         {
             "type": "shell",
-            "label": "Test Everything",
+            "label": "Build Test Executable",
             "windows": {
                 "command": "${workspaceFolder}\tests\build.bat",
             },
@@ -164,7 +110,7 @@
         },
         {
             "type": "shell",
-            "label": "Run Tests of Everything",
+            "label": "Run Test Build",
             "windows": {
                 "command": "cd ${workspaceFolder}/bin && .\\tests.exe && cd ..",
             },
