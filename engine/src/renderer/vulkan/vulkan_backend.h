@@ -236,3 +236,21 @@ void vulkan_renderer_create_texture(const char* name, i32 width, i32 height, i32
  * @param texture Pointer to the texture structure to destroy.
  */
 void vulkan_renderer_destroy_texture(texture* texture);
+
+/**
+ * @brief Creates a material resource.
+ *
+ * This function initializes a material with the provided properties
+ * and prepares it for use in rendering operations.
+ *
+ * @param material Pointer to the material structure to be filled out.
+ * @return True if the material was created successfully; otherwise False.
+ */
+b8 vulkan_renderer_create_material(struct material* material);
+
+/**
+ * @brief Destroys a material resource and frees associated resources.
+ *
+ * @param material Pointer to the material to be destroyed.
+ */
+void vulkan_renderer_destroy_material(struct material* material);
