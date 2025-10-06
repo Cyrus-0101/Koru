@@ -78,10 +78,10 @@ void vulkan_material_shader_update_object(vulkan_context* context, struct vulkan
  *
  * @param context The Vulkan context containing device and swapchain information.
  * @param shader Pointer to the vulkan_material_shader structure from which to acquire resources.
- * @param out_material_id Pointer to store the acquired object ID.
+ * @param material Pointer to the material associated with the object being rendered.
  * @return True if resources were successfully acquired; otherwise False.
  */
-b8 vulkan_material_shader_acquire_resources(vulkan_context* context, struct vulkan_material_shader* shader, u32* out_material_id);
+b8 vulkan_material_shader_acquire_resources(vulkan_context* context, struct vulkan_material_shader* shader, material* material);
 
 /**
  * @brief Releases resources associated with a specific object ID in the Vulkan object shader.
@@ -91,6 +91,6 @@ b8 vulkan_material_shader_acquire_resources(vulkan_context* context, struct vulk
  *
  * @param context The Vulkan context containing device information.
  * @param shader Pointer to the vulkan_material_shader structure from which to release resources.
- * @param object_id The object ID whose resources are to be released.
+ * @param material Pointer to the material associated with the object being released.
  */
-void vulkan_material_shader_release_resources(vulkan_context* context, struct vulkan_material_shader* shader, u32 object_id);
+void vulkan_material_shader_release_resources(vulkan_context* context, struct vulkan_material_shader* shader, material* material);
