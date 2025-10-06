@@ -331,7 +331,7 @@ void vulkan_material_shader_update_object(vulkan_context* context, struct vulkan
 
     u32* global_ubo_generation = &object_state->descriptor_states[descriptor_index].generations[image_index];
     // Only do this if the descriptor has not yet been updated or if the objeect id is invalid
-    if (*global_ubo_generation == INVALID_ID || *global_ubo_generation != data.material->generation || data.material->internal_id != INVALID_ID) {
+    if (*global_ubo_generation == INVALID_ID || *global_ubo_generation != data.material->generation || data.material->internal_id == INVALID_ID) {
         VkDescriptorBufferInfo buffer_info;
         buffer_info.buffer = shader->object_uniform_buffer.handle;
         buffer_info.offset = offset;
