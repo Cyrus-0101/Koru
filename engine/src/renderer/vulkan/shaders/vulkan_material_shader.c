@@ -31,10 +31,10 @@ b8 vulkan_material_shader_create(vulkan_context* context, vulkan_material_shader
     // TODO: MAKE CONFIGURABLE
 
     // Shader module init per stage.
-    char stage_type_strs[OBJECT_SHADER_STAGE_COUNT][5] = {"vert", "frag"};
-    VkShaderStageFlagBits stage_types[OBJECT_SHADER_STAGE_COUNT] = {VK_SHADER_STAGE_VERTEX_BIT, VK_SHADER_STAGE_FRAGMENT_BIT};
+    char stage_type_strs[MATERIAL_SHADER_STAGE_COUNT][5] = {"vert", "frag"};
+    VkShaderStageFlagBits stage_types[MATERIAL_SHADER_STAGE_COUNT] = {VK_SHADER_STAGE_VERTEX_BIT, VK_SHADER_STAGE_FRAGMENT_BIT};
 
-    for (u32 i = 0; i < OBJECT_SHADER_STAGE_COUNT; ++i) {
+    for (u32 i = 0; i < MATERIAL_SHADER_STAGE_COUNT; ++i) {
         if (!create_shader_module(context, BUILTIN_SHADER_NAME_OBJECT, stage_type_strs[i], stage_types[i], i, out_shader->stages)) {
             KERROR("Unable to create %s shader module for '%s'.", stage_type_strs[i], BUILTIN_SHADER_NAME_OBJECT);
             return False;
@@ -70,15 +70,15 @@ b8 vulkan_material_shader_create(vulkan_context* context, vulkan_material_shader
 
     // Local/Object Descriptors
     const u32 local_sampler_count = 1;
-    VkDescriptorType descriptor_types[VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT] = {
+    VkDescriptorType descriptor_types[VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT] = {
         VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,          /// Binding 0 - uniform buffer
         VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,  // Binding 1 - Diffuse sampler layout.
     };
 
-    VkDescriptorSetLayoutBinding bindings[VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT];
+    VkDescriptorSetLayoutBinding bindings[VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT];
 
-    kzero_memory(&bindings, sizeof(VkDescriptorSetLayoutBinding) * VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT);
-    for (u32 i = 0; i < VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT; ++i) {
+    kzero_memory(&bindings, sizeof(VkDescriptorSetLayoutBinding) * VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT);
+    for (u32 i = 0; i < VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT; ++i) {
         bindings[i].binding = i;
         bindings[i].descriptorCount = 1;
         bindings[i].descriptorType = descriptor_types[i];
@@ -86,7 +86,7 @@ b8 vulkan_material_shader_create(vulkan_context* context, vulkan_material_shader
     }
 
     VkDescriptorSetLayoutCreateInfo layout_info = {VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO};
-    layout_info.bindingCount = VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT;
+    layout_info.bindingCount = VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT;
     layout_info.pBindings = bindings;
     VK_CHECK(vkCreateDescriptorSetLayout(context->device.logical_device, &layout_info, 0, &out_shader->object_descriptor_set_layout));
 
@@ -149,10 +149,10 @@ b8 vulkan_material_shader_create(vulkan_context* context, vulkan_material_shader
 
     // Stages
     // NOTE: Should match the number of shader->stages
-    VkPipelineShaderStageCreateInfo stage_create_infos[OBJECT_SHADER_STAGE_COUNT] = {};
+    VkPipelineShaderStageCreateInfo stage_create_infos[MATERIAL_SHADER_STAGE_COUNT] = {};
     kzero_memory(stage_create_infos, sizeof(stage_create_infos));
 
-    for (u32 i = 0; i < OBJECT_SHADER_STAGE_COUNT; ++i) {
+    for (u32 i = 0; i < MATERIAL_SHADER_STAGE_COUNT; ++i) {
         stage_create_infos[i].sType = out_shader->stages[i].shader_stage_create_info.sType;
         stage_create_infos[i] = out_shader->stages[i].shader_stage_create_info;
     }
@@ -164,7 +164,7 @@ b8 vulkan_material_shader_create(vulkan_context* context, vulkan_material_shader
             attribute_descriptions,
             descriptor_set_layout_count,
             layouts,
-            OBJECT_SHADER_STAGE_COUNT,
+            MATERIAL_SHADER_STAGE_COUNT,
             stage_create_infos,
             viewport,
             scissor,
@@ -243,7 +243,7 @@ void vulkan_material_shader_destroy(vulkan_context* context, struct vulkan_mater
     vkDestroyDescriptorSetLayout(logical_device, shader->global_descriptor_set_layout, context->allocator);
 
     // Destroy shader modules.
-    for (u32 i = 0; i < OBJECT_SHADER_STAGE_COUNT; ++i) {
+    for (u32 i = 0; i < MATERIAL_SHADER_STAGE_COUNT; ++i) {
         KDEBUG("Destroying shader module %p", shader->stages[i].handle);
         vkDestroyShaderModule(
             context->device.logical_device,
@@ -306,8 +306,8 @@ void vulkan_material_shader_update_object(vulkan_context* context, struct vulkan
     VkDescriptorSet object_descriptor_set = object_state->descriptor_sets[image_index];
 
     // TODO: if needs update
-    VkWriteDescriptorSet descriptor_writes[VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT];
-    kzero_memory(descriptor_writes, sizeof(VkWriteDescriptorSet) * VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT);
+    VkWriteDescriptorSet descriptor_writes[VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT];
+    kzero_memory(descriptor_writes, sizeof(VkWriteDescriptorSet) * VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT);
     u32 descriptor_count = 0;
     u32 descriptor_index = 0;
 
@@ -407,7 +407,7 @@ b8 vulkan_material_shader_acquire_resources(vulkan_context* context, struct vulk
 
     u32 object_id = *out_object_id;
     vulkan_object_shader_object_state* object_state = &shader->object_states[object_id];
-    for (u32 i = 0; i < VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT; ++i) {
+    for (u32 i = 0; i < VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT; ++i) {
         for (u32 j = 0; j < 3; ++j) {
             object_state->descriptor_states[i].generations[j] = INVALID_ID;
             object_state->descriptor_states[i].ids[j] = INVALID_ID;
@@ -448,7 +448,7 @@ void vulkan_material_shader_release_resources(vulkan_context* context, struct vu
         KERROR("Error Freeing object shader descriptor sets!");
     }
 
-    for (u32 i = 0; i < VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT; ++i) {
+    for (u32 i = 0; i < VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT; ++i) {
         for (u32 j = 0; j < 3; ++j) {
             object_state->descriptor_states[i].generations[j] = INVALID_ID;
             object_state->descriptor_states[i].ids[j] = INVALID_ID;

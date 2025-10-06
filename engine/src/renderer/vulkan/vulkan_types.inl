@@ -6,9 +6,9 @@
 
 #include <vulkan/vulkan.h>
 
-#define OBJECT_SHADER_STAGE_COUNT 2
+#define MATERIAL_SHADER_STAGE_COUNT 2
 
-#define VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT 2
+#define VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT 2
 
 #define VULKAN_OBJECT_MAX_OBJECT_COUNT 1024
 
@@ -26,7 +26,7 @@ typedef struct vulkan_object_shader_object_state {
     VkDescriptorSet descriptor_sets[MAX_FRAMES_IN_FLIGHT];
 
     // Per descriptor
-    vulkan_descriptor_state descriptor_states[VULKAN_OBJECT_SHADER_DESCRIPTOR_COUNT];
+    vulkan_descriptor_state descriptor_states[VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT];
 } vulkan_object_shader_object_state;
 
 /**
@@ -52,13 +52,13 @@ typedef struct vulkan_object_shader_object_state {
     }
 
 /**
- * @def OBJECT_SHADER_STAGE_COUNT
+ * @def MATERIAL_SHADER_STAGE_COUNT
  * @brief Number of shader stages used in the object shader.
  *
  * This is used to define how many shader stages are present in the object shader,
  * which is typically 2 (vertex and fragment).
  */
-#define OBJECT_SHADER_STAGE_COUNT 2
+#define MATERIAL_SHADER_STAGE_COUNT 2
 
 /**
  * @struct vulkan_buffer
@@ -633,7 +633,7 @@ typedef struct vulkan_material_shader {
      *
      * Typically 2: vertex and fragment.
      */
-    vulkan_shader_stage stages[OBJECT_SHADER_STAGE_COUNT];
+    vulkan_shader_stage stages[MATERIAL_SHADER_STAGE_COUNT];
 
     /**
      * @brief Descriptor pool used for allocating descriptor sets.
