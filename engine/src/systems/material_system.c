@@ -84,7 +84,7 @@ void destroy_material(material* m);
  * @param out_config Pointer to the material_config structure to be populated.
  * @return `True` if the configuration was loaded successfully, `False` otherwise.
  */
-b8 load_configuration_file(const char* oath, material_config* out_config);
+b8 load_configuration_file(const char* path, material_config* out_config);
 
 b8 material_system_initialize(u64* memory_requirement, void* state, material_system_config config) {
     if (config.max_material_count == 0) {
