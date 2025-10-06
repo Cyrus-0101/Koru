@@ -79,7 +79,7 @@ typedef struct global_uniform_object {
 
 // To be changed to local_uniform_object
 // Potentially uploaded once per object per frame
-typedef struct object_uniform_object {
+typedef struct material_uniform_object {
     vec4 diffuse_color;  // 16 bytes
 
     vec4 v_reserved0;  // 16 bytes - reserved for future use
@@ -87,15 +87,21 @@ typedef struct object_uniform_object {
     vec4 v_reserved1;  // 16 bytes - reserved for future use
 
     vec4 v_reserved2;  // 16 bytes - reserved for future use
-} object_uniform_object;
+} material_uniform_object;
 
-// Used to pass information to the renderer on how to render specific geometry
+/**
+ * @struct geometry_render_data
+ * @brief Contains data required to render a single geometry object.
+ *
+ * This structure holds the model transformation matrix and material information
+ * needed for rendering an object in the scene.
+ */
 typedef struct geometry_render_data {
-    u32 object_id;
-
+    /** Model transformation matrix for the object. */
     mat4 model;
 
-    texture* textures[16];  // Array of texture pointers upto 16
+    /** Pointer to the material used for rendering the object. */
+    material* material;
 } geometry_render_data;
 
 /**
@@ -183,6 +189,20 @@ typedef struct renderer_backend {
      */
     void (*update_object)(geometry_render_data data);
 
+    /**
+     * @brief Creates a texture resource from raw pixel data.
+     *
+     * This function uploads the provided pixel data to the GPU and creates
+     * a texture object that can be used in rendering operations.
+     *
+     * @param name Name of the texture resource.
+     * @param width Width of the texture in pixels.
+     * @param height Height of the texture in pixels.
+     * @param channel_count Number of color channels (e.g., 3 for RGB, 4 for RGBA).
+     * @param pixels Pointer to the raw pixel data
+     * @param has_transparency Whether the texture contains transparency (alpha channel).
+     * @param out_texture Pointer to the texture structure to be filled out.
+     */
     void (*create_texture)(
         const char* name,
         i32 width,
@@ -192,7 +212,29 @@ typedef struct renderer_backend {
         b8 has_transparency,
         struct texture* out_texture);
 
+    /**
+     * @brief Destroys a texture resource and frees associated GPU memory.
+     * @param texture Pointer to the texture to be destroyed.
+     */
     void (*destroy_texture)(struct texture* texture);
+
+    /**
+     * @brief Creates a material resource.
+     *
+     * This function initializes a material with the provided properties
+     * and prepares it for use in rendering operations.
+     *
+     * @param material Pointer to the material structure to be filled out.
+     * @return True if the material was created successfully; otherwise False.
+     */
+    b8 (*create_material)(struct material* material);
+
+    /**
+     * @brief Destroys a material resource and frees associated resources.
+     *
+     * @param material Pointer to the material to be destroyed.
+     */
+    void (*destroy_material)(struct material* material);
 } renderer_backend;
 
 /**
