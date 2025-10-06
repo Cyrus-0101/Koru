@@ -6,11 +6,21 @@
 
 #include <vulkan/vulkan.h>
 
+/**
+ * @file vulkan_types.inl
+ * @brief Internal Vulkan-specific types used across the Koru engine.
+ *
+ * This file contains structures and typedefs specific to the Vulkan renderer implementation.
+ * It should only be included in Vulkan-related source files (e.g., device, swapchain, renderpass).
+ */
+
 #define MATERIAL_SHADER_STAGE_COUNT 2
 
 #define VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT 2
 
-#define VULKAN_OBJECT_MAX_OBJECT_COUNT 1024
+#define VULKAN_MATERIAL_SHADER_SAMPLER_COUNT 1
+
+#define VULKAN_MAX_MATERIAL_COUNT 1024
 
 #define MAX_FRAMES_IN_FLIGHT 4
 
@@ -21,21 +31,13 @@ typedef struct vulkan_descriptor_state {
     u32 ids[MAX_FRAMES_IN_FLIGHT];
 } vulkan_descriptor_state;
 
-typedef struct vulkan_object_shader_object_state {
+typedef struct vulkan_material_shader_instance_state {
     // Per frame
     VkDescriptorSet descriptor_sets[MAX_FRAMES_IN_FLIGHT];
 
     // Per descriptor
     vulkan_descriptor_state descriptor_states[VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT];
-} vulkan_object_shader_object_state;
-
-/**
- * @file vulkan_types.inl
- * @brief Internal Vulkan-specific types used across the Koru engine.
- *
- * This file contains structures and typedefs specific to the Vulkan renderer implementation.
- * It should only be included in Vulkan-related source files (e.g., device, swapchain, renderpass).
- */
+} vulkan_material_shader_instance_state;
 
 /**
  * @def VK_CHECK(expr)
@@ -709,14 +711,22 @@ typedef struct vulkan_material_shader {
      */
     u32 object_uniform_buffer_index;
 
+    /**
+     * @brief Array of texture sampler uses for the shader.
+     *
+     * Defines how each sampler is used in the shader (e.g., diffuse map).
+     * The size is defined by VULKAN_MATERIAL_SHADER_SAMPLER_COUNT.
+     */
+    texture_use sampler_uses[VULKAN_MATERIAL_SHADER_SAMPLER_COUNT];
+
     // TODO: Make dynamic
     /**
      * @brief Array of object states, one per possible object.
      *
      * Each state contains descriptor sets and tracking info for individual objects.
-     * The size is defined by VULKAN_OBJECT_MAX_OBJECT_COUNT.
+     * The size is defined by VULKAN_MAX_MATERIAL_COUNT.
      */
-    vulkan_object_shader_object_state object_states[VULKAN_OBJECT_MAX_OBJECT_COUNT];
+    vulkan_material_shader_instance_state instance_states[VULKAN_MAX_MATERIAL_COUNT];
 
     /**
      * @brief Pipeline used for rendering.
