@@ -1,0 +1,1223 @@
+\chapter{Koru}
+\hypertarget{md_README}{}\label{md_README}\index{Koru@{Koru}}
+\label{md_README_autotoc_md0}%
+\Hypertarget{md_README_autotoc_md0}%
+ \href{https://github.com/Cyrus-0101/Koru/actions}{\texttt{ }}
+
+\begin{quote}
+{\itshape A lightweight, multi-\/platform game engine built in C using the Vulkan graphics API.} \end{quote}
+Koru is designed to be fast, portable, and easy to extend — providing a low-\/level foundation for game development across platforms including Windows, Linux, and soon consoles and mobile devices.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md2}{}\doxysection{\texorpdfstring{🧠 What Is Koru?}{🧠 What Is Koru?}}\label{md_README_autotoc_md2}
+Koru is a {\bfseries{C99-\/based game engine}} focused on performance, portability, and modularity. It\textquotesingle{}s ideal for developers who want fine-\/grained control over rendering, input, memory, and platform-\/specific functionality without the overhead of high-\/level abstractions.\hypertarget{md_README_autotoc_md3}{}\doxysubsection{\texorpdfstring{External libs (/engine/src/vendor/)}{External libs (/engine/src/vendor/)}}\label{md_README_autotoc_md3}
+
+\begin{DoxyEnumerate}
+\item stb-\/image.\+h -\/ From \href{https://github.com/nothings/stb}{\texttt{ STB by Sean Barrett}} -\/ Lightweight way to handle and load images
+\end{DoxyEnumerate}\hypertarget{md_README_autotoc_md4}{}\doxysubsection{\texorpdfstring{🚀 Features\+:}{🚀 Features:}}\label{md_README_autotoc_md4}
+
+\begin{DoxyItemize}
+\item Written entirely in {\bfseries{C99}} – minimal dependencies
+\item {\bfseries{Vulkan-\/based renderer}} for high-\/performance graphics
+\item Cross-\/platform\+: {\bfseries{Windows, Linux, Mac}} (with future plans for consoles and mobile)
+\item Modular architecture for {\bfseries{easy extension}}
+\item Custom {\bfseries{memory allocators}}, {\bfseries{logging}}, {\bfseries{assertions}}, and {\bfseries{data structures}} etc
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md6}{}\doxysection{\texorpdfstring{🖼 Architecture}{🖼 Architecture}}\label{md_README_autotoc_md6}
+The high-\/level architecture of Koru is divided into four main layers\+:\hypertarget{md_README_autotoc_md7}{}\doxysubsection{\texorpdfstring{1. $<$strong$>$\+Platform Layer$<$/strong$>$}{1. <strong>Platform Layer</strong>}}\label{md_README_autotoc_md7}
+Handles OS-\/specific functionality\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Windowing}}\+: Creates and manages windows on Windows/\+Linux/\+Mac.
+\item {\bfseries{Input}}\+: Manages keyboard, mouse, and gamepad input.
+\item {\bfseries{File I/O}}\+: Provides cross-\/platform file system access.
+\item {\bfseries{Console Output}}\+: Handles logging and debugging output.
+\item {\bfseries{Memory Management}}\+: Allocates and frees memory efficiently.
+\item {\bfseries{Renderer API Extensions}}\+: Integrates with Vulkan for rendering.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md8}{}\doxysubsection{\texorpdfstring{2. $<$strong$>$\+Core$<$/strong$>$}{2. <strong>Core</strong>}}\label{md_README_autotoc_md8}
+Provides fundamental utilities and services\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Logger}}\+: Logs messages for debugging and monitoring.
+\item {\bfseries{Assertions}}\+: Ensures correctness during development.
+\item {\bfseries{Data Structures}}\+: Efficient containers like dynamic arrays, linked lists, etc.
+\item {\bfseries{Memory Allocators}}\+: Custom allocators for optimized memory usage.
+\item {\bfseries{Math Library}}\+: Vector, matrix, and quaternion operations.
+\item {\bfseries{Parsers}}\+: Parses formats like XML, CSV, JSON, etc.
+\item {\bfseries{Engine Configuration}}\+: Loads and manages engine settings.
+\item {\bfseries{Profiling}}\+: Measures performance bottlenecks.
+\item {\bfseries{Async File I/O}}\+: Asynchronous file operations for non-\/blocking I/O.
+\item {\bfseries{Localization}}\+: Supports internationalization.
+\item {\bfseries{String Library}}\+: String manipulation utilities.
+\item {\bfseries{Random Number Generator (RNG)}}\+: Generates random numbers for simulations and AI.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md9}{}\doxysubsection{\texorpdfstring{3. $<$strong$>$\+Resource Management$<$/strong$>$}{3. <strong>Resource Management</strong>}}\label{md_README_autotoc_md9}
+Manages various assets\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Images}}\+: Texture loading and caching.
+\item {\bfseries{Materials}}\+: Shader and lighting configurations.
+\item {\bfseries{Meshes}}\+: 3D model loading and processing.
+\item {\bfseries{Animations}}\+: Skeletal animations and timeline systems.
+\item {\bfseries{World Maps}}\+: Terrain and level data management.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md10}{}\doxysubsection{\texorpdfstring{4. $<$strong$>$\+Application Layer$<$/strong$>$}{4. <strong>Application Layer</strong>}}\label{md_README_autotoc_md10}
+Contains higher-\/level systems\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Renderer Front End}}\+: GUI, camera management, post-\/processing effects.
+\item {\bfseries{Renderer Back End}}\+: Scene graph, materials, shaders, meshes, textures.
+\item {\bfseries{Audio}}\+: 2D/3D audio playback, effects, and spatial audio.
+\item {\bfseries{Others}}\+: Animation/timelines, event system, ECS, state machines, collision/physics.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md12}{}\doxysection{\texorpdfstring{📋 Feature List}{📋 Feature List}}\label{md_README_autotoc_md12}
+Here’s a summary of the features to be implemented in v0.\+1\+:\hypertarget{md_README_autotoc_md13}{}\doxysubsection{\texorpdfstring{Core Features}{Core Features}}\label{md_README_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\bfseries{Lightweight build system}}\+: Simple scripts for compiling on Windows and Linux.
+\item {\bfseries{Low-\/level utilities}}\+:
+\begin{DoxyItemize}
+\item Dynamic arrays
+\item String handling
+\item Memory allocators
+\item Profiling tools
+\item Assertions
+\item Logging
+\end{DoxyItemize}
+\item {\bfseries{Platform layer}}\+:
+\begin{DoxyItemize}
+\item Window creation and management
+\item Input handling (keyboard, mouse, gamepad)
+\item File I/O
+\item Console output
+\end{DoxyItemize}
+\item {\bfseries{Renderer/\+API Abstraction Layer}}\+: Uses Vulkan for cross-\/platform rendering.
+\item {\bfseries{Memory Management}}\+: Custom allocators for efficient memory use.
+\item {\bfseries{Scenegraph/\+ECS}}\+: Hierarchical scene management and entity-\/component-\/system architecture.
+\item {\bfseries{Profiling/\+Debugging utilities}}\+: Tools for measuring performance and identifying bottlenecks.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}"{}\+Scripting"{} support via hot reloading\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: Experimental support for scripting through hot-\/reloading mechanisms.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md14}{}\doxysubsection{\texorpdfstring{Planned Features}{Planned Features}}\label{md_README_autotoc_md14}
+
+\begin{DoxyItemize}
+\item Mobile and console support
+\item Full audio subsystem
+\item Physics and collision detection
+\item Advanced animation system
+\item Improved asset pipeline
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md16}{}\doxysection{\texorpdfstring{🎨 Visuals}{🎨 Visuals}}\label{md_README_autotoc_md16}
+Check out the diagrams included in the {\ttfamily assets/} folder to understand how everything fits together\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Diagram   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Diagram   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+   &High-\/level overview of system modules and interactions    \\\cline{1-2}
+   &File structure and module organization    \\\cline{1-2}
+   &Summary of current capabilities and roadmap   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md18}{}\doxysection{\texorpdfstring{📁 Project Structure}{📁 Project Structure}}\label{md_README_autotoc_md18}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.}
+\DoxyCodeLine{├──\ assets}
+\DoxyCodeLine{│\ \ \ ├──\ Koru\ Engine\ Architecture.png}
+\DoxyCodeLine{│\ \ \ ├──\ Koru\ Project\ Structure.png}
+\DoxyCodeLine{│\ \ \ ├──\ Koru\ v0.1\ Feature\ List.png}
+\DoxyCodeLine{│\ \ \ └──\ shaders}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ Builtin.ObjectShader.frag.glsl}
+\DoxyCodeLine{│\ \ \ \ \ \ \ └──\ Builtin.ObjectShader.vert.glsl}
+\DoxyCodeLine{├──\ bin}
+\DoxyCodeLine{│\ \ \ ├──\ assets}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ Koru\ Engine\ Architecture.png}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ Koru\ Project\ Structure.png}
+\DoxyCodeLine{│\ \ \ │\ \ \ ├──\ Koru\ v0.1\ Feature\ List.png}
+\DoxyCodeLine{│\ \ \ │\ \ \ └──\ shaders}
+\DoxyCodeLine{│\ \ \ │\ \ \ \ \ \ \ ├──\ Builtin.ObjectShader.frag.glsl}
+\DoxyCodeLine{│\ \ \ │\ \ \ \ \ \ \ ├──\ Builtin.ObjectShader.frag.spv}
+\DoxyCodeLine{│\ \ \ │\ \ \ \ \ \ \ ├──\ Builtin.ObjectShader.vert.glsl}
+\DoxyCodeLine{│\ \ \ │\ \ \ \ \ \ \ └──\ Builtin.ObjectShader.vert.spv}
+\DoxyCodeLine{│\ \ \ ├──\ console.log}
+\DoxyCodeLine{│\ \ \ ├──\ libengine.so}
+\DoxyCodeLine{│\ \ \ ├──\ testbed}
+\DoxyCodeLine{│\ \ \ └──\ tests}
+\DoxyCodeLine{├──\ build-\/all.bat}
+\DoxyCodeLine{├──\ build-\/all.sh}
+\DoxyCodeLine{├──\ clean-\/all.bat}
+\DoxyCodeLine{├──\ clean-\/all.sh}
+\DoxyCodeLine{├──\ Doxyfile\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Configuration\ for\ generating\ API\ documentation\ with\ Doxygen}
+\DoxyCodeLine{├──\ engine}
+\DoxyCodeLine{│\ \ \ ├──\ build.bat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Windows:\ Builds\ engine\ DLL}
+\DoxyCodeLine{│\ \ \ ├──\ build.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Linux:\ Builds\ engine\ shared\ object\ (.so)}
+\DoxyCodeLine{│\ \ \ └──\ src}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ containers}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ darray.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Implementation\ of\ dynamic\ array\ container}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ darray.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Public\ interface\ for\ dynamic\ arrays}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ core}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ application.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Application\ lifecycle\ implementation\ (init/run/shutdown)}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ application.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Public\ interface\ for\ the\ application\ system}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ asserts.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Custom\ assertion\ macros\ and\ debugging\ utilities}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ clock.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ clock.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ event.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Event\ system\ implementation\ (register/unregister/fire)}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ event.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Public\ interface\ for\ event\ handling\ system}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ input.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ input.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kmemory.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Memory\ allocation\ system\ with\ tagging\ support}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kmemory.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Interface\ for\ tagged\ memory\ management}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kstring.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kstring.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ logger.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Logging\ system\ with\ color-\/coded\ output}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ logger.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Public\ interface\ for\ logging\ module}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ defines.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Common\ type\ definitions,\ macros,\ and\ platform\ detection}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ entry.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Entry\ point\ interface;\ declares\ create\_game()}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ game\_types.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Game-\/related\ types\ used\ across\ engine\ and\ game\ logic}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ math}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kmath.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ kmath.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ math\_types.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ memory}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ linear\_allocator.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ linear\_allocator.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ ├──\ platform}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ filesystem.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ filesystem.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ platform\_android.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ |\ \ \ ├──\ platform.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Platform\ abstraction\ layer\ interface}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ platform\_ios.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ platform\_linux.c\ \ \ \ \ \ \ \ \ \ \ \#\ Linux-\/specific\ implementation\ of\ platform\ functions}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ ├──\ platform\_macos.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ │\ \ \ └──\ platform\_win32.c\ \ \ \ \ \ \ \ \ \ \ \#\ Windows-\/specific\ implementation\ of\ platform\ functions}
+\DoxyCodeLine{│\ \ \ \ \ \ \ └──\ renderer}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_backend.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_backend.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_frontend.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_frontend.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ├──\ renderer\_types.inl}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ └──\ vulkan}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ shaders}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ ├──\ vulkan\_object\_shader.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ └──\ vulkan\_object\_shader.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_backend.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_backend.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_buffer.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_buffer.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_command\_buffer.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_command\_buffer.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_device.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_device.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_fence.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_fence.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_framebuffer.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_framebuffer.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_image.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_image.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_pipeline.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_pipeline.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_platform.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_renderpass.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_renderpass.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_shader\_utils.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_shader\_utils.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_swapchain.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_swapchain.h}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_types.inl}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ vulkan\_utils.c}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └──\ vulkan\_utils.h}
+\DoxyCodeLine{├──\ LICENSE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ MIT\ License\ file}
+\DoxyCodeLine{├──\ Makefile.engine.linux.mak}
+\DoxyCodeLine{├──\ Makefile.engine.windows.mak}
+\DoxyCodeLine{├──\ Makefile.testbed.linux.mak}
+\DoxyCodeLine{├──\ Makefile.testbed.windows.mak}
+\DoxyCodeLine{├──\ post-\/build.bat}
+\DoxyCodeLine{├──\ post-\/build.sh}
+\DoxyCodeLine{├──\ README.md\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ This\ file\ -\/\ main\ project\ overview\ and\ guide}
+\DoxyCodeLine{├──\ testbed}
+\DoxyCodeLine{|\ \ \ ├──\ build.bat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Windows:\ Builds\ testbed\ application}
+\DoxyCodeLine{|\ \ \ ├──\ build.sh\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Linux:\ Builds\ testbed\ application}
+\DoxyCodeLine{|\ \ \ └──\ src}
+\DoxyCodeLine{|\ \ \ \ \ \ \ ├──\ entry.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Entry\ point\ for\ testbed\ app;\ implements\ create\_game()}
+\DoxyCodeLine{|\ \ \ \ \ \ \ ├──\ game.c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Testbed\ game\ logic\ (initialize/update/render\ stubs)}
+\DoxyCodeLine{|\ \ \ \ \ \ \ └──\ game.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Interface\ for\ testbed\ game\ implementation}
+\DoxyCodeLine{└──\ tests}
+\DoxyCodeLine{\ \ \ \ ├──\ build.bat}
+\DoxyCodeLine{\ \ \ \ ├──\ build.sh}
+\DoxyCodeLine{\ \ \ \ └──\ src}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ expect.h}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ main.c}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ memory}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ │\ \ \ ├──\ linear\_allocator\_tests.c}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ │\ \ \ └──\ linear\_allocator\_tests.h}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ test\_manager.c}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ └──\ test\_manager.h}
+\DoxyCodeLine{}
+\DoxyCodeLine{37\ directories,\ 176\ files\ \ \ }
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md20}{}\doxysection{\texorpdfstring{⚙️ Build Scripts/\+Instructions}{⚙️ Build Scripts/Instructions}}\label{md_README_autotoc_md20}
+Check tasks.\+json for sequence\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ File   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Notes    }\\\cline{1-3}
+\endhead
+{\ttfamily engine/build.\+sh}   &Builds engine {\ttfamily .so} (shared lib) on Linux   &Uses Vulkan/\+XCB/\+X11    \\\cline{1-3}
+{\ttfamily engine/build.\+bat}   &Builds engine {\ttfamily .dll} on Windows   &Links with Vulkan SDK    \\\cline{1-3}
+{\ttfamily testbed/build.\+sh}   &Builds testbed app using engine {\ttfamily .so} on Linux   &Sets RPATH for easy loading    \\\cline{1-3}
+{\ttfamily testbed/build.\+bat}   &Builds testbed {\ttfamily .exe} using engine {\ttfamily .dll} on Windows   &Links {\ttfamily .lib} import library    \\\cline{1-3}
+{\ttfamily build-\/all.\+sh}   &Runs all Linux builds sequentially   &Checks for errors    \\\cline{1-3}
+{\ttfamily build-\/all.\+bat}   &Runs all Windows builds sequentially   &Same as above but for Windows   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md_README_autotoc_md21}{}\doxysubsection{\texorpdfstring{Linux}{Linux}}\label{md_README_autotoc_md21}
+Make sure Clang and the Vulkan SDK are installed. Alternatively install VSCode and run the debugger (Commonly F5, and run the engine)
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Give\ execution\ permissions}
+\DoxyCodeLine{chmod\ +x\ build-\/all.sh}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Run\ the\ build}
+\DoxyCodeLine{./build-\/all.sh}
+
+\end{DoxyCode}
+
+
+The output will be placed in {\ttfamily bin/}\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily libengine.\+so} – The engine shared library
+\item {\ttfamily testbed} – The testbed executable
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md22}{}\doxysubsection{\texorpdfstring{Windows}{Windows}}\label{md_README_autotoc_md22}
+Ensure\+:
+
+
+\begin{DoxyItemize}
+\item Clang is available
+\item Vulkan SDK is installed and {\ttfamily VULKAN\+\_\+\+SDK} environment variable is set
+\item VS Code makes it easy to run the tasks in the .vscode/tasks.\+json file.
+\end{DoxyItemize}
+
+Then run\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{build-\/all.bat}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md23}{}\doxysection{\texorpdfstring{Building Docs}{Building Docs}}\label{md_README_autotoc_md23}
+To generate our Doxygen documentation, run\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{doxygen\ Doxyfile}
+
+\end{DoxyCode}
+
+
+Output files\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily bin\textbackslash{}engine.\+dll}
+\item {\ttfamily bin\textbackslash{}testbed.\+exe}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md25}{}\doxysection{\texorpdfstring{🔮 Roadmap}{🔮 Roadmap}}\label{md_README_autotoc_md25}
+Plans to expand Koru include\+:
+
+
+\begin{DoxyItemize}
+\item ✅ {\bfseries{Rendering Layer}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Vulkan renderer initialization
+\item \mbox{[} \mbox{]} Swapchain setup
+\item \mbox{[} \mbox{]} Command buffers, pipelines, shaders
+\end{DoxyItemize}
+\item ✅ {\bfseries{Input System}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Keyboard/mouse/gamepad support
+\item \mbox{[} \mbox{]} Input mapping and event system
+\end{DoxyItemize}
+\item ✅ {\bfseries{Asset Management}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Texture loader
+\item \mbox{[} \mbox{]} Mesh format and loader
+\item \mbox{[} \mbox{]} Material system
+\end{DoxyItemize}
+\item ✅ {\bfseries{Audio System}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Basic sound playback
+\item \mbox{[} \mbox{]} Cross-\/platform audio backend
+\end{DoxyItemize}
+\item ✅ {\bfseries{Multi-\/\+Platform Support}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Console (Play\+Station, Xbox, Switch)
+\item \mbox{[} \mbox{]} Mobile (Android/i\+OS)
+\end{DoxyItemize}
+\item ✅ {\bfseries{Editor Tools}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} Simple scene editor
+\item \mbox{[} \mbox{]} Asset pipeline tools
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md27}{}\doxysection{\texorpdfstring{💡 Want to Help?}{💡 Want to Help?}}\label{md_README_autotoc_md27}
+Contributions are welcome! Whether you\textquotesingle{}re interested in\+:
+
+
+\begin{DoxyItemize}
+\item Writing documentation
+\item Implementing new features
+\item Fixing bugs
+\item Improving tooling or build scripts
+\end{DoxyItemize}
+
+Feel free to open an issue or PR!
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md29}{}\doxysection{\texorpdfstring{📄 License}{📄 License}}\label{md_README_autotoc_md29}
+This project is licensed under the MIT License – see the \mbox{[}LICENSE\mbox{]}(LICENSE) file for details.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\ 🚀\ Next\ Steps}
+\DoxyCodeLine{}
+\DoxyCodeLine{TO-\/DO:\ Add:}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/\ ✅\ A\ **Getting\ Started\ Guide**\ (`docs/getting-\/started.md`)}
+\DoxyCodeLine{-\/\ ✅\ A\ **Contribution\ Guide**\ (`CONTRIBUTING.md`)}
+\DoxyCodeLine{-\/\ ✅\ A\ **Code\ of\ Conduct**\ (`CODE\_OF\_CONDUCT.md`)}
+\DoxyCodeLine{-\/\ ✅\ GitHub\ Actions\ for\ CI\ builds\ (optional)}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md31}{}\doxysection{\texorpdfstring{🎮 Koru Engine – Rendering System (\+Vulkan)}{🎮 Koru Engine – Rendering System (Vulkan)}}\label{md_README_autotoc_md31}
+\begin{quote}
+{\itshape A deep dive into how Koru sets up its Vulkan-\/based rendering system — from instance creation to frame submission.} \end{quote}
+Koru is a {\bfseries{low-\/level game engine}} written in C99 that uses the {\bfseries{Vulkan graphics API}} for rendering. This document explains the {\bfseries{entire rendering pipeline setup}} used in Koru, including\+:
+\begin{DoxyItemize}
+\item Instance creation
+\item Physical device selection
+\item Logical device creation
+\item Surface \& swapchain setup
+\item Render passes
+\item Framebuffers
+\item Command buffers
+\end{DoxyItemize}
+
+This guide assumes some basic knowledge of C and Vulkan concepts. If you\textquotesingle{}re new to Vulkan, this will help understand what’s happening behind the scenes as you run the testbed.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md33}{}\doxysubsection{\texorpdfstring{🧠 Why Use Vulkan?}{🧠 Why Use Vulkan?}}\label{md_README_autotoc_md33}
+Vulkan gives developers {\bfseries{explicit control over GPU operations}}. It allows fine-\/grained access to queues, memory, and rendering pipelines — which is great for performance, but comes at the cost of complexity.
+
+Koru abstracts much of that complexity using a {\bfseries{modular architecture}}, allowing you to build a rendering system step-\/by-\/step without needing to manage everything manually every time.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md35}{}\doxysubsection{\texorpdfstring{📦 High-\/\+Level Architecture (\+Render Layer)}{📦 High-Level Architecture (Render Layer)}}\label{md_README_autotoc_md35}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Application\ \ \ \ |}
+\DoxyCodeLine{|\ \ \ \ \ Logic\ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ (game.c)\ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Renderer\ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Frontend\ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (renderer\_frontend.h/c)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Platform\ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Abstraction\ \ \ \ |}
+\DoxyCodeLine{|\ (platform\_linux.c)|}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Vulkan\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Device\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_device.c/h)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Swapchain\ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Management\ \ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_swapchain.c/h)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Render\ Pass\ /\ \ |}
+\DoxyCodeLine{|\ \ \ Framebuffer\ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_renderpass.c/h)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Image\ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Management\ \ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_image.c/h)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Command\ Buffer\ |}
+\DoxyCodeLine{|\ \ \ Submission\ \ \ \ \ |}
+\DoxyCodeLine{|\ (renderer\_frontend.c)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+
+
+This shows how each module fits into the overall rendering flow.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md37}{}\doxysubsection{\texorpdfstring{🛠️ The Full Rendering Setup Process}{🛠️ The Full Rendering Setup Process}}\label{md_README_autotoc_md37}
+Let’s walk through {\bfseries{each stage of the rendering setup process}}, with real code examples from the engine.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md39}{}\doxysubsubsection{\texorpdfstring{1. 🧱 Create Vulkan Instance}{1. 🧱 Create Vulkan Instance}}\label{md_README_autotoc_md39}
+The first thing to do is creating a {\bfseries{Vk\+Instance}} — this connects the app to the Vulkan library.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ From\ vulkan\_renderer\_backend\_initialize()}}
+\DoxyCodeLine{VkApplicationInfo\ app\_info\ =\ \{VK\_STRUCTURE\_TYPE\_APPLICATION\_INFO\};}
+\DoxyCodeLine{app\_info.apiVersion\ =\ VK\_MAKE\_API\_VERSION(0,\ 1,\ 4,\ 0);}
+\DoxyCodeLine{app\_info.pApplicationName\ =\ application\_name;}
+\DoxyCodeLine{app\_info.applicationVersion\ =\ VK\_MAKE\_API\_VERSION(0,\ 0,\ 0,\ 1);}
+\DoxyCodeLine{app\_info.pEngineName\ =\ \textcolor{stringliteral}{"{}Koru\ Engine"{}};}
+\DoxyCodeLine{app\_info.engineVersion\ =\ VK\_MAKE\_API\_VERSION(0,\ 0,\ 0,\ 1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkInstanceCreateInfo\ create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_INSTANCE\_CREATE\_INFO\};}
+\DoxyCodeLine{create\_info.pApplicationInfo\ =\ \&app\_info;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ required\_extensions\ =\ darray\_create(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{darray\_push(required\_extensions,\ \&VK\_KHR\_SURFACE\_EXTENSION\_NAME);}
+\DoxyCodeLine{platform\_get\_required\_extension\_names(\&required\_extensions);}
+\DoxyCodeLine{}
+\DoxyCodeLine{create\_info.enabledExtensionCount\ =\ darray\_length(required\_extensions);}
+\DoxyCodeLine{create\_info.ppEnabledExtensionNames\ =\ required\_extensions;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Enable\ validation\ layers\ if\ \_DEBUG\ is\ defined}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#if\ defined(\_DEBUG)}}
+\DoxyCodeLine{\ \ \ \ create\_info.enabledLayerCount\ =\ required\_validation\_layer\_count;}
+\DoxyCodeLine{\ \ \ \ create\_info.ppEnabledLayerNames\ =\ required\_validation\_layer\_names;}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateInstance(\&create\_info,\ context.allocator,\ \&context.instance));}
+
+\end{DoxyCode}
+
+
+✅ This creates the {\bfseries{main connection to Vulkan}}, enabling extensions and validation layers.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md41}{}\doxysubsubsection{\texorpdfstring{2. 🖥 Create Window Surface}{2. 🖥 Create Window Surface}}\label{md_README_autotoc_md41}
+Next, to create a {\bfseries{surface}} — this is what connects the window to the GPU.
+
+In Linux\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ platform\_linux.c}}
+\DoxyCodeLine{xcb\_intern\_atom\_reply\_t*\ wm\_delete\_reply\ =\ xcb\_intern\_atom\_reply(...);}
+\DoxyCodeLine{state-\/>wm\_delete\_win\ =\ wm\_delete\_reply-\/>atom;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Create\ surface}}
+\DoxyCodeLine{VkXcbSurfaceCreateInfoKHR\ surface\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_XCB\_SURFACE\_CREATE\_INFO\_KHR\};}
+\DoxyCodeLine{surface\_create\_info.connection\ =\ state-\/>connection;}
+\DoxyCodeLine{surface\_create\_info.window\ =\ state-\/>window;}
+\DoxyCodeLine{}
+\DoxyCodeLine{vkCreateXcbSurfaceKHR(context-\/>instance,\ \&surface\_create\_info,\ context-\/>allocator,\ \&context-\/>surface);}
+
+\end{DoxyCode}
+
+
+In Windows\+: The engine uses {\ttfamily vk\+Create\+Win32\+Surface\+KHR()} instead.
+
+✅ A surface is essential because it defines where rendered frames go usually the screen or a window.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md43}{}\doxysubsubsection{\texorpdfstring{3. 🔍 Query Physical Devices}{3. 🔍 Query Physical Devices}}\label{md_README_autotoc_md43}
+Once an instance and a surface are ready, query available GPUs\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_device.c}}
+\DoxyCodeLine{u32\ physical\_device\_count\ =\ 0;}
+\DoxyCodeLine{VK\_CHECK(vkEnumeratePhysicalDevices(context-\/>device.physical\_device,\ \&physical\_device\_count,\ 0));}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkPhysicalDevice\ physical\_devices[physical\_device\_count];}
+\DoxyCodeLine{VK\_CHECK(vkEnumeratePhysicalDevices(context-\/>instance,\ \&physical\_device\_count,\ physical\_devices));}
+
+\end{DoxyCode}
+
+
+Then select one that meets requirements\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (u32\ i\ =\ 0;\ i\ <\ physical\_device\_count;\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceProperties\ properties;}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceProperties(physical\_devices[i],\ \&properties);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceFeatures\ features;}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceFeatures(physical\_devices[i],\ \&features);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Check\ queue\ family\ support}}
+\DoxyCodeLine{\ \ \ \ vulkan\_physical\_device\_queue\_family\_info\ queue\_info\ =\ \{\};}
+\DoxyCodeLine{\ \ \ \ vulkan\_swapchain\_support\_info\ swapchain\_support\ =\ \{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ b8\ result\ =\ physical\_device\_meets\_requirements(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ physical\_devices[i],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ context-\/>surface,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&properties,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&features,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&requirements,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&queue\_info,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \&swapchain\_support);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+🔍 Requirements include\+:
+\begin{DoxyItemize}
+\item Graphics/\+Compute/\+Present/\+Transfer queues
+\item Extensions like {\ttfamily VK\+\_\+\+KHR\+\_\+\+SWAPCHAIN\+\_\+\+EXTENSION\+\_\+\+NAME}
+\item Features like {\ttfamily sampler\+Anisotropy}
+\item Prefer discrete GPU (optional)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md45}{}\doxysubsubsection{\texorpdfstring{4. 🔄 Create Logical Device}{4. 🔄 Create Logical Device}}\label{md_README_autotoc_md45}
+After selecting a suitable physical device, create a {\bfseries{logical device}} to interface with the GPU.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_device.c}}
+\DoxyCodeLine{b8\ present\_shares\_graphics\_queue\ =\ (context-\/>device.graphics\_queue\_index\ ==\ context-\/>device.present\_queue\_index);}
+\DoxyCodeLine{b8\ transfer\_shares\_graphics\_queue\ =\ (context-\/>device.graphics\_queue\_index\ ==\ context-\/>device.transfer\_queue\_index);}
+\DoxyCodeLine{}
+\DoxyCodeLine{u32\ index\_count\ =\ 1;}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (!present\_shares\_graphics\_queue)\ index\_count++;}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (!transfer\_shares\_graphics\_queue)\ index\_count++;}
+\DoxyCodeLine{}
+\DoxyCodeLine{u32\ indices[index\_count];}
+\DoxyCodeLine{indices[0]\ =\ context-\/>device.graphics\_queue\_index;}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+
+
+Define the queues as needed\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkDeviceQueueCreateInfo\ queue\_create\_infos[index\_count];}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (u32\ i\ =\ 0;\ i\ <\ index\_count;\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ queue\_create\_infos[i].sType\ =\ VK\_STRUCTURE\_TYPE\_DEVICE\_QUEUE\_CREATE\_INFO;}
+\DoxyCodeLine{\ \ \ \ queue\_create\_infos[i].queueFamilyIndex\ =\ indices[i];}
+\DoxyCodeLine{\ \ \ \ queue\_create\_infos[i].queueCount\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ f32\ queue\_priority\ =\ 1.0f;}
+\DoxyCodeLine{\ \ \ \ queue\_create\_infos[i].pQueuePriorities\ =\ \&queue\_priority;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Finally, create the logical device\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkDeviceCreateInfo\ device\_create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_DEVICE\_CREATE\_INFO\};}
+\DoxyCodeLine{device\_create\_info.queueCreateInfoCount\ =\ index\_count;}
+\DoxyCodeLine{device\_create\_info.pQueueCreateInfos\ =\ queue\_create\_infos;}
+\DoxyCodeLine{device\_create\_info.pEnabledFeatures\ =\ \&device\_features;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateDevice(context-\/>device.physical\_device,\ \&device\_create\_info,\ context-\/>allocator,\ \&context-\/>device.logical\_device));}
+
+\end{DoxyCode}
+
+
+✅ This creates a way to submit commands to the GPU.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md47}{}\doxysubsubsection{\texorpdfstring{5. ⏱ Get Queues}{5. ⏱ Get Queues}}\label{md_README_autotoc_md47}
+Once the device is created, get handles to the actual queues\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vkGetDeviceQueue(context-\/>device.logical\_device,\ context-\/>device.graphics\_queue\_index,\ 0,\ \&context-\/>device.graphics\_queue);}
+\DoxyCodeLine{vkGetDeviceQueue(context-\/>device.logical\_device,\ context-\/>device.present\_queue\_index,\ 0,\ \&context-\/>device.present\_queue);}
+
+\end{DoxyCode}
+
+
+These are used later to\+:
+\begin{DoxyItemize}
+\item Submit draw commands ({\ttfamily graphics\+\_\+queue})
+\item Present frames ({\ttfamily present\+\_\+queue})
+\item Copy data ({\ttfamily transfer\+\_\+queue})
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md49}{}\doxysubsubsection{\texorpdfstring{6. 🔄 Query Swapchain Support}{6. 🔄 Query Swapchain Support}}\label{md_README_autotoc_md49}
+Before creating a swapchain, check what formats and modes are supported\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_device.c}}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ vulkan\_device\_query\_swapchain\_support(...)\ \{}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device,\ surface,\ \&out\_support-\/>capabilities);}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceSurfaceFormatsKHR(device,\ surface,\ \&out\_support-\/>format\_count,\ 0);}
+\DoxyCodeLine{\ \ \ \ vkGetPhysicalDeviceSurfacePresentModesKHR(device,\ surface,\ \&out\_support-\/>present\_mode\_count,\ 0);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+This helps choose the best image format and presentation mode.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md51}{}\doxysubsubsection{\texorpdfstring{7. 🔁 Create Swapchain}{7. 🔁 Create Swapchain}}\label{md_README_autotoc_md51}
+Now create the swapchain based on what the device supports\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_swapchain.c}}
+\DoxyCodeLine{VkSwapchainCreateInfoKHR\ create\_info\ =\ \{VK\_STRUCTURE\_TYPE\_SWAPCHAIN\_CREATE\_INFO\_KHR\};}
+\DoxyCodeLine{create\_info.surface\ =\ context-\/>surface;}
+\DoxyCodeLine{create\_info.minImageCount\ =\ image\_count;}
+\DoxyCodeLine{create\_info.imageFormat\ =\ swapchain-\/>image\_format.format;}
+\DoxyCodeLine{create\_info.imageExtent\ =\ swapchain\_extent;}
+\DoxyCodeLine{create\_info.imageUsage\ =\ VK\_IMAGE\_USAGE\_COLOR\_ATTACHMENT\_BIT;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (context-\/>device.graphics\_queue\_index\ !=\ context-\/>device.present\_queue\_index)\ \{}
+\DoxyCodeLine{\ \ \ \ u32\ queueFamilyIndices[]\ =\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (u32)context-\/>device.graphics\_queue\_index,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (u32)context-\/>device.present\_queue\_index\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ create\_info.imageSharingMode\ =\ VK\_SHARING\_MODE\_CONCURRENT;}
+\DoxyCodeLine{\ \ \ \ create\_info.queueFamilyIndexCount\ =\ 2;}
+\DoxyCodeLine{\ \ \ \ create\_info.pQueueFamilyIndices\ =\ queueFamilyIndices;}
+\DoxyCodeLine{\}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ create\_info.imageSharingMode\ =\ VK\_SHARING\_MODE\_EXCLUSIVE;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateSwapchainKHR(context-\/>device.logical\_device,\ \&create\_info,\ context-\/>allocator,\ \&swapchain-\/>handle));}
+
+\end{DoxyCode}
+
+
+🔄 The swapchain acts like a rotating carousel of images\+:
+\begin{DoxyItemize}
+\item One is being drawn
+\item One is being displayed
+\item One is waiting to be used next
+\end{DoxyItemize}
+
+This avoids tearing and ensures smooth rendering.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md53}{}\doxysubsubsection{\texorpdfstring{8. 🖼 Create Image Views}{8. 🖼 Create Image Views}}\label{md_README_autotoc_md53}
+Each image in the swapchain needs a {\bfseries{view}} so the GPU can interpret it\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (u32\ i\ =\ 0;\ i\ <\ swapchain-\/>image\_count;\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ VkImageViewCreateInfo\ view\_info\ =\ \{VK\_STRUCTURE\_TYPE\_IMAGE\_VIEW\_CREATE\_INFO\};}
+\DoxyCodeLine{\ \ \ \ view\_info.image\ =\ swapchain-\/>images[i];}
+\DoxyCodeLine{\ \ \ \ view\_info.viewType\ =\ VK\_IMAGE\_VIEW\_TYPE\_2D;}
+\DoxyCodeLine{\ \ \ \ view\_info.format\ =\ swapchain-\/>image\_format.format;}
+\DoxyCodeLine{\ \ \ \ view\_info.subresourceRange.aspectMask\ =\ VK\_IMAGE\_ASPECT\_COLOR\_BIT;}
+\DoxyCodeLine{\ \ \ \ view\_info.subresourceRange.baseMipLevel\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ view\_info.subresourceRange.levelCount\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ view\_info.subresourceRange.baseArrayLayer\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ view\_info.layerCount\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ VK\_CHECK(vkCreateImageView(context-\/>device.logical\_device,\ \&view\_info,\ context-\/>allocator,\ \&swapchain-\/>views[i]));}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+🖼 Each image view wraps a raw {\ttfamily Vk\+Image}, defining how it\textquotesingle{}s accessed (e.\+g., color attachment, depth buffer).
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md55}{}\doxysubsubsection{\texorpdfstring{9. 🧊 Detect Depth Format}{9. 🧊 Detect Depth Format}}\label{md_README_autotoc_md55}
+For depth testing, a compatible depth format is needed\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{b8\ vulkan\_device\_detect\_depth\_format(vulkan\_device*\ device)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ u64\ candidate\_count\ =\ 3;}
+\DoxyCodeLine{\ \ \ \ VkFormat\ candidates[candidate\_count]\ =\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VK\_FORMAT\_D32\_SFLOAT,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VK\_FORMAT\_D32\_SFLOAT\_S8\_UINT,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VK\_FORMAT\_D24\_UNORM\_S8\_UINT\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (u64\ i\ =\ 0;\ i\ <\ candidate\_count;\ ++i)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ VkFormatProperties\ props;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vkGetPhysicalDeviceFormatProperties(device-\/>physical\_device,\ candidates[i],\ \&props);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((props.optimalTilingFeatures\ \&\ VK\_FORMAT\_FEATURE\_DEPTH\_STENCIL\_ATTACHMENT\_BIT))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ device-\/>depth\_format\ =\ candidates[i];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ True;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ KERROR(\textcolor{stringliteral}{"{}No\ supported\ depth\ format\ found."{}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ False;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+🧃 Once selected, create a depth/stencil image and its view.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md57}{}\doxysubsubsection{\texorpdfstring{10. 🎨 Create Render Pass}{10. 🎨 Create Render Pass}}\label{md_README_autotoc_md57}
+The render pass defines how rendering works — what attachments to use, how they behave, and what subpasses exist.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ vulkan\_renderpass.c}}
+\DoxyCodeLine{VkAttachmentDescription\ attachments[2]\ =\ \{\};}
+\DoxyCodeLine{attachments[0].format\ =\ swapchain-\/>image\_format.format;}
+\DoxyCodeLine{attachments[0].loadOp\ =\ VK\_ATTACHMENT\_LOAD\_OP\_CLEAR;}
+\DoxyCodeLine{attachments[0].storeOp\ =\ VK\_ATTACHMENT\_STORE\_OP\_STORE;}
+\DoxyCodeLine{attachments[0].stencilLoadOp\ =\ VK\_ATTACHMENT\_LOAD\_OP\_DONT\_CARE;}
+\DoxyCodeLine{attachments[0].initialLayout\ =\ VK\_IMAGE\_LAYOUT\_UNDEFINED;}
+\DoxyCodeLine{attachments[0].finalLayout\ =\ VK\_IMAGE\_LAYOUT\_PRESENT\_SRC\_KHR;}
+\DoxyCodeLine{}
+\DoxyCodeLine{attachments[1].format\ =\ context-\/>device.depth\_format;}
+\DoxyCodeLine{attachments[1].loadOp\ =\ VK\_ATTACHMENT\_LOAD\_OP\_CLEAR;}
+\DoxyCodeLine{attachments[1].storeOp\ =\ VK\_ATTACHMENT\_STORE\_OP\_DONT\_CARE;}
+\DoxyCodeLine{attachments[1].initialLayout\ =\ VK\_IMAGE\_LAYOUT\_UNDEFINED;}
+\DoxyCodeLine{attachments[1].finalLayout\ =\ VK\_IMAGE\_LAYOUT\_DEPTH\_STENCIL\_ATTACHMENT\_OPTIMAL;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkSubpassDescription\ subpass\ =\ \{\};}
+\DoxyCodeLine{subpass.pipelineBindPoint\ =\ VK\_PIPELINE\_BIND\_POINT\_GRAPHICS;}
+\DoxyCodeLine{subpass.colorAttachmentCount\ =\ 1;}
+\DoxyCodeLine{subpass.pColorAttachments\ =\ \&color\_ref;}
+\DoxyCodeLine{subpass.pDepthStencilAttachment\ =\ \&depth\_stencil\_ref;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkRenderPassCreateInfo\ info\ =\ \{\};}
+\DoxyCodeLine{info.sType\ =\ VK\_STRUCTURE\_TYPE\_RENDER\_PASS\_CREATE\_INFO;}
+\DoxyCodeLine{info.attachmentCount\ =\ 2;}
+\DoxyCodeLine{info.pAttachments\ =\ attachments;}
+\DoxyCodeLine{info.subpassCount\ =\ 1;}
+\DoxyCodeLine{info.pSubpasses\ =\ \&subpass;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateRenderPass(context-\/>device.logical\_device,\ \&info,\ context-\/>allocator,\ \&renderpass-\/>handle));}
+
+\end{DoxyCode}
+
+
+🎨 The render pass is like a {\bfseries{blueprint}} — it tells the GPU\+:
+\begin{DoxyItemize}
+\item What kind of data it will write to
+\item How to handle clearing and storing it
+\item What layout transitions happen between steps
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md59}{}\doxysubsubsection{\texorpdfstring{11. 🖼 Create Framebuffers}{11. 🖼 Create Framebuffers}}\label{md_README_autotoc_md59}
+Framebuffers combine images and render passes\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkFramebufferCreateInfo\ fb\_info\ =\ \{VK\_STRUCTURE\_TYPE\_FRAMEBUFFER\_CREATE\_INFO\};}
+\DoxyCodeLine{fb\_info.renderPass\ =\ renderpass-\/>handle;}
+\DoxyCodeLine{fb\_info.attachmentCount\ =\ 2;}
+\DoxyCodeLine{fb\_info.pAttachments\ =\ attachments;}
+\DoxyCodeLine{fb\_info.width\ =\ width;}
+\DoxyCodeLine{fb\_info.height\ =\ height;}
+\DoxyCodeLine{fb\_info.layers\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkCreateFramebuffer(device,\ \&fb\_info,\ 0,\ \&framebuffer));}
+
+\end{DoxyCode}
+
+
+🖼 Each framebuffer links\+:
+\begin{DoxyItemize}
+\item A color image from the swapchain
+\item A depth/stencil image
+\item The render pass that defines how to use them
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md61}{}\doxysubsubsection{\texorpdfstring{12. 🗂 Command Buffers and Submission}{12. 🗂 Command Buffers and Submission}}\label{md_README_autotoc_md61}
+Command buffers store drawing commands\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Begin\ command\ recording}}
+\DoxyCodeLine{VkCommandBufferBeginInfo\ begin\_info\ =\ \{VK\_STRUCTURE\_TYPE\_COMMAND\_BUFFER\_BEGIN\_INFO\};}
+\DoxyCodeLine{vkBeginCommandBuffer(command\_buffer,\ \&begin\_info);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Record\ draw\ commands\ here...}}
+\DoxyCodeLine{}
+\DoxyCodeLine{vkEndCommandBuffer(command\_buffer);}
+
+\end{DoxyCode}
+
+
+Then submit to the GPU\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkSubmitInfo\ submit\_info\ =\ \{VK\_STRUCTURE\_TYPE\_SUBMIT\_INFO\};}
+\DoxyCodeLine{submit\_info.waitSemaphoreCount\ =\ 1;}
+\DoxyCodeLine{submit\_info.pWaitSemaphores\ =\ \&image\_available\_semaphore;}
+\DoxyCodeLine{submit\_info.commandBufferCount\ =\ 1;}
+\DoxyCodeLine{submit\_info.pCommandBuffers\ =\ \&command\_buffer;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VK\_CHECK(vkQueueSubmit(graphics\_queue,\ 1,\ \&submit\_info,\ fence));}
+
+\end{DoxyCode}
+
+
+And finally present\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VkPresentInfoKHR\ present\_info\ =\ \{VK\_STRUCTURE\_TYPE\_PRESENT\_INFO\_KHR\};}
+\DoxyCodeLine{present\_info.swapchainCount\ =\ 1;}
+\DoxyCodeLine{present\_info.pSwapchains\ =\ \&swapchain-\/>handle;}
+\DoxyCodeLine{present\_info.pImageIndices\ =\ \&image\_index;}
+\DoxyCodeLine{}
+\DoxyCodeLine{VkResult\ result\ =\ vkQueuePresentKHR(present\_queue,\ \&present\_info);}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md63}{}\doxysubsection{\texorpdfstring{🧩 Diagram\+: Full Rendering Flow}{🧩 Diagram: Full Rendering Flow}}\label{md_README_autotoc_md63}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Application\ \ \ \ \ |}
+\DoxyCodeLine{|\ \ \ Entry\ Point\ \ \ \ \ |}
+\DoxyCodeLine{|\ (application\_run())|}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Create\ Instance\ |}
+\DoxyCodeLine{|\ (vkCreateInstance)|}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ Create\ Surface\ \ |}
+\DoxyCodeLine{|\ (vkCreateXcbSurfaceKHR)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Enumerate\ Physical|}
+\DoxyCodeLine{|\ Devices\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkEnumeratePhysicalDevices)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Select\ Suitable\ \ \ |}
+\DoxyCodeLine{|\ Physical\ Device\ \ \ |}
+\DoxyCodeLine{|\ (select\_physical\_device)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Logical\ \ \ \ |}
+\DoxyCodeLine{|\ Device\ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkCreateDevice)\ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Get\ Queue\ Handles\ |}
+\DoxyCodeLine{|\ (vkGetDeviceQueue)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Query\ Swapchain\ \ \ |}
+\DoxyCodeLine{|\ Support\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkGetPhysicalDeviceSurface*)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Swapchain\ \ |}
+\DoxyCodeLine{|\ (vkCreateSwapchainKHR)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Image\ Views|}
+\DoxyCodeLine{|\ (vkCreateImageView)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Detect\ Depth\ \ \ \ \ \ |}
+\DoxyCodeLine{|\ Format\ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ (vulkan\_device\_detect\_depth\_format)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Depth\ Image|}
+\DoxyCodeLine{|\ (vulkan\_image\_create)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Render\ Pass|}
+\DoxyCodeLine{|\ (vkCreateRenderPass)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Create\ Framebuffer|}
+\DoxyCodeLine{|\ (vkCreateFramebuffer)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Begin\ Main\ Loop\ \ \ |}
+\DoxyCodeLine{|\ (vkAcquireNextImageKHR)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Begin\ Render\ Pass\ |}
+\DoxyCodeLine{|\ (vkCmdBeginRenderPass)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Record\ Draw\ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ Commands\ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ End\ Render\ Pass\ \ \ |}
+\DoxyCodeLine{|\ (vkCmdEndRenderPass)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Submit\ Command\ \ \ \ |}
+\DoxyCodeLine{|\ Buffer\ to\ GPU\ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkQueueSubmit)\ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ v}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ Present\ Frame\ \ \ \ \ |}
+\DoxyCodeLine{|\ (vkQueuePresentKHR)\ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+
+
+This is the full {\bfseries{rendering loop}} that happens every frame.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md65}{}\doxysubsection{\texorpdfstring{🧰 Key Structures Used}{🧰 Key Structures Used}}\label{md_README_autotoc_md65}
+\hypertarget{md_README_autotoc_md66}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+context$<$/tt$>$}{<tt>vulkan\_context</tt>}}\label{md_README_autotoc_md66}
+Tracks global Vulkan state\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_context\ \{}
+\DoxyCodeLine{\ \ \ \ VkInstance\ instance;}
+\DoxyCodeLine{\ \ \ \ VkSurfaceKHR\ surface;}
+\DoxyCodeLine{\ \ \ \ VkDebugUtilsMessengerEXT\ debug\_messenger;}
+\DoxyCodeLine{\ \ \ \ vulkan\_device\ device;}
+\DoxyCodeLine{\ \ \ \ vulkan\_swapchain\ swapchain;}
+\DoxyCodeLine{\ \ \ \ u32\ image\_index;}
+\DoxyCodeLine{\ \ \ \ u32\ current\_frame;}
+\DoxyCodeLine{\ \ \ \ b8\ recreating\_swapchain;}
+\DoxyCodeLine{\ \ \ \ i32\ (*find\_memory\_index)(...);}
+\DoxyCodeLine{\}\ vulkan\_context;}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md67}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+device$<$/tt$>$}{<tt>vulkan\_device</tt>}}\label{md_README_autotoc_md67}
+Holds physical/logical device and queue info\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_device\ \{}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDevice\ physical\_device;}
+\DoxyCodeLine{\ \ \ \ VkDevice\ logical\_device;}
+\DoxyCodeLine{\ \ \ \ vulkan\_swapchain\_support\_info\ swapchain\_support;}
+\DoxyCodeLine{\ \ \ \ i32\ graphics\_queue\_index;}
+\DoxyCodeLine{\ \ \ \ i32\ present\_queue\_index;}
+\DoxyCodeLine{\ \ \ \ i32\ transfer\_queue\_index;}
+\DoxyCodeLine{\ \ \ \ VkQueue\ graphics\_queue;}
+\DoxyCodeLine{\ \ \ \ VkQueue\ present\_queue;}
+\DoxyCodeLine{\ \ \ \ VkQueue\ transfer\_queue;}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceProperties\ properties;}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceFeatures\ features;}
+\DoxyCodeLine{\ \ \ \ VkPhysicalDeviceMemoryProperties\ memory;}
+\DoxyCodeLine{\ \ \ \ VkFormat\ depth\_format;}
+\DoxyCodeLine{\}\ vulkan\_device;}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md68}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+swapchain$<$/tt$>$}{<tt>vulkan\_swapchain</tt>}}\label{md_README_autotoc_md68}
+Manages images and depth buffer\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_swapchain\ \{}
+\DoxyCodeLine{\ \ \ \ VkSurfaceFormatKHR\ image\_format;}
+\DoxyCodeLine{\ \ \ \ u8\ max\_frames\_in\_flight;}
+\DoxyCodeLine{\ \ \ \ VkSwapchainKHR\ handle;}
+\DoxyCodeLine{\ \ \ \ u32\ image\_count;}
+\DoxyCodeLine{\ \ \ \ VkImage*\ images;}
+\DoxyCodeLine{\ \ \ \ VkImageView*\ views;}
+\DoxyCodeLine{\ \ \ \ vulkan\_image\ depth\_attachment;}
+\DoxyCodeLine{\}\ vulkan\_swapchain;}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md69}{}\doxysubsubsection{\texorpdfstring{$<$tt$>$vulkan\+\_\+renderpass$<$/tt$>$}{<tt>vulkan\_renderpass</tt>}}\label{md_README_autotoc_md69}
+Defines clear values and viewport settings\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }vulkan\_renderpass\ \{}
+\DoxyCodeLine{\ \ \ \ VkRenderPass\ handle;}
+\DoxyCodeLine{\ \ \ \ f32\ clear\_r,\ clear\_g,\ clear\_b,\ clear\_a;}
+\DoxyCodeLine{\ \ \ \ f32\ clear\_depth;}
+\DoxyCodeLine{\ \ \ \ u32\ clear\_stencil;}
+\DoxyCodeLine{\ \ \ \ f32\ viewport\_x,\ viewport\_y,\ viewport\_w,\ viewport\_h;}
+\DoxyCodeLine{\ \ \ \ f32\ scissor\_x,\ scissor\_y,\ scissor\_w,\ scissor\_h;}
+\DoxyCodeLine{\}\ vulkan\_renderpass;}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md71}{}\doxysubsection{\texorpdfstring{💡 Why All This Is Needed}{💡 Why All This Is Needed}}\label{md_README_autotoc_md71}
+Vulkan is explicit by design. Every operation must be described precisely. Here\textquotesingle{}s why each part matters\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Component   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Component   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose    }\\\cline{1-2}
+\endhead
+{\bfseries{Instance}}   &Connects app to Vulkan driver    \\\cline{1-2}
+{\bfseries{Surface}}   &Links window to GPU output    \\\cline{1-2}
+{\bfseries{Physical Device}}   &Represents the actual GPU    \\\cline{1-2}
+{\bfseries{Logical Device}}   &Interface to the GPU    \\\cline{1-2}
+{\bfseries{Queues}}   &Workers for graphics/present/transfer    \\\cline{1-2}
+{\bfseries{Swapchain}}   &Manages sequence of renderable images    \\\cline{1-2}
+{\bfseries{Images}}   &Raw GPU memory to draw into    \\\cline{1-2}
+{\bfseries{Image Views}}   &Define how to read/write those images    \\\cline{1-2}
+{\bfseries{Render Pass}}   &Defines rendering rules (clear/store ops, layout)    \\\cline{1-2}
+{\bfseries{Framebuffers}}   &Combine images into something you can draw into    \\\cline{1-2}
+{\bfseries{Command Buffers}}   &Store GPU commands to execute later   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md73}{}\doxysubsection{\texorpdfstring{🧱 Summary Table}{🧱 Summary Table}}\label{md_README_autotoc_md73}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Responsibility    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Responsibility    }\\\cline{1-2}
+\endhead
+{\ttfamily vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}   &Creates instance, surface, and starts device setup    \\\cline{1-2}
+{\ttfamily vulkan\+\_\+device\+\_\+create()}   &Selects physical device, creates logical device    \\\cline{1-2}
+{\ttfamily vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}   &Queries device capabilities for swapchain    \\\cline{1-2}
+{\ttfamily vulkan\+\_\+swapchain\+\_\+create()}   &Initializes the swapchain and image views    \\\cline{1-2}
+{\ttfamily vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format()}   &Finds a usable depth format    \\\cline{1-2}
+{\ttfamily vulkan\+\_\+renderpass\+\_\+create()}   &Sets up how we render    \\\cline{1-2}
+{\ttfamily vulkan\+\_\+command\+\_\+buffer\+\_\+begin()}   &Starts recording draw commands    \\\cline{1-2}
+{\ttfamily vulkan\+\_\+swapchain\+\_\+present()}   &Presents the final image to the screen   \\\cline{1-2}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md75}{}\doxysubsection{\texorpdfstring{🧪 Bonus\+: Sample Code for Acquiring an Image}{🧪 Bonus: Sample Code for Acquiring an Image}}\label{md_README_autotoc_md75}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{b8\ vulkan\_swapchain\_acquire\_next\_image\_index(...)\ \{}
+\DoxyCodeLine{\ \ \ \ VkResult\ result\ =\ vkAcquireNextImageKHR(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ context-\/>device.logical\_device,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ swapchain-\/>handle,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ timeout\_ns,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ image\_available\_semaphore,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fence,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ out\_image\_index);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ VK\_ERROR\_OUT\_OF\_DATE\_KHR)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vulkan\_swapchain\_recreate(context,\ width,\ height,\ swapchain);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ False;}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (result\ !=\ VK\_SUCCESS\ \&\&\ result\ !=\ VK\_SUBOPTIMAL\_KHR)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ KFATAL(\textcolor{stringliteral}{"{}Failed\ to\ acquire\ swapchain\ image!"{}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ False;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ True;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+This function gets the next image from the swapchain — and triggers recreation if needed.
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md77}{}\doxysubsection{\texorpdfstring{🚫 Common Errors and Fixes}{🚫 Common Errors and Fixes}}\label{md_README_autotoc_md77}
+\hypertarget{md_README_autotoc_md78}{}\doxysubsubsection{\texorpdfstring{❌ $<$tt$>$\+VK\+\_\+\+DEBUG\+\_\+\+UTILS\+\_\+\+MESSAGE\+\_\+\+SEVERITY\+\_\+\+WARNING\+\_\+\+EXT$<$/tt$>$\+: No cache file}{❌ <tt>VK\_DEBUG\_UTILS\_MESSAGE\_SEVERITY\_WARNING\_EXT</tt>: No cache file}}\label{md_README_autotoc_md78}
+Not critical — just means the shader cache doesn\textquotesingle{}t exist yet.
+
+\DoxyHorRuler{0}
+ 
