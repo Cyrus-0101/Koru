@@ -55,58 +55,10 @@ typedef struct renderer_system_state {
      * @brief Far clipping plane distance.
      */
     f32 far_clip;
-
-    // TODO: Temporary code
-    /**
-     * @brief A pointer to a test material for demonstration purposes.
-     */
-    material* test_material;
-    // End of temporary code
 } renderer_system_state;
 
 // Global pointer to the renderer backend instance
 static renderer_system_state* state_ptr;
-
-/**
- * @brief Event handler for debug events to cycle through test textures.
- *
- * This function is a temporary event handler that listens for a specific debug event
- * and cycles through a set of predefined textures for testing purposes.
- *
- * @param code The event code.
- * @param sender Pointer to the event sender.
- * @param listener_inst Pointer to the listener instance (should be the renderer state).
- * @param data Event context data (not used here).
- * @return True if the event was handled; otherwise False.
- */
-b8 event_on_debug_event(u16 code, void* sender, void* listener_inst, event_context data) {
-    const char* names[3] = {
-        "cobblestone",
-        "paving",
-        "paving2"};
-
-    static i8 choice = 2;
-
-    // Save off the old name.
-    const char* old_name = names[choice];
-
-    choice++;
-    choice %= 3;
-
-    // Acquire the new texture.
-    state_ptr->test_material->diffuse_map.texture = texture_system_acquire(names[choice], True);
-
-    if (!state_ptr->test_material->diffuse_map.texture) {
-        KWARN("event_on_debug_event no texture! Using default");
-        state_ptr->test_material->diffuse_map.texture = texture_system_get_default_texture();
-    }
-
-    // Release the old texture.
-    texture_system_release(old_name);
-
-    return True;
-}
-// TO-DO: End of Temporary Code
 
 b8 renderer_system_initialize(u64* memory_requirement, void* state, const char* application_name) {
     *memory_requirement = sizeof(renderer_system_state);
@@ -115,10 +67,6 @@ b8 renderer_system_initialize(u64* memory_requirement, void* state, const char* 
     }
 
     state_ptr = state;
-
-    // TO-DO: Temporary Code
-    event_register(EVENT_CODE_DEBUG0, state_ptr, event_on_debug_event);
-    // TO-DO: End of Temporary Code
 
     // TODO: Make backend type configurable via config or runtime settings
     renderer_backend_create(RENDERER_BACKEND_TYPE_VULKAN, &state_ptr->backend);
@@ -143,10 +91,6 @@ b8 renderer_system_initialize(u64* memory_requirement, void* state, const char* 
 
 void renderer_system_shutdown(void* state) {
     if (state_ptr) {
-        // TO-DO: Temporary Code
-        event_unregister(EVENT_CODE_DEBUG0, state_ptr, event_on_debug_event);
-        // TO-DO: End of Temporary Code
-
         state_ptr->backend.shutdown(&state_ptr->backend);
     }
 
@@ -212,34 +156,10 @@ b8 renderer_draw_frame(render_packet* packet) {
     if (renderer_begin_frame(packet->delta_time)) {
         state_ptr->backend.update_global_state(state_ptr->projection, state_ptr->view, vec3_zero(), vec4_one(), 0);
 
-        mat4 model = mat4_translation((vec3){0, 0, 0});
-        // static f32 angle = 0.01f;
-        // angle += 0.001f;
-        // quat rotation = quat_from_axis_angle(vec3_forward(), angle, False);
-        // mat4 model = quat_to_rotation_matrix(rotation, vec3_zero());
-
-        geometry_render_data data = {};
-        data.model = model;
-
-        // TODO: Temporary Code
-        // Create default material if it doesn't exist
-        if (!state_ptr->test_material) {
-            // Auto configure the material
-            state_ptr->test_material = material_system_acquire("test_material");
-
-            if (!state_ptr->test_material) {
-                material_config config;
-                string_ncopy(config.name, "test_material", MATERIAL_NAME_MAX_LENGTH);
-                config.auto_release = False;
-                config.diffuse_color = vec4_one(); // White
-                string_ncopy(config.diffuse_map_name, DEFAULT_TEXTURE_NAME, TEXTURE_NAME_MAX_LENGTH);
-                state_ptr->test_material = material_system_acquire_from_config(config);
-            }
+        u32 count = packet->geometry_count;
+        for (u32 i = 0; i < count; ++i) {
+            state_ptr->backend.draw_geometry(packet->geometries[i]);
         }
-
-        data.material = state_ptr->test_material;
-
-        state_ptr->backend.update_object(data);
 
         // End the frame. If this fails, it is likely unrecoverable.
         b8 result = renderer_end_frame(packet->delta_time);
@@ -284,4 +204,12 @@ b8 renderer_create_material(struct material* material) {
 }
 void renderer_destroy_material(struct material* material) {
     state_ptr->backend.destroy_material(material);
+}
+
+b8 renderer_create_geometry(geometry* geometry, u32 vertex_count, const vertex_3d* vertices, u32 index_count, const u32* indices) {
+    return state_ptr->backend.create_geometry(geometry, vertex_count, vertices, index_count, indices);
+}
+
+void renderer_destroy_geometry(geometry* geometry) {
+    state_ptr->backend.destroy_geometry(geometry);
 }
