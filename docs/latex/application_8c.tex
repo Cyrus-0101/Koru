@@ -15,7 +15,11 @@ Implementation of the core application lifecycle functions.
 {\ttfamily \#include "{}core/clock.\+h"{}}\newline
 {\ttfamily \#include "{}memory/linear\+\_\+allocator.\+h"{}}\newline
 {\ttfamily \#include "{}renderer/renderer\+\_\+frontend.\+h"{}}\newline
+{\ttfamily \#include "{}core/kstring.\+h"{}}\newline
 {\ttfamily \#include "{}systems/texture\+\_\+system.\+h"{}}\newline
+{\ttfamily \#include "{}systems/material\+\_\+system.\+h"{}}\newline
+{\ttfamily \#include "{}systems/geometry\+\_\+system.\+h"{}}\newline
+{\ttfamily \#include "{}math/kmath.\+h"{}}\newline
 Include dependency graph for application.\+c\+:
 \nopagebreak
 \begin{figure}[H]
@@ -43,6 +47,8 @@ typedef struct \mbox{\hyperlink{structapplication__state}{application\+\_\+state
 \begin{DoxyCompactList}\small\item\em Handles keyboard input at the application level. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{application_8c_a0aadbf7eebc34521742f68cbcc97e4c6}{application\+\_\+on\+\_\+resized}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, void \texorpdfstring{$\ast$}{*}listener\+\_\+inst, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}})
 \begin{DoxyCompactList}\small\item\em Handles window resize events. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{application_8c_af019003b6d312df0a06715208bb997c1}{event\+\_\+on\+\_\+debug\+\_\+event}} (\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} code, void \texorpdfstring{$\ast$}{*}sender, void \texorpdfstring{$\ast$}{*}listener\+\_\+inst, \mbox{\hyperlink{structevent__context}{event\+\_\+context}} data)
+\begin{DoxyCompactList}\small\item\em Event handler for debug events to cycle through test textures. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{application_8c_af0ccecbeef900f30b0b734eb020574ef}{application\+\_\+create}} (\mbox{\hyperlink{structgame}{game}} \texorpdfstring{$\ast$}{*}game\+\_\+inst)
 \begin{DoxyCompactList}\small\item\em Initializes the application with the provided configuration. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{application_8c_a08c8575858e12aa5260a1cc0101df8bd}{application\+\_\+run}} ()
@@ -116,11 +122,11 @@ True if initialization was successful; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00220}{220}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00297}{297}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{game__types_8h_source_l00029}{game\+::app\+\_\+config}}, \mbox{\hyperlink{application_8c_source_l00158}{app\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00429}{application\+\_\+on\+\_\+event()}}, \mbox{\hyperlink{application_8c_source_l00441}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{application_8c_source_l00469}{application\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{game__types_8h_source_l00071}{game\+::application\+\_\+state}}, \mbox{\hyperlink{event_8h_source_l00144}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{event_8h_source_l00155}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00165}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8h_source_l00220}{EVENT\+\_\+\+CODE\+\_\+\+RESIZED}}, \mbox{\hyperlink{event_8c_source_l00095}{event\+\_\+register()}}, \mbox{\hyperlink{event_8c_source_l00071}{event\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00079}{application\+\_\+state\+::event\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00084}{application\+\_\+state\+::event\+\_\+system\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{application_8c_source_l00040}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{application_8c_source_l00059}{application\+\_\+state\+::height}}, \mbox{\hyperlink{game__types_8h_source_l00036}{game\+::initialize}}, \mbox{\hyperlink{logger_8c_source_l00064}{initialize\+\_\+logging()}}, \mbox{\hyperlink{kmemory_8c_source_l00090}{initialize\+\_\+memory()}}, \mbox{\hyperlink{input_8c_source_l00088}{input\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00117}{application\+\_\+state\+::input\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00122}{application\+\_\+state\+::input\+\_\+system\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00044}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00049}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{linear__allocator_8c_source_l00045}{linear\+\_\+allocator\+\_\+allocate()}}, \mbox{\hyperlink{linear__allocator_8c_source_l00014}{linear\+\_\+allocator\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00105}{application\+\_\+state\+::logging\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00112}{application\+\_\+state\+::logging\+\_\+system\+\_\+state}}, \mbox{\hyperlink{texture__system_8h_source_l00060}{texture\+\_\+system\+\_\+config\+::max\+\_\+texture\+\_\+count}}, \mbox{\hyperlink{application_8c_source_l00091}{application\+\_\+state\+::memory\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00098}{application\+\_\+state\+::memory\+\_\+system\+\_\+state}}, \mbox{\hyperlink{kmemory_8h_source_l00050}{MEMORY\+\_\+\+TAG\+\_\+\+APPLICATION}}, \mbox{\hyperlink{application_8h_source_l00055}{application\+\_\+config\+::name}}, \mbox{\hyperlink{game__types_8h_source_l00057}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{application_8c_source_l00127}{application\+\_\+state\+::platform\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{platform_8h_a2f0dc66ac164c4d7fc389e8e545513df}{platform\+\_\+system\+\_\+startup()}}, \mbox{\hyperlink{application_8c_source_l00132}{application\+\_\+state\+::platform\+\_\+system\+\_\+state}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00105}{renderer\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00137}{application\+\_\+state\+::renderer\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00142}{application\+\_\+state\+::renderer\+\_\+system\+\_\+state}}, \mbox{\hyperlink{application_8h_source_l00050}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00035}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00040}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00045}{application\+\_\+config\+::start\+\_\+width}}, \mbox{\hyperlink{application_8c_source_l00074}{application\+\_\+state\+::systems\+\_\+allocator}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00147}{application\+\_\+state\+::texture\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00152}{application\+\_\+state\+::texture\+\_\+system\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{application_8c_source_l00054}{application\+\_\+state\+::width}}.
+References \mbox{\hyperlink{game__types_8h_source_l00029}{game\+::app\+\_\+config}}, \mbox{\hyperlink{application_8c_source_l00189}{app\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00562}{application\+\_\+on\+\_\+event()}}, \mbox{\hyperlink{application_8c_source_l00574}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{application_8c_source_l00602}{application\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{game__types_8h_source_l00071}{game\+::application\+\_\+state}}, \mbox{\hyperlink{event_8h_source_l00144}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{event_8h_source_l00222}{EVENT\+\_\+\+CODE\+\_\+\+DEBUG0}}, \mbox{\hyperlink{event_8h_source_l00155}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00165}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8h_source_l00220}{EVENT\+\_\+\+CODE\+\_\+\+RESIZED}}, \mbox{\hyperlink{application_8c_source_l00254}{event\+\_\+on\+\_\+debug\+\_\+event()}}, \mbox{\hyperlink{event_8c_source_l00095}{event\+\_\+register()}}, \mbox{\hyperlink{event_8c_source_l00071}{event\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00086}{application\+\_\+state\+::event\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00091}{application\+\_\+state\+::event\+\_\+system\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{application_8c_source_l00047}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{geometry__system_8c_source_l00140}{geometry\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{geometry__system_8c_source_l00280}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config()}}, \mbox{\hyperlink{geometry__system_8c_source_l00087}{geometry\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00174}{application\+\_\+state\+::geometry\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00179}{application\+\_\+state\+::geometry\+\_\+system\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+state\+::height}}, \mbox{\hyperlink{geometry__system_8h_source_l00053}{geometry\+\_\+config\+::index\+\_\+count}}, \mbox{\hyperlink{geometry__system_8h_source_l00055}{geometry\+\_\+config\+::indices}}, \mbox{\hyperlink{game__types_8h_source_l00036}{game\+::initialize}}, \mbox{\hyperlink{logger_8c_source_l00064}{initialize\+\_\+logging()}}, \mbox{\hyperlink{kmemory_8c_source_l00090}{initialize\+\_\+memory()}}, \mbox{\hyperlink{input_8c_source_l00088}{input\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00124}{application\+\_\+state\+::input\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00129}{application\+\_\+state\+::input\+\_\+system\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00051}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00056}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kfree()}}, \mbox{\hyperlink{linear__allocator_8c_source_l00045}{linear\+\_\+allocator\+\_\+allocate()}}, \mbox{\hyperlink{linear__allocator_8c_source_l00014}{linear\+\_\+allocator\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00112}{application\+\_\+state\+::logging\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00119}{application\+\_\+state\+::logging\+\_\+system\+\_\+state}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00164}{application\+\_\+state\+::material\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00169}{application\+\_\+state\+::material\+\_\+system\+\_\+state}}, \mbox{\hyperlink{geometry__system_8h_source_l00039}{geometry\+\_\+system\+\_\+config\+::max\+\_\+geometry\+\_\+count}}, \mbox{\hyperlink{material__system_8h_source_l00034}{material\+\_\+system\+\_\+config\+::max\+\_\+material\+\_\+count}}, \mbox{\hyperlink{texture__system_8h_source_l00060}{texture\+\_\+system\+\_\+config\+::max\+\_\+texture\+\_\+count}}, \mbox{\hyperlink{application_8c_source_l00098}{application\+\_\+state\+::memory\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00105}{application\+\_\+state\+::memory\+\_\+system\+\_\+state}}, \mbox{\hyperlink{kmemory_8h_source_l00050}{MEMORY\+\_\+\+TAG\+\_\+\+APPLICATION}}, \mbox{\hyperlink{kmemory_8h_source_l00029}{MEMORY\+\_\+\+TAG\+\_\+\+ARRAY}}, \mbox{\hyperlink{application_8h_source_l00055}{application\+\_\+config\+::name}}, \mbox{\hyperlink{game__types_8h_source_l00057}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{application_8c_source_l00134}{application\+\_\+state\+::platform\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{platform_8h_a2f0dc66ac164c4d7fc389e8e545513df}{platform\+\_\+system\+\_\+startup()}}, \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+state\+::platform\+\_\+system\+\_\+state}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00063}{renderer\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00144}{application\+\_\+state\+::renderer\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00149}{application\+\_\+state\+::renderer\+\_\+system\+\_\+state}}, \mbox{\hyperlink{application_8h_source_l00050}{application\+\_\+config\+::start\+\_\+height}}, \mbox{\hyperlink{application_8h_source_l00035}{application\+\_\+config\+::start\+\_\+pos\+\_\+x}}, \mbox{\hyperlink{application_8h_source_l00040}{application\+\_\+config\+::start\+\_\+pos\+\_\+y}}, \mbox{\hyperlink{application_8h_source_l00045}{application\+\_\+config\+::start\+\_\+width}}, \mbox{\hyperlink{application_8c_source_l00081}{application\+\_\+state\+::systems\+\_\+allocator}}, \mbox{\hyperlink{application_8c_source_l00182}{application\+\_\+state\+::test\+\_\+geometry}}, \mbox{\hyperlink{texture__system_8c_source_l00122}{texture\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{application_8c_source_l00154}{application\+\_\+state\+::texture\+\_\+system\+\_\+memory\+\_\+requirement}}, \mbox{\hyperlink{application_8c_source_l00159}{application\+\_\+state\+::texture\+\_\+system\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{geometry__system_8h_source_l00049}{geometry\+\_\+config\+::vertex\+\_\+count}}, \mbox{\hyperlink{geometry__system_8h_source_l00051}{geometry\+\_\+config\+::vertices}}, and \mbox{\hyperlink{application_8c_source_l00061}{application\+\_\+state\+::width}}.
 
 
 
@@ -147,15 +153,15 @@ Used by the renderer to know what resolution to create/resize the swapchain to.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00424}{424}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00557}{557}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{application_8c_source_l00158}{app\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00059}{application\+\_\+state\+::height}}, and \mbox{\hyperlink{application_8c_source_l00054}{application\+\_\+state\+::width}}.
+References \mbox{\hyperlink{application_8c_source_l00189}{app\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+state\+::height}}, and \mbox{\hyperlink{application_8c_source_l00061}{application\+\_\+state\+::width}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00095}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 
 \Hypertarget{application_8c_a464af30d5e798df5a25d3c211d5c120f}\label{application_8c_a464af30d5e798df5a25d3c211d5c120f} 
 \index{application.c@{application.c}!application\_on\_event@{application\_on\_event}}
@@ -190,15 +196,15 @@ True if the event was handled; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00429}{429}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00562}{562}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{application_8c_source_l00158}{app\+\_\+state}}, \mbox{\hyperlink{event_8h_source_l00144}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{application_8c_source_l00044}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{application_8c_source_l00189}{app\+\_\+state}}, \mbox{\hyperlink{event_8h_source_l00144}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{application_8c_source_l00051}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{application_8c_a193a750e12452924346788eb62a3a327}\label{application_8c_a193a750e12452924346788eb62a3a327} 
 \index{application.c@{application.c}!application\_on\_key@{application\_on\_key}}
@@ -230,15 +236,15 @@ True if the event was handled; False otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00441}{441}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00574}{574}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{event_8h_source_l00144}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{event_8h_source_l00155}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00165}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8c_source_l00150}{event\+\_\+fire()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{event_8h_source_l00144}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{event_8h_source_l00155}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00165}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8c_source_l00150}{event\+\_\+fire()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{application_8c_a0aadbf7eebc34521742f68cbcc97e4c6}\label{application_8c_a0aadbf7eebc34521742f68cbcc97e4c6} 
 \index{application.c@{application.c}!application\_on\_resized@{application\_on\_resized}}
@@ -270,15 +276,15 @@ True if handled; False otherwise (so other listeners can also receive the event)
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00469}{469}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00602}{602}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{application_8c_source_l00158}{app\+\_\+state}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{event_8h_source_l00220}{EVENT\+\_\+\+CODE\+\_\+\+RESIZED}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{application_8c_source_l00040}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{application_8c_source_l00059}{application\+\_\+state\+::height}}, \mbox{\hyperlink{application_8c_source_l00049}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{game__types_8h_source_l00057}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00186}{renderer\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{application_8c_source_l00054}{application\+\_\+state\+::width}}.
+References \mbox{\hyperlink{application_8c_source_l00189}{app\+\_\+state}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{event_8h_source_l00220}{EVENT\+\_\+\+CODE\+\_\+\+RESIZED}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{application_8c_source_l00047}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{application_8c_source_l00066}{application\+\_\+state\+::height}}, \mbox{\hyperlink{application_8c_source_l00056}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{game__types_8h_source_l00057}{game\+::on\+\_\+resize}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00136}{renderer\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{application_8c_source_l00061}{application\+\_\+state\+::width}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{application_8c_a08c8575858e12aa5260a1cc0101df8bd}\label{application_8c_a08c8575858e12aa5260a1cc0101df8bd} 
 \index{application.c@{application.c}!application\_run@{application\_run}}
@@ -304,15 +310,53 @@ True if the application exited cleanly; False if an error occurred or early exit
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00308}{308}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00425}{425}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-References \mbox{\hyperlink{application_8c_source_l00158}{app\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00429}{application\+\_\+on\+\_\+event()}}, \mbox{\hyperlink{application_8c_source_l00441}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{application_8c_source_l00469}{application\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{application_8c_source_l00064}{application\+\_\+state\+::clock}}, \mbox{\hyperlink{clock_8c_source_l00019}{clock\+\_\+start()}}, \mbox{\hyperlink{clock_8c_source_l00013}{clock\+\_\+update()}}, \mbox{\hyperlink{clock_8h_source_l00028}{clock\+::elapsed}}, \mbox{\hyperlink{event_8h_source_l00144}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{event_8h_source_l00155}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00165}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8h_source_l00220}{EVENT\+\_\+\+CODE\+\_\+\+RESIZED}}, \mbox{\hyperlink{event_8c_source_l00082}{event\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00084}{application\+\_\+state\+::event\+\_\+system\+\_\+state}}, \mbox{\hyperlink{event_8c_source_l00124}{event\+\_\+unregister()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{application_8c_source_l00040}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{kmemory_8c_source_l00206}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{input_8c_source_l00107}{input\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00122}{application\+\_\+state\+::input\+\_\+system\+\_\+state}}, \mbox{\hyperlink{input_8c_source_l00120}{input\+\_\+update()}}, \mbox{\hyperlink{application_8c_source_l00044}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00049}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{application_8c_source_l00069}{application\+\_\+state\+::last\+\_\+time}}, \mbox{\hyperlink{application_8c_source_l00098}{application\+\_\+state\+::memory\+\_\+system\+\_\+state}}, \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\+\_\+get\+\_\+absolute\+\_\+time()}}, \mbox{\hyperlink{platform_8h_a8470764645bd644d6b0a3b98fb8b3eee}{platform\+\_\+pump\+\_\+messages()}}, \mbox{\hyperlink{platform_8h_ae21676dfd997b1c6dd9c06f69b5618e4}{platform\+\_\+sleep()}}, \mbox{\hyperlink{platform_8h_a2d23b533b1e998f3f20e6025632ca2c4}{platform\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00132}{application\+\_\+state\+::platform\+\_\+system\+\_\+state}}, \mbox{\hyperlink{game__types_8h_source_l00050}{game\+::render}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00204}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00138}{renderer\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00142}{application\+\_\+state\+::renderer\+\_\+system\+\_\+state}}, \mbox{\hyperlink{kmemory_8c_source_l00107}{shutdown\+\_\+memory()}}, \mbox{\hyperlink{texture__system_8c_source_l00147}{texture\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00152}{application\+\_\+state\+::texture\+\_\+system\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{game__types_8h_source_l00043}{game\+::update}}.
+References \mbox{\hyperlink{application_8c_source_l00189}{app\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00562}{application\+\_\+on\+\_\+event()}}, \mbox{\hyperlink{application_8c_source_l00574}{application\+\_\+on\+\_\+key()}}, \mbox{\hyperlink{application_8c_source_l00602}{application\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{application_8c_source_l00071}{application\+\_\+state\+::clock}}, \mbox{\hyperlink{clock_8c_source_l00019}{clock\+\_\+start()}}, \mbox{\hyperlink{clock_8c_source_l00013}{clock\+\_\+update()}}, \mbox{\hyperlink{clock_8h_source_l00028}{clock\+::elapsed}}, \mbox{\hyperlink{event_8h_source_l00144}{EVENT\+\_\+\+CODE\+\_\+\+APPLICATION\+\_\+\+QUIT}}, \mbox{\hyperlink{event_8h_source_l00222}{EVENT\+\_\+\+CODE\+\_\+\+DEBUG0}}, \mbox{\hyperlink{event_8h_source_l00155}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+PRESSED}}, \mbox{\hyperlink{event_8h_source_l00165}{EVENT\+\_\+\+CODE\+\_\+\+KEY\+\_\+\+RELEASED}}, \mbox{\hyperlink{event_8h_source_l00220}{EVENT\+\_\+\+CODE\+\_\+\+RESIZED}}, \mbox{\hyperlink{application_8c_source_l00254}{event\+\_\+on\+\_\+debug\+\_\+event()}}, \mbox{\hyperlink{event_8c_source_l00082}{event\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00091}{application\+\_\+state\+::event\+\_\+system\+\_\+state}}, \mbox{\hyperlink{event_8c_source_l00124}{event\+\_\+unregister()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{application_8c_source_l00047}{application\+\_\+state\+::game\+\_\+inst}}, \mbox{\hyperlink{geometry__system_8c_source_l00125}{geometry\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00179}{application\+\_\+state\+::geometry\+\_\+system\+\_\+state}}, \mbox{\hyperlink{kmemory_8c_source_l00206}{get\+\_\+memory\+\_\+usage\+\_\+str()}}, \mbox{\hyperlink{input_8c_source_l00107}{input\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00129}{application\+\_\+state\+::input\+\_\+system\+\_\+state}}, \mbox{\hyperlink{input_8c_source_l00120}{input\+\_\+update()}}, \mbox{\hyperlink{application_8c_source_l00051}{application\+\_\+state\+::is\+\_\+running}}, \mbox{\hyperlink{application_8c_source_l00056}{application\+\_\+state\+::is\+\_\+suspended}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{application_8c_source_l00076}{application\+\_\+state\+::last\+\_\+time}}, \mbox{\hyperlink{kmath_8h_source_l00866}{mat4\+\_\+identity()}}, \mbox{\hyperlink{material__system_8c_source_l00151}{material\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00169}{application\+\_\+state\+::material\+\_\+system\+\_\+state}}, \mbox{\hyperlink{application_8c_source_l00105}{application\+\_\+state\+::memory\+\_\+system\+\_\+state}}, \mbox{\hyperlink{platform_8h_af38f532e572a9da41eaad4be29a58ada}{platform\+\_\+get\+\_\+absolute\+\_\+time()}}, \mbox{\hyperlink{platform_8h_a8470764645bd644d6b0a3b98fb8b3eee}{platform\+\_\+pump\+\_\+messages()}}, \mbox{\hyperlink{platform_8h_ae21676dfd997b1c6dd9c06f69b5618e4}{platform\+\_\+sleep()}}, \mbox{\hyperlink{platform_8h_a2d23b533b1e998f3f20e6025632ca2c4}{platform\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00139}{application\+\_\+state\+::platform\+\_\+system\+\_\+state}}, \mbox{\hyperlink{game__types_8h_source_l00050}{game\+::render}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00154}{renderer\+\_\+draw\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00092}{renderer\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00149}{application\+\_\+state\+::renderer\+\_\+system\+\_\+state}}, \mbox{\hyperlink{kmemory_8c_source_l00107}{shutdown\+\_\+memory()}}, \mbox{\hyperlink{application_8c_source_l00182}{application\+\_\+state\+::test\+\_\+geometry}}, \mbox{\hyperlink{texture__system_8c_source_l00171}{texture\+\_\+system\+\_\+shutdown()}}, \mbox{\hyperlink{application_8c_source_l00159}{application\+\_\+state\+::texture\+\_\+system\+\_\+state}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{game__types_8h_source_l00043}{game\+::update}}.
 
 
 
 Referenced by \mbox{\hyperlink{entry_8h_source_l00050}{main()}}.
+
+\Hypertarget{application_8c_af019003b6d312df0a06715208bb997c1}\label{application_8c_af019003b6d312df0a06715208bb997c1} 
+\index{application.c@{application.c}!event\_on\_debug\_event@{event\_on\_debug\_event}}
+\index{event\_on\_debug\_event@{event\_on\_debug\_event}!application.c@{application.c}}
+\doxysubsubsection{\texorpdfstring{event\_on\_debug\_event()}{event\_on\_debug\_event()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} event\+\_\+on\+\_\+debug\+\_\+event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}}}]{code,  }\item[{void \texorpdfstring{$\ast$}{*}}]{sender,  }\item[{void \texorpdfstring{$\ast$}{*}}]{listener\+\_\+inst,  }\item[{\mbox{\hyperlink{structevent__context}{event\+\_\+context}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Event handler for debug events to cycle through test textures. 
+
+This function is a temporary event handler that listens for a specific debug event and cycles through a set of predefined textures for testing purposes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The event code. \\
+\hline
+{\em sender} & Pointer to the event sender. \\
+\hline
+{\em listener\+\_\+inst} & Pointer to the listener instance (should be the renderer state). \\
+\hline
+{\em data} & Event context data (not used here). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the event was handled; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00254}{254}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+References \mbox{\hyperlink{application_8c_source_l00189}{app\+\_\+state}}, \mbox{\hyperlink{resource__types_8h_source_l00089}{material\+::diffuse\+\_\+map}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{resource__types_8h_source_l00108}{geometry\+::material}}, \mbox{\hyperlink{application_8c_source_l00182}{application\+\_\+state\+::test\+\_\+geometry}}, \mbox{\hyperlink{resource__types_8h_source_l00065}{texture\+\_\+map\+::texture}}, \mbox{\hyperlink{texture__system_8c_source_l00187}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00283}{texture\+\_\+system\+\_\+get\+\_\+default\+\_\+texture()}}, \mbox{\hyperlink{texture__system_8c_source_l00243}{texture\+\_\+system\+\_\+release()}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 
 
@@ -329,9 +373,9 @@ Global instance of the application state.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00158}{158}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00189}{189}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00424}{application\+\_\+get\+\_\+framebuffer\+\_\+size()}}, \mbox{\hyperlink{application_8c_source_l00429}{application\+\_\+on\+\_\+event()}}, \mbox{\hyperlink{application_8c_source_l00469}{application\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00557}{application\+\_\+get\+\_\+framebuffer\+\_\+size()}}, \mbox{\hyperlink{application_8c_source_l00562}{application\+\_\+on\+\_\+event()}}, \mbox{\hyperlink{application_8c_source_l00602}{application\+\_\+on\+\_\+resized()}}, \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}, and \mbox{\hyperlink{application_8c_source_l00254}{event\+\_\+on\+\_\+debug\+\_\+event()}}.
 

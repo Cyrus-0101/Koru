@@ -13,7 +13,8 @@ Include dependency graph for filesystem.\+h\+:\nopagebreak
 \includegraphics[width=192pt]{filesystem_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -48,7 +49,7 @@ enum \mbox{\hyperlink{filesystem_8h_a65ff8d4f12985f7d5210a0688be998dc}{file\+\_\
 \item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} void \mbox{\hyperlink{filesystem_8h_a20450eac56692795d9c28dc6b34bb898}{filesystem\+\_\+close}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle)
 \item 
-\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_a075cfd44afc5cc15562af078123f67e0}{filesystem\+\_\+read\+\_\+line}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}line\+\_\+buf)
+\mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_a34b0ddf8fdf6f331f2986ad3bef9a0aa}{filesystem\+\_\+read\+\_\+line}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} max\+\_\+length, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}line\+\_\+buf, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}out\+\_\+line\+\_\+length)
 \item 
 \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{filesystem_8h_ac9fa1fb71b432ede794211d6a7df7052}{filesystem\+\_\+write\+\_\+line}} (\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}handle, const char \texorpdfstring{$\ast$}{*}text)
 \item 
@@ -121,7 +122,7 @@ Closes the provided handle to a file.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00052}{52}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00057}{57}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
@@ -129,7 +130,7 @@ References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}.
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}, and \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}.
 
 \Hypertarget{filesystem_8h_a4997bca99ca6341f66be85cc0cdff3e6}\label{filesystem_8h_a4997bca99ca6341f66be85cc0cdff3e6} 
 \index{filesystem.h@{filesystem.h}!filesystem\_exists@{filesystem\_exists}}
@@ -171,7 +172,7 @@ True if opened successfully; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00023}{23}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00028}{28}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
@@ -179,7 +180,7 @@ References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}, and \mbox{\hyperlink{logger_8c_source_l00064}{initialize\+\_\+logging()}}.
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}, \mbox{\hyperlink{logger_8c_source_l00064}{initialize\+\_\+logging()}}, and \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}.
 
 \Hypertarget{filesystem_8h_aff3cb7ad041d5dec3e40e10509a8bf60}\label{filesystem_8h_aff3cb7ad041d5dec3e40e10509a8bf60} 
 \index{filesystem.h@{filesystem.h}!filesystem\_read@{filesystem\_read}}
@@ -203,7 +204,7 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00089}{89}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00094}{94}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
@@ -229,7 +230,7 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00100}{100}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00105}{105}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
@@ -239,17 +240,21 @@ References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{
 
 Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}.
 
-\Hypertarget{filesystem_8h_a075cfd44afc5cc15562af078123f67e0}\label{filesystem_8h_a075cfd44afc5cc15562af078123f67e0} 
+\Hypertarget{filesystem_8h_a34b0ddf8fdf6f331f2986ad3bef9a0aa}\label{filesystem_8h_a34b0ddf8fdf6f331f2986ad3bef9a0aa} 
 \index{filesystem.h@{filesystem.h}!filesystem\_read\_line@{filesystem\_read\_line}}
 \index{filesystem\_read\_line@{filesystem\_read\_line}!filesystem.h@{filesystem.h}}
 \doxysubsubsection{\texorpdfstring{filesystem\_read\_line()}{filesystem\_read\_line()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} filesystem\+\_\+read\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}}]{handle,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{line\+\_\+buf }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a0dc00ea56793277f556f072353318f35}{KAPI}} \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} filesystem\+\_\+read\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__handle}{file\+\_\+handle}} \texorpdfstring{$\ast$}{*}}]{handle,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{max\+\_\+length,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{line\+\_\+buf,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+line\+\_\+length }\end{DoxyParamCaption})}
 
 Reads up to a newline or EOF. Allocates \texorpdfstring{$\ast$}{*}line\+\_\+buf, which must be freed by the caller. 
 \begin{DoxyParams}{Parameters}
 {\em handle} & A pointer to a \doxylink{structfile__handle}{file\+\_\+handle} structure. \\
 \hline
-{\em line\+\_\+buf} & A pointer to a character array which will be allocated and populated by this method. \\
+{\em max\+\_\+length} & The maximum length to be read from the line. \\
+\hline
+{\em line\+\_\+buf} & A pointer to a character array populated by this method. Must already be allocated. \\
+\hline
+{\em out\+\_\+line\+\_\+length} & A pointer to hold the line length read from the file. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -257,11 +262,15 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00060}{60}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00065}{65}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
-References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00021}{file\+\_\+handle\+::handle}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{filesystem_8h_source_l00021}{file\+\_\+handle\+::handle}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}.
 
 \Hypertarget{filesystem_8h_a8570b525f6dc1490dd4193296a96d52d}\label{filesystem_8h_a8570b525f6dc1490dd4193296a96d52d} 
 \index{filesystem.h@{filesystem.h}!filesystem\_write@{filesystem\_write}}
@@ -285,7 +294,7 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00117}{117}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00122}{122}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 
@@ -314,7 +323,7 @@ True if successful; otherwise false.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{filesystem_8c_source_l00074}{74}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
+Definition at line \mbox{\hyperlink{filesystem_8c_source_l00079}{79}} of file \mbox{\hyperlink{filesystem_8c_source}{filesystem.\+c}}.
 
 
 

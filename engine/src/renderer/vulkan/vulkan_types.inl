@@ -14,30 +14,80 @@
  * It should only be included in Vulkan-related source files (e.g., device, swapchain, renderpass).
  */
 
+/** Number of shader stages used in the object shader (vertex + fragment) */
 #define MATERIAL_SHADER_STAGE_COUNT 2
 
+/** Number of descriptors in the material shader (1 for texture, 1 for uniform buffer) */
 #define VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT 2
 
+/** One for texture sampler */
 #define VULKAN_MATERIAL_SHADER_SAMPLER_COUNT 1
 
-#define VULKAN_MAX_MATERIAL_COUNT 1024
+/** Max materials that can be handled by the system. */
+#define VULKAN_MAX_MATERIAL_COUNT 1024  // TODO: Make configurable
 
+/** Max frames that can be processed concurrently (in flight) */
 #define MAX_FRAMES_IN_FLIGHT 4
 
+/** Max geometries that can be handled by the system. */
+#define VULKAN_MAX_GEOMETRY_COUNT 4096
+
+/**
+ * @struct vulkan_descriptor_state
+ * @brief Tracks the state of a descriptor across multiple frames in flight.
+ */
 typedef struct vulkan_descriptor_state {
-    // One per frame
+    /** Track if descriptor needs updating */
     u32 generations[MAX_FRAMES_IN_FLIGHT];
 
+    /** Descriptor set for each frame */
     u32 ids[MAX_FRAMES_IN_FLIGHT];
 } vulkan_descriptor_state;
 
+/**
+ * @struct vulkan_material_shader_instance_state
+ *
+ * @brief Holds per-material instance state for the material shader.
+ */
 typedef struct vulkan_material_shader_instance_state {
-    // Per frame
+    /** Descriptor pool for allocating descriptor sets */
     VkDescriptorSet descriptor_sets[MAX_FRAMES_IN_FLIGHT];
 
-    // Per descriptor
+    /** State for each descriptor in the shader (texture, uniform buffer) */
     vulkan_descriptor_state descriptor_states[VULKAN_MATERIAL_SHADER_DESCRIPTOR_COUNT];
 } vulkan_material_shader_instance_state;
+
+/**
+ * @struct vulkan_geometry_data
+ *
+ * @brief Holds internal Vulkan-specific data for a geometry resource.
+ *
+ */
+typedef struct vulkan_geometry_data {
+    /** Unique identifier for the geometry resource. */
+    u32 id;  // Similar to internal_id of the geometry
+
+    /** Generation count for tracking updates. */
+    u32 generation;
+
+    /** Vertices count */
+    u32 vertex_count;
+
+    /** Size of each vertex in bytes */
+    u32 vertex_size;
+
+    /** Offset in the vertex buffer where this geometry's data starts */
+    u32 vertex_buffer_offset;
+
+    /** Index count */
+    u32 index_count;
+
+    /** Size of each index in bytes (2 or 4) */
+    u32 index_size;
+
+    /** Offset in the index buffer where this geometry's data starts */
+    u32 index_buffer_offset;
+} vulkan_geometry_data;
 
 /**
  * @def VK_CHECK(expr)
@@ -896,6 +946,15 @@ typedef struct vulkan_context {
      * This is used to calculate where to start writing geometry index data in the buffer.
      */
     u64 geometry_index_offset;
+
+    // TODO: Make dynamic
+    /**
+     * @brief Array of geometry data structures for managing geometry resources.
+     *
+     * Each entry corresponds to a geometry resource and tracks its Vulkan-specific data.
+     * The size is defined by VULKAN_MAX_GEOMETRY_COUNT.
+     */
+    vulkan_geometry_data geometries[VULKAN_MAX_GEOMETRY_COUNT];
 
     /**
      * @brief Function pointer for finding a compatible memory index based on requirements.

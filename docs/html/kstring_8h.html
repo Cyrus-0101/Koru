@@ -82,6 +82,7 @@ $(function() {
 <p>Lightweight string utility library.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="defines_8h_source.html">defines.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="math__types_8h_source.html">math/math_types.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for kstring.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -90,8 +91,11 @@ $(function() {
 <div class="center"><img src="kstring_8h__incl.png" border="0" usemap="#aengine_2src_2core_2kstring_8h" alt=""/></div>
 <map name="aengine_2src_2core_2kstring_8h" id="aengine_2src_2core_2kstring_8h">
 <area shape="rect" title="Lightweight string utility library." alt="" coords="5,5,188,31"/>
-<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="56,79,137,104"/>
-<area shape="poly" title=" " alt="" coords="99,31,99,65,94,65,94,31"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="56,152,137,177"/>
+<area shape="poly" title=" " alt="" coords="91,32,78,54,69,79,67,95,70,110,83,139,78,141,65,112,62,95,63,78,74,51,86,30"/>
+<area shape="rect" href="math__types_8h.html" title="Core mathematical types used throughout the Koru engine." alt="" coords="78,79,227,104"/>
+<area shape="poly" title=" " alt="" coords="108,29,137,66,133,69,104,33"/>
+<area shape="poly" title=" " alt="" coords="146,106,116,143,112,140,141,103"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -101,21 +105,27 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="kstring_8h__dep__incl.png" border="0" usemap="#aengine_2src_2core_2kstring_8hdep" alt=""/></div>
 <map name="aengine_2src_2core_2kstring_8hdep" id="aengine_2src_2core_2kstring_8hdep">
-<area shape="rect" title="Lightweight string utility library." alt="" coords="593,5,775,31"/>
-<area shape="rect" href="kstring_8c.html" title="Implementation of lightweight string utility functions." alt="" coords="5,93,187,119"/>
-<area shape="poly" title=" " alt="" coords="579,31,401,51,199,81,137,96,136,91,198,76,400,45,578,26"/>
-<area shape="rect" href="logger_8c.html" title="Implementation of the logging system." alt="" coords="211,93,387,119"/>
-<area shape="poly" title=" " alt="" coords="612,36,399,81,341,96,340,91,398,76,611,31"/>
-<area shape="rect" href="renderer__frontend_8c.html" title="Frontend implementation for the Koru rendering system." alt="" coords="411,86,565,126"/>
-<area shape="poly" title=" " alt="" coords="646,39,532,88,530,83,644,34"/>
-<area shape="rect" href="vulkan__backend_8c.html" title="Implementation of the Vulkan renderer backend." alt="" coords="590,86,778,126"/>
-<area shape="poly" title=" " alt="" coords="687,44,687,86,681,86,681,44"/>
-<area shape="rect" href="vulkan__device_8c.html" title="Implementation of Vulkan device creation and selection logic." alt="" coords="802,86,979,126"/>
-<area shape="poly" title=" " alt="" coords="725,34,846,83,844,88,723,38"/>
-<area shape="rect" href="vulkan__shader__utils_8c.html" title="Implements utility functions for loading and creating Vulkan shader modules." alt="" coords="1003,79,1170,133"/>
-<area shape="poly" title=" " alt="" coords="765,30,993,76,1004,79,1003,84,991,81,764,36"/>
-<area shape="rect" href="texture__system_8c.html" title="Implementation of the texture system for managing textures in the Koru engine. This system handles te..." alt="" coords="1194,86,1342,126"/>
-<area shape="poly" title=" " alt="" coords="789,24,974,42,1079,57,1183,76,1212,83,1211,88,1182,81,1078,62,973,48,789,29"/>
+<area shape="rect" title="Lightweight string utility library." alt="" coords="927,5,1110,31"/>
+<area shape="rect" href="application_8c.html" title="Implementation of the core application lifecycle functions." alt="" coords="5,93,213,119"/>
+<area shape="poly" title=" " alt="" coords="914,25,604,42,415,58,226,81,154,96,153,91,225,76,415,53,604,36,914,20"/>
+<area shape="rect" href="kstring_8c.html" title="Implementation of lightweight string utility functions." alt="" coords="237,93,419,119"/>
+<area shape="poly" title=" " alt="" coords="913,28,691,46,560,62,431,81,368,96,367,91,430,76,560,56,690,41,913,23"/>
+<area shape="rect" href="logger_8c.html" title="Implementation of the logging system." alt="" coords="443,93,619,119"/>
+<area shape="poly" title=" " alt="" coords="914,35,779,55,631,81,571,96,570,91,630,76,778,49,914,30"/>
+<area shape="rect" href="renderer__frontend_8c.html" title="Frontend implementation for the Koru rendering system." alt="" coords="643,86,797,126"/>
+<area shape="poly" title=" " alt="" coords="966,37,810,81,785,88,784,83,809,76,964,32"/>
+<area shape="rect" href="vulkan__backend_8c.html" title="Implementation of the Vulkan renderer backend." alt="" coords="822,86,1010,126"/>
+<area shape="poly" title=" " alt="" coords="996,42,940,88,937,84,992,38"/>
+<area shape="rect" href="vulkan__device_8c.html" title="Implementation of Vulkan device creation and selection logic." alt="" coords="1034,86,1211,126"/>
+<area shape="poly" title=" " alt="" coords="1045,37,1101,84,1098,88,1041,41"/>
+<area shape="rect" href="vulkan__shader__utils_8c.html" title="Implements utility functions for loading and creating Vulkan shader modules." alt="" coords="1235,79,1402,133"/>
+<area shape="poly" title=" " alt="" coords="1073,32,1236,78,1235,84,1072,37"/>
+<area shape="rect" href="geometry__system_8c.html" title="Implementation of the geometry system." alt="" coords="1427,86,1581,126"/>
+<area shape="poly" title=" " alt="" coords="1124,29,1263,48,1415,76,1444,83,1443,89,1414,81,1262,53,1123,34"/>
+<area shape="rect" href="material__system_8c.html" title="Implementation of the material system." alt="" coords="1606,86,1754,126"/>
+<area shape="poly" title=" " alt="" coords="1124,22,1341,39,1468,55,1594,76,1624,83,1622,89,1593,81,1467,60,1341,44,1123,27"/>
+<area shape="rect" href="texture__system_8c.html" title="Implementation of the texture system for managing textures in the Koru engine." alt="" coords="1778,86,1926,126"/>
+<area shape="poly" title=" " alt="" coords="1124,18,1254,22,1415,32,1592,49,1767,76,1798,83,1796,89,1766,81,1591,55,1415,37,1254,28,1124,23"/>
 </map>
 </div>
 </div>
@@ -141,6 +151,66 @@ Functions</h2></td></tr>
 <tr class="memitem:aaa989e81756996ae4818df30bf3288c7" id="r_aaa989e81756996ae4818df30bf3288c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#aaa989e81756996ae4818df30bf3288c7">string_format_v</a> (char *dest, const char *format, void *va_list)</td></tr>
 <tr class="memdesc:aaa989e81756996ae4818df30bf3288c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs variadic string formatting against the given format string and va_list. NOTE: that this performs a dynamic allocation and should be freed by the caller.  <br /></td></tr>
 <tr class="separator:aaa989e81756996ae4818df30bf3288c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e2721cb0d6afa4ac7bde71a51f5d7f0" id="r_a2e2721cb0d6afa4ac7bde71a51f5d7f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a2e2721cb0d6afa4ac7bde71a51f5d7f0">string_copy</a> (char *dest, const char *source)</td></tr>
+<tr class="memdesc:a2e2721cb0d6afa4ac7bde71a51f5d7f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the source string to the destination string, including the null terminator.  <br /></td></tr>
+<tr class="separator:a2e2721cb0d6afa4ac7bde71a51f5d7f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf110e83cbf21d0e9939b1a1960d26cc" id="r_abf110e83cbf21d0e9939b1a1960d26cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#abf110e83cbf21d0e9939b1a1960d26cc">string_ncopy</a> (char *dest, const char *source, <a class="el" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a> length)</td></tr>
+<tr class="memdesc:abf110e83cbf21d0e9939b1a1960d26cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies up to length characters from the source string to the destination string. If the source string is shorter than length, the destination is null-terminated.  <br /></td></tr>
+<tr class="separator:abf110e83cbf21d0e9939b1a1960d26cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae12f9761e86ff49b94e2d88d138a362a" id="r_ae12f9761e86ff49b94e2d88d138a362a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#ae12f9761e86ff49b94e2d88d138a362a">string_trim</a> (char *str)</td></tr>
+<tr class="memdesc:ae12f9761e86ff49b94e2d88d138a362a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trims leading and trailing whitespace from the given string in place.  <br /></td></tr>
+<tr class="separator:ae12f9761e86ff49b94e2d88d138a362a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a6fea23341068d71be26ed6a01c7291" id="r_a3a6fea23341068d71be26ed6a01c7291"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a3a6fea23341068d71be26ed6a01c7291">string_mid</a> (char *dest, const char *source, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> start, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> length)</td></tr>
+<tr class="memdesc:a3a6fea23341068d71be26ed6a01c7291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts a substring from the source string, starting at the given index and of the given length.  <br /></td></tr>
+<tr class="separator:a3a6fea23341068d71be26ed6a01c7291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac44f8da6e45e7eeeede9b6e38010940d" id="r_ac44f8da6e45e7eeeede9b6e38010940d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#ac44f8da6e45e7eeeede9b6e38010940d">string_index_of</a> (char *str, char c)</td></tr>
+<tr class="memdesc:ac44f8da6e45e7eeeede9b6e38010940d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the index of the first occurance of c in str; otherwise -1.  <br /></td></tr>
+<tr class="separator:ac44f8da6e45e7eeeede9b6e38010940d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a968f517099f882098fa86e14b995f0f6" id="r_a968f517099f882098fa86e14b995f0f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a968f517099f882098fa86e14b995f0f6">string_to_vec4</a> (char *str, <a class="el" href="math__types_8h.html#a6d07267a855fd8e0194ffcb3128396cd">vec4</a> *out_vector)</td></tr>
+<tr class="memdesc:a968f517099f882098fa86e14b995f0f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a vector from the provided string.  <br /></td></tr>
+<tr class="separator:a968f517099f882098fa86e14b995f0f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1146194317640988d5ce7a4c3c36f6" id="r_aaa1146194317640988d5ce7a4c3c36f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#aaa1146194317640988d5ce7a4c3c36f6">string_to_vec3</a> (char *str, <a class="el" href="math__types_8h.html#a291ce5191b34b920d576c84fd970b9ef">vec3</a> *out_vector)</td></tr>
+<tr class="memdesc:aaa1146194317640988d5ce7a4c3c36f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a vector from the provided string.  <br /></td></tr>
+<tr class="separator:aaa1146194317640988d5ce7a4c3c36f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4cd48d9af27b8e4e4d7d5194b2c9401" id="r_aa4cd48d9af27b8e4e4d7d5194b2c9401"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#aa4cd48d9af27b8e4e4d7d5194b2c9401">string_to_vec2</a> (char *str, <a class="el" href="math__types_8h.html#a4403515b5f13a3b84dafb1667a1f9d88">vec2</a> *out_vector)</td></tr>
+<tr class="memdesc:aa4cd48d9af27b8e4e4d7d5194b2c9401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a vector from the provided string.  <br /></td></tr>
+<tr class="separator:aa4cd48d9af27b8e4e4d7d5194b2c9401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d7598b8e9fd82463418f33c9d5827b6" id="r_a3d7598b8e9fd82463418f33c9d5827b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a3d7598b8e9fd82463418f33c9d5827b6">string_to_f32</a> (char *str, <a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *f)</td></tr>
+<tr class="memdesc:a3d7598b8e9fd82463418f33c9d5827b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 32-bit floating-point number from the provided string.  <br /></td></tr>
+<tr class="separator:a3d7598b8e9fd82463418f33c9d5827b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ad4db4852132583a238efbc68b1a7b1" id="r_a7ad4db4852132583a238efbc68b1a7b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a7ad4db4852132583a238efbc68b1a7b1">string_to_f64</a> (char *str, <a class="el" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> *f)</td></tr>
+<tr class="memdesc:a7ad4db4852132583a238efbc68b1a7b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 64-bit floating-point number from the provided string.  <br /></td></tr>
+<tr class="separator:a7ad4db4852132583a238efbc68b1a7b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a024ad742ba9fc03f9dbe9518d7ebf6e1" id="r_a024ad742ba9fc03f9dbe9518d7ebf6e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a024ad742ba9fc03f9dbe9518d7ebf6e1">string_to_i8</a> (char *str, <a class="el" href="defines_8h.html#a2d0b2d48b0784ffa5f75c39f46562729">i8</a> *i)</td></tr>
+<tr class="memdesc:a024ad742ba9fc03f9dbe9518d7ebf6e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse an 8-bit signed integer from the provided string.  <br /></td></tr>
+<tr class="separator:a024ad742ba9fc03f9dbe9518d7ebf6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02c8d6fd5861e68f2f43c317e0729430" id="r_a02c8d6fd5861e68f2f43c317e0729430"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a02c8d6fd5861e68f2f43c317e0729430">string_to_i16</a> (char *str, <a class="el" href="defines_8h.html#ac12585a6def54773148d7fb2c72a59c5">i16</a> *i)</td></tr>
+<tr class="memdesc:a02c8d6fd5861e68f2f43c317e0729430"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 16-bit signed integer from the provided string.  <br /></td></tr>
+<tr class="separator:a02c8d6fd5861e68f2f43c317e0729430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6245cb750dcb7a261ad9cfd8c34cadf" id="r_aa6245cb750dcb7a261ad9cfd8c34cadf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#aa6245cb750dcb7a261ad9cfd8c34cadf">string_to_i32</a> (char *str, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> *i)</td></tr>
+<tr class="memdesc:aa6245cb750dcb7a261ad9cfd8c34cadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 32-bit signed integer from the provided string.  <br /></td></tr>
+<tr class="separator:aa6245cb750dcb7a261ad9cfd8c34cadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaa4502654b2907b22857b85d8da4977" id="r_adaa4502654b2907b22857b85d8da4977"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#adaa4502654b2907b22857b85d8da4977">string_to_i64</a> (char *str, <a class="el" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a> *i)</td></tr>
+<tr class="memdesc:adaa4502654b2907b22857b85d8da4977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 64-bit signed integer from the provided string.  <br /></td></tr>
+<tr class="separator:adaa4502654b2907b22857b85d8da4977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac79b23b1aefa053ae5a35d60485a5cac" id="r_ac79b23b1aefa053ae5a35d60485a5cac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#ac79b23b1aefa053ae5a35d60485a5cac">string_to_u8</a> (char *str, <a class="el" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *u)</td></tr>
+<tr class="memdesc:ac79b23b1aefa053ae5a35d60485a5cac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse an 8-bit unsigned integer from the provided string.  <br /></td></tr>
+<tr class="separator:ac79b23b1aefa053ae5a35d60485a5cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2479aa79dabe381a438ecd5d4ba3fe7e" id="r_a2479aa79dabe381a438ecd5d4ba3fe7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a2479aa79dabe381a438ecd5d4ba3fe7e">string_to_u16</a> (char *str, <a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> *u)</td></tr>
+<tr class="memdesc:a2479aa79dabe381a438ecd5d4ba3fe7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 16-bit unsigned integer from the provided string.  <br /></td></tr>
+<tr class="separator:a2479aa79dabe381a438ecd5d4ba3fe7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bcf9ec6be8a452fac65d1f792727a94" id="r_a3bcf9ec6be8a452fac65d1f792727a94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a3bcf9ec6be8a452fac65d1f792727a94">string_to_u32</a> (char *str, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> *u)</td></tr>
+<tr class="memdesc:a3bcf9ec6be8a452fac65d1f792727a94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 32-bit unsigned integer from the provided string.  <br /></td></tr>
+<tr class="separator:a3bcf9ec6be8a452fac65d1f792727a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abffbffbb5679e3edda50770dcb7f9654" id="r_abffbffbb5679e3edda50770dcb7f9654"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#abffbffbb5679e3edda50770dcb7f9654">string_to_u64</a> (char *str, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *u)</td></tr>
+<tr class="memdesc:abffbffbb5679e3edda50770dcb7f9654"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 64-bit unsigned integer from the provided string.  <br /></td></tr>
+<tr class="separator:abffbffbb5679e3edda50770dcb7f9654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a13164ed1e674ee883c8ec14da38ae7" id="r_a6a13164ed1e674ee883c8ec14da38ae7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#a6a13164ed1e674ee883c8ec14da38ae7">string_to_bool</a> (char *str, <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> *b)</td></tr>
+<tr class="memdesc:a6a13164ed1e674ee883c8ec14da38ae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a boolean from the provided string. "true" or "1" are considered true; anything else is false.  <br /></td></tr>
+<tr class="separator:a6a13164ed1e674ee883c8ec14da38ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab683baecc9c29380d81c9b0fafe27738" id="r_ab683baecc9c29380d81c9b0fafe27738"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8h.html#ab683baecc9c29380d81c9b0fafe27738">string_empty</a> (char *str)</td></tr>
+<tr class="memdesc:ab683baecc9c29380d81c9b0fafe27738"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empties the given string by setting the first character to 0.  <br /></td></tr>
+<tr class="separator:ab683baecc9c29380d81c9b0fafe27738"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Lightweight string utility library. </p>
@@ -153,6 +223,46 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="kstring_8h_source.html">kstring.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a2e2721cb0d6afa4ac7bde71a51f5d7f0" name="a2e2721cb0d6afa4ac7bde71a51f5d7f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e2721cb0d6afa4ac7bde71a51f5d7f0">&#9670;&#160;</a></span>string_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> char * string_copy </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the source string to the destination string, including the null terminator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>The destination string buffer. Must be large enough to hold the source string. </td></tr>
+    <tr><td class="paramname">source</td><td>The source null-terminated string to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the destination string. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00076">76</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+</div>
+</div>
 <a id="a6313f0a692f28c80f3016a5f77f31bec" name="a6313f0a692f28c80f3016a5f77f31bec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6313f0a692f28c80f3016a5f77f31bec">&#9670;&#160;</a></span>string_duplicate()</h2>
 
@@ -182,6 +292,37 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00030">30</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
 <p class="reference">References <a class="el" href="kmemory_8c_source.html#l00122">kallocate()</a>, <a class="el" href="kmemory_8c_source.html#l00182">kcopy_memory()</a>, <a class="el" href="kmemory_8h_source.html#l00047">MEMORY_TAG_STRING</a>, and <a class="el" href="kstring_8c_source.html#l00026">string_length()</a>.</p>
+
+</div>
+</div>
+<a id="ab683baecc9c29380d81c9b0fafe27738" name="ab683baecc9c29380d81c9b0fafe27738"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab683baecc9c29380d81c9b0fafe27738">&#9670;&#160;</a></span>string_empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> char * string_empty </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Empties the given string by setting the first character to 0. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to empty. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the emptied string. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00287">287</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="geometry__system_8c_source.html#l00225">destroy_geometry()</a>.</p>
 
 </div>
 </div>
@@ -231,7 +372,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="kstring_8c_source.html#l00063">string_format_v()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__shader__utils_8c_source.html#l00017">create_shader_module()</a>, <a class="el" href="texture__system_8c_source.html#l00308">load_texture()</a>, and <a class="el" href="logger_8c_source.html#l00095">log_output()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__shader__utils_8c_source.html#l00017">create_shader_module()</a>, <a class="el" href="texture__system_8c_source.html#l00341">load_texture()</a>, <a class="el" href="logger_8c_source.html#l00095">log_output()</a>, and <a class="el" href="material__system_8c_source.html#l00169">material_system_acquire()</a>.</p>
 
 </div>
 </div>
@@ -285,6 +426,50 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ac44f8da6e45e7eeeede9b6e38010940d" name="ac44f8da6e45e7eeeede9b6e38010940d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac44f8da6e45e7eeeede9b6e38010940d">&#9670;&#160;</a></span>string_index_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> string_index_of </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the index of the first occurance of c in str; otherwise -1. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to be scanned. </td></tr>
+    <tr><td class="paramname">c</td><td>The character to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the first occurance of c; otherwise -1 if not found. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00133">133</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="kstring_8c_source.html#l00026">string_length()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>.</p>
+
+</div>
+</div>
 <a id="ab7a013ae84adad0a807d921d9e38d424" name="ab7a013ae84adad0a807d921d9e38d424"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab7a013ae84adad0a807d921d9e38d424">&#9670;&#160;</a></span>string_length()</h2>
 
@@ -313,7 +498,734 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00026">26</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00050">append_to_log_file()</a>, and <a class="el" href="kstring_8c_source.html#l00030">string_duplicate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00050">append_to_log_file()</a>, <a class="el" href="geometry__system_8c_source.html#l00201">create_geometry()</a>, <a class="el" href="geometry__system_8c_source.html#l00225">destroy_geometry()</a>, <a class="el" href="geometry__system_8c_source.html#l00280">geometry_system_generate_plane_config()</a>, <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>, <a class="el" href="material__system_8c_source.html#l00290">load_material()</a>, <a class="el" href="kstring_8c_source.html#l00030">string_duplicate()</a>, <a class="el" href="kstring_8c_source.html#l00133">string_index_of()</a>, and <a class="el" href="kstring_8c_source.html#l00108">string_mid()</a>.</p>
+
+</div>
+</div>
+<a id="a3a6fea23341068d71be26ed6a01c7291" name="a3a6fea23341068d71be26ed6a01c7291"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a6fea23341068d71be26ed6a01c7291">&#9670;&#160;</a></span>string_mid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> void string_mid </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Extracts a substring from the source string, starting at the given index and of the given length. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>The destination buffer to write the substring to. Must be large enough to hold length characters plus a null terminator. </td></tr>
+    <tr><td class="paramname">source</td><td>The source null-terminated string to extract from. </td></tr>
+    <tr><td class="paramname">start</td><td>The starting index in the source string (0-based). </td></tr>
+    <tr><td class="paramname">length</td><td>The number of characters to extract. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00108">108</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="kstring_8c_source.html#l00026">string_length()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>.</p>
+
+</div>
+</div>
+<a id="abf110e83cbf21d0e9939b1a1960d26cc" name="abf110e83cbf21d0e9939b1a1960d26cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf110e83cbf21d0e9939b1a1960d26cc">&#9670;&#160;</a></span>string_ncopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> char * string_ncopy </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies up to length characters from the source string to the destination string. If the source string is shorter than length, the destination is null-terminated. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>The destination string buffer. Must be large enough to hold length characters plus a null terminator. </td></tr>
+    <tr><td class="paramname">source</td><td>The source null-terminated string to copy from. </td></tr>
+    <tr><td class="paramname">length</td><td>The maximum number of characters to copy from the source string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the destination string. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00080">80</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00344">create_default_material()</a>, <a class="el" href="texture__system_8c_source.html#l00292">create_default_textures()</a>, <a class="el" href="geometry__system_8c_source.html#l00280">geometry_system_generate_plane_config()</a>, <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>, <a class="el" href="material__system_8c_source.html#l00290">load_material()</a>, and <a class="el" href="texture__system_8c_source.html#l00243">texture_system_release()</a>.</p>
+
+</div>
+</div>
+<a id="a6a13164ed1e674ee883c8ec14da38ae7" name="a6a13164ed1e674ee883c8ec14da38ae7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a13164ed1e674ee883c8ec14da38ae7">&#9670;&#160;</a></span>string_to_bool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_bool </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> *&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a boolean from the provided string. "true" or "1" are considered true; anything else is false. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. "true" or "1" are considered true; anything else is false. </td></tr>
+    <tr><td class="paramname">b</td><td>A pointer to the boolean to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00279">279</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kstring_8c_source.html#l00040">strings_equal()</a>, and <a class="el" href="kstring_8c_source.html#l00044">strings_equali()</a>.</p>
+
+</div>
+</div>
+<a id="a3d7598b8e9fd82463418f33c9d5827b6" name="a3d7598b8e9fd82463418f33c9d5827b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d7598b8e9fd82463418f33c9d5827b6">&#9670;&#160;</a></span>string_to_f32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_f32 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 32-bit floating-point number from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. Should <em>not</em> be postfixed with 'f'. </td></tr>
+    <tr><td class="paramname">f</td><td>A pointer to the float to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00179">179</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a7ad4db4852132583a238efbc68b1a7b1" name="a7ad4db4852132583a238efbc68b1a7b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ad4db4852132583a238efbc68b1a7b1">&#9670;&#160;</a></span>string_to_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_f64 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> *&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 64-bit floating-point number from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">f</td><td>A pointer to the float to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00189">189</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a02c8d6fd5861e68f2f43c317e0729430" name="a02c8d6fd5861e68f2f43c317e0729430"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02c8d6fd5861e68f2f43c317e0729430">&#9670;&#160;</a></span>string_to_i16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_i16 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ac12585a6def54773148d7fb2c72a59c5">i16</a> *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 16-bit signed integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">i</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00209">209</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="aa6245cb750dcb7a261ad9cfd8c34cadf" name="aa6245cb750dcb7a261ad9cfd8c34cadf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6245cb750dcb7a261ad9cfd8c34cadf">&#9670;&#160;</a></span>string_to_i32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_i32 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 32-bit signed integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">i</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00219">219</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="adaa4502654b2907b22857b85d8da4977" name="adaa4502654b2907b22857b85d8da4977"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaa4502654b2907b22857b85d8da4977">&#9670;&#160;</a></span>string_to_i64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_i64 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a> *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 64-bit signed integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">i</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00229">229</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a024ad742ba9fc03f9dbe9518d7ebf6e1" name="a024ad742ba9fc03f9dbe9518d7ebf6e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a024ad742ba9fc03f9dbe9518d7ebf6e1">&#9670;&#160;</a></span>string_to_i8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_i8 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a2d0b2d48b0784ffa5f75c39f46562729">i8</a> *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse an 8-bit signed integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">i</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00199">199</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a2479aa79dabe381a438ecd5d4ba3fe7e" name="a2479aa79dabe381a438ecd5d4ba3fe7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2479aa79dabe381a438ecd5d4ba3fe7e">&#9670;&#160;</a></span>string_to_u16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_u16 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> *&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 16-bit unsigned integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">u</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00249">249</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a3bcf9ec6be8a452fac65d1f792727a94" name="a3bcf9ec6be8a452fac65d1f792727a94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bcf9ec6be8a452fac65d1f792727a94">&#9670;&#160;</a></span>string_to_u32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_u32 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> *&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 32-bit unsigned integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">u</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00259">259</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="abffbffbb5679e3edda50770dcb7f9654" name="abffbffbb5679e3edda50770dcb7f9654"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abffbffbb5679e3edda50770dcb7f9654">&#9670;&#160;</a></span>string_to_u64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_u64 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 64-bit unsigned integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">u</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00269">269</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="ac79b23b1aefa053ae5a35d60485a5cac" name="ac79b23b1aefa053ae5a35d60485a5cac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac79b23b1aefa053ae5a35d60485a5cac">&#9670;&#160;</a></span>string_to_u8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_u8 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse an 8-bit unsigned integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">u</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00239">239</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="aa4cd48d9af27b8e4e4d7d5194b2c9401" name="aa4cd48d9af27b8e4e4d7d5194b2c9401"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4cd48d9af27b8e4e4d7d5194b2c9401">&#9670;&#160;</a></span>string_to_vec2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_vec2 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="math__types_8h.html#a4403515b5f13a3b84dafb1667a1f9d88">vec2</a> *&#160;</td>
+          <td class="paramname"><em>out_vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a vector from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. Should be space-delimited. (i.e. "1.0 2.0") </td></tr>
+    <tr><td class="paramname">out_vector</td><td>A pointer to the vector to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00169">169</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="math__types_8h_source.html#l00036">vec2_u::x</a>, and <a class="el" href="math__types_8h_source.html#l00040">vec2_u::y</a>.</p>
+
+</div>
+</div>
+<a id="aaa1146194317640988d5ce7a4c3c36f6" name="aaa1146194317640988d5ce7a4c3c36f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa1146194317640988d5ce7a4c3c36f6">&#9670;&#160;</a></span>string_to_vec3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_vec3 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="math__types_8h.html#a291ce5191b34b920d576c84fd970b9ef">vec3</a> *&#160;</td>
+          <td class="paramname"><em>out_vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a vector from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. Should be space-delimited. (i.e. "1.0 2.0 3.0") </td></tr>
+    <tr><td class="paramname">out_vector</td><td>A pointer to the vector to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00159">159</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="math__types_8h_source.html#l00068">vec3_u::x</a>, <a class="el" href="math__types_8h_source.html#l00072">vec3_u::y</a>, and <a class="el" href="math__types_8h_source.html#l00076">vec3_u::z</a>.</p>
+
+</div>
+</div>
+<a id="a968f517099f882098fa86e14b995f0f6" name="a968f517099f882098fa86e14b995f0f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a968f517099f882098fa86e14b995f0f6">&#9670;&#160;</a></span>string_to_vec4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_vec4 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="math__types_8h.html#a6d07267a855fd8e0194ffcb3128396cd">vec4</a> *&#160;</td>
+          <td class="paramname"><em>out_vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a vector from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. Should be space-delimited. (i.e. "1.0 2.0 3.0 4.0") </td></tr>
+    <tr><td class="paramname">out_vector</td><td>A pointer to the vector to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00149">149</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="math__types_8h_source.html#l00118">vec4_u::w</a>, <a class="el" href="math__types_8h_source.html#l00106">vec4_u::x</a>, <a class="el" href="math__types_8h_source.html#l00110">vec4_u::y</a>, and <a class="el" href="math__types_8h_source.html#l00114">vec4_u::z</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>.</p>
+
+</div>
+</div>
+<a id="ae12f9761e86ff49b94e2d88d138a362a" name="ae12f9761e86ff49b94e2d88d138a362a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae12f9761e86ff49b94e2d88d138a362a">&#9670;&#160;</a></span>string_trim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a0dc00ea56793277f556f072353318f35">KAPI</a> char * string_trim </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trims leading and trailing whitespace from the given string in place. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to trim. Must be mutable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the trimmed string (which may be the same as the input pointer). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00084">84</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>.</p>
 
 </div>
 </div>
@@ -356,7 +1268,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00040">40</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__device_8c_source.html#l00521">physical_device_meets_requirements()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__device_8c_source.html#l00521">physical_device_meets_requirements()</a>, <a class="el" href="kstring_8c_source.html#l00279">string_to_bool()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00095">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -399,14 +1311,14 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00044">44</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00163">texture_system_acquire()</a>, and <a class="el" href="texture__system_8c_source.html#l00219">texture_system_release()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>, <a class="el" href="material__system_8c_source.html#l00190">material_system_acquire_from_config()</a>, <a class="el" href="material__system_8c_source.html#l00255">material_system_release()</a>, <a class="el" href="kstring_8c_source.html#l00279">string_to_bool()</a>, <a class="el" href="texture__system_8c_source.html#l00187">texture_system_acquire()</a>, and <a class="el" href="texture__system_8c_source.html#l00243">texture_system_release()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 7 2025 09:32:39 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 11:37:28 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -1,0 +1,289 @@
+\doxysection{engine/src/systems/material\+\_\+system.h File Reference}
+\hypertarget{material__system_8h}{}\label{material__system_8h}\index{engine/src/systems/material\_system.h@{engine/src/systems/material\_system.h}}
+
+
+Material management system.  
+
+
+{\ttfamily \#include "{}renderer/renderer\+\_\+types.\+inl"{}}\newline
+Include dependency graph for material\+\_\+system.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{material__system_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{material__system_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmaterial__system__config}{material\+\_\+system\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Configuration options for initializing the material system. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmaterial__config}{material\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Configuration for creating or loading a material. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{material__system_8h_a80052b1adb0fa266116bd9f832fe290a}{DEFAULT\+\_\+\+MATERIAL\+\_\+\+NAME}}~"{}default"{}
+\begin{DoxyCompactList}\small\item\em Default material name used when a requested texture is not found. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structmaterial__system__config}{material\+\_\+system\+\_\+config}} \mbox{\hyperlink{material__system_8h_a55a20cd8103d6656399b331419b5e75c}{material\+\_\+system\+\_\+config}}
+\item 
+typedef struct \mbox{\hyperlink{structmaterial__config}{material\+\_\+config}} \mbox{\hyperlink{material__system_8h_a9d2084d04c8f8291d53357e6f925ac75}{material\+\_\+config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{material__system_8h_acd96d4f865338dcf64ca455731b43718}{material\+\_\+system\+\_\+initialize}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}memory\+\_\+requirement, void \texorpdfstring{$\ast$}{*}state, \mbox{\hyperlink{structmaterial__system__config}{material\+\_\+system\+\_\+config}} config)
+\begin{DoxyCompactList}\small\item\em Initializes the material system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{material__system_8h_ac54691336a811ff2d5c8dc06727fba89}{material\+\_\+system\+\_\+shutdown}} (void \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Shuts down the material system, freeing all resources. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{material__system_8h_ae395c1f929cb52e4876eafa9b2398f66}{material\+\_\+system\+\_\+acquire}} (const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Acquires a material by name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{material__system_8h_ab4fc1dd5effa08830f4f91c5334f108e}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config}} (\mbox{\hyperlink{structmaterial__config}{material\+\_\+config}} config)
+\begin{DoxyCompactList}\small\item\em Acquires a material based on the provided configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{material__system_8h_a71642cf5861f603f7e1bf6c4d373b906}{material\+\_\+system\+\_\+release}} (const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Releases a material by name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{material__system_8h_a4ba73bfbf0e5e2fe4c8b839449ea210b}{material\+\_\+system\+\_\+get\+\_\+default}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the default material used when a requested material is not found. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Material management system. 
+
+This module provides functionality to manage material resources within the engine. It supports loading, acquiring, and releasing materials, as well as automatic cleanup of unused resources.
+
+Usage\+:
+\begin{DoxyItemize}
+\item Initialize the material system with {\ttfamily \doxylink{material__system_8h_acd96d4f865338dcf64ca455731b43718}{material\+\_\+system\+\_\+initialize()}}, providing configuration options.
+\item Acquire materials by name using {\ttfamily \doxylink{material__system_8h_ae395c1f929cb52e4876eafa9b2398f66}{material\+\_\+system\+\_\+acquire()}}. If the material is not already loaded, it will be created with default properties.
+\item Release materials using {\ttfamily \doxylink{material__system_8h_a71642cf5861f603f7e1bf6c4d373b906}{material\+\_\+system\+\_\+release()}}. If a material was marked for auto-\/release, it will be freed when no longer in use.
+\item Shutdown the material system with {\ttfamily \doxylink{material__system_8h_ac54691336a811ff2d5c8dc06727fba89}{material\+\_\+system\+\_\+shutdown()}} to free all resources. 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{material__system_8h_source}{material\+\_\+system.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{material__system_8h_a80052b1adb0fa266116bd9f832fe290a}\label{material__system_8h_a80052b1adb0fa266116bd9f832fe290a} 
+\index{material\_system.h@{material\_system.h}!DEFAULT\_MATERIAL\_NAME@{DEFAULT\_MATERIAL\_NAME}}
+\index{DEFAULT\_MATERIAL\_NAME@{DEFAULT\_MATERIAL\_NAME}!material\_system.h@{material\_system.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_MATERIAL\_NAME}{DEFAULT\_MATERIAL\_NAME}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+MATERIAL\+\_\+\+NAME~"{}default"{}}
+
+
+
+Default material name used when a requested texture is not found. 
+
+
+
+Definition at line \mbox{\hyperlink{material__system_8h_source_l00025}{25}} of file \mbox{\hyperlink{material__system_8h_source}{material\+\_\+system.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{material__system_8h_a9d2084d04c8f8291d53357e6f925ac75}\label{material__system_8h_a9d2084d04c8f8291d53357e6f925ac75} 
+\index{material\_system.h@{material\_system.h}!material\_config@{material\_config}}
+\index{material\_config@{material\_config}!material\_system.h@{material\_system.h}}
+\doxysubsubsection{\texorpdfstring{material\_config}{material\_config}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structmaterial__config}{material\+\_\+config}} \mbox{\hyperlink{structmaterial__config}{material\+\_\+config}}}
+
+\Hypertarget{material__system_8h_a55a20cd8103d6656399b331419b5e75c}\label{material__system_8h_a55a20cd8103d6656399b331419b5e75c} 
+\index{material\_system.h@{material\_system.h}!material\_system\_config@{material\_system\_config}}
+\index{material\_system\_config@{material\_system\_config}!material\_system.h@{material\_system.h}}
+\doxysubsubsection{\texorpdfstring{material\_system\_config}{material\_system\_config}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structmaterial__system__config}{material\+\_\+system\+\_\+config}} \mbox{\hyperlink{structmaterial__system__config}{material\+\_\+system\+\_\+config}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{material__system_8h_ae395c1f929cb52e4876eafa9b2398f66}\label{material__system_8h_ae395c1f929cb52e4876eafa9b2398f66} 
+\index{material\_system.h@{material\_system.h}!material\_system\_acquire@{material\_system\_acquire}}
+\index{material\_system\_acquire@{material\_system\_acquire}!material\_system.h@{material\_system.h}}
+\doxysubsubsection{\texorpdfstring{material\_system\_acquire()}{material\_system\_acquire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*} material\+\_\+system\+\_\+acquire (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+
+
+Acquires a material by name. 
+
+If the material is not already loaded, it will be created with default properties.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the material to acquire. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the acquired material, or {\ttfamily NULL} if acquisition failed. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00169}{169}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}, \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, and \mbox{\hyperlink{kstring_8c_source_l00052}{string\+\_\+format()}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}.
+
+\Hypertarget{material__system_8h_ab4fc1dd5effa08830f4f91c5334f108e}\label{material__system_8h_ab4fc1dd5effa08830f4f91c5334f108e} 
+\index{material\_system.h@{material\_system.h}!material\_system\_acquire\_from\_config@{material\_system\_acquire\_from\_config}}
+\index{material\_system\_acquire\_from\_config@{material\_system\_acquire\_from\_config}!material\_system.h@{material\_system.h}}
+\doxysubsubsection{\texorpdfstring{material\_system\_acquire\_from\_config()}{material\_system\_acquire\_from\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*} material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmaterial__config}{material\+\_\+config}}}]{config }\end{DoxyParamCaption})}
+
+
+
+Acquires a material based on the provided configuration. 
+
+If a material with the same name already exists, it will be returned. Otherwise, a new material will be created using the specified configuration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Configuration for the material to be acquired or created. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the acquired or newly created material, or {\ttfamily NULL} if acquisition failed. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00190}{190}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{material__system_8c_source_l00060}{material\+\_\+reference\+::auto\+\_\+release}}, \mbox{\hyperlink{material__system_8h_source_l00046}{material\+\_\+config\+::auto\+\_\+release}}, \mbox{\hyperlink{material__system_8c_source_l00038}{material\+\_\+system\+\_\+state\+::config}}, \mbox{\hyperlink{material__system_8c_source_l00041}{material\+\_\+system\+\_\+state\+::default\+\_\+material}}, \mbox{\hyperlink{material__system_8h_source_l00025}{DEFAULT\+\_\+\+MATERIAL\+\_\+\+NAME}}, \mbox{\hyperlink{resource__types_8h_source_l00081}{material\+::generation}}, \mbox{\hyperlink{material__system_8c_source_l00058}{material\+\_\+reference\+::handle}}, \mbox{\hyperlink{hashtable_8c_source_l00120}{hashtable\+\_\+get()}}, \mbox{\hyperlink{hashtable_8c_source_l00083}{hashtable\+\_\+set()}}, \mbox{\hyperlink{resource__types_8h_source_l00079}{material\+::id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00230}{KTRACE}}, \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}, \mbox{\hyperlink{material__system_8h_source_l00034}{material\+\_\+system\+\_\+config\+::max\+\_\+material\+\_\+count}}, \mbox{\hyperlink{material__system_8h_source_l00044}{material\+\_\+config\+::name}}, \mbox{\hyperlink{material__system_8c_source_l00056}{material\+\_\+reference\+::reference\+\_\+count}}, \mbox{\hyperlink{material__system_8c_source_l00047}{material\+\_\+system\+\_\+state\+::registered\+\_\+material\+\_\+table}}, \mbox{\hyperlink{material__system_8c_source_l00044}{material\+\_\+system\+\_\+state\+::registered\+\_\+materials}}, \mbox{\hyperlink{material__system_8c_source_l00064}{state\+\_\+ptr}}, and \mbox{\hyperlink{kstring_8c_source_l00044}{strings\+\_\+equali()}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00169}{material\+\_\+system\+\_\+acquire()}}.
+
+\Hypertarget{material__system_8h_a4ba73bfbf0e5e2fe4c8b839449ea210b}\label{material__system_8h_a4ba73bfbf0e5e2fe4c8b839449ea210b} 
+\index{material\_system.h@{material\_system.h}!material\_system\_get\_default@{material\_system\_get\_default}}
+\index{material\_system\_get\_default@{material\_system\_get\_default}!material\_system.h@{material\_system.h}}
+\doxysubsubsection{\texorpdfstring{material\_system\_get\_default()}{material\_system\_get\_default()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*} material\+\_\+system\+\_\+get\+\_\+default (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the default material used when a requested material is not found. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the default material. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00440}{440}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{material__system_8c_source_l00041}{material\+\_\+system\+\_\+state\+::default\+\_\+material}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, and \mbox{\hyperlink{material__system_8c_source_l00064}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00240}{create\+\_\+default\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l01052}{vulkan\+\_\+backend\+\_\+draw\+\_\+geometry()}}.
+
+\Hypertarget{material__system_8h_acd96d4f865338dcf64ca455731b43718}\label{material__system_8h_acd96d4f865338dcf64ca455731b43718} 
+\index{material\_system.h@{material\_system.h}!material\_system\_initialize@{material\_system\_initialize}}
+\index{material\_system\_initialize@{material\_system\_initialize}!material\_system.h@{material\_system.h}}
+\doxysubsubsection{\texorpdfstring{material\_system\_initialize()}{material\_system\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} material\+\_\+system\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{memory\+\_\+requirement,  }\item[{void \texorpdfstring{$\ast$}{*}}]{state,  }\item[{\mbox{\hyperlink{structmaterial__system__config}{material\+\_\+system\+\_\+config}}}]{config }\end{DoxyParamCaption})}
+
+
+
+Initializes the material system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em memory\+\_\+requirement} & Pointer to store the required memory size for the system state. \\
+\hline
+{\em state} & Pointer to pre-\/allocated memory for the system state. \\
+\hline
+{\em config} & Configuration options for the material system. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily True} if initialization was successful, {\ttfamily False} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00099}{99}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{material__system_8c_source_l00060}{material\+\_\+reference\+::auto\+\_\+release}}, \mbox{\hyperlink{material__system_8c_source_l00038}{material\+\_\+system\+\_\+state\+::config}}, \mbox{\hyperlink{material__system_8c_source_l00344}{create\+\_\+default\+\_\+material()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{resource__types_8h_source_l00081}{material\+::generation}}, \mbox{\hyperlink{material__system_8c_source_l00058}{material\+\_\+reference\+::handle}}, \mbox{\hyperlink{hashtable_8c_source_l00054}{hashtable\+\_\+create()}}, \mbox{\hyperlink{hashtable_8c_source_l00158}{hashtable\+\_\+fill()}}, \mbox{\hyperlink{resource__types_8h_source_l00079}{material\+::id}}, \mbox{\hyperlink{resource__types_8h_source_l00083}{material\+::internal\+\_\+id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{material__system_8h_source_l00034}{material\+\_\+system\+\_\+config\+::max\+\_\+material\+\_\+count}}, \mbox{\hyperlink{material__system_8c_source_l00056}{material\+\_\+reference\+::reference\+\_\+count}}, \mbox{\hyperlink{material__system_8c_source_l00047}{material\+\_\+system\+\_\+state\+::registered\+\_\+material\+\_\+table}}, \mbox{\hyperlink{material__system_8c_source_l00044}{material\+\_\+system\+\_\+state\+::registered\+\_\+materials}}, \mbox{\hyperlink{material__system_8c_source_l00064}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
+
+\Hypertarget{material__system_8h_a71642cf5861f603f7e1bf6c4d373b906}\label{material__system_8h_a71642cf5861f603f7e1bf6c4d373b906} 
+\index{material\_system.h@{material\_system.h}!material\_system\_release@{material\_system\_release}}
+\index{material\_system\_release@{material\_system\_release}!material\_system.h@{material\_system.h}}
+\doxysubsubsection{\texorpdfstring{material\_system\_release()}{material\_system\_release()}}
+{\footnotesize\ttfamily void material\+\_\+system\+\_\+release (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+
+
+Releases a material by name. 
+
+If the material was marked for auto-\/release, it will be freed when no longer in use.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the material to release. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00255}{255}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{material__system_8c_source_l00060}{material\+\_\+reference\+::auto\+\_\+release}}, \mbox{\hyperlink{material__system_8h_source_l00025}{DEFAULT\+\_\+\+MATERIAL\+\_\+\+NAME}}, \mbox{\hyperlink{material__system_8c_source_l00325}{destroy\+\_\+material()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{material__system_8c_source_l00058}{material\+\_\+reference\+::handle}}, \mbox{\hyperlink{hashtable_8c_source_l00120}{hashtable\+\_\+get()}}, \mbox{\hyperlink{hashtable_8c_source_l00083}{hashtable\+\_\+set()}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00230}{KTRACE}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{material__system_8c_source_l00056}{material\+\_\+reference\+::reference\+\_\+count}}, \mbox{\hyperlink{material__system_8c_source_l00047}{material\+\_\+system\+\_\+state\+::registered\+\_\+material\+\_\+table}}, \mbox{\hyperlink{material__system_8c_source_l00044}{material\+\_\+system\+\_\+state\+::registered\+\_\+materials}}, \mbox{\hyperlink{material__system_8c_source_l00064}{state\+\_\+ptr}}, and \mbox{\hyperlink{kstring_8c_source_l00044}{strings\+\_\+equali()}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}.
+
+\Hypertarget{material__system_8h_ac54691336a811ff2d5c8dc06727fba89}\label{material__system_8h_ac54691336a811ff2d5c8dc06727fba89} 
+\index{material\_system.h@{material\_system.h}!material\_system\_shutdown@{material\_system\_shutdown}}
+\index{material\_system\_shutdown@{material\_system\_shutdown}!material\_system.h@{material\_system.h}}
+\doxysubsubsection{\texorpdfstring{material\_system\_shutdown()}{material\_system\_shutdown()}}
+{\footnotesize\ttfamily void material\+\_\+system\+\_\+shutdown (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
+
+
+
+Shuts down the material system, freeing all resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Pointer to the material system state. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00151}{151}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{material__system_8c_source_l00038}{material\+\_\+system\+\_\+state\+::config}}, \mbox{\hyperlink{material__system_8c_source_l00041}{material\+\_\+system\+\_\+state\+::default\+\_\+material}}, \mbox{\hyperlink{material__system_8c_source_l00325}{destroy\+\_\+material()}}, \mbox{\hyperlink{resource__types_8h_source_l00079}{material\+::id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{material__system_8h_source_l00034}{material\+\_\+system\+\_\+config\+::max\+\_\+material\+\_\+count}}, \mbox{\hyperlink{material__system_8c_source_l00044}{material\+\_\+system\+\_\+state\+::registered\+\_\+materials}}, and \mbox{\hyperlink{material__system_8c_source_l00064}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
+

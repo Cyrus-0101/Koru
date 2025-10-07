@@ -11,6 +11,6 @@ var searchData=
   ['clock_8',['clock',['../structapplication__state.html#aa930dcc46dfc1ad594320c1a313a26a2',1,'application_state']]],
   ['compute_9',['compute',['../structvulkan__physical__device__requirements.html#a1e19bc98bfb1e4e23d881a43f2a977d6',1,'vulkan_physical_device_requirements']]],
   ['compute_5ffamily_5findex_10',['compute_family_index',['../structvulkan__physical__device__queue__family__info.html#a65cd341cf94f09630fbaa7507887a6ad',1,'vulkan_physical_device_queue_family_info']]],
-  ['config_11',['config',['../structtexture__system__state.html#ab49841c80f2afce16b83e0dd298770e1',1,'texture_system_state']]],
+  ['config_11',['config',['../structgeometry__system__state.html#ac21fe2b81faedfe07edf5f6020590777',1,'geometry_system_state::config'],['../structmaterial__system__state.html#a00e5ad65dc589e65bf501095cc247ccb',1,'material_system_state::config'],['../structtexture__system__state.html#ab49841c80f2afce16b83e0dd298770e1',1,'texture_system_state::config']]],
   ['context_12',['context',['../vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9',1,'vulkan_backend.c']]]
 ];

@@ -155,15 +155,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a0c96cda64f47450ef40d864e2123b895" id="r_a0c96cda64f47450ef40d864e2123b895"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__material__shader_8c.html#a0c96cda64f47450ef40d864e2123b895">vulkan_material_shader_update_global_state</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, struct vulkan_material_shader *shader, <a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> delta_time)</td></tr>
 <tr class="memdesc:a0c96cda64f47450ef40d864e2123b895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the global uniform state for the Vulkan object shader.  <br /></td></tr>
 <tr class="separator:a0c96cda64f47450ef40d864e2123b895"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2c747b4b0a4706e6a6f5f335db2758d" id="r_ae2c747b4b0a4706e6a6f5f335db2758d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__material__shader_8c.html#ae2c747b4b0a4706e6a6f5f335db2758d">vulkan_material_shader_update_object</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, struct vulkan_material_shader *shader, geometry_render_data data)</td></tr>
-<tr class="memdesc:ae2c747b4b0a4706e6a6f5f335db2758d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the model matrix for a specific object in the Vulkan object shader.  <br /></td></tr>
-<tr class="separator:ae2c747b4b0a4706e6a6f5f335db2758d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa85bc7c6b72ed42fb25c220523d1a586" id="r_aa85bc7c6b72ed42fb25c220523d1a586"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__material__shader_8c.html#aa85bc7c6b72ed42fb25c220523d1a586">vulkan_material_shader_acquire_resources</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, struct vulkan_material_shader *shader, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> *out_object_id)</td></tr>
-<tr class="memdesc:aa85bc7c6b72ed42fb25c220523d1a586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquires resources for rendering a new object with the Vulkan object shader.  <br /></td></tr>
-<tr class="separator:aa85bc7c6b72ed42fb25c220523d1a586"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a628fcf2f29210cc275168b7ecb508f47" id="r_a628fcf2f29210cc275168b7ecb508f47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__material__shader_8c.html#a628fcf2f29210cc275168b7ecb508f47">vulkan_material_shader_release_resources</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, struct vulkan_material_shader *shader, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> object_id)</td></tr>
-<tr class="memdesc:a628fcf2f29210cc275168b7ecb508f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases resources associated with a specific object ID in the Vulkan object shader.  <br /></td></tr>
-<tr class="separator:a628fcf2f29210cc275168b7ecb508f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a800cd116324b6fe24b677c3a2aa29122" id="r_a800cd116324b6fe24b677c3a2aa29122"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__material__shader_8c.html#a800cd116324b6fe24b677c3a2aa29122">vulkan_material_shader_set_model</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, struct vulkan_material_shader *shader, <a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a> model)</td></tr>
+<tr class="memdesc:a800cd116324b6fe24b677c3a2aa29122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the model matrix for the Vulkan object shader using push constants.  <br /></td></tr>
+<tr class="separator:a800cd116324b6fe24b677c3a2aa29122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b7992d982f19382d1cabb05856ccc23" id="r_a8b7992d982f19382d1cabb05856ccc23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__material__shader_8c.html#a8b7992d982f19382d1cabb05856ccc23">vulkan_material_shader_apply_material</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, struct vulkan_material_shader *shader, <a class="el" href="structmaterial.html">material</a> *<a class="el" href="structmaterial.html">material</a>)</td></tr>
+<tr class="memdesc:a8b7992d982f19382d1cabb05856ccc23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates per-object descriptor data (UBO + texture) and binds the descriptor set.  <br /></td></tr>
+<tr class="separator:a8b7992d982f19382d1cabb05856ccc23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7d7046cc2fb9b7aeb48871a597ccec9" id="r_ab7d7046cc2fb9b7aeb48871a597ccec9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__material__shader_8c.html#ab7d7046cc2fb9b7aeb48871a597ccec9">vulkan_material_shader_acquire_resources</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, struct vulkan_material_shader *shader, <a class="el" href="structmaterial.html">material</a> *<a class="el" href="structmaterial.html">material</a>)</td></tr>
+<tr class="memdesc:ab7d7046cc2fb9b7aeb48871a597ccec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Acquires resources for rendering a new object with the Vulkan object shader.  <br /></td></tr>
+<tr class="separator:ab7d7046cc2fb9b7aeb48871a597ccec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38b253bf18cf1e65a9c242582d45ad3c" id="r_a38b253bf18cf1e65a9c242582d45ad3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vulkan__material__shader_8c.html#a38b253bf18cf1e65a9c242582d45ad3c">vulkan_material_shader_release_resources</a> (vulkan_context *<a class="el" href="vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9">context</a>, struct vulkan_material_shader *shader, <a class="el" href="structmaterial.html">material</a> *<a class="el" href="structmaterial.html">material</a>)</td></tr>
+<tr class="memdesc:a38b253bf18cf1e65a9c242582d45ad3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases resources associated with a specific object ID in the Vulkan object shader.  <br /></td></tr>
+<tr class="separator:a38b253bf18cf1e65a9c242582d45ad3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements a Vulkan shader for rendering 3D objects with support for basic lighting and texturing. This shader handles vertex transformations, fragment shading, and resource binding for object rendering. </p>
@@ -207,8 +210,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aa85bc7c6b72ed42fb25c220523d1a586" name="aa85bc7c6b72ed42fb25c220523d1a586"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa85bc7c6b72ed42fb25c220523d1a586">&#9670;&#160;</a></span>vulkan_material_shader_acquire_resources()</h2>
+<a id="ab7d7046cc2fb9b7aeb48871a597ccec9" name="ab7d7046cc2fb9b7aeb48871a597ccec9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7d7046cc2fb9b7aeb48871a597ccec9">&#9670;&#160;</a></span>vulkan_material_shader_acquire_resources()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,8 +231,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> *&#160;</td>
-          <td class="paramname"><em>out_material_id</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structmaterial.html">material</a> *&#160;</td>
+          <td class="paramname"><em>material</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -245,17 +248,68 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">context</td><td>The Vulkan context containing device and swapchain information. </td></tr>
     <tr><td class="paramname">shader</td><td>Pointer to the vulkan_material_shader structure from which to acquire resources. </td></tr>
-    <tr><td class="paramname">out_material_id</td><td>Pointer to store the acquired object ID. </td></tr>
+    <tr><td class="paramname">material</td><td>Pointer to the material associated with the object being rendered. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if resources were successfully acquired; otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00403">403</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00424">424</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00037">context</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="resource__types_8h_source.html#l00083">material::internal_id</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00923">vulkan_renderer_create_material()</a>.</p>
+
+</div>
+</div>
+<a id="a8b7992d982f19382d1cabb05856ccc23" name="a8b7992d982f19382d1cabb05856ccc23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b7992d982f19382d1cabb05856ccc23">&#9670;&#160;</a></span>vulkan_material_shader_apply_material()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vulkan_material_shader_apply_material </td>
+          <td>(</td>
+          <td class="paramtype">vulkan_context *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct vulkan_material_shader *&#160;</td>
+          <td class="paramname"><em>shader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmaterial.html">material</a> *&#160;</td>
+          <td class="paramname"><em>material</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates per-object descriptor data (UBO + texture) and binds the descriptor set. </p>
+<p>This function updates the uniform buffer object (UBO) and texture bindings for a specific object being rendered, and binds the appropriate descriptor set for the current frame. It should be called once per object before drawing.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>The Vulkan context containing command buffers and frame information. </td></tr>
+    <tr><td class="paramname">shader</td><td>Pointer to the vulkan_material_shader structure whose object state is to be updated. </td></tr>
+    <tr><td class="paramname">data</td><td>Structure containing the model matrix and material information for the object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00305">305</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
+
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00037">context</a>, <a class="el" href="resource__types_8h_source.html#l00087">material::diffuse_color</a>, <a class="el" href="resource__types_8h_source.html#l00089">material::diffuse_map</a>, <a class="el" href="resource__types_8h_source.html#l00042">texture::generation</a>, <a class="el" href="resource__types_8h_source.html#l00081">material::generation</a>, <a class="el" href="resource__types_8h_source.html#l00032">texture::id</a>, <a class="el" href="resource__types_8h_source.html#l00046">texture::internal_data</a>, <a class="el" href="resource__types_8h_source.html#l00083">material::internal_id</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="resource__types_8h_source.html#l00065">texture_map::texture</a>, <a class="el" href="texture__system_8c_source.html#l00283">texture_system_get_default_texture()</a>, <a class="el" href="resource__types_8h_source.html#l00060">TEXTURE_USE_MAP_DIFFUSE</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00154">vulkan_buffer_load_data()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l01052">vulkan_backend_draw_geometry()</a>.</p>
 
 </div>
 </div>
@@ -300,9 +354,9 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00030">30</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__material__shader_8c_source.html#l00028">ATTRIBUTE_COUNT</a>, <a class="el" href="vulkan__material__shader_8c_source.html#l00023">BUILTIN_SHADER_NAME_OBJECT</a>, <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="vulkan__shader__utils_8c_source.html#l00017">create_shader_module()</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00017">vulkan_buffer_create()</a>, and <a class="el" href="vulkan__pipeline_8c_source.html#l00019">vulkan_graphics_pipeline_create()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__material__shader_8c_source.html#l00028">ATTRIBUTE_COUNT</a>, <a class="el" href="vulkan__material__shader_8c_source.html#l00023">BUILTIN_SHADER_NAME_OBJECT</a>, <a class="el" href="vulkan__backend_8c_source.html#l00037">context</a>, <a class="el" href="vulkan__shader__utils_8c_source.html#l00017">create_shader_module()</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="resource__types_8h_source.html#l00060">TEXTURE_USE_MAP_DIFFUSE</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00017">vulkan_buffer_create()</a>, and <a class="el" href="vulkan__pipeline_8c_source.html#l00019">vulkan_graphics_pipeline_create()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00095">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -342,16 +396,16 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00220">220</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00222">222</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00064">vulkan_buffer_destroy()</a>, and <a class="el" href="vulkan__pipeline_8c_source.html#l00166">vulkan_pipeline_destroy()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00037">context</a>, <a class="el" href="logger_8h_source.html#l00213">KDEBUG</a>, <a class="el" href="vulkan__buffer_8c_source.html#l00064">vulkan_buffer_destroy()</a>, and <a class="el" href="vulkan__pipeline_8c_source.html#l00166">vulkan_pipeline_destroy()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00343">vulkan_renderer_backend_shutdown()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00305">vulkan_renderer_backend_shutdown()</a>.</p>
 
 </div>
 </div>
-<a id="a628fcf2f29210cc275168b7ecb508f47" name="a628fcf2f29210cc275168b7ecb508f47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a628fcf2f29210cc275168b7ecb508f47">&#9670;&#160;</a></span>vulkan_material_shader_release_resources()</h2>
+<a id="a38b253bf18cf1e65a9c242582d45ad3c" name="a38b253bf18cf1e65a9c242582d45ad3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38b253bf18cf1e65a9c242582d45ad3c">&#9670;&#160;</a></span>vulkan_material_shader_release_resources()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -371,8 +425,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a>&#160;</td>
-          <td class="paramname"><em>object_id</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structmaterial.html">material</a> *&#160;</td>
+          <td class="paramname"><em>material</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -388,14 +442,67 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">context</td><td>The Vulkan context containing device information. </td></tr>
     <tr><td class="paramname">shader</td><td>Pointer to the vulkan_material_shader structure from which to release resources. </td></tr>
-    <tr><td class="paramname">object_id</td><td>The object ID whose resources are to be released. </td></tr>
+    <tr><td class="paramname">material</td><td>Pointer to the material associated with the object being released. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00440">440</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00460">460</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, and <a class="el" href="logger_8h_source.html#l00165">KERROR</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00037">context</a>, <a class="el" href="resource__types_8h_source.html#l00083">material::internal_id</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, and <a class="el" href="logger_8h_source.html#l00165">KERROR</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00938">vulkan_renderer_destroy_material()</a>.</p>
+
+</div>
+</div>
+<a id="a800cd116324b6fe24b677c3a2aa29122" name="a800cd116324b6fe24b677c3a2aa29122"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a800cd116324b6fe24b677c3a2aa29122">&#9670;&#160;</a></span>vulkan_material_shader_set_model()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vulkan_material_shader_set_model </td>
+          <td>(</td>
+          <td class="paramtype">vulkan_context *&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct vulkan_material_shader *&#160;</td>
+          <td class="paramname"><em>shader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="math__types_8h.html#a858329ffda7b5fe4913cca7ff8f34f30">mat4</a>&#160;</td>
+          <td class="paramname"><em>model</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the model matrix for the Vulkan object shader using push constants. </p>
+<p>This function updates the model matrix used for transforming vertices in the vertex shader. It utilizes push constants for efficient updates without needing to modify uniform buffers.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>The Vulkan context containing command buffers and frame information. </td></tr>
+    <tr><td class="paramname">shader</td><td>Pointer to the vulkan_material_shader structure whose model matrix is to be set. </td></tr>
+    <tr><td class="paramname">model</td><td>The model matrix to be applied to the shader. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00296">296</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
+
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00037">context</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l01052">vulkan_backend_draw_geometry()</a>.</p>
 
 </div>
 </div>
@@ -441,54 +548,11 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00262">262</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00264">264</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00154">vulkan_buffer_load_data()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00037">context</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00154">vulkan_buffer_load_data()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00543">vulkan_renderer_update_global_state()</a>.</p>
-
-</div>
-</div>
-<a id="ae2c747b4b0a4706e6a6f5f335db2758d" name="ae2c747b4b0a4706e6a6f5f335db2758d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2c747b4b0a4706e6a6f5f335db2758d">&#9670;&#160;</a></span>vulkan_material_shader_update_object()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void vulkan_material_shader_update_object </td>
-          <td>(</td>
-          <td class="paramtype">vulkan_context *&#160;</td>
-          <td class="paramname"><em>context</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">struct vulkan_material_shader *&#160;</td>
-          <td class="paramname"><em>shader</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">geometry_render_data&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Updates the model matrix for a specific object in the Vulkan object shader. </p>
-<p>Updates per-object descriptor data (UBO + texture) and binds the descriptor set. Should be called once per object before drawing. </p>
-
-<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00298">298</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
-
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="resource__types_8h_source.html#l00023">texture::id</a>, <a class="el" href="resource__types_8h_source.html#l00035">texture::internal_data</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="kmath_8c_source.html#l00026">ksin()</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="texture__system_8c_source.html#l00257">texture_system_get_default_texture()</a>, <a class="el" href="kmath_8h_source.html#l00633">vec4_create()</a>, and <a class="el" href="vulkan__buffer_8c_source.html#l00154">vulkan_buffer_load_data()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00628">vulkan_backend_update_object()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00505">vulkan_renderer_update_global_state()</a>.</p>
 
 </div>
 </div>
@@ -528,18 +592,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00257">257</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vulkan__material__shader_8c_source.html#l00259">259</a> of file <a class="el" href="vulkan__material__shader_8c_source.html">vulkan_material_shader.c</a>.</p>
 
-<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00035">context</a>, and <a class="el" href="vulkan__pipeline_8c_source.html#l00183">vulkan_pipeline_bind()</a>.</p>
+<p class="reference">References <a class="el" href="vulkan__backend_8c_source.html#l00037">context</a>, and <a class="el" href="vulkan__pipeline_8c_source.html#l00183">vulkan_pipeline_bind()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l00628">vulkan_backend_update_object()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00543">vulkan_renderer_update_global_state()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__backend_8c_source.html#l01052">vulkan_backend_draw_geometry()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00505">vulkan_renderer_update_global_state()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 7 2025 09:32:39 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 11:37:28 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

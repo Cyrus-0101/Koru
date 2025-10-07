@@ -96,3 +96,10 @@ material* material_system_acquire_from_config(material_config config);
  * @param name Name of the material to release.
  */
 void material_system_release(const char* name);
+
+/**
+ * @brief Retrieves the default material used when a requested material is not found.
+ *
+ * @return Pointer to the default material.
+ */
+material* material_system_get_default();

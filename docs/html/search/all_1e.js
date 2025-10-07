@@ -14,7 +14,8 @@ var searchData=
   ['u8_5fmax_11',['U8_MAX',['../defines_8h.html#a1187e707402ca2fca73f06f7beb1e631',1,'defines.h']]],
   ['u8_5fmin_12',['U8_MIN',['../defines_8h.html#a50185cccc95df2269f9f4e400d1fa6ed',1,'defines.h']]],
   ['update_13',['update',['../structgame.html#afe7bfadc01e08def3e7cae0019151d1b',1,'game']]],
-  ['upload_5fdata_5frange_14',['upload_data_range',['../vulkan__backend_8c.html#ac31532b42a062bc57ebef2f371970719',1,'upload_data_range(vulkan_context *context, VkCommandPool pool, VkFence fence, VkQueue queue, vulkan_buffer *buffer, u64 offset, u64 size, void *data):&#160;vulkan_backend.c'],['../vulkan__backend_8h.html#ac31532b42a062bc57ebef2f371970719',1,'upload_data_range(vulkan_context *context, VkCommandPool pool, VkFence fence, VkQueue queue, vulkan_buffer *buffer, u64 offset, u64 size, void *data):&#160;vulkan_backend.c']]],
-  ['use_20vulkan_15',['🧠 Why Use Vulkan?',['../index.html#autotoc_md35',1,'']]],
-  ['used_16',['🧰 Key Structures Used',['../index.html#autotoc_md67',1,'']]]
+  ['upload_5fdata_5frange_14',['upload_data_range',['../vulkan__backend_8c.html#ac7c74c146850082989f7cd632fdab5ea',1,'upload_data_range(vulkan_context *context, VkCommandPool pool, VkFence fence, VkQueue queue, vulkan_buffer *buffer, u64 offset, u64 size, const void *data):&#160;vulkan_backend.c'],['../vulkan__backend_8h.html#ac7c74c146850082989f7cd632fdab5ea',1,'upload_data_range(vulkan_context *context, VkCommandPool pool, VkFence fence, VkQueue queue, vulkan_buffer *buffer, u64 offset, u64 size, const void *data):&#160;vulkan_backend.c']]],
+  ['use_15',['use',['../structtexture__map.html#a18bbbe03ff0a2e03f4ac7220a7e29bf3',1,'texture_map']]],
+  ['use_20vulkan_16',['🧠 Why Use Vulkan?',['../index.html#autotoc_md35',1,'']]],
+  ['used_17',['🧰 Key Structures Used',['../index.html#autotoc_md67',1,'']]]
 ];

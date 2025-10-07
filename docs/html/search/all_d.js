@@ -23,7 +23,7 @@ var searchData=
   ['common_20errors_20and_20fixes_20',['🚫 Common Errors and Fixes',['../index.html#autotoc_md79',1,'']]],
   ['compute_21',['compute',['../structvulkan__physical__device__requirements.html#a1e19bc98bfb1e4e23d881a43f2a977d6',1,'vulkan_physical_device_requirements']]],
   ['compute_5ffamily_5findex_22',['compute_family_index',['../structvulkan__physical__device__queue__family__info.html#a65cd341cf94f09630fbaa7507887a6ad',1,'vulkan_physical_device_queue_family_info']]],
-  ['config_23',['config',['../structtexture__system__state.html#ab49841c80f2afce16b83e0dd298770e1',1,'texture_system_state']]],
+  ['config_23',['config',['../structmaterial__system__state.html#a00e5ad65dc589e65bf501095cc247ccb',1,'material_system_state::config'],['../structtexture__system__state.html#ab49841c80f2afce16b83e0dd298770e1',1,'texture_system_state::config'],['../structgeometry__system__state.html#ac21fe2b81faedfe07edf5f6020590777',1,'geometry_system_state::config']]],
   ['context_24',['context',['../vulkan__backend_8c.html#a171b208055a0eb2eeace24e130f74bc9',1,'vulkan_backend.c']]],
   ['core_20features_25',['Core Features',['../index.html#autotoc_md15',1,'']]],
   ['core_20strong_26',['2. &lt;strong&gt;Core&lt;/strong&gt;',['../index.html#autotoc_md10',1,'']]],
@@ -37,7 +37,10 @@ var searchData=
   ['create_20window_20surface_34',['2. 🖥 Create Window Surface',['../index.html#autotoc_md43',1,'']]],
   ['create_5fbuffers_35',['create_buffers',['../vulkan__backend_8h.html#af518f3f8b226671c0e27aec52faec49b',1,'create_buffers(vulkan_context *context):&#160;vulkan_backend.c'],['../vulkan__backend_8c.html#af518f3f8b226671c0e27aec52faec49b',1,'create_buffers(vulkan_context *context):&#160;vulkan_backend.c']]],
   ['create_5fcommand_5fbuffers_36',['create_command_buffers',['../vulkan__backend_8h.html#a6dfa9eb7e2169d6ab9a75cb9eb600e5e',1,'create_command_buffers(renderer_backend *backend):&#160;vulkan_backend.c'],['../vulkan__backend_8c.html#a6dfa9eb7e2169d6ab9a75cb9eb600e5e',1,'create_command_buffers(renderer_backend *backend):&#160;vulkan_backend.c']]],
-  ['create_5fdefault_5ftextures_37',['create_default_textures',['../texture__system_8c.html#ac3643ca61213bcced2e19079ca569764',1,'texture_system.c']]],
-  ['create_5fgame_38',['create_game',['../entry_8c.html#ac1205073da2ce08a82ead459fc8b39cb',1,'create_game(game *out_game):&#160;entry.c'],['../entry_8h.html#ac1205073da2ce08a82ead459fc8b39cb',1,'create_game(game *out_game):&#160;entry.c']]],
-  ['create_5fshader_5fmodule_39',['create_shader_module',['../vulkan__shader__utils_8h.html#abdafeacc190d500bbd72aa141cadf2e5',1,'create_shader_module(vulkan_context *context, const char *name, const char *type_str, VkShaderStageFlagBits shader_stage_flag, u32 stage_index, vulkan_shader_stage *shader_stages):&#160;vulkan_shader_utils.c'],['../vulkan__shader__utils_8c.html#abdafeacc190d500bbd72aa141cadf2e5',1,'create_shader_module(vulkan_context *context, const char *name, const char *type_str, VkShaderStageFlagBits shader_stage_flag, u32 stage_index, vulkan_shader_stage *shader_stages):&#160;vulkan_shader_utils.c']]]
+  ['create_5fdefault_5fgeometry_37',['create_default_geometry',['../geometry__system_8c.html#a10474d5dcfcb0d3e1e74d94b39f2a1c5',1,'geometry_system.c']]],
+  ['create_5fdefault_5fmaterial_38',['create_default_material',['../material__system_8c.html#ac41b8e9733cd229ba793c97d81cef345',1,'material_system.c']]],
+  ['create_5fdefault_5ftextures_39',['create_default_textures',['../texture__system_8c.html#ac3643ca61213bcced2e19079ca569764',1,'texture_system.c']]],
+  ['create_5fgame_40',['create_game',['../entry_8c.html#ac1205073da2ce08a82ead459fc8b39cb',1,'create_game(game *out_game):&#160;entry.c'],['../entry_8h.html#ac1205073da2ce08a82ead459fc8b39cb',1,'create_game(game *out_game):&#160;entry.c']]],
+  ['create_5fgeometry_41',['create_geometry',['../geometry__system_8c.html#acd49c193b9a057f50d06ca4e6eaa262f',1,'geometry_system.c']]],
+  ['create_5fshader_5fmodule_42',['create_shader_module',['../vulkan__shader__utils_8h.html#abdafeacc190d500bbd72aa141cadf2e5',1,'create_shader_module(vulkan_context *context, const char *name, const char *type_str, VkShaderStageFlagBits shader_stage_flag, u32 stage_index, vulkan_shader_stage *shader_stages):&#160;vulkan_shader_utils.c'],['../vulkan__shader__utils_8c.html#abdafeacc190d500bbd72aa141cadf2e5',1,'create_shader_module(vulkan_context *context, const char *name, const char *type_str, VkShaderStageFlagBits shader_stage_flag, u32 stage_index, vulkan_shader_stage *shader_stages):&#160;vulkan_shader_utils.c']]]
 ];

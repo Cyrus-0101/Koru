@@ -1,0 +1,42 @@
+\doxysection{geometry\+\_\+system.\+h}
+\hypertarget{geometry__system_8h_source}{}\label{geometry__system_8h_source}\index{engine/src/systems/geometry\_system.h@{engine/src/systems/geometry\_system.h}}
+\mbox{\hyperlink{geometry__system_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}renderer/renderer\_types.inl"{}}}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00025}\mbox{\hyperlink{geometry__system_8h_a56651adc6ffac9c741cd4b4ad9e1b079}{00025}}\ \textcolor{preprocessor}{\#define\ DEFAULT\_GEOMETRY\_NAME\ "{}default"{}}}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00034}\mbox{\hyperlink{structgeometry__system__config}{00034}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeometry__system__config}{geometry\_system\_config}}\ \{}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Max\ number\ of\ geometries\ that\ can\ be\ loaded\ at\ once.}}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00036}00036\ \ \ \ \ \textcolor{comment}{//\ NOTE:\ Should\ be\ significantly\ greater\ than\ the\ number\ of\ static\ meshes\ because}}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00037}00037\ \ \ \ \ \textcolor{comment}{//\ the\ there\ can\ and\ will\ be\ more\ than\ one\ of\ these\ per\ mesh.}}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00038}00038\ \ \ \ \ \textcolor{comment}{//\ Take\ other\ systems\ into\ account\ as\ well}}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00039}\mbox{\hyperlink{structgeometry__system__config_af324eb5e082bd65b0a9283fb09334ae1}{00039}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ \mbox{\hyperlink{structgeometry__system__config_af324eb5e082bd65b0a9283fb09334ae1}{max\_geometry\_count}};}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00040}\mbox{\hyperlink{geometry__system_8h_a14fbf6f88d2387996c733d0c888dce24}{00040}}\ \}\ \mbox{\hyperlink{structgeometry__system__config}{geometry\_system\_config}};}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00047}\mbox{\hyperlink{structgeometry__config}{00047}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeometry__config}{geometry\_config}}\ \{}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00049}\mbox{\hyperlink{structgeometry__config_aa1f9e97cf165609eaf95d756641854c7}{00049}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ \mbox{\hyperlink{structgeometry__config_aa1f9e97cf165609eaf95d756641854c7}{vertex\_count}};}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00051}\mbox{\hyperlink{structgeometry__config_af8e9a59e8e85828732d4f39420d62053}{00051}}\ \ \ \ \ \mbox{\hyperlink{structvertex__3d}{vertex\_3d}}*\ \mbox{\hyperlink{structgeometry__config_af8e9a59e8e85828732d4f39420d62053}{vertices}};}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00053}\mbox{\hyperlink{structgeometry__config_a7589d58435a66d45bb4d26495376510e}{00053}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ \mbox{\hyperlink{structgeometry__config_a7589d58435a66d45bb4d26495376510e}{index\_count}};}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00055}\mbox{\hyperlink{structgeometry__config_ac1b82dfed5742fbee5003ef464e5fb4e}{00055}}\ \ \ \ \ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}*\ \mbox{\hyperlink{structgeometry__config_ac1b82dfed5742fbee5003ef464e5fb4e}{indices}};}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00057}\mbox{\hyperlink{structgeometry__config_a29f2a479e4d4b28fd689ecadda865553}{00057}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structgeometry__config_a29f2a479e4d4b28fd689ecadda865553}{name}}[\mbox{\hyperlink{resource__types_8h_a9840b465a935f36dd17db47735877e27}{GEOMETRY\_NAME\_MAX\_LENGTH}}];}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00059}\mbox{\hyperlink{structgeometry__config_a7cc0b2dc3421124b780348f74853b136}{00059}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structgeometry__config_a7cc0b2dc3421124b780348f74853b136}{material\_name}}[\mbox{\hyperlink{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7}{MATERIAL\_NAME\_MAX\_LENGTH}}];}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00060}\mbox{\hyperlink{geometry__system_8h_a48d8dd5247f7f942ebcc29f74b179a1c}{00060}}\ \}\ \mbox{\hyperlink{structgeometry__config}{geometry\_config}};}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00071}00071\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{geometry__system_8h_a317d7b68bd7e7818e63bf582b2698b09}{geometry\_system\_initialize}}(\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}*\ memory\_requirement,\ \textcolor{keywordtype}{void}*\ state,\ \mbox{\hyperlink{structgeometry__system__config}{geometry\_system\_config}}\ config);}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00078}00078\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{geometry__system_8h_a55191f79e172eccf0c6637e252f50797}{geometry\_system\_shutdown}}(\textcolor{keywordtype}{void}*\ state);}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00086}00086\ \mbox{\hyperlink{structgeometry}{geometry}}*\ \mbox{\hyperlink{geometry__system_8h_ae0e4e5cb2d9716bfb256919854537738}{geometry\_system\_acquire\_by\_id}}(\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00095}00095\ \mbox{\hyperlink{structgeometry}{geometry}}*\ \mbox{\hyperlink{geometry__system_8h_aa3992a52627669573968c86505792e5c}{geometry\_system\_acquire\_from\_config}}(\mbox{\hyperlink{structgeometry__config}{geometry\_config}}\ config,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ auto\_release);}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00102}00102\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{geometry__system_8h_a2f9fd1495f9f9903d9b1a8003cf5417d}{geometry\_system\_release}}(\mbox{\hyperlink{structgeometry}{geometry}}*\ \mbox{\hyperlink{structgeometry}{geometry}});}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00109}00109\ \mbox{\hyperlink{structgeometry}{geometry}}*\ \mbox{\hyperlink{geometry__system_8h_a966ac21fa7a33e9a04bf444938d7cb94}{geometry\_system\_get\_default}}();}
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{geometry__system_8h_source_l00126}00126\ \mbox{\hyperlink{structgeometry__config}{geometry\_config}}\ \mbox{\hyperlink{geometry__system_8h_af4df3267d03b54612f8a61a647fceaba}{geometry\_system\_generate\_plane\_config}}(\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ width,\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ height,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ x\_segment\_count,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ y\_segment\_count,\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ tile\_x,\ \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}\ tile\_y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ material\_name);}
+
+\end{DoxyCode}

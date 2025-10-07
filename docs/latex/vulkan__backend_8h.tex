@@ -37,7 +37,7 @@ void \mbox{\hyperlink{vulkan__backend_8h_aeb8e5befb751f7f77dd00d3b2aafb936}{rege
 \begin{DoxyCompactList}\small\item\em Regenerates all framebuffers used in rendering after swapchain creation or resize. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__backend_8h_afe660c6d3ba8621d1a7b395500e6fc02}{recreate\+\_\+swapchain}} (renderer\+\_\+backend \texorpdfstring{$\ast$}{*}backend)
 \begin{DoxyCompactList}\small\item\em Recreates the swapchain and associated resources. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{vulkan__backend_8h_ac31532b42a062bc57ebef2f371970719}{upload\+\_\+data\+\_\+range}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Command\+Pool pool, Vk\+Fence fence, Vk\+Queue queue, vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} offset, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, void \texorpdfstring{$\ast$}{*}data)
+void \mbox{\hyperlink{vulkan__backend_8h_ac7c74c146850082989f7cd632fdab5ea}{upload\+\_\+data\+\_\+range}} (vulkan\+\_\+context \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}}, Vk\+Command\+Pool pool, Vk\+Fence fence, Vk\+Queue queue, vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} offset, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} size, const void \texorpdfstring{$\ast$}{*}data)
 \begin{DoxyCompactList}\small\item\em Uploads data to a specified range of a Vulkan buffer. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__backend_8h_afc2cbf296cd3a6e4999750da67deaca9}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize}} (renderer\+\_\+backend \texorpdfstring{$\ast$}{*}backend, const char \texorpdfstring{$\ast$}{*}application\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Initializes the Vulkan renderer backend. \end{DoxyCompactList}\item 
@@ -51,12 +51,20 @@ void \mbox{\hyperlink{vulkan__backend_8h_a8eae56297e3b34f9dd52a04c24fd9730}{vulk
 \begin{DoxyCompactList}\small\item\em Ends the current rendering frame in the Vulkan backend. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__backend_8h_a9efcf925da5223123622a6c4e29cdc1c}{vulkan\+\_\+renderer\+\_\+update\+\_\+global\+\_\+state}} (\mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} projection, \mbox{\hyperlink{math__types_8h_a858329ffda7b5fe4913cca7ff8f34f30}{mat4}} view, \mbox{\hyperlink{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}{vec3}} view\+\_\+position, \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} ambient\+\_\+colour, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} mode)
 \begin{DoxyCompactList}\small\item\em Updates the global state for rendering in the Vulkan backend. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{vulkan__backend_8h_a473f9be87792ec76a5af5ac7bcf89971}{vulkan\+\_\+backend\+\_\+update\+\_\+object}} (geometry\+\_\+render\+\_\+data data)
+void \mbox{\hyperlink{vulkan__backend_8h_a7699afe9fb901c240aa94043d67af6ba}{vulkan\+\_\+backend\+\_\+draw\+\_\+geometry}} (geometry\+\_\+render\+\_\+data data)
 \begin{DoxyCompactList}\small\item\em Updates the model matrix for a specific object in the Vulkan backend. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__backend_8h_a7db03e0175743f3d7bbb759682b7b31c}{vulkan\+\_\+renderer\+\_\+create\+\_\+texture}} (const char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} width, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} height, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} channel\+\_\+count, const \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} \texorpdfstring{$\ast$}{*}pixels, \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} has\+\_\+transparency, \mbox{\hyperlink{structtexture}{texture}} \texorpdfstring{$\ast$}{*}out\+\_\+texture)
 \begin{DoxyCompactList}\small\item\em Creates a texture in the Vulkan renderer backend. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{vulkan__backend_8h_a960741cefcbdc168f758b46407bcc9ec}{vulkan\+\_\+renderer\+\_\+destroy\+\_\+texture}} (\mbox{\hyperlink{structtexture}{texture}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structtexture}{texture}})
-\begin{DoxyCompactList}\small\item\em Destroys a texture in the Vulkan renderer backend. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Destroys a texture in the Vulkan renderer backend. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__backend_8h_aae87f32cda6dae5a302e4c7c23eeccb1}{vulkan\+\_\+renderer\+\_\+create\+\_\+material}} (struct \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structmaterial}{material}})
+\begin{DoxyCompactList}\small\item\em Creates a material resource. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vulkan__backend_8h_a897d4b85115557425812030916e8cc56}{vulkan\+\_\+renderer\+\_\+destroy\+\_\+material}} (struct \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structmaterial}{material}})
+\begin{DoxyCompactList}\small\item\em Destroys a material resource and frees associated resources. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{vulkan__backend_8h_ae692f6318e9210680fd8314766b6a779}{vulkan\+\_\+renderer\+\_\+create\+\_\+geometry}} (\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structgeometry}{geometry}}, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} vertex\+\_\+count, const \mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}} \texorpdfstring{$\ast$}{*}vertices, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} index\+\_\+count, const \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}indices)
+\item 
+void \mbox{\hyperlink{vulkan__backend_8h_a798b85a7a54f19a9dfc5a3a7e05827a7}{vulkan\+\_\+renderer\+\_\+destroy\+\_\+geometry}} (\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structgeometry}{geometry}})
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -95,15 +103,15 @@ True if buffers were created successfully, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00833}{833}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00753}{753}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{vulkan__buffer_8c_source_l00017}{vulkan\+\_\+buffer\+\_\+create()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{vulkan__buffer_8c_source_l00017}{vulkan\+\_\+buffer\+\_\+create()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00095}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 
 \Hypertarget{vulkan__backend_8h_a6dfa9eb7e2169d6ab9a75cb9eb600e5e}\label{vulkan__backend_8h_a6dfa9eb7e2169d6ab9a75cb9eb600e5e} 
 \index{vulkan\_backend.h@{vulkan\_backend.h}!create\_command\_buffers@{create\_command\_buffers}}
@@ -131,15 +139,15 @@ This function also ensures\+:
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00711}{711}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00631}{631}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{darray_8h_source_l00159}{darray\+\_\+reserve}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00018}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate()}}, and \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00040}{vulkan\+\_\+command\+\_\+buffer\+\_\+free()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{darray_8h_source_l00159}{darray\+\_\+reserve}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00018}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate()}}, and \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00040}{vulkan\+\_\+command\+\_\+buffer\+\_\+free()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00758}{recreate\+\_\+swapchain()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00678}{recreate\+\_\+swapchain()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00095}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 
 \Hypertarget{vulkan__backend_8h_aada43db2d3a25f12c6511695c5d74d0a}\label{vulkan__backend_8h_aada43db2d3a25f12c6511695c5d74d0a} 
 \index{vulkan\_backend.h@{vulkan\_backend.h}!find\_memory\_index@{find\_memory\_index}}
@@ -178,15 +186,15 @@ i32 The index of a suitable memory type, or -\/1 if none was found.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00693}{693}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00613}{613}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, and \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, and \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00095}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 
 \Hypertarget{vulkan__backend_8h_afe660c6d3ba8621d1a7b395500e6fc02}\label{vulkan__backend_8h_afe660c6d3ba8621d1a7b395500e6fc02} 
 \index{vulkan\_backend.h@{vulkan\_backend.h}!recreate\_swapchain@{recreate\_swapchain}}
@@ -210,15 +218,15 @@ True if the swapchain was successfully recreated, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00758}{758}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00678}{678}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00041}{cached\+\_\+framebuffer\+\_\+height}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00038}{cached\+\_\+framebuffer\+\_\+width}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00711}{create\+\_\+command\+\_\+buffers()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00739}{regenerate\+\_\+framebuffers()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00040}{vulkan\+\_\+command\+\_\+buffer\+\_\+free()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00368}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00322}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}, \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00051}{vulkan\+\_\+framebuffer\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00080}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00043}{cached\+\_\+framebuffer\+\_\+height}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00040}{cached\+\_\+framebuffer\+\_\+width}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00631}{create\+\_\+command\+\_\+buffers()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00659}{regenerate\+\_\+framebuffers()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00040}{vulkan\+\_\+command\+\_\+buffer\+\_\+free()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00368}{vulkan\+\_\+device\+\_\+detect\+\_\+depth\+\_\+format()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00322}{vulkan\+\_\+device\+\_\+query\+\_\+swapchain\+\_\+support()}}, \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00051}{vulkan\+\_\+framebuffer\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00080}{vulkan\+\_\+swapchain\+\_\+recreate()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00451}{vulkan\+\_\+renderer\+\_\+backend\+\_\+begin\+\_\+frame()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00413}{vulkan\+\_\+renderer\+\_\+backend\+\_\+begin\+\_\+frame()}}.
 
 \Hypertarget{vulkan__backend_8h_aeb8e5befb751f7f77dd00d3b2aafb936}\label{vulkan__backend_8h_aeb8e5befb751f7f77dd00d3b2aafb936} 
 \index{vulkan\_backend.h@{vulkan\_backend.h}!regenerate\_framebuffers@{regenerate\_framebuffers}}
@@ -257,21 +265,21 @@ Must be called after\+:
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00739}{739}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00659}{659}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, and \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00017}{vulkan\+\_\+framebuffer\+\_\+create()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, and \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00017}{vulkan\+\_\+framebuffer\+\_\+create()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00758}{recreate\+\_\+swapchain()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00678}{recreate\+\_\+swapchain()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00095}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 
-\Hypertarget{vulkan__backend_8h_ac31532b42a062bc57ebef2f371970719}\label{vulkan__backend_8h_ac31532b42a062bc57ebef2f371970719} 
+\Hypertarget{vulkan__backend_8h_ac7c74c146850082989f7cd632fdab5ea}\label{vulkan__backend_8h_ac7c74c146850082989f7cd632fdab5ea} 
 \index{vulkan\_backend.h@{vulkan\_backend.h}!upload\_data\_range@{upload\_data\_range}}
 \index{upload\_data\_range@{upload\_data\_range}!vulkan\_backend.h@{vulkan\_backend.h}}
 \doxysubsubsection{\texorpdfstring{upload\_data\_range()}{upload\_data\_range()}}
-{\footnotesize\ttfamily void upload\+\_\+data\+\_\+range (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{Vk\+Command\+Pool}]{pool,  }\item[{Vk\+Fence}]{fence,  }\item[{Vk\+Queue}]{queue,  }\item[{vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{offset,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void upload\+\_\+data\+\_\+range (\begin{DoxyParamCaption}\item[{vulkan\+\_\+context \texorpdfstring{$\ast$}{*}}]{context,  }\item[{Vk\+Command\+Pool}]{pool,  }\item[{Vk\+Fence}]{fence,  }\item[{Vk\+Queue}]{queue,  }\item[{vulkan\+\_\+buffer \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{offset,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}}]{size,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -300,15 +308,15 @@ This function creates a staging buffer, uploads the data to it, and then copies 
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00043}{43}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00045}{45}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00161}{vulkan\+\_\+buffer\+\_\+copy\+\_\+to()}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00017}{vulkan\+\_\+buffer\+\_\+create()}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00064}{vulkan\+\_\+buffer\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__buffer_8c_source_l00154}{vulkan\+\_\+buffer\+\_\+load\+\_\+data()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00161}{vulkan\+\_\+buffer\+\_\+copy\+\_\+to()}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00017}{vulkan\+\_\+buffer\+\_\+create()}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00064}{vulkan\+\_\+buffer\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__buffer_8c_source_l00154}{vulkan\+\_\+buffer\+\_\+load\+\_\+data()}}.
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00950}{vulkan\+\_\+renderer\+\_\+create\+\_\+geometry()}}.
 
 \Hypertarget{vulkan__backend_8h_a2ee6f6277021f0999f1be2f92b6bd21d}\label{vulkan__backend_8h_a2ee6f6277021f0999f1be2f92b6bd21d} 
 \index{vulkan\_backend.h@{vulkan\_backend.h}!vk\_debug\_callback@{vk\_debug\_callback}}
@@ -338,7 +346,7 @@ Always returns VK\+\_\+\+False (no need to abort due to message).
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00670}{670}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00590}{590}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
@@ -346,13 +354,13 @@ References \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__backend_8c_source_l00095}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 
-\Hypertarget{vulkan__backend_8h_a473f9be87792ec76a5af5ac7bcf89971}\label{vulkan__backend_8h_a473f9be87792ec76a5af5ac7bcf89971} 
-\index{vulkan\_backend.h@{vulkan\_backend.h}!vulkan\_backend\_update\_object@{vulkan\_backend\_update\_object}}
-\index{vulkan\_backend\_update\_object@{vulkan\_backend\_update\_object}!vulkan\_backend.h@{vulkan\_backend.h}}
-\doxysubsubsection{\texorpdfstring{vulkan\_backend\_update\_object()}{vulkan\_backend\_update\_object()}}
-{\footnotesize\ttfamily void vulkan\+\_\+backend\+\_\+update\+\_\+object (\begin{DoxyParamCaption}\item[{geometry\+\_\+render\+\_\+data}]{data }\end{DoxyParamCaption})}
+\Hypertarget{vulkan__backend_8h_a7699afe9fb901c240aa94043d67af6ba}\label{vulkan__backend_8h_a7699afe9fb901c240aa94043d67af6ba} 
+\index{vulkan\_backend.h@{vulkan\_backend.h}!vulkan\_backend\_draw\_geometry@{vulkan\_backend\_draw\_geometry}}
+\index{vulkan\_backend\_draw\_geometry@{vulkan\_backend\_draw\_geometry}!vulkan\_backend.h@{vulkan\_backend.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_backend\_draw\_geometry()}{vulkan\_backend\_draw\_geometry()}}
+{\footnotesize\ttfamily void vulkan\+\_\+backend\+\_\+draw\+\_\+geometry (\begin{DoxyParamCaption}\item[{geometry\+\_\+render\+\_\+data}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -368,11 +376,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00628}{628}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l01052}{1052}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00298}{vulkan\+\_\+material\+\_\+shader\+\_\+update\+\_\+object()}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00257}{vulkan\+\_\+material\+\_\+shader\+\_\+use()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{material__system_8c_source_l00440}{material\+\_\+system\+\_\+get\+\_\+default()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00305}{vulkan\+\_\+material\+\_\+shader\+\_\+apply\+\_\+material()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00296}{vulkan\+\_\+material\+\_\+shader\+\_\+set\+\_\+model()}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00259}{vulkan\+\_\+material\+\_\+shader\+\_\+use()}}.
 
 
 
@@ -402,11 +410,11 @@ True if successful; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00451}{451}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00413}{413}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00758}{recreate\+\_\+swapchain()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00054}{vulkan\+\_\+command\+\_\+buffer\+\_\+begin()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00085}{vulkan\+\_\+command\+\_\+buffer\+\_\+reset()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00042}{vulkan\+\_\+fence\+\_\+wait()}}, \mbox{\hyperlink{vulkan__renderpass_8c_source_l00181}{vulkan\+\_\+renderpass\+\_\+begin()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00098}{vulkan\+\_\+result\+\_\+is\+\_\+success()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00015}{vulkan\+\_\+result\+\_\+string()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00118}{vulkan\+\_\+swapchain\+\_\+acquire\+\_\+next\+\_\+image\+\_\+index()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00678}{recreate\+\_\+swapchain()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00054}{vulkan\+\_\+command\+\_\+buffer\+\_\+begin()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00085}{vulkan\+\_\+command\+\_\+buffer\+\_\+reset()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00042}{vulkan\+\_\+fence\+\_\+wait()}}, \mbox{\hyperlink{vulkan__renderpass_8c_source_l00181}{vulkan\+\_\+renderpass\+\_\+begin()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00098}{vulkan\+\_\+result\+\_\+is\+\_\+success()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00015}{vulkan\+\_\+result\+\_\+string()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00118}{vulkan\+\_\+swapchain\+\_\+acquire\+\_\+next\+\_\+image\+\_\+index()}}.
 
 
 
@@ -436,11 +444,11 @@ True if successful; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00556}{556}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00518}{518}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00076}{vulkan\+\_\+command\+\_\+buffer\+\_\+end()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00081}{vulkan\+\_\+command\+\_\+buffer\+\_\+update\+\_\+submitted()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00078}{vulkan\+\_\+fence\+\_\+reset()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00042}{vulkan\+\_\+fence\+\_\+wait()}}, \mbox{\hyperlink{vulkan__renderpass_8c_source_l00226}{vulkan\+\_\+renderpass\+\_\+end()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00015}{vulkan\+\_\+result\+\_\+string()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00158}{vulkan\+\_\+swapchain\+\_\+present()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00076}{vulkan\+\_\+command\+\_\+buffer\+\_\+end()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00081}{vulkan\+\_\+command\+\_\+buffer\+\_\+update\+\_\+submitted()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00078}{vulkan\+\_\+fence\+\_\+reset()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00042}{vulkan\+\_\+fence\+\_\+wait()}}, \mbox{\hyperlink{vulkan__renderpass_8c_source_l00226}{vulkan\+\_\+renderpass\+\_\+end()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00015}{vulkan\+\_\+result\+\_\+string()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00158}{vulkan\+\_\+swapchain\+\_\+present()}}.
 
 
 
@@ -472,11 +480,11 @@ True if successful; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{83}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00095}{95}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{application_8c_source_l00424}{application\+\_\+get\+\_\+framebuffer\+\_\+size()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00041}{cached\+\_\+framebuffer\+\_\+height}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00038}{cached\+\_\+framebuffer\+\_\+width}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00833}{create\+\_\+buffers()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00711}{create\+\_\+command\+\_\+buffers()}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{darray_8h_source_l00159}{darray\+\_\+reserve}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00693}{find\+\_\+memory\+\_\+index()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00032}{INDEX\+\_\+\+COUNT}}, \mbox{\hyperlink{asserts_8h_source_l00084}{KASSERT\+\_\+\+MSG}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{vulkan__platform_8h_aaaf33dc6309c5d8963e3a8515493dfd3}{platform\+\_\+create\+\_\+vulkan\+\_\+surface()}}, \mbox{\hyperlink{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}{platform\+\_\+get\+\_\+required\+\_\+extension\+\_\+names()}}, \mbox{\hyperlink{math__types_8h_source_l00175}{vertex\+\_\+3d\+::position}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00739}{regenerate\+\_\+framebuffers()}}, \mbox{\hyperlink{kstring_8c_source_l00040}{strings\+\_\+equal()}}, \mbox{\hyperlink{math__types_8h_source_l00177}{vertex\+\_\+3d\+::texcoord}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00043}{upload\+\_\+data\+\_\+range()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00030}{VERTEX\+\_\+\+COUNT}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00670}{vk\+\_\+debug\+\_\+callback()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00149}{vulkan\+\_\+device\+\_\+create()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00013}{vulkan\+\_\+fence\+\_\+create()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00403}{vulkan\+\_\+material\+\_\+shader\+\_\+acquire\+\_\+resources()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00030}{vulkan\+\_\+material\+\_\+shader\+\_\+create()}}, \mbox{\hyperlink{vulkan__renderpass_8c_source_l00043}{vulkan\+\_\+renderpass\+\_\+create()}}, \mbox{\hyperlink{vulkan__swapchain_8c_source_l00061}{vulkan\+\_\+swapchain\+\_\+create()}}, \mbox{\hyperlink{math__types_8h_source_l00036}{vec2\+\_\+u\+::x}}, \mbox{\hyperlink{math__types_8h_source_l00068}{vec3\+\_\+u\+::x}}, \mbox{\hyperlink{math__types_8h_source_l00040}{vec2\+\_\+u\+::y}}, and \mbox{\hyperlink{math__types_8h_source_l00072}{vec3\+\_\+u\+::y}}.
+References \mbox{\hyperlink{application_8c_source_l00557}{application\+\_\+get\+\_\+framebuffer\+\_\+size()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00043}{cached\+\_\+framebuffer\+\_\+height}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00040}{cached\+\_\+framebuffer\+\_\+width}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00753}{create\+\_\+buffers()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00631}{create\+\_\+command\+\_\+buffers()}}, \mbox{\hyperlink{darray_8h_source_l00148}{darray\+\_\+create}}, \mbox{\hyperlink{darray_8h_source_l00258}{darray\+\_\+length}}, \mbox{\hyperlink{darray_8h_source_l00182}{darray\+\_\+push}}, \mbox{\hyperlink{darray_8h_source_l00159}{darray\+\_\+reserve}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00613}{find\+\_\+memory\+\_\+index()}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{asserts_8h_source_l00084}{KASSERT\+\_\+\+MSG}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{vulkan__platform_8h_aaaf33dc6309c5d8963e3a8515493dfd3}{platform\+\_\+create\+\_\+vulkan\+\_\+surface()}}, \mbox{\hyperlink{vulkan__platform_8h_ac6f33d791e5445db00300cfd71d88702}{platform\+\_\+get\+\_\+required\+\_\+extension\+\_\+names()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00659}{regenerate\+\_\+framebuffers()}}, \mbox{\hyperlink{kstring_8c_source_l00040}{strings\+\_\+equal()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00590}{vk\+\_\+debug\+\_\+callback()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00149}{vulkan\+\_\+device\+\_\+create()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00013}{vulkan\+\_\+fence\+\_\+create()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00030}{vulkan\+\_\+material\+\_\+shader\+\_\+create()}}, \mbox{\hyperlink{vulkan__renderpass_8c_source_l00043}{vulkan\+\_\+renderpass\+\_\+create()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00061}{vulkan\+\_\+swapchain\+\_\+create()}}.
 
 
 
@@ -505,11 +513,11 @@ May involve recreating the swapchain or adjusting viewport settings.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00440}{440}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00402}{402}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00041}{cached\+\_\+framebuffer\+\_\+height}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00038}{cached\+\_\+framebuffer\+\_\+width}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, and \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00043}{cached\+\_\+framebuffer\+\_\+height}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00040}{cached\+\_\+framebuffer\+\_\+width}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, and \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}.
 
 
 
@@ -534,11 +542,61 @@ Cleans up all resources allocated during initialization.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00343}{343}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00305}{305}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00064}{vulkan\+\_\+buffer\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00040}{vulkan\+\_\+command\+\_\+buffer\+\_\+free()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00258}{vulkan\+\_\+device\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00031}{vulkan\+\_\+fence\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00051}{vulkan\+\_\+framebuffer\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00220}{vulkan\+\_\+material\+\_\+shader\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__renderpass_8c_source_l00159}{vulkan\+\_\+renderpass\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00098}{vulkan\+\_\+swapchain\+\_\+destroy()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{darray_8h_source_l00170}{darray\+\_\+destroy}}, \mbox{\hyperlink{logger_8h_source_l00213}{KDEBUG}}, \mbox{\hyperlink{logger_8h_source_l00196}{KINFO}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00064}{vulkan\+\_\+buffer\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00040}{vulkan\+\_\+command\+\_\+buffer\+\_\+free()}}, \mbox{\hyperlink{vulkan__device_8c_source_l00258}{vulkan\+\_\+device\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__fence_8c_source_l00031}{vulkan\+\_\+fence\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__framebuffer_8c_source_l00051}{vulkan\+\_\+framebuffer\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00222}{vulkan\+\_\+material\+\_\+shader\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__renderpass_8c_source_l00159}{vulkan\+\_\+renderpass\+\_\+destroy()}}, and \mbox{\hyperlink{vulkan__swapchain_8c_source_l00098}{vulkan\+\_\+swapchain\+\_\+destroy()}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}.
+
+\Hypertarget{vulkan__backend_8h_ae692f6318e9210680fd8314766b6a779}\label{vulkan__backend_8h_ae692f6318e9210680fd8314766b6a779} 
+\index{vulkan\_backend.h@{vulkan\_backend.h}!vulkan\_renderer\_create\_geometry@{vulkan\_renderer\_create\_geometry}}
+\index{vulkan\_renderer\_create\_geometry@{vulkan\_renderer\_create\_geometry}!vulkan\_backend.h@{vulkan\_backend.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderer\_create\_geometry()}{vulkan\_renderer\_create\_geometry()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} vulkan\+\_\+renderer\+\_\+create\+\_\+geometry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}}]{geometry,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{vertex\+\_\+count,  }\item[{const \mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}} \texorpdfstring{$\ast$}{*}}]{vertices,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{index\+\_\+count,  }\item[{const \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}}]{indices }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00950}{950}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00085}{free\+\_\+data\+\_\+range()}}, \mbox{\hyperlink{resource__types_8h_source_l00104}{geometry\+::internal\+\_\+id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00045}{upload\+\_\+data\+\_\+range()}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}.
+
+\Hypertarget{vulkan__backend_8h_aae87f32cda6dae5a302e4c7c23eeccb1}\label{vulkan__backend_8h_aae87f32cda6dae5a302e4c7c23eeccb1} 
+\index{vulkan\_backend.h@{vulkan\_backend.h}!vulkan\_renderer\_create\_material@{vulkan\_renderer\_create\_material}}
+\index{vulkan\_renderer\_create\_material@{vulkan\_renderer\_create\_material}!vulkan\_backend.h@{vulkan\_backend.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderer\_create\_material()}{vulkan\_renderer\_create\_material()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} vulkan\+\_\+renderer\+\_\+create\+\_\+material (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*}}]{material }\end{DoxyParamCaption})}
+
+
+
+Creates a material resource. 
+
+This function initializes a material with the provided properties and prepares it for use in rendering operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em material} & Pointer to the material structure to be filled out. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the material was created successfully; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00923}{923}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{logger_8h_source_l00230}{KTRACE}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00424}{vulkan\+\_\+material\+\_\+shader\+\_\+acquire\+\_\+resources()}}.
 
 
 
@@ -575,11 +633,56 @@ This function creates a texture from pixel data and initializes it for use in re
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00868}{868}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00788}{788}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{resource__types_8h_source_l00029}{texture\+::channel\+\_\+count}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{resource__types_8h_source_l00033}{texture\+::generation}}, \mbox{\hyperlink{resource__types_8h_source_l00031}{texture\+::has\+\_\+transparency}}, \mbox{\hyperlink{resource__types_8h_source_l00027}{texture\+::height}}, \mbox{\hyperlink{resource__types_8h_source_l00035}{texture\+::internal\+\_\+data}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{kmemory_8h_source_l00056}{MEMORY\+\_\+\+TAG\+\_\+\+TEXTURE}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00017}{vulkan\+\_\+buffer\+\_\+create()}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00064}{vulkan\+\_\+buffer\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00154}{vulkan\+\_\+buffer\+\_\+load\+\_\+data()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00089}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate\+\_\+and\+\_\+begin\+\_\+single\+\_\+use()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00097}{vulkan\+\_\+command\+\_\+buffer\+\_\+end\+\_\+single\+\_\+use()}}, \mbox{\hyperlink{vulkan__image_8c_source_l00196}{vulkan\+\_\+image\+\_\+copy\+\_\+from\+\_\+buffer()}}, \mbox{\hyperlink{vulkan__image_8c_source_l00041}{vulkan\+\_\+image\+\_\+create()}}, \mbox{\hyperlink{vulkan__image_8c_source_l00134}{vulkan\+\_\+image\+\_\+transition\+\_\+layout()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00098}{vulkan\+\_\+result\+\_\+is\+\_\+success()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00015}{vulkan\+\_\+result\+\_\+string()}}, and \mbox{\hyperlink{resource__types_8h_source_l00025}{texture\+::width}}.
+References \mbox{\hyperlink{resource__types_8h_source_l00038}{texture\+::channel\+\_\+count}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{resource__types_8h_source_l00042}{texture\+::generation}}, \mbox{\hyperlink{resource__types_8h_source_l00040}{texture\+::has\+\_\+transparency}}, \mbox{\hyperlink{resource__types_8h_source_l00036}{texture\+::height}}, \mbox{\hyperlink{resource__types_8h_source_l00046}{texture\+::internal\+\_\+data}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{kmemory_8h_source_l00056}{MEMORY\+\_\+\+TAG\+\_\+\+TEXTURE}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00017}{vulkan\+\_\+buffer\+\_\+create()}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00064}{vulkan\+\_\+buffer\+\_\+destroy()}}, \mbox{\hyperlink{vulkan__buffer_8c_source_l00154}{vulkan\+\_\+buffer\+\_\+load\+\_\+data()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00089}{vulkan\+\_\+command\+\_\+buffer\+\_\+allocate\+\_\+and\+\_\+begin\+\_\+single\+\_\+use()}}, \mbox{\hyperlink{vulkan__command__buffer_8c_source_l00097}{vulkan\+\_\+command\+\_\+buffer\+\_\+end\+\_\+single\+\_\+use()}}, \mbox{\hyperlink{vulkan__image_8c_source_l00196}{vulkan\+\_\+image\+\_\+copy\+\_\+from\+\_\+buffer()}}, \mbox{\hyperlink{vulkan__image_8c_source_l00041}{vulkan\+\_\+image\+\_\+create()}}, \mbox{\hyperlink{vulkan__image_8c_source_l00134}{vulkan\+\_\+image\+\_\+transition\+\_\+layout()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00098}{vulkan\+\_\+result\+\_\+is\+\_\+success()}}, \mbox{\hyperlink{vulkan__utils_8c_source_l00015}{vulkan\+\_\+result\+\_\+string()}}, and \mbox{\hyperlink{resource__types_8h_source_l00034}{texture\+::width}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}.
+
+\Hypertarget{vulkan__backend_8h_a798b85a7a54f19a9dfc5a3a7e05827a7}\label{vulkan__backend_8h_a798b85a7a54f19a9dfc5a3a7e05827a7} 
+\index{vulkan\_backend.h@{vulkan\_backend.h}!vulkan\_renderer\_destroy\_geometry@{vulkan\_renderer\_destroy\_geometry}}
+\index{vulkan\_renderer\_destroy\_geometry@{vulkan\_renderer\_destroy\_geometry}!vulkan\_backend.h@{vulkan\_backend.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderer\_destroy\_geometry()}{vulkan\_renderer\_destroy\_geometry()}}
+{\footnotesize\ttfamily void vulkan\+\_\+renderer\+\_\+destroy\+\_\+geometry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}}]{geometry }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l01032}{1032}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00085}{free\+\_\+data\+\_\+range()}}, \mbox{\hyperlink{resource__types_8h_source_l00104}{geometry\+::internal\+\_\+id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, and \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}.
+
+
+
+Referenced by \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}.
+
+\Hypertarget{vulkan__backend_8h_a897d4b85115557425812030916e8cc56}\label{vulkan__backend_8h_a897d4b85115557425812030916e8cc56} 
+\index{vulkan\_backend.h@{vulkan\_backend.h}!vulkan\_renderer\_destroy\_material@{vulkan\_renderer\_destroy\_material}}
+\index{vulkan\_renderer\_destroy\_material@{vulkan\_renderer\_destroy\_material}!vulkan\_backend.h@{vulkan\_backend.h}}
+\doxysubsubsection{\texorpdfstring{vulkan\_renderer\_destroy\_material()}{vulkan\_renderer\_destroy\_material()}}
+{\footnotesize\ttfamily void vulkan\+\_\+renderer\+\_\+destroy\+\_\+material (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*}}]{material }\end{DoxyParamCaption})}
+
+
+
+Destroys a material resource and frees associated resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em material} & Pointer to the material to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00938}{938}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+
+
+
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{resource__types_8h_source_l00083}{material\+::internal\+\_\+id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00460}{vulkan\+\_\+material\+\_\+shader\+\_\+release\+\_\+resources()}}.
 
 
 
@@ -604,11 +707,11 @@ Cleans up all resources associated with the texture, including Vulkan image and 
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00983}{983}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00903}{903}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{resource__types_8h_source_l00035}{texture\+::internal\+\_\+data}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kfree()}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00056}{MEMORY\+\_\+\+TAG\+\_\+\+TEXTURE}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00241}{vulkan\+\_\+image\+\_\+destroy()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{resource__types_8h_source_l00046}{texture\+::internal\+\_\+data}}, \mbox{\hyperlink{kmemory_8c_source_l00149}{kfree()}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00056}{MEMORY\+\_\+\+TAG\+\_\+\+TEXTURE}}, and \mbox{\hyperlink{vulkan__image_8c_source_l00241}{vulkan\+\_\+image\+\_\+destroy()}}.
 
 
 
@@ -644,11 +747,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00543}{543}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
+Definition at line \mbox{\hyperlink{vulkan__backend_8c_source_l00505}{505}} of file \mbox{\hyperlink{vulkan__backend_8c_source}{vulkan\+\_\+backend.\+c}}.
 
 
 
-References \mbox{\hyperlink{vulkan__backend_8c_source_l00035}{context}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00262}{vulkan\+\_\+material\+\_\+shader\+\_\+update\+\_\+global\+\_\+state()}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00257}{vulkan\+\_\+material\+\_\+shader\+\_\+use()}}.
+References \mbox{\hyperlink{vulkan__backend_8c_source_l00037}{context}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00264}{vulkan\+\_\+material\+\_\+shader\+\_\+update\+\_\+global\+\_\+state()}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00259}{vulkan\+\_\+material\+\_\+shader\+\_\+use()}}.
 
 
 

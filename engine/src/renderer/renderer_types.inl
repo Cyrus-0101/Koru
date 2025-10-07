@@ -100,8 +100,8 @@ typedef struct geometry_render_data {
     /** Model transformation matrix for the object. */
     mat4 model;
 
-    /** Pointer to the material used for rendering the object. */
-    material* material;
+    /** Pointer to the geometry used for rendering the object. */
+    geometry* geometry;
 } geometry_render_data;
 
 /**
@@ -187,7 +187,7 @@ typedef struct renderer_backend {
      *
      * @return void
      */
-    void (*update_object)(geometry_render_data data);
+    void (*draw_geometry)(geometry_render_data data);
 
     /**
      * @brief Creates a texture resource from raw pixel data.
@@ -235,6 +235,28 @@ typedef struct renderer_backend {
      * @param material Pointer to the material to be destroyed.
      */
     void (*destroy_material)(struct material* material);
+
+    /**
+     * @brief Creates a geometry resource from vertex and index data.
+     *
+     * This function uploads the provided vertex and index data to the GPU
+     * and creates a geometry object that can be used in rendering operations.
+     *
+     * @param geometry Pointer to the geometry structure to be filled out.
+     * @param vertex_count Number of vertices in the vertex array.
+     * @param vertices Pointer to the array of vertex data.
+     * @param index_count Number of indices in the index array.
+     * @param indices Pointer to the array of index data.
+     * @return True if the geometry was created successfully; otherwise False.
+     */
+    b8 (*create_geometry)(geometry* geometry, u32 vertex_count, const vertex_3d* vertices, u32 index_count, const u32* indices);
+
+    /**
+     * @brief Destroys a geometry resource and frees associated GPU memory.
+     *
+     * @param geometry Pointer to the geometry to be destroyed.
+     */
+    void (*destroy_geometry)(geometry* geometry);
 } renderer_backend;
 
 /**
@@ -248,4 +270,14 @@ typedef struct render_packet {
      * @brief Delta time since the last frame in seconds.
      */
     f32 delta_time;
+
+    /**
+     * @brief Number of geometries to render.
+     */
+    u32 geometry_count;
+
+    /**
+     * @brief Pointer to an array of geometry render data structures.
+     */
+    geometry_render_data* geometries;
 } render_packet;

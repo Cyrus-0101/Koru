@@ -83,7 +83,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="contents">
 <a href="kstring_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="kstring_8h.html">core/kstring.h</a>&quot;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="kmemory_8h.html">core/kmemory.h</a>&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;ctype.h&gt;</span>  <span class="comment">// Check for isspace</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdarg.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
@@ -153,24 +153,324 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
 </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="kstring_8c.html#af43aa079f60bc11dd7da697df920fece">   76</a></span><span class="keywordtype">char</span>* <a class="code hl_function" href="kstring_8c.html#af43aa079f60bc11dd7da697df920fece">string_copy</a>(<span class="keywordtype">char</span>* dest, <span class="keyword">const</span> <span class="keywordtype">char</span>* source) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">return</span> strcpy(dest, source);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="}">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="kstring_8c.html#a9e48021ce5b39920715bfaa5d92613bc">   80</a></span><span class="keywordtype">char</span>* <a class="code hl_function" href="kstring_8c.html#a9e48021ce5b39920715bfaa5d92613bc">string_ncopy</a>(<span class="keywordtype">char</span>* dest, <span class="keyword">const</span> <span class="keywordtype">char</span>* source, <a class="code hl_typedef" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a> length) {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">return</span> strncpy(dest, source, length);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
+</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="}">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="kstring_8c.html#a4dd30c30bb3f8bd5e2a051c22b04317e">   84</a></span><span class="keywordtype">char</span>* <a class="code hl_function" href="kstring_8c.html#a4dd30c30bb3f8bd5e2a051c22b04317e">string_trim</a>(<span class="keywordtype">char</span>* str) {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// Checks if each character is a whitespace character and</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="comment">// moves the pointer forward until a non-whitespace character is found.</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">while</span> (isspace((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>)*str)) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        str++;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// If the string is not empty after trimming leading whitespace,</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// we find the end of the string and move backwards to trim trailing whitespace.</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">if</span> (*str) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordtype">char</span>* p = str;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="comment">// Move to the end of the string.</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">while</span> (*p) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            p++;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="comment">// Move backwards over any trailing whitespace.</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordflow">while</span> (isspace((<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>)*(--p)));  <span class="comment">// Dereference check if space after decrement.</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        p[1] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">return</span> str;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="kstring_8c.html#a97b33c831523752f0adff22f80beaec5">  108</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="kstring_8c.html#a97b33c831523752f0adff22f80beaec5">string_mid</a>(<span class="keywordtype">char</span>* dest, <span class="keyword">const</span> <span class="keywordtype">char</span>* source, <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> start, <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> length) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">if</span> (length == 0) {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> src_length = <a class="code hl_function" href="kstring_8c.html#a3ac8f7f54a3429135da71637d268e6c9">string_length</a>(source);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">if</span> (start &gt;= src_length) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        dest[0] = 0;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">if</span> (length &gt; 0) {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> i = start, j = 0; j &lt; length &amp;&amp; source[i]; ++i, ++j) {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            dest[j] = source[i];</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        dest[start + length] = 0;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="comment">// If a negative value is passed, proceed to the end of the string.</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> j = 0;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> i = start; source[i]; ++i, ++j) {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            dest[j] = source[i];</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        dest[start + j] = 0;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>}</div>
+</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="foldopen" id="foldopen00133" data-start="{" data-end="}">
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="kstring_8c.html#a2673061b7a2f47e9b0341c6dc141325c">  133</a></span><a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> <a class="code hl_function" href="kstring_8c.html#a2673061b7a2f47e9b0341c6dc141325c">string_index_of</a>(<span class="keywordtype">char</span>* str, <span class="keywordtype">char</span> c) {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> length = <a class="code hl_function" href="kstring_8c.html#a3ac8f7f54a3429135da71637d268e6c9">string_length</a>(str);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">if</span> (length &gt; 0) {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordflow">for</span> (<a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> i = 0; i &lt; length; ++i) {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            <span class="keywordflow">if</span> (str[i] == c) {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                <span class="keywordflow">return</span> i;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>}</div>
+</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="foldopen" id="foldopen00149" data-start="{" data-end="}">
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="kstring_8c.html#ad57f4ad9d666bbbad09db85e17c90759">  149</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#ad57f4ad9d666bbbad09db85e17c90759">string_to_vec4</a>(<span class="keywordtype">char</span>* str, <a class="code hl_union" href="unionvec4__u.html">vec4</a>* out_vector) {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <a class="code hl_function" href="kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5">kzero_memory</a>(out_vector, <span class="keyword">sizeof</span>(<a class="code hl_union" href="unionvec4__u.html">vec4</a>));</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%f %f %f %f&quot;</span>, &amp;out_vector-&gt;<a class="code hl_variable" href="unionvec4__u.html#ae30e88d049711ba68bdfe005e450559d">x</a>, &amp;out_vector-&gt;<a class="code hl_variable" href="unionvec4__u.html#aac51c9b41f5d9e5c1b919c5976cb92ee">y</a>, &amp;out_vector-&gt;<a class="code hl_variable" href="unionvec4__u.html#af01b54572b186f50daed5b48a705c253">z</a>, &amp;out_vector-&gt;<a class="code hl_variable" href="unionvec4__u.html#a4a77e50d25d2101a5a821ba20f56927b">w</a>);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>}</div>
+</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="foldopen" id="foldopen00159" data-start="{" data-end="}">
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="kstring_8c.html#a216d21811f3b2bd33be00ae7fa945646">  159</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#a216d21811f3b2bd33be00ae7fa945646">string_to_vec3</a>(<span class="keywordtype">char</span>* str, <a class="code hl_struct" href="structvec3__u.html">vec3</a>* out_vector) {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <a class="code hl_function" href="kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5">kzero_memory</a>(out_vector, <span class="keyword">sizeof</span>(<a class="code hl_struct" href="structvec3__u.html">vec3</a>));</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%f %f %f&quot;</span>, &amp;out_vector-&gt;<a class="code hl_variable" href="structvec3__u.html#a813e68cfccc7810eb92e5237e182f05c">x</a>, &amp;out_vector-&gt;<a class="code hl_variable" href="structvec3__u.html#aa1c27d65c1ce9cc59b5fda15c1f9a12a">y</a>, &amp;out_vector-&gt;<a class="code hl_variable" href="structvec3__u.html#a8b47eb56e9065610e4d881725c2c8bb9">z</a>);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="foldopen" id="foldopen00169" data-start="{" data-end="}">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="kstring_8c.html#a8d848ff7fe94196e09799189f5eefd57">  169</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#a8d848ff7fe94196e09799189f5eefd57">string_to_vec2</a>(<span class="keywordtype">char</span>* str, <a class="code hl_union" href="unionvec2__u.html">vec2</a>* out_vector) {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    }</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <a class="code hl_function" href="kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5">kzero_memory</a>(out_vector, <span class="keyword">sizeof</span>(<a class="code hl_union" href="unionvec2__u.html">vec2</a>));</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%f %f&quot;</span>, &amp;out_vector-&gt;<a class="code hl_variable" href="unionvec2__u.html#a8351557ed259ae82d0e97ad7f2be04c1">x</a>, &amp;out_vector-&gt;<a class="code hl_variable" href="unionvec2__u.html#a8903716708ec9cdf2b006dc78e1f54b6">y</a>);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}</div>
+</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="foldopen" id="foldopen00179" data-start="{" data-end="}">
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="kstring_8c.html#ae031f303d12593a1453ecda9318e7a73">  179</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#ae031f303d12593a1453ecda9318e7a73">string_to_f32</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>* f) {</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    }</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    *f = 0;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%f&quot;</span>, f);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>}</div>
+</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="foldopen" id="foldopen00189" data-start="{" data-end="}">
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="kstring_8c.html#a62599e2f49f1e128abfdb86477c6a71a">  189</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#a62599e2f49f1e128abfdb86477c6a71a">string_to_f64</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a>* f) {</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    *f = 0;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%lf&quot;</span>, f);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>}</div>
+</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="foldopen" id="foldopen00199" data-start="{" data-end="}">
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="kstring_8c.html#aad14a51a467f74356b63bc32c08eab9f">  199</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#aad14a51a467f74356b63bc32c08eab9f">string_to_i8</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#a2d0b2d48b0784ffa5f75c39f46562729">i8</a>* i) {</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    }</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    *i = 0;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%hhi&quot;</span>, i);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>}</div>
+</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="foldopen" id="foldopen00209" data-start="{" data-end="}">
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="kstring_8c.html#ae22bfed954f476af4c12d0b6852843fe">  209</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#ae22bfed954f476af4c12d0b6852843fe">string_to_i16</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#ac12585a6def54773148d7fb2c72a59c5">i16</a>* i) {</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    }</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    *i = 0;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%hi&quot;</span>, i);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>}</div>
+</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="foldopen" id="foldopen00219" data-start="{" data-end="}">
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="kstring_8c.html#abf4fe0b9dee453a7e39a134516523094">  219</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#abf4fe0b9dee453a7e39a134516523094">string_to_i32</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>* i) {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    }</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    *i = 0;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%i&quot;</span>, i);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>}</div>
+</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="foldopen" id="foldopen00229" data-start="{" data-end="}">
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="kstring_8c.html#a1388361e816d473cde2f7f2ea924a1bd">  229</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#a1388361e816d473cde2f7f2ea924a1bd">string_to_i64</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a>* i) {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    }</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    *i = 0;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%lli&quot;</span>, i);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>}</div>
+</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="foldopen" id="foldopen00239" data-start="{" data-end="}">
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="kstring_8c.html#a0f8aa43fc45d88e4765447d342f8a1a1">  239</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#a0f8aa43fc45d88e4765447d342f8a1a1">string_to_u8</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>* u) {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    }</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    *u = 0;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%hhu&quot;</span>, u);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>}</div>
+</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="foldopen" id="foldopen00249" data-start="{" data-end="}">
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="kstring_8c.html#af8c2e9acd877a0210e8c5de44491f4d7">  249</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#af8c2e9acd877a0210e8c5de44491f4d7">string_to_u16</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>* u) {</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    }</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    *u = 0;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%hu&quot;</span>, u);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>}</div>
+</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="foldopen" id="foldopen00259" data-start="{" data-end="}">
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="kstring_8c.html#ae490b8f9ee483372da65e0d64a0f0032">  259</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#ae490b8f9ee483372da65e0d64a0f0032">string_to_u32</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a>* u) {</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    }</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    *u = 0;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%u&quot;</span>, u);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>}</div>
+</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="foldopen" id="foldopen00269" data-start="{" data-end="}">
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="kstring_8c.html#a0e70f1085b769241ffe13def897e0f71">  269</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#a0e70f1085b769241ffe13def897e0f71">string_to_u64</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a>* u) {</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    }</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    *u = 0;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <a class="code hl_typedef" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> result = sscanf(str, <span class="stringliteral">&quot;%llu&quot;</span>, u);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordflow">return</span> result != -1;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>}</div>
+</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="foldopen" id="foldopen00279" data-start="{" data-end="}">
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="kstring_8c.html#a7fa6a761cef08e91005d3b8cbadd1f5e">  279</a></span><a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> <a class="code hl_function" href="kstring_8c.html#a7fa6a761cef08e91005d3b8cbadd1f5e">string_to_bool</a>(<span class="keywordtype">char</span>* str, <a class="code hl_typedef" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>* b) {</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordflow">if</span> (!str) {</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    }</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="kstring_8c.html#a4088fb073177638c470fee72f8f2180a">strings_equal</a>(str, <span class="stringliteral">&quot;1&quot;</span>) || <a class="code hl_function" href="kstring_8c.html#a8d4ca6df7122ffd452146b023195c4c9">strings_equali</a>(str, <span class="stringliteral">&quot;true&quot;</span>);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>}</div>
+</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="foldopen" id="foldopen00287" data-start="{" data-end="}">
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="kstring_8c.html#a947ed569de5372c81863ba51ba4e2ef9">  287</a></span><span class="keywordtype">char</span>* <a class="code hl_function" href="kstring_8c.html#a947ed569de5372c81863ba51ba4e2ef9">string_empty</a>(<span class="keywordtype">char</span>* str) {</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keywordflow">if</span> (str) {</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        str[0] = 0;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    }</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordflow">return</span> str;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>}</div>
+</div>
+<div class="ttc" id="adefines_8h_html_a10e94b422ef0c20dcdec20d31a1f5049"><div class="ttname"><a href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a></div><div class="ttdeci">unsigned int u32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00023">defines.h:23</a></div></div>
+<div class="ttc" id="adefines_8h_html_a2d0b2d48b0784ffa5f75c39f46562729"><div class="ttname"><a href="defines_8h.html#a2d0b2d48b0784ffa5f75c39f46562729">i8</a></div><div class="ttdeci">signed char i8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00031">defines.h:31</a></div></div>
+<div class="ttc" id="adefines_8h_html_a306ebd41c0cd1303b1372c6153f0caf8"><div class="ttname"><a href="defines_8h.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a></div><div class="ttdeci">#define False</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00122">defines.h:122</a></div></div>
 <div class="ttc" id="adefines_8h_html_a3a58feb08f4f45ee137ec358217c3270"><div class="ttname"><a href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a></div><div class="ttdeci">_Bool b8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00055">defines.h:55</a></div></div>
+<div class="ttc" id="adefines_8h_html_a5f6906312a689f27d70e9d086649d3fd"><div class="ttname"><a href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a></div><div class="ttdeci">float f32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00045">defines.h:45</a></div></div>
+<div class="ttc" id="adefines_8h_html_a94dab5770726ccbef8c7d026cfbdf8e5"><div class="ttname"><a href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a></div><div class="ttdeci">double f64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00048">defines.h:48</a></div></div>
 <div class="ttc" id="adefines_8h_html_a9e3ad5f8e752f01d926ce122d5a5285e"><div class="ttname"><a href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a></div><div class="ttdeci">signed int i32</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00037">defines.h:37</a></div></div>
+<div class="ttc" id="adefines_8h_html_a9e6c91d77e24643b888dbd1a1a590054"><div class="ttname"><a href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a></div><div class="ttdeci">unsigned short u16</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00020">defines.h:20</a></div></div>
+<div class="ttc" id="adefines_8h_html_ac12585a6def54773148d7fb2c72a59c5"><div class="ttname"><a href="defines_8h.html#ac12585a6def54773148d7fb2c72a59c5">i16</a></div><div class="ttdeci">signed short i16</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00034">defines.h:34</a></div></div>
 <div class="ttc" id="adefines_8h_html_ad758b7a5c3f18ed79d2fcd23d9f16357"><div class="ttname"><a href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a></div><div class="ttdeci">unsigned long long u64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00026">defines.h:26</a></div></div>
+<div class="ttc" id="adefines_8h_html_ada59a0de67c44384c6faa924ca63c2aa"><div class="ttname"><a href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a></div><div class="ttdeci">signed long long i64</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00040">defines.h:40</a></div></div>
+<div class="ttc" id="adefines_8h_html_aed742c436da53c1080638ce6ef7d13de"><div class="ttname"><a href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a></div><div class="ttdeci">unsigned char u8</div><div class="ttdef"><b>Definition</b> <a href="defines_8h_source.html#l00017">defines.h:17</a></div></div>
 <div class="ttc" id="akmemory_8c_html_a433c653469c55bd95b8b80b801bcc426"><div class="ttname"><a href="kmemory_8c.html#a433c653469c55bd95b8b80b801bcc426">kcopy_memory</a></div><div class="ttdeci">void * kcopy_memory(void *dest, const void *source, u64 size)</div><div class="ttdoc">Copies data from one memory block to another.</div><div class="ttdef"><b>Definition</b> <a href="kmemory_8c_source.html#l00182">kmemory.c:182</a></div></div>
+<div class="ttc" id="akmemory_8c_html_aa7107b9ccb0c0358906c79d3dbe398d5"><div class="ttname"><a href="kmemory_8c.html#aa7107b9ccb0c0358906c79d3dbe398d5">kzero_memory</a></div><div class="ttdeci">void * kzero_memory(void *block, u64 size)</div><div class="ttdoc">Fills the provided memory block with zeros.</div><div class="ttdef"><b>Definition</b> <a href="kmemory_8c_source.html#l00170">kmemory.c:170</a></div></div>
 <div class="ttc" id="akmemory_8c_html_aaff7cb37687dfc7680be1a2101890d88"><div class="ttname"><a href="kmemory_8c.html#aaff7cb37687dfc7680be1a2101890d88">kallocate</a></div><div class="ttdeci">void * kallocate(u64 size, memory_tag tag)</div><div class="ttdoc">Allocates memory with a given size and tag.</div><div class="ttdef"><b>Definition</b> <a href="kmemory_8c_source.html#l00122">kmemory.c:122</a></div></div>
 <div class="ttc" id="akmemory_8h_html"><div class="ttname"><a href="kmemory_8h.html">kmemory.h</a></div><div class="ttdoc">Memory allocation system with tagging and tracking.</div></div>
 <div class="ttc" id="akmemory_8h_html_a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9"><div class="ttname"><a href="kmemory_8h.html#a37d016888ad6b70195335004614d4942aae1f07552c5ef0e2c37261ef3d37c7e9">MEMORY_TAG_STRING</a></div><div class="ttdeci">@ MEMORY_TAG_STRING</div><div class="ttdef"><b>Definition</b> <a href="kmemory_8h_source.html#l00047">kmemory.h:47</a></div></div>
+<div class="ttc" id="akstring_8c_html_a0e70f1085b769241ffe13def897e0f71"><div class="ttname"><a href="kstring_8c.html#a0e70f1085b769241ffe13def897e0f71">string_to_u64</a></div><div class="ttdeci">b8 string_to_u64(char *str, u64 *u)</div><div class="ttdoc">Attempts to parse a 64-bit unsigned integer from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00269">kstring.c:269</a></div></div>
+<div class="ttc" id="akstring_8c_html_a0f8aa43fc45d88e4765447d342f8a1a1"><div class="ttname"><a href="kstring_8c.html#a0f8aa43fc45d88e4765447d342f8a1a1">string_to_u8</a></div><div class="ttdeci">b8 string_to_u8(char *str, u8 *u)</div><div class="ttdoc">Attempts to parse an 8-bit unsigned integer from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00239">kstring.c:239</a></div></div>
+<div class="ttc" id="akstring_8c_html_a1388361e816d473cde2f7f2ea924a1bd"><div class="ttname"><a href="kstring_8c.html#a1388361e816d473cde2f7f2ea924a1bd">string_to_i64</a></div><div class="ttdeci">b8 string_to_i64(char *str, i64 *i)</div><div class="ttdoc">Attempts to parse a 64-bit signed integer from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00229">kstring.c:229</a></div></div>
+<div class="ttc" id="akstring_8c_html_a216d21811f3b2bd33be00ae7fa945646"><div class="ttname"><a href="kstring_8c.html#a216d21811f3b2bd33be00ae7fa945646">string_to_vec3</a></div><div class="ttdeci">b8 string_to_vec3(char *str, vec3 *out_vector)</div><div class="ttdoc">Attempts to parse a vector from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00159">kstring.c:159</a></div></div>
+<div class="ttc" id="akstring_8c_html_a2673061b7a2f47e9b0341c6dc141325c"><div class="ttname"><a href="kstring_8c.html#a2673061b7a2f47e9b0341c6dc141325c">string_index_of</a></div><div class="ttdeci">i32 string_index_of(char *str, char c)</div><div class="ttdoc">Returns the index of the first occurance of c in str; otherwise -1.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00133">kstring.c:133</a></div></div>
 <div class="ttc" id="akstring_8c_html_a3ac8f7f54a3429135da71637d268e6c9"><div class="ttname"><a href="kstring_8c.html#a3ac8f7f54a3429135da71637d268e6c9">string_length</a></div><div class="ttdeci">u64 string_length(const char *str)</div><div class="ttdoc">Returns the length of the given null-terminated string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00026">kstring.c:26</a></div></div>
 <div class="ttc" id="akstring_8c_html_a4088fb073177638c470fee72f8f2180a"><div class="ttname"><a href="kstring_8c.html#a4088fb073177638c470fee72f8f2180a">strings_equal</a></div><div class="ttdeci">b8 strings_equal(const char *str0, const char *str1)</div><div class="ttdoc">Compares two null-terminated strings for equality (case-sensitive).</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00040">kstring.c:40</a></div></div>
+<div class="ttc" id="akstring_8c_html_a4dd30c30bb3f8bd5e2a051c22b04317e"><div class="ttname"><a href="kstring_8c.html#a4dd30c30bb3f8bd5e2a051c22b04317e">string_trim</a></div><div class="ttdeci">char * string_trim(char *str)</div><div class="ttdoc">Trims leading and trailing whitespace from the given string in place.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00084">kstring.c:84</a></div></div>
+<div class="ttc" id="akstring_8c_html_a62599e2f49f1e128abfdb86477c6a71a"><div class="ttname"><a href="kstring_8c.html#a62599e2f49f1e128abfdb86477c6a71a">string_to_f64</a></div><div class="ttdeci">b8 string_to_f64(char *str, f64 *f)</div><div class="ttdoc">Attempts to parse a 64-bit floating-point number from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00189">kstring.c:189</a></div></div>
+<div class="ttc" id="akstring_8c_html_a7fa6a761cef08e91005d3b8cbadd1f5e"><div class="ttname"><a href="kstring_8c.html#a7fa6a761cef08e91005d3b8cbadd1f5e">string_to_bool</a></div><div class="ttdeci">b8 string_to_bool(char *str, b8 *b)</div><div class="ttdoc">Attempts to parse a boolean from the provided string. &quot;true&quot; or &quot;1&quot; are considered true; anything els...</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00279">kstring.c:279</a></div></div>
 <div class="ttc" id="akstring_8c_html_a86babd936b82eaf4229e77406968f74d"><div class="ttname"><a href="kstring_8c.html#a86babd936b82eaf4229e77406968f74d">string_format</a></div><div class="ttdeci">i32 string_format(char *dest, const char *format,...)</div><div class="ttdoc">Performs string formatting against the given format string and parameters. NOTE: that this performs a...</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00052">kstring.c:52</a></div></div>
 <div class="ttc" id="akstring_8c_html_a8cae02ae95f76915f2f34954f56f3105"><div class="ttname"><a href="kstring_8c.html#a8cae02ae95f76915f2f34954f56f3105">string_format_v</a></div><div class="ttdeci">i32 string_format_v(char *dest, const char *format, void *va_listp)</div><div class="ttdoc">Performs variadic string formatting against the given format string and va_list. NOTE: that this perf...</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00063">kstring.c:63</a></div></div>
 <div class="ttc" id="akstring_8c_html_a8d4ca6df7122ffd452146b023195c4c9"><div class="ttname"><a href="kstring_8c.html#a8d4ca6df7122ffd452146b023195c4c9">strings_equali</a></div><div class="ttdeci">b8 strings_equali(const char *str0, const char *str1)</div><div class="ttdoc">Compares two null-terminated strings for equality (case-insensitive).</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00044">kstring.c:44</a></div></div>
+<div class="ttc" id="akstring_8c_html_a8d848ff7fe94196e09799189f5eefd57"><div class="ttname"><a href="kstring_8c.html#a8d848ff7fe94196e09799189f5eefd57">string_to_vec2</a></div><div class="ttdeci">b8 string_to_vec2(char *str, vec2 *out_vector)</div><div class="ttdoc">Attempts to parse a vector from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00169">kstring.c:169</a></div></div>
+<div class="ttc" id="akstring_8c_html_a947ed569de5372c81863ba51ba4e2ef9"><div class="ttname"><a href="kstring_8c.html#a947ed569de5372c81863ba51ba4e2ef9">string_empty</a></div><div class="ttdeci">char * string_empty(char *str)</div><div class="ttdoc">Empties the given string by setting the first character to 0.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00287">kstring.c:287</a></div></div>
+<div class="ttc" id="akstring_8c_html_a97b33c831523752f0adff22f80beaec5"><div class="ttname"><a href="kstring_8c.html#a97b33c831523752f0adff22f80beaec5">string_mid</a></div><div class="ttdeci">void string_mid(char *dest, const char *source, i32 start, i32 length)</div><div class="ttdoc">Extracts a substring from the source string, starting at the given index and of the given length.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00108">kstring.c:108</a></div></div>
+<div class="ttc" id="akstring_8c_html_a9e48021ce5b39920715bfaa5d92613bc"><div class="ttname"><a href="kstring_8c.html#a9e48021ce5b39920715bfaa5d92613bc">string_ncopy</a></div><div class="ttdeci">char * string_ncopy(char *dest, const char *source, i64 length)</div><div class="ttdoc">Copies up to length characters from the source string to the destination string. If the source string...</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00080">kstring.c:80</a></div></div>
+<div class="ttc" id="akstring_8c_html_aad14a51a467f74356b63bc32c08eab9f"><div class="ttname"><a href="kstring_8c.html#aad14a51a467f74356b63bc32c08eab9f">string_to_i8</a></div><div class="ttdeci">b8 string_to_i8(char *str, i8 *i)</div><div class="ttdoc">Attempts to parse an 8-bit signed integer from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00199">kstring.c:199</a></div></div>
+<div class="ttc" id="akstring_8c_html_abf4fe0b9dee453a7e39a134516523094"><div class="ttname"><a href="kstring_8c.html#abf4fe0b9dee453a7e39a134516523094">string_to_i32</a></div><div class="ttdeci">b8 string_to_i32(char *str, i32 *i)</div><div class="ttdoc">Attempts to parse a 32-bit signed integer from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00219">kstring.c:219</a></div></div>
+<div class="ttc" id="akstring_8c_html_ad57f4ad9d666bbbad09db85e17c90759"><div class="ttname"><a href="kstring_8c.html#ad57f4ad9d666bbbad09db85e17c90759">string_to_vec4</a></div><div class="ttdeci">b8 string_to_vec4(char *str, vec4 *out_vector)</div><div class="ttdoc">Attempts to parse a vector from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00149">kstring.c:149</a></div></div>
+<div class="ttc" id="akstring_8c_html_ae031f303d12593a1453ecda9318e7a73"><div class="ttname"><a href="kstring_8c.html#ae031f303d12593a1453ecda9318e7a73">string_to_f32</a></div><div class="ttdeci">b8 string_to_f32(char *str, f32 *f)</div><div class="ttdoc">Attempts to parse a 32-bit floating-point number from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00179">kstring.c:179</a></div></div>
+<div class="ttc" id="akstring_8c_html_ae22bfed954f476af4c12d0b6852843fe"><div class="ttname"><a href="kstring_8c.html#ae22bfed954f476af4c12d0b6852843fe">string_to_i16</a></div><div class="ttdeci">b8 string_to_i16(char *str, i16 *i)</div><div class="ttdoc">Attempts to parse a 16-bit signed integer from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00209">kstring.c:209</a></div></div>
+<div class="ttc" id="akstring_8c_html_ae490b8f9ee483372da65e0d64a0f0032"><div class="ttname"><a href="kstring_8c.html#ae490b8f9ee483372da65e0d64a0f0032">string_to_u32</a></div><div class="ttdeci">b8 string_to_u32(char *str, u32 *u)</div><div class="ttdoc">Attempts to parse a 32-bit unsigned integer from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00259">kstring.c:259</a></div></div>
 <div class="ttc" id="akstring_8c_html_ae4d2c3111ca8e06cce31d32a7928f320"><div class="ttname"><a href="kstring_8c.html#ae4d2c3111ca8e06cce31d32a7928f320">string_duplicate</a></div><div class="ttdeci">char * string_duplicate(const char *str)</div><div class="ttdoc">Duplicates the given null-terminated string into a new heap-allocated copy.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00030">kstring.c:30</a></div></div>
+<div class="ttc" id="akstring_8c_html_af43aa079f60bc11dd7da697df920fece"><div class="ttname"><a href="kstring_8c.html#af43aa079f60bc11dd7da697df920fece">string_copy</a></div><div class="ttdeci">char * string_copy(char *dest, const char *source)</div><div class="ttdoc">Copies the source string to the destination string, including the null terminator.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00076">kstring.c:76</a></div></div>
+<div class="ttc" id="akstring_8c_html_af8c2e9acd877a0210e8c5de44491f4d7"><div class="ttname"><a href="kstring_8c.html#af8c2e9acd877a0210e8c5de44491f4d7">string_to_u16</a></div><div class="ttdeci">b8 string_to_u16(char *str, u16 *u)</div><div class="ttdoc">Attempts to parse a 16-bit unsigned integer from the provided string.</div><div class="ttdef"><b>Definition</b> <a href="kstring_8c_source.html#l00249">kstring.c:249</a></div></div>
 <div class="ttc" id="akstring_8h_html"><div class="ttname"><a href="kstring_8h.html">kstring.h</a></div><div class="ttdoc">Lightweight string utility library.</div></div>
+<div class="ttc" id="astructvec3__u_html"><div class="ttname"><a href="structvec3__u.html">vec3_u</a></div><div class="ttdoc">A 3-component vector union with multiple access patterns.</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00059">math_types.h:59</a></div></div>
+<div class="ttc" id="astructvec3__u_html_a813e68cfccc7810eb92e5237e182f05c"><div class="ttname"><a href="structvec3__u.html#a813e68cfccc7810eb92e5237e182f05c">vec3_u::x</a></div><div class="ttdeci">f32 x</div><div class="ttdoc">First component (x position, red channel, s texture coord)</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00068">math_types.h:68</a></div></div>
+<div class="ttc" id="astructvec3__u_html_a8b47eb56e9065610e4d881725c2c8bb9"><div class="ttname"><a href="structvec3__u.html#a8b47eb56e9065610e4d881725c2c8bb9">vec3_u::z</a></div><div class="ttdeci">f32 z</div><div class="ttdoc">Third component (z position, blue channel, p texture coord)</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00076">math_types.h:76</a></div></div>
+<div class="ttc" id="astructvec3__u_html_aa1c27d65c1ce9cc59b5fda15c1f9a12a"><div class="ttname"><a href="structvec3__u.html#aa1c27d65c1ce9cc59b5fda15c1f9a12a">vec3_u::y</a></div><div class="ttdeci">f32 y</div><div class="ttdoc">Second component (y position, green channel, t texture coord)</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00072">math_types.h:72</a></div></div>
+<div class="ttc" id="aunionvec2__u_html"><div class="ttname"><a href="unionvec2__u.html">vec2_u</a></div><div class="ttdoc">A 2-component vector union with multiple access patterns.</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00028">math_types.h:28</a></div></div>
+<div class="ttc" id="aunionvec2__u_html_a8351557ed259ae82d0e97ad7f2be04c1"><div class="ttname"><a href="unionvec2__u.html#a8351557ed259ae82d0e97ad7f2be04c1">vec2_u::x</a></div><div class="ttdeci">f32 x</div><div class="ttdoc">First component (x position, red channel, s/u texture coord)</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00036">math_types.h:36</a></div></div>
+<div class="ttc" id="aunionvec2__u_html_a8903716708ec9cdf2b006dc78e1f54b6"><div class="ttname"><a href="unionvec2__u.html#a8903716708ec9cdf2b006dc78e1f54b6">vec2_u::y</a></div><div class="ttdeci">f32 y</div><div class="ttdoc">Second component (y position, green channel, t/v texture coord)</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00040">math_types.h:40</a></div></div>
+<div class="ttc" id="aunionvec4__u_html"><div class="ttname"><a href="unionvec4__u.html">vec4_u</a></div><div class="ttdoc">A 4-component vector union with multiple access patterns.</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00092">math_types.h:92</a></div></div>
+<div class="ttc" id="aunionvec4__u_html_a4a77e50d25d2101a5a821ba20f56927b"><div class="ttname"><a href="unionvec4__u.html#a4a77e50d25d2101a5a821ba20f56927b">vec4_u::w</a></div><div class="ttdeci">f32 w</div><div class="ttdoc">Fourth component (w position, alpha channel, q texture coord)</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00118">math_types.h:118</a></div></div>
+<div class="ttc" id="aunionvec4__u_html_aac51c9b41f5d9e5c1b919c5976cb92ee"><div class="ttname"><a href="unionvec4__u.html#aac51c9b41f5d9e5c1b919c5976cb92ee">vec4_u::y</a></div><div class="ttdeci">f32 y</div><div class="ttdoc">Second component (y position, green channel, t texture coord)</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00110">math_types.h:110</a></div></div>
+<div class="ttc" id="aunionvec4__u_html_ae30e88d049711ba68bdfe005e450559d"><div class="ttname"><a href="unionvec4__u.html#ae30e88d049711ba68bdfe005e450559d">vec4_u::x</a></div><div class="ttdeci">f32 x</div><div class="ttdoc">First component (x position, red channel, s texture coord)</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00106">math_types.h:106</a></div></div>
+<div class="ttc" id="aunionvec4__u_html_af01b54572b186f50daed5b48a705c253"><div class="ttname"><a href="unionvec4__u.html#af01b54572b186f50daed5b48a705c253">vec4_u::z</a></div><div class="ttdeci">f32 z</div><div class="ttdoc">Third component (z position, blue channel, p texture coord)</div><div class="ttdef"><b>Definition</b> <a href="math__types_8h_source.html#l00114">math_types.h:114</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 7 2025 09:32:38 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 11:37:28 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

@@ -15,29 +15,37 @@
 \DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00031}00031\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>update\_global\_state\ =\ \mbox{\hyperlink{vulkan__backend_8c_a9efcf925da5223123622a6c4e29cdc1c}{vulkan\_renderer\_update\_global\_state}};}
 \DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00032}00032\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>end\_frame\ =\ \mbox{\hyperlink{vulkan__backend_8c_aa4147f264f03182a1ae88ce189d6810d}{vulkan\_renderer\_backend\_end\_frame}};}
 \DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00033}00033\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>resized\ =\ \mbox{\hyperlink{vulkan__backend_8c_a8eae56297e3b34f9dd52a04c24fd9730}{vulkan\_renderer\_backend\_on\_resized}};}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00034}00034\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>update\_object\ =\ \mbox{\hyperlink{vulkan__backend_8c_a473f9be87792ec76a5af5ac7bcf89971}{vulkan\_backend\_update\_object}};}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00034}00034\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>draw\_geometry\ =\ \mbox{\hyperlink{vulkan__backend_8c_a7699afe9fb901c240aa94043d67af6ba}{vulkan\_backend\_draw\_geometry}};}
 \DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00035}00035\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>create\_texture\ =\ \mbox{\hyperlink{vulkan__backend_8c_a7db03e0175743f3d7bbb759682b7b31c}{vulkan\_renderer\_create\_texture}};}
 \DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00036}00036\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>destroy\_texture\ =\ \mbox{\hyperlink{vulkan__backend_8c_adff90b1866df7cb6b720e123a89ab277}{vulkan\_renderer\_destroy\_texture}};}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00037}00037\ }
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00039}00039\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00040}00040\ }
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ Unsupported\ backend\ type}}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00042}00042\ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Unsupported\ renderer\ backend\ type:\ \%d"{}},\ type);}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00044}00044\ \}}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00045}00045\ }
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00055}\mbox{\hyperlink{renderer__backend_8c_a7f2f8f1b99fcf0c37b9edbb0be96b9a5}{00055}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{renderer__backend_8c_a7f2f8f1b99fcf0c37b9edbb0be96b9a5}{renderer\_backend\_destroy}}(renderer\_backend*\ renderer\_backend)\ \{}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\ Clear\ all\ function\ pointers}}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00057}00057\ \ \ \ \ renderer\_backend-\/>initialize\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00058}00058\ \ \ \ \ renderer\_backend-\/>shutdown\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00059}00059\ \ \ \ \ renderer\_backend-\/>begin\_frame\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00060}00060\ \ \ \ \ renderer\_backend-\/>update\_global\_state\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00061}00061\ \ \ \ \ renderer\_backend-\/>end\_frame\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00062}00062\ \ \ \ \ renderer\_backend-\/>resized\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00063}00063\ \ \ \ \ renderer\_backend-\/>update\_object\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00064}00064\ \ \ \ \ renderer\_backend-\/>create\_texture\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00065}00065\ \ \ \ \ renderer\_backend-\/>destroy\_texture\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00066}00066\ \}}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00037}00037\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>create\_material\ =\ \mbox{\hyperlink{vulkan__backend_8c_aae87f32cda6dae5a302e4c7c23eeccb1}{vulkan\_renderer\_create\_material}};}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00038}00038\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>destroy\_material\ =\ \mbox{\hyperlink{vulkan__backend_8c_a897d4b85115557425812030916e8cc56}{vulkan\_renderer\_destroy\_material}};}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00039}00039\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>create\_geometry\ =\ \mbox{\hyperlink{vulkan__backend_8c_ae692f6318e9210680fd8314766b6a779}{vulkan\_renderer\_create\_geometry}};}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00040}00040\ \ \ \ \ \ \ \ \ out\_renderer\_backend-\/>destroy\_geometry\ =\ \mbox{\hyperlink{vulkan__backend_8c_a798b85a7a54f19a9dfc5a3a7e05827a7}{vulkan\_renderer\_destroy\_geometry}};}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_add3ca9eefe3b5b754426f51d3043e579}{True}};}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ Unsupported\ backend\ type}}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00046}00046\ \ \ \ \ \mbox{\hyperlink{logger_8h_a473bb2cc3b3bf3c93084eeca6cb19132}{KERROR}}(\textcolor{stringliteral}{"{}Unsupported\ renderer\ backend\ type:\ \%d"{}},\ type);}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{defines_8h_a306ebd41c0cd1303b1372c6153f0caf8}{False}};}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00059}\mbox{\hyperlink{renderer__backend_8c_a7f2f8f1b99fcf0c37b9edbb0be96b9a5}{00059}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{renderer__backend_8c_a7f2f8f1b99fcf0c37b9edbb0be96b9a5}{renderer\_backend\_destroy}}(renderer\_backend*\ renderer\_backend)\ \{}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00060}00060\ \ \ \ \ \textcolor{comment}{//\ Clear\ all\ function\ pointers}}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00061}00061\ \ \ \ \ renderer\_backend-\/>initialize\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00062}00062\ \ \ \ \ renderer\_backend-\/>shutdown\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00063}00063\ \ \ \ \ renderer\_backend-\/>begin\_frame\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00064}00064\ \ \ \ \ renderer\_backend-\/>update\_global\_state\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00065}00065\ \ \ \ \ renderer\_backend-\/>end\_frame\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00066}00066\ \ \ \ \ renderer\_backend-\/>resized\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00067}00067\ \ \ \ \ renderer\_backend-\/>draw\_geometry\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00068}00068\ \ \ \ \ renderer\_backend-\/>create\_texture\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00069}00069\ \ \ \ \ renderer\_backend-\/>destroy\_texture\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00070}00070\ \ \ \ \ renderer\_backend-\/>create\_material\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00071}00071\ \ \ \ \ renderer\_backend-\/>destroy\_material\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00072}00072\ \ \ \ \ renderer\_backend-\/>create\_geometry\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00073}00073\ \ \ \ \ renderer\_backend-\/>destroy\_geometry\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{renderer__backend_8c_source_l00074}00074\ \}}
 
 \end{DoxyCode}

@@ -24,14 +24,14 @@
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00102}00102\ }
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00113}00113\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__backend_8h_afe660c6d3ba8621d1a7b395500e6fc02}{recreate\_swapchain}}(renderer\_backend*\ backend);}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00114}00114\ }
-\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00130}00130\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8h_ac31532b42a062bc57ebef2f371970719}{upload\_data\_range}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00130}00130\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8h_ac7c74c146850082989f7cd632fdab5ea}{upload\_data\_range}}(vulkan\_context*\ \mbox{\hyperlink{vulkan__backend_8c_a171b208055a0eb2eeace24e130f74bc9}{context}},}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VkCommandPool\ pool,}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VkFence\ fence,}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ VkQueue\ queue,}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vulkan\_buffer*\ buffer,}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ offset,}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}}\ size,}
-\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ data);}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ data);}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00138}00138\ }
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00149}00149\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__backend_8h_afc2cbf296cd3a6e4999750da67deaca9}{vulkan\_renderer\_backend\_initialize}}(renderer\_backend*\ backend,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ application\_name);}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00150}00150\ }
@@ -45,10 +45,18 @@
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00192}00192\ }
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00206}00206\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8h_a9efcf925da5223123622a6c4e29cdc1c}{vulkan\_renderer\_update\_global\_state}}(\mbox{\hyperlink{unionmat4__u}{mat4}}\ projection,\ \mbox{\hyperlink{unionmat4__u}{mat4}}\ view,\ \mbox{\hyperlink{structvec3__u}{vec3}}\ view\_position,\ \mbox{\hyperlink{unionvec4__u}{vec4}}\ ambient\_colour,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ mode);}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00207}00207\ }
-\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00214}00214\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8h_a473f9be87792ec76a5af5ac7bcf89971}{vulkan\_backend\_update\_object}}(geometry\_render\_data\ data);}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00214}00214\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8h_a7699afe9fb901c240aa94043d67af6ba}{vulkan\_backend\_draw\_geometry}}(geometry\_render\_data\ data);}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00215}00215\ }
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00229}00229\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8h_a7db03e0175743f3d7bbb759682b7b31c}{vulkan\_renderer\_create\_texture}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ width,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ height,\ \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}\ channel\_count,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}*\ pixels,\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ has\_transparency,\ \mbox{\hyperlink{structtexture}{texture}}*\ out\_texture);}
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00230}00230\ }
 \DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00238}00238\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8h_a960741cefcbdc168f758b46407bcc9ec}{vulkan\_renderer\_destroy\_texture}}(\mbox{\hyperlink{structtexture}{texture}}*\ \mbox{\hyperlink{structtexture}{texture}});}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00249}00249\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__backend_8h_aae87f32cda6dae5a302e4c7c23eeccb1}{vulkan\_renderer\_create\_material}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structmaterial}{material}}*\ \mbox{\hyperlink{structmaterial}{material}});}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00256}00256\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8h_a897d4b85115557425812030916e8cc56}{vulkan\_renderer\_destroy\_material}}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structmaterial}{material}}*\ \mbox{\hyperlink{structmaterial}{material}});}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00262}00262\ \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}\ \mbox{\hyperlink{vulkan__backend_8h_ae692f6318e9210680fd8314766b6a779}{vulkan\_renderer\_create\_geometry}}(\mbox{\hyperlink{structgeometry}{geometry}}*\ \mbox{\hyperlink{structgeometry}{geometry}},\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ vertex\_count,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structvertex__3d}{vertex\_3d}}*\ vertices,\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\ index\_count,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}*\ indices);}
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{vulkan__backend_8h_source_l00268}00268\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vulkan__backend_8h_a798b85a7a54f19a9dfc5a3a7e05827a7}{vulkan\_renderer\_destroy\_geometry}}(\mbox{\hyperlink{structgeometry}{geometry}}*\ \mbox{\hyperlink{structgeometry}{geometry}});}
 
 \end{DoxyCode}

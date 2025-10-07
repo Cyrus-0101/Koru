@@ -1,0 +1,135 @@
+\doxysection{geometry\+\_\+config Struct Reference}
+\hypertarget{structgeometry__config}{}\label{structgeometry__config}\index{geometry\_config@{geometry\_config}}
+
+
+Configuration structure for creating a geometry.  
+
+
+
+
+{\ttfamily \#include $<$geometry\+\_\+system.\+h$>$}
+
+
+
+Collaboration diagram for geometry\+\_\+config\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{structgeometry__config__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structgeometry__config_aa1f9e97cf165609eaf95d756641854c7}{vertex\+\_\+count}}
+\item 
+\mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgeometry__config_af8e9a59e8e85828732d4f39420d62053}{vertices}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structgeometry__config_a7589d58435a66d45bb4d26495376510e}{index\+\_\+count}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgeometry__config_ac1b82dfed5742fbee5003ef464e5fb4e}{indices}}
+\item 
+char \mbox{\hyperlink{structgeometry__config_a29f2a479e4d4b28fd689ecadda865553}{name}} \mbox{[}\mbox{\hyperlink{resource__types_8h_a9840b465a935f36dd17db47735877e27}{GEOMETRY\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}
+\item 
+char \mbox{\hyperlink{structgeometry__config_a7cc0b2dc3421124b780348f74853b136}{material\+\_\+name}} \mbox{[}\mbox{\hyperlink{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7}{MATERIAL\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration structure for creating a geometry. 
+
+Definition at line \mbox{\hyperlink{geometry__system_8h_source_l00047}{47}} of file \mbox{\hyperlink{geometry__system_8h_source}{geometry\+\_\+system.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structgeometry__config_a7589d58435a66d45bb4d26495376510e}\label{structgeometry__config_a7589d58435a66d45bb4d26495376510e} 
+\index{geometry\_config@{geometry\_config}!index\_count@{index\_count}}
+\index{index\_count@{index\_count}!geometry\_config@{geometry\_config}}
+\doxysubsubsection{\texorpdfstring{index\_count}{index\_count}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} geometry\+\_\+config\+::index\+\_\+count}
+
+Index count for the geometry. 
+
+Definition at line \mbox{\hyperlink{geometry__system_8h_source_l00053}{53}} of file \mbox{\hyperlink{geometry__system_8h_source}{geometry\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, and \mbox{\hyperlink{geometry__system_8c_source_l00280}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config()}}.
+
+\Hypertarget{structgeometry__config_ac1b82dfed5742fbee5003ef464e5fb4e}\label{structgeometry__config_ac1b82dfed5742fbee5003ef464e5fb4e} 
+\index{geometry\_config@{geometry\_config}!indices@{indices}}
+\index{indices@{indices}!geometry\_config@{geometry\_config}}
+\doxysubsubsection{\texorpdfstring{indices}{indices}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}\texorpdfstring{$\ast$}{*} geometry\+\_\+config\+::indices}
+
+Pointer to an array of indices defining the geometry. 
+
+Definition at line \mbox{\hyperlink{geometry__system_8h_source_l00055}{55}} of file \mbox{\hyperlink{geometry__system_8h_source}{geometry\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, and \mbox{\hyperlink{geometry__system_8c_source_l00280}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config()}}.
+
+\Hypertarget{structgeometry__config_a7cc0b2dc3421124b780348f74853b136}\label{structgeometry__config_a7cc0b2dc3421124b780348f74853b136} 
+\index{geometry\_config@{geometry\_config}!material\_name@{material\_name}}
+\index{material\_name@{material\_name}!geometry\_config@{geometry\_config}}
+\doxysubsubsection{\texorpdfstring{material\_name}{material\_name}}
+{\footnotesize\ttfamily char geometry\+\_\+config\+::material\+\_\+name\mbox{[}\mbox{\hyperlink{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7}{MATERIAL\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}}
+
+Name of the material to be associated with this geometry. 
+
+Definition at line \mbox{\hyperlink{geometry__system_8h_source_l00059}{59}} of file \mbox{\hyperlink{geometry__system_8h_source}{geometry\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, and \mbox{\hyperlink{geometry__system_8c_source_l00280}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config()}}.
+
+\Hypertarget{structgeometry__config_a29f2a479e4d4b28fd689ecadda865553}\label{structgeometry__config_a29f2a479e4d4b28fd689ecadda865553} 
+\index{geometry\_config@{geometry\_config}!name@{name}}
+\index{name@{name}!geometry\_config@{geometry\_config}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char geometry\+\_\+config\+::name\mbox{[}\mbox{\hyperlink{resource__types_8h_a9840b465a935f36dd17db47735877e27}{GEOMETRY\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}}
+
+Name of the geometry for identification purposes. 
+
+Definition at line \mbox{\hyperlink{geometry__system_8h_source_l00057}{57}} of file \mbox{\hyperlink{geometry__system_8h_source}{geometry\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00280}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config()}}.
+
+\Hypertarget{structgeometry__config_aa1f9e97cf165609eaf95d756641854c7}\label{structgeometry__config_aa1f9e97cf165609eaf95d756641854c7} 
+\index{geometry\_config@{geometry\_config}!vertex\_count@{vertex\_count}}
+\index{vertex\_count@{vertex\_count}!geometry\_config@{geometry\_config}}
+\doxysubsubsection{\texorpdfstring{vertex\_count}{vertex\_count}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} geometry\+\_\+config\+::vertex\+\_\+count}
+
+Number of vertices in the geometry. 
+
+Definition at line \mbox{\hyperlink{geometry__system_8h_source_l00049}{49}} of file \mbox{\hyperlink{geometry__system_8h_source}{geometry\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, and \mbox{\hyperlink{geometry__system_8c_source_l00280}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config()}}.
+
+\Hypertarget{structgeometry__config_af8e9a59e8e85828732d4f39420d62053}\label{structgeometry__config_af8e9a59e8e85828732d4f39420d62053} 
+\index{geometry\_config@{geometry\_config}!vertices@{vertices}}
+\index{vertices@{vertices}!geometry\_config@{geometry\_config}}
+\doxysubsubsection{\texorpdfstring{vertices}{vertices}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}}\texorpdfstring{$\ast$}{*} geometry\+\_\+config\+::vertices}
+
+Pointer to an array of vertices defining the geometry. 
+
+Definition at line \mbox{\hyperlink{geometry__system_8h_source_l00051}{51}} of file \mbox{\hyperlink{geometry__system_8h_source}{geometry\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, and \mbox{\hyperlink{geometry__system_8c_source_l00280}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/systems/\mbox{\hyperlink{geometry__system_8h}{geometry\+\_\+system.\+h}}\end{DoxyCompactItemize}

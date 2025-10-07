@@ -85,10 +85,8 @@ $(function() {
 <div class="center"><img src="structrenderer__system__state__coll__graph.png" border="0" usemap="#arenderer__system__state_coll__map" alt="Collaboration graph"/></div>
 <map name="arenderer__system__state_coll__map" id="arenderer__system__state_coll__map">
 <area shape="rect" title="Represents the state of the rendering system." alt="" coords="5,108,177,133"/>
-<area shape="rect" href="unionmat4__u.html" title="A 4x4 matrix union for linear transformations." alt="" coords="7,5,77,31"/>
-<area shape="poly" title=" " alt="" coords="40,44,40,64,46,83,56,96,69,106,66,110,52,99,41,85,35,65,35,44"/>
-<area shape="rect" href="structtexture.html" title="Represents a texture resource." alt="" coords="107,5,177,31"/>
-<area shape="poly" title=" " alt="" coords="134,45,115,85,101,109,96,106,110,83,129,42"/>
+<area shape="rect" href="unionmat4__u.html" title="A 4x4 matrix union for linear transformations." alt="" coords="56,5,127,31"/>
+<area shape="poly" title=" " alt="" coords="94,45,94,108,89,108,89,45"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -109,15 +107,12 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a61ee40d959ec115ad343a2a029e308d2" id="r_a61ee40d959ec115ad343a2a029e308d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrenderer__system__state.html#a61ee40d959ec115ad343a2a029e308d2">far_clip</a></td></tr>
 <tr class="memdesc:a61ee40d959ec115ad343a2a029e308d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Far clipping plane distance.  <br /></td></tr>
 <tr class="separator:a61ee40d959ec115ad343a2a029e308d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac416a30c7b4f1e11633f42df1acd0fd3" id="r_ac416a30c7b4f1e11633f42df1acd0fd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtexture.html">texture</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrenderer__system__state.html#ac416a30c7b4f1e11633f42df1acd0fd3">test_diffuse</a></td></tr>
-<tr class="memdesc:ac416a30c7b4f1e11633f42df1acd0fd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to a test texture for demonstration purposes.  <br /></td></tr>
-<tr class="separator:ac416a30c7b4f1e11633f42df1acd0fd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents the state of the rendering system. </p>
 <p>Contains the current rendering backend and its associated state. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00032">32</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00033">33</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a52c3666e5bca364ff89ff93792576649" name="a52c3666e5bca364ff89ff93792576649"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52c3666e5bca364ff89ff93792576649">&#9670;&#160;</a></span>backend</h2>
@@ -133,9 +128,9 @@ Data Fields</h2></td></tr>
 
 <p>Pointer to the platform-specific state. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00036">36</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00037">37</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00159">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00250">renderer_create_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00261">renderer_destroy_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00204">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00176">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00186">renderer_on_resized()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00105">renderer_system_initialize()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00138">renderer_system_shutdown()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00109">renderer_begin_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00209">renderer_create_geometry()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00202">renderer_create_material()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00187">renderer_create_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00213">renderer_destroy_geometry()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00205">renderer_destroy_material()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00198">renderer_destroy_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00154">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00126">renderer_end_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00136">renderer_on_resized()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00063">renderer_system_initialize()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00092">renderer_system_shutdown()</a>.</p>
 
 </div>
 </div>
@@ -153,9 +148,9 @@ Data Fields</h2></td></tr>
 
 <p>Far clipping plane distance. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00056">56</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00057">57</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00186">renderer_on_resized()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00105">renderer_system_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00136">renderer_on_resized()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00063">renderer_system_initialize()</a>.</p>
 
 </div>
 </div>
@@ -173,9 +168,9 @@ Data Fields</h2></td></tr>
 
 <p>Near clipping plane distance. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00051">51</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00052">52</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00186">renderer_on_resized()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00105">renderer_system_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00136">renderer_on_resized()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00063">renderer_system_initialize()</a>.</p>
 
 </div>
 </div>
@@ -193,29 +188,9 @@ Data Fields</h2></td></tr>
 
 <p>The projection matrix used for rendering. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00041">41</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00042">42</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00204">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00186">renderer_on_resized()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00105">renderer_system_initialize()</a>.</p>
-
-</div>
-</div>
-<a id="ac416a30c7b4f1e11633f42df1acd0fd3" name="ac416a30c7b4f1e11633f42df1acd0fd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac416a30c7b4f1e11633f42df1acd0fd3">&#9670;&#160;</a></span>test_diffuse</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structtexture.html">texture</a>* renderer_system_state::test_diffuse</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A pointer to a test texture for demonstration purposes. </p>
-
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00062">62</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00081">event_on_debug_event()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00204">renderer_draw_frame()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00154">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00136">renderer_on_resized()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00063">renderer_system_initialize()</a>.</p>
 
 </div>
 </div>
@@ -233,9 +208,9 @@ Data Fields</h2></td></tr>
 
 <p>The view matrix used for rendering. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00046">46</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderer__frontend_8c_source.html#l00047">47</a> of file <a class="el" href="renderer__frontend_8c_source.html">renderer_frontend.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00204">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00246">renderer_set_view()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00105">renderer_system_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00154">renderer_draw_frame()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00183">renderer_set_view()</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00063">renderer_system_initialize()</a>.</p>
 
 </div>
 </div>
@@ -245,7 +220,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 7 2025 09:32:39 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 11:37:28 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

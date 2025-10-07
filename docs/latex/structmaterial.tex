@@ -1,0 +1,137 @@
+\doxysection{material Struct Reference}
+\hypertarget{structmaterial}{}\label{structmaterial}\index{material@{material}}
+
+
+Represents a material resource.  
+
+
+
+
+{\ttfamily \#include $<$resource\+\_\+types.\+h$>$}
+
+
+
+Collaboration diagram for material\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{structmaterial__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structmaterial_a3d8120d0d8fff6e80e62bd93fa5755de}{id}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structmaterial_af48ce82f2bc1aa3f746d22d9bdd85ac1}{generation}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structmaterial_af99bf7dd929232ff4c85952900b492d9}{internal\+\_\+id}}
+\item 
+char \mbox{\hyperlink{structmaterial_a3a1694486ba2bcd5bcc9b54be8069dd3}{name}} \mbox{[}\mbox{\hyperlink{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7}{MATERIAL\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}
+\item 
+\mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} \mbox{\hyperlink{structmaterial_a34df0604441669e47efe961a8ad1f014}{diffuse\+\_\+color}}
+\item 
+\mbox{\hyperlink{structtexture__map}{texture\+\_\+map}} \mbox{\hyperlink{structmaterial_a805109350e71f2cf0dd8c8912f24e070}{diffuse\+\_\+map}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a material resource. 
+
+Contains properties that define how surfaces appear when rendered, including color and texture references. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00077}{77}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmaterial_a34df0604441669e47efe961a8ad1f014}\label{structmaterial_a34df0604441669e47efe961a8ad1f014} 
+\index{material@{material}!diffuse\_color@{diffuse\_color}}
+\index{diffuse\_color@{diffuse\_color}!material@{material}}
+\doxysubsubsection{\texorpdfstring{diffuse\_color}{diffuse\_color}}
+{\footnotesize\ttfamily \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} material\+::diffuse\+\_\+color}
+
+Diffuse color of the material (used if no texture is assigned). 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00087}{87}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00344}{create\+\_\+default\+\_\+material()}}, \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00305}{vulkan\+\_\+material\+\_\+shader\+\_\+apply\+\_\+material()}}.
+
+\Hypertarget{structmaterial_a805109350e71f2cf0dd8c8912f24e070}\label{structmaterial_a805109350e71f2cf0dd8c8912f24e070} 
+\index{material@{material}!diffuse\_map@{diffuse\_map}}
+\index{diffuse\_map@{diffuse\_map}!material@{material}}
+\doxysubsubsection{\texorpdfstring{diffuse\_map}{diffuse\_map}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtexture__map}{texture\+\_\+map}} material\+::diffuse\+\_\+map}
+
+Texture map used for the diffuse component of the material. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00089}{89}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00344}{create\+\_\+default\+\_\+material()}}, \mbox{\hyperlink{material__system_8c_source_l00325}{destroy\+\_\+material()}}, \mbox{\hyperlink{application_8c_source_l00254}{event\+\_\+on\+\_\+debug\+\_\+event()}}, \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00305}{vulkan\+\_\+material\+\_\+shader\+\_\+apply\+\_\+material()}}.
+
+\Hypertarget{structmaterial_af48ce82f2bc1aa3f746d22d9bdd85ac1}\label{structmaterial_af48ce82f2bc1aa3f746d22d9bdd85ac1} 
+\index{material@{material}!generation@{generation}}
+\index{generation@{generation}!material@{material}}
+\doxysubsubsection{\texorpdfstring{generation}{generation}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} material\+::generation}
+
+Generation counter for tracking updates to the material. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00081}{81}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00344}{create\+\_\+default\+\_\+material()}}, \mbox{\hyperlink{material__system_8c_source_l00325}{destroy\+\_\+material()}}, \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{vulkan__material__shader_8c_source_l00305}{vulkan\+\_\+material\+\_\+shader\+\_\+apply\+\_\+material()}}.
+
+\Hypertarget{structmaterial_a3d8120d0d8fff6e80e62bd93fa5755de}\label{structmaterial_a3d8120d0d8fff6e80e62bd93fa5755de} 
+\index{material@{material}!id@{id}}
+\index{id@{id}!material@{material}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} material\+::id}
+
+Unique identifier for the material resource. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00079}{79}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00344}{create\+\_\+default\+\_\+material()}}, \mbox{\hyperlink{material__system_8c_source_l00325}{destroy\+\_\+material()}}, \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{material__system_8c_source_l00151}{material\+\_\+system\+\_\+shutdown()}}.
+
+\Hypertarget{structmaterial_af99bf7dd929232ff4c85952900b492d9}\label{structmaterial_af99bf7dd929232ff4c85952900b492d9} 
+\index{material@{material}!internal\_id@{internal\_id}}
+\index{internal\_id@{internal\_id}!material@{material}}
+\doxysubsubsection{\texorpdfstring{internal\_id}{internal\_id}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} material\+::internal\+\_\+id}
+
+Internal identifier used by the rendering backend. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00083}{83}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00325}{destroy\+\_\+material()}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00424}{vulkan\+\_\+material\+\_\+shader\+\_\+acquire\+\_\+resources()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00305}{vulkan\+\_\+material\+\_\+shader\+\_\+apply\+\_\+material()}}, \mbox{\hyperlink{vulkan__material__shader_8c_source_l00460}{vulkan\+\_\+material\+\_\+shader\+\_\+release\+\_\+resources()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00938}{vulkan\+\_\+renderer\+\_\+destroy\+\_\+material()}}.
+
+\Hypertarget{structmaterial_a3a1694486ba2bcd5bcc9b54be8069dd3}\label{structmaterial_a3a1694486ba2bcd5bcc9b54be8069dd3} 
+\index{material@{material}!name@{name}}
+\index{name@{name}!material@{material}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char material\+::name\mbox{[}\mbox{\hyperlink{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7}{MATERIAL\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}}
+
+Identifier of the texture used for the diffuse map. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00085}{85}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00344}{create\+\_\+default\+\_\+material()}}, \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}, \mbox{\hyperlink{material__system_8c_source_l00325}{destroy\+\_\+material()}}, and \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/resources/\mbox{\hyperlink{resource__types_8h}{resource\+\_\+types.\+h}}\end{DoxyCompactItemize}

@@ -7,6 +7,7 @@ Implementation of lightweight string utility functions.
 
 {\ttfamily \#include "{}core/kstring.\+h"{}}\newline
 {\ttfamily \#include "{}core/kmemory.\+h"{}}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
 {\ttfamily \#include $<$stdarg.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
@@ -33,7 +34,47 @@ char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8c_ae4d2c3111ca8e06cce3
 \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{kstring_8c_a86babd936b82eaf4229e77406968f74d}{string\+\_\+format}} (char \texorpdfstring{$\ast$}{*}dest, const char \texorpdfstring{$\ast$}{*}format,...)
 \begin{DoxyCompactList}\small\item\em Performs string formatting against the given format string and parameters. NOTE\+: that this performs a dynamic allocation and should be freed by the caller. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{kstring_8c_a8cae02ae95f76915f2f34954f56f3105}{string\+\_\+format\+\_\+v}} (char \texorpdfstring{$\ast$}{*}dest, const char \texorpdfstring{$\ast$}{*}format, void \texorpdfstring{$\ast$}{*}va\+\_\+listp)
-\begin{DoxyCompactList}\small\item\em Performs variadic string formatting against the given format string and va\+\_\+list. NOTE\+: that this performs a dynamic allocation and should be freed by the caller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Performs variadic string formatting against the given format string and va\+\_\+list. NOTE\+: that this performs a dynamic allocation and should be freed by the caller. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8c_af43aa079f60bc11dd7da697df920fece}{string\+\_\+copy}} (char \texorpdfstring{$\ast$}{*}dest, const char \texorpdfstring{$\ast$}{*}source)
+\begin{DoxyCompactList}\small\item\em Copies the source string to the destination string, including the null terminator. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8c_a9e48021ce5b39920715bfaa5d92613bc}{string\+\_\+ncopy}} (char \texorpdfstring{$\ast$}{*}dest, const char \texorpdfstring{$\ast$}{*}source, \mbox{\hyperlink{defines_8h_ada59a0de67c44384c6faa924ca63c2aa}{i64}} length)
+\begin{DoxyCompactList}\small\item\em Copies up to length characters from the source string to the destination string. If the source string is shorter than length, the destination is null-\/terminated. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8c_a4dd30c30bb3f8bd5e2a051c22b04317e}{string\+\_\+trim}} (char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Trims leading and trailing whitespace from the given string in place. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kstring_8c_a97b33c831523752f0adff22f80beaec5}{string\+\_\+mid}} (char \texorpdfstring{$\ast$}{*}dest, const char \texorpdfstring{$\ast$}{*}source, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} start, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} length)
+\begin{DoxyCompactList}\small\item\em Extracts a substring from the source string, starting at the given index and of the given length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \mbox{\hyperlink{kstring_8c_a2673061b7a2f47e9b0341c6dc141325c}{string\+\_\+index\+\_\+of}} (char \texorpdfstring{$\ast$}{*}str, char c)
+\begin{DoxyCompactList}\small\item\em Returns the index of the first occurance of c in str; otherwise -\/1. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_ad57f4ad9d666bbbad09db85e17c90759}{string\+\_\+to\+\_\+vec4}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} \texorpdfstring{$\ast$}{*}out\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a vector from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_a216d21811f3b2bd33be00ae7fa945646}{string\+\_\+to\+\_\+vec3}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}{vec3}} \texorpdfstring{$\ast$}{*}out\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a vector from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_a8d848ff7fe94196e09799189f5eefd57}{string\+\_\+to\+\_\+vec2}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{math__types_8h_a4403515b5f13a3b84dafb1667a1f9d88}{vec2}} \texorpdfstring{$\ast$}{*}out\+\_\+vector)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a vector from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_ae031f303d12593a1453ecda9318e7a73}{string\+\_\+to\+\_\+f32}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \texorpdfstring{$\ast$}{*}f)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a 32-\/bit floating-\/point number from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_a62599e2f49f1e128abfdb86477c6a71a}{string\+\_\+to\+\_\+f64}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} \texorpdfstring{$\ast$}{*}f)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a 64-\/bit floating-\/point number from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_aad14a51a467f74356b63bc32c08eab9f}{string\+\_\+to\+\_\+i8}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}} \texorpdfstring{$\ast$}{*}i)
+\begin{DoxyCompactList}\small\item\em Attempts to parse an 8-\/bit signed integer from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_ae22bfed954f476af4c12d0b6852843fe}{string\+\_\+to\+\_\+i16}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} \texorpdfstring{$\ast$}{*}i)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a 16-\/bit signed integer from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_abf4fe0b9dee453a7e39a134516523094}{string\+\_\+to\+\_\+i32}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}i)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a 32-\/bit signed integer from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_a1388361e816d473cde2f7f2ea924a1bd}{string\+\_\+to\+\_\+i64}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_ada59a0de67c44384c6faa924ca63c2aa}{i64}} \texorpdfstring{$\ast$}{*}i)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a 64-\/bit signed integer from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_a0f8aa43fc45d88e4765447d342f8a1a1}{string\+\_\+to\+\_\+u8}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} \texorpdfstring{$\ast$}{*}u)
+\begin{DoxyCompactList}\small\item\em Attempts to parse an 8-\/bit unsigned integer from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_af8c2e9acd877a0210e8c5de44491f4d7}{string\+\_\+to\+\_\+u16}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} \texorpdfstring{$\ast$}{*}u)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a 16-\/bit unsigned integer from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_ae490b8f9ee483372da65e0d64a0f0032}{string\+\_\+to\+\_\+u32}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}u)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a 32-\/bit unsigned integer from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_a0e70f1085b769241ffe13def897e0f71}{string\+\_\+to\+\_\+u64}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}u)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a 64-\/bit unsigned integer from the provided string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{kstring_8c_a7fa6a761cef08e91005d3b8cbadd1f5e}{string\+\_\+to\+\_\+bool}} (char \texorpdfstring{$\ast$}{*}str, \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \texorpdfstring{$\ast$}{*}b)
+\begin{DoxyCompactList}\small\item\em Attempts to parse a boolean from the provided string. "{}true"{} or "{}1"{} are considered true; anything else is false. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kstring_8c_a947ed569de5372c81863ba51ba4e2ef9}{string\+\_\+empty}} (char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Empties the given string by setting the first character to 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -53,6 +94,30 @@ Definition in file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
 
 
 \doxysubsection{Function Documentation}
+\Hypertarget{kstring_8c_af43aa079f60bc11dd7da697df920fece}\label{kstring_8c_af43aa079f60bc11dd7da697df920fece} 
+\index{kstring.c@{kstring.c}!string\_copy@{string\_copy}}
+\index{string\_copy@{string\_copy}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_copy()}{string\_copy()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} string\+\_\+copy (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{source }\end{DoxyParamCaption})}
+
+
+
+Copies the source string to the destination string, including the null terminator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & The destination string buffer. Must be large enough to hold the source string. \\
+\hline
+{\em source} & The source null-\/terminated string to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the destination string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00076}{76}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
 \Hypertarget{kstring_8c_ae4d2c3111ca8e06cce31d32a7928f320}\label{kstring_8c_ae4d2c3111ca8e06cce31d32a7928f320} 
 \index{kstring.c@{kstring.c}!string\_duplicate@{string\_duplicate}}
 \index{string\_duplicate@{string\_duplicate}!kstring.c@{kstring.c}}
@@ -80,6 +145,32 @@ Definition at line \mbox{\hyperlink{kstring_8c_source_l00030}{30}} of file \mbox
 
 
 References \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{kmemory_8c_source_l00182}{kcopy\+\_\+memory()}}, \mbox{\hyperlink{kmemory_8h_source_l00047}{MEMORY\+\_\+\+TAG\+\_\+\+STRING}}, and \mbox{\hyperlink{kstring_8c_source_l00026}{string\+\_\+length()}}.
+
+\Hypertarget{kstring_8c_a947ed569de5372c81863ba51ba4e2ef9}\label{kstring_8c_a947ed569de5372c81863ba51ba4e2ef9} 
+\index{kstring.c@{kstring.c}!string\_empty@{string\_empty}}
+\index{string\_empty@{string\_empty}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_empty()}{string\_empty()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} string\+\_\+empty (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+
+
+
+Empties the given string by setting the first character to 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to empty. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the emptied string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00287}{287}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}.
 
 \Hypertarget{kstring_8c_a86babd936b82eaf4229e77406968f74d}\label{kstring_8c_a86babd936b82eaf4229e77406968f74d} 
 \index{kstring.c@{kstring.c}!string\_format@{string\_format}}
@@ -111,7 +202,7 @@ References \mbox{\hyperlink{kstring_8c_source_l00063}{string\+\_\+format\+\_\+v(
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}, \mbox{\hyperlink{texture__system_8c_source_l00308}{load\+\_\+texture()}}, and \mbox{\hyperlink{logger_8c_source_l00095}{log\+\_\+output()}}.
+Referenced by \mbox{\hyperlink{vulkan__shader__utils_8c_source_l00017}{create\+\_\+shader\+\_\+module()}}, \mbox{\hyperlink{texture__system_8c_source_l00341}{load\+\_\+texture()}}, \mbox{\hyperlink{logger_8c_source_l00095}{log\+\_\+output()}}, and \mbox{\hyperlink{material__system_8c_source_l00169}{material\+\_\+system\+\_\+acquire()}}.
 
 \Hypertarget{kstring_8c_a8cae02ae95f76915f2f34954f56f3105}\label{kstring_8c_a8cae02ae95f76915f2f34954f56f3105} 
 \index{kstring.c@{kstring.c}!string\_format\_v@{string\_format\_v}}
@@ -145,6 +236,38 @@ References \mbox{\hyperlink{kmemory_8c_source_l00182}{kcopy\+\_\+memory()}}.
 
 Referenced by \mbox{\hyperlink{logger_8c_source_l00095}{log\+\_\+output()}}, and \mbox{\hyperlink{kstring_8c_source_l00052}{string\+\_\+format()}}.
 
+\Hypertarget{kstring_8c_a2673061b7a2f47e9b0341c6dc141325c}\label{kstring_8c_a2673061b7a2f47e9b0341c6dc141325c} 
+\index{kstring.c@{kstring.c}!string\_index\_of@{string\_index\_of}}
+\index{string\_index\_of@{string\_index\_of}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_index\_of()}{string\_index\_of()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} string\+\_\+index\+\_\+of (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{char}]{c }\end{DoxyParamCaption})}
+
+
+
+Returns the index of the first occurance of c in str; otherwise -\/1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to be scanned. \\
+\hline
+{\em c} & The character to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the first occurance of c; otherwise -\/1 if not found. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00133}{133}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{kstring_8c_source_l00026}{string\+\_\+length()}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}.
+
 \Hypertarget{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9}\label{kstring_8c_a3ac8f7f54a3429135da71637d268e6c9} 
 \index{kstring.c@{kstring.c}!string\_length@{string\_length}}
 \index{string\_length@{string\_length}!kstring.c@{kstring.c}}
@@ -171,7 +294,492 @@ Definition at line \mbox{\hyperlink{kstring_8c_source_l00026}{26}} of file \mbox
 
 
 
-Referenced by \mbox{\hyperlink{logger_8c_source_l00050}{append\+\_\+to\+\_\+log\+\_\+file()}}, and \mbox{\hyperlink{kstring_8c_source_l00030}{string\+\_\+duplicate()}}.
+Referenced by \mbox{\hyperlink{logger_8c_source_l00050}{append\+\_\+to\+\_\+log\+\_\+file()}}, \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00280}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}, \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}, \mbox{\hyperlink{kstring_8c_source_l00030}{string\+\_\+duplicate()}}, \mbox{\hyperlink{kstring_8c_source_l00133}{string\+\_\+index\+\_\+of()}}, and \mbox{\hyperlink{kstring_8c_source_l00108}{string\+\_\+mid()}}.
+
+\Hypertarget{kstring_8c_a97b33c831523752f0adff22f80beaec5}\label{kstring_8c_a97b33c831523752f0adff22f80beaec5} 
+\index{kstring.c@{kstring.c}!string\_mid@{string\_mid}}
+\index{string\_mid@{string\_mid}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_mid()}{string\_mid()}}
+{\footnotesize\ttfamily void string\+\_\+mid (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{source,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{start,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}}}]{length }\end{DoxyParamCaption})}
+
+
+
+Extracts a substring from the source string, starting at the given index and of the given length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & The destination buffer to write the substring to. Must be large enough to hold length characters plus a null terminator. \\
+\hline
+{\em source} & The source null-\/terminated string to extract from. \\
+\hline
+{\em start} & The starting index in the source string (0-\/based). \\
+\hline
+{\em length} & The number of characters to extract. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00108}{108}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{kstring_8c_source_l00026}{string\+\_\+length()}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}.
+
+\Hypertarget{kstring_8c_a9e48021ce5b39920715bfaa5d92613bc}\label{kstring_8c_a9e48021ce5b39920715bfaa5d92613bc} 
+\index{kstring.c@{kstring.c}!string\_ncopy@{string\_ncopy}}
+\index{string\_ncopy@{string\_ncopy}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_ncopy()}{string\_ncopy()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} string\+\_\+ncopy (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{dest,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{source,  }\item[{\mbox{\hyperlink{defines_8h_ada59a0de67c44384c6faa924ca63c2aa}{i64}}}]{length }\end{DoxyParamCaption})}
+
+
+
+Copies up to length characters from the source string to the destination string. If the source string is shorter than length, the destination is null-\/terminated. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & The destination string buffer. Must be large enough to hold length characters plus a null terminator. \\
+\hline
+{\em source} & The source null-\/terminated string to copy from. \\
+\hline
+{\em length} & The maximum number of characters to copy from the source string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the destination string. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00080}{80}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00344}{create\+\_\+default\+\_\+material()}}, \mbox{\hyperlink{texture__system_8c_source_l00292}{create\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{geometry__system_8c_source_l00280}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}, \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}, and \mbox{\hyperlink{texture__system_8c_source_l00243}{texture\+\_\+system\+\_\+release()}}.
+
+\Hypertarget{kstring_8c_a7fa6a761cef08e91005d3b8cbadd1f5e}\label{kstring_8c_a7fa6a761cef08e91005d3b8cbadd1f5e} 
+\index{kstring.c@{kstring.c}!string\_to\_bool@{string\_to\_bool}}
+\index{string\_to\_bool@{string\_to\_bool}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_bool()}{string\_to\_bool()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+bool (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \texorpdfstring{$\ast$}{*}}]{b }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a boolean from the provided string. "{}true"{} or "{}1"{} are considered true; anything else is false. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. "{}true"{} or "{}1"{} are considered true; anything else is false. \\
+\hline
+{\em b} & A pointer to the boolean to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00279}{279}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{kstring_8c_source_l00040}{strings\+\_\+equal()}}, and \mbox{\hyperlink{kstring_8c_source_l00044}{strings\+\_\+equali()}}.
+
+\Hypertarget{kstring_8c_ae031f303d12593a1453ecda9318e7a73}\label{kstring_8c_ae031f303d12593a1453ecda9318e7a73} 
+\index{kstring.c@{kstring.c}!string\_to\_f32@{string\_to\_f32}}
+\index{string\_to\_f32@{string\_to\_f32}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_f32()}{string\_to\_f32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+f32 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a 32-\/bit floating-\/point number from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. Should {\itshape not} be postfixed with \textquotesingle{}f\textquotesingle{}. \\
+\hline
+{\em f} & A pointer to the float to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00179}{179}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_a62599e2f49f1e128abfdb86477c6a71a}\label{kstring_8c_a62599e2f49f1e128abfdb86477c6a71a} 
+\index{kstring.c@{kstring.c}!string\_to\_f64@{string\_to\_f64}}
+\index{string\_to\_f64@{string\_to\_f64}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_f64()}{string\_to\_f64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+f64 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_a94dab5770726ccbef8c7d026cfbdf8e5}{f64}} \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a 64-\/bit floating-\/point number from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. \\
+\hline
+{\em f} & A pointer to the float to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00189}{189}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_ae22bfed954f476af4c12d0b6852843fe}\label{kstring_8c_ae22bfed954f476af4c12d0b6852843fe} 
+\index{kstring.c@{kstring.c}!string\_to\_i16@{string\_to\_i16}}
+\index{string\_to\_i16@{string\_to\_i16}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_i16()}{string\_to\_i16()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+i16 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_ac12585a6def54773148d7fb2c72a59c5}{i16}} \texorpdfstring{$\ast$}{*}}]{i }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a 16-\/bit signed integer from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. \\
+\hline
+{\em i} & A pointer to the int to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00209}{209}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_abf4fe0b9dee453a7e39a134516523094}\label{kstring_8c_abf4fe0b9dee453a7e39a134516523094} 
+\index{kstring.c@{kstring.c}!string\_to\_i32@{string\_to\_i32}}
+\index{string\_to\_i32@{string\_to\_i32}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_i32()}{string\_to\_i32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+i32 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} \texorpdfstring{$\ast$}{*}}]{i }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a 32-\/bit signed integer from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. \\
+\hline
+{\em i} & A pointer to the int to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00219}{219}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_a1388361e816d473cde2f7f2ea924a1bd}\label{kstring_8c_a1388361e816d473cde2f7f2ea924a1bd} 
+\index{kstring.c@{kstring.c}!string\_to\_i64@{string\_to\_i64}}
+\index{string\_to\_i64@{string\_to\_i64}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_i64()}{string\_to\_i64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+i64 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_ada59a0de67c44384c6faa924ca63c2aa}{i64}} \texorpdfstring{$\ast$}{*}}]{i }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a 64-\/bit signed integer from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. \\
+\hline
+{\em i} & A pointer to the int to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00229}{229}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_aad14a51a467f74356b63bc32c08eab9f}\label{kstring_8c_aad14a51a467f74356b63bc32c08eab9f} 
+\index{kstring.c@{kstring.c}!string\_to\_i8@{string\_to\_i8}}
+\index{string\_to\_i8@{string\_to\_i8}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_i8()}{string\_to\_i8()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+i8 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_a2d0b2d48b0784ffa5f75c39f46562729}{i8}} \texorpdfstring{$\ast$}{*}}]{i }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse an 8-\/bit signed integer from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. \\
+\hline
+{\em i} & A pointer to the int to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00199}{199}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_af8c2e9acd877a0210e8c5de44491f4d7}\label{kstring_8c_af8c2e9acd877a0210e8c5de44491f4d7} 
+\index{kstring.c@{kstring.c}!string\_to\_u16@{string\_to\_u16}}
+\index{string\_to\_u16@{string\_to\_u16}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_u16()}{string\_to\_u16()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+u16 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_a9e6c91d77e24643b888dbd1a1a590054}{u16}} \texorpdfstring{$\ast$}{*}}]{u }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a 16-\/bit unsigned integer from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. \\
+\hline
+{\em u} & A pointer to the int to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00249}{249}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_ae490b8f9ee483372da65e0d64a0f0032}\label{kstring_8c_ae490b8f9ee483372da65e0d64a0f0032} 
+\index{kstring.c@{kstring.c}!string\_to\_u32@{string\_to\_u32}}
+\index{string\_to\_u32@{string\_to\_u32}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_u32()}{string\_to\_u32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+u32 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}}]{u }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a 32-\/bit unsigned integer from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. \\
+\hline
+{\em u} & A pointer to the int to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00259}{259}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_a0e70f1085b769241ffe13def897e0f71}\label{kstring_8c_a0e70f1085b769241ffe13def897e0f71} 
+\index{kstring.c@{kstring.c}!string\_to\_u64@{string\_to\_u64}}
+\index{string\_to\_u64@{string\_to\_u64}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_u64()}{string\_to\_u64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+u64 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{u }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a 64-\/bit unsigned integer from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. \\
+\hline
+{\em u} & A pointer to the int to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00269}{269}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_a0f8aa43fc45d88e4765447d342f8a1a1}\label{kstring_8c_a0f8aa43fc45d88e4765447d342f8a1a1} 
+\index{kstring.c@{kstring.c}!string\_to\_u8@{string\_to\_u8}}
+\index{string\_to\_u8@{string\_to\_u8}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_u8()}{string\_to\_u8()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+u8 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} \texorpdfstring{$\ast$}{*}}]{u }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse an 8-\/bit unsigned integer from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. \\
+\hline
+{\em u} & A pointer to the int to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00239}{239}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}.
+
+\Hypertarget{kstring_8c_a8d848ff7fe94196e09799189f5eefd57}\label{kstring_8c_a8d848ff7fe94196e09799189f5eefd57} 
+\index{kstring.c@{kstring.c}!string\_to\_vec2@{string\_to\_vec2}}
+\index{string\_to\_vec2@{string\_to\_vec2}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_vec2()}{string\_to\_vec2()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+vec2 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{math__types_8h_a4403515b5f13a3b84dafb1667a1f9d88}{vec2}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a vector from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. Should be space-\/delimited. (i.\+e. "{}1.\+0 2.\+0"{}) \\
+\hline
+{\em out\+\_\+vector} & A pointer to the vector to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00169}{169}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{math__types_8h_source_l00036}{vec2\+\_\+u\+::x}}, and \mbox{\hyperlink{math__types_8h_source_l00040}{vec2\+\_\+u\+::y}}.
+
+\Hypertarget{kstring_8c_a216d21811f3b2bd33be00ae7fa945646}\label{kstring_8c_a216d21811f3b2bd33be00ae7fa945646} 
+\index{kstring.c@{kstring.c}!string\_to\_vec3@{string\_to\_vec3}}
+\index{string\_to\_vec3@{string\_to\_vec3}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_vec3()}{string\_to\_vec3()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+vec3 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{math__types_8h_a291ce5191b34b920d576c84fd970b9ef}{vec3}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a vector from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. Should be space-\/delimited. (i.\+e. "{}1.\+0 2.\+0 3.\+0"{}) \\
+\hline
+{\em out\+\_\+vector} & A pointer to the vector to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00159}{159}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{math__types_8h_source_l00068}{vec3\+\_\+u\+::x}}, \mbox{\hyperlink{math__types_8h_source_l00072}{vec3\+\_\+u\+::y}}, and \mbox{\hyperlink{math__types_8h_source_l00076}{vec3\+\_\+u\+::z}}.
+
+\Hypertarget{kstring_8c_ad57f4ad9d666bbbad09db85e17c90759}\label{kstring_8c_ad57f4ad9d666bbbad09db85e17c90759} 
+\index{kstring.c@{kstring.c}!string\_to\_vec4@{string\_to\_vec4}}
+\index{string\_to\_vec4@{string\_to\_vec4}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_to\_vec4()}{string\_to\_vec4()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} string\+\_\+to\+\_\+vec4 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str,  }\item[{\mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} \texorpdfstring{$\ast$}{*}}]{out\+\_\+vector }\end{DoxyParamCaption})}
+
+
+
+Attempts to parse a vector from the provided string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to parse from. Should be space-\/delimited. (i.\+e. "{}1.\+0 2.\+0 3.\+0 4.\+0"{}) \\
+\hline
+{\em out\+\_\+vector} & A pointer to the vector to write to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parsed successfully; otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00149}{149}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+References \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{kmemory_8c_source_l00170}{kzero\+\_\+memory()}}, \mbox{\hyperlink{math__types_8h_source_l00118}{vec4\+\_\+u\+::w}}, \mbox{\hyperlink{math__types_8h_source_l00106}{vec4\+\_\+u\+::x}}, \mbox{\hyperlink{math__types_8h_source_l00110}{vec4\+\_\+u\+::y}}, and \mbox{\hyperlink{math__types_8h_source_l00114}{vec4\+\_\+u\+::z}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}.
+
+\Hypertarget{kstring_8c_a4dd30c30bb3f8bd5e2a051c22b04317e}\label{kstring_8c_a4dd30c30bb3f8bd5e2a051c22b04317e} 
+\index{kstring.c@{kstring.c}!string\_trim@{string\_trim}}
+\index{string\_trim@{string\_trim}!kstring.c@{kstring.c}}
+\doxysubsubsection{\texorpdfstring{string\_trim()}{string\_trim()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} string\+\_\+trim (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})}
+
+
+
+Trims leading and trailing whitespace from the given string in place. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to trim. Must be mutable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the trimmed string (which may be the same as the input pointer). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{kstring_8c_source_l00084}{84}} of file \mbox{\hyperlink{kstring_8c_source}{kstring.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}.
 
 \Hypertarget{kstring_8c_a4088fb073177638c470fee72f8f2180a}\label{kstring_8c_a4088fb073177638c470fee72f8f2180a} 
 \index{kstring.c@{kstring.c}!strings\_equal@{strings\_equal}}
@@ -201,7 +809,7 @@ Definition at line \mbox{\hyperlink{kstring_8c_source_l00040}{40}} of file \mbox
 
 
 
-Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00521}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00083}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
+Referenced by \mbox{\hyperlink{vulkan__device_8c_source_l00521}{physical\+\_\+device\+\_\+meets\+\_\+requirements()}}, \mbox{\hyperlink{kstring_8c_source_l00279}{string\+\_\+to\+\_\+bool()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l00095}{vulkan\+\_\+renderer\+\_\+backend\+\_\+initialize()}}.
 
 \Hypertarget{kstring_8c_a8d4ca6df7122ffd452146b023195c4c9}\label{kstring_8c_a8d4ca6df7122ffd452146b023195c4c9} 
 \index{kstring.c@{kstring.c}!strings\_equali@{strings\_equali}}
@@ -231,5 +839,5 @@ Definition at line \mbox{\hyperlink{kstring_8c_source_l00044}{44}} of file \mbox
 
 
 
-Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, and \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}.
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}, \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00255}{material\+\_\+system\+\_\+release()}}, \mbox{\hyperlink{kstring_8c_source_l00279}{string\+\_\+to\+\_\+bool()}}, \mbox{\hyperlink{texture__system_8c_source_l00187}{texture\+\_\+system\+\_\+acquire()}}, and \mbox{\hyperlink{texture__system_8c_source_l00243}{texture\+\_\+system\+\_\+release()}}.
 

@@ -251,3 +251,12 @@ KAPI b8 string_to_u64(char* str, u64* u);
  * @return True if parsed successfully; otherwise false.
  */
 KAPI b8 string_to_bool(char* str, b8* b);
+
+/**
+ *
+ * @brief Empties the given string by setting the first character to 0.
+ *
+ * @param str The string to empty.
+ * @return A pointer to the emptied string.
+ */
+KAPI char* string_empty(char* str);
