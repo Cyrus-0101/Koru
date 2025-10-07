@@ -9,10 +9,16 @@
 #include "memory/linear_allocator.h"
 #include "renderer/renderer_frontend.h"
 #include "core/event.h"
+#include "core/kstring.h"
 
 // Systems
 #include "systems/texture_system.h"
 #include "systems/material_system.h"
+#include "systems/geometry_system.h"
+
+// TODO: Temp code
+#include "math/kmath.h"
+// TODO End Temp code
 
 /**
  * @file application.c
@@ -161,6 +167,20 @@ typedef struct application_state {
      * @brief Pointer to the material system state
      */
     void* material_system_state;
+
+    /**
+     * @brief The total memory requirement for the geometry system.
+     */
+    u64 geometry_system_memory_requirement;
+
+    /**
+     * @brief Pointer to the geometry system state
+     */
+    void* geometry_system_state;
+
+    // TODO: Temp code
+    geometry* test_geometry;  // Scene or game addition
+    // TODO: End Temp code
 } application_state;
 
 /**
@@ -217,6 +237,52 @@ b8 application_on_key(u16 code, void* sender, void* listener_inst, event_context
  * @return True if handled; False otherwise (so other listeners can also receive the event).
  */
 b8 application_on_resized(u16 code, void* sender, void* listener_inst, event_context context);
+
+// TODO: Temporary Code
+/**
+ * @brief Event handler for debug events to cycle through test textures.
+ *
+ * This function is a temporary event handler that listens for a specific debug event
+ * and cycles through a set of predefined textures for testing purposes.
+ *
+ * @param code The event code.
+ * @param sender Pointer to the event sender.
+ * @param listener_inst Pointer to the listener instance (should be the renderer state).
+ * @param data Event context data (not used here).
+ * @return True if the event was handled; otherwise False.
+ */
+b8 event_on_debug_event(u16 code, void* sender, void* listener_inst, event_context data) {
+    const char* names[3] = {
+        "cobblestone",
+        "paving",
+        "paving2"};
+
+    static i8 choice = 2;
+
+    // Save off the old name.
+    const char* old_name = names[choice];
+
+    choice++;
+    choice %= 3;
+
+    // Acquire the new texture.
+    if (app_state->test_geometry) {
+        // Fetch material in test_geometry
+        app_state->test_geometry->material->diffuse_map.texture = texture_system_acquire(names[choice], True);
+
+        if (!app_state->test_geometry->material->diffuse_map.texture) {
+            KWARN("event_on_debug_event no texture! Using default");
+
+            app_state->test_geometry->material->diffuse_map.texture = texture_system_get_default_texture();
+        }
+
+        // Release the old texture.
+        texture_system_release(old_name);
+    }
+
+    return True;
+}
+// TODO: End of Temporary Code
 
 /**
  * @brief Initializes the application with the provided configuration.
@@ -275,6 +341,9 @@ b8 application_create(game* game_inst) {
     event_register(EVENT_CODE_KEY_PRESSED, 0, application_on_key);
     event_register(EVENT_CODE_KEY_RELEASED, 0, application_on_key);
     event_register(EVENT_CODE_RESIZED, 0, application_on_resized);
+    // TODO: Temp code
+    event_register(EVENT_CODE_DEBUG0, 0, event_on_debug_event);
+    // TODO: End temp code
 
     // Start platform layer
     platform_system_startup(&app_state->platform_system_memory_requirement, 0, 0, 0, 0, 0, 0);
@@ -315,6 +384,31 @@ b8 application_create(game* game_inst) {
         KFATAL("Failed to initialize material system. Application cannot continue.");
         return False;
     }
+
+    // Geometry system.
+    geometry_system_config geometry_sys_config;
+    geometry_sys_config.max_geometry_count = 4096;
+
+    geometry_system_initialize(&app_state->geometry_system_memory_requirement, 0, geometry_sys_config);
+
+    app_state->geometry_system_state = linear_allocator_allocate(&app_state->systems_allocator, app_state->material_system_memory_requirement);
+    if (!geometry_system_initialize(&app_state->geometry_system_memory_requirement, app_state->geometry_system_state, geometry_sys_config)) {
+        KFATAL("Failed to initialize geometry system. Application cannot continue.");
+        return False;
+    }
+
+    // TODO: temp
+    // Load up a plane configuration, and load geometry from it.
+    geometry_config g_config = geometry_system_generate_plane_config(10.0f, 5.0f, 5, 5, 5.0f, 2.0f, "test geometry", "test_material");
+    app_state->test_geometry = geometry_system_acquire_from_config(g_config, True);
+
+    // Clean up the allocations for the geometry config.
+    kfree(g_config.vertices, sizeof(vertex_3d) * g_config.vertex_count, MEMORY_TAG_ARRAY);
+    kfree(g_config.indices, sizeof(u32) * g_config.index_count, MEMORY_TAG_ARRAY);
+
+    // Load up default geometry.
+    // app_state->test_geometry = geometry_system_get_default();
+    // TODO: end temp
 
     // Initialize Game
     if (!app_state->game_inst->initialize(app_state->game_inst)) {
@@ -384,6 +478,15 @@ b8 application_run() {
 
             packet.delta_time = delta;
 
+            // TODO: temp
+            geometry_render_data test_render;
+            test_render.geometry = app_state->test_geometry;
+            test_render.model = mat4_identity();
+
+            packet.geometry_count = 1;
+            packet.geometries = &test_render;
+            // TODO: end temp
+
             renderer_draw_frame(&packet);
 
             // Figure out how long the frame took and, if below
@@ -427,8 +530,13 @@ b8 application_run() {
     event_unregister(EVENT_CODE_KEY_PRESSED, 0, application_on_key);
     event_unregister(EVENT_CODE_KEY_RELEASED, 0, application_on_key);
     event_unregister(EVENT_CODE_RESIZED, 0, application_on_resized);
+    // TODO: Temp code
+    event_unregister(EVENT_CODE_DEBUG0, 0, event_on_debug_event);
+    // TODO: End temp code
 
     input_system_shutdown(app_state->input_system_state);
+
+    geometry_system_shutdown(app_state->geometry_system_state);
 
     material_system_shutdown(app_state->material_system_state);
 
