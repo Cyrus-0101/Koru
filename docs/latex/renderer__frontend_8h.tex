@@ -37,7 +37,15 @@ void \mbox{\hyperlink{renderer__frontend_8h_a8f4bdfed0b0b2bf648279e914a3db500}{r
 void \mbox{\hyperlink{renderer__frontend_8h_a1e174964564891dd1d03c1ecf975acec}{renderer\+\_\+create\+\_\+texture}} (const char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} width, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} height, \mbox{\hyperlink{defines_8h_a9e3ad5f8e752f01d926ce122d5a5285e}{i32}} channel\+\_\+count, const \mbox{\hyperlink{defines_8h_aed742c436da53c1080638ce6ef7d13de}{u8}} \texorpdfstring{$\ast$}{*}pixels, \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} has\+\_\+transparency, struct \mbox{\hyperlink{structtexture}{texture}} \texorpdfstring{$\ast$}{*}out\+\_\+texture)
 \begin{DoxyCompactList}\small\item\em Creates a texture resource from raw pixel data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{renderer__frontend_8h_a07cb43f363df0240af713c483b72308f}{renderer\+\_\+destroy\+\_\+texture}} (struct \mbox{\hyperlink{structtexture}{texture}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structtexture}{texture}})
-\begin{DoxyCompactList}\small\item\em Destroys a texture resource and frees associated GPU memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Destroys a texture resource and frees associated GPU memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{renderer__frontend_8h_a4683817d4b1b2113b0df7662150a0fc5}{renderer\+\_\+create\+\_\+material}} (struct \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structmaterial}{material}})
+\begin{DoxyCompactList}\small\item\em Creates a material resource. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{renderer__frontend_8h_ad87ce9fe4eeb5fb97c77edec9ab84d7a}{renderer\+\_\+destroy\+\_\+material}} (struct \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structmaterial}{material}})
+\begin{DoxyCompactList}\small\item\em Destroys a material resource and frees associated resources. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{renderer__frontend_8h_a0c735ecf504a81a6ccea8a060a7b04a6}{renderer\+\_\+create\+\_\+geometry}} (\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structgeometry}{geometry}}, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} vertex\+\_\+count, const \mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}} \texorpdfstring{$\ast$}{*}vertices, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} index\+\_\+count, const \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}indices)
+\begin{DoxyCompactList}\small\item\em Creates a geometry resource from vertex and index data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{renderer__frontend_8h_a0ce11f2f9b370fcce3c0aec4667d6a2b}{renderer\+\_\+destroy\+\_\+geometry}} (\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structgeometry}{geometry}})
+\begin{DoxyCompactList}\small\item\em Destroys a geometry resource and frees associated GPU memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -52,6 +60,78 @@ Definition in file \mbox{\hyperlink{renderer__frontend_8h_source}{renderer\+\_\+
 
 
 \doxysubsection{Function Documentation}
+\Hypertarget{renderer__frontend_8h_a0c735ecf504a81a6ccea8a060a7b04a6}\label{renderer__frontend_8h_a0c735ecf504a81a6ccea8a060a7b04a6} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_create\_geometry@{renderer\_create\_geometry}}
+\index{renderer\_create\_geometry@{renderer\_create\_geometry}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_create\_geometry()}{renderer\_create\_geometry()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} renderer\+\_\+create\+\_\+geometry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}}]{geometry,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{vertex\+\_\+count,  }\item[{const \mbox{\hyperlink{structvertex__3d}{vertex\+\_\+3d}} \texorpdfstring{$\ast$}{*}}]{vertices,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{index\+\_\+count,  }\item[{const \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \texorpdfstring{$\ast$}{*}}]{indices }\end{DoxyParamCaption})}
+
+
+
+Creates a geometry resource from vertex and index data. 
+
+This function uploads the provided vertex and index data to the GPU and creates a geometry object that can be used in rendering operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em geometry} & Pointer to the geometry structure to be filled out. \\
+\hline
+{\em vertex\+\_\+count} & Number of vertices in the geometry. \\
+\hline
+{\em vertices} & Pointer to an array of vertices defining the geometry. \\
+\hline
+{\em index\+\_\+count} & Number of indices in the geometry. \\
+\hline
+{\em indices} & Pointer to an array of indices defining the geometry. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the geometry was created successfully; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00209}{209}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00240}{create\+\_\+default\+\_\+geometry()}}, and \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}.
+
+\Hypertarget{renderer__frontend_8h_a4683817d4b1b2113b0df7662150a0fc5}\label{renderer__frontend_8h_a4683817d4b1b2113b0df7662150a0fc5} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_create\_material@{renderer\_create\_material}}
+\index{renderer\_create\_material@{renderer\_create\_material}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_create\_material()}{renderer\_create\_material()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} renderer\+\_\+create\+\_\+material (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*}}]{material }\end{DoxyParamCaption})}
+
+
+
+Creates a material resource. 
+
+This function initializes a material with the provided properties and prepares it for use in rendering operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em material} & Pointer to the material structure to be filled out. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the material was created successfully; otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00202}{202}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00344}{create\+\_\+default\+\_\+material()}}, and \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}.
+
 \Hypertarget{renderer__frontend_8h_a1e174964564891dd1d03c1ecf975acec}\label{renderer__frontend_8h_a1e174964564891dd1d03c1ecf975acec} 
 \index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_create\_texture@{renderer\_create\_texture}}
 \index{renderer\_create\_texture@{renderer\_create\_texture}!renderer\_frontend.h@{renderer\_frontend.h}}
@@ -83,15 +163,69 @@ This function uploads the provided pixel data to the GPU and creates a texture o
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00250}{250}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00187}{187}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00067}{state\+\_\+ptr}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{texture__system_8c_source_l00266}{create\+\_\+default\+\_\+textures()}}, and \mbox{\hyperlink{texture__system_8c_source_l00308}{load\+\_\+texture()}}.
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00292}{create\+\_\+default\+\_\+textures()}}, and \mbox{\hyperlink{texture__system_8c_source_l00341}{load\+\_\+texture()}}.
+
+\Hypertarget{renderer__frontend_8h_a0ce11f2f9b370fcce3c0aec4667d6a2b}\label{renderer__frontend_8h_a0ce11f2f9b370fcce3c0aec4667d6a2b} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_destroy\_geometry@{renderer\_destroy\_geometry}}
+\index{renderer\_destroy\_geometry@{renderer\_destroy\_geometry}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_destroy\_geometry()}{renderer\_destroy\_geometry()}}
+{\footnotesize\ttfamily void renderer\+\_\+destroy\+\_\+geometry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}}]{geometry }\end{DoxyParamCaption})}
+
+
+
+Destroys a geometry resource and frees associated GPU memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em geometry} & Pointer to the geometry to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00213}{213}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}.
+
+\Hypertarget{renderer__frontend_8h_ad87ce9fe4eeb5fb97c77edec9ab84d7a}\label{renderer__frontend_8h_ad87ce9fe4eeb5fb97c77edec9ab84d7a} 
+\index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_destroy\_material@{renderer\_destroy\_material}}
+\index{renderer\_destroy\_material@{renderer\_destroy\_material}!renderer\_frontend.h@{renderer\_frontend.h}}
+\doxysubsubsection{\texorpdfstring{renderer\_destroy\_material()}{renderer\_destroy\_material()}}
+{\footnotesize\ttfamily void renderer\+\_\+destroy\+\_\+material (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*}}]{material }\end{DoxyParamCaption})}
+
+
+
+Destroys a material resource and frees associated resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em material} & Pointer to the material to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00205}{205}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+
+
+
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00325}{destroy\+\_\+material()}}.
 
 \Hypertarget{renderer__frontend_8h_a07cb43f363df0240af713c483b72308f}\label{renderer__frontend_8h_a07cb43f363df0240af713c483b72308f} 
 \index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_destroy\_texture@{renderer\_destroy\_texture}}
@@ -110,15 +244,15 @@ Destroys a texture resource and frees associated GPU memory.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00261}{261}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00198}{198}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00067}{state\+\_\+ptr}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{texture__system_8c_source_l00302}{destroy\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{texture__system_8c_source_l00308}{load\+\_\+texture()}}, \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}, and \mbox{\hyperlink{texture__system_8c_source_l00147}{texture\+\_\+system\+\_\+shutdown()}}.
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00335}{destroy\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{texture__system_8c_source_l00418}{destroy\+\_\+texture()}}, \mbox{\hyperlink{texture__system_8c_source_l00341}{load\+\_\+texture()}}, and \mbox{\hyperlink{texture__system_8c_source_l00171}{texture\+\_\+system\+\_\+shutdown()}}.
 
 \Hypertarget{renderer__frontend_8h_aa1a64974ce989cb8a822d5910e45eeec}\label{renderer__frontend_8h_aa1a64974ce989cb8a822d5910e45eeec} 
 \index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_draw\_frame@{renderer\_draw\_frame}}
@@ -152,17 +286,17 @@ Begins the frame, executes draw commands (not yet implemented here), and ends th
 \begin{DoxyReturn}{Returns}
 True if the frame was drawn successfully; otherwise False. 
 \end{DoxyReturn}
-TO-\/\+DO\+: Add actual object ID
-
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00204}{204}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
-
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{kmath_8h_source_l01091}{mat4\+\_\+translation()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00041}{renderer\+\_\+system\+\_\+state\+::projection}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00159}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00176}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00067}{state\+\_\+ptr}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00062}{renderer\+\_\+system\+\_\+state\+::test\+\_\+diffuse}}, \mbox{\hyperlink{texture__system_8c_source_l00257}{texture\+\_\+system\+\_\+get\+\_\+default\+\_\+texture()}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{kmath_8h_source_l00383}{vec3\+\_\+zero()}}, \mbox{\hyperlink{kmath_8h_source_l00684}{vec4\+\_\+one()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00046}{renderer\+\_\+system\+\_\+state\+::view}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00154}{154}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00042}{renderer\+\_\+system\+\_\+state\+::projection}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00109}{renderer\+\_\+begin\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00126}{renderer\+\_\+end\+\_\+frame()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, \mbox{\hyperlink{kmath_8h_source_l00383}{vec3\+\_\+zero()}}, \mbox{\hyperlink{kmath_8h_source_l00684}{vec4\+\_\+one()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00047}{renderer\+\_\+system\+\_\+state\+::view}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00}\label{renderer__frontend_8h_a344ab27f3e341fd7b45eb38eafea2e00} 
 \index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_on\_resized@{renderer\_on\_resized}}
@@ -185,15 +319,15 @@ Notifies the renderer that the window dimensions have changed and triggers any n
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00186}{186}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00136}{136}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{kmath_8h_source_l01537}{deg\+\_\+to\+\_\+rad()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00056}{renderer\+\_\+system\+\_\+state\+::far\+\_\+clip}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00051}{renderer\+\_\+system\+\_\+state\+::near\+\_\+clip}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00041}{renderer\+\_\+system\+\_\+state\+::projection}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00067}{state\+\_\+ptr}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{kmath_8h_source_l01537}{deg\+\_\+to\+\_\+rad()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00057}{renderer\+\_\+system\+\_\+state\+::far\+\_\+clip}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+state\+::near\+\_\+clip}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00042}{renderer\+\_\+system\+\_\+state\+::projection}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00469}{application\+\_\+on\+\_\+resized()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00602}{application\+\_\+on\+\_\+resized()}}.
 
 \Hypertarget{renderer__frontend_8h_a8f4bdfed0b0b2bf648279e914a3db500}\label{renderer__frontend_8h_a8f4bdfed0b0b2bf648279e914a3db500} 
 \index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_set\_view@{renderer\_set\_view}}
@@ -214,11 +348,11 @@ This function updates the view matrix used in the rendering pipeline.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00246}{246}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00183}{183}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00067}{state\+\_\+ptr}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00046}{renderer\+\_\+system\+\_\+state\+::view}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00047}{renderer\+\_\+system\+\_\+state\+::view}}.
 
 
 
@@ -248,15 +382,15 @@ True if initialization was successful; otherwise False.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00105}{105}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00063}{63}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{kmath_8h_source_l01537}{deg\+\_\+to\+\_\+rad()}}, \mbox{\hyperlink{event_8h_source_l00222}{EVENT\+\_\+\+CODE\+\_\+\+DEBUG0}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{event\+\_\+on\+\_\+debug\+\_\+event()}}, \mbox{\hyperlink{event_8c_source_l00095}{event\+\_\+register()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00056}{renderer\+\_\+system\+\_\+state\+::far\+\_\+clip}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{kmath_8h_source_l01027}{mat4\+\_\+inverse()}}, \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}, \mbox{\hyperlink{kmath_8h_source_l01091}{mat4\+\_\+translation()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00051}{renderer\+\_\+system\+\_\+state\+::near\+\_\+clip}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00041}{renderer\+\_\+system\+\_\+state\+::projection}}, \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00067}{state\+\_\+ptr}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00046}{renderer\+\_\+system\+\_\+state\+::view}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{kmath_8h_source_l01537}{deg\+\_\+to\+\_\+rad()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00057}{renderer\+\_\+system\+\_\+state\+::far\+\_\+clip}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{kmath_8h_source_l01027}{mat4\+\_\+inverse()}}, \mbox{\hyperlink{kmath_8h_source_l00942}{mat4\+\_\+perspective()}}, \mbox{\hyperlink{kmath_8h_source_l01091}{mat4\+\_\+translation()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00052}{renderer\+\_\+system\+\_\+state\+::near\+\_\+clip}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00042}{renderer\+\_\+system\+\_\+state\+::projection}}, \mbox{\hyperlink{renderer__backend_8c_source_l00025}{renderer\+\_\+backend\+\_\+create()}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}, \mbox{\hyperlink{defines_8h_source_l00120}{True}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00047}{renderer\+\_\+system\+\_\+state\+::view}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
 
 \Hypertarget{renderer__frontend_8h_a2be6c28c095877944c89e1fa246e6a3f}\label{renderer__frontend_8h_a2be6c28c095877944c89e1fa246e6a3f} 
 \index{renderer\_frontend.h@{renderer\_frontend.h}!renderer\_system\_shutdown@{renderer\_system\_shutdown}}
@@ -270,13 +404,13 @@ Shuts down the rendering system.
 
 Cleans up all resources allocated during initialization, including devices, command pools, buffers, and synchronization primitives. 
 
-Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00138}{138}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
+Definition at line \mbox{\hyperlink{renderer__frontend_8c_source_l00092}{92}} of file \mbox{\hyperlink{renderer__frontend_8c_source}{renderer\+\_\+frontend.\+c}}.
 
 
 
-References \mbox{\hyperlink{renderer__frontend_8c_source_l00036}{renderer\+\_\+system\+\_\+state\+::backend}}, \mbox{\hyperlink{event_8h_source_l00222}{EVENT\+\_\+\+CODE\+\_\+\+DEBUG0}}, \mbox{\hyperlink{renderer__frontend_8c_source_l00081}{event\+\_\+on\+\_\+debug\+\_\+event()}}, \mbox{\hyperlink{event_8c_source_l00124}{event\+\_\+unregister()}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00067}{state\+\_\+ptr}}.
+References \mbox{\hyperlink{renderer__frontend_8c_source_l00037}{renderer\+\_\+system\+\_\+state\+::backend}}, and \mbox{\hyperlink{renderer__frontend_8c_source_l00061}{state\+\_\+ptr}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 

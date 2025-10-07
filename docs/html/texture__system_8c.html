@@ -83,7 +83,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Implementation of the texture system for managing textures in the Koru engine. This system handles texture loading, registration, and reference counting. It provides functions to acquire textures by name, manage their lifetimes, and retrieve default textures.  
+<p>Implementation of the texture system for managing textures in the Koru engine.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="texture__system_8h_source.html">texture_system.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="logger_8h_source.html">core/logger.h</a>&quot;</code><br />
@@ -99,34 +99,37 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="texture__system_8c__incl.png" border="0" usemap="#aengine_2src_2systems_2texture__system_8c" alt=""/></div>
 <map name="aengine_2src_2systems_2texture__system_8c" id="aengine_2src_2systems_2texture__system_8c">
-<area shape="rect" title="Implementation of the texture system for managing textures in the Koru engine. This system handles te..." alt="" coords="452,5,600,45"/>
-<area shape="rect" href="texture__system_8h.html" title="Texture management system." alt="" coords="37,93,173,119"/>
-<area shape="poly" title=" " alt="" coords="452,43,180,93,179,88,451,38"/>
-<area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="197,93,303,119"/>
-<area shape="poly" title=" " alt="" coords="461,48,304,92,303,87,459,43"/>
-<area shape="rect" href="kstring_8h.html" title="Lightweight string utility library." alt="" coords="328,93,439,119"/>
-<area shape="poly" title=" " alt="" coords="493,48,417,89,415,84,491,43"/>
-<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="463,93,589,119"/>
-<area shape="poly" title=" " alt="" coords="529,46,529,79,523,79,523,46"/>
-<area shape="rect" href="hashtable_8h.html" title="Represents a simple hashtable. Members of this structure should not be modified outside the functions..." alt="" coords="614,93,785,119"/>
-<area shape="poly" title=" " alt="" coords="569,43,662,85,660,90,566,48"/>
-<area shape="rect" href="renderer__frontend_8h.html" title="Frontend interface for the rendering system." alt="" coords="809,93,1019,119"/>
-<area shape="poly" title=" " alt="" coords="601,39,845,88,844,93,600,44"/>
-<area shape="rect" href="stb__image_8h.html" title=" " alt="" coords="1044,93,1195,119"/>
-<area shape="poly" title=" " alt="" coords="601,34,1031,90,1030,96,600,39"/>
+<area shape="rect" title="Implementation of the texture system for managing textures in the Koru engine." alt="" coords="443,5,591,45"/>
+<area shape="rect" href="texture__system_8h.html" title="Texture management system." alt="" coords="73,93,209,119"/>
+<area shape="poly" title=" " alt="" coords="443,45,209,93,208,88,442,39"/>
+<area shape="rect" href="logger_8h.html" title="Public interface for the logging system." alt="" coords="229,167,335,192"/>
+<area shape="poly" title=" " alt="" coords="443,35,408,43,372,54,337,72,308,95,298,108,292,123,286,154,280,153,287,121,294,105,304,91,335,67,370,50,407,37,442,30"/>
+<area shape="rect" href="kstring_8h.html" title="Lightweight string utility library." alt="" coords="319,93,429,119"/>
+<area shape="poly" title=" " alt="" coords="484,48,408,89,406,84,481,43"/>
+<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="453,93,580,119"/>
+<area shape="poly" title=" " alt="" coords="519,46,519,79,514,79,514,46"/>
+<area shape="rect" href="hashtable_8h.html" title="Represents a simple hashtable. Members of this structure should not be modified outside the functions..." alt="" coords="605,93,775,119"/>
+<area shape="poly" title=" " alt="" coords="559,43,653,85,651,90,557,48"/>
+<area shape="rect" href="renderer__frontend_8h.html" title="Frontend interface for the rendering system." alt="" coords="799,93,1010,119"/>
+<area shape="poly" title=" " alt="" coords="592,39,835,88,834,93,590,44"/>
+<area shape="rect" href="stb__image_8h.html" title=" " alt="" coords="1035,93,1185,119"/>
+<area shape="poly" title=" " alt="" coords="592,34,1021,90,1021,96,591,39"/>
 <area shape="rect" title=" " alt="" coords="5,167,204,192"/>
-<area shape="poly" title=" " alt="" coords="107,119,107,153,102,153,102,119"/>
-<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="413,167,495,192"/>
-<area shape="poly" title=" " alt="" coords="284,116,409,160,407,165,282,121"/>
-<area shape="poly" title=" " alt="" coords="397,117,435,155,431,159,393,121"/>
-<area shape="poly" title=" " alt="" coords="516,121,477,159,474,155,512,117"/>
-<area shape="poly" title=" " alt="" coords="661,121,507,165,506,160,659,116"/>
-<area shape="rect" title=" " alt="" coords="844,167,984,192"/>
-<area shape="poly" title=" " alt="" coords="917,119,917,153,911,153,911,119"/>
-<area shape="rect" title=" " alt="" coords="1047,167,1114,192"/>
-<area shape="poly" title=" " alt="" coords="1115,120,1096,156,1091,153,1111,118"/>
-<area shape="rect" title=" " alt="" coords="1139,167,1209,192"/>
-<area shape="poly" title=" " alt="" coords="1130,117,1159,154,1155,157,1126,121"/>
+<area shape="poly" title=" " alt="" coords="137,120,119,156,114,153,132,118"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="444,240,525,265"/>
+<area shape="poly" title=" " alt="" coords="315,190,440,233,438,238,314,195"/>
+<area shape="poly" title=" " alt="" coords="377,118,384,153,390,172,400,190,422,213,448,231,445,236,419,217,396,194,385,175,378,154,372,119"/>
+<area shape="rect" href="math__types_8h.html" title="Core mathematical types used throughout the Koru engine." alt="" coords="410,167,559,192"/>
+<area shape="poly" title=" " alt="" coords="393,116,456,157,453,161,390,121"/>
+<area shape="poly" title=" " alt="" coords="487,192,487,226,482,226,482,192"/>
+<area shape="poly" title=" " alt="" coords="535,117,552,131,568,150,577,171,574,193,553,218,528,236,525,231,550,214,569,191,572,172,563,152,548,135,531,121"/>
+<area shape="poly" title=" " alt="" coords="680,121,643,155,594,194,523,236,520,231,591,190,639,151,676,117"/>
+<area shape="rect" title=" " alt="" coords="835,167,975,192"/>
+<area shape="poly" title=" " alt="" coords="907,119,907,153,902,153,902,119"/>
+<area shape="rect" title=" " alt="" coords="1038,167,1105,192"/>
+<area shape="poly" title=" " alt="" coords="1106,120,1086,156,1082,153,1101,118"/>
+<area shape="rect" title=" " alt="" coords="1129,167,1200,192"/>
+<area shape="poly" title=" " alt="" coords="1121,117,1150,154,1145,157,1117,121"/>
 </map>
 </div>
 </div>
@@ -166,6 +169,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac691176afc7122b609671e77b157ae2f" id="r_ac691176afc7122b609671e77b157ae2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="texture__system_8c.html#ac691176afc7122b609671e77b157ae2f">load_texture</a> (const char *texture_name, <a class="el" href="structtexture.html">texture</a> *t)</td></tr>
 <tr class="memdesc:ac691176afc7122b609671e77b157ae2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a texture from file and initializes the texture structure.  <br /></td></tr>
 <tr class="separator:ac691176afc7122b609671e77b157ae2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a559bbd8b3e598bbca1486064310bf" id="r_a48a559bbd8b3e598bbca1486064310bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="texture__system_8c.html#a48a559bbd8b3e598bbca1486064310bf">destroy_texture</a> (<a class="el" href="structtexture.html">texture</a> *t)</td></tr>
+<tr class="memdesc:a48a559bbd8b3e598bbca1486064310bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a texture and releases its resources.  <br /></td></tr>
+<tr class="separator:a48a559bbd8b3e598bbca1486064310bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5311316a2adfccd1ecadf29aea704cf0" id="r_a5311316a2adfccd1ecadf29aea704cf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="texture__system_8c.html#a5311316a2adfccd1ecadf29aea704cf0">texture_system_initialize</a> (<a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *memory_requirement, void *state, <a class="el" href="structtexture__system__config.html">texture_system_config</a> config)</td></tr>
 <tr class="memdesc:a5311316a2adfccd1ecadf29aea704cf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the texture system.  <br /></td></tr>
 <tr class="separator:a5311316a2adfccd1ecadf29aea704cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,7 +195,20 @@ Variables</h2></td></tr>
 <tr class="separator:ada3f0bd8c57aee084f5fe4fb4025cacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implementation of the texture system for managing textures in the Koru engine. This system handles texture loading, registration, and reference counting. It provides functions to acquire textures by name, manage their lifetimes, and retrieve default textures. </p>
+<div class="textblock"><p>Implementation of the texture system for managing textures in the Koru engine. </p>
+<p>This module provides functionality to manage texture resources within the engine. It supports loading, acquiring, and releasing textures, as well as automatic cleanup of unused resources.</p>
+<p>Usage:</p><ul>
+<li>Initialize the texture system with <code><a class="el" href="texture__system_8c.html#a5311316a2adfccd1ecadf29aea704cf0" title="Initializes the texture system.">texture_system_initialize()</a></code>, providing configuration options.</li>
+<li>Acquire textures by name using <code><a class="el" href="texture__system_8c.html#a94229d7d8c2e06fabb2d9e3c2296599e" title="Acquires a texture by name.">texture_system_acquire()</a></code>. If the texture is not already loaded, it will be loaded from disk.</li>
+<li>Release textures using <code><a class="el" href="texture__system_8c.html#ab454daecfb4133cbca5559dd84db3ac4" title="Releases a texture by name.">texture_system_release()</a></code>. If a texture was marked for auto-release, it will be freed when no longer in use.</li>
+<li>Shutdown the texture system with <code><a class="el" href="texture__system_8c.html#a3170cfd4c3f2bbf15a69e6a965a39a03" title="Shuts down the texture system, freeing all resources.">texture_system_shutdown()</a></code> to free all resources.</li>
+</ul>
+<p>Responsibilities:</p><ul>
+<li>Initialize the texture system with <code><a class="el" href="texture__system_8c.html#a5311316a2adfccd1ecadf29aea704cf0" title="Initializes the texture system.">texture_system_initialize()</a></code>, providing configuration options.</li>
+<li>Acquire textures by name using <code><a class="el" href="texture__system_8c.html#a94229d7d8c2e06fabb2d9e3c2296599e" title="Acquires a texture by name.">texture_system_acquire()</a></code>. If the texture is not already loaded, it will be loaded from disk.</li>
+<li>Release textures using <code><a class="el" href="texture__system_8c.html#ab454daecfb4133cbca5559dd84db3ac4" title="Releases a texture by name.">texture_system_release()</a></code>. If a texture was marked for auto-release, it will be freed when no longer in use.</li>
+<li>Shutdown the texture system with <code><a class="el" href="texture__system_8c.html#a3170cfd4c3f2bbf15a69e6a965a39a03" title="Shuts down the texture system, freeing all resources.">texture_system_shutdown()</a></code> to free all resources. </li>
+</ul>
 
 <p class="definition">Definition in file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -303,11 +322,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if default textures were created successfully; otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00266">266</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00292">292</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 
-<p class="reference">References <a class="el" href="texture__system_8c_source.html#l00016">CHANNELS</a>, <a class="el" href="texture__system_8c_source.html#l00045">texture_system_state::default_texture</a>, <a class="el" href="texture__system_8h_source.html#l00025">DEFAULT_TEXTURE_NAME</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="kmemory_8c_source.html#l00194">kset_memory()</a>, <a class="el" href="logger_8h_source.html#l00230">KTRACE</a>, <a class="el" href="texture__system_8c_source.html#l00018">PIXEL_COUNT</a>, <a class="el" href="renderer__frontend_8c_source.html#l00250">renderer_create_texture()</a>, <a class="el" href="texture__system_8c_source.html#l00014">TEX_DIMENSIONS</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="resource__types_8h_source.html#l00038">texture::channel_count</a>, <a class="el" href="texture__system_8c_source.html#l00016">CHANNELS</a>, <a class="el" href="texture__system_8c_source.html#l00062">texture_system_state::default_texture</a>, <a class="el" href="texture__system_8h_source.html#l00025">DEFAULT_TEXTURE_NAME</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="resource__types_8h_source.html#l00042">texture::generation</a>, <a class="el" href="resource__types_8h_source.html#l00040">texture::has_transparency</a>, <a class="el" href="resource__types_8h_source.html#l00036">texture::height</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="kmemory_8c_source.html#l00194">kset_memory()</a>, <a class="el" href="logger_8h_source.html#l00230">KTRACE</a>, <a class="el" href="resource__types_8h_source.html#l00044">texture::name</a>, <a class="el" href="texture__system_8c_source.html#l00018">PIXEL_COUNT</a>, <a class="el" href="renderer__frontend_8c_source.html#l00187">renderer_create_texture()</a>, <a class="el" href="kstring_8c_source.html#l00080">string_ncopy()</a>, <a class="el" href="texture__system_8c_source.html#l00014">TEX_DIMENSIONS</a>, <a class="el" href="resource__types_8h_source.html#l00015">TEXTURE_NAME_MAX_LENGTH</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="resource__types_8h_source.html#l00034">texture::width</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00098">texture_system_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00122">texture_system_initialize()</a>.</p>
 
 </div>
 </div>
@@ -335,11 +354,43 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00302">302</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00335">335</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 
-<p class="reference">References <a class="el" href="texture__system_8c_source.html#l00045">texture_system_state::default_texture</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00261">renderer_destroy_texture()</a>.</p>
+<p class="reference">References <a class="el" href="texture__system_8c_source.html#l00062">texture_system_state::default_texture</a>, and <a class="el" href="renderer__frontend_8c_source.html#l00198">renderer_destroy_texture()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00147">texture_system_shutdown()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00171">texture_system_shutdown()</a>.</p>
+
+</div>
+</div>
+<a id="a48a559bbd8b3e598bbca1486064310bf" name="a48a559bbd8b3e598bbca1486064310bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48a559bbd8b3e598bbca1486064310bf">&#9670;&#160;</a></span>destroy_texture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void destroy_texture </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtexture.html">texture</a> *&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroys a texture and releases its resources. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>Pointer to the texture to be destroyed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00418">418</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+
+<p class="reference">References <a class="el" href="resource__types_8h_source.html#l00042">texture::generation</a>, <a class="el" href="resource__types_8h_source.html#l00032">texture::id</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="resource__types_8h_source.html#l00044">texture::name</a>, <a class="el" href="renderer__frontend_8c_source.html#l00198">renderer_destroy_texture()</a>, and <a class="el" href="resource__types_8h_source.html#l00015">TEXTURE_NAME_MAX_LENGTH</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00243">texture_system_release()</a>.</p>
 
 </div>
 </div>
@@ -379,11 +430,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the texture was loaded successfully; otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00308">308</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00341">341</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 
-<p class="reference">References <a class="el" href="resource__types_8h_source.html#l00029">texture::channel_count</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="resource__types_8h_source.html#l00027">texture::height</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="renderer__frontend_8c_source.html#l00250">renderer_create_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00261">renderer_destroy_texture()</a>, <a class="el" href="stb__image_8h.html#ac72f312f610a7df1519ea0f2a2f94be9">stbi_failure_reason()</a>, <a class="el" href="stb__image_8h.html#ad3e11bb44412a7ba348acfbad09caacb">stbi_image_free()</a>, <a class="el" href="stb__image_8h.html#ad3fc296ba0778df0a8094e20da82deab">stbi_load()</a>, <a class="el" href="stb__image_8h.html#ab89c177fc52f1bb2dc1c05e48129a0a4">stbi_set_flip_vertically_on_load()</a>, <a class="el" href="kstring_8c_source.html#l00052">string_format()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="resource__types_8h_source.html#l00025">texture::width</a>.</p>
+<p class="reference">References <a class="el" href="resource__types_8h_source.html#l00038">texture::channel_count</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="resource__types_8h_source.html#l00042">texture::generation</a>, <a class="el" href="resource__types_8h_source.html#l00036">texture::height</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="renderer__frontend_8c_source.html#l00187">renderer_create_texture()</a>, <a class="el" href="renderer__frontend_8c_source.html#l00198">renderer_destroy_texture()</a>, <a class="el" href="stb__image_8h.html#ac72f312f610a7df1519ea0f2a2f94be9">stbi_failure_reason()</a>, <a class="el" href="stb__image_8h.html#ad3e11bb44412a7ba348acfbad09caacb">stbi_image_free()</a>, <a class="el" href="stb__image_8h.html#ad3fc296ba0778df0a8094e20da82deab">stbi_load()</a>, <a class="el" href="stb__image_8h.html#ab89c177fc52f1bb2dc1c05e48129a0a4">stbi_set_flip_vertically_on_load()</a>, <a class="el" href="kstring_8c_source.html#l00052">string_format()</a>, <a class="el" href="defines_8h_source.html#l00120">True</a>, and <a class="el" href="resource__types_8h_source.html#l00034">texture::width</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00163">texture_system_acquire()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00187">texture_system_acquire()</a>.</p>
 
 </div>
 </div>
@@ -424,11 +475,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the acquired texture, or NULL if acquisition failed. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00163">163</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00187">187</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 
-<p class="reference">References <a class="el" href="texture__system_8h_source.html#l00050">texture_reference::auto_release</a>, <a class="el" href="texture__system_8c_source.html#l00039">texture_system_state::config</a>, <a class="el" href="texture__system_8c_source.html#l00045">texture_system_state::default_texture</a>, <a class="el" href="texture__system_8h_source.html#l00025">DEFAULT_TEXTURE_NAME</a>, <a class="el" href="texture__system_8h_source.html#l00045">texture_reference::handle</a>, <a class="el" href="hashtable_8c_source.html#l00120">hashtable_get()</a>, <a class="el" href="hashtable_8c_source.html#l00083">hashtable_set()</a>, <a class="el" href="resource__types_8h_source.html#l00023">texture::id</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00230">KTRACE</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="texture__system_8c_source.html#l00308">load_texture()</a>, <a class="el" href="texture__system_8h_source.html#l00060">texture_system_config::max_texture_count</a>, <a class="el" href="texture__system_8h_source.html#l00040">texture_reference::reference_count</a>, <a class="el" href="texture__system_8c_source.html#l00063">texture_system_state::registered_texture_table</a>, <a class="el" href="texture__system_8c_source.html#l00055">texture_system_state::registered_textures</a>, <a class="el" href="texture__system_8c_source.html#l00096">state_ptr</a>, and <a class="el" href="kstring_8c_source.html#l00044">strings_equali()</a>.</p>
+<p class="reference">References <a class="el" href="texture__system_8h_source.html#l00050">texture_reference::auto_release</a>, <a class="el" href="texture__system_8c_source.html#l00056">texture_system_state::config</a>, <a class="el" href="texture__system_8c_source.html#l00062">texture_system_state::default_texture</a>, <a class="el" href="texture__system_8h_source.html#l00025">DEFAULT_TEXTURE_NAME</a>, <a class="el" href="texture__system_8h_source.html#l00045">texture_reference::handle</a>, <a class="el" href="hashtable_8c_source.html#l00120">hashtable_get()</a>, <a class="el" href="hashtable_8c_source.html#l00083">hashtable_set()</a>, <a class="el" href="resource__types_8h_source.html#l00032">texture::id</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>, <a class="el" href="logger_8h_source.html#l00230">KTRACE</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="texture__system_8c_source.html#l00341">load_texture()</a>, <a class="el" href="texture__system_8h_source.html#l00060">texture_system_config::max_texture_count</a>, <a class="el" href="texture__system_8h_source.html#l00040">texture_reference::reference_count</a>, <a class="el" href="texture__system_8c_source.html#l00080">texture_system_state::registered_texture_table</a>, <a class="el" href="texture__system_8c_source.html#l00072">texture_system_state::registered_textures</a>, <a class="el" href="texture__system_8c_source.html#l00120">state_ptr</a>, and <a class="el" href="kstring_8c_source.html#l00044">strings_equali()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00081">event_on_debug_event()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00254">event_on_debug_event()</a>, and <a class="el" href="material__system_8c_source.html#l00290">load_material()</a>.</p>
 
 </div>
 </div>
@@ -451,11 +502,11 @@ Variables</h2></td></tr>
 <p>The default texture is used when a requested texture cannot be found.</p>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the default texture. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00257">257</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00283">283</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 
-<p class="reference">References <a class="el" href="texture__system_8c_source.html#l00045">texture_system_state::default_texture</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, and <a class="el" href="texture__system_8c_source.html#l00096">state_ptr</a>.</p>
+<p class="reference">References <a class="el" href="texture__system_8c_source.html#l00062">texture_system_state::default_texture</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, and <a class="el" href="texture__system_8c_source.html#l00120">state_ptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00204">renderer_draw_frame()</a>, and <a class="el" href="vulkan__material__shader_8c_source.html#l00298">vulkan_material_shader_update_object()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00344">create_default_material()</a>, <a class="el" href="application_8c_source.html#l00254">event_on_debug_event()</a>, <a class="el" href="material__system_8c_source.html#l00290">load_material()</a>, and <a class="el" href="vulkan__material__shader_8c_source.html#l00305">vulkan_material_shader_apply_material()</a>.</p>
 
 </div>
 </div>
@@ -502,11 +553,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns true if initialization was successful, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00098">98</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00122">122</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 
-<p class="reference">References <a class="el" href="texture__system_8h_source.html#l00050">texture_reference::auto_release</a>, <a class="el" href="texture__system_8c_source.html#l00039">texture_system_state::config</a>, <a class="el" href="texture__system_8c_source.html#l00266">create_default_textures()</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="texture__system_8h_source.html#l00045">texture_reference::handle</a>, <a class="el" href="hashtable_8c_source.html#l00054">hashtable_create()</a>, <a class="el" href="hashtable_8c_source.html#l00158">hashtable_fill()</a>, <a class="el" href="resource__types_8h_source.html#l00023">texture::id</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>, <a class="el" href="texture__system_8h_source.html#l00060">texture_system_config::max_texture_count</a>, <a class="el" href="texture__system_8h_source.html#l00040">texture_reference::reference_count</a>, <a class="el" href="texture__system_8c_source.html#l00063">texture_system_state::registered_texture_table</a>, <a class="el" href="texture__system_8c_source.html#l00055">texture_system_state::registered_textures</a>, <a class="el" href="texture__system_8c_source.html#l00096">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
+<p class="reference">References <a class="el" href="texture__system_8h_source.html#l00050">texture_reference::auto_release</a>, <a class="el" href="texture__system_8c_source.html#l00056">texture_system_state::config</a>, <a class="el" href="texture__system_8c_source.html#l00292">create_default_textures()</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="resource__types_8h_source.html#l00042">texture::generation</a>, <a class="el" href="texture__system_8h_source.html#l00045">texture_reference::handle</a>, <a class="el" href="hashtable_8c_source.html#l00054">hashtable_create()</a>, <a class="el" href="hashtable_8c_source.html#l00158">hashtable_fill()</a>, <a class="el" href="resource__types_8h_source.html#l00032">texture::id</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00152">KFATAL</a>, <a class="el" href="texture__system_8h_source.html#l00060">texture_system_config::max_texture_count</a>, <a class="el" href="texture__system_8h_source.html#l00040">texture_reference::reference_count</a>, <a class="el" href="texture__system_8c_source.html#l00080">texture_system_state::registered_texture_table</a>, <a class="el" href="texture__system_8c_source.html#l00072">texture_system_state::registered_textures</a>, <a class="el" href="texture__system_8c_source.html#l00120">state_ptr</a>, and <a class="el" href="defines_8h_source.html#l00120">True</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00220">application_create()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00297">application_create()</a>.</p>
 
 </div>
 </div>
@@ -535,11 +586,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00219">219</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00243">243</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 
-<p class="reference">References <a class="el" href="texture__system_8h_source.html#l00050">texture_reference::auto_release</a>, <a class="el" href="texture__system_8h_source.html#l00025">DEFAULT_TEXTURE_NAME</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="texture__system_8h_source.html#l00045">texture_reference::handle</a>, <a class="el" href="hashtable_8c_source.html#l00120">hashtable_get()</a>, <a class="el" href="hashtable_8c_source.html#l00083">hashtable_set()</a>, <a class="el" href="resource__types_8h_source.html#l00023">texture::id</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="logger_8h_source.html#l00230">KTRACE</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="texture__system_8h_source.html#l00040">texture_reference::reference_count</a>, <a class="el" href="texture__system_8c_source.html#l00063">texture_system_state::registered_texture_table</a>, <a class="el" href="texture__system_8c_source.html#l00055">texture_system_state::registered_textures</a>, <a class="el" href="renderer__frontend_8c_source.html#l00261">renderer_destroy_texture()</a>, <a class="el" href="texture__system_8c_source.html#l00096">state_ptr</a>, and <a class="el" href="kstring_8c_source.html#l00044">strings_equali()</a>.</p>
+<p class="reference">References <a class="el" href="texture__system_8h_source.html#l00050">texture_reference::auto_release</a>, <a class="el" href="texture__system_8h_source.html#l00025">DEFAULT_TEXTURE_NAME</a>, <a class="el" href="texture__system_8c_source.html#l00418">destroy_texture()</a>, <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="texture__system_8h_source.html#l00045">texture_reference::handle</a>, <a class="el" href="hashtable_8c_source.html#l00120">hashtable_get()</a>, <a class="el" href="hashtable_8c_source.html#l00083">hashtable_set()</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="logger_8h_source.html#l00165">KERROR</a>, <a class="el" href="logger_8h_source.html#l00230">KTRACE</a>, <a class="el" href="logger_8h_source.html#l00179">KWARN</a>, <a class="el" href="texture__system_8h_source.html#l00040">texture_reference::reference_count</a>, <a class="el" href="texture__system_8c_source.html#l00080">texture_system_state::registered_texture_table</a>, <a class="el" href="texture__system_8c_source.html#l00072">texture_system_state::registered_textures</a>, <a class="el" href="texture__system_8c_source.html#l00120">state_ptr</a>, <a class="el" href="kstring_8c_source.html#l00080">string_ncopy()</a>, <a class="el" href="kstring_8c_source.html#l00044">strings_equali()</a>, and <a class="el" href="resource__types_8h_source.html#l00015">TEXTURE_NAME_MAX_LENGTH</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="renderer__frontend_8c_source.html#l00081">event_on_debug_event()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00325">destroy_material()</a>, and <a class="el" href="application_8c_source.html#l00254">event_on_debug_event()</a>.</p>
 
 </div>
 </div>
@@ -567,11 +618,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00147">147</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00171">171</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 
-<p class="reference">References <a class="el" href="texture__system_8c_source.html#l00039">texture_system_state::config</a>, <a class="el" href="texture__system_8c_source.html#l00302">destroy_default_textures()</a>, <a class="el" href="resource__types_8h_source.html#l00033">texture::generation</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="texture__system_8h_source.html#l00060">texture_system_config::max_texture_count</a>, <a class="el" href="texture__system_8c_source.html#l00055">texture_system_state::registered_textures</a>, <a class="el" href="renderer__frontend_8c_source.html#l00261">renderer_destroy_texture()</a>, and <a class="el" href="texture__system_8c_source.html#l00096">state_ptr</a>.</p>
+<p class="reference">References <a class="el" href="texture__system_8c_source.html#l00056">texture_system_state::config</a>, <a class="el" href="texture__system_8c_source.html#l00335">destroy_default_textures()</a>, <a class="el" href="resource__types_8h_source.html#l00042">texture::generation</a>, <a class="el" href="defines_8h_source.html#l00128">INVALID_ID</a>, <a class="el" href="texture__system_8h_source.html#l00060">texture_system_config::max_texture_count</a>, <a class="el" href="texture__system_8c_source.html#l00072">texture_system_state::registered_textures</a>, <a class="el" href="renderer__frontend_8c_source.html#l00198">renderer_destroy_texture()</a>, and <a class="el" href="texture__system_8c_source.html#l00120">state_ptr</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00308">application_run()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="application_8c_source.html#l00425">application_run()</a>.</p>
 
 </div>
 </div>
@@ -598,16 +649,16 @@ Variables</h2></td></tr>
 
 <p>Pointer to the global texture system state. </p>
 
-<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00096">96</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="texture__system_8c_source.html#l00120">120</a> of file <a class="el" href="texture__system_8c_source.html">texture_system.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00163">texture_system_acquire()</a>, <a class="el" href="texture__system_8c_source.html#l00257">texture_system_get_default_texture()</a>, <a class="el" href="texture__system_8c_source.html#l00098">texture_system_initialize()</a>, <a class="el" href="texture__system_8c_source.html#l00219">texture_system_release()</a>, and <a class="el" href="texture__system_8c_source.html#l00147">texture_system_shutdown()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00187">texture_system_acquire()</a>, <a class="el" href="texture__system_8c_source.html#l00283">texture_system_get_default_texture()</a>, <a class="el" href="texture__system_8c_source.html#l00122">texture_system_initialize()</a>, <a class="el" href="texture__system_8c_source.html#l00243">texture_system_release()</a>, and <a class="el" href="texture__system_8c_source.html#l00171">texture_system_shutdown()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 7 2025 09:32:39 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 11:37:28 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

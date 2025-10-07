@@ -83,6 +83,7 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="kstring_8h_source.html">core/kstring.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="kmemory_8h_source.html">core/kmemory.h</a>&quot;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
 <code>#include &lt;stdarg.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
@@ -94,22 +95,27 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="kstring_8c__incl.png" border="0" usemap="#aengine_2src_2core_2kstring_8c" alt=""/></div>
 <map name="aengine_2src_2core_2kstring_8c" id="aengine_2src_2core_2kstring_8c">
-<area shape="rect" title="Implementation of lightweight string utility functions." alt="" coords="285,5,466,31"/>
-<area shape="rect" href="kstring_8h.html" title="Lightweight string utility library." alt="" coords="5,79,116,104"/>
-<area shape="poly" title=" " alt="" coords="325,33,125,78,124,73,324,28"/>
-<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="140,79,267,104"/>
-<area shape="poly" title=" " alt="" coords="349,33,245,76,243,71,347,28"/>
-<area shape="rect" title=" " alt="" coords="291,79,366,104"/>
-<area shape="poly" title=" " alt="" coords="370,32,346,69,342,66,365,30"/>
-<area shape="rect" title=" " alt="" coords="390,79,457,104"/>
-<area shape="poly" title=" " alt="" coords="385,30,410,66,406,69,381,33"/>
-<area shape="rect" title=" " alt="" coords="481,79,552,104"/>
-<area shape="poly" title=" " alt="" coords="399,28,483,70,480,75,397,33"/>
-<area shape="rect" title=" " alt="" coords="576,79,655,104"/>
-<area shape="poly" title=" " alt="" coords="415,28,564,72,562,77,413,33"/>
-<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="91,152,172,177"/>
-<area shape="poly" title=" " alt="" coords="74,102,112,140,108,144,70,106"/>
-<area shape="poly" title=" " alt="" coords="193,106,155,144,151,140,190,102"/>
+<area shape="rect" title="Implementation of lightweight string utility functions." alt="" coords="304,5,486,31"/>
+<area shape="rect" href="kstring_8h.html" title="Lightweight string utility library." alt="" coords="41,79,152,104"/>
+<area shape="poly" title=" " alt="" coords="348,33,159,78,157,73,346,28"/>
+<area shape="rect" href="kmemory_8h.html" title="Memory allocation system with tagging and tracking." alt="" coords="196,152,322,177"/>
+<area shape="poly" title=" " alt="" coords="326,33,285,51,268,64,253,80,248,94,246,108,252,138,246,139,241,109,242,92,249,77,264,60,283,46,324,28"/>
+<area shape="rect" title=" " alt="" coords="262,79,333,104"/>
+<area shape="poly" title=" " alt="" coords="381,33,327,72,323,68,378,29"/>
+<area shape="rect" title=" " alt="" coords="358,79,432,104"/>
+<area shape="poly" title=" " alt="" coords="398,31,398,65,392,65,392,31"/>
+<area shape="rect" title=" " alt="" coords="456,79,523,104"/>
+<area shape="poly" title=" " alt="" coords="412,29,465,68,462,72,409,33"/>
+<area shape="rect" title=" " alt="" coords="548,79,618,104"/>
+<area shape="poly" title=" " alt="" coords="426,28,541,71,539,76,424,33"/>
+<area shape="rect" title=" " alt="" coords="642,79,721,104"/>
+<area shape="poly" title=" " alt="" coords="442,28,630,74,629,80,440,33"/>
+<area shape="rect" href="defines_8h.html" title="Core definitions and platform&#45;specific utilities." alt="" coords="56,225,137,251"/>
+<area shape="poly" title=" " alt="" coords="68,106,37,125,23,138,12,153,9,172,19,189,36,204,57,217,54,221,33,208,14,192,4,172,7,151,19,134,34,121,66,102"/>
+<area shape="rect" href="math__types_8h.html" title="Core mathematical types used throughout the Koru engine." alt="" coords="22,152,171,177"/>
+<area shape="poly" title=" " alt="" coords="99,104,99,138,94,138,94,104"/>
+<area shape="poly" title=" " alt="" coords="99,178,99,212,94,212,94,178"/>
+<area shape="poly" title=" " alt="" coords="234,180,137,222,135,217,232,175"/>
 </map>
 </div>
 </div>
@@ -135,6 +141,66 @@ Functions</h2></td></tr>
 <tr class="memitem:a8cae02ae95f76915f2f34954f56f3105" id="r_a8cae02ae95f76915f2f34954f56f3105"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a8cae02ae95f76915f2f34954f56f3105">string_format_v</a> (char *dest, const char *format, void *va_listp)</td></tr>
 <tr class="memdesc:a8cae02ae95f76915f2f34954f56f3105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs variadic string formatting against the given format string and va_list. NOTE: that this performs a dynamic allocation and should be freed by the caller.  <br /></td></tr>
 <tr class="separator:a8cae02ae95f76915f2f34954f56f3105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af43aa079f60bc11dd7da697df920fece" id="r_af43aa079f60bc11dd7da697df920fece"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#af43aa079f60bc11dd7da697df920fece">string_copy</a> (char *dest, const char *source)</td></tr>
+<tr class="memdesc:af43aa079f60bc11dd7da697df920fece"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the source string to the destination string, including the null terminator.  <br /></td></tr>
+<tr class="separator:af43aa079f60bc11dd7da697df920fece"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e48021ce5b39920715bfaa5d92613bc" id="r_a9e48021ce5b39920715bfaa5d92613bc"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a9e48021ce5b39920715bfaa5d92613bc">string_ncopy</a> (char *dest, const char *source, <a class="el" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a> length)</td></tr>
+<tr class="memdesc:a9e48021ce5b39920715bfaa5d92613bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies up to length characters from the source string to the destination string. If the source string is shorter than length, the destination is null-terminated.  <br /></td></tr>
+<tr class="separator:a9e48021ce5b39920715bfaa5d92613bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dd30c30bb3f8bd5e2a051c22b04317e" id="r_a4dd30c30bb3f8bd5e2a051c22b04317e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a4dd30c30bb3f8bd5e2a051c22b04317e">string_trim</a> (char *str)</td></tr>
+<tr class="memdesc:a4dd30c30bb3f8bd5e2a051c22b04317e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trims leading and trailing whitespace from the given string in place.  <br /></td></tr>
+<tr class="separator:a4dd30c30bb3f8bd5e2a051c22b04317e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97b33c831523752f0adff22f80beaec5" id="r_a97b33c831523752f0adff22f80beaec5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a97b33c831523752f0adff22f80beaec5">string_mid</a> (char *dest, const char *source, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> start, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> length)</td></tr>
+<tr class="memdesc:a97b33c831523752f0adff22f80beaec5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts a substring from the source string, starting at the given index and of the given length.  <br /></td></tr>
+<tr class="separator:a97b33c831523752f0adff22f80beaec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2673061b7a2f47e9b0341c6dc141325c" id="r_a2673061b7a2f47e9b0341c6dc141325c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a2673061b7a2f47e9b0341c6dc141325c">string_index_of</a> (char *str, char c)</td></tr>
+<tr class="memdesc:a2673061b7a2f47e9b0341c6dc141325c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the index of the first occurance of c in str; otherwise -1.  <br /></td></tr>
+<tr class="separator:a2673061b7a2f47e9b0341c6dc141325c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad57f4ad9d666bbbad09db85e17c90759" id="r_ad57f4ad9d666bbbad09db85e17c90759"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#ad57f4ad9d666bbbad09db85e17c90759">string_to_vec4</a> (char *str, <a class="el" href="math__types_8h.html#a6d07267a855fd8e0194ffcb3128396cd">vec4</a> *out_vector)</td></tr>
+<tr class="memdesc:ad57f4ad9d666bbbad09db85e17c90759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a vector from the provided string.  <br /></td></tr>
+<tr class="separator:ad57f4ad9d666bbbad09db85e17c90759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a216d21811f3b2bd33be00ae7fa945646" id="r_a216d21811f3b2bd33be00ae7fa945646"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a216d21811f3b2bd33be00ae7fa945646">string_to_vec3</a> (char *str, <a class="el" href="math__types_8h.html#a291ce5191b34b920d576c84fd970b9ef">vec3</a> *out_vector)</td></tr>
+<tr class="memdesc:a216d21811f3b2bd33be00ae7fa945646"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a vector from the provided string.  <br /></td></tr>
+<tr class="separator:a216d21811f3b2bd33be00ae7fa945646"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d848ff7fe94196e09799189f5eefd57" id="r_a8d848ff7fe94196e09799189f5eefd57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a8d848ff7fe94196e09799189f5eefd57">string_to_vec2</a> (char *str, <a class="el" href="math__types_8h.html#a4403515b5f13a3b84dafb1667a1f9d88">vec2</a> *out_vector)</td></tr>
+<tr class="memdesc:a8d848ff7fe94196e09799189f5eefd57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a vector from the provided string.  <br /></td></tr>
+<tr class="separator:a8d848ff7fe94196e09799189f5eefd57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae031f303d12593a1453ecda9318e7a73" id="r_ae031f303d12593a1453ecda9318e7a73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#ae031f303d12593a1453ecda9318e7a73">string_to_f32</a> (char *str, <a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *f)</td></tr>
+<tr class="memdesc:ae031f303d12593a1453ecda9318e7a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 32-bit floating-point number from the provided string.  <br /></td></tr>
+<tr class="separator:ae031f303d12593a1453ecda9318e7a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62599e2f49f1e128abfdb86477c6a71a" id="r_a62599e2f49f1e128abfdb86477c6a71a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a62599e2f49f1e128abfdb86477c6a71a">string_to_f64</a> (char *str, <a class="el" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> *f)</td></tr>
+<tr class="memdesc:a62599e2f49f1e128abfdb86477c6a71a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 64-bit floating-point number from the provided string.  <br /></td></tr>
+<tr class="separator:a62599e2f49f1e128abfdb86477c6a71a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad14a51a467f74356b63bc32c08eab9f" id="r_aad14a51a467f74356b63bc32c08eab9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#aad14a51a467f74356b63bc32c08eab9f">string_to_i8</a> (char *str, <a class="el" href="defines_8h.html#a2d0b2d48b0784ffa5f75c39f46562729">i8</a> *i)</td></tr>
+<tr class="memdesc:aad14a51a467f74356b63bc32c08eab9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse an 8-bit signed integer from the provided string.  <br /></td></tr>
+<tr class="separator:aad14a51a467f74356b63bc32c08eab9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae22bfed954f476af4c12d0b6852843fe" id="r_ae22bfed954f476af4c12d0b6852843fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#ae22bfed954f476af4c12d0b6852843fe">string_to_i16</a> (char *str, <a class="el" href="defines_8h.html#ac12585a6def54773148d7fb2c72a59c5">i16</a> *i)</td></tr>
+<tr class="memdesc:ae22bfed954f476af4c12d0b6852843fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 16-bit signed integer from the provided string.  <br /></td></tr>
+<tr class="separator:ae22bfed954f476af4c12d0b6852843fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf4fe0b9dee453a7e39a134516523094" id="r_abf4fe0b9dee453a7e39a134516523094"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#abf4fe0b9dee453a7e39a134516523094">string_to_i32</a> (char *str, <a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> *i)</td></tr>
+<tr class="memdesc:abf4fe0b9dee453a7e39a134516523094"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 32-bit signed integer from the provided string.  <br /></td></tr>
+<tr class="separator:abf4fe0b9dee453a7e39a134516523094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1388361e816d473cde2f7f2ea924a1bd" id="r_a1388361e816d473cde2f7f2ea924a1bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a1388361e816d473cde2f7f2ea924a1bd">string_to_i64</a> (char *str, <a class="el" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a> *i)</td></tr>
+<tr class="memdesc:a1388361e816d473cde2f7f2ea924a1bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 64-bit signed integer from the provided string.  <br /></td></tr>
+<tr class="separator:a1388361e816d473cde2f7f2ea924a1bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f8aa43fc45d88e4765447d342f8a1a1" id="r_a0f8aa43fc45d88e4765447d342f8a1a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a0f8aa43fc45d88e4765447d342f8a1a1">string_to_u8</a> (char *str, <a class="el" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *u)</td></tr>
+<tr class="memdesc:a0f8aa43fc45d88e4765447d342f8a1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse an 8-bit unsigned integer from the provided string.  <br /></td></tr>
+<tr class="separator:a0f8aa43fc45d88e4765447d342f8a1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8c2e9acd877a0210e8c5de44491f4d7" id="r_af8c2e9acd877a0210e8c5de44491f4d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#af8c2e9acd877a0210e8c5de44491f4d7">string_to_u16</a> (char *str, <a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> *u)</td></tr>
+<tr class="memdesc:af8c2e9acd877a0210e8c5de44491f4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 16-bit unsigned integer from the provided string.  <br /></td></tr>
+<tr class="separator:af8c2e9acd877a0210e8c5de44491f4d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae490b8f9ee483372da65e0d64a0f0032" id="r_ae490b8f9ee483372da65e0d64a0f0032"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#ae490b8f9ee483372da65e0d64a0f0032">string_to_u32</a> (char *str, <a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> *u)</td></tr>
+<tr class="memdesc:ae490b8f9ee483372da65e0d64a0f0032"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 32-bit unsigned integer from the provided string.  <br /></td></tr>
+<tr class="separator:ae490b8f9ee483372da65e0d64a0f0032"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e70f1085b769241ffe13def897e0f71" id="r_a0e70f1085b769241ffe13def897e0f71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a0e70f1085b769241ffe13def897e0f71">string_to_u64</a> (char *str, <a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *u)</td></tr>
+<tr class="memdesc:a0e70f1085b769241ffe13def897e0f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a 64-bit unsigned integer from the provided string.  <br /></td></tr>
+<tr class="separator:a0e70f1085b769241ffe13def897e0f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fa6a761cef08e91005d3b8cbadd1f5e" id="r_a7fa6a761cef08e91005d3b8cbadd1f5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a7fa6a761cef08e91005d3b8cbadd1f5e">string_to_bool</a> (char *str, <a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> *b)</td></tr>
+<tr class="memdesc:a7fa6a761cef08e91005d3b8cbadd1f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a boolean from the provided string. "true" or "1" are considered true; anything else is false.  <br /></td></tr>
+<tr class="separator:a7fa6a761cef08e91005d3b8cbadd1f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a947ed569de5372c81863ba51ba4e2ef9" id="r_a947ed569de5372c81863ba51ba4e2ef9"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kstring_8c.html#a947ed569de5372c81863ba51ba4e2ef9">string_empty</a> (char *str)</td></tr>
+<tr class="memdesc:a947ed569de5372c81863ba51ba4e2ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empties the given string by setting the first character to 0.  <br /></td></tr>
+<tr class="separator:a947ed569de5372c81863ba51ba4e2ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of lightweight string utility functions. </p>
@@ -147,6 +213,46 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition in file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="af43aa079f60bc11dd7da697df920fece" name="af43aa079f60bc11dd7da697df920fece"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af43aa079f60bc11dd7da697df920fece">&#9670;&#160;</a></span>string_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * string_copy </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the source string to the destination string, including the null terminator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>The destination string buffer. Must be large enough to hold the source string. </td></tr>
+    <tr><td class="paramname">source</td><td>The source null-terminated string to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the destination string. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00076">76</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+</div>
+</div>
 <a id="ae4d2c3111ca8e06cce31d32a7928f320" name="ae4d2c3111ca8e06cce31d32a7928f320"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae4d2c3111ca8e06cce31d32a7928f320">&#9670;&#160;</a></span>string_duplicate()</h2>
 
@@ -176,6 +282,37 @@ Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00030">30</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
 <p class="reference">References <a class="el" href="kmemory_8c_source.html#l00122">kallocate()</a>, <a class="el" href="kmemory_8c_source.html#l00182">kcopy_memory()</a>, <a class="el" href="kmemory_8h_source.html#l00047">MEMORY_TAG_STRING</a>, and <a class="el" href="kstring_8c_source.html#l00026">string_length()</a>.</p>
+
+</div>
+</div>
+<a id="a947ed569de5372c81863ba51ba4e2ef9" name="a947ed569de5372c81863ba51ba4e2ef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a947ed569de5372c81863ba51ba4e2ef9">&#9670;&#160;</a></span>string_empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * string_empty </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Empties the given string by setting the first character to 0. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to empty. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the emptied string. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00287">287</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="geometry__system_8c_source.html#l00225">destroy_geometry()</a>.</p>
 
 </div>
 </div>
@@ -225,7 +362,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="kstring_8c_source.html#l00063">string_format_v()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__shader__utils_8c_source.html#l00017">create_shader_module()</a>, <a class="el" href="texture__system_8c_source.html#l00308">load_texture()</a>, and <a class="el" href="logger_8c_source.html#l00095">log_output()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__shader__utils_8c_source.html#l00017">create_shader_module()</a>, <a class="el" href="texture__system_8c_source.html#l00341">load_texture()</a>, <a class="el" href="logger_8c_source.html#l00095">log_output()</a>, and <a class="el" href="material__system_8c_source.html#l00169">material_system_acquire()</a>.</p>
 
 </div>
 </div>
@@ -279,6 +416,50 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a2673061b7a2f47e9b0341c6dc141325c" name="a2673061b7a2f47e9b0341c6dc141325c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2673061b7a2f47e9b0341c6dc141325c">&#9670;&#160;</a></span>string_index_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> string_index_of </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the index of the first occurance of c in str; otherwise -1. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to be scanned. </td></tr>
+    <tr><td class="paramname">c</td><td>The character to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the first occurance of c; otherwise -1 if not found. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00133">133</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="kstring_8c_source.html#l00026">string_length()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>.</p>
+
+</div>
+</div>
 <a id="a3ac8f7f54a3429135da71637d268e6c9" name="a3ac8f7f54a3429135da71637d268e6c9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3ac8f7f54a3429135da71637d268e6c9">&#9670;&#160;</a></span>string_length()</h2>
 
@@ -307,7 +488,734 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00026">26</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00050">append_to_log_file()</a>, and <a class="el" href="kstring_8c_source.html#l00030">string_duplicate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="logger_8c_source.html#l00050">append_to_log_file()</a>, <a class="el" href="geometry__system_8c_source.html#l00201">create_geometry()</a>, <a class="el" href="geometry__system_8c_source.html#l00225">destroy_geometry()</a>, <a class="el" href="geometry__system_8c_source.html#l00280">geometry_system_generate_plane_config()</a>, <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>, <a class="el" href="material__system_8c_source.html#l00290">load_material()</a>, <a class="el" href="kstring_8c_source.html#l00030">string_duplicate()</a>, <a class="el" href="kstring_8c_source.html#l00133">string_index_of()</a>, and <a class="el" href="kstring_8c_source.html#l00108">string_mid()</a>.</p>
+
+</div>
+</div>
+<a id="a97b33c831523752f0adff22f80beaec5" name="a97b33c831523752f0adff22f80beaec5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97b33c831523752f0adff22f80beaec5">&#9670;&#160;</a></span>string_mid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void string_mid </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Extracts a substring from the source string, starting at the given index and of the given length. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>The destination buffer to write the substring to. Must be large enough to hold length characters plus a null terminator. </td></tr>
+    <tr><td class="paramname">source</td><td>The source null-terminated string to extract from. </td></tr>
+    <tr><td class="paramname">start</td><td>The starting index in the source string (0-based). </td></tr>
+    <tr><td class="paramname">length</td><td>The number of characters to extract. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00108">108</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="kstring_8c_source.html#l00026">string_length()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>.</p>
+
+</div>
+</div>
+<a id="a9e48021ce5b39920715bfaa5d92613bc" name="a9e48021ce5b39920715bfaa5d92613bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e48021ce5b39920715bfaa5d92613bc">&#9670;&#160;</a></span>string_ncopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * string_ncopy </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies up to length characters from the source string to the destination string. If the source string is shorter than length, the destination is null-terminated. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>The destination string buffer. Must be large enough to hold length characters plus a null terminator. </td></tr>
+    <tr><td class="paramname">source</td><td>The source null-terminated string to copy from. </td></tr>
+    <tr><td class="paramname">length</td><td>The maximum number of characters to copy from the source string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the destination string. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00080">80</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00344">create_default_material()</a>, <a class="el" href="texture__system_8c_source.html#l00292">create_default_textures()</a>, <a class="el" href="geometry__system_8c_source.html#l00280">geometry_system_generate_plane_config()</a>, <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>, <a class="el" href="material__system_8c_source.html#l00290">load_material()</a>, and <a class="el" href="texture__system_8c_source.html#l00243">texture_system_release()</a>.</p>
+
+</div>
+</div>
+<a id="a7fa6a761cef08e91005d3b8cbadd1f5e" name="a7fa6a761cef08e91005d3b8cbadd1f5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fa6a761cef08e91005d3b8cbadd1f5e">&#9670;&#160;</a></span>string_to_bool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_bool </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> *&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a boolean from the provided string. "true" or "1" are considered true; anything else is false. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. "true" or "1" are considered true; anything else is false. </td></tr>
+    <tr><td class="paramname">b</td><td>A pointer to the boolean to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00279">279</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kstring_8c_source.html#l00040">strings_equal()</a>, and <a class="el" href="kstring_8c_source.html#l00044">strings_equali()</a>.</p>
+
+</div>
+</div>
+<a id="ae031f303d12593a1453ecda9318e7a73" name="ae031f303d12593a1453ecda9318e7a73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae031f303d12593a1453ecda9318e7a73">&#9670;&#160;</a></span>string_to_f32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_f32 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> *&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 32-bit floating-point number from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. Should <em>not</em> be postfixed with 'f'. </td></tr>
+    <tr><td class="paramname">f</td><td>A pointer to the float to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00179">179</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a62599e2f49f1e128abfdb86477c6a71a" name="a62599e2f49f1e128abfdb86477c6a71a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62599e2f49f1e128abfdb86477c6a71a">&#9670;&#160;</a></span>string_to_f64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_f64 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a94dab5770726ccbef8c7d026cfbdf8e5">f64</a> *&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 64-bit floating-point number from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">f</td><td>A pointer to the float to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00189">189</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="ae22bfed954f476af4c12d0b6852843fe" name="ae22bfed954f476af4c12d0b6852843fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae22bfed954f476af4c12d0b6852843fe">&#9670;&#160;</a></span>string_to_i16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_i16 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ac12585a6def54773148d7fb2c72a59c5">i16</a> *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 16-bit signed integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">i</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00209">209</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="abf4fe0b9dee453a7e39a134516523094" name="abf4fe0b9dee453a7e39a134516523094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf4fe0b9dee453a7e39a134516523094">&#9670;&#160;</a></span>string_to_i32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_i32 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e3ad5f8e752f01d926ce122d5a5285e">i32</a> *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 32-bit signed integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">i</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00219">219</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a1388361e816d473cde2f7f2ea924a1bd" name="a1388361e816d473cde2f7f2ea924a1bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1388361e816d473cde2f7f2ea924a1bd">&#9670;&#160;</a></span>string_to_i64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_i64 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ada59a0de67c44384c6faa924ca63c2aa">i64</a> *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 64-bit signed integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">i</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00229">229</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="aad14a51a467f74356b63bc32c08eab9f" name="aad14a51a467f74356b63bc32c08eab9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad14a51a467f74356b63bc32c08eab9f">&#9670;&#160;</a></span>string_to_i8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_i8 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a2d0b2d48b0784ffa5f75c39f46562729">i8</a> *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse an 8-bit signed integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">i</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00199">199</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="af8c2e9acd877a0210e8c5de44491f4d7" name="af8c2e9acd877a0210e8c5de44491f4d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8c2e9acd877a0210e8c5de44491f4d7">&#9670;&#160;</a></span>string_to_u16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_u16 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> *&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 16-bit unsigned integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">u</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00249">249</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="ae490b8f9ee483372da65e0d64a0f0032" name="ae490b8f9ee483372da65e0d64a0f0032"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae490b8f9ee483372da65e0d64a0f0032">&#9670;&#160;</a></span>string_to_u32()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_u32 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#a10e94b422ef0c20dcdec20d31a1f5049">u32</a> *&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 32-bit unsigned integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">u</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00259">259</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a0e70f1085b769241ffe13def897e0f71" name="a0e70f1085b769241ffe13def897e0f71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e70f1085b769241ffe13def897e0f71">&#9670;&#160;</a></span>string_to_u64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_u64 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#ad758b7a5c3f18ed79d2fcd23d9f16357">u64</a> *&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a 64-bit unsigned integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">u</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00269">269</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a0f8aa43fc45d88e4765447d342f8a1a1" name="a0f8aa43fc45d88e4765447d342f8a1a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f8aa43fc45d88e4765447d342f8a1a1">&#9670;&#160;</a></span>string_to_u8()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_u8 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="defines_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> *&#160;</td>
+          <td class="paramname"><em>u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse an 8-bit unsigned integer from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. </td></tr>
+    <tr><td class="paramname">u</td><td>A pointer to the int to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00239">239</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>.</p>
+
+</div>
+</div>
+<a id="a8d848ff7fe94196e09799189f5eefd57" name="a8d848ff7fe94196e09799189f5eefd57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d848ff7fe94196e09799189f5eefd57">&#9670;&#160;</a></span>string_to_vec2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_vec2 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="math__types_8h.html#a4403515b5f13a3b84dafb1667a1f9d88">vec2</a> *&#160;</td>
+          <td class="paramname"><em>out_vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a vector from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. Should be space-delimited. (i.e. "1.0 2.0") </td></tr>
+    <tr><td class="paramname">out_vector</td><td>A pointer to the vector to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00169">169</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="math__types_8h_source.html#l00036">vec2_u::x</a>, and <a class="el" href="math__types_8h_source.html#l00040">vec2_u::y</a>.</p>
+
+</div>
+</div>
+<a id="a216d21811f3b2bd33be00ae7fa945646" name="a216d21811f3b2bd33be00ae7fa945646"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a216d21811f3b2bd33be00ae7fa945646">&#9670;&#160;</a></span>string_to_vec3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_vec3 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="math__types_8h.html#a291ce5191b34b920d576c84fd970b9ef">vec3</a> *&#160;</td>
+          <td class="paramname"><em>out_vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a vector from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. Should be space-delimited. (i.e. "1.0 2.0 3.0") </td></tr>
+    <tr><td class="paramname">out_vector</td><td>A pointer to the vector to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00159">159</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="math__types_8h_source.html#l00068">vec3_u::x</a>, <a class="el" href="math__types_8h_source.html#l00072">vec3_u::y</a>, and <a class="el" href="math__types_8h_source.html#l00076">vec3_u::z</a>.</p>
+
+</div>
+</div>
+<a id="ad57f4ad9d666bbbad09db85e17c90759" name="ad57f4ad9d666bbbad09db85e17c90759"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad57f4ad9d666bbbad09db85e17c90759">&#9670;&#160;</a></span>string_to_vec4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="defines_8h.html#a3a58feb08f4f45ee137ec358217c3270">b8</a> string_to_vec4 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="math__types_8h.html#a6d07267a855fd8e0194ffcb3128396cd">vec4</a> *&#160;</td>
+          <td class="paramname"><em>out_vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a vector from the provided string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to parse from. Should be space-delimited. (i.e. "1.0 2.0 3.0 4.0") </td></tr>
+    <tr><td class="paramname">out_vector</td><td>A pointer to the vector to write to. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if parsed successfully; otherwise false. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00149">149</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">References <a class="el" href="defines_8h_source.html#l00122">False</a>, <a class="el" href="kmemory_8c_source.html#l00170">kzero_memory()</a>, <a class="el" href="math__types_8h_source.html#l00118">vec4_u::w</a>, <a class="el" href="math__types_8h_source.html#l00106">vec4_u::x</a>, <a class="el" href="math__types_8h_source.html#l00110">vec4_u::y</a>, and <a class="el" href="math__types_8h_source.html#l00114">vec4_u::z</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>.</p>
+
+</div>
+</div>
+<a id="a4dd30c30bb3f8bd5e2a051c22b04317e" name="a4dd30c30bb3f8bd5e2a051c22b04317e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dd30c30bb3f8bd5e2a051c22b04317e">&#9670;&#160;</a></span>string_trim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char * string_trim </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trims leading and trailing whitespace from the given string in place. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to trim. Must be mutable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the trimmed string (which may be the same as the input pointer). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00084">84</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>.</p>
 
 </div>
 </div>
@@ -350,7 +1258,7 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00040">40</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="vulkan__device_8c_source.html#l00521">physical_device_meets_requirements()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00083">vulkan_renderer_backend_initialize()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="vulkan__device_8c_source.html#l00521">physical_device_meets_requirements()</a>, <a class="el" href="kstring_8c_source.html#l00279">string_to_bool()</a>, and <a class="el" href="vulkan__backend_8c_source.html#l00095">vulkan_renderer_backend_initialize()</a>.</p>
 
 </div>
 </div>
@@ -393,14 +1301,14 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="kstring_8c_source.html#l00044">44</a> of file <a class="el" href="kstring_8c_source.html">kstring.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="texture__system_8c_source.html#l00163">texture_system_acquire()</a>, and <a class="el" href="texture__system_8c_source.html#l00219">texture_system_release()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="material__system_8c_source.html#l00364">load_configuration_file()</a>, <a class="el" href="material__system_8c_source.html#l00190">material_system_acquire_from_config()</a>, <a class="el" href="material__system_8c_source.html#l00255">material_system_release()</a>, <a class="el" href="kstring_8c_source.html#l00279">string_to_bool()</a>, <a class="el" href="texture__system_8c_source.html#l00187">texture_system_acquire()</a>, and <a class="el" href="texture__system_8c_source.html#l00243">texture_system_release()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 7 2025 09:32:39 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Oct 7 2025 11:37:28 for Koru Game Engine by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

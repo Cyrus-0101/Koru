@@ -24,12 +24,42 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structtexture}{texture}}
-\begin{DoxyCompactList}\small\item\em Represents a texture resource. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Represents a texture resource. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structtexture__map}{texture\+\_\+map}}
+\item 
+struct \mbox{\hyperlink{structmaterial}{material}}
+\begin{DoxyCompactList}\small\item\em Represents a material resource. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structgeometry}{geometry}}
+\begin{DoxyCompactList}\small\item\em Represents a geometry (mesh) resource. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{resource__types_8h_aa1f1d42c2919da754694e18cae601e81}{TEXTURE\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}~512
+\item 
+\#define \mbox{\hyperlink{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7}{MATERIAL\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}~256
+\item 
+\#define \mbox{\hyperlink{resource__types_8h_a9840b465a935f36dd17db47735877e27}{GEOMETRY\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}~256
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
 typedef struct \mbox{\hyperlink{structtexture}{texture}} \mbox{\hyperlink{resource__types_8h_a69d9ace16ce6a6b0a69cdbce7b88ceed}{texture}}
+\item 
+typedef enum \mbox{\hyperlink{resource__types_8h_aea3ad146faac71d6a8126fa17e663147}{texture\+\_\+use}} \mbox{\hyperlink{resource__types_8h_a79ba2d0507881d2b605e1423c8cea6ae}{texture\+\_\+use}}
+\item 
+typedef struct \mbox{\hyperlink{structtexture__map}{texture\+\_\+map}} \mbox{\hyperlink{resource__types_8h_aa8d347b355ff8077e35e5fa034808e46}{texture\+\_\+map}}
+\item 
+typedef struct \mbox{\hyperlink{structmaterial}{material}} \mbox{\hyperlink{resource__types_8h_a57b603e7fe23cde5968efe7604913d03}{material}}
+\item 
+typedef struct \mbox{\hyperlink{structgeometry}{geometry}} \mbox{\hyperlink{resource__types_8h_aced1f9e0c0df5900f0a74916e8acec06}{geometry}}
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{resource__types_8h_aea3ad146faac71d6a8126fa17e663147}{texture\+\_\+use}} \{ \mbox{\hyperlink{resource__types_8h_aea3ad146faac71d6a8126fa17e663147aee5c11c42183654219b51c271979dcaa}{TEXTURE\+\_\+\+USE\+\_\+\+UNKNOWN}} = 0x00
+, \mbox{\hyperlink{resource__types_8h_aea3ad146faac71d6a8126fa17e663147aa124fd894f82577e7ea7dd862fe22a7b}{TEXTURE\+\_\+\+USE\+\_\+\+MAP\+\_\+\+DIFFUSE}} = 0x01
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates the intended uses for a texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -41,10 +71,94 @@ Definition in file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+typ
 
 
 
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{resource__types_8h_a9840b465a935f36dd17db47735877e27}\label{resource__types_8h_a9840b465a935f36dd17db47735877e27} 
+\index{resource\_types.h@{resource\_types.h}!GEOMETRY\_NAME\_MAX\_LENGTH@{GEOMETRY\_NAME\_MAX\_LENGTH}}
+\index{GEOMETRY\_NAME\_MAX\_LENGTH@{GEOMETRY\_NAME\_MAX\_LENGTH}!resource\_types.h@{resource\_types.h}}
+\doxysubsubsection{\texorpdfstring{GEOMETRY\_NAME\_MAX\_LENGTH}{GEOMETRY\_NAME\_MAX\_LENGTH}}
+{\footnotesize\ttfamily \#define GEOMETRY\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH~256}
+
+Maximum length for geometry names. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00021}{21}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+\Hypertarget{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7}\label{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7} 
+\index{resource\_types.h@{resource\_types.h}!MATERIAL\_NAME\_MAX\_LENGTH@{MATERIAL\_NAME\_MAX\_LENGTH}}
+\index{MATERIAL\_NAME\_MAX\_LENGTH@{MATERIAL\_NAME\_MAX\_LENGTH}!resource\_types.h@{resource\_types.h}}
+\doxysubsubsection{\texorpdfstring{MATERIAL\_NAME\_MAX\_LENGTH}{MATERIAL\_NAME\_MAX\_LENGTH}}
+{\footnotesize\ttfamily \#define MATERIAL\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH~256}
+
+Maximum length for material names. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00018}{18}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+\Hypertarget{resource__types_8h_aa1f1d42c2919da754694e18cae601e81}\label{resource__types_8h_aa1f1d42c2919da754694e18cae601e81} 
+\index{resource\_types.h@{resource\_types.h}!TEXTURE\_NAME\_MAX\_LENGTH@{TEXTURE\_NAME\_MAX\_LENGTH}}
+\index{TEXTURE\_NAME\_MAX\_LENGTH@{TEXTURE\_NAME\_MAX\_LENGTH}!resource\_types.h@{resource\_types.h}}
+\doxysubsubsection{\texorpdfstring{TEXTURE\_NAME\_MAX\_LENGTH}{TEXTURE\_NAME\_MAX\_LENGTH}}
+{\footnotesize\ttfamily \#define TEXTURE\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH~512}
+
+Maximum length for texture names. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00015}{15}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
 \doxysubsection{Typedef Documentation}
+\Hypertarget{resource__types_8h_aced1f9e0c0df5900f0a74916e8acec06}\label{resource__types_8h_aced1f9e0c0df5900f0a74916e8acec06} 
+\index{resource\_types.h@{resource\_types.h}!geometry@{geometry}}
+\index{geometry@{geometry}!resource\_types.h@{resource\_types.h}}
+\doxysubsubsection{\texorpdfstring{geometry}{geometry}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgeometry}{geometry}} \mbox{\hyperlink{structgeometry}{geometry}}}
+
+\Hypertarget{resource__types_8h_a57b603e7fe23cde5968efe7604913d03}\label{resource__types_8h_a57b603e7fe23cde5968efe7604913d03} 
+\index{resource\_types.h@{resource\_types.h}!material@{material}}
+\index{material@{material}!resource\_types.h@{resource\_types.h}}
+\doxysubsubsection{\texorpdfstring{material}{material}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structmaterial}{material}} \mbox{\hyperlink{structmaterial}{material}}}
+
 \Hypertarget{resource__types_8h_a69d9ace16ce6a6b0a69cdbce7b88ceed}\label{resource__types_8h_a69d9ace16ce6a6b0a69cdbce7b88ceed} 
 \index{resource\_types.h@{resource\_types.h}!texture@{texture}}
 \index{texture@{texture}!resource\_types.h@{resource\_types.h}}
 \doxysubsubsection{\texorpdfstring{texture}{texture}}
 {\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structtexture}{texture}} \mbox{\hyperlink{structtexture}{texture}}}
+
+\Hypertarget{resource__types_8h_aa8d347b355ff8077e35e5fa034808e46}\label{resource__types_8h_aa8d347b355ff8077e35e5fa034808e46} 
+\index{resource\_types.h@{resource\_types.h}!texture\_map@{texture\_map}}
+\index{texture\_map@{texture\_map}!resource\_types.h@{resource\_types.h}}
+\doxysubsubsection{\texorpdfstring{texture\_map}{texture\_map}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structtexture__map}{texture\+\_\+map}} \mbox{\hyperlink{structtexture__map}{texture\+\_\+map}}}
+
+\Hypertarget{resource__types_8h_a79ba2d0507881d2b605e1423c8cea6ae}\label{resource__types_8h_a79ba2d0507881d2b605e1423c8cea6ae} 
+\index{resource\_types.h@{resource\_types.h}!texture\_use@{texture\_use}}
+\index{texture\_use@{texture\_use}!resource\_types.h@{resource\_types.h}}
+\doxysubsubsection{\texorpdfstring{texture\_use}{texture\_use}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{resource__types_8h_aea3ad146faac71d6a8126fa17e663147}{texture\+\_\+use}} \mbox{\hyperlink{resource__types_8h_aea3ad146faac71d6a8126fa17e663147}{texture\+\_\+use}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{resource__types_8h_aea3ad146faac71d6a8126fa17e663147}\label{resource__types_8h_aea3ad146faac71d6a8126fa17e663147} 
+\index{resource\_types.h@{resource\_types.h}!texture\_use@{texture\_use}}
+\index{texture\_use@{texture\_use}!resource\_types.h@{resource\_types.h}}
+\doxysubsubsection{\texorpdfstring{texture\_use}{texture\_use}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{resource__types_8h_aea3ad146faac71d6a8126fa17e663147}{texture\+\_\+use}}}
+
+
+
+Enumerates the intended uses for a texture. 
+
+This helps the engine understand how to apply the texture in rendering, such as whether it\textquotesingle{}s a diffuse map, normal map, etc. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_USE\_UNKNOWN@{TEXTURE\_USE\_UNKNOWN}!resource\_types.h@{resource\_types.h}}\index{resource\_types.h@{resource\_types.h}!TEXTURE\_USE\_UNKNOWN@{TEXTURE\_USE\_UNKNOWN}}}\Hypertarget{resource__types_8h_aea3ad146faac71d6a8126fa17e663147aee5c11c42183654219b51c271979dcaa}\label{resource__types_8h_aea3ad146faac71d6a8126fa17e663147aee5c11c42183654219b51c271979dcaa} 
+TEXTURE\+\_\+\+USE\+\_\+\+UNKNOWN&Unknown or unspecified texture use. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_USE\_MAP\_DIFFUSE@{TEXTURE\_USE\_MAP\_DIFFUSE}!resource\_types.h@{resource\_types.h}}\index{resource\_types.h@{resource\_types.h}!TEXTURE\_USE\_MAP\_DIFFUSE@{TEXTURE\_USE\_MAP\_DIFFUSE}}}\Hypertarget{resource__types_8h_aea3ad146faac71d6a8126fa17e663147aa124fd894f82577e7ea7dd862fe22a7b}\label{resource__types_8h_aea3ad146faac71d6a8126fa17e663147aa124fd894f82577e7ea7dd862fe22a7b} 
+TEXTURE\+\_\+\+USE\+\_\+\+MAP\+\_\+\+DIFFUSE&Texture is used as a diffuse map. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00056}{56}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
 

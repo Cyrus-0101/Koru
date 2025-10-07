@@ -1,0 +1,121 @@
+\doxysection{geometry Struct Reference}
+\hypertarget{structgeometry}{}\label{structgeometry}\index{geometry@{geometry}}
+
+
+Represents a geometry (mesh) resource.  
+
+
+
+
+{\ttfamily \#include $<$resource\+\_\+types.\+h$>$}
+
+
+
+Collaboration diagram for geometry\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{structgeometry__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structgeometry_a68b5c37575a8bfa7966245adca976088}{id}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structgeometry_abed43a9305450f0855b9d2f18ccf8953}{generation}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structgeometry_a1bbea7a4d8e8d30a3e1ed2ce70a4515a}{internal\+\_\+id}}
+\item 
+char \mbox{\hyperlink{structgeometry_a92c2b7ba33c42b29be886ba23c68fa29}{name}} \mbox{[}\mbox{\hyperlink{resource__types_8h_a9840b465a935f36dd17db47735877e27}{GEOMETRY\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}
+\item 
+\mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgeometry_a447f8f6e2dba45c96d798b03ec33342f}{material}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a geometry (mesh) resource. 
+
+Contains identifiers and references to materials used for rendering the geometry. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00098}{98}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structgeometry_abed43a9305450f0855b9d2f18ccf8953}\label{structgeometry_abed43a9305450f0855b9d2f18ccf8953} 
+\index{geometry@{geometry}!generation@{generation}}
+\index{generation@{generation}!geometry@{geometry}}
+\doxysubsubsection{\texorpdfstring{generation}{generation}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} geometry\+::generation}
+
+Generation counter for tracking updates to the geometry. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00102}{102}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}, and \mbox{\hyperlink{geometry__system_8c_source_l00087}{geometry\+\_\+system\+\_\+initialize()}}.
+
+\Hypertarget{structgeometry_a68b5c37575a8bfa7966245adca976088}\label{structgeometry_a68b5c37575a8bfa7966245adca976088} 
+\index{geometry@{geometry}!id@{id}}
+\index{id@{id}!geometry@{geometry}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} geometry\+::id}
+
+Unique identifier for the geometry resource. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00100}{100}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00129}{geometry\+\_\+system\+\_\+acquire\+\_\+by\+\_\+id()}}, \mbox{\hyperlink{geometry__system_8c_source_l00140}{geometry\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{geometry__system_8c_source_l00087}{geometry\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{geometry__system_8c_source_l00166}{geometry\+\_\+system\+\_\+release()}}.
+
+\Hypertarget{structgeometry_a1bbea7a4d8e8d30a3e1ed2ce70a4515a}\label{structgeometry_a1bbea7a4d8e8d30a3e1ed2ce70a4515a} 
+\index{geometry@{geometry}!internal\_id@{internal\_id}}
+\index{internal\_id@{internal\_id}!geometry@{geometry}}
+\doxysubsubsection{\texorpdfstring{internal\_id}{internal\_id}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} geometry\+::internal\+\_\+id}
+
+Internal identifier used by the rendering backend. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00104}{104}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00087}{geometry\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{vulkan__backend_8c_source_l00950}{vulkan\+\_\+renderer\+\_\+create\+\_\+geometry()}}, and \mbox{\hyperlink{vulkan__backend_8c_source_l01032}{vulkan\+\_\+renderer\+\_\+destroy\+\_\+geometry()}}.
+
+\Hypertarget{structgeometry_a447f8f6e2dba45c96d798b03ec33342f}\label{structgeometry_a447f8f6e2dba45c96d798b03ec33342f} 
+\index{geometry@{geometry}!material@{material}}
+\index{material@{material}!geometry@{geometry}}
+\doxysubsubsection{\texorpdfstring{material}{material}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmaterial}{material}}\texorpdfstring{$\ast$}{*} geometry\+::material}
+
+Pointer to the associated material for rendering this geometry. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00108}{108}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00240}{create\+\_\+default\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}, and \mbox{\hyperlink{application_8c_source_l00254}{event\+\_\+on\+\_\+debug\+\_\+event()}}.
+
+\Hypertarget{structgeometry_a92c2b7ba33c42b29be886ba23c68fa29}\label{structgeometry_a92c2b7ba33c42b29be886ba23c68fa29} 
+\index{geometry@{geometry}!name@{name}}
+\index{name@{name}!geometry@{geometry}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char geometry\+::name\mbox{[}\mbox{\hyperlink{resource__types_8h_a9840b465a935f36dd17db47735877e27}{GEOMETRY\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}}
+
+Name of the geometry allocated for identification purposes. 
+
+Definition at line \mbox{\hyperlink{resource__types_8h_source_l00106}{106}} of file \mbox{\hyperlink{resource__types_8h_source}{resource\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/resources/\mbox{\hyperlink{resource__types_8h}{resource\+\_\+types.\+h}}\end{DoxyCompactItemize}

@@ -2,8 +2,7 @@
 \hypertarget{structtexture__system__state}{}\label{structtexture__system__state}\index{texture\_system\_state@{texture\_system\_state}}
 
 
-Collaboration diagram for texture\+\_\+system\+\_\+state\+:
-\nopagebreak
+Collaboration diagram for texture\+\_\+system\+\_\+state\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,7 +25,7 @@ Collaboration diagram for texture\+\_\+system\+\_\+state\+:
 \doxysubsection{Detailed Description}
 
 
-Definition at line \mbox{\hyperlink{texture__system_8c_source_l00033}{33}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00050}{50}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
 
 
 
@@ -43,11 +42,11 @@ Configuration for the texture system.
 
 Contains settings such as the maximum number of textures that can be managed. 
 
-Definition at line \mbox{\hyperlink{texture__system_8c_source_l00039}{39}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00056}{56}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{texture__system_8c_source_l00147}{texture\+\_\+system\+\_\+shutdown()}}.
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00187}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00122}{texture\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{texture__system_8c_source_l00171}{texture\+\_\+system\+\_\+shutdown()}}.
 
 \Hypertarget{structtexture__system__state_a9a672af939129176dff6e9fb08f1a74d}\label{structtexture__system__state_a9a672af939129176dff6e9fb08f1a74d} 
 \index{texture\_system\_state@{texture\_system\_state}!default\_texture@{default\_texture}}
@@ -61,11 +60,11 @@ Default texture used when no other texture is available.
 
 This texture is used as a fallback to ensure that objects always have a valid texture. 
 
-Definition at line \mbox{\hyperlink{texture__system_8c_source_l00045}{45}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00062}{62}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{texture__system_8c_source_l00266}{create\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{texture__system_8c_source_l00302}{destroy\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, and \mbox{\hyperlink{texture__system_8c_source_l00257}{texture\+\_\+system\+\_\+get\+\_\+default\+\_\+texture()}}.
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00292}{create\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{texture__system_8c_source_l00335}{destroy\+\_\+default\+\_\+textures()}}, \mbox{\hyperlink{texture__system_8c_source_l00187}{texture\+\_\+system\+\_\+acquire()}}, and \mbox{\hyperlink{texture__system_8c_source_l00283}{texture\+\_\+system\+\_\+get\+\_\+default\+\_\+texture()}}.
 
 \Hypertarget{structtexture__system__state_aff3a2130097a5a4f7dc7b5e37b15a007}\label{structtexture__system__state_aff3a2130097a5a4f7dc7b5e37b15a007} 
 \index{texture\_system\_state@{texture\_system\_state}!registered\_texture\_table@{registered\_texture\_table}}
@@ -79,11 +78,11 @@ Hashtable for quick texture lookups by name.
 
 This hashtable maps texture names to their corresponding texture references, allowing for efficient retrieval of textures by name. 
 
-Definition at line \mbox{\hyperlink{texture__system_8c_source_l00063}{63}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00080}{80}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}.
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00187}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00122}{texture\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{texture__system_8c_source_l00243}{texture\+\_\+system\+\_\+release()}}.
 
 \Hypertarget{structtexture__system__state_a9326ee4cbc1a21168ffb82171484cbfb}\label{structtexture__system__state_a9326ee4cbc1a21168ffb82171484cbfb} 
 \index{texture\_system\_state@{texture\_system\_state}!registered\_textures@{registered\_textures}}
@@ -99,11 +98,11 @@ This array holds all textures that have been loaded into the system.
 
 NOTE\+: This is a fixed-\/size array, so it should be initialized with the maximum number of textures defined in the configuration. 
 
-Definition at line \mbox{\hyperlink{texture__system_8c_source_l00055}{55}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
+Definition at line \mbox{\hyperlink{texture__system_8c_source_l00072}{72}} of file \mbox{\hyperlink{texture__system_8c_source}{texture\+\_\+system.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{texture__system_8c_source_l00163}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00098}{texture\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{texture__system_8c_source_l00219}{texture\+\_\+system\+\_\+release()}}, and \mbox{\hyperlink{texture__system_8c_source_l00147}{texture\+\_\+system\+\_\+shutdown()}}.
+Referenced by \mbox{\hyperlink{texture__system_8c_source_l00187}{texture\+\_\+system\+\_\+acquire()}}, \mbox{\hyperlink{texture__system_8c_source_l00122}{texture\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{texture__system_8c_source_l00243}{texture\+\_\+system\+\_\+release()}}, and \mbox{\hyperlink{texture__system_8c_source_l00171}{texture\+\_\+system\+\_\+shutdown()}}.
 
 
 

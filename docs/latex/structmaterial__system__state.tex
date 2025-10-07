@@ -1,0 +1,99 @@
+\doxysection{material\+\_\+system\+\_\+state Struct Reference}
+\hypertarget{structmaterial__system__state}{}\label{structmaterial__system__state}\index{material\_system\_state@{material\_system\_state}}
+
+
+Internal state of the material system.  
+
+
+
+
+Collaboration diagram for material\+\_\+system\+\_\+state\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structmaterial__system__state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmaterial__system__config}{material\+\_\+system\+\_\+config}} \mbox{\hyperlink{structmaterial__system__state_a00e5ad65dc589e65bf501095cc247ccb}{config}}
+\item 
+\mbox{\hyperlink{structmaterial}{material}} \mbox{\hyperlink{structmaterial__system__state_a21267f8e6c6a0aeda6c81fe298ed5b8d}{default\+\_\+material}}
+\item 
+\mbox{\hyperlink{structmaterial}{material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmaterial__system__state_a45c6dbab1f3a95fe87f3a1744fd10cae}{registered\+\_\+materials}}
+\item 
+\mbox{\hyperlink{structhashtable}{hashtable}} \mbox{\hyperlink{structmaterial__system__state_a82c1f222d2e2823c2921ae5feeddef55}{registered\+\_\+material\+\_\+table}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Internal state of the material system. 
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00036}{36}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmaterial__system__state_a00e5ad65dc589e65bf501095cc247ccb}\label{structmaterial__system__state_a00e5ad65dc589e65bf501095cc247ccb} 
+\index{material\_system\_state@{material\_system\_state}!config@{config}}
+\index{config@{config}!material\_system\_state@{material\_system\_state}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmaterial__system__config}{material\+\_\+system\+\_\+config}} material\+\_\+system\+\_\+state\+::config}
+
+Configuration settings for the material system. 
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00038}{38}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{material__system_8c_source_l00151}{material\+\_\+system\+\_\+shutdown()}}.
+
+\Hypertarget{structmaterial__system__state_a21267f8e6c6a0aeda6c81fe298ed5b8d}\label{structmaterial__system__state_a21267f8e6c6a0aeda6c81fe298ed5b8d} 
+\index{material\_system\_state@{material\_system\_state}!default\_material@{default\_material}}
+\index{default\_material@{default\_material}!material\_system\_state@{material\_system\_state}}
+\doxysubsubsection{\texorpdfstring{default\_material}{default\_material}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmaterial}{material}} material\+\_\+system\+\_\+state\+::default\+\_\+material}
+
+Default material used when no specific material is assigned. 
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00041}{41}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00344}{create\+\_\+default\+\_\+material()}}, \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00440}{material\+\_\+system\+\_\+get\+\_\+default()}}, and \mbox{\hyperlink{material__system_8c_source_l00151}{material\+\_\+system\+\_\+shutdown()}}.
+
+\Hypertarget{structmaterial__system__state_a82c1f222d2e2823c2921ae5feeddef55}\label{structmaterial__system__state_a82c1f222d2e2823c2921ae5feeddef55} 
+\index{material\_system\_state@{material\_system\_state}!registered\_material\_table@{registered\_material\_table}}
+\index{registered\_material\_table@{registered\_material\_table}!material\_system\_state@{material\_system\_state}}
+\doxysubsubsection{\texorpdfstring{registered\_material\_table}{registered\_material\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhashtable}{hashtable}} material\+\_\+system\+\_\+state\+::registered\+\_\+material\+\_\+table}
+
+Hashtable mapping material names to their indices in the registered\+\_\+materials array. 
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00047}{47}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{material__system_8c_source_l00255}{material\+\_\+system\+\_\+release()}}.
+
+\Hypertarget{structmaterial__system__state_a45c6dbab1f3a95fe87f3a1744fd10cae}\label{structmaterial__system__state_a45c6dbab1f3a95fe87f3a1744fd10cae} 
+\index{material\_system\_state@{material\_system\_state}!registered\_materials@{registered\_materials}}
+\index{registered\_materials@{registered\_materials}!material\_system\_state@{material\_system\_state}}
+\doxysubsubsection{\texorpdfstring{registered\_materials}{registered\_materials}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmaterial}{material}}\texorpdfstring{$\ast$}{*} material\+\_\+system\+\_\+state\+::registered\+\_\+materials}
+
+Array of registered materials managed by the system. 
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00044}{44}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, \mbox{\hyperlink{material__system_8c_source_l00255}{material\+\_\+system\+\_\+release()}}, and \mbox{\hyperlink{material__system_8c_source_l00151}{material\+\_\+system\+\_\+shutdown()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/systems/\mbox{\hyperlink{material__system_8c}{material\+\_\+system.\+c}}\end{DoxyCompactItemize}

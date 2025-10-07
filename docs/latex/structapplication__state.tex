@@ -7,7 +7,8 @@ Internal state structure for the application.
 
 
 
-Collaboration diagram for application\+\_\+state\+:\nopagebreak
+Collaboration diagram for application\+\_\+state\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -60,7 +61,17 @@ void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structapplication__state_a9013e
 \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structapplication__state_af90026c9302b5120c11d1fb6e4958326}{texture\+\_\+system\+\_\+memory\+\_\+requirement}}
 \begin{DoxyCompactList}\small\item\em The total memory requirement for the texture system. \end{DoxyCompactList}\item 
 void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structapplication__state_ab5df8d1707388e92f68069b396fc3acb}{texture\+\_\+system\+\_\+state}}
-\begin{DoxyCompactList}\small\item\em Pointer to the texture system state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pointer to the texture system state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structapplication__state_ab06b897021622229d53576e38b7b2e9e}{material\+\_\+system\+\_\+memory\+\_\+requirement}}
+\begin{DoxyCompactList}\small\item\em The total memory requirement for the material system. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structapplication__state_abae75067e6da999f61336e879549d701}{material\+\_\+system\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Pointer to the material system state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structapplication__state_a2f1a4ade88e31fd5c9d29e08a8f40a14}{geometry\+\_\+system\+\_\+memory\+\_\+requirement}}
+\begin{DoxyCompactList}\small\item\em The total memory requirement for the geometry system. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structapplication__state_a19e0a2766f2b7ac0a27c624557d99349}{geometry\+\_\+system\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em Pointer to the geometry system state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structapplication__state_a8f75e45b1dbea3562d6cb52ad4358a79}{test\+\_\+geometry}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -74,7 +85,7 @@ Tracks\+:
 \item Timing information for frame updates 
 \end{DoxyItemize}
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00039}{39}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00046}{46}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
@@ -91,11 +102,11 @@ Clock used for timing and frame updates.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00064}{64}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00071}{71}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_af3589702e0777ec9177a0445495bf55c}\label{structapplication__state_af3589702e0777ec9177a0445495bf55c} 
 \index{application\_state@{application\_state}!event\_system\_memory\_requirement@{event\_system\_memory\_requirement}}
@@ -109,11 +120,11 @@ The total memory requirement for the event system.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00079}{79}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00086}{86}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
 
 \Hypertarget{structapplication__state_ad9186745c2d8485ef0070a70a4b45688}\label{structapplication__state_ad9186745c2d8485ef0070a70a4b45688} 
 \index{application\_state@{application\_state}!event\_system\_state@{event\_system\_state}}
@@ -127,11 +138,11 @@ Pointer to the event system state.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00084}{84}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00091}{91}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_ae224fcec4853d590c4068314f75196c2}\label{structapplication__state_ae224fcec4853d590c4068314f75196c2} 
 \index{application\_state@{application\_state}!game\_inst@{game\_inst}}
@@ -141,11 +152,47 @@ Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+cr
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00040}{40}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00047}{47}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00469}{application\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00602}{application\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
+
+\Hypertarget{structapplication__state_a2f1a4ade88e31fd5c9d29e08a8f40a14}\label{structapplication__state_a2f1a4ade88e31fd5c9d29e08a8f40a14} 
+\index{application\_state@{application\_state}!geometry\_system\_memory\_requirement@{geometry\_system\_memory\_requirement}}
+\index{geometry\_system\_memory\_requirement@{geometry\_system\_memory\_requirement}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_memory\_requirement}{geometry\_system\_memory\_requirement}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} application\+\_\+state\+::geometry\+\_\+system\+\_\+memory\+\_\+requirement}
+
+
+
+The total memory requirement for the geometry system. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00174}{174}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
+
+\Hypertarget{structapplication__state_a19e0a2766f2b7ac0a27c624557d99349}\label{structapplication__state_a19e0a2766f2b7ac0a27c624557d99349} 
+\index{application\_state@{application\_state}!geometry\_system\_state@{geometry\_system\_state}}
+\index{geometry\_system\_state@{geometry\_system\_state}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_state}{geometry\_system\_state}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} application\+\_\+state\+::geometry\+\_\+system\+\_\+state}
+
+
+
+Pointer to the geometry system state. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00179}{179}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a4a01899027b7429dce0fa6290b927f9c}\label{structapplication__state_a4a01899027b7429dce0fa6290b927f9c} 
 \index{application\_state@{application\_state}!height@{height}}
@@ -159,11 +206,11 @@ The height of the application window client area.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00059}{59}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00066}{66}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00424}{application\+\_\+get\+\_\+framebuffer\+\_\+size()}}, and \mbox{\hyperlink{application_8c_source_l00469}{application\+\_\+on\+\_\+resized()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00557}{application\+\_\+get\+\_\+framebuffer\+\_\+size()}}, and \mbox{\hyperlink{application_8c_source_l00602}{application\+\_\+on\+\_\+resized()}}.
 
 \Hypertarget{structapplication__state_a2a9175d2ced90985c4c30c8c75857cd9}\label{structapplication__state_a2a9175d2ced90985c4c30c8c75857cd9} 
 \index{application\_state@{application\_state}!input\_system\_memory\_requirement@{input\_system\_memory\_requirement}}
@@ -177,11 +224,11 @@ The total memory requirement for the input system.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00117}{117}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00124}{124}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
 
 \Hypertarget{structapplication__state_a7949e6624c3ebfad501d54da232cc65b}\label{structapplication__state_a7949e6624c3ebfad501d54da232cc65b} 
 \index{application\_state@{application\_state}!input\_system\_state@{input\_system\_state}}
@@ -195,11 +242,11 @@ Pointer to the input system state.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00122}{122}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00129}{129}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a7c10d54c29174a16313dfc1992ccabde}\label{structapplication__state_a7c10d54c29174a16313dfc1992ccabde} 
 \index{application\_state@{application\_state}!is\_running@{is\_running}}
@@ -213,11 +260,11 @@ Indicates whether the application is currently running.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00044}{44}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00051}{51}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00429}{application\+\_\+on\+\_\+event()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00562}{application\+\_\+on\+\_\+event()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a4e7125d95754ef0c0166479931eafcd1}\label{structapplication__state_a4e7125d95754ef0c0166479931eafcd1} 
 \index{application\_state@{application\_state}!is\_suspended@{is\_suspended}}
@@ -231,11 +278,11 @@ Indicates whether the application is currently suspended.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00049}{49}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00056}{56}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00469}{application\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00602}{application\+\_\+on\+\_\+resized()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a4fc952bc899881d85115730cf7da1c5a}\label{structapplication__state_a4fc952bc899881d85115730cf7da1c5a} 
 \index{application\_state@{application\_state}!last\_time@{last\_time}}
@@ -249,11 +296,11 @@ Timestamp of the last processed frame for delta time calculation.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00069}{69}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00076}{76}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a7f3de38a5a5c937b28bce6620ebe8c48}\label{structapplication__state_a7f3de38a5a5c937b28bce6620ebe8c48} 
 \index{application\_state@{application\_state}!logging\_system\_memory\_requirement@{logging\_system\_memory\_requirement}}
@@ -267,11 +314,11 @@ The total memory requirement for the logging system.
 
 This is used to allocate memory for the logging system state. 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00105}{105}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00112}{112}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
 
 \Hypertarget{structapplication__state_aca514d3246b5d5a1973c29df11550ea1}\label{structapplication__state_aca514d3246b5d5a1973c29df11550ea1} 
 \index{application\_state@{application\_state}!logging\_system\_state@{logging\_system\_state}}
@@ -285,11 +332,47 @@ Pointer to the logging system state.
 
 This is used to manage the logging system\textquotesingle{}s internal state. 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00112}{112}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00119}{119}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
+
+\Hypertarget{structapplication__state_ab06b897021622229d53576e38b7b2e9e}\label{structapplication__state_ab06b897021622229d53576e38b7b2e9e} 
+\index{application\_state@{application\_state}!material\_system\_memory\_requirement@{material\_system\_memory\_requirement}}
+\index{material\_system\_memory\_requirement@{material\_system\_memory\_requirement}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{material\_system\_memory\_requirement}{material\_system\_memory\_requirement}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} application\+\_\+state\+::material\+\_\+system\+\_\+memory\+\_\+requirement}
+
+
+
+The total memory requirement for the material system. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00164}{164}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
+
+\Hypertarget{structapplication__state_abae75067e6da999f61336e879549d701}\label{structapplication__state_abae75067e6da999f61336e879549d701} 
+\index{application\_state@{application\_state}!material\_system\_state@{material\_system\_state}}
+\index{material\_system\_state@{material\_system\_state}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{material\_system\_state}{material\_system\_state}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} application\+\_\+state\+::material\+\_\+system\+\_\+state}
+
+
+
+Pointer to the material system state. 
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00169}{169}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_ae310c177456b1deb7275b38c0bbfa4bd}\label{structapplication__state_ae310c177456b1deb7275b38c0bbfa4bd} 
 \index{application\_state@{application\_state}!memory\_system\_memory\_requirement@{memory\_system\_memory\_requirement}}
@@ -303,11 +386,11 @@ The total memory requirement for the memory system.
 
 This is used to allocate memory for the memory system state. 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00091}{91}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00098}{98}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
 
 \Hypertarget{structapplication__state_abed0f63cc9b22798a6713c74d624a13c}\label{structapplication__state_abed0f63cc9b22798a6713c74d624a13c} 
 \index{application\_state@{application\_state}!memory\_system\_state@{memory\_system\_state}}
@@ -321,11 +404,11 @@ Pointer to the memory system state.
 
 This is used to manage the memory system\textquotesingle{}s internal state. 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00098}{98}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00105}{105}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a1ab8ec34eb94a7cb31bf3385b7c72709}\label{structapplication__state_a1ab8ec34eb94a7cb31bf3385b7c72709} 
 \index{application\_state@{application\_state}!platform\_system\_memory\_requirement@{platform\_system\_memory\_requirement}}
@@ -339,11 +422,11 @@ The total memory requirement for the platform system.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00127}{127}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00134}{134}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
 
 \Hypertarget{structapplication__state_aef6e3d3187e197b9a6f293be7d5d5591}\label{structapplication__state_aef6e3d3187e197b9a6f293be7d5d5591} 
 \index{application\_state@{application\_state}!platform\_system\_state@{platform\_system\_state}}
@@ -357,11 +440,11 @@ Pointer to the platform system state.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00132}{132}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00139}{139}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a00a59ff2c4530d84fcea3927994f1ee0}\label{structapplication__state_a00a59ff2c4530d84fcea3927994f1ee0} 
 \index{application\_state@{application\_state}!renderer\_system\_memory\_requirement@{renderer\_system\_memory\_requirement}}
@@ -375,11 +458,11 @@ The total memory requirement for the renderer system.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00137}{137}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00144}{144}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
 
 \Hypertarget{structapplication__state_a9013e0f2cacc1dca598af239a280c24b}\label{structapplication__state_a9013e0f2cacc1dca598af239a280c24b} 
 \index{application\_state@{application\_state}!renderer\_system\_state@{renderer\_system\_state}}
@@ -393,11 +476,11 @@ Pointer to the renderer system state.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00142}{142}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00149}{149}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a213ee353f6a3fbc499d583c79f369b9a}\label{structapplication__state_a213ee353f6a3fbc499d583c79f369b9a} 
 \index{application\_state@{application\_state}!systems\_allocator@{systems\_allocator}}
@@ -411,11 +494,25 @@ Allocator for internal systems.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00074}{74}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00081}{81}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
+
+\Hypertarget{structapplication__state_a8f75e45b1dbea3562d6cb52ad4358a79}\label{structapplication__state_a8f75e45b1dbea3562d6cb52ad4358a79} 
+\index{application\_state@{application\_state}!test\_geometry@{test\_geometry}}
+\index{test\_geometry@{test\_geometry}!application\_state@{application\_state}}
+\doxysubsubsection{\texorpdfstring{test\_geometry}{test\_geometry}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgeometry}{geometry}}\texorpdfstring{$\ast$}{*} application\+\_\+state\+::test\+\_\+geometry}
+
+
+
+Definition at line \mbox{\hyperlink{application_8c_source_l00182}{182}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}, and \mbox{\hyperlink{application_8c_source_l00254}{event\+\_\+on\+\_\+debug\+\_\+event()}}.
 
 \Hypertarget{structapplication__state_af90026c9302b5120c11d1fb6e4958326}\label{structapplication__state_af90026c9302b5120c11d1fb6e4958326} 
 \index{application\_state@{application\_state}!texture\_system\_memory\_requirement@{texture\_system\_memory\_requirement}}
@@ -429,11 +526,11 @@ The total memory requirement for the texture system.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00147}{147}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00154}{154}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
 
 \Hypertarget{structapplication__state_ab5df8d1707388e92f68069b396fc3acb}\label{structapplication__state_ab5df8d1707388e92f68069b396fc3acb} 
 \index{application\_state@{application\_state}!texture\_system\_state@{texture\_system\_state}}
@@ -447,11 +544,11 @@ Pointer to the texture system state.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00152}{152}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00159}{159}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00308}{application\+\_\+run()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, and \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
 
 \Hypertarget{structapplication__state_a5c49a4da818b7bae26b50df80c889279}\label{structapplication__state_a5c49a4da818b7bae26b50df80c889279} 
 \index{application\_state@{application\_state}!width@{width}}
@@ -465,11 +562,11 @@ The width of the application window client area.
 
 
 
-Definition at line \mbox{\hyperlink{application_8c_source_l00054}{54}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
+Definition at line \mbox{\hyperlink{application_8c_source_l00061}{61}} of file \mbox{\hyperlink{application_8c_source}{application.\+c}}.
 
 
 
-Referenced by \mbox{\hyperlink{application_8c_source_l00220}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00424}{application\+\_\+get\+\_\+framebuffer\+\_\+size()}}, and \mbox{\hyperlink{application_8c_source_l00469}{application\+\_\+on\+\_\+resized()}}.
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}, \mbox{\hyperlink{application_8c_source_l00557}{application\+\_\+get\+\_\+framebuffer\+\_\+size()}}, and \mbox{\hyperlink{application_8c_source_l00602}{application\+\_\+on\+\_\+resized()}}.
 
 
 

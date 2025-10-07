@@ -1,0 +1,73 @@
+\doxysection{material\+\_\+reference Struct Reference}
+\hypertarget{structmaterial__reference}{}\label{structmaterial__reference}\index{material\_reference@{material\_reference}}
+
+
+Internal structure to track material references and auto-\/release status.  
+
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \mbox{\hyperlink{structmaterial__reference_a12d1bbf587c5ee5a81d7489c230d69fa}{reference\+\_\+count}}
+\item 
+\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} \mbox{\hyperlink{structmaterial__reference_ab92f10f29773c549f882d694abd1ad00}{handle}}
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{structmaterial__reference_ae286fcd2cae0e228aef7b853ea089e72}{auto\+\_\+release}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Internal structure to track material references and auto-\/release status. 
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00054}{54}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmaterial__reference_ae286fcd2cae0e228aef7b853ea089e72}\label{structmaterial__reference_ae286fcd2cae0e228aef7b853ea089e72} 
+\index{material\_reference@{material\_reference}!auto\_release@{auto\_release}}
+\index{auto\_release@{auto\_release}!material\_reference@{material\_reference}}
+\doxysubsubsection{\texorpdfstring{auto\_release}{auto\_release}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} material\+\_\+reference\+::auto\+\_\+release}
+
+Auto-\/release flag indicating if the material should be automatically released when no longer referenced. 
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00060}{60}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{material__system_8c_source_l00255}{material\+\_\+system\+\_\+release()}}.
+
+\Hypertarget{structmaterial__reference_ab92f10f29773c549f882d694abd1ad00}\label{structmaterial__reference_ab92f10f29773c549f882d694abd1ad00} 
+\index{material\_reference@{material\_reference}!handle@{handle}}
+\index{handle@{handle}!material\_reference@{material\_reference}}
+\doxysubsubsection{\texorpdfstring{handle}{handle}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} material\+\_\+reference\+::handle}
+
+Unique handle identifying the material. 
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00058}{58}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{material__system_8c_source_l00255}{material\+\_\+system\+\_\+release()}}.
+
+\Hypertarget{structmaterial__reference_a12d1bbf587c5ee5a81d7489c230d69fa}\label{structmaterial__reference_a12d1bbf587c5ee5a81d7489c230d69fa} 
+\index{material\_reference@{material\_reference}!reference\_count@{reference\_count}}
+\index{reference\_count@{reference\_count}!material\_reference@{material\_reference}}
+\doxysubsubsection{\texorpdfstring{reference\_count}{reference\_count}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} material\+\_\+reference\+::reference\+\_\+count}
+
+Number of active references to the material. 
+
+Definition at line \mbox{\hyperlink{material__system_8c_source_l00056}{56}} of file \mbox{\hyperlink{material__system_8c_source}{material\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}, \mbox{\hyperlink{material__system_8c_source_l00099}{material\+\_\+system\+\_\+initialize()}}, and \mbox{\hyperlink{material__system_8c_source_l00255}{material\+\_\+system\+\_\+release()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/systems/\mbox{\hyperlink{material__system_8c}{material\+\_\+system.\+c}}\end{DoxyCompactItemize}

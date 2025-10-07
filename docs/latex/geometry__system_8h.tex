@@ -1,0 +1,315 @@
+\doxysection{engine/src/systems/geometry\+\_\+system.h File Reference}
+\hypertarget{geometry__system_8h}{}\label{geometry__system_8h}\index{engine/src/systems/geometry\_system.h@{engine/src/systems/geometry\_system.h}}
+
+
+Geometry management system.  
+
+
+{\ttfamily \#include "{}renderer/renderer\+\_\+types.\+inl"{}}\newline
+Include dependency graph for geometry\+\_\+system.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{geometry__system_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{geometry__system_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgeometry__system__config}{geometry\+\_\+system\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Configuration structure for initializing the geometry system. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structgeometry__config}{geometry\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Configuration structure for creating a geometry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{geometry__system_8h_a56651adc6ffac9c741cd4b4ad9e1b079}{DEFAULT\+\_\+\+GEOMETRY\+\_\+\+NAME}}~"{}default"{}
+\begin{DoxyCompactList}\small\item\em Default geometry name used when a requested geometry is not found. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structgeometry__system__config}{geometry\+\_\+system\+\_\+config}} \mbox{\hyperlink{geometry__system_8h_a14fbf6f88d2387996c733d0c888dce24}{geometry\+\_\+system\+\_\+config}}
+\item 
+typedef struct \mbox{\hyperlink{structgeometry__config}{geometry\+\_\+config}} \mbox{\hyperlink{geometry__system_8h_a48d8dd5247f7f942ebcc29f74b179a1c}{geometry\+\_\+config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{geometry__system_8h_a317d7b68bd7e7818e63bf582b2698b09}{geometry\+\_\+system\+\_\+initialize}} (\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}memory\+\_\+requirement, void \texorpdfstring{$\ast$}{*}state, \mbox{\hyperlink{structgeometry__system__config}{geometry\+\_\+system\+\_\+config}} config)
+\begin{DoxyCompactList}\small\item\em Initializes the geometry system with the provided configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{geometry__system_8h_a55191f79e172eccf0c6637e252f50797}{geometry\+\_\+system\+\_\+shutdown}} (void \texorpdfstring{$\ast$}{*}state)
+\begin{DoxyCompactList}\small\item\em Shuts down the geometry system and releases any allocated resources. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{geometry__system_8h_ae0e4e5cb2d9716bfb256919854537738}{geometry\+\_\+system\+\_\+acquire\+\_\+by\+\_\+id}} (\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} id)
+\begin{DoxyCompactList}\small\item\em Acquires an existing geometry by id. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{geometry__system_8h_aa3992a52627669573968c86505792e5c}{geometry\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config}} (\mbox{\hyperlink{structgeometry__config}{geometry\+\_\+config}} config, \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} auto\+\_\+release)
+\begin{DoxyCompactList}\small\item\em Registers and acquires a new geometry using the given config. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{geometry__system_8h_a2f9fd1495f9f9903d9b1a8003cf5417d}{geometry\+\_\+system\+\_\+release}} (\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structgeometry}{geometry}})
+\begin{DoxyCompactList}\small\item\em Releases a reference to the provided geometry. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{geometry__system_8h_a966ac21fa7a33e9a04bf444938d7cb94}{geometry\+\_\+system\+\_\+get\+\_\+default}} ()
+\begin{DoxyCompactList}\small\item\em Obtains a pointer to the default geometry. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgeometry__config}{geometry\+\_\+config}} \mbox{\hyperlink{geometry__system_8h_af4df3267d03b54612f8a61a647fceaba}{geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config}} (\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} width, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} height, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} x\+\_\+segment\+\_\+count, \mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}} y\+\_\+segment\+\_\+count, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} tile\+\_\+x, \mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}} tile\+\_\+y, const char \texorpdfstring{$\ast$}{*}name, const char \texorpdfstring{$\ast$}{*}material\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Generates configuration for plane geometries given the provided parameters. NOTE\+: vertex and index arrays are dynamically allocated and should be freed upon object disposal. Thus, this should not be considered production code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Geometry management system. 
+
+This module provides functionality to manage geometry resources within the engine. It supports loading, acquiring, and releasing geometries, as well as automatic cleanup of unused resources.
+
+Usage\+:
+\begin{DoxyItemize}
+\item Initialize the geometry system with {\ttfamily \doxylink{geometry__system_8h_a317d7b68bd7e7818e63bf582b2698b09}{geometry\+\_\+system\+\_\+initialize()}}, providing configuration options.
+\item Acquire geometries by name using {\ttfamily geometry\+\_\+system\+\_\+acquire()}. If the geometry is not already loaded, it will be created with default properties.
+\item Release geometries using {\ttfamily \doxylink{geometry__system_8h_a2f9fd1495f9f9903d9b1a8003cf5417d}{geometry\+\_\+system\+\_\+release()}}. If a geometry was marked for auto-\/release, it will be freed when no longer in use.
+\item Shutdown the geometry system with {\ttfamily \doxylink{geometry__system_8h_a55191f79e172eccf0c6637e252f50797}{geometry\+\_\+system\+\_\+shutdown()}} to free all resources. 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{geometry__system_8h_source}{geometry\+\_\+system.\+h}}.
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{geometry__system_8h_a56651adc6ffac9c741cd4b4ad9e1b079}\label{geometry__system_8h_a56651adc6ffac9c741cd4b4ad9e1b079} 
+\index{geometry\_system.h@{geometry\_system.h}!DEFAULT\_GEOMETRY\_NAME@{DEFAULT\_GEOMETRY\_NAME}}
+\index{DEFAULT\_GEOMETRY\_NAME@{DEFAULT\_GEOMETRY\_NAME}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_GEOMETRY\_NAME}{DEFAULT\_GEOMETRY\_NAME}}
+{\footnotesize\ttfamily \#define DEFAULT\+\_\+\+GEOMETRY\+\_\+\+NAME~"{}default"{}}
+
+
+
+Default geometry name used when a requested geometry is not found. 
+
+
+
+Definition at line \mbox{\hyperlink{geometry__system_8h_source_l00025}{25}} of file \mbox{\hyperlink{geometry__system_8h_source}{geometry\+\_\+system.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{geometry__system_8h_a48d8dd5247f7f942ebcc29f74b179a1c}\label{geometry__system_8h_a48d8dd5247f7f942ebcc29f74b179a1c} 
+\index{geometry\_system.h@{geometry\_system.h}!geometry\_config@{geometry\_config}}
+\index{geometry\_config@{geometry\_config}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{geometry\_config}{geometry\_config}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgeometry__config}{geometry\+\_\+config}} \mbox{\hyperlink{structgeometry__config}{geometry\+\_\+config}}}
+
+\Hypertarget{geometry__system_8h_a14fbf6f88d2387996c733d0c888dce24}\label{geometry__system_8h_a14fbf6f88d2387996c733d0c888dce24} 
+\index{geometry\_system.h@{geometry\_system.h}!geometry\_system\_config@{geometry\_system\_config}}
+\index{geometry\_system\_config@{geometry\_system\_config}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_config}{geometry\_system\_config}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgeometry__system__config}{geometry\+\_\+system\+\_\+config}} \mbox{\hyperlink{structgeometry__system__config}{geometry\+\_\+system\+\_\+config}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{geometry__system_8h_ae0e4e5cb2d9716bfb256919854537738}\label{geometry__system_8h_ae0e4e5cb2d9716bfb256919854537738} 
+\index{geometry\_system.h@{geometry\_system.h}!geometry\_system\_acquire\_by\_id@{geometry\_system\_acquire\_by\_id}}
+\index{geometry\_system\_acquire\_by\_id@{geometry\_system\_acquire\_by\_id}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_acquire\_by\_id()}{geometry\_system\_acquire\_by\_id()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*} geometry\+\_\+system\+\_\+acquire\+\_\+by\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{id }\end{DoxyParamCaption})}
+
+
+
+Acquires an existing geometry by id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The geometry identifier to acquire by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the acquired geometry or nullptr if failed. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{geometry__system_8c_source_l00129}{129}} of file \mbox{\hyperlink{geometry__system_8c_source}{geometry\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{geometry__system_8c_source_l00036}{geometry\+\_\+reference\+::geometry}}, \mbox{\hyperlink{resource__types_8h_source_l00100}{geometry\+::id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{geometry__system_8c_source_l00034}{geometry\+\_\+reference\+::reference\+\_\+count}}, \mbox{\hyperlink{geometry__system_8c_source_l00054}{geometry\+\_\+system\+\_\+state\+::registered\+\_\+geometries}}, and \mbox{\hyperlink{geometry__system_8c_source_l00058}{state\+\_\+ptr}}.
+
+\Hypertarget{geometry__system_8h_aa3992a52627669573968c86505792e5c}\label{geometry__system_8h_aa3992a52627669573968c86505792e5c} 
+\index{geometry\_system.h@{geometry\_system.h}!geometry\_system\_acquire\_from\_config@{geometry\_system\_acquire\_from\_config}}
+\index{geometry\_system\_acquire\_from\_config@{geometry\_system\_acquire\_from\_config}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_acquire\_from\_config()}{geometry\_system\_acquire\_from\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*} geometry\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgeometry__config}{geometry\+\_\+config}}}]{config,  }\item[{\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}}}]{auto\+\_\+release }\end{DoxyParamCaption})}
+
+
+
+Registers and acquires a new geometry using the given config. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & The geometry configuration. \\
+\hline
+{\em auto\+\_\+release} & Indicates if the acquired geometry should be unloaded when its reference count reaches 0. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the acquired geometry or nullptr if failed. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{geometry__system_8c_source_l00140}{140}} of file \mbox{\hyperlink{geometry__system_8c_source}{geometry\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{geometry__system_8c_source_l00038}{geometry\+\_\+reference\+::auto\+\_\+release}}, \mbox{\hyperlink{geometry__system_8c_source_l00048}{geometry\+\_\+system\+\_\+state\+::config}}, \mbox{\hyperlink{geometry__system_8c_source_l00201}{create\+\_\+geometry()}}, \mbox{\hyperlink{geometry__system_8c_source_l00036}{geometry\+\_\+reference\+::geometry}}, \mbox{\hyperlink{resource__types_8h_source_l00100}{geometry\+::id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00165}{KERROR}}, \mbox{\hyperlink{geometry__system_8h_source_l00039}{geometry\+\_\+system\+\_\+config\+::max\+\_\+geometry\+\_\+count}}, \mbox{\hyperlink{geometry__system_8c_source_l00034}{geometry\+\_\+reference\+::reference\+\_\+count}}, \mbox{\hyperlink{geometry__system_8c_source_l00054}{geometry\+\_\+system\+\_\+state\+::registered\+\_\+geometries}}, and \mbox{\hyperlink{geometry__system_8c_source_l00058}{state\+\_\+ptr}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
+
+\Hypertarget{geometry__system_8h_af4df3267d03b54612f8a61a647fceaba}\label{geometry__system_8h_af4df3267d03b54612f8a61a647fceaba} 
+\index{geometry\_system.h@{geometry\_system.h}!geometry\_system\_generate\_plane\_config@{geometry\_system\_generate\_plane\_config}}
+\index{geometry\_system\_generate\_plane\_config@{geometry\_system\_generate\_plane\_config}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_generate\_plane\_config()}{geometry\_system\_generate\_plane\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgeometry__config}{geometry\+\_\+config}} geometry\+\_\+system\+\_\+generate\+\_\+plane\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{width,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{height,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{x\+\_\+segment\+\_\+count,  }\item[{\mbox{\hyperlink{defines_8h_a10e94b422ef0c20dcdec20d31a1f5049}{u32}}}]{y\+\_\+segment\+\_\+count,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{tile\+\_\+x,  }\item[{\mbox{\hyperlink{defines_8h_a5f6906312a689f27d70e9d086649d3fd}{f32}}}]{tile\+\_\+y,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{name,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{material\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Generates configuration for plane geometries given the provided parameters. NOTE\+: vertex and index arrays are dynamically allocated and should be freed upon object disposal. Thus, this should not be considered production code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The overall width of the plane. Must be non-\/zero. \\
+\hline
+{\em height} & The overall height of the plane. Must be non-\/zero. \\
+\hline
+{\em x\+\_\+segment\+\_\+count} & The number of segments along the x-\/axis in the plane. Must be non-\/zero. \\
+\hline
+{\em y\+\_\+segment\+\_\+count} & The number of segments along the y-\/axis in the plane. Must be non-\/zero. \\
+\hline
+{\em tile\+\_\+x} & The number of times the texture should tile across the plane on the x-\/axis. Must be non-\/zero. \\
+\hline
+{\em tile\+\_\+y} & The number of times the texture should tile across the plane on the y-\/axis. Must be non-\/zero. \\
+\hline
+{\em name} & The name of the generated geometry. \\
+\hline
+{\em material\+\_\+name} & The name of the material to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A geometry configuration which can then be fed into \doxylink{geometry__system_8h_aa3992a52627669573968c86505792e5c}{geometry\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{geometry__system_8c_source_l00280}{280}} of file \mbox{\hyperlink{geometry__system_8c_source}{geometry\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{geometry__system_8h_source_l00025}{DEFAULT\+\_\+\+GEOMETRY\+\_\+\+NAME}}, \mbox{\hyperlink{material__system_8h_source_l00025}{DEFAULT\+\_\+\+MATERIAL\+\_\+\+NAME}}, \mbox{\hyperlink{resource__types_8h_source_l00021}{GEOMETRY\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}, \mbox{\hyperlink{geometry__system_8h_source_l00053}{geometry\+\_\+config\+::index\+\_\+count}}, \mbox{\hyperlink{geometry__system_8h_source_l00055}{geometry\+\_\+config\+::indices}}, \mbox{\hyperlink{kmemory_8c_source_l00122}{kallocate()}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{geometry__system_8h_source_l00059}{geometry\+\_\+config\+::material\+\_\+name}}, \mbox{\hyperlink{resource__types_8h_source_l00018}{MATERIAL\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}, \mbox{\hyperlink{kmemory_8h_source_l00029}{MEMORY\+\_\+\+TAG\+\_\+\+ARRAY}}, \mbox{\hyperlink{geometry__system_8h_source_l00057}{geometry\+\_\+config\+::name}}, \mbox{\hyperlink{math__types_8h_source_l00175}{vertex\+\_\+3d\+::position}}, \mbox{\hyperlink{kstring_8c_source_l00026}{string\+\_\+length()}}, \mbox{\hyperlink{kstring_8c_source_l00080}{string\+\_\+ncopy()}}, \mbox{\hyperlink{math__types_8h_source_l00177}{vertex\+\_\+3d\+::texcoord}}, \mbox{\hyperlink{geometry__system_8h_source_l00049}{geometry\+\_\+config\+::vertex\+\_\+count}}, \mbox{\hyperlink{geometry__system_8h_source_l00051}{geometry\+\_\+config\+::vertices}}, \mbox{\hyperlink{math__types_8h_source_l00036}{vec2\+\_\+u\+::x}}, \mbox{\hyperlink{math__types_8h_source_l00068}{vec3\+\_\+u\+::x}}, \mbox{\hyperlink{math__types_8h_source_l00040}{vec2\+\_\+u\+::y}}, and \mbox{\hyperlink{math__types_8h_source_l00072}{vec3\+\_\+u\+::y}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
+
+\Hypertarget{geometry__system_8h_a966ac21fa7a33e9a04bf444938d7cb94}\label{geometry__system_8h_a966ac21fa7a33e9a04bf444938d7cb94} 
+\index{geometry\_system.h@{geometry\_system.h}!geometry\_system\_get\_default@{geometry\_system\_get\_default}}
+\index{geometry\_system\_get\_default@{geometry\_system\_get\_default}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_get\_default()}{geometry\_system\_get\_default()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*} geometry\+\_\+system\+\_\+get\+\_\+default (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Obtains a pointer to the default geometry. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the default geometry. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{geometry__system_8c_source_l00192}{192}} of file \mbox{\hyperlink{geometry__system_8c_source}{geometry\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{geometry__system_8c_source_l00051}{geometry\+\_\+system\+\_\+state\+::default\+\_\+geometry}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, and \mbox{\hyperlink{geometry__system_8c_source_l00058}{state\+\_\+ptr}}.
+
+\Hypertarget{geometry__system_8h_a317d7b68bd7e7818e63bf582b2698b09}\label{geometry__system_8h_a317d7b68bd7e7818e63bf582b2698b09} 
+\index{geometry\_system.h@{geometry\_system.h}!geometry\_system\_initialize@{geometry\_system\_initialize}}
+\index{geometry\_system\_initialize@{geometry\_system\_initialize}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_initialize()}{geometry\_system\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} geometry\+\_\+system\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{defines_8h_ad758b7a5c3f18ed79d2fcd23d9f16357}{u64}} \texorpdfstring{$\ast$}{*}}]{memory\+\_\+requirement,  }\item[{void \texorpdfstring{$\ast$}{*}}]{state,  }\item[{\mbox{\hyperlink{structgeometry__system__config}{geometry\+\_\+system\+\_\+config}}}]{config }\end{DoxyParamCaption})}
+
+
+
+Initializes the geometry system with the provided configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em memory\+\_\+requirement} & Pointer to a variable that will be set to the required memory size for the system. \\
+\hline
+{\em state} & Pointer to a pre-\/allocated block of memory for the system state. If nullptr, the function will only calculate the memory requirement. \\
+\hline
+{\em config} & Configuration parameters for initializing the system. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if initialization was successful, False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{geometry__system_8c_source_l00087}{87}} of file \mbox{\hyperlink{geometry__system_8c_source}{geometry\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{geometry__system_8c_source_l00048}{geometry\+\_\+system\+\_\+state\+::config}}, \mbox{\hyperlink{geometry__system_8c_source_l00240}{create\+\_\+default\+\_\+geometry()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{resource__types_8h_source_l00102}{geometry\+::generation}}, \mbox{\hyperlink{geometry__system_8c_source_l00036}{geometry\+\_\+reference\+::geometry}}, \mbox{\hyperlink{resource__types_8h_source_l00100}{geometry\+::id}}, \mbox{\hyperlink{resource__types_8h_source_l00104}{geometry\+::internal\+\_\+id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{geometry__system_8h_source_l00039}{geometry\+\_\+system\+\_\+config\+::max\+\_\+geometry\+\_\+count}}, \mbox{\hyperlink{geometry__system_8c_source_l00054}{geometry\+\_\+system\+\_\+state\+::registered\+\_\+geometries}}, \mbox{\hyperlink{geometry__system_8c_source_l00058}{state\+\_\+ptr}}, and \mbox{\hyperlink{defines_8h_source_l00120}{True}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00297}{application\+\_\+create()}}.
+
+\Hypertarget{geometry__system_8h_a2f9fd1495f9f9903d9b1a8003cf5417d}\label{geometry__system_8h_a2f9fd1495f9f9903d9b1a8003cf5417d} 
+\index{geometry\_system.h@{geometry\_system.h}!geometry\_system\_release@{geometry\_system\_release}}
+\index{geometry\_system\_release@{geometry\_system\_release}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_release()}{geometry\_system\_release()}}
+{\footnotesize\ttfamily void geometry\+\_\+system\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgeometry}{geometry}} \texorpdfstring{$\ast$}{*}}]{geometry }\end{DoxyParamCaption})}
+
+
+
+Releases a reference to the provided geometry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em geometry} & The geometry to be released. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{geometry__system_8c_source_l00166}{166}} of file \mbox{\hyperlink{geometry__system_8c_source}{geometry\+\_\+system.\+c}}.
+
+
+
+References \mbox{\hyperlink{geometry__system_8c_source_l00038}{geometry\+\_\+reference\+::auto\+\_\+release}}, \mbox{\hyperlink{geometry__system_8c_source_l00225}{destroy\+\_\+geometry()}}, \mbox{\hyperlink{defines_8h_source_l00122}{False}}, \mbox{\hyperlink{geometry__system_8c_source_l00036}{geometry\+\_\+reference\+::geometry}}, \mbox{\hyperlink{resource__types_8h_source_l00100}{geometry\+::id}}, \mbox{\hyperlink{defines_8h_source_l00128}{INVALID\+\_\+\+ID}}, \mbox{\hyperlink{logger_8h_source_l00152}{KFATAL}}, \mbox{\hyperlink{logger_8h_source_l00179}{KWARN}}, \mbox{\hyperlink{geometry__system_8c_source_l00034}{geometry\+\_\+reference\+::reference\+\_\+count}}, \mbox{\hyperlink{geometry__system_8c_source_l00054}{geometry\+\_\+system\+\_\+state\+::registered\+\_\+geometries}}, and \mbox{\hyperlink{geometry__system_8c_source_l00058}{state\+\_\+ptr}}.
+
+\Hypertarget{geometry__system_8h_a55191f79e172eccf0c6637e252f50797}\label{geometry__system_8h_a55191f79e172eccf0c6637e252f50797} 
+\index{geometry\_system.h@{geometry\_system.h}!geometry\_system\_shutdown@{geometry\_system\_shutdown}}
+\index{geometry\_system\_shutdown@{geometry\_system\_shutdown}!geometry\_system.h@{geometry\_system.h}}
+\doxysubsubsection{\texorpdfstring{geometry\_system\_shutdown()}{geometry\_system\_shutdown()}}
+{\footnotesize\ttfamily void geometry\+\_\+system\+\_\+shutdown (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{state }\end{DoxyParamCaption})}
+
+
+
+Shuts down the geometry system and releases any allocated resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Pointer to the system state to be shut down. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{geometry__system_8c_source_l00125}{125}} of file \mbox{\hyperlink{geometry__system_8c_source}{geometry\+\_\+system.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{application_8c_source_l00425}{application\+\_\+run()}}.
+

@@ -14,18 +14,18 @@ var searchData=
   ['application_20layer_20strong_11',['4. &lt;strong&gt;Application Layer&lt;/strong&gt;',['../index.html#autotoc_md12',1,'']]],
   ['application_2ec_12',['application.c',['../application_8c.html',1,'']]],
   ['application_2eh_13',['application.h',['../application_8h.html',1,'']]],
-  ['application_5fconfig_14',['application_config',['../application_8h.html#a0d5601d102f2aa559126417368531828',1,'application_config:&#160;application.h'],['../structapplication__config.html',1,'application_config']]],
-  ['application_5fcreate_15',['application_create',['../application_8c.html#af0ccecbeef900f30b0b734eb020574ef',1,'application_create(game *game_inst):&#160;application.c'],['../application_8h.html#aa05477b1f7e65b39439a7bacf89418d8',1,'application_create(struct game *game_inst):&#160;application.c']]],
-  ['application_5fget_5fframebuffer_5fsize_16',['application_get_framebuffer_size',['../application_8h.html#a8b27580c0175a587af977c52f49cb92f',1,'application_get_framebuffer_size(u32 *width, u32 *height):&#160;application.c'],['../application_8c.html#a8b27580c0175a587af977c52f49cb92f',1,'application_get_framebuffer_size(u32 *width, u32 *height):&#160;application.c']]],
+  ['application_5fconfig_14',['application_config',['../structapplication__config.html',1,'application_config'],['../application_8h.html#a0d5601d102f2aa559126417368531828',1,'application_config:&#160;application.h']]],
+  ['application_5fcreate_15',['application_create',['../application_8h.html#aa05477b1f7e65b39439a7bacf89418d8',1,'application_create(struct game *game_inst):&#160;application.c'],['../application_8c.html#af0ccecbeef900f30b0b734eb020574ef',1,'application_create(game *game_inst):&#160;application.c']]],
+  ['application_5fget_5fframebuffer_5fsize_16',['application_get_framebuffer_size',['../application_8c.html#a8b27580c0175a587af977c52f49cb92f',1,'application_get_framebuffer_size(u32 *width, u32 *height):&#160;application.c'],['../application_8h.html#a8b27580c0175a587af977c52f49cb92f',1,'application_get_framebuffer_size(u32 *width, u32 *height):&#160;application.c']]],
   ['application_5fon_5fevent_17',['application_on_event',['../application_8c.html#a464af30d5e798df5a25d3c211d5c120f',1,'application.c']]],
   ['application_5fon_5fkey_18',['application_on_key',['../application_8c.html#a193a750e12452924346788eb62a3a327',1,'application.c']]],
   ['application_5fon_5fresized_19',['application_on_resized',['../application_8c.html#a0aadbf7eebc34521742f68cbcc97e4c6',1,'application.c']]],
   ['application_5frun_20',['application_run',['../application_8c.html#a08c8575858e12aa5260a1cc0101df8bd',1,'application_run():&#160;application.c'],['../application_8h.html#a08c8575858e12aa5260a1cc0101df8bd',1,'application_run():&#160;application.c']]],
-  ['application_5fstate_21',['application_state',['../application_8c.html#a25603a9a2e5d3bf9c73d2bd2c3428655',1,'application_state:&#160;application.c'],['../structgame.html#abbde50654ea1c9e81c5eb9611b0dc7ee',1,'game::application_state'],['../structapplication__state.html',1,'application_state']]],
+  ['application_5fstate_21',['application_state',['../structapplication__state.html',1,'application_state'],['../application_8c.html#a25603a9a2e5d3bf9c73d2bd2c3428655',1,'application_state:&#160;application.c'],['../structgame.html#abbde50654ea1c9e81c5eb9611b0dc7ee',1,'game::application_state']]],
   ['architecture_22',['🖼 Architecture',['../index.html#autotoc_md8',1,'']]],
   ['architecture_20render_20layer_23',['📦 High-Level Architecture (Render Layer)',['../index.html#autotoc_md37',1,'']]],
   ['asserts_2eh_24',['asserts.h',['../asserts_8h.html',1,'']]],
   ['attachment_5fdescription_5fcount_25',['ATTACHMENT_DESCRIPTION_COUNT',['../vulkan__renderpass_8c.html#a37321a6dab9f6bb0a8d877e0b15e4fed',1,'vulkan_renderpass.c']]],
   ['attribute_5fcount_26',['ATTRIBUTE_COUNT',['../vulkan__material__shader_8c.html#a56289c7c829da6e2f4716327dd9352b2',1,'vulkan_material_shader.c']]],
-  ['auto_5frelease_27',['auto_release',['../structtexture__reference.html#a45e8f00d28d2e0caa1bdd185b564fb99',1,'texture_reference']]]
+  ['auto_5frelease_27',['auto_release',['../structmaterial__reference.html#ae286fcd2cae0e228aef7b853ea089e72',1,'material_reference::auto_release'],['../structgeometry__reference.html#ae33c8ac2b76a6acc215b706f48d639ba',1,'geometry_reference::auto_release'],['../structmaterial__config.html#aac5176ac81b536e3069286a49ebc09be',1,'material_config::auto_release'],['../structtexture__reference.html#a45e8f00d28d2e0caa1bdd185b564fb99',1,'texture_reference::auto_release']]]
 ];

@@ -1,0 +1,103 @@
+\doxysection{material\+\_\+config Struct Reference}
+\hypertarget{structmaterial__config}{}\label{structmaterial__config}\index{material\_config@{material\_config}}
+
+
+Configuration for creating or loading a material.  
+
+
+
+
+{\ttfamily \#include $<$material\+\_\+system.\+h$>$}
+
+
+
+Collaboration diagram for material\+\_\+config\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{structmaterial__config__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structmaterial__config_a44470af1a4d4f549d85b39707ad97768}{name}} \mbox{[}\mbox{\hyperlink{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7}{MATERIAL\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}
+\item 
+\mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} \mbox{\hyperlink{structmaterial__config_aac5176ac81b536e3069286a49ebc09be}{auto\+\_\+release}}
+\item 
+\mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} \mbox{\hyperlink{structmaterial__config_ae24f1f2696c5743beb09a487d0e2e59b}{diffuse\+\_\+color}}
+\item 
+char \mbox{\hyperlink{structmaterial__config_a7031da2bb93b1b4957fa3f7f5c219804}{diffuse\+\_\+map\+\_\+name}} \mbox{[}\mbox{\hyperlink{resource__types_8h_aa1f1d42c2919da754694e18cae601e81}{TEXTURE\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration for creating or loading a material. 
+
+Definition at line \mbox{\hyperlink{material__system_8h_source_l00042}{42}} of file \mbox{\hyperlink{material__system_8h_source}{material\+\_\+system.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmaterial__config_aac5176ac81b536e3069286a49ebc09be}\label{structmaterial__config_aac5176ac81b536e3069286a49ebc09be} 
+\index{material\_config@{material\_config}!auto\_release@{auto\_release}}
+\index{auto\_release@{auto\_release}!material\_config@{material\_config}}
+\doxysubsubsection{\texorpdfstring{auto\_release}{auto\_release}}
+{\footnotesize\ttfamily \mbox{\hyperlink{defines_8h_a3a58feb08f4f45ee137ec358217c3270}{b8}} material\+\_\+config\+::auto\+\_\+release}
+
+Auto-\/release flag. 
+
+Definition at line \mbox{\hyperlink{material__system_8h_source_l00046}{46}} of file \mbox{\hyperlink{material__system_8h_source}{material\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}.
+
+\Hypertarget{structmaterial__config_ae24f1f2696c5743beb09a487d0e2e59b}\label{structmaterial__config_ae24f1f2696c5743beb09a487d0e2e59b} 
+\index{material\_config@{material\_config}!diffuse\_color@{diffuse\_color}}
+\index{diffuse\_color@{diffuse\_color}!material\_config@{material\_config}}
+\doxysubsubsection{\texorpdfstring{diffuse\_color}{diffuse\_color}}
+{\footnotesize\ttfamily \mbox{\hyperlink{math__types_8h_a6d07267a855fd8e0194ffcb3128396cd}{vec4}} material\+\_\+config\+::diffuse\+\_\+color}
+
+Diffuse color of the material (used if no texture is assigned). 
+
+Definition at line \mbox{\hyperlink{material__system_8h_source_l00048}{48}} of file \mbox{\hyperlink{material__system_8h_source}{material\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}, and \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}.
+
+\Hypertarget{structmaterial__config_a7031da2bb93b1b4957fa3f7f5c219804}\label{structmaterial__config_a7031da2bb93b1b4957fa3f7f5c219804} 
+\index{material\_config@{material\_config}!diffuse\_map\_name@{diffuse\_map\_name}}
+\index{diffuse\_map\_name@{diffuse\_map\_name}!material\_config@{material\_config}}
+\doxysubsubsection{\texorpdfstring{diffuse\_map\_name}{diffuse\_map\_name}}
+{\footnotesize\ttfamily char material\+\_\+config\+::diffuse\+\_\+map\+\_\+name\mbox{[}\mbox{\hyperlink{resource__types_8h_aa1f1d42c2919da754694e18cae601e81}{TEXTURE\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}}
+
+Name of the diffuse texture map to use. 
+
+Definition at line \mbox{\hyperlink{material__system_8h_source_l00050}{50}} of file \mbox{\hyperlink{material__system_8h_source}{material\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}, and \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}.
+
+\Hypertarget{structmaterial__config_a44470af1a4d4f549d85b39707ad97768}\label{structmaterial__config_a44470af1a4d4f549d85b39707ad97768} 
+\index{material\_config@{material\_config}!name@{name}}
+\index{name@{name}!material\_config@{material\_config}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char material\+\_\+config\+::name\mbox{[}\mbox{\hyperlink{resource__types_8h_a86c7ee3b9964a925fad1f79c84d7d8f7}{MATERIAL\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+LENGTH}}\mbox{]}}
+
+Name of the material. 
+
+Definition at line \mbox{\hyperlink{material__system_8h_source_l00044}{44}} of file \mbox{\hyperlink{material__system_8h_source}{material\+\_\+system.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{material__system_8c_source_l00364}{load\+\_\+configuration\+\_\+file()}}, \mbox{\hyperlink{material__system_8c_source_l00290}{load\+\_\+material()}}, and \mbox{\hyperlink{material__system_8c_source_l00190}{material\+\_\+system\+\_\+acquire\+\_\+from\+\_\+config()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+engine/src/systems/\mbox{\hyperlink{material__system_8h}{material\+\_\+system.\+h}}\end{DoxyCompactItemize}
