@@ -59,16 +59,29 @@ void vulkan_material_shader_use(vulkan_context* context, struct vulkan_material_
 void vulkan_material_shader_update_global_state(vulkan_context* context, struct vulkan_material_shader* shader, f32 delta_time);
 
 /**
- * @brief Updates the model matrix for a specific object in the Vulkan object shader.
+ * @brief Sets the model matrix for the Vulkan object shader using push constants.
  *
- * This function uses push constants to update the model transformation matrix
- * for a specific object being rendered, allowing for efficient per-object transformations.
+ * This function updates the model matrix used for transforming vertices in the vertex shader.
+ * It utilizes push constants for efficient updates without needing to modify uniform buffers.
+ *
+ * @param context The Vulkan context containing command buffers and frame information.
+ * @param shader Pointer to the vulkan_material_shader structure whose model matrix is to be set.
+ * @param model The model matrix to be applied to the shader.
+ */
+void vulkan_material_shader_set_model(vulkan_context* context, struct vulkan_material_shader* shader, mat4 model);
+
+/**
+ * @brief Updates per-object descriptor data (UBO + texture) and binds the descriptor set.
+ *
+ * This function updates the uniform buffer object (UBO) and texture bindings
+ * for a specific object being rendered, and binds the appropriate descriptor set
+ * for the current frame. It should be called once per object before drawing.
  *
  * @param context The Vulkan context containing command buffers and frame information.
  * @param shader Pointer to the vulkan_material_shader structure whose object state is to be updated.
- * @param model The model transformation matrix for the object.
+ * @param data Structure containing the model matrix and material information for the object.
  */
-void vulkan_material_shader_update_object(vulkan_context* context, struct vulkan_material_shader* shader, geometry_render_data data);
+void vulkan_material_shader_apply_material(vulkan_context* context, struct vulkan_material_shader* shader, material* material);
 
 /**
  * @brief Acquires resources for rendering a new object with the Vulkan object shader.
