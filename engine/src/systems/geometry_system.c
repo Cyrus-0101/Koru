@@ -7,6 +7,24 @@
 #include "renderer/renderer_frontend.h"
 
 /**
+ * @file geometry_system.c
+ *
+ * @brief Implementation of the geometry system.
+ *
+ * This module implements the functions defined in `geometry_system.h`.
+ * It manages the creation, acquisition, and release of geometries,
+ * as well as the default geometry and geometry references.
+ *
+ * Responsibilities:
+ * - Initialize the geometry system with `geometry_system_initialize()`, providing configuration options.
+ * - Acquire geometries by name using `geometry_system_acquire()`. If the geometry is not
+ * already loaded, it will be created with default properties.
+ * - Release geometries using `geometry_system_release()`. If a geometry was marked for auto-release,
+ * it will be freed when no longer in use.
+ * - Shutdown the geometry system with `geometry_system_shutdown()` to free all resources.
+ */
+
+/**
  * @struct geometry_reference
  *
  * Internal structure to keep track of geometry references and data.
