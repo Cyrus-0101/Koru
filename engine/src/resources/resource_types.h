@@ -90,6 +90,25 @@ typedef struct material {
 } material;
 
 /**
+ * @struct material_config
+ * @brief Configuration structure for creating or loading a material.
+ *
+ * Contains parameters needed to define a material, including its name,
+ * whether it should be auto-released, its diffuse color, and the name of
+ * the diffuse texture map.
+ */
+typedef struct material_config {
+    /** Name of the material. */
+    char name[MATERIAL_NAME_MAX_LENGTH];
+    /** Indicates if the material should be automatically released when no longer referenced. */
+    b8 auto_release;
+    /** Diffuse color of the material. */
+    vec4 diffuse_color;
+    /** Name of the diffuse texture map. */
+    char diffuse_map_name[TEXTURE_NAME_MAX_LENGTH];
+} material_config;
+
+/**
  * @struct geometry
  * @brief Represents a geometry (mesh) resource.
  *
@@ -107,3 +126,62 @@ typedef struct geometry {
     /** Pointer to the associated material for rendering this geometry. */
     material* material;
 } geometry;
+
+/**
+ * @enum resource_type
+ * @brief Enumerates the different types of resources managed by the engine.
+ *
+ * This helps in categorizing and handling resources appropriately during loading,
+ * processing, and rendering.
+ */
+typedef enum resource_type {
+    /** Text resource type. (char[])*/
+    RESOURCE_TYPE_TEXT,
+    /** Binary resource type. (uint 8b) */
+    RESOURCE_TYPE_BINARY,
+    /** Image resource type. */
+    RESOURCE_TYPE_IMAGE,
+    /** Material resource type. */
+    RESOURCE_TYPE_MATERIAL,
+    /** Static mesh resource type. */
+    RESOURCE_TYPE_STATIC_MESH,
+    /** Custom resource type for user-defined resources. */
+    RESOURCE_TYPE_CUSTOM
+} resource_type;
+
+/**
+ * @struct resource
+ * @brief Represents a generic resource loaded by the engine.
+ *
+ * Contains metadata about the resource, including its type, name,
+ * file path, size, and a pointer to the actual data.
+ */
+typedef struct resource {
+    /** Identifier of the loader that loaded this resource. */
+    u32 loader_id;
+    /** Type of the resource (e.g., image, material). */
+    const char* name;
+    /** Path to the resource file. */
+    char* full_path;
+    /** Size of the resource data in bytes. */
+    u64 data_size;
+    /** Pointer to the actual resource data. */
+    void* data;
+} resource;
+
+/**
+ * @struct image_resource_data
+ * @brief Represents the data for an image resource.
+ *
+ * Contains pixel data along with metadata such as dimensions and channel count.
+ */
+typedef struct image_resource_data {
+    /** Number of color channels in the image (e.g., 3 for RGB, 4 for RGBA). */
+    u8 channel_count;
+    /** Width of the image in pixels. */
+    u32 width;
+    /** Height of the image in pixels. */
+    u32 height;
+    /** Pointer to the raw pixel data of the image. */
+    u8* pixels;
+} image_resource_data;

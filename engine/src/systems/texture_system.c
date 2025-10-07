@@ -7,9 +7,8 @@
 
 #include "renderer/renderer_frontend.h"
 
-// TODO: resource loader.
-#define STB_IMAGE_IMPLEMENTATION
-#include "vendor/stb_image.h"
+#include "resources/resource_types.h"
+#include "systems/resource_system.h"
 
 #define TEX_DIMENSIONS 256  // Texture is 256x256
 
@@ -339,80 +338,68 @@ void destroy_default_textures(texture_system_state* state) {
 }
 
 b8 load_texture(const char* texture_name, texture* t) {
-    // TODO: Should be able to be located anywhere.
-    char* format_str = "assets/textures/%s.%s";
-    const i32 required_channel_count = 4;
-    stbi_set_flip_vertically_on_load(True);
-    char full_file_path[512];
+    resource img_resource;
 
-    // TODO: try different extensions
-    string_format(full_file_path, format_str, texture_name, "png");
+    if (!resource_system_load(texture_name, RESOURCE_TYPE_IMAGE, &img_resource)) {
+        KERROR("Failed to load image resource for texture '%s'.", texture_name);
+        return False;
+    }
+
+    image_resource_data* resource_data = img_resource.data;
 
     // Use a temporary texture to load into.
     texture temp_texture;
 
-    u8* data = stbi_load(
-        full_file_path,
-        (i32*)&temp_texture.width,
-        (i32*)&temp_texture.height,
-        (i32*)&temp_texture.channel_count,
-        required_channel_count);
+    temp_texture.width = resource_data->width;
+    temp_texture.height = resource_data->height;
+    temp_texture.channel_count = resource_data->channel_count;
 
-    temp_texture.channel_count = required_channel_count;
+    u32 current_generation = t->generation;
+    t->generation = INVALID_ID;
 
-    if (data) {
-        u32 current_generation = t->generation;
-        t->generation = INVALID_ID;
+    u64 total_size = temp_texture.width * temp_texture.height * temp_texture.channel_count;
 
-        u64 total_size = temp_texture.width * temp_texture.height * required_channel_count;
-        // Check for transparency
-        b32 has_transparency = False;
-        for (u64 i = 0; i < total_size; i += required_channel_count) {
-            u8 a = data[i + 3];
-            if (a < 255) {
-                has_transparency = True;
-                break;
-            }
+    // Check for transparency
+    b32 has_transparency = False;
+    for (u64 i = 0; i < total_size; i += temp_texture.channel_count) {
+        u8 a = resource_data->pixels[i + 3];
+        if (a < 255) {
+            has_transparency = True;
+            break;
         }
-
-        if (stbi_failure_reason()) {
-            KWARN("load_texture() failed to load file '%s': %s", full_file_path, stbi_failure_reason());
-        }
-
-        // Acquire internal texture resources and upload to GPU.
-        renderer_create_texture(
-            texture_name,
-            temp_texture.width,
-            temp_texture.height,
-            temp_texture.channel_count,
-            data,
-            has_transparency,
-            &temp_texture);
-
-        // Take a copy of the old texture.
-        texture old = *t;
-
-        // Assign the temp texture to the pointer.
-        *t = temp_texture;
-
-        // Destroy the old texture.
-        renderer_destroy_texture(&old);
-
-        if (current_generation == INVALID_ID) {
-            t->generation = 0;
-        } else {
-            t->generation = current_generation + 1;
-        }
-
-        // Clean up data.
-        stbi_image_free(data);
-        return True;
-    } else {
-        if (stbi_failure_reason()) {
-            KWARN("load_texture() failed to load file '%s': %s", full_file_path, stbi_failure_reason());
-        }
-        return False;
     }
+
+    // Take a copy of the name
+    string_ncopy(temp_texture.name, texture_name, TEXTURE_NAME_MAX_LENGTH);
+
+    // Acquire internal texture resources and upload to GPU.
+    renderer_create_texture(
+        texture_name,
+        temp_texture.width,
+        temp_texture.height,
+        temp_texture.channel_count,
+        resource_data->pixels,
+        has_transparency,
+        &temp_texture);
+
+    // Take a copy of the old texture.
+    texture old = *t;
+
+    // Assign the temp texture to the pointer.
+    *t = temp_texture;
+
+    // Destroy the old texture.
+    renderer_destroy_texture(&old);
+
+    if (current_generation == INVALID_ID) {
+        t->generation = 0;
+    } else {
+        t->generation = current_generation + 1;
+    }
+
+    // Clean up data.
+    resource_system_unload(&img_resource);
+    return True;
 }
 
 void destroy_texture(texture* t) {

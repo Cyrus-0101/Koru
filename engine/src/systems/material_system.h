@@ -1,6 +1,8 @@
 #pragma once
 
-#include "renderer/renderer_types.inl"
+#include "defines.h"
+
+#include "resources/resource_types.h"
 
 /**
  * @file material_system.h
@@ -33,22 +35,6 @@ typedef struct material_system_config {
     /** Maximum number of materials that can be managed by the system. */
     u32 max_material_count;
 } material_system_config;
-
-/**
- * @struct material_config
- *
- * @brief Configuration for creating or loading a material.
- */
-typedef struct material_config {
-    /** Name of the material. */
-    char name[MATERIAL_NAME_MAX_LENGTH];
-    /** Auto-release flag. */
-    b8 auto_release;
-    /** Diffuse color of the material (used if no texture is assigned). */
-    vec4 diffuse_color;
-    /** Name of the diffuse texture map to use. */
-    char diffuse_map_name[TEXTURE_NAME_MAX_LENGTH];
-} material_config;
 
 /**
  * @brief Initializes the material system.
