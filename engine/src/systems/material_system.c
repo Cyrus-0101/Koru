@@ -14,7 +14,17 @@
 /**
  * @file material_system.c
  *
- * @brief Material management system.
+ * @brief Implementation of the material system.
+ *
+ * This module implements the functions defined in `material_system.h`.
+ * It manages the creation, acquisition, and release of materials,
+ * as well as the default material and material references.
+ *
+ * Responsibilities:
+ * - Initialize the material system with `material_system_initialize()`.
+ * - Acquire materials by name using `material_system_acquire()`.
+ * - Release materials using `material_system_release()`.
+ * - Shutdown the material system with `material_system_shutdown()`.
  */
 
 /**
