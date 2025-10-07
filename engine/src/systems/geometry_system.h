@@ -2,13 +2,26 @@
 
 #include "renderer/renderer_types.inl"
 
-/** @file geometry_system.h
- * @brief Header file for the geometry system, which manages 3D geometries in the engine.
- * This system handles the loading, storage, and retrieval of geometry resources,
- * as well as their association with materials for rendering.
+/**
+ * @file geometry_system.h
+ *
+ * @brief Geometry management system.
+ *
+ * This module provides functionality to manage geometry resources within the engine.
+ * It supports loading, acquiring, and releasing geometries, as well as automatic cleanup of unused resources.
+ *
+ * Usage:
+ * - Initialize the geometry system with `geometry_system_initialize()`, providing configuration options.
+ * - Acquire geometries by name using `geometry_system_acquire()`. If the geometry is not
+ * already loaded, it will be created with default properties.
+ * - Release geometries using `geometry_system_release()`. If a geometry was marked for auto-release,
+ * it will be freed when no longer in use.
+ * - Shutdown the geometry system with `geometry_system_shutdown()` to free all resources.
  */
 
-/** Default geometry name */
+/**
+ * @brief Default geometry name used when a requested geometry is not found.
+ */
 #define DEFAULT_GEOMETRY_NAME "default"
 
 /**
