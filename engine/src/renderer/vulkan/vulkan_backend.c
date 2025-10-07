@@ -18,6 +18,8 @@
 #include "vulkan_swapchain.h"
 #include "vulkan_utils.h"
 
+#include "systems/material_system.h"
+
 /**
  * @file vulkan_backend.c
  * @brief Implementation of the Vulkan renderer backend.
@@ -47,7 +49,7 @@ void upload_data_range(vulkan_context* context,
                        vulkan_buffer* buffer,
                        u64 offset,
                        u64 size,
-                       void* data) {
+                       const void* data) {
     // Create a host-visible staging buffer to upload to. Mark it as the source of the transfer
     VkBufferUsageFlags flags = VK_BUFFER_USAGE_TRANSFER_SRC_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
 
@@ -80,6 +82,16 @@ void upload_data_range(vulkan_context* context,
     vulkan_buffer_destroy(context, &staging);
 }
 
+void free_data_range(vulkan_buffer* buffer, u64 offset, u64 size) {
+    // No-op for Vulkan as memory is managed by the Vulkan driver.
+    // In a more complex implementation, you might track allocations within the buffer.
+    // (void)buffer;
+    // (void)offset;
+    // (void)size;
+
+    // TODO: Free this in the buffer
+    // TODO: Update free list with this range being free
+}
 b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* application_name) {
     KINFO("Creating Vulkan instance...");
     // Function pointers
@@ -280,55 +292,11 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
 
     create_buffers(&context);
 
-    // TO-DO: Temporary Test codds
-    vertex_3d verts[VERTEX_COUNT];
-    kzero_memory(verts, sizeof(vertex_3d) * VERTEX_COUNT);
-
-    const f32 f = 10.0f;
-
-    verts[0].position.x = -0.5 * f;
-    verts[0].position.y = -0.5 * f;
-    verts[0].texcoord.x = 0.0f;
-    verts[0].texcoord.y = 0.0f;
-
-    verts[1].position.x = 0.5 * f;
-    verts[1].position.y = 0.5 * f;
-    verts[1].texcoord.x = 1.0f;
-    verts[1].texcoord.y = 1.0f;
-
-    verts[2].position.x = -0.5 * f;
-    verts[2].position.y = 0.5 * f;
-    verts[2].texcoord.x = 0.0f;
-    verts[2].texcoord.y = 1.0f;
-
-    verts[3].position.x = 0.5 * f;
-    verts[3].position.y = -0.5 * f;
-    verts[3].texcoord.x = 1.0f;
-    verts[3].texcoord.y = 0.0f;
-
-    u32 indices[INDEX_COUNT] = {0, 1, 2, 0, 3, 1};
-
-    upload_data_range(
-        &context,
-        context.device.graphics_command_pool,
-        0,
-        context.device.graphics_queue,
-        &context.object_vertex_buffer,
-        0,
-        sizeof(vertex_3d) * VERTEX_COUNT,
-        verts);
-
-    upload_data_range(
-        &context,
-        context.device.graphics_command_pool,
-        0,
-        context.device.graphics_queue,
-        &context.object_index_buffer,
-        0,
-        sizeof(u32) * INDEX_COUNT,
-        indices);
-
-    // To-DO: End of temporary test code
+    // Mark all geometries as invalid
+    for (u32 i = 0; i < VULKAN_MAX_GEOMETRY_COUNT; ++i) {
+        context.geometries[i].id = INVALID_ID;
+    }
+    KINFO("Geometry slots marked as invalid.");
 
     KINFO("Vulkan renderer initialized successfully.");
     return True;
@@ -617,48 +585,6 @@ b8 vulkan_renderer_backend_end_frame(renderer_backend* backend, f32 delta_time) 
         context.image_index);
 
     return True;
-}
-
-void vulkan_backend_update_object(geometry_render_data data) {
-    vulkan_command_buffer* command_buffer = &context.graphics_command_buffers[context.image_index];
-
-    // TO-DO: Work on this
-    vulkan_material_shader_update_object(&context, &context.material_shader, data);
-
-    // TO-DO: Temporary Test code
-    vulkan_material_shader_use(&context, &context.material_shader);
-
-    // Bind the graphics pipeline
-    vkCmdBindPipeline(
-        command_buffer->handle,
-        VK_PIPELINE_BIND_POINT_GRAPHICS,
-        context.material_shader.pipeline.handle);
-
-    // Bind the vertex buffer at offset
-    VkDeviceSize offsets[1] = {0};
-    vkCmdBindVertexBuffers(
-        command_buffer->handle,
-        0,
-        1,
-        &context.object_vertex_buffer.handle,
-        (VkDeviceSize*)offsets);
-
-    // Bind the index buffer at offset
-    vkCmdBindIndexBuffer(
-        command_buffer->handle,
-        context.object_index_buffer.handle,
-        0,
-        VK_INDEX_TYPE_UINT32);
-
-    // Draw the triangle
-    vkCmdDrawIndexed(
-        command_buffer->handle,
-        6,   // Index count
-        1,   // Instance count
-        0,   // First index
-        0,   // Vertex offset
-        0);  // First instance
-    // TO-DO: End Temporary Test code
 }
 
 VKAPI_ATTR VkBool32 VKAPI_CALL vk_debug_callback(
@@ -1018,5 +944,152 @@ void vulkan_renderer_destroy_material(struct material* material) {
         }
     } else {
         KWARN("vulkan_renderer_destroy_material called with nullptr. Nothing was done.");
+    }
+}
+
+b8 vulkan_renderer_create_geometry(geometry* geometry, u32 vertex_count, const vertex_3d* vertices, u32 index_count, const u32* indices) {
+    if (!vertex_count || !vertices) {
+        KERROR("vulkan_renderer_create_geometry requires vertex data, and none was supplied. vertex_count=%d, vertices=%p", vertex_count, vertices);
+        return False;
+    }
+
+    // Check if this is a re-upload. If it is, need to free old data afterward.
+    b8 is_reupload = geometry->internal_id != INVALID_ID;
+    vulkan_geometry_data old_range;
+
+    vulkan_geometry_data* internal_data = 0;
+    if (is_reupload) {
+        internal_data = &context.geometries[geometry->internal_id];
+
+        // Take a copy of the old range.
+        old_range.index_buffer_offset = internal_data->index_buffer_offset;
+        old_range.index_count = internal_data->index_count;
+        old_range.index_size = internal_data->index_size;
+        old_range.vertex_buffer_offset = internal_data->vertex_buffer_offset;
+        old_range.vertex_count = internal_data->vertex_count;
+        old_range.vertex_size = internal_data->vertex_size;
+    } else {
+        // Search for a free index and use it.
+        for (u32 i = 0; i < VULKAN_MAX_GEOMETRY_COUNT; ++i) {
+            if (context.geometries[i].id == INVALID_ID) {
+                // Found a free index.
+                geometry->internal_id = i;
+                context.geometries[i].id = i;
+                internal_data = &context.geometries[i];
+                break;
+            }
+        }
+    }
+    if (!internal_data) {
+        KFATAL("vulkan_renderer_create_geometry failed to find a free index for a new geometry upload. Adjust config to allow for more.");
+        return False;
+    }
+
+    VkCommandPool pool = context.device.graphics_command_pool;
+    VkQueue queue = context.device.graphics_queue;
+
+    // Vertex data.
+    internal_data->vertex_buffer_offset = context.geometry_vertex_offset;
+    internal_data->vertex_count = vertex_count;
+    internal_data->vertex_size = sizeof(vertex_3d) * vertex_count;
+
+    upload_data_range(&context, pool, 0, queue, &context.object_vertex_buffer, internal_data->vertex_buffer_offset, internal_data->vertex_size, vertices);
+
+    // TODO: should maintain a free list instead of this.
+    context.geometry_vertex_offset += internal_data->vertex_size;
+
+    // Index data, if applicable
+    if (index_count && indices) {
+        internal_data->index_buffer_offset = context.geometry_index_offset;
+        internal_data->index_count = index_count;
+        internal_data->index_size = sizeof(u32) * index_count;
+
+        upload_data_range(&context, pool, 0, queue, &context.object_index_buffer, internal_data->index_buffer_offset, internal_data->index_size, indices);
+
+        // TODO: should maintain a free list instead of this.
+        context.geometry_index_offset += internal_data->index_size;
+    }
+
+    if (internal_data->generation == INVALID_ID) {
+        internal_data->generation = 0;
+    } else {
+        internal_data->generation++;
+    }
+
+    if (is_reupload) {
+        // Free vertex data
+        free_data_range(&context.object_vertex_buffer, old_range.vertex_buffer_offset, old_range.vertex_size);
+
+        // Free index data, if applicable
+        if (old_range.index_size > 0) {
+            free_data_range(&context.object_index_buffer, old_range.index_buffer_offset, old_range.index_size);
+        }
+    }
+
+    return True;
+}
+
+void vulkan_renderer_destroy_geometry(geometry* geometry) {
+    if (geometry && geometry->internal_id != INVALID_ID) {
+        vkDeviceWaitIdle(context.device.logical_device);  // Kind of overkill but hey, better safe ...!
+        vulkan_geometry_data* internal_data = &context.geometries[geometry->internal_id];
+
+        // Free vertex data
+        free_data_range(&context.object_vertex_buffer, internal_data->vertex_buffer_offset, internal_data->vertex_size);
+
+        // Free index data, if applicable
+        if (internal_data->index_size > 0) {
+            free_data_range(&context.object_index_buffer, internal_data->index_buffer_offset, internal_data->index_size);
+        }
+
+        // Clean up data.
+        kzero_memory(internal_data, sizeof(vulkan_geometry_data));
+        internal_data->id = INVALID_ID;
+        internal_data->generation = INVALID_ID;
+    }
+}
+
+void vulkan_backend_draw_geometry(geometry_render_data data) {
+    // Ignore non-uploaded geometries
+    if (data.geometry && data.geometry->internal_id == INVALID_ID) {
+        return;
+    }
+
+    vulkan_geometry_data* buffer_data = &context.geometries[data.geometry->internal_id];
+    vulkan_command_buffer* command_buffer = &context.graphics_command_buffers[context.image_index];
+
+    // TODO: check if this is actually needed.
+    vulkan_material_shader_use(&context, &context.material_shader);
+
+    vulkan_material_shader_set_model(&context, &context.material_shader, data.model);
+
+    material* m = 0;
+    if (data.geometry->material) {
+        m = data.geometry->material;
+    } else {
+        m = material_system_get_default();
+    }
+
+    vulkan_material_shader_apply_material(&context, &context.material_shader, m);
+
+    vkCmdBindPipeline(
+        command_buffer->handle,
+        VK_PIPELINE_BIND_POINT_GRAPHICS,
+        context.material_shader.pipeline.handle);
+
+    // Bind vertex buffer at offset.
+    VkDeviceSize offsets[1] = {buffer_data->vertex_buffer_offset};
+
+    vkCmdBindVertexBuffers(command_buffer->handle, 0, 1, &context.object_vertex_buffer.handle, (VkDeviceSize*)offsets);
+
+    // Draw indexed or non-indexed.
+    if (buffer_data->index_count > 0) {
+        // Bind index buffer at offset.
+        vkCmdBindIndexBuffer(command_buffer->handle, context.object_index_buffer.handle, buffer_data->index_buffer_offset, VK_INDEX_TYPE_UINT32);
+
+        // Issue the draw.
+        vkCmdDrawIndexed(command_buffer->handle, buffer_data->index_count, 1, 0, 0, 0);
+    } else {
+        vkCmdDraw(command_buffer->handle, buffer_data->vertex_count, 1, 0, 0);
     }
 }
