@@ -130,3 +130,25 @@ b8 renderer_create_material(struct material* material);
  * @param material Pointer to the material to be destroyed.
  */
 void renderer_destroy_material(struct material* material);
+
+/**
+ * @brief Creates a geometry resource from vertex and index data.
+ *
+ * This function uploads the provided vertex and index data to the GPU
+ * and creates a geometry object that can be used in rendering operations.
+ *
+ * @param geometry Pointer to the geometry structure to be filled out.
+ * @param vertex_count Number of vertices in the geometry.
+ * @param vertices Pointer to an array of vertices defining the geometry.
+ * @param index_count Number of indices in the geometry.
+ * @param indices Pointer to an array of indices defining the geometry.
+ * @return True if the geometry was created successfully; otherwise False.
+ */
+b8 renderer_create_geometry(geometry* geometry, u32 vertex_count, const vertex_3d* vertices, u32 index_count, const u32* indices);
+
+/**
+ * @brief Destroys a geometry resource and frees associated GPU memory.
+ *
+ * @param geometry Pointer to the geometry to be destroyed.
+ */
+void renderer_destroy_geometry(geometry* geometry);
