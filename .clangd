@@ -1,0 +1,16 @@
+CompileFlags:
+  Add:
+    # Force C language mode (not C++)
+    - -xc
+    # Use GNU C99 standard (ISO C99 + GNU extensions like typeof)
+    - -std=gnu99
+    # Enable GNU89 inline behavior (for typeof and other extensions)
+    # - -fgnu89-inline
+    # Add engine source directory to include path
+    - -I/home/cyrus/Desktop/code/games/engines/Koru/engine/src
+    # Define debug mode (enables debug logging/asserts)
+    - -D_DEBUG
+    # Define KEXPORT for shared library building
+    - -DKEXPORT
+    # Add Vulkan SDK include directory
+    - -I$VULKAN_SDK/include
