@@ -134,7 +134,7 @@ void upload_data_range(vulkan_context* context,
                        vulkan_buffer* buffer,
                        u64 offset,
                        u64 size,
-                       void* data);
+                       const void* data);
 
 /**
  * @brief Initializes the Vulkan renderer backend.
@@ -211,7 +211,7 @@ void vulkan_renderer_update_global_state(mat4 projection, mat4 view, vec3 view_p
  * @param model The model matrix for the object.
  * @return void
  */
-void vulkan_backend_update_object(geometry_render_data data);
+void vulkan_backend_draw_geometry(geometry_render_data data);
 
 /**
  * @brief Creates a texture in the Vulkan renderer backend.
@@ -254,3 +254,15 @@ b8 vulkan_renderer_create_material(struct material* material);
  * @param material Pointer to the material to be destroyed.
  */
 void vulkan_renderer_destroy_material(struct material* material);
+
+/**
+ *
+ * @brief
+ */
+b8 vulkan_renderer_create_geometry(geometry* geometry, u32 vertex_count, const vertex_3d* vertices, u32 index_count, const u32* indices);
+
+/**
+ *
+ * @brief
+ */
+void vulkan_renderer_destroy_geometry(geometry* geometry);
