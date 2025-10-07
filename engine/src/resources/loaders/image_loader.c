@@ -100,6 +100,10 @@ void image_loader_unload(struct resource_loader* self, resource* resource) {
     }
 
     if (resource->data) {
+        image_resource_data* resource_data = (image_resource_data*)resource->data;
+        if (resource_data->pixels) {
+            stbi_image_free(resource_data->pixels);
+        }
         kfree(resource->data, resource->data_size, MEMORY_TAG_TEXTURE);
         resource->data = 0;
         resource->data_size = 0;

@@ -65,11 +65,11 @@ b8 filesystem_size(file_handle* handle, u64* out_size) {
     if (handle->handle) {
         fseek((FILE*)handle->handle, 0, SEEK_END);
         *out_size = ftell((FILE*)handle->handle);
-        
-        KTRACE("File size: %llu", *out_size);
-        
+
+        // KTRACE("File size: %llu", *out_size);
+
         rewind((FILE*)handle->handle);
-        
+
         return True;
     }
     return False;
@@ -120,7 +120,7 @@ b8 filesystem_read_all_bytes(file_handle* handle, u8* out_bytes, u64* out_bytes_
         // File size
         u64 size = 0;
 
-        if(!filesystem_size(handle, &size)) {
+        if (!filesystem_size(handle, &size)) {
             return False;
         }
 
@@ -147,7 +147,7 @@ b8 filesystem_read_all_text(file_handle* handle, char* out_text, u64* out_bytes_
     if (handle->handle && out_text && out_bytes_read) {
         // File size
         u64 size = 0;
-        if(!filesystem_size(handle, &size)) {
+        if (!filesystem_size(handle, &size)) {
             return False;
         }
 

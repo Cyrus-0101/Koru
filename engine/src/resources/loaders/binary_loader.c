@@ -16,11 +16,9 @@
 
 /**
  * @brief Loads a binary resource.
-
- * @param self The resource loader.
- * @param name The name of the resource.
+ * @param self         The resource loader.
+ * @param name         The name of the resource.
  * @param out_resource The resource to load.
- 
  * @return True if the resource was loaded successfully, False otherwise.
  */
 b8 binary_loader_load(struct resource_loader* self, const char* name, resource* out_resource) {
