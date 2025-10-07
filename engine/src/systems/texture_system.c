@@ -341,7 +341,7 @@ b8 load_texture(const char* texture_name, texture* t) {
     resource img_resource;
 
     if (!resource_system_load(texture_name, RESOURCE_TYPE_IMAGE, &img_resource)) {
-        KERROR("Fialed to load image resource for texture '%s'.", texture_name);
+        KERROR("Failed to load image resource for texture '%s'.", texture_name);
         return False;
     }
 
