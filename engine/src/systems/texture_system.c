@@ -21,8 +21,25 @@
  * @file texture_system.c
  *
  * @brief Implementation of the texture system for managing textures in the Koru engine.
- * This system handles texture loading, registration, and reference counting.
- * It provides functions to acquire textures by name, manage their lifetimes, and retrieve default textures
+ *
+ * This module provides functionality to manage texture resources within the engine.
+ * It supports loading, acquiring, and releasing textures, as well as automatic cleanup of unused resources.
+ *
+ * Usage:
+ * - Initialize the texture system with `texture_system_initialize()`, providing configuration options.
+ * - Acquire textures by name using `texture_system_acquire()`. If the texture is not
+ * already loaded, it will be loaded from disk.
+ * - Release textures using `texture_system_release()`. If a texture was marked for auto-release,
+ * it will be freed when no longer in use.
+ * - Shutdown the texture system with `texture_system_shutdown()` to free all resources.
+ *
+ * Responsibilities:
+ * - Initialize the texture system with `texture_system_initialize()`, providing configuration options.
+ * - Acquire textures by name using `texture_system_acquire()`. If the texture is not
+ * already loaded, it will be loaded from disk.
+ * - Release textures using `texture_system_release()`. If a texture was marked for auto-release,
+ * it will be freed when no longer in use.
+ * - Shutdown the texture system with `texture_system_shutdown()` to free all resources.
  */
 
 /**
