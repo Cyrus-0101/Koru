@@ -14,7 +14,11 @@
 /** Maximum length for texture names. */
 #define TEXTURE_NAME_MAX_LENGTH 512
 
+/** Maximum length for material names. */
 #define MATERIAL_NAME_MAX_LENGTH 256
+
+/** Maximum length for geometry names. */
+#define GEOMETRY_NAME_MAX_LENGTH 256
 
 /**
  * @struct texture
@@ -84,3 +88,22 @@ typedef struct material {
     /** Texture map used for the diffuse component of the material. */
     texture_map diffuse_map;
 } material;
+
+/**
+ * @struct geometry
+ * @brief Represents a geometry (mesh) resource.
+ *
+ * Contains identifiers and references to materials used for rendering the geometry.
+ */
+typedef struct geometry {
+    /** Unique identifier for the geometry resource. */
+    u32 id;
+    /** Generation counter for tracking updates to the geometry. */
+    u32 generation;
+    /** Internal identifier used by the rendering backend. */
+    u32 internal_id;
+    /** Name of the geometry allocated for identification purposes. */
+    char name[GEOMETRY_NAME_MAX_LENGTH];
+    /** Pointer to the associated material for rendering this geometry. */
+    material* material;
+} geometry;
