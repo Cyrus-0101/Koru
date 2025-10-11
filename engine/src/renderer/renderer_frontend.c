@@ -2,17 +2,9 @@
 #include "renderer_backend.h"
 
 #include "core/logger.h"
-#include "core/kmemory.h"
 #include "math/kmath.h"
 
-#include "systems/texture_system.h"
-#include "systems/material_system.h"
-
 #include "resources/resource_types.h"
-
-// TO-DO: Temporary Code/Imports to be moved to resource loader
-#include "core/kstring.h"
-#include "core/event.h"
 
 /**
  * @file renderer_frontend.c
