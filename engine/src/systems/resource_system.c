@@ -43,7 +43,7 @@ static resource_system_state* state_ptr = 0;
  * @param out_resource Pointer to the resource structure to be filled out.
  * @return True if the resource was loaded successfully; otherwise False.
  */
-b8 load(const char* name, resource_loader* loader, resource* out_resource);
+static b8 load(const char* name, resource_loader* loader, resource* out_resource);
 
 b8 resource_system_initialize(u64* memory_requirement, void* state, resource_system_config config) {
     if (config.max_loader_count == 0) {
